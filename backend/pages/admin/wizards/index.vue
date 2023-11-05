@@ -95,7 +95,7 @@ const activeClasses = (currentTab) => {
         hidden: tab != 0,
       }"
     >
-      <admin-wizards-tabs-tab1 />
+      <admin-wizards />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -103,7 +103,7 @@ const activeClasses = (currentTab) => {
         hidden: tab != 1,
       }"
     >
-      <admin-wizards-tabs-tab3 />
+      <admin-wizards-table />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -111,7 +111,7 @@ const activeClasses = (currentTab) => {
         hidden: tab != 2,
       }"
     >
-      <admin-wizards-tabs-tab2 />
+      <admin-wizards-form />
     </div>
     <div
       class="min-w-full min-h-full pt-1"

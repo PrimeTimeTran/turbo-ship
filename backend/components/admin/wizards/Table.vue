@@ -9,7 +9,6 @@
     <div
       class="flex flex-col md:flex-row space-y-2 md:space-y-0 space-x-0 md:space-x-2"
     >
-      <!-- Problem here -->
       <admin-wizards-doughnut-chart />
       <div
         class="flex flex-1 flex-col justify-between min-h-full p-4 rounded-lg"

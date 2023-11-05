@@ -10,8 +10,8 @@ let submitted = ref(false)
 </script>
 
 <template>
-  <div class="w-100 dark:bg-neutral-900 pb-6">
-    <div class="dark:bg-neutral-900">
+  <div class="w-100 dark:bg-neutral-950 pb-6">
+    <div class="dark:bg-neutral-950">
       <FormKit
         type="form"
         @submit="submit"
@@ -26,7 +26,6 @@ let submitted = ref(false)
           <FormKit
             name="firstName"
             label="First Name"
-            validation="required"
             :classes="{
               outer: 'flex flex-grow flex-col mr-6 rounded',
               input:
@@ -39,7 +38,6 @@ let submitted = ref(false)
             type="text"
             name="lastName"
             label="Last Name"
-            validation="required"
             :classes="{
               outer: 'flex flex-grow flex-col rounded',
               input:

@@ -5,7 +5,7 @@
       @click="handleToggle()"
       class="flex sm:flex-col md:flex-row ml-3 py-3"
     >
-      <admin-navbar-theme-toggle />
+      <admin-navbar-toggle-theme />
     </div>
     <NuxtLink
       class="flex items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"

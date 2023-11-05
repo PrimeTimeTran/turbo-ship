@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="z-50 fixed top-0 left-0 right-0 w-screen flex flex-wrap items-center justify-around bg-white dark:bg-neutral-900 backdrop-blur-md border-b-2 border-b-gray-300 dark:border-b-zinc-800"
+    class="z-50 fixed top-0 left-0 right-0 w-screen flex flex-wrap items-center justify-around bg-white dark:bg-neutral-950 backdrop-blur-md border-b-2 border-b-gray-300 dark:border-b-zinc-800"
   >
     <div
       class="flex flex-wrap flex-grow md:flex-nowrap px-3 lg:px-3 items-center justify-between"
@@ -19,9 +19,10 @@
       </div>
       <div
         class="lg:flex lg:flex-grow items-center"
-        v-bind:class="{ hidden: !showMenu, flex: showMenu }"
+        :class="{ hidden: !showMenu, flex: showMenu }"
       >
-        <admin-navbar-items />
+        <admin-navbar-left />
+        <admin-navbar-right />
       </div>
     </div>
   </nav>

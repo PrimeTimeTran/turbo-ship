@@ -51,16 +51,18 @@ chartLabels.value = getData().labels
 
 <template>
   <div
-    class="flex flex-1 flex-col justify-between min-h-full shadow-xl p-4 rounded-lg bg-white dark:bg-neutral-800"
+    class="flex flex-1 flex-col justify-between min-h-full shadow-xl p-4 rounded-lg bg-white text-gray-500 dark:bg-neutral-900"
   >
     <div class="md:flex md:justify-between md:items-center">
       <div>
         <h2
-          class="text-xl text-gray-800 dark:text-gray-400 font-bold leading-tight"
+          class="text-xl bg-white text-gray-500 dark:text-gray-500 dark:bg-neutral-900 font-bold leading-tight"
         >
-          Product Sales
+          Sales
         </h2>
-        <p class="mb-2 text-gray-600 dark:text-gray-300 text-sm">
+        <p
+          class="mb-2 text-gray-400 dark:text-gray-600 text-xl lg:text-2xl bg-white dark:bg-neutral-900"
+        >
           Monthly Average
         </p>
       </div>
@@ -94,7 +96,7 @@ chartLabels.value = getData().labels
       </template>
 
       <!-- Bar Chart -->
-      <div class="flex flex-grow items-end mb-2 bg-white dark:bg-neutral-800">
+      <div class="flex flex-grow items-end mb-2 bg-white dark:bg-neutral-900">
         <template
           :key="chartData"
           v-for="data in chartData"
@@ -103,8 +105,9 @@ chartLabels.value = getData().labels
             <div
               :style="{
                 height: `${data}px`,
+                backgroundColor: 'rgba(102, 126, 234, 1)',
               }"
-              class="transition ease-in duration-200 bg-blue-600 hover:bg-blue-400 relative"
+              class="transition ease-in duration-200 hover:bg-blue-400 relative"
               @mouseenter="
                 ($event) => {
                   APP.showTooltip($event)

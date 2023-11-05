@@ -42,4 +42,28 @@ export const Wizard = defineMongooseModel('Wizard', {
     type: String,
     required: true,
   },
+  industry: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  patronus: {
+    type: String,
+    required: true,
+  },
+  topSpells: {
+    type: Array,
+    required: true,
+  },
+  // squib, muggle, half, pure,
+
+  // attributes
+  //
 })

@@ -10,10 +10,9 @@
         class="mr-3"
         :icon="item.icon"
       />
-      {{ item.name }}
+      <span v-text="item.name" />
     </NuxtLink>
   </ul>
-  <admin-navbar-right />
 </template>
 
 <script>

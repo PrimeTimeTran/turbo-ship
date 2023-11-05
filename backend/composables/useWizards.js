@@ -62,7 +62,21 @@ export async function useWizards() {
     }
   )
 
+  const sort = (field, direction) => {
+    if (direction === 'ASC') {
+      wizards.value = wizards.value.sort((a, b) =>
+        a[field] > b[field] ? 1 : -1
+      )
+    } else if (direction === 'DESC') {
+      wizards.value = wizards.value.sort((a, b) =>
+        a[field] > b[field] ? -1 : 1
+      )
+    } else {
+    }
+  }
+
   return {
+    sort,
     wizards,
     newWizard,
     addWizard,

@@ -5,14 +5,14 @@ const { isOpen, toggleOpen } = useToggleOpen()
 <template>
   <aside
     :class="isOpen ? 'w-64' : 'w-16'"
-    class="hidden sm:flex min-w-100 min-h-screen z-30 overflow-auto ease-in-out transition-all duration-300 bg-white dark:bg-neutral-900 border-r-2 dark:border-r-zinc-800"
+    class="hidden sm:flex min-w-100 min-h-screen z-30 overflow-auto ease-in-out transition-all duration-300 bg-white dark:bg-neutral-950 border-r-2 dark:border-r-zinc-800"
   >
     <div
       class="flex px-3"
       @click="toggleOpen"
     >
       <div :class="{ 'menu-trigger-open': isOpen }">
-        <div class="menu-link-wrapper bg-white dark:bg-neutral-900">
+        <div class="menu-link-wrapper bg-white dark:bg-neutral-950">
           <div class="menu-link mb-3">
             <span class="lines"></span>
           </div>

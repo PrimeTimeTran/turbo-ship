@@ -1,6 +1,5 @@
 <template>
-  <pre class="dark:text-white"
-    >{{ data }}
+  <pre class="dark:text-white"><span v-text="data "/>
   </pre>
 </template>
 

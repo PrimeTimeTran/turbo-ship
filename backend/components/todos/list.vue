@@ -13,9 +13,7 @@
           }"
         >
           <div class="flex justify-between">
-            <div>
-              {{ todo.firstName }}
-            </div>
+            <span v-text="todo.firstName" />
             <div @click="remove(todo.id)">X</div>
           </div>
         </div>
