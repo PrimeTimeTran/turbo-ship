@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="z-50 fixed top-0 left-0 right-0 w-screen flex flex-wrap items-center justify-around bg-white dark:bg-slate-800 backdrop-blur-md shadow"
+    class="z-50 fixed top-0 left-0 right-0 w-screen flex flex-wrap items-center justify-around bg-white dark:bg-neutral-900 backdrop-blur-md border-b-2 border-b-gray-300 dark:border-b-zinc-800"
   >
     <div
       class="flex flex-wrap flex-grow md:flex-nowrap px-3 lg:px-3 items-center justify-between"

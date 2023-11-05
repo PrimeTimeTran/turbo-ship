@@ -15,7 +15,7 @@ export default {
         invert: {
           css: {
             '--tw-prose-links': theme('colors.blue[750]'),
-            '--tw-prose-headings': theme('colors.gray[500]'),
+            '--tw-prose-headings': theme('colors.gray[50]'),
           },
         },
         DEFAULT: {

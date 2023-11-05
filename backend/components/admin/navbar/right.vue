@@ -8,7 +8,7 @@
       <admin-navbar-theme-toggle />
     </div>
     <NuxtLink
-      class="flex items-center text-gray-500 dark:text-white hover:text-green-500 cursor-pointer transition-colors duration-300 py-3"
+      class="flex items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"
     >
       <svg
         width="24"
@@ -28,7 +28,7 @@
     </NuxtLink>
 
     <NuxtLink
-      class="flex items-center text-gray-500 dark:text-white hover:text-green-500 cursor-pointer transition-colors duration-300 py-3"
+      class="flex items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"
     >
       <font-awesome-icon
         icon="fa-solid fa-sign-out"

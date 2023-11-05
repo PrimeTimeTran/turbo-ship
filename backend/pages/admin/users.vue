@@ -1,5 +1,5 @@
 <template>
-  <pre
+  <pre class="dark:text-white"
     >{{ data }}
   </pre>
 </template>

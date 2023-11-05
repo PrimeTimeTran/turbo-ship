@@ -5,53 +5,81 @@ const { isOpen, toggleOpen } = useToggleOpen()
 <template>
   <aside
     :class="isOpen ? 'w-64' : 'w-16'"
-    class="hidden sm:flex min-w-100 min-h-screen z-30 overflow-auto ease-in-out transition-all duration-300 bg-white dark:bg-slate-800 border-r-2"
+    class="hidden sm:flex min-w-100 min-h-screen z-30 overflow-auto ease-in-out transition-all duration-300 bg-white dark:bg-neutral-900 border-r-2 dark:border-r-zinc-800"
   >
     <div
       class="flex px-3"
       @click="toggleOpen"
     >
       <div :class="{ 'menu-trigger-open': isOpen }">
-        <div class="menu-link-wrapper">
+        <div class="menu-link-wrapper bg-white dark:bg-neutral-900">
           <div class="menu-link mb-3">
             <span class="lines"></span>
           </div>
         </div>
-        <div v-if="isOpen">
-          <h1 class="dark:text-white">Item 1</h1>
-          <h1 class="dark:text-white">Item 2</h1>
-          <h1 class="dark:text-white">Item 3</h1>
-          <h1 class="dark:text-white">Item 4</h1>
-          <h1 class="dark:text-white">Item 5</h1>
+        <div
+          v-if="isOpen"
+          class="pt-32 space-y-12"
+        >
+          <p
+            class="text-2xl truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+          >
+            Item 1
+          </p>
+          <p
+            class="text-2xl truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+          >
+            Item 2
+          </p>
+          <p
+            class="text-2xl truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+          >
+            Item 3
+          </p>
+          <p
+            class="text-2xl truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+          >
+            Item 4
+          </p>
+          <p
+            class="text-2xl truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+          >
+            Item 5
+          </p>
         </div>
-        <div v-else>
-          <h1 class="dark:text-white">
+        <div
+          v-else
+          class="pt-32"
+        >
+          <div
+            class="flex flex-col items-middle justify-center dark:text-white space-y-12"
+          >
             <font-awesome-icon
-              class="mr-3"
-              color="white"
+              size="2x"
+              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-bars"
             />
             <font-awesome-icon
-              class="mr-3"
-              color="white"
+              size="2x"
+              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-blog"
             />
             <font-awesome-icon
-              class="mr-3"
-              color="white"
+              size="2x"
+              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-hat-wizard"
             />
             <font-awesome-icon
-              class="mr-3"
-              color="white"
+              size="2x"
+              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-user"
             />
             <font-awesome-icon
-              class="mr-3"
-              color="white"
+              size="2x"
+              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-address-card"
             />
-          </h1>
+          </div>
         </div>
       </div>
     </div>
@@ -60,22 +88,23 @@ const { isOpen, toggleOpen } = useToggleOpen()
 
 <style>
 .menu-link-wrapper {
-  width: 100%;
-  height: 35px;
   cursor: pointer;
-  margin: 60px auto;
+  position: fixed;
+  left: 0px;
+  bottom: 10px;
+  height: 50px;
+  width: 60px;
 }
 
 .menu-link {
-  width: 100%;
   height: 100%;
+  width: 65px;
 }
 
 .lines {
   -moz-transition: background 0.2s ease 0.4s;
   -o-transition: background 0.2s ease 0.4s;
   -webkit-transition: background 0.2s ease;
-  -webkit-transition-delay: 0.4s;
   transition: background 0.2s ease 0.4s;
   display: block;
   width: 100%;

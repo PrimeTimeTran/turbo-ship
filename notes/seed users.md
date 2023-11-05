@@ -1,0 +1,7 @@
+
+
+
+```mongo
+db.wizards.createMany
+
+```
