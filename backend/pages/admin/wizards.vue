@@ -7,23 +7,19 @@ definePageMeta({
   layout: 'admin-layout',
 })
 
-let { addWizard, wizards } = await useWizards()
+let { newWizard, addWizard, wizards } = await useWizards()
 
-const newWizard = reactive({
-  email: '',
-  lastName: '',
-  firstName: '',
-  school: '',
-  house: '',
-  status: '',
-})
+// const newWizard = reactive({
+//   email: '',
+//   lastName: '',
+//   firstName: '',
+//   school: '',
+//   house: '',
+//   status: '',
+// })
 
 const onChange = (e) => {
-  console.log('Changed!', e)
-  console.log({
-    newWizard,
-  })
-  newWizard.value.firstName = 'sosos'
+  newWizard.value.firstName = 'sisisi'
   // newWizard.value[e.name] = e.value
 }
 </script>
@@ -33,15 +29,7 @@ const onChange = (e) => {
     <div class="flex flex-col">
       <!-- <admin-modal /> -->
       <admin-wizard-form />
-      <!-- <pre>
-        Email: {{ newWizard.email }}
-        First Name: {{ newWizard.firstName }}
-        Last Name: {{ newWizard.lastName }}
-        School: {{ newWizard.school }}
-        House: {{ newWizard.house }}
-        Status: {{ newWizard.status }}
-      </pre> -->
-      <!-- 
+      <admin-table :items="wizards" />
       <input
         type="text"
         height="50"
@@ -60,15 +48,6 @@ const onChange = (e) => {
       >
         Create
       </button>
-    </div>
-    <ul>
-      <li
-        :key="wizard._id"
-        v-for="wizard in wizards"
-      >
-        {{ wizard.firstName }}
-      </li>
-    </ul> -->
     </div>
   </div>
 </template>

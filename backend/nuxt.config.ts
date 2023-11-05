@@ -1,13 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  plugins: ['~/plugins/fontawesome.ts'],
+  css: ['@fortawesome/fontawesome-svg-core/styles.css'],
+  formkit: {
+    autoImport: true,
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/content',
     'nuxt-mongoose',
-    '@vueform/nuxt',
     '@nuxtjs/color-mode',
-    '@vueform/nuxt',
+    '@formkit/nuxt',
   ],
   postcss: {
     plugins: {
@@ -15,8 +19,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  plugins: ['~/plugins/fontawesome.ts'],
-  css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   content: {
     documentDriven: true,
     api: {

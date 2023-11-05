@@ -31,6 +31,26 @@ const { isOpen, toggleOpen } = useToggleOpen()
               color="white"
               icon="fa-solid fa-bars"
             />
+            <font-awesome-icon
+              class="mr-3"
+              color="white"
+              icon="fa-solid fa-blog"
+            />
+            <font-awesome-icon
+              class="mr-3"
+              color="white"
+              icon="fa-solid fa-hat-wizard"
+            />
+            <font-awesome-icon
+              class="mr-3"
+              color="white"
+              icon="fa-solid fa-user"
+            />
+            <font-awesome-icon
+              class="mr-3"
+              color="white"
+              icon="fa-solid fa-address-card"
+            />
           </h1>
         </div>
       </div>

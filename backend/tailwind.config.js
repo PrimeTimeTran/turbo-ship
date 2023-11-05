@@ -1,9 +1,6 @@
 export default {
   darkMode: 'class',
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@vueform/vueform/tailwind'),
-  ],
+  plugins: [require('@tailwindcss/typography')],
   content: [
     './app.vue',
     './error.vue',
@@ -11,9 +8,6 @@ export default {
     './layouts/**/*.vue',
     './plugins/**/*.{js,ts}',
     './components/**/*.{js,vue,ts}',
-    './vueform.config.js',
-    './node_modules/@vueform/vueform/themes/tailwind/**/*.vue',
-    './node_modules/@vueform/vueform/themes/tailwind/**/*.js',
   ],
   theme: {
     extend: {
@@ -21,6 +15,7 @@ export default {
         invert: {
           css: {
             '--tw-prose-links': theme('colors.blue[750]'),
+            '--tw-prose-headings': theme('colors.gray[500]'),
           },
         },
         DEFAULT: {

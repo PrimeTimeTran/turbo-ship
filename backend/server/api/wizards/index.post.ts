@@ -1,9 +1,13 @@
+import chalk from 'chalk'
+
 export default defineEventHandler(async (e) => {
-  const data = await JSON.parse(await readBody(e))
-  const wizard = await new Wizard({
-    firstName: data.firstName,
-    lastName: data.lastName,
+  const body = await readBody(e)
+  const wizard = new Wizard({
+    firstName: body.firstName,
+    lastName: body.firstName,
   })
+
   await wizard.save()
+
   return { wizard }
 })
