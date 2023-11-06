@@ -33,8 +33,6 @@ function getRandomUniqueValues(arr: string[], count: number) {
   return result
 }
 
-const randomSpells = getRandomUniqueValues(spells, 3)
-
 function getRandomElementFromArray() {
   const randomIndex = Math.floor(Math.random() * houses.length)
   return houses[randomIndex]

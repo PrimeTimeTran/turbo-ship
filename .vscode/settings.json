@@ -1,4 +1,10 @@
 {
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#35495e",
+    "titleBar.activeBackground": "#41b883",
+    "titleBar.inactiveBackground": "#3b8070"
+  },
   "files.exclude": {
     "**/.nuxt": true,
     "**/node_modules": true,
