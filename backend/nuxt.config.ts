@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   formkit: {
     autoImport: true,
   },
+  runtimeConfig: {
+    apiSecret: '123',
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/content',

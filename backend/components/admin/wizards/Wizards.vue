@@ -28,13 +28,18 @@ const getColor = (field, house) => {
   const houseColors = {
     Slytherin: `${field}-green-${weight}`,
     Gryffindor: `${field}-red-${weight}`,
-    Ravenclaw: `${field}-violet-${weight}`,
+    Ravenclaw: `${field}-purple-${weight}`,
     Hufflepuff: `${field}-pink-${weight}`,
   }
   return {
     [houseColors[house]]: true,
   }
 }
+const runtimeConfig = useRuntimeConfig()
+console.log({
+  foo: 'bar',
+  apiSecret: runtimeConfig.apiSecret,
+})
 </script>
 <template>
   <div
