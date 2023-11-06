@@ -1,6 +1,7 @@
 <script setup>
 async function submit(fields) {
-  const { data, error } = await useFetch('http://localhost:3000/api/wizards', {
+  const { public: { apiUrl } } = useRuntimeConfig()
+  const { data, error } = await useFetch(apiUrl + '/wizards', {
     method: 'post',
     body: JSON.stringify(fields),
   })

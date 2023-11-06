@@ -8,6 +8,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     apiSecret: '123',
+    apiUrl: 'http://localhost:3001/api',
+    public: {
+      apiUrl: 'http://localhost:3001/api',
+    },
   },
   modules: [
     '@nuxtjs/tailwindcss',

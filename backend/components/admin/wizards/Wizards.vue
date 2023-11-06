@@ -35,11 +35,6 @@ const getColor = (field, house) => {
     [houseColors[house]]: true,
   }
 }
-const runtimeConfig = useRuntimeConfig()
-console.log({
-  foo: 'bar',
-  apiSecret: runtimeConfig.apiSecret,
-})
 </script>
 <template>
   <div

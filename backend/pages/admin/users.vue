@@ -8,16 +8,15 @@ definePageMeta({
   layout: 'admin-layout',
 })
 
-const { data, pending, error, refresh } = await useFetch(
-  `http://localhost:3000/api/users`
-)
+const {
+  public: { apiUrl },
+} = useRuntimeConfig()
+
+const { data, pending, error, refresh } = await useFetch(apiUrl)
 
 const createUser = async () => {
-  const { data, pending, error, refresh } = await useFetch(
-    `http://localhost:3000/api/users`,
-    {
-      method: 'POST',
-    }
-  )
+  const { data, pending, error, refresh } = await useFetch(apiUrl, {
+    method: 'POST',
+  })
 }
 </script>

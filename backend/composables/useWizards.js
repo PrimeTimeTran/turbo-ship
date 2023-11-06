@@ -1,7 +1,6 @@
 import { ref } from 'vue'
+import { useRuntimeConfig } from '#imports'
 import { useFetch } from '@vueuse/core'
-
-const url = 'http://localhost:3000/api'
 
 // Todo
 // Search by email, id,
@@ -11,7 +10,13 @@ const url = 'http://localhost:3000/api'
 // Add Table
 
 export async function useWizards() {
-  const baseURL = `${url}/wizards`
+  const {
+    public: { apiUrl },
+  } = useRuntimeConfig()
+  const baseURL = `${apiUrl}/wizards`
+  console.log({
+    spammm: apiUrl,
+  })
   let newWizard = ref('')
   const wizards = ref([])
 
