@@ -129,9 +129,7 @@ const getColor = (field, house) => {
             <div class="relative h-10 w-10">
               <img
                 class="h-full w-full rounded-full object-cover object-center"
-                :src="`https://randomuser.me/api/portraits/${
-                  wizard.gender == 'male' ? 'men' : 'women'
-                }/${faker.number.int({ min: 1, max: 100 })}.jpg`"
+                :src="wizard.avatarUrl"
               />
               <span
                 class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"

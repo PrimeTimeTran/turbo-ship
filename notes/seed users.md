@@ -1,7 +1,0 @@
-
-
-
-```mongo
-db.wizards.createMany
-
-```

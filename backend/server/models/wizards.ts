@@ -58,6 +58,10 @@ export const Wizard = defineMongooseModel('Wizard', {
     type: String,
     required: true,
   },
+  avatarUrl: {
+    type: String,
+    required: true,
+  },
   topSpells: {
     type: Array,
     required: true,
