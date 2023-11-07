@@ -21,11 +21,8 @@ export function jwtSign(payload: any, expiresIn?: string | number | null) {
 
 export function jwtVerify(token: string) {
   try {
-    const payload: unknown = jwt.verify(
-      token,
-      String(process.env.AUTH_TOKEN_SECRET)
-    )
-    return payload as { id: string; iat: number }
+    const payload = jwt.verify(token, String(process.env.AUTH_TOKEN_SECRET))
+    return payload
   } catch (error) {
     return null
   }

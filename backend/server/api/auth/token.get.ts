@@ -1,5 +1,5 @@
-import roles from '../../shared/roles'
-import { jwtSign, jwtVerify } from '../../shared/jwt'
+import roles from '~/server/shared/roles'
+import { jwtSign, jwtVerify } from '~/server/shared/token'
 
 export default defineEventHandler(async (e) => {
   const token = jwtSign({ foo: 'bar' })
@@ -7,8 +7,6 @@ export default defineEventHandler(async (e) => {
   const verfied = jwtVerify(token)
 
   return {
-    wizards: ['Harry', 'Hermione', 'Ron'],
-    roles,
     token,
     verfied,
   }

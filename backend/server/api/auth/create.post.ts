@@ -1,5 +1,5 @@
 import { encryptPassword, decryptPassword } from '~/server/shared/bcrypt'
-import { jwtSign } from '~/server/shared/jwt'
+import { jwtSign } from '~/server/shared/token'
 
 export default defineEventHandler(async (e) => {
   const body = await readBody(e)
@@ -21,7 +21,12 @@ export default defineEventHandler(async (e) => {
 
   await user.save()
 
-  const token = await jwtSign({ userId: user.id })
+  const token = await jwtSign({ userId: user._id })
+  console.log({
+    token,
+    user,
+    result,
+  })
   return {
     user,
     result,

@@ -1,11 +1,9 @@
 import bcrypt from 'bcrypt'
 
 export const encryptPassword = async (password: string) => {
-  const hash = await bcrypt.hash(password, 10)
-  return hash
+  return await bcrypt.hash(password, 10)
 }
 
 export const decryptPassword = async (password: string, hash: string) => {
-  const valid = await bcrypt.compare(password, hash)
-  return valid
+  return await bcrypt.compare(password, hash)
 }
