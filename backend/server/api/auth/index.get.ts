@@ -1,9 +1,9 @@
-import { jwtVerify } from '~/server/shared/token'
-
 export default defineEventHandler(async (e) => {
-  const token = e.node.req.rawHeaders[1]?.split(' ')[1]
-
+  const user = e.context.user
+  const token = e.context.token
   return {
-    verified: jwtVerify(token),
+    user: user != null,
+    token: token != null,
+    isAuthenticated: user != null && token != null,
   }
 })

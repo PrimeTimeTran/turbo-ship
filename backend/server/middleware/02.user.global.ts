@@ -1,5 +1,3 @@
-import { jwtVerify } from '~/server/shared/token'
-
 interface token {
   userId: String
 }

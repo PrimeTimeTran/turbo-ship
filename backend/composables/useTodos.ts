@@ -1,11 +1,19 @@
 import { ref, computed } from 'vue'
 
+interface Todo {
+  firstName: String
+  id: String
+  lastName?: String
+  status: String
+  house?: String
+}
+
 export function useTodos() {
   const newTodo = ref('')
   let todos = ref(seedData)
 
   const addTodo = () => {
-    const todo = {
+    const todo: Todo = {
       firstName: newTodo.value,
       id: Date.now().toString(),
       status: 'undone',
@@ -15,7 +23,7 @@ export function useTodos() {
     return todo
   }
 
-  const toggleStatus = (id) => {
+  const toggleStatus = (id: String) => {
     const idx = todos.value.findIndex((todo) => todo.id == id)
     if (idx !== -1) {
       todos.value[idx].status =
@@ -23,7 +31,7 @@ export function useTodos() {
     }
   }
 
-  const remove = (id) => {
+  const remove = (id: String) => {
     const idx = todos.value.findIndex((todo) => todo.id == id)
     if (idx !== -1) {
       todos.value.splice(idx, 1)
@@ -50,7 +58,7 @@ export function useTodos() {
   }
 }
 
-const seedData = [
+const seedData: Todo[] = [
   {
     id: '1',
     status: 'done',

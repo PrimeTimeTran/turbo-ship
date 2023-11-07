@@ -11,6 +11,9 @@ export default defineNuxtConfig({
       apiUrl: 'http://localhost:3000/api',
     },
   },
+  typescript: {
+    typeCheck: true,
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/content',
@@ -18,6 +21,10 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@formkit/nuxt',
   ],
+  mongoose: {
+    options: {},
+    modelsDir: 'models',
+  },
   postcss: {
     plugins: {
       tailwindcss: {},

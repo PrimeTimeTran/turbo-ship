@@ -1,6 +1,3 @@
-import { encryptPassword, decryptPassword } from '~/server/shared/bcrypt'
-import { jwtSign } from '~/server/shared/token'
-
 export default defineEventHandler(async (e) => {
   const body = await readBody(e)
   const u = await User.findOne({ email: body.email })

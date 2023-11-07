@@ -14,9 +14,6 @@ export async function useWizards() {
     public: { apiUrl },
   } = useRuntimeConfig()
   const baseURL = `${apiUrl}/wizards`
-  console.log({
-    spammm: apiUrl,
-  })
   let newWizard = ref('')
   const wizards = ref([])
 
@@ -54,9 +51,13 @@ export async function useWizards() {
       onNewData: (newData) => console.log('newdata', newData),
     })
 
+    console.log({
+      data,
+    })
+
     if (!error.value) {
       const val = JSON.parse(data.value)
-      wizards.value = val?.wizards
+      wizards.value = val?.data
     }
   })
 

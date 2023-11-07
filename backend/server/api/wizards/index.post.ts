@@ -1,9 +1,9 @@
+import { Wizard } from '@/server/models/wizard.model'
+
 export default defineEventHandler(async (e) => {
   const body = await readBody(e)
-  const wizard = new Wizard({
-    lastName: body.firstName,
-    firstName: body.firstName,
-  })
+  const cleansed = WizardSchema.parse(body)
+  const wizard = new Wizard(cleansed)
 
   await wizard.save()
 

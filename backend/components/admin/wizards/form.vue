@@ -174,12 +174,12 @@ let submitted = ref(false)
             }"
           />
           <FormKit
-            name="DADA"
+            name="charms"
             type="number"
+            label="Charms"
             placeholder="10"
             min="1"
             max="10"
-            label="Defense Against the Dark Arts"
             :classes="{
               outer: 'flex flex-grow flex-col rounded',
               input:
@@ -189,12 +189,12 @@ let submitted = ref(false)
             }"
           />
           <FormKit
-            name="charms"
+            name="DADA"
             type="number"
-            label="Charms"
             placeholder="10"
             min="1"
             max="10"
+            label="DADA"
             :classes="{
               outer: 'flex flex-grow flex-col rounded',
               input:

@@ -8,15 +8,15 @@
   },
   "files.exclude": {
     "**/.mason": true,
-    "**/.nuxt": true,
-    "**/node_modules": true,
-    "**/public": true,
-    "**/.env": true,
-    "**/formkit.config.js": true,
     "**/package-lock.json": true,
     "**/bun.lockb": true,
-    "**/tsconfig.json": true,
-    "**/mason-lock.json": true
+    "**/mason-lock.json": true,
+    "**/.nuxt": true,
+    "**/node_modules": true
+    // "**/formkit.config.js": true
+    // "**/tsconfig.json": true,
+    // "**/.env": true,
+    // "**/public": true,
   },
   "editor.formatOnSave": true
 }

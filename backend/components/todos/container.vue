@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <todos-composer />
+    <todos-form />
     <todos-meta />
     <todos-list />
   </div>

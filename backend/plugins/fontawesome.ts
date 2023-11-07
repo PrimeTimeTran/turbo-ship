@@ -40,5 +40,5 @@ library.add(
 // This is important, we are going to let Nuxt worry about the CSS
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.component('font-awesome-icon', FontAwesomeIcon, {})
+  nuxtApp.vueApp.component('font-awesome-icon', FontAwesomeIcon)
 })
