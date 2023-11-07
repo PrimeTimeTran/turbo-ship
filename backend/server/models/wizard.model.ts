@@ -9,11 +9,32 @@ export const Wizard = defineMongooseModel('Wizard', {
     type: String,
     required: true,
   },
-  house: {
+  email: {
     type: String,
     required: true,
   },
-  email: {
+  gender: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  jobTitle: {
+    type: String,
+    required: true,
+  },
+  industry: {
+    type: String,
+    required: true,
+  },
+
+  house: {
     type: String,
     required: true,
   },
@@ -34,36 +55,16 @@ export const Wizard = defineMongooseModel('Wizard', {
     type: Boolean,
     required: true,
   },
-  gender: {
-    type: String,
-    required: true,
-  },
-  jobTitle: {
-    type: String,
-    required: true,
-  },
-  industry: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-  country: {
-    type: String,
-    required: true,
-  },
   patronus: {
-    type: String,
-    required: true,
-  },
-  avatarUrl: {
     type: String,
     required: true,
   },
   topSpells: {
     type: Array,
+    required: true,
+  },
+  avatarUrl: {
+    type: String,
     required: true,
   },
   // squib, muggle, half, pure,

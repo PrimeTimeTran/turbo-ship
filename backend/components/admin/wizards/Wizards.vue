@@ -67,12 +67,6 @@ const getColor = (field, house) => {
           >
             House <span v-text="getSortingIcon('house')" />
           </th>
-          <th
-            scope="col"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600"
-          >
-            State
-          </th>
 
           <th
             scope="col"
@@ -166,14 +160,6 @@ const getColor = (field, house) => {
                 :class="getColor('bg', wizard.house)"
               />
               <span v-text="wizard.house" />
-            </span>
-          </td>
-          <td class="px-6 py-4">
-            <span
-              class="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-slate-900 px-2 py-1 text-xs font-semibold text-green-600"
-            >
-              <span class="h-1.5 w-1.5 rounded-full bg-green-600" />
-              Active
             </span>
           </td>
 
