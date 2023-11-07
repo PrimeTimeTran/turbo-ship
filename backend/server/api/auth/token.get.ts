@@ -1,4 +1,3 @@
-import roles from '~/server/shared/roles'
 import { jwtSign, jwtVerify } from '~/server/shared/token'
 
 export default defineEventHandler(async (e) => {

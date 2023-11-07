@@ -22,11 +22,6 @@ export default defineEventHandler(async (e) => {
   await user.save()
 
   const token = await jwtSign({ userId: user._id })
-  console.log({
-    token,
-    user,
-    result,
-  })
   return {
     user,
     result,
