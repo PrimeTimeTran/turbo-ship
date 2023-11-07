@@ -11,6 +11,7 @@ Technologies behind this app
 # Links
 - [Vue](https://vuejs.org/guide/introduction.html)
 - [Nuxt](https://nuxt.com/docs/getting-started/introduction)
+  - [Server Routing](https://nuxt.com/docs/guide/directory-structure/server)
 - [Tailwind](https://tailwindcss.com/docs/installation)
 - [Alpine](https://alpinejs.dev/essentials/state)
 - [Form Kit](https://formkit.com/inputs/submit#provided-submit-button)
@@ -21,3 +22,6 @@ Technologies behind this app
 - [Mongo](https://mongodb.github.io/node-mongodb-native/6.2/)
 - [Mongoose](https://mongoosejs.com/docs/)
 - [Font Awesome Icon List](https://fontawesome.com/search?q=about&o=r)
+
+
+

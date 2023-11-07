@@ -7,10 +7,8 @@ export default defineNuxtConfig({
     autoImport: true,
   },
   runtimeConfig: {
-    apiSecret: '123',
-    apiUrl: 'http://localhost:3001/api',
     public: {
-      apiUrl: 'http://localhost:3001/api',
+      apiUrl: 'http://localhost:3000/api',
     },
   },
   modules: [
