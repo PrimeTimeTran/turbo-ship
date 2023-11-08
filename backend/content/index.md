@@ -1,6 +1,6 @@
 # Turbo Ship
 
-<!-- Create content about turbo ship as a whole -->
+<!-- [ ] Create 10,000 ft overview content -->
 
 The best startup shipper in the world
 

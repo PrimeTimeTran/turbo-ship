@@ -1,5 +1,5 @@
 <!-- 
-Todo: Search for wizards
+Todo: Add feature search
 Email, First Name, Last Name, School, House, Patronas
 -->
 <script setup>
