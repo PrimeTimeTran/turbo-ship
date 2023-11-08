@@ -4,7 +4,7 @@ import { defineMongooseModel } from '#nuxt/mongoose'
 export const WizardSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  email: z.string().optional(),
+  email: z.string().email(),
   gender: z.string().optional(),
   city: z.string().optional(),
   country: z.string().optional(),
@@ -19,8 +19,8 @@ export const WizardSchema = z.object({
   patronus: z.string().optional(),
   topSpells: z.array(z.string()).optional(),
   avatarUrl: z.string().optional(),
-  crAt: z.date().optional(),
-  upAt: z.date().optional(),
+  createdAt: z.date().optional(),
+  updatedAt: z.date().optional(),
 })
 
 export type WizardType = z.infer<typeof WizardSchema>
@@ -91,11 +91,11 @@ export const Wizard = defineMongooseModel('Wizard', {
     type: String,
     required: true,
   },
-  crAt: {
+  createdAt: {
     type: String,
     required: false,
   },
-  upAt: {
+  updatedAt: {
     type: String,
     required: false,
   },

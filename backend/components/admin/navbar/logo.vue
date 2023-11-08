@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <NuxtLink
-      class="cursor-pointer"
-      href="/admin"
-    >
-      <img :src="imageSource" />
-    </NuxtLink>
-  </div>
+  <NuxtLink
+    href="/admin"
+    class="cursor-pointer"
+  >
+    <img :src="imageSource" />
+  </NuxtLink>
 </template>
 
 <script>

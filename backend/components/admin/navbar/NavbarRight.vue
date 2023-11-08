@@ -1,14 +1,14 @@
 <template>
-  <div class="flex flex-col items-center md:flex-row space-x-5">
+  <div class="flex flex-grow items-center align-middle md:flex-row space-x-5">
     <div
       id="toggleThemeButton"
       @click="handleToggle()"
-      class="flex sm:flex-col md:flex-row ml-3 py-3"
+      class="flex flex-col justify-center align-middle md:flex-row ml-3 py-3"
     >
       <admin-navbar-toggle-theme />
     </div>
     <NuxtLink
-      class="flex items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"
+      class="flex flex-auto justify-center items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"
     >
       <svg
         width="24"
@@ -28,7 +28,7 @@
     </NuxtLink>
 
     <NuxtLink
-      class="flex items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"
+      class="flex flex-auto justify-center items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"
     >
       <font-awesome-icon
         icon="fa-solid fa-sign-out"

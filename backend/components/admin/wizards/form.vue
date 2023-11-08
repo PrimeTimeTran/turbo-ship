@@ -1,14 +1,21 @@
 <script setup>
+const frameworks = [
+  { label: 'React', value: 'react' },
+  { label: 'Vue', value: 'vue' },
+  { label: 'Angular', value: 'angular' },
+  { label: 'Svelte', value: 'svelte' },
+]
+
 async function submit(fields) {
   const {
     public: { apiUrl },
   } = useRuntimeConfig()
   console.log({ fields })
-  // const { data, error } = await useFetch(apiUrl + '/wizards', {
-  //   method: 'post',
-  //   body: JSON.stringify(fields),
-  // })
-  // submitted.value = true
+  const { data, error } = await useFetch(apiUrl + '/wizards', {
+    method: 'post',
+    body: JSON.stringify(fields),
+  })
+  submitted.value = true
 }
 let submitted = ref(false)
 </script>
@@ -222,7 +229,7 @@ let submitted = ref(false)
           />
         </div>
         <div class="pb-8 space-x-1">
-          <FormKit
+          <!-- <FormKit
             type="radio"
             name="topSpells"
             label="Top Spells"
@@ -244,7 +251,7 @@ let submitted = ref(false)
               label: 'dark:text-white',
               message: 'text-red-500 dark:text-red-300 absolute',
             }"
-          />
+          /> -->
         </div>
         <FormKit
           type="submit"

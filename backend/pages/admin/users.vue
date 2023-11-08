@@ -1,11 +1,15 @@
 <template>
-  <pre class="dark:text-white"><span v-text="data "/>
-  </pre>
+  <pre class="dark:text-white"><span v-text="data "/></pre>
 </template>
 
 <script setup>
 definePageMeta({
   layout: 'admin-layout',
+})
+
+useHead({
+  title: 'Users | Turboship Admin Dashboard',
+  meta: [{ name: 'description', content: 'Great admin panels' }],
 })
 
 const {

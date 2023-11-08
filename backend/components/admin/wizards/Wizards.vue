@@ -56,14 +56,14 @@ const getColor = (field, house) => {
           <th
             scope="col"
             @click="toggleSort('lastName')"
-            class="py-4 font-medium text-gray-500 dark:text-gray-600"
+            class="py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Last Name <span v-text="getSortingIcon('lastName')" />
           </th>
           <th
             scope="col"
             @click="toggleSort('house')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             House <span v-text="getSortingIcon('house')" />
           </th>
@@ -71,41 +71,41 @@ const getColor = (field, house) => {
           <th
             scope="col"
             @click="toggleSort('jobTitle')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Role <span v-text="getSortingIcon('jobTitle')" />
           </th>
           <th
             scope="col"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Team
           </th>
           <th
             scope="col"
             @click="toggleSort('charms')"
-            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600"
+            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Charms <span v-text="getSortingIcon('charms')" />
           </th>
           <th
             scope="col"
             @click="toggleSort('potions')"
-            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600"
+            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Potions <span v-text="getSortingIcon('potions')" />
           </th>
           <th
             scope="col"
             @click="toggleSort('DADA')"
-            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600"
+            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             DADA <span v-text="getSortingIcon('DADA')" />
           </th>
           <th
             scope="col"
             @click="toggleSort('apparition')"
-            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600"
+            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Apparition <span v-text="getSortingIcon('apparition')" />
           </th>

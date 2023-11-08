@@ -2,5 +2,3 @@
   <ContentDoc class="prose dark:prose-invert" />
   <the-turbo />
 </template>
-
-<script></script>

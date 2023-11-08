@@ -9,11 +9,12 @@ import {
   faUser,
   faTags,
   faCopy,
+  faGear,
+  faCode,
   faHouse,
   faCheck,
   faSignOut,
   faHamburger,
-  faGear,
   faAddressCard,
   faHatWizard,
   faRegistered,
@@ -21,6 +22,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
+  faCode,
   faBlog,
   faBars,
   faCopy,

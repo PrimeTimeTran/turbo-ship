@@ -1,10 +1,11 @@
-<!-- 
-Todo: Add feature search
-Email, First Name, Last Name, School, House, Patronas
--->
 <script setup>
 definePageMeta({
   layout: 'admin-layout',
+})
+
+useHead({
+  title: 'Wizards | Turboship Admin Dashboard',
+  meta: [{ name: 'description', content: 'Great admin panels' }],
 })
 
 let tab = ref(0)
