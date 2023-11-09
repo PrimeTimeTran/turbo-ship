@@ -14,6 +14,7 @@ export async function postMiddleware(data: [], e: object, type: typeof Wizard) {
       limit,
       offset,
       total: data.length,
+      totalRecords: total.length,
       pageCount: Math.ceil(total.length / Number(limit)),
     },
     data,

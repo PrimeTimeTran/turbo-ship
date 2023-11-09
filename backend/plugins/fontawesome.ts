@@ -15,10 +15,12 @@ import {
   faCheck,
   faSignOut,
   faHamburger,
-  faAddressCard,
   faHatWizard,
+  faAddressCard,
   faRegistered,
+  faMagnifyingGlass,
   faProjectDiagram,
+  faCircleXmark,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -36,7 +38,9 @@ library.add(
   faHatWizard,
   faRegistered,
   faAddressCard,
-  faProjectDiagram
+  faProjectDiagram,
+  faMagnifyingGlass,
+  faCircleXmark
 )
 
 // This is important, we are going to let Nuxt worry about the CSS

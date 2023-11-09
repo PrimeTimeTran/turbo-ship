@@ -1,136 +1,32 @@
-import { ref, computed, onMounted } from 'vue'
-
-import { usingFetch } from './usingFetch'
-import { RefSymbol } from '@vue/reactivity'
+import { ref } from 'vue'
+import { useFetch } from '@vueuse/core'
 
 interface Wizard {
-  id: string
-  firstName: string
-  lastName: string
+  [key: string]: string | undefined
 }
 
-export function useWizardsTS() {
+export function useWizards() {
+  const { apiUrl } = useAPI()
+  const baseURL = `${apiUrl}/wizards`
   let newWizard = ref('')
-
-  // POST good, GET bad
-  // Fails to set wizards.value after fetching data
-  // let wizards = reactive<Wizard[]>([]) as unknown as Wizard[]
-
-  // const addWizard = async () => {
-  //   const wizard = {
-  //     id: Date.now().toString(),
-  //     firstName: newWizard.value,
-  //     lastName: newWizard.value,
-  //   }
-  //   try {
-  //     const { data, error } = await useFetch<Wizard>(
-  //       `http://localhost:3000/api/wizards`,
-  //       {
-  //         method: 'POST',
-  //         body: {
-  //           wizard,
-  //         },
-  //       }
-  //     )
-  //     if (!error.value) {
-  //       console.log('No Error posting', { data: data.value })
-  //       wizards.push(wizard)
-  //       newWizard.value = ''
-  //       return wizard
-  //     }
-  //   } catch (error) {
-  //     console.error({ error })
-  //   }
-  // }
-
-  // onBeforeMount(async () => {
-  //   const { data, hasError } = await usingFetch<Wizard[]>(
-  //     `http://localhost:3000/api/wizards`
-  //   )
-  //   if (!hasError.value) {
-  //     const val = data.value
-  //     // wizards = val
-  //     console.log({
-  //       val,
-  //       data,
-  //     })
-  //   }
-  // })
-
-  // return {
-  //   wizards,
-  //   newWizard,
-  //   addWizard,
-  // }
-
-  // GET good, POST bad
-  // Fails to push in addWizard due to typing
-  // let wizards = ref<Wizard[]>([])
-
-  // const addWizard = async () => {
-  //   const wizard = {
-  //     id: Date.now().toString(),
-  //     firstName: newWizard.value,
-  //     lastName: newWizard.value,
-  //   }
-  //   try {
-  //     const { data, error } = await useFetch(
-  //       `http://localhost:3000/api/wizards`,
-  //       {
-  //         method: 'POST',
-  //         body: {
-  //           wizard,
-  //         },
-  //       }
-  //     )
-  //     if (!error.value) {
-  //       console.log('No Error posting', { data: data.value })
-
-  //       newWizard.value = ''
-  //       return wizard
-  //     }
-  //   } catch (error) {
-  //     console.error({ error })
-  //   }
-  // }
-
-  // onBeforeMount(async () => {
-  //   const { data, hasError } = await usingFetch<Wizard[]>(
-  //     `http://localhost:3000/api/wizards`
-  //   )
-  //   if (!hasError.value) {
-  //     const val = data.value!
-  //     wizards.value = val
-  //   }
-  // })
-
-  // return {
-  //   wizards,
-  //   newWizard,
-  //   addWizard,
-  // }
-
-  let wizards = reactive<Wizard[]>([]) as unknown as Wizard[]
+  let wizards = ref<Wizard[]>([])
 
   const addWizard = async () => {
+    if (newWizard.value === '') return
     const wizard = {
-      id: Date.now().toString(),
+      _id: Date.now().toString(),
       firstName: newWizard.value,
       lastName: newWizard.value,
     }
     try {
-      const { data, error } = await useFetch(
-        `http://localhost:3000/api/wizards`,
-        {
-          method: 'POST',
-          body: {
-            wizard,
-          },
-        }
-      )
+      const { data, error } = await useFetch(baseURL, {
+        method: 'POST',
+        body: JSON.stringify(wizard),
+      })
       if (!error.value) {
-        console.log('No Error posting', { data: data.value })
-        wizards.push(wizard)
+        wizards.value.push(
+          wizard as { _id: string; firstName: string; lastName: string }
+        )
         newWizard.value = ''
         return wizard
       }
@@ -140,21 +36,46 @@ export function useWizardsTS() {
   }
 
   onBeforeMount(async () => {
-    const { data, error } = await useFetch(`http://localhost:3000/api/wizards`)
+    const { data, error } = await useFetch(baseURL)
+
     if (!error.value) {
-      const val = data.value! as Wizard[]
-      console.log({
-        val,
-      })
-      // wizards = val!
+      const val = JSON.parse(data.value as string)
+      wizards.value = val?.data
     }
   })
 
+  // Info: fetchFilteredWizards works inside table but not form
+  const fetchFilteredWizards = async (fields: object) => {
+    const url = makeApiQueryString(apiUrl + '/wizards', fields)
+    try {
+      let { data, error } = await useFetch(url)
+      if (!error.value) {
+        const val = JSON.parse(data.value as string)
+        wizards.value = val?.data as Wizard[]
+      } else {
+        console.error('Error fetching wizards:', error.value)
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error)
+    }
+  }
+
+  const sort = (field: string, direction: string) => {
+    if (direction === 'ASC') {
+      wizards.value = wizards.value.sort((a, b) =>
+        (a[field] ?? '') > (b[field] ?? '') ? 1 : -1
+      )
+    } else if (direction === 'DESC') {
+      wizards.value = wizards.value.sort((a, b) =>
+        (a[field] ?? '') > (b[field] ?? '') ? -1 : 1
+      )
+    }
+  }
   return {
     wizards,
+    sort,
     newWizard,
     addWizard,
+    fetchFilteredWizards,
   }
 }
-
-const seedData: Ref[] | undefined = []

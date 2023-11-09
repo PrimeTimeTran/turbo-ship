@@ -4,7 +4,7 @@ import { defineMongooseModel } from '#nuxt/mongoose'
 export const WizardSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  email: z.string().email(),
+  email: z.string().email().optional(),
   gender: z.string().optional(),
   city: z.string().optional(),
   country: z.string().optional(),
@@ -40,64 +40,49 @@ export const Wizard = defineMongooseModel('Wizard', {
   },
   gender: {
     type: String,
-    required: true,
   },
   city: {
     type: String,
-    required: true,
   },
   country: {
     type: String,
-    required: true,
   },
   jobTitle: {
     type: String,
-    required: true,
   },
   industry: {
     type: String,
-    required: true,
   },
 
   house: {
     type: String,
-    required: true,
   },
   potions: {
     type: Number,
-    required: true,
   },
   DADA: {
     type: Number,
-    required: true,
   },
   charms: {
     type: Number,
-    required: true,
   },
   apparition: {
     type: Boolean,
-    required: true,
   },
   patronus: {
     type: String,
-    required: true,
   },
   topSpells: {
     type: Array,
-    required: true,
   },
   avatarUrl: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: String,
-    required: false,
   },
   updatedAt: {
     type: String,
-    required: false,
   },
   // squib, muggle, half, pure,
 

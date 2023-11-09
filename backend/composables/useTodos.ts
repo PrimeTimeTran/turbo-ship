@@ -40,6 +40,10 @@ export function useTodos() {
     return false
   }
 
+  const reset = () => {
+    todos.value.splice(0)
+  }
+
   const countDone = computed(
     () => todos.value.filter((t) => t.status === 'done').length
   )
@@ -49,6 +53,7 @@ export function useTodos() {
 
   return {
     todos,
+    reset,
     addTodo,
     newTodo,
     toggleStatus,

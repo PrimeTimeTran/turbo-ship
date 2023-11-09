@@ -3,7 +3,7 @@
     <div class="min-h-screen h-full">
       <admin-navbar />
       <div class="flex flex-row w-100">
-        <div class="flex flex-grow overflow-y-auto no-scrollbar min-">
+        <div class="flex flex-grow overflow-y-auto no-scrollbar">
           <admin-aside />
           <div class="flex flex-1 pt-16 px-2">
             <slot />

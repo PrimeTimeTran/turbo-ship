@@ -8,9 +8,15 @@
       <h1>Done</h1>
       <span v-text="countDone" />
     </div>
+    <div
+      class="mr-16 text-center"
+      @click="reset"
+    >
+      <h1>Reset</h1>
+    </div>
   </div>
 </template>
 
 <script setup>
-const { countDone, countUndone } = useTodos()
+const { reset, countDone, countUndone } = useTodos()
 </script>

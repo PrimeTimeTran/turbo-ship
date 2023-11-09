@@ -10,7 +10,7 @@ useHead({
 
 let tab = ref(0)
 
-let { newWizard, addWizard, wizards } = await useWizards()
+let { newWizard, addWizard, wizards } = useWizards()
 
 // const newWizard = reactive({
 //   email: '',
@@ -33,61 +33,80 @@ const changeTab = (i) => {
 
 const activeClasses = (currentTab) => {
   if (currentTab == tab.value)
-    return 'text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500'
+    return 'text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 opacity-100 hover:opacity-75'
+}
+
+let searching = ref(false)
+
+const toggleSearch = () => {
+  console.log({
+    searching: searching.value,
+  })
+  searching.value = !searching.value
 }
 </script>
 
 <template>
   <div class="flex flex-col min-w-full">
     <div class="flex flex-col">
+      <!-- For editing a record -->
       <!-- <admin-modal /> -->
 
       <div
         class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
       >
-        <ul class="flex flex-wrap -mb-px">
-          <div>
-            <div class="inline-block p-4 rounded-t-lg text-green-400">
-              Wizards
+        <div class="flex">
+          <div class="mr-16">
+            <div
+              @click="toggleSearch"
+              class="flex p-4 opacity-75 hover:opacity-100"
+            >
+              <p class="mr-3 text-md">Wizards</p>
+              <div>
+                <font-awesome-icon
+                  class="text-gray-400 mr-2"
+                  v-bind:icon="
+                    searching
+                      ? 'fa-solid fa-circle-xmark'
+                      : 'fa-solid fa-magnifying-glass'
+                  "
+                />
+              </div>
             </div>
           </div>
-          <li class="mr-2">
-            <button
-              @click="() => changeTab(0)"
-              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-              :class="activeClasses(0)"
-            >
-              Overview
-            </button>
-          </li>
-          <li class="mr-2">
-            <button
-              @click="() => changeTab(1)"
-              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-              :class="activeClasses(1)"
-            >
-              Records
-            </button>
-          </li>
-          <li class="mr-2">
-            <button
-              @click="() => changeTab(2)"
-              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-              :class="activeClasses(2)"
-            >
-              Create/New
-            </button>
-          </li>
-          <li class="mr-2">
-            <button
-              @click="() => changeTab(3)"
-              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-              :class="activeClasses(3)"
-            >
-              Settings
-            </button>
-          </li>
-        </ul>
+
+          <div
+            @click="() => changeTab(0)"
+            class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"
+            :class="activeClasses(0)"
+          >
+            Records
+          </div>
+
+          <div
+            @click="() => changeTab(1)"
+            class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"
+            :class="activeClasses(1)"
+          >
+            Overview
+          </div>
+
+          <div
+            @click="() => changeTab(2)"
+            class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"
+            :class="activeClasses(2)"
+          >
+            Create/New
+          </div>
+
+          <div
+            @click="() => changeTab(3)"
+            class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"
+            :class="activeClasses(3)"
+          >
+            Settings
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -96,7 +115,7 @@ const activeClasses = (currentTab) => {
         hidden: tab != 0,
       }"
     >
-      <admin-wizards />
+      <admin-wizards-table :searching="searching" />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -104,7 +123,7 @@ const activeClasses = (currentTab) => {
         hidden: tab != 1,
       }"
     >
-      <admin-wizards-table />
+      <admin-wizards-overview />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -112,7 +131,7 @@ const activeClasses = (currentTab) => {
         hidden: tab != 2,
       }"
     >
-      <admin-wizards-form />
+      <admin-wizards-form :createForm="true" />
     </div>
     <div
       class="min-w-full min-h-full pt-1"

@@ -1,27 +1,41 @@
 <script setup>
-const frameworks = [
-  { label: 'React', value: 'react' },
-  { label: 'Vue', value: 'vue' },
-  { label: 'Angular', value: 'angular' },
-  { label: 'Svelte', value: 'svelte' },
-]
+const props = defineProps(['searching', 'fetchFilteredWizards', 'createForm'])
 
+const { apiUrl } = useAPI()
+
+// [ ] Submit support create, search, update
+// Supports create, search
 async function submit(fields) {
-  const {
-    public: { apiUrl },
-  } = useRuntimeConfig()
-  console.log({ fields })
-  const { data, error } = await useFetch(apiUrl + '/wizards', {
+  if (props.searching) {
+    await props.fetchFilteredWizards(fields)
+    return
+  }
+
+  let { data, error } = await useFetch(apiUrl + '/wizards', {
     method: 'post',
     body: JSON.stringify(fields),
   })
   submitted.value = true
 }
 let submitted = ref(false)
+
+const inputClasses =
+  'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700'
+const messageClasses = 'text-red-500 dark:text-red-300 absolute'
+const outerClasses = 'flex flex-grow flex-col rounded'
+const allClasses = {
+  outer: outerClasses,
+  input: inputClasses,
+  label: 'dark:text-white',
+  message: messageClasses,
+}
 </script>
 
 <template>
-  <div class="w-100 dark:bg-neutral-950 pb-6">
+  <div
+    class="w-100 dark:bg-neutral-950 p-3"
+    :class="{ hidden: !searching && !createForm }"
+  >
     <div class="dark:bg-neutral-950">
       <FormKit
         type="form"
@@ -30,7 +44,7 @@ let submitted = ref(false)
         #default="{ value }"
         :classes="{
           help: 'dark:text-white',
-          message: 'text-red-500 dark:text-red-300 absolute',
+          message: messageClasses,
         }"
       >
         <div class="flex pb-8 space-x-1">
@@ -38,54 +52,40 @@ let submitted = ref(false)
             name="firstName"
             placeholder="Harry"
             label="First Name"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
           <FormKit
             type="text"
             name="lastName"
             placeholder="Potter"
             label="Last Name"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
           <FormKit
+            label="Email"
             name="email"
             placeholder="hp87@hogwarts.com"
-            label="Email"
             :classes="{
               outer: 'flex flex-grow flex-col mr-6 rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
+              input: inputClasses,
               label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
+              message: messageClasses,
             }"
           />
           <FormKit
             name="gender"
             label="Gender"
             type="select"
-            placeholder="Male"
+            placeholder="Select a gender"
             :options="{
-              male: 'Male',
-              female: 'Female',
+              m: 'Male',
+              f: 'Female',
             }"
             :classes="{
               outer: 'flex flex-grow flex-col mr-6 rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
+              input: inputClasses,
               label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
+              message: messageClasses,
             }"
           />
         </div>
@@ -94,76 +94,65 @@ let submitted = ref(false)
             name="city"
             label="City"
             placeholder="London"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
           <FormKit
             name="country"
             label="Country"
             placeholder="United Kingdom"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
           <FormKit
             name="jobTitle"
             label="Title"
             placeholder="Auror"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
           <FormKit
             name="industry"
             label="Industry"
             placeholder="Justice"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
         </div>
         <div class="flex pb-8 space-x-1">
           <FormKit
+            multiple
+            v-if="searching"
+            type="select"
+            label="Select house/houses"
             name="house"
-            label="House"
-            placeholder="Gryffindor"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
+            :classes="allClasses"
+            :options="{
+              Gryffindor: 'Gryffindor',
+              Slytherin: 'Slytherin',
+              Hufflepuff: 'Hufflepuff',
+              Ravenclaw: 'Ravenclaw',
+              Unknown: 'Unknown',
             }"
+            help="Select all that apply by holding command (macOS) or control (PC)."
           />
           <FormKit
+            v-else
+            name="house"
+            label="House"
+            type="select"
+            placeholder="Select a house"
+            :classes="allClasses"
+            :options="{
+              Gryffindor: 'Gryffindor',
+              Slytherin: 'Slytherin',
+              Hufflepuff: 'Hufflepuff',
+              Ravenclaw: 'Ravenclaw',
+              Unknown: 'Unknown',
+            }"
+            help="Select all that apply by holding command (macOS) or control (PC)."
+          />
+          <admin-form-field
             type="text"
             name="patronus"
-            label="Patronus"
             placeholder="Stag"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            label="Patronus"
           />
           <FormKit
             type="number"
@@ -172,13 +161,7 @@ let submitted = ref(false)
             placeholder="8"
             min="1"
             max="10"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
           <FormKit
             name="charms"
@@ -187,13 +170,7 @@ let submitted = ref(false)
             placeholder="10"
             min="1"
             max="10"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
           <FormKit
             name="DADA"
@@ -202,29 +179,15 @@ let submitted = ref(false)
             min="1"
             max="10"
             label="DADA"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
+            :classes="allClasses"
           />
-          <FormKit
+          <admin-form-field
             type="select"
             name="apparition"
             label="Apparition"
-            placeholder="Yes"
             :options="{
               true: 'Yes',
               false: 'No',
-            }"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input:
-                'min-w-full p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
             }"
           />
         </div>
@@ -249,7 +212,7 @@ let submitted = ref(false)
               input:
                 'bg-red-100 p-1 rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
               label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
+              message: messageClasses
             }"
           /> -->
         </div>
