@@ -37,6 +37,7 @@ const allClasses = {
     :class="{ hidden: !searching && !createForm }"
   >
     <div class="dark:bg-neutral-950">
+      <!-- Loop fields -->
       <FormKit
         type="form"
         @submit="submit"
@@ -48,81 +49,72 @@ const allClasses = {
         }"
       >
         <div class="flex pb-8 space-x-1">
-          <FormKit
+          <admin-form-field
+            type="text"
             name="firstName"
-            placeholder="Harry"
             label="First Name"
-            :classes="allClasses"
+            placeholder="Harry"
+            :validation="searching ? '' : 'required'"
           />
-          <FormKit
+
+          <admin-form-field
             type="text"
             name="lastName"
-            placeholder="Potter"
             label="Last Name"
-            :classes="allClasses"
+            placeholder="Potter"
+            :validation="searching ? '' : 'required'"
           />
-          <FormKit
-            label="Email"
+          <admin-form-field
             name="email"
+            label="Email"
             placeholder="hp87@hogwarts.com"
-            :classes="{
-              outer: 'flex flex-grow flex-col mr-6 rounded',
-              input: inputClasses,
-              label: 'dark:text-white',
-              message: messageClasses,
-            }"
+            :validation="searching ? '' : 'required'"
           />
-          <FormKit
+          <admin-form-field
             name="gender"
-            label="Gender"
             type="select"
+            label="Gender"
             placeholder="Select a gender"
             :options="{
               m: 'Male',
               f: 'Female',
             }"
-            :classes="{
-              outer: 'flex flex-grow flex-col mr-6 rounded',
-              input: inputClasses,
-              label: 'dark:text-white',
-              message: messageClasses,
-            }"
           />
         </div>
         <div class="flex pb-8 space-x-1">
-          <FormKit
+          <admin-form-field
+            type="text"
             name="city"
             label="City"
             placeholder="London"
-            :classes="allClasses"
           />
-          <FormKit
+          <admin-form-field
+            type="text"
             name="country"
             label="Country"
             placeholder="United Kingdom"
-            :classes="allClasses"
           />
-          <FormKit
+          <admin-form-field
+            type="text"
             name="jobTitle"
             label="Title"
             placeholder="Auror"
-            :classes="allClasses"
           />
-          <FormKit
+          <admin-form-field
+            type="text"
             name="industry"
             label="Industry"
             placeholder="Justice"
-            :classes="allClasses"
           />
         </div>
         <div class="flex pb-8 space-x-1">
-          <FormKit
-            multiple
-            v-if="searching"
-            type="select"
-            label="Select house/houses"
+          <admin-form-field
             name="house"
+            type="select"
+            :multiple="searching"
             :classes="allClasses"
+            :label="searching ? 'Select house/houses' : 'House'"
+            :placeholder="searching ? 'Select house/houses' : 'Select house'"
             :options="{
               Gryffindor: 'Gryffindor',
               Slytherin: 'Slytherin',
@@ -132,59 +124,43 @@ const allClasses = {
             }"
             help="Select all that apply by holding command (macOS) or control (PC)."
           />
-          <FormKit
-            v-else
-            name="house"
-            label="House"
-            type="select"
-            placeholder="Select a house"
-            :classes="allClasses"
-            :options="{
-              Gryffindor: 'Gryffindor',
-              Slytherin: 'Slytherin',
-              Hufflepuff: 'Hufflepuff',
-              Ravenclaw: 'Ravenclaw',
-              Unknown: 'Unknown',
-            }"
-            help="Select all that apply by holding command (macOS) or control (PC)."
-          />
+
           <admin-form-field
             type="text"
             name="patronus"
             placeholder="Stag"
             label="Patronus"
           />
-          <FormKit
+          <admin-form-field
             type="number"
             name="potions"
             label="Potions"
             placeholder="8"
             min="1"
             max="10"
-            :classes="allClasses"
           />
-          <FormKit
-            name="charms"
+          <admin-form-field
             type="number"
+            name="charms"
             label="Charms"
             placeholder="10"
             min="1"
             max="10"
-            :classes="allClasses"
           />
-          <FormKit
-            name="DADA"
+          <admin-form-field
             type="number"
+            name="DADA"
             placeholder="10"
             min="1"
             max="10"
             label="DADA"
-            :classes="allClasses"
           />
           <admin-form-field
             type="select"
             name="apparition"
             label="Apparition"
+            placeholder="Can they Apparition?"
+            :multiple="false"
             :options="{
               true: 'Yes',
               false: 'No',

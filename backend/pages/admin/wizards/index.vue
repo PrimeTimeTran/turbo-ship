@@ -39,9 +39,7 @@ const activeClasses = (currentTab) => {
 let searching = ref(false)
 
 const toggleSearch = () => {
-  console.log({
-    searching: searching.value,
-  })
+  changeTab(0)
   searching.value = !searching.value
 }
 </script>
@@ -131,7 +129,7 @@ const toggleSearch = () => {
         hidden: tab != 2,
       }"
     >
-      <admin-wizards-form :createForm="true" />
+      <admin-form :createForm="true" />
     </div>
     <div
       class="min-w-full min-h-full pt-1"

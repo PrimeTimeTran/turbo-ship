@@ -43,7 +43,7 @@ const getColor = (field, house) => {
       Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
       The result is this table doesn't rerender when the API request completes regardless of outcome.
     -->
-    <admin-wizards-form
+    <admin-form
       :searching="searching"
       :fetchFilteredWizards="fetchFilteredWizards"
     />
