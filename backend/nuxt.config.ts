@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  // plugins: ['~/plugins/fontawesome.ts'],
   plugins: ['~/plugins/fontawesome.ts'],
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   formkit: {

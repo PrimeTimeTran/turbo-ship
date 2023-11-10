@@ -18,8 +18,8 @@ export const WizardSchema = z.object({
   apparition: z.boolean().optional(),
   patronus: z.string().optional(),
   topSpells: z.array(z.string()).optional(),
-  avatarUrl: z.string().optional(),
   createdAt: z.date().optional(),
+  avatarUrl: z.string().optional(),
   updatedAt: z.date().optional(),
 })
 

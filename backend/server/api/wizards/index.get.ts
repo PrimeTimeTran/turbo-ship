@@ -19,6 +19,7 @@ export default defineEventHandler(async (e) => {
     if (params.hasOwnProperty(key) && value !== '') {
       // 2. A list of values. Multiple houses for example.
       if (isArray(params, key)) {
+        // Fix: Downcase list of items and search using Regex as well
         const values = value!.toString().split(',')
         query[key] = { $in: values }
 
