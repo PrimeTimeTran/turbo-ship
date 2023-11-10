@@ -1,5 +1,4 @@
 <script setup>
-import { select } from '@formkit/inputs'
 
 const props = defineProps({
   min: { type: String },
@@ -10,7 +9,7 @@ const props = defineProps({
   options: { type: String },
   validation: { type: String },
   placeholder: { type: String },
-  multiple: { type: String, default: false },
+  multiple: { type: Boolean, default: false },
 })
 
 const inputClasses =
@@ -26,7 +25,16 @@ const allClasses = {
 </script>
 <template>
   <FormKit
-    v-if="type == 'select'"
+    v-if="type == 'text'"
+    type="text"
+    :name="name"
+    :label="label"
+    :classes="allClasses"
+    :validation="validation"
+    :placeholder="placeholder"
+  />
+  <FormKit
+    v-else-if="type == 'select' && multiple"
     type="select"
     :name="name"
     :label="label"
@@ -36,13 +44,14 @@ const allClasses = {
     :options="options"
   />
   <FormKit
-    v-else-if="type == 'text'"
-    type="text"
+    v-else-if="type == 'select' && !multiple"
+    type="select"
     :name="name"
     :label="label"
-    :classes="allClasses"
-    :validation="validation"
+    :multiple="multiple"
     :placeholder="placeholder"
+    :classes="allClasses"
+    :options="options"
   />
   <FormKit
     v-else-if="type == 'number'"
