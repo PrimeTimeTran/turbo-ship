@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiUrl: 'http://localhost:3000/api',
+      apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
     },
   },
   typescript: {
