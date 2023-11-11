@@ -4,7 +4,7 @@ const { isOpen, toggleOpen } = useToggleOpen()
 
 <template>
   <aside
-    :class="isOpen ? 'w-64' : 'w-16 sm:w-16 md:w-16 lg:w-16 xl:w-16'"
+    :class="isOpen ? 'w-64' : 'w-26'"
     class="hidden sm:flex min-w-100 min-h-screen z-30 overflow-auto ease-in-out transition-all duration-300 bg-white dark:bg-neutral-950 border-r-2 dark:border-r-zinc-800"
   >
     <div

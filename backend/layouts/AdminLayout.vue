@@ -5,7 +5,7 @@
       <div class="flex flex-row w-100">
         <div class="flex flex-grow overflow-y-auto no-scrollbar">
           <admin-aside />
-          <div class="flex flex-1 min-w-0 pt-16 px-2 overflow-x-auto">
+          <div class="flex flex-1 min-w-0 pt-16 px-2">
             <slot />
           </div>
         </div>

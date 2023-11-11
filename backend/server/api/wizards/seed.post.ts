@@ -22,7 +22,7 @@ async function createWizard(wizard: WizardType): Promise<WizardType> {
 
   const avatarUrl = `https://randomuser.me/api/portraits/${
     wizard.gender == 'm' ? 'men' : 'women'
-  }/${faker.number.int({ min: 1, max: 100 })}.jpg`
+  }/${faker.number.int({ min: 1, max: 90 })}.jpg`
 
   const toWizard = {
     gender: wizard.gender,

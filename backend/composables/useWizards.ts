@@ -5,11 +5,28 @@ interface Wizard {
   [key: string]: string | undefined
 }
 
+interface Meta {
+  limit: number
+  offset: number
+  page: number
+  pageCount: number
+  total: number
+  totalRecords: number
+}
+
 export function useWizards() {
   const { apiUrl } = useAPI()
   const baseURL = `${apiUrl}/wizards`
   let newWizard = ref('')
   let wizards = ref<Wizard[]>([])
+  let meta: Meta = reactive({
+    limit: ref(0),
+    offset: ref(0),
+    page: ref(0),
+    pageCount: ref(0),
+    total: ref(0),
+    totalRecords: ref(0),
+  })
 
   const addWizard = async () => {
     if (newWizard.value === '') return
@@ -19,7 +36,7 @@ export function useWizards() {
       lastName: newWizard.value,
     }
     try {
-      const { data, error } = await useFetch(baseURL, {
+      const { error } = await useFetch(baseURL, {
         method: 'POST',
         body: JSON.stringify(wizard),
       })
@@ -37,9 +54,9 @@ export function useWizards() {
 
   onBeforeMount(async () => {
     const { data, error } = await useFetch(baseURL)
-
     if (!error.value) {
       const val = JSON.parse(data.value as string)
+      Object.assign(meta, val.meta)
       wizards.value = val?.data
     }
   })
@@ -51,6 +68,9 @@ export function useWizards() {
       let { data, error } = await useFetch(url)
       if (!error.value) {
         const val = JSON.parse(data.value as string)
+        meta.limit = val.meta.limit
+        meta.total = val.meta.total
+        Object.assign(meta, val.meta)
         wizards.value = val?.data as Wizard[]
       } else {
         console.error('Error fetching wizards:', error.value)
@@ -59,6 +79,9 @@ export function useWizards() {
       console.error('Unexpected error:', error)
     }
   }
+  watch(meta, (newMeta) => {
+    console.log('Watch detected meta changed')
+  })
 
   const sort = (field: string, direction: string) => {
     if (direction === 'ASC') {
@@ -71,9 +94,11 @@ export function useWizards() {
       )
     }
   }
+
   return {
     wizards,
     sort,
+    meta,
     newWizard,
     addWizard,
     fetchFilteredWizards,

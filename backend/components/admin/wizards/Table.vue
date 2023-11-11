@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps(['searching'])
 
-const { wizards, sort, fetchFilteredWizards } = useWizards()
+const { wizards, sort, meta, fetchFilteredWizards } = useWizards()
 
 const sortFields = reactive({
   email: ref('ASC'),
@@ -30,8 +30,6 @@ function toggleSort(field) {
   sortFields[field] = sortFields[field] === 'ASC' ? 'DESC' : 'ASC'
   sort(field, sortFields[field])
 }
-
-// Gotta generate this for every multi select
 
 function getHouseColor(field, key) {
   key = makeLowerCase(key)
@@ -85,7 +83,9 @@ function getBookAppearancesColor(field, key) {
 }
 </script>
 <template>
-  <div class="rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
+  <div
+    class="flex flex-col justify-center rounded-lg border border-gray-200 dark:border-gray-600 shadow-md"
+  >
     <!-- Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
             The result is this table doesn't rerender when the API request completes regardless of outcome.
           -->
@@ -94,7 +94,7 @@ function getBookAppearancesColor(field, key) {
       :fetchFilteredWizards="fetchFilteredWizards"
     />
     <table
-      class="w-full border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
+      class="overflow-x-auto mb-12 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
     >
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
@@ -217,7 +217,7 @@ function getBookAppearancesColor(field, key) {
               <div>
                 <span
                   v-text="wizard.email"
-                  class="text-gray-400"
+                  class="text-gray-600"
                 />
               </div>
             </div>
@@ -406,5 +406,6 @@ function getBookAppearancesColor(field, key) {
         </tr>
       </tbody>
     </table>
+    <admin-form-pagination :meta="meta" />
   </div>
 </template>
