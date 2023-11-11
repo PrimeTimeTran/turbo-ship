@@ -1,8 +1,5 @@
 <script setup>
 const props = defineProps(['meta'])
-console.log({
-  props: props.meta,
-})
 const common = computed(
   () =>
     `bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 hover:text-gray-700`
