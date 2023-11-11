@@ -1,4 +1,11 @@
+// https://zod.dev/?id=schema-methods
+// https://www.npmjs.com/package/nuxt-mongoose
+// https://mongoosejs.com/docs/middleware.html#pre
+// https://mongoosejs.com/docs/schematypes.html
+// https://nuxt-mongoose.nuxt.space/docs/api/utils
+
 import { z } from 'zod'
+import { Model, Document } from 'mongoose'
 import { defineMongooseModel } from '#nuxt/mongoose'
 
 export const WizardSchema = z.object({
@@ -12,7 +19,6 @@ export const WizardSchema = z.object({
   industry: z.string().optional(),
   house: z.string().optional(),
   potions: z.number().optional(),
-  // Defense against the dark arts
   DADA: z.number().optional(),
   charms: z.number().optional(),
   apparition: z.boolean().optional(),
@@ -23,84 +29,24 @@ export const WizardSchema = z.object({
   updatedAt: z.date().optional(),
 })
 
-// const extendedSchema = baseSchema
-//   .extend({
-//     // Add any additional properties if needed
-//   })
-//   .refine((data) => {
-//     // Ensure 'data' is an object or transform it accordingly
-//     // Perform any necessary preprocessing logic here
-//     return data
-//   })
-
-// const WizardSchema = extendedSchema.refine(
-//   z
-//     .function()
-//     .args(z.string(), z.function())
-//     .implement((arg) => {
-//       return [arg.length]
-//     }) as (data: unknown) => unknown
-// )
-
 export type WizardType = z.infer<typeof WizardSchema>
 
-export const Wizard = defineMongooseModel('Wizard', {
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  gender: {
-    type: String,
-  },
-  city: {
-    type: String,
-  },
-  country: {
-    type: String,
-  },
-  jobTitle: {
-    type: String,
-  },
-  industry: {
-    type: String,
-  },
+type Combined = WizardType & typeof Model & Document
 
-  house: {
-    type: String,
-  },
-  potions: {
-    type: Number,
-  },
-  DADA: {
-    type: Number,
-  },
-  charms: {
-    type: Number,
-  },
-  apparition: {
-    type: Boolean,
-  },
-  patronus: {
-    type: String,
-  },
-  topSpells: {
-    type: Array,
-  },
-  avatarUrl: {
-    type: String,
-  },
-  createdAt: {
-    type: String,
-  },
-  updatedAt: {
-    type: String,
+const example: WizardType = {}
+
+export const Wizard = defineMongooseModel({
+  name: 'Wizard',
+  schema: { ...example },
+  options: {},
+  hooks(schema) {
+    schema.pre('find', function (this: Combined, next) {
+      console.log('Before the find')
+      next()
+    })
+    schema.post('find', function (docs, next) {
+      console.log('After tbe find the find')
+      next()
+    })
   },
 })

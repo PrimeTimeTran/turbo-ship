@@ -18,7 +18,8 @@ export default defineEventHandler(async (e) => {
       if (isArray(params, key)) {
         // Fix Downcase list of items and search using Regex as well
         const values = value!.toString().split(',')
-        query[key] = { $in: values }
+        const regexArray = values.map((value) => new RegExp('^' + value, 'i'))
+        query[key] = { $in: regexArray }
 
         // Info Queries 3. True of false values. True/False wizard has apparition ability.
       } else if (value == 'false' || value == 'true') {
@@ -34,6 +35,7 @@ export default defineEventHandler(async (e) => {
   }
 
   const data: WizardType[] = await Wizard.find(query).skip(offset).limit(limit)
+
   return postMiddleware(data as [], e.context, Wizard)
 })
 
