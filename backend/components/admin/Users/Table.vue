@@ -51,8 +51,6 @@ const getColor = (field, house) => {
     >
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
-          <!-- [ ] Add a loop for each field header which is dynamic depending on field time
-          -->
           <th
             scope="col"
             @click="toggleSort('firstName')"

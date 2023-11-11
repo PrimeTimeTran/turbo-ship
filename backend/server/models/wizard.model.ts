@@ -1,8 +1,6 @@
 import { z } from 'zod'
 import { defineMongooseModel } from '#nuxt/mongoose'
 
-// Info Models 1. A list of values. Multiple houses for example.
-
 export const WizardSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
@@ -25,7 +23,25 @@ export const WizardSchema = z.object({
   updatedAt: z.date().optional(),
 })
 
-// Info Models 2. A list of values. Multiple houses for example.
+// const extendedSchema = baseSchema
+//   .extend({
+//     // Add any additional properties if needed
+//   })
+//   .refine((data) => {
+//     // Ensure 'data' is an object or transform it accordingly
+//     // Perform any necessary preprocessing logic here
+//     return data
+//   })
+
+// const WizardSchema = extendedSchema.refine(
+//   z
+//     .function()
+//     .args(z.string(), z.function())
+//     .implement((arg) => {
+//       return [arg.length]
+//     }) as (data: unknown) => unknown
+// )
+
 export type WizardType = z.infer<typeof WizardSchema>
 
 export const Wizard = defineMongooseModel('Wizard', {
@@ -87,8 +103,4 @@ export const Wizard = defineMongooseModel('Wizard', {
   updatedAt: {
     type: String,
   },
-  // squib, muggle, half, pure,
-
-  // attributes
-  //
 })

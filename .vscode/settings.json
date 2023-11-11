@@ -11,8 +11,8 @@
     "**/package-lock.json": true,
     "**/bun.lockb": true,
     "**/mason-lock.json": true,
-    "**/.nuxt": true,
-    "**/node_modules": true
+    "**/.nuxt": true
+    // "**/node_modules": true
     // "**/formkit.config.js": true
     // "**/tsconfig.json": true,
     // "**/.env": true,
