@@ -44,7 +44,7 @@ export function useWizards() {
     }
   })
 
-  // Info: fetchFilteredWizards works inside table but not form
+  // Info fetchFilteredWizards works inside table but not form
   const fetchFilteredWizards = async (fields: object) => {
     const url = makeApiQueryString(apiUrl + '/wizards', fields)
     try {

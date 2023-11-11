@@ -4,14 +4,21 @@ const props = defineProps(['searching'])
 const { wizards, sort, fetchFilteredWizards } = useWizards()
 
 const sortFields = reactive({
+  email: ref('ASC'),
   firstName: ref('ASC'),
   lastName: ref('ASC'),
   house: ref('ASC'),
+  city: ref('ASC'),
+  country: ref('ASC'),
   jobTitle: ref('ASC'),
+  industry: ref('ASC'),
+  patronus: ref('ASC'),
   potions: ref('ASC'),
-  charms: ref('ASC'),
-  DADA: ref('ASC'),
-  apparition: ref('ASC'),
+  gender: ref('ASC'),
+  fanScore: ref('ASC'),
+  avatarUrl: ref('ASC'),
+  topSpells: ref('ASC'),
+  bookAppearances: ref('ASC'),
 })
 
 function getSortingIcon(field) {
@@ -24,26 +31,65 @@ function toggleSort(field) {
   sort(field, sortFields[field])
 }
 
-const getColor = (field, house) => {
+// Gotta generate this for every multi select
+
+function getHouseColor(field, key) {
+  key = makeLowerCase(key)
   const weight = field == 'bg' ? 500 : 400
-  const houseColors = {
-    Slytherin: `${field}-green-${weight}`,
-    Gryffindor: `${field}-red-${weight}`,
-    Ravenclaw: `${field}-purple-${weight}`,
-    Hufflepuff: `${field}-pink-${weight}`,
+  const valueColors = {
+    gryffindor: `${field}-red-${weight}`,
+    slytherin: `${field}-green-${weight}`,
+    hufflepuff: `${field}-pink-${weight}`,
+    ravenclaw: `${field}-purple-${weight}`,
+    unknown: `${field}-yellow-${weight}`,
   }
   return {
-    [houseColors[house]]: true,
+    [valueColors[key]]: true,
+  }
+}
+
+function getTopSpellsColor(field, key) {
+  key = makeLowerCase(key)
+  const weight = field == 'bg' ? 500 : 400
+  const valueColors = {
+    hexes: `${field}-green-${weight}`,
+    charms: `${field}-green-${weight}`,
+    curses: `${field}-green-${weight}`,
+    spells: `${field}-green-${weight}`,
+    jinxes: `${field}-green-${weight}`,
+    healing: `${field}-green-${weight}`,
+    counters: `${field}-green-${weight}`,
+    transfigurations: `${field}-green-${weight}`,
+  }
+  return {
+    [valueColors[key]]: true,
+  }
+}
+
+function getBookAppearancesColor(field, key) {
+  key = makeLowerCase(key)
+  const weight = field == 'bg' ? 500 : 400
+  const valueColors = {
+    one: `${field}-green-${weight}`,
+    two: `${field}-green-${weight}`,
+    four: `${field}-green-${weight}`,
+    three: `${field}-green-${weight}`,
+    five: `${field}-green-${weight}`,
+    six: `${field}-green-${weight}`,
+    seven: `${field}-green-${weight}`,
+    eight: `${field}-green-${weight}`,
+  }
+  return {
+    [valueColors[key]]: true,
   }
 }
 </script>
 <template>
   <div class="rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
-    <!-- 
-      Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
-      The result is this table doesn't rerender when the API request completes regardless of outcome.
-    -->
-    <admin-form
+    <!-- Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
+            The result is this table doesn't rerender when the API request completes regardless of outcome.
+          -->
+    <admin-Wizards-form
       :searching="searching"
       :fetchFilteredWizards="fetchFilteredWizards"
     />
@@ -52,21 +98,17 @@ const getColor = (field, house) => {
     >
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
-          <!-- 
-            [ ] Add a loop for each field header which is dynamic depending on field time
-          -->
           <th
             scope="col"
-            @click="toggleSort('firstName')"
-            class="px-3 py-4 font-medium text-gray-500 dark:text-gray-600"
+            @click="toggleSort('email')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
-            First Name <span v-text="getSortingIcon('firstName')" />
+            Email <span v-text="getSortingIcon('email')" />
           </th>
-
           <th
             scope="col"
             @click="toggleSort('lastName')"
-            class="py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Last Name <span v-text="getSortingIcon('lastName')" />
           </th>
@@ -77,7 +119,20 @@ const getColor = (field, house) => {
           >
             House <span v-text="getSortingIcon('house')" />
           </th>
-
+          <th
+            scope="col"
+            @click="toggleSort('city')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+          >
+            City <span v-text="getSortingIcon('city')" />
+          </th>
+          <th
+            scope="col"
+            @click="toggleSort('country')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+          >
+            Country <span v-text="getSortingIcon('country')" />
+          </th>
           <th
             scope="col"
             @click="toggleSort('jobTitle')"
@@ -87,37 +142,52 @@ const getColor = (field, house) => {
           </th>
           <th
             scope="col"
+            @click="toggleSort('industry')"
             class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
-            Team
+            Industry <span v-text="getSortingIcon('industry')" />
           </th>
           <th
             scope="col"
-            @click="toggleSort('charms')"
-            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+            @click="toggleSort('patronus')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
-            Charms <span v-text="getSortingIcon('charms')" />
+            Patronus <span v-text="getSortingIcon('patronus')" />
           </th>
           <th
             scope="col"
             @click="toggleSort('potions')"
-            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Potions <span v-text="getSortingIcon('potions')" />
           </th>
           <th
             scope="col"
-            @click="toggleSort('DADA')"
-            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+            @click="toggleSort('gender')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
-            DADA <span v-text="getSortingIcon('DADA')" />
+            Gender <span v-text="getSortingIcon('gender')" />
           </th>
           <th
             scope="col"
-            @click="toggleSort('apparition')"
-            class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+            @click="toggleSort('fanScore')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
-            Apparition <span v-text="getSortingIcon('apparition')" />
+            Fan Score <span v-text="getSortingIcon('fanScore')" />
+          </th>
+          <th
+            scope="col"
+            @click="toggleSort('topSpells')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+          >
+            Top Spells <span v-text="getSortingIcon('topSpells')" />
+          </th>
+          <th
+            scope="col"
+            @click="toggleSort('bookAppearances')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+          >
+            Book Appearances <span v-text="getSortingIcon('bookAppearances')" />
           </th>
         </tr>
       </thead>
@@ -152,7 +222,7 @@ const getColor = (field, house) => {
               </div>
             </div>
           </th>
-          <td class="py-4">
+          <td class="px-3 py-4">
             <div class="text-sm">
               <div
                 v-text="wizard.lastName"
@@ -166,54 +236,172 @@ const getColor = (field, house) => {
           >
             <span
               class="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-slate-900 px-2 py-1 text-xs font-semibold"
-              :class="getColor('text', wizard.house)"
+              :class="getHouseColor('text', wizard.house)"
             >
               <span
                 class="h-1.5 w-1.5 rounded-full"
-                :class="getColor('bg', wizard.house)"
+                :class="getHouseColor('bg', wizard.house)"
               />
               <span v-text="wizard.house" />
             </span>
           </td>
-
-          <td
-            class="px-6 py-4 dark:text-white"
-            v-if="wizard.jobTitle"
-          >
-            <span v-text="wizard.jobTitle" />
-          </td>
-          <td
-            class="px-3 py-4"
-            v-if="wizard.topSpells.length > 0"
-          >
-            <div class="flex justify-center gap-1">
-              <span
-                v-text="wizard.topSpells[0]"
-                class="inline-flex items-center gap-1 rounded-full bg-blue-100 dark:bg-slate-900 px-2 py-1 text-xs font-semibold text-blue-600"
-              />
-              <span
-                v-text="wizard.topSpells[1]"
-                class="inline-flex items-center gap-1 rounded-full bg-indigo-100 dark:bg-zinc-900 px-2 py-1 text-xs font-semibold text-indigo-600"
-              />
-              <span
-                v-text="wizard.topSpells[2]"
-                class="inline-flex items-center gap-1 rounded-full bg-violet-100 dark:bg-gray-900 px-2 py-1 text-xs font-semibold text-violet-600"
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.city"
+                class="font-medium text-gray-700 dark:text-white"
               />
             </div>
           </td>
-          <td class="px-3 py-4"><span v-text="wizard.charms" /></td>
-          <td class="px-3 py-4"><span v-text="wizard.potions" /></td>
-          <td class="px-3 py-4"><span v-text="wizard.DADA" /></td>
           <td class="px-3 py-4">
-            <span
-              v-if="wizard.apparition !== ''"
-              v-text="wizard.apparition"
-              class="inline-flex items-center bg-gray-100 dark:bg-slate-900 gap-1 rounded-full px-2 py-1 text-xs font-semibold"
-              :class="{
-                'text-green-400': wizard.apparition,
-                'text-red-400': !wizard.apparition,
-              }"
-            />
+            <div class="text-sm">
+              <div
+                v-text="wizard.country"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.jobTitle"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.industry"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.patronus"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.potions"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.gender"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.fanScore"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td
+            class="px-6 py-4"
+            v-if="wizard.topSpells"
+          >
+            <div class="flex justify-center gap-1">
+              <span
+                v-if="wizard.topSpells[0]"
+                v-text="'hexes'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-rose-400 dark:bg-rose-950"
+              />
+              <span
+                v-if="wizard.topSpells[1]"
+                v-text="'charms'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-pink-400 dark:bg-pink-950"
+              />
+              <span
+                v-if="wizard.topSpells[2]"
+                v-text="'curses'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-fuchsia-400 dark:bg-fuchsia-950"
+              />
+              <span
+                v-if="wizard.topSpells[3]"
+                v-text="'spells'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-purple-400 dark:bg-purple-950"
+              />
+              <span
+                v-if="wizard.topSpells[4]"
+                v-text="'jinxes'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-violet-400 dark:bg-violet-950"
+              />
+              <span
+                v-if="wizard.topSpells[5]"
+                v-text="'healing'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-indigo-400 dark:bg-indigo-950"
+              />
+              <span
+                v-if="wizard.topSpells[6]"
+                v-text="'counters'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-blue-400 dark:bg-blue-950"
+              />
+              <span
+                v-if="wizard.topSpells[7]"
+                v-text="'transfigurations'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-sky-400 dark:bg-sky-950"
+              />
+            </div>
+          </td>
+          <td
+            class="px-6 py-4"
+            v-if="wizard.bookAppearances"
+          >
+            <div class="flex justify-center gap-1">
+              <span
+                v-if="wizard.bookAppearances[0]"
+                v-text="'one'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-rose-400 dark:bg-rose-950"
+              />
+              <span
+                v-if="wizard.bookAppearances[1]"
+                v-text="'two'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-pink-400 dark:bg-pink-950"
+              />
+              <span
+                v-if="wizard.bookAppearances[2]"
+                v-text="'four'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-fuchsia-400 dark:bg-fuchsia-950"
+              />
+              <span
+                v-if="wizard.bookAppearances[3]"
+                v-text="'three'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-purple-400 dark:bg-purple-950"
+              />
+              <span
+                v-if="wizard.bookAppearances[4]"
+                v-text="'five'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-violet-400 dark:bg-violet-950"
+              />
+              <span
+                v-if="wizard.bookAppearances[5]"
+                v-text="'six'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-indigo-400 dark:bg-indigo-950"
+              />
+              <span
+                v-if="wizard.bookAppearances[6]"
+                v-text="'seven'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-blue-400 dark:bg-blue-950"
+              />
+              <span
+                v-if="wizard.bookAppearances[7]"
+                v-text="'eight'"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-sky-400 dark:bg-sky-950"
+              />
+            </div>
           </td>
         </tr>
       </tbody>

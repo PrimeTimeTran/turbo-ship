@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['searching', 'fetchFilteredWizards', 'createForm'])
+const props = defineProps(['searching', 'fetchFilteredUsers', 'createForm'])
 
 // Workaround because FormKit reset seems broken
 // https://formkit.com/inputs/form#resetting
@@ -23,10 +23,10 @@ const clearForm = () => {
       class="container"
     >
       <div :key="num">
-        <admin-form-entity-form
+        <admin-users-entity-form
           :clear="clearForm"
           :searching="searching"
-          :fetchFilteredWizards="fetchFilteredWizards"
+          :fetchFilteredUsers="fetchFilteredUsers"
         />
       </div>
     </TransitionGroup>

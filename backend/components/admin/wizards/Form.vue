@@ -23,7 +23,7 @@ const clearForm = () => {
       class="container"
     >
       <div :key="num">
-        <admin-form-entity-form
+        <admin-wizards-entity-form
           :clear="clearForm"
           :searching="searching"
           :fetchFilteredWizards="fetchFilteredWizards"

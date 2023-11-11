@@ -1,4 +1,4 @@
-<!-- Fix: Add click background closes modal -->
+<!-- Fix Add click background closes modal -->
 <script setup>
 import { ref } from 'vue'
 

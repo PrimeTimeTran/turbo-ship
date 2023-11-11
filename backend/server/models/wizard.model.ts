@@ -1,6 +1,8 @@
 import { z } from 'zod'
 import { defineMongooseModel } from '#nuxt/mongoose'
 
+// Info Models 1. A list of values. Multiple houses for example.
+
 export const WizardSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
@@ -23,6 +25,7 @@ export const WizardSchema = z.object({
   updatedAt: z.date().optional(),
 })
 
+// Info Models 2. A list of values. Multiple houses for example.
 export type WizardType = z.infer<typeof WizardSchema>
 
 export const Wizard = defineMongooseModel('Wizard', {

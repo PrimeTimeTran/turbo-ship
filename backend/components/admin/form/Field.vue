@@ -1,9 +1,9 @@
 <script setup>
-
 const props = defineProps({
   min: { type: String },
   max: { type: String },
   type: { type: String },
+  help: { type: String },
   name: { type: String },
   label: { type: String },
   options: { type: String },
@@ -61,6 +61,16 @@ const allClasses = {
     :name="name"
     :label="label"
     :classes="allClasses"
+    :placeholder="placeholder"
+  />
+  <FormKit
+    v-else-if="type == 'date'"
+    type="date"
+    :help="help"
+    :name="name"
+    :label="label"
+    :classes="allClasses"
+    :validation="validation"
     :placeholder="placeholder"
   />
 </template>

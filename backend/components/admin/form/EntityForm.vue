@@ -7,8 +7,6 @@ const props = defineProps([
 ])
 const { apiUrl } = useAPI()
 
-// [ ] Submit support create, search, update
-// Supports create, search
 async function submit(fields) {
   if (props.searching) {
     await props.fetchFilteredWizards(fields)
@@ -25,7 +23,7 @@ let submitted = ref(false)
 </script>
 
 <template>
-  <div class="dark:bg-neutral-950">
+  <div class="relative">
     <FormKit
       type="form"
       @submit="submit"
@@ -141,7 +139,7 @@ let submitted = ref(false)
           }"
         />
       </div>
-      <div class="pb-8 space-x-1 flex flex-row space-x-10">
+      <div class="pb-8 space-x-1 flex flex-row">
         <admin-form-field
           name="house"
           type="select"

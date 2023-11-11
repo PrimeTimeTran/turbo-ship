@@ -11,7 +11,6 @@ useHead({
 let tab = ref(0)
 
 const changeTab = (i) => {
-  console.log('Chaning tab', i)
   tab.value = i
 }
 
@@ -40,7 +39,7 @@ const toggleSearch = () => {
               @click="toggleSearch"
               class="flex p-4 opacity-75 hover:opacity-100"
             >
-              <p class="mr-3 text-md">Wizards</p>
+              <p class="mr-3 text-md">Users</p>
               <div>
                 <font-awesome-icon
                   class="text-gray-400 mr-2"
@@ -94,7 +93,7 @@ const toggleSearch = () => {
         hidden: tab != 0,
       }"
     >
-      <admin-wizards-table :searching="searching" />
+      <admin-users-table :searching="searching" />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -102,7 +101,7 @@ const toggleSearch = () => {
         hidden: tab != 1,
       }"
     >
-      <admin-wizards-overview />
+      <admin-users-overview />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -110,7 +109,7 @@ const toggleSearch = () => {
         hidden: tab != 2,
       }"
     >
-      <admin-form :createForm="true" />
+      <admin-users-entity-form :createForm="true" />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
