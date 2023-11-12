@@ -34,20 +34,18 @@ export const WizardSchema = z.object({
 export type WizardType = z.infer<typeof WizardSchema>
 
 type Combined = WizardType & typeof Model & Document
-
-const example: WizardType = {}
-
+const wizard: WizardType = {}
 export const Wizard = defineMongooseModel({
   name: 'Wizard',
-  schema: { ...example },
+  schema: { ...wizard },
   options: {},
   hooks(schema) {
     schema.pre('find', function (this: Combined, next) {
-      console.log('Before the find')
+      console.log('Wizard hook pre find')
       next()
     })
     schema.post('find', function (docs, next) {
-      console.log('After tbe find the find')
+      console.log('Wizard hook post find')
       next()
     })
   },

@@ -34,7 +34,7 @@ const toggleSearch = () => {
   >
     <div class="relative flex flex-col">
       <div
-        class="text-sm bg-white w-screen z-10 text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
+        class="text-sm bg-white dark:bg-slate-950 w-screen z-10 text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
       >
         <div class="flex">
           <div class="mr-16">

@@ -70,11 +70,11 @@ async function createWizard(wizard: WizardType): Promise<WizardType> {
     avatarUrl: avatarUrl,
     languages: langugaes,
     dob: faker.date.birthdate({ max: 70, min: 1, mode: 'age' }),
-    bookAppearances: wizard.bookAppearances || [
-      faker.number.int({ min: 1, max: 8 }),
-      faker.number.int({ min: 1, max: 8 }),
-      faker.number.int({ min: 1, max: 8 }),
-    ],
+    // bookAppearances: wizard.bookAppearances || [
+    //   faker.number.int({ min: 1, max: 8 }),
+    //   faker.number.int({ min: 1, max: 8 }),
+    //   faker.number.int({ min: 1, max: 8 }),
+    // ],
   }
 
   // Useful for cleansing our models before we make them...?

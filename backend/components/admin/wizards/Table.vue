@@ -89,6 +89,7 @@ function getBookAppearancesColor(field, key) {
     <!-- Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
             The result is this table doesn't rerender when the API request completes regardless of outcome.
           -->
+    <admin-wizards-example />
     <admin-wizards-form
       :searching="searching"
       :fetchFilteredWizards="fetchFilteredWizards"

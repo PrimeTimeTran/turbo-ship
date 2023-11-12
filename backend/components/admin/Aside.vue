@@ -13,7 +13,7 @@ const { isOpen, toggleOpen } = useToggleOpen()
     >
       <div :class="{ 'menu-trigger-open': isOpen }">
         <div
-          class="menu-link-wrapper bg-white dark:bg-neutral-950 border-t-2 border-t-gray-100 w-26"
+          class="menu-link-wrapper bg-white dark:bg-neutral-950 border-t-2 border-t-gray-100 dark:border-t-zinc-800 w-26"
           :class="{ 'w-64': isOpen }"
         >
           <div class="menu-link">
