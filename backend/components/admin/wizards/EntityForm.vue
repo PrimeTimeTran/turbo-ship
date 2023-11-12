@@ -170,6 +170,19 @@ let submitted = ref(false)
 
         <div class="item">
           <admin-form-field
+            name="apparition"
+            type="boolean"
+            label="Apparate?"
+            placeholder="Select apparition"
+            :options="{
+              true: 'Yes',
+              false: 'No',
+            }"
+          />
+        </div>
+
+        <div class="item">
+          <admin-form-field
             type="number"
             name="fanScore"
             label="Fan Score"
@@ -238,14 +251,14 @@ let submitted = ref(false)
             :validation="searching ? '' : 'required'"
             placeholder="Select Multiple"
             :options="{
-              one: 'One',
-              two: 'Two',
-              four: 'Four',
-              three: 'Three',
-              five: 'Five',
-              six: 'Six',
-              seven: 'Seven',
-              eight: 'Eight',
+              1: '1',
+              2: '2',
+              3: '3',
+              4: '4',
+              5: '5',
+              6: '6',
+              7: '7',
+              8: '8',
             }"
           />
         </div>

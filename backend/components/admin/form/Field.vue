@@ -34,6 +34,15 @@ const allClasses = {
     :placeholder="placeholder"
   />
   <FormKit
+    v-else-if="type == 'boolean'"
+    type="select"
+    :name="name"
+    :label="label"
+    :placeholder="placeholder"
+    :classes="allClasses"
+    :options="options"
+  />
+  <FormKit
     v-else-if="type == 'select' && multiple"
     type="select"
     :name="name"

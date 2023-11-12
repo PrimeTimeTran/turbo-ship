@@ -20,6 +20,7 @@ export const WizardSchema = z.object({
   house: z.string().optional(),
   potions: z.number().optional(),
   dada: z.number().optional(),
+  fanScore: z.number().optional(),
   charms: z.number().optional(),
   apparition: z.boolean().optional(),
   patronus: z.string().optional(),
@@ -63,14 +64,15 @@ export const Wizard = defineMongooseModel({
     updatedAt: Date,
     dob: Date,
     avatarUrl: String,
+    fanScore: Number,
     languages: {
-      type: Array,
+      type: [String],
     },
     bookAppearances: {
-      type: Array,
+      type: [Number],
     },
     topSpells: {
-      type: Array,
+      type: [String],
     },
     potions: {
       type: Number,

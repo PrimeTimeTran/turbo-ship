@@ -47,12 +47,17 @@ async function createWizard(wizard: WizardType): Promise<WizardType> {
     topSpells: randomSpells,
     avatarUrl: avatarUrl,
     languages: langugaes,
+    fanScore: parseFloat(faker.finance.amount(0, 10, 2)),
     dob: faker.date.birthdate({ max: 70, min: 1, mode: 'age' }),
-    bookAppearances: wizard.bookAppearances || [
-      faker.number.int({ min: 1, max: 8 }),
-      faker.number.int({ min: 1, max: 8 }),
-      faker.number.int({ min: 1, max: 8 }),
-    ],
+    bookAppearances:
+      wizard.bookAppearances ||
+      _.uniq([
+        faker.number.int({ min: 1, max: 8 }),
+        faker.number.int({ min: 1, max: 8 }),
+        faker.number.int({ min: 1, max: 8 }),
+        faker.number.int({ min: 1, max: 8 }),
+        faker.number.int({ min: 1, max: 8 }),
+      ]),
   }
 
   // Useful for cleansing our models before we make them...?

@@ -17,6 +17,7 @@ const sortFields = reactive({
   charms: ref('ASC'),
   dada: ref('ASC'),
   gender: ref('ASC'),
+  apparition: ref('ASC'),
   fanScore: ref('ASC'),
   avatarUrl: ref('ASC'),
   topSpells: ref('ASC'),
@@ -38,46 +39,41 @@ function getHouseColor(field, key) {
   const weight = field == 'bg' ? 500 : 400
   const valueColors = {
     gryffindor: `${field}-red-${weight}`,
-    slytherin: `${field}-green-${weight}`,
     hufflepuff: `${field}-pink-${weight}`,
     ravenclaw: `${field}-purple-${weight}`,
+    slytherin: `${field}-green-${weight}`,
     unknown: `${field}-yellow-${weight}`,
   }
   return {
     [valueColors[key]]: true,
   }
 }
-
 function getTopSpellsColor(field, key) {
-  key = makeLowerCase(key)
   const weight = field == 'bg' ? 500 : 400
   const valueColors = {
-    hexes: `${field}-green-${weight}`,
-    charms: `${field}-green-${weight}`,
-    curses: `${field}-green-${weight}`,
-    spells: `${field}-green-${weight}`,
-    jinxes: `${field}-green-${weight}`,
-    healing: `${field}-green-${weight}`,
-    counters: `${field}-green-${weight}`,
-    transfigurations: `${field}-green-${weight}`,
+    charms: `${field}-rose-${weight}`,
+    counters: `${field}-pink-${weight}`,
+    curses: `${field}-fuchsia-${weight}`,
+    healing: `${field}-purple-${weight}`,
+    hexes: `${field}-violet-${weight}`,
+    spells: `${field}-indigo-${weight}`,
+    transfigurations: `${field}-blue-${weight}`,
   }
   return {
     [valueColors[key]]: true,
   }
 }
-
 function getBookAppearancesColor(field, key) {
-  key = makeLowerCase(key)
   const weight = field == 'bg' ? 500 : 400
   const valueColors = {
-    one: `${field}-green-${weight}`,
-    two: `${field}-green-${weight}`,
-    four: `${field}-green-${weight}`,
-    three: `${field}-green-${weight}`,
-    five: `${field}-green-${weight}`,
-    six: `${field}-green-${weight}`,
-    seven: `${field}-green-${weight}`,
-    eight: `${field}-green-${weight}`,
+    1: `${field}-rose-${weight}`,
+    2: `${field}-pink-${weight}`,
+    3: `${field}-fuchsia-${weight}`,
+    4: `${field}-purple-${weight}`,
+    5: `${field}-violet-${weight}`,
+    6: `${field}-indigo-${weight}`,
+    7: `${field}-blue-${weight}`,
+    8: `${field}-sky-${weight}`,
   }
   return {
     [valueColors[key]]: true,
@@ -169,6 +165,13 @@ function getBookAppearancesColor(field, key) {
             class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
             Charms <span v-text="getSortingIcon('charms')" />
+          </th>
+          <th
+            scope="col"
+            @click="toggleSort('apparition')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+          >
+            Apparate? <span v-text="getSortingIcon('apparition')" />
           </th>
           <th
             scope="col"
@@ -320,6 +323,14 @@ function getBookAppearancesColor(field, key) {
           <td class="px-3 py-4">
             <div class="text-sm">
               <div
+                v-text="wizard.apparition"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
                 v-text="wizard.dada"
                 class="font-medium text-gray-700 dark:text-white"
               />
@@ -368,7 +379,7 @@ function getBookAppearancesColor(field, key) {
               />
               <span
                 v-if="wizard.topSpells[4]"
-                v-text="'jinxes'"
+                v-text="'counters'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-violet-400 dark:bg-violet-950"
               />
               <span
@@ -378,13 +389,8 @@ function getBookAppearancesColor(field, key) {
               />
               <span
                 v-if="wizard.topSpells[6]"
-                v-text="'counters'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-blue-400 dark:bg-blue-950"
-              />
-              <span
-                v-if="wizard.topSpells[7]"
                 v-text="'transfigurations'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-sky-400 dark:bg-sky-950"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-blue-400 dark:bg-blue-950"
               />
             </div>
           </td>
@@ -395,42 +401,42 @@ function getBookAppearancesColor(field, key) {
             <div class="flex justify-center gap-1">
               <span
                 v-if="wizard.bookAppearances[0]"
-                v-text="'one'"
+                v-text="'1'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-rose-400 dark:bg-rose-950"
               />
               <span
                 v-if="wizard.bookAppearances[1]"
-                v-text="'two'"
+                v-text="'2'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-pink-400 dark:bg-pink-950"
               />
               <span
                 v-if="wizard.bookAppearances[2]"
-                v-text="'four'"
+                v-text="'3'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-fuchsia-400 dark:bg-fuchsia-950"
               />
               <span
                 v-if="wizard.bookAppearances[3]"
-                v-text="'three'"
+                v-text="'4'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-purple-400 dark:bg-purple-950"
               />
               <span
                 v-if="wizard.bookAppearances[4]"
-                v-text="'five'"
+                v-text="'5'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-violet-400 dark:bg-violet-950"
               />
               <span
                 v-if="wizard.bookAppearances[5]"
-                v-text="'six'"
+                v-text="'6'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-indigo-400 dark:bg-indigo-950"
               />
               <span
                 v-if="wizard.bookAppearances[6]"
-                v-text="'seven'"
+                v-text="'7'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-blue-400 dark:bg-blue-950"
               />
               <span
                 v-if="wizard.bookAppearances[7]"
-                v-text="'eight'"
+                v-text="'8'"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-sky-400 dark:bg-sky-950"
               />
             </div>
