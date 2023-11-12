@@ -1,9 +1,9 @@
 import { ref } from 'vue'
 import { useFetch } from '@vueuse/core'
 
-interface Wizard {
-  [key: string]: string | undefined
-}
+// interface Wizard {
+//   [key: string]: string | undefined
+// }
 
 interface Meta {
   limit: number
@@ -18,7 +18,7 @@ export function useWizards() {
   const { apiUrl } = useAPI()
   const baseURL = `${apiUrl}/wizards`
   let newWizard = ref('')
-  let wizards = ref<Wizard[]>([])
+  let wizards = ref<WizardType[]>([])
   let meta: Meta = reactive({
     limit: ref(0),
     offset: ref(0),
@@ -71,7 +71,7 @@ export function useWizards() {
         meta.limit = val.meta.limit
         meta.total = val.meta.total
         Object.assign(meta, val.meta)
-        wizards.value = val?.data as Wizard[]
+        wizards.value = val?.data as WizardType[]
       } else {
         console.error('Error fetching wizards:', error.value)
       }
@@ -79,17 +79,17 @@ export function useWizards() {
       console.error('Unexpected error:', error)
     }
   }
-  watch(meta, (newMeta) => {
+  watch(meta, () => {
     console.log('Watch detected meta changed')
   })
 
-  const sort = (field: string, direction: string) => {
+  const sort = (field: keyof WizardType, direction: 'ASC' | 'DESC') => {
     if (direction === 'ASC') {
-      wizards.value = wizards.value.sort((a, b) =>
+      wizards.value = wizards.value.sort((a: WizardType, b: WizardType) =>
         (a[field] ?? '') > (b[field] ?? '') ? 1 : -1
       )
     } else if (direction === 'DESC') {
-      wizards.value = wizards.value.sort((a, b) =>
+      wizards.value = wizards.value.sort((a: WizardType, b: WizardType) =>
         (a[field] ?? '') > (b[field] ?? '') ? -1 : 1
       )
     }
