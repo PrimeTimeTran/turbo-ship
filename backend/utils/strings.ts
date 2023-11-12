@@ -1,7 +1,4 @@
-export const capitalize = (word) => {
-  console.log({
-    word,
-  })
+export const capitalize = (word: String) => {
   const firstLetter = word.charAt(0)
   const firstLetterCap = firstLetter.toUpperCase()
   const remainingLetters = word.slice(1)
@@ -9,6 +6,6 @@ export const capitalize = (word) => {
   return capitalizedWord
 }
 
-export function makeLowerCase(inputString) {
+export function makeLowerCase(inputString: String) {
   return inputString.toLowerCase()
 }

@@ -29,12 +29,24 @@ export const WizardSchema = z.object({
   updatedAt: z.date().optional(),
   dob: z.date().optional(),
   languages: z.array(z.string()).optional(),
+  bookAppearances: z.array(z.string()).optional(),
 })
+
+export type PersonType = {
+  firstName: String
+  lastName: String
+}
+
+export type MuggleType = {
+  firstName: String
+  lastName: String
+}
 
 export type WizardType = z.infer<typeof WizardSchema>
 
 type Combined = WizardType & typeof Model & Document
 const wizard: WizardType = {}
+
 export const Wizard = defineMongooseModel({
   name: 'Wizard',
   schema: { ...wizard },

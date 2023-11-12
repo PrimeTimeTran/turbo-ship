@@ -1,10 +1,6 @@
 import { ref } from 'vue'
 import { useFetch } from '@vueuse/core'
 
-// interface Wizard {
-//   [key: string]: string | undefined
-// }
-
 interface Meta {
   limit: number
   offset: number
@@ -63,6 +59,7 @@ export function useWizards() {
 
   // Info fetchFilteredWizards works inside table but not form
   const fetchFilteredWizards = async (fields: object) => {
+    console.log('Hi fetchFilteredWizards')
     const url = makeApiQueryString(apiUrl + '/wizards', fields)
     try {
       let { data, error } = await useFetch(url)
@@ -80,7 +77,10 @@ export function useWizards() {
     }
   }
   watch(meta, () => {
-    console.log('Watch detected meta changed')
+    console.log('useWizards meta changed')
+  })
+  watch(wizards, () => {
+    console.log('useWizards meta wizards')
   })
 
   const sort = (field: keyof WizardType, direction: 'ASC' | 'DESC') => {

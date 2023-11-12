@@ -15,28 +15,6 @@ export default defineEventHandler(async (e) => {
   }
 })
 
-const languages = [
-  'Javascript',
-  'Typescript',
-  'Dart',
-  'Ruby',
-  'Python',
-  'Go',
-  'C#',
-  'C',
-  'C++',
-  'Java',
-  'Kotlin',
-  'Mojo',
-  'Swift',
-  'Rust',
-  'PHP',
-  'Scala',
-  'Perl',
-  'R',
-  'COBOL',
-]
-
 async function createWizard(wizard: WizardType): Promise<WizardType> {
   const randomNumber1 = faker.number.int({ min: 1, max: 10 })
   const randomNumber2 = faker.number.int({ min: 1, max: 10 })
@@ -70,11 +48,11 @@ async function createWizard(wizard: WizardType): Promise<WizardType> {
     avatarUrl: avatarUrl,
     languages: langugaes,
     dob: faker.date.birthdate({ max: 70, min: 1, mode: 'age' }),
-    // bookAppearances: wizard.bookAppearances || [
-    //   faker.number.int({ min: 1, max: 8 }),
-    //   faker.number.int({ min: 1, max: 8 }),
-    //   faker.number.int({ min: 1, max: 8 }),
-    // ],
+    bookAppearances: wizard.bookAppearances || [
+      faker.number.int({ min: 1, max: 8 }),
+      faker.number.int({ min: 1, max: 8 }),
+      faker.number.int({ min: 1, max: 8 }),
+    ],
   }
 
   // Useful for cleansing our models before we make them...?
@@ -116,3 +94,25 @@ function getRandomUniqueValues(arr: string[], count: number) {
 
   return result
 }
+
+const languages = [
+  'Javascript',
+  'Typescript',
+  'Dart',
+  'Ruby',
+  'Python',
+  'Go',
+  'C#',
+  'C',
+  'C++',
+  'Java',
+  'Kotlin',
+  'Mojo',
+  'Swift',
+  'Rust',
+  'PHP',
+  'Scala',
+  'Perl',
+  'R',
+  'COBOL',
+]

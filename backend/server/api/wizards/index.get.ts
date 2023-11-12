@@ -35,7 +35,7 @@ export default defineEventHandler(async (e) => {
     }
   }
 
-  const data: WizardType[] = await Wizard.find(query).skip(offset).limit(limit)
+  const data = await Wizard.find(query).skip(offset).limit(limit)
 
   return postMiddleware(data as [], e.context, Wizard)
 })
