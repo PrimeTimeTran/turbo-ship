@@ -39,7 +39,7 @@ async function createWizard(wizard: WizardType): Promise<WizardType> {
     jobTitle: faker.person.jobTitle(),
     industry: faker.person.jobType(),
     house: wizard.house,
-    DADA: randomNumber1,
+    dada: randomNumber1,
     potions: randomNumber2,
     charms: randomNumber3,
     apparition: faker.datatype.boolean(),

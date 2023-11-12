@@ -19,7 +19,7 @@ export const WizardSchema = z.object({
   industry: z.string().optional(),
   house: z.string().optional(),
   potions: z.number().optional(),
-  DADA: z.number().optional(),
+  dada: z.number().optional(),
   charms: z.number().optional(),
   apparition: z.boolean().optional(),
   patronus: z.string().optional(),
@@ -29,7 +29,7 @@ export const WizardSchema = z.object({
   updatedAt: z.date().optional(),
   dob: z.date().optional(),
   languages: z.array(z.string()).optional(),
-  bookAppearances: z.array(z.string()).optional(),
+  bookAppearances: z.array(z.number()).optional(),
 })
 
 export type PersonType = {
@@ -45,11 +45,52 @@ export type MuggleType = {
 export type WizardType = z.infer<typeof WizardSchema>
 
 type Combined = WizardType & typeof Model & Document
-const wizard: WizardType = {}
 
 export const Wizard = defineMongooseModel({
   name: 'Wizard',
-  schema: { ...wizard },
+  schema: {
+    firstName: String,
+    lastName: String,
+    email: String,
+    gender: String,
+    city: String,
+    country: String,
+    jobTitle: String,
+    industry: String,
+    house: String,
+    patronus: String,
+    createdAt: Date,
+    updatedAt: Date,
+    dob: Date,
+    avatarUrl: String,
+    languages: {
+      type: Array,
+    },
+    bookAppearances: {
+      type: Array,
+    },
+    topSpells: {
+      type: Array,
+    },
+    potions: {
+      type: Number,
+      min: 0,
+      max: 10,
+    },
+    charms: {
+      type: Number,
+      min: 0,
+      max: 10,
+    },
+    dada: {
+      type: Number,
+      min: 0,
+      max: 10,
+    },
+    apparition: {
+      type: Boolean,
+    },
+  },
   options: {},
   hooks(schema) {
     schema.pre('find', function (this: Combined, next) {

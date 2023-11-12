@@ -10,7 +10,7 @@ const sortFields = reactive({
   jobTitle: ref('ASC'),
   potions: ref('ASC'),
   charms: ref('ASC'),
-  DADA: ref('ASC'),
+  dada: ref('ASC'),
   apparition: ref('ASC'),
 })
 
@@ -103,10 +103,10 @@ const getColor = (field, house) => {
           </th>
           <th
             scope="col"
-            @click="toggleSort('DADA')"
+            @click="toggleSort('dada')"
             class="px-2 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
-            DADA <span v-text="getSortingIcon('DADA')" />
+            DADA <span v-text="getSortingIcon('dada')" />
           </th>
           <th
             scope="col"

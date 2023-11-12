@@ -165,6 +165,20 @@ function getBookAppearancesColor(field, key) {
           </th>
           <th
             scope="col"
+            @click="toggleSort('charms')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+          >
+            Charms <span v-text="getSortingIcon('charms')" />
+          </th>
+          <th
+            scope="col"
+            @click="toggleSort('dada')"
+            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
+          >
+            D.A.D.A <span v-text="getSortingIcon('dada')" />
+          </th>
+          <th
+            scope="col"
             @click="toggleSort('gender')"
             class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
           >
@@ -291,6 +305,22 @@ function getBookAppearancesColor(field, key) {
             <div class="text-sm">
               <div
                 v-text="wizard.potions"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.charms"
+                class="font-medium text-gray-700 dark:text-white"
+              />
+            </div>
+          </td>
+          <td class="px-3 py-4">
+            <div class="text-sm">
+              <div
+                v-text="wizard.dada"
                 class="font-medium text-gray-700 dark:text-white"
               />
             </div>

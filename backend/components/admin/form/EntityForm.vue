@@ -121,11 +121,11 @@ let submitted = ref(false)
         />
         <admin-form-field
           type="number"
-          name="DADA"
+          name="dada"
           placeholder="10"
           min="1"
           max="10"
-          label="DADA"
+          label="dada"
         />
         <admin-form-field
           type="select"
