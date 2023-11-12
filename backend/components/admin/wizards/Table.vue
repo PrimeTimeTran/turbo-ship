@@ -14,6 +14,8 @@ const sortFields = reactive({
   industry: ref('ASC'),
   patronus: ref('ASC'),
   potions: ref('ASC'),
+  charms: ref('ASC'),
+  dada: ref('ASC'),
   gender: ref('ASC'),
   fanScore: ref('ASC'),
   avatarUrl: ref('ASC'),
@@ -86,16 +88,15 @@ function getBookAppearancesColor(field, key) {
   <div
     class="flex flex-col overflow-scroll justify-center rounded-lg border border-gray-200 dark:border-gray-600 shadow-md pb-12"
   >
-    <admin-wizards-example />
     <!-- Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
-          The result is this table doesn't rerender when the API request completes regardless of outcome.
-    -->
+            The result is this table doesn't rerender when the API request completes regardless of outcome.
+          -->
     <admin-wizards-form
       :searching="searching"
       :fetchFilteredWizards="fetchFilteredWizards"
     />
     <table
-      class="overflow-scroll mb-12 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
+      class="overflow-x-auto mb-12 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
     >
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
