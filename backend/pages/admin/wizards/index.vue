@@ -32,9 +32,9 @@ const toggleSearch = () => {
   <div
     class="flex flex-col min-w-full max-h-full overflow-y-none overflow-y-hidden"
   >
-    <div class="flex flex-col">
+    <div class="relative flex flex-col">
       <div
-        class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
+        class="text-sm bg-white w-screen z-10 text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
       >
         <div class="flex">
           <div class="mr-16">
@@ -91,7 +91,7 @@ const toggleSearch = () => {
       </div>
     </div>
     <div
-      class="min-w-full min-h-full pt-2"
+      class="min-w-full min-h-full mt-20"
       :class="{
         hidden: tab != 0,
       }"

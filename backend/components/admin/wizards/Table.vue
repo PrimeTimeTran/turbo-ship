@@ -84,17 +84,17 @@ function getBookAppearancesColor(field, key) {
 </script>
 <template>
   <div
-    class="flex flex-col overflow-auto justify-center rounded-lg border border-gray-200 dark:border-gray-600 shadow-md pb-12"
+    class="flex flex-col overflow-scroll justify-center rounded-lg border border-gray-200 dark:border-gray-600 shadow-md pb-12"
   >
     <!-- Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
             The result is this table doesn't rerender when the API request completes regardless of outcome.
           -->
-    <admin-Wizards-form
+    <admin-wizards-form
       :searching="searching"
       :fetchFilteredWizards="fetchFilteredWizards"
     />
     <table
-      class="mb-12 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
+      class="overflow-scroll mb-12 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
     >
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
@@ -217,7 +217,7 @@ function getBookAppearancesColor(field, key) {
               <div>
                 <span
                   v-text="wizard.email"
-                  class="text-gray-600"
+                  class="text-gray-400"
                 />
               </div>
             </div>

@@ -2,12 +2,13 @@ import { Wizard } from '@/server/models/wizard.model'
 
 export default defineEventHandler(async (e) => {
   const { limit, offset } = e.context
-  const params = getQuery(e)
+  let params = getQuery(e)
 
   const query: Record<string, any> = {}
 
   for (const key in params) {
     const value = params[key]
+    if (value === '') continue
 
     // Info Queries: 1. End user changed input then deleted.
     // That sends empty field which === ''.

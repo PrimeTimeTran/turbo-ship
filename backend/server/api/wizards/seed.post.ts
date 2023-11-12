@@ -1,4 +1,7 @@
+// https://hp-api.onrender.com/api/characters
+// https:potterhead-api.vercel.app/api/characters
 import { faker } from '@faker-js/faker'
+import _ from 'lodash'
 
 export default defineEventHandler(async (e) => {
   const wizards: WizardType[] = []
@@ -12,6 +15,28 @@ export default defineEventHandler(async (e) => {
   }
 })
 
+const languages = [
+  'Javascript',
+  'Typescript',
+  'Dart',
+  'Ruby',
+  'Python',
+  'Go',
+  'C#',
+  'C',
+  'C++',
+  'Java',
+  'Kotlin',
+  'Mojo',
+  'Swift',
+  'Rust',
+  'PHP',
+  'Scala',
+  'Perl',
+  'R',
+  'COBOL',
+]
+
 async function createWizard(wizard: WizardType): Promise<WizardType> {
   const randomNumber1 = faker.number.int({ min: 1, max: 10 })
   const randomNumber2 = faker.number.int({ min: 1, max: 10 })
@@ -23,6 +48,8 @@ async function createWizard(wizard: WizardType): Promise<WizardType> {
   const avatarUrl = `https://randomuser.me/api/portraits/${
     wizard.gender == 'm' ? 'men' : 'women'
   }/${faker.number.int({ min: 1, max: 90 })}.jpg`
+
+  const langugaes = _.sampleSize(languages, randomNumber1 >= 5 ? 3 : 6)
 
   const toWizard = {
     gender: wizard.gender,
@@ -41,6 +68,13 @@ async function createWizard(wizard: WizardType): Promise<WizardType> {
     patronus: wizard.patronus,
     topSpells: randomSpells,
     avatarUrl: avatarUrl,
+    languages: langugaes,
+    dob: faker.date.birthdate({ max: 70, min: 1, mode: 'age' }),
+    bookAppearances: wizard.bookAppearances || [
+      faker.number.int({ min: 1, max: 8 }),
+      faker.number.int({ min: 1, max: 8 }),
+      faker.number.int({ min: 1, max: 8 }),
+    ],
   }
 
   // Useful for cleansing our models before we make them...?

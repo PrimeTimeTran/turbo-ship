@@ -5,15 +5,18 @@ const { isOpen, toggleOpen } = useToggleOpen()
 <template>
   <aside
     :class="isOpen ? 'w-64' : 'w-26'"
-    class="hidden sm:flex min-w-100 min-h-screen z-30 overflow-auto ease-in-out transition-all duration-300 bg-white dark:bg-neutral-950 border-r-2 dark:border-r-zinc-800"
+    class="hidden sm:flex overflow-y-scroll h-screen z-30 ease-in-out transition-all duration-300 bg-white dark:bg-neutral-950 border-r-2 dark:border-r-zinc-800"
   >
     <div
       class="flex px-3"
       @click="toggleOpen"
     >
       <div :class="{ 'menu-trigger-open': isOpen }">
-        <div class="menu-link-wrapper bg-white dark:bg-neutral-950">
-          <div class="menu-link mb-3">
+        <div
+          class="menu-link-wrapper bg-white dark:bg-neutral-950 border-t-2 border-t-gray-100 w-26"
+          :class="{ 'w-64': isOpen }"
+        >
+          <div class="menu-link">
             <span class="lines"></span>
           </div>
         </div>
@@ -22,7 +25,7 @@ const { isOpen, toggleOpen } = useToggleOpen()
           class="pt-32 space-y-12"
         >
           <p
-            class="text-2xl truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+            class="text-2xl truncate text-gray-500 dark:text-white my-72 hover:text-green-400 dark:hover:text-green-400"
           >
             Item 1
           </p>
@@ -71,9 +74,8 @@ const { isOpen, toggleOpen } = useToggleOpen()
   cursor: pointer;
   position: fixed;
   left: 0px;
-  bottom: 10px;
+  bottom: 0px;
   height: 50px;
-  width: 60px;
 }
 
 .menu-link {

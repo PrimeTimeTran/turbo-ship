@@ -5,6 +5,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Phoenix',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Tom',
@@ -12,6 +13,7 @@ export const wizardSeeds = [
     house: 'Slytherin',
     patronus: 'None',
     gender: 'm',
+    bookAppearances: [2, 6],
   },
   {
     firstName: 'Gellert',
@@ -26,6 +28,7 @@ export const wizardSeeds = [
     house: 'Slytherin',
     patronus: 'Doe',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Alastor',
@@ -40,6 +43,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Cat',
     gender: 'f',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Lily',
@@ -124,6 +128,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Unknown',
     gender: 'm',
+    bookAppearances: [3],
   },
   {
     firstName: 'James',
@@ -194,6 +199,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Otter',
     gender: 'f',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Harry',
@@ -201,6 +207,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Stag',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Peter',
@@ -334,6 +341,7 @@ export const wizardSeeds = [
     house: 'Slytherin',
     patronus: 'Unknown',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Ron',
@@ -341,6 +349,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Jack Russell Terrier',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Fenrir',
@@ -355,6 +364,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Unknown',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Neville',
@@ -362,6 +372,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Unknown',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Gregorovitch',
@@ -390,6 +401,7 @@ export const wizardSeeds = [
     house: 'Unknown',
     patronus: 'None',
     gender: 'm',
+    bookAppearances: [1],
   },
   {
     firstName: 'Newton',
@@ -418,6 +430,7 @@ export const wizardSeeds = [
     house: 'Unknown',
     patronus: 'Unknown',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Goyle',
@@ -425,6 +438,7 @@ export const wizardSeeds = [
     house: 'Unknown',
     patronus: 'Unknown',
     gender: 'm',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Ginny',
@@ -432,6 +446,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Horse',
     gender: 'f',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Luna',
@@ -439,6 +454,7 @@ export const wizardSeeds = [
     house: 'Ravenclaw',
     patronus: 'Hare',
     gender: 'f',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Rolanda',
@@ -523,6 +539,7 @@ export const wizardSeeds = [
     house: 'Ravenclaw',
     patronus: 'Unknown',
     gender: 'f',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Dean',
@@ -565,6 +582,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Unknown',
     gender: 'f',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Romilda',
@@ -607,6 +625,7 @@ export const wizardSeeds = [
     house: 'Gryffindor',
     patronus: 'Unknown',
     gender: 'f',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Padma',
@@ -614,6 +633,7 @@ export const wizardSeeds = [
     house: 'Ravenclaw',
     patronus: 'Unknown',
     gender: 'f',
+    bookAppearances: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     firstName: 'Susan',
@@ -656,6 +676,7 @@ export const wizardSeeds = [
     house: 'Ravenclaw',
     patronus: 'Unknown',
     gender: 'f',
+    bookAppearances: [2],
   },
   {
     firstName: 'Argus',

@@ -27,6 +27,8 @@ export const WizardSchema = z.object({
   createdAt: z.date().optional(),
   avatarUrl: z.string().optional(),
   updatedAt: z.date().optional(),
+  dob: z.date().optional(),
+  languages: z.array(z.string()).optional(),
 })
 
 export type WizardType = z.infer<typeof WizardSchema>
