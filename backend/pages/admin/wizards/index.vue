@@ -91,7 +91,7 @@ const toggleSearch = () => {
       </div>
     </div>
     <div
-      class="min-w-full min-h-full mt-20"
+      class="min-w-full min-h-full pt-1"
       :class="{
         hidden: tab != 0,
       }"

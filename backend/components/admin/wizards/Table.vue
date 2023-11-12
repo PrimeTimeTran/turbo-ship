@@ -86,10 +86,10 @@ function getBookAppearancesColor(field, key) {
   <div
     class="flex flex-col overflow-scroll justify-center rounded-lg border border-gray-200 dark:border-gray-600 shadow-md pb-12"
   >
-    <!-- Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
-            The result is this table doesn't rerender when the API request completes regardless of outcome.
-          -->
     <admin-wizards-example />
+    <!-- Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
+          The result is this table doesn't rerender when the API request completes regardless of outcome.
+    -->
     <admin-wizards-form
       :searching="searching"
       :fetchFilteredWizards="fetchFilteredWizards"
