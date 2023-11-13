@@ -20,7 +20,10 @@ async function createWizard(wizard: WizardType): Promise<WizardType> {
   const randomNumber2 = faker.number.int({ min: 1, max: 10 })
   const randomNumber3 = faker.number.int({ min: 1, max: 10 })
 
-  const country = faker.location.country()
+  let country
+  do {
+    country = faker.address.country()
+  } while (country.length > 30)
   const randomSpells = getRandomUniqueValues(spells, 3)
 
   const avatarUrl = `https://randomuser.me/api/portraits/${

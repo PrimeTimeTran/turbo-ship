@@ -9,6 +9,13 @@ export default {
     './plugins/**/*.{js,ts}',
     './components/**/*.{js,vue,ts}',
   ],
+  safelist: [
+    'safelisted',
+    {
+      pattern:
+        /bg-(rose|pink|fuchsia|purple|violet|indigo|blue|sky|red|green|blue)-(100|200|300|400|500|600)/,
+    },
+  ],
   theme: {
     extend: {
       typography: ({ theme }) => ({

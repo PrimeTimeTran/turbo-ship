@@ -37,46 +37,49 @@ function toggleSort(field) {
 function getHouseColor(field, key) {
   key = makeLowerCase(key)
   const weight = field == 'bg' ? 500 : 400
-  const valueColors = {
+  const kolors = {
     gryffindor: `${field}-red-${weight}`,
+    slytherin: `${field}-green-${weight}`,
     hufflepuff: `${field}-pink-${weight}`,
     ravenclaw: `${field}-purple-${weight}`,
-    slytherin: `${field}-green-${weight}`,
     unknown: `${field}-yellow-${weight}`,
   }
   return {
-    [valueColors[key]]: true,
+    [kolors[key]]: true,
   }
 }
+
 function getTopSpellsColor(field, key) {
   const weight = field == 'bg' ? 500 : 400
-  const valueColors = {
-    charms: `${field}-rose-${weight}`,
-    counters: `${field}-pink-${weight}`,
-    curses: `${field}-fuchsia-${weight}`,
-    healing: `${field}-purple-${weight}`,
-    hexes: `${field}-violet-${weight}`,
+  const kolors = {
+    jinxes: `${field}-rose-${weight}`,
+    hexes: `${field}-pink-${weight}`,
+    charms: `${field}-purple-${weight}`,
+    curses: `${field}-violet-${weight}`,
     spells: `${field}-indigo-${weight}`,
-    transfigurations: `${field}-blue-${weight}`,
+    counters: `${field}-blue-${weight}`,
+    healing: `${field}-sky-${weight}`,
+    transfigurations: `${field}-teal-${weight}`,
   }
   return {
-    [valueColors[key]]: true,
+    [kolors[key]]: true,
   }
 }
+
 function getBookAppearancesColor(field, key) {
   const weight = field == 'bg' ? 500 : 400
-  const valueColors = {
+  const kolors = {
     1: `${field}-rose-${weight}`,
     2: `${field}-pink-${weight}`,
-    3: `${field}-fuchsia-${weight}`,
-    4: `${field}-purple-${weight}`,
-    5: `${field}-violet-${weight}`,
-    6: `${field}-indigo-${weight}`,
-    7: `${field}-blue-${weight}`,
-    8: `${field}-sky-${weight}`,
+    3: `${field}-purple-${weight}`,
+    4: `${field}-violet-${weight}`,
+    5: `${field}-indigo-${weight}`,
+    6: `${field}-blue-${weight}`,
+    7: `${field}-sky-${weight}`,
+    8: `${field}-teal-${weight}`,
   }
   return {
-    [valueColors[key]]: true,
+    [kolors[key]]: true,
   }
 }
 </script>
@@ -358,39 +361,10 @@ function getBookAppearancesColor(field, key) {
           >
             <div class="flex justify-center gap-1">
               <span
-                v-if="wizard.topSpells[0]"
-                v-text="'hexes'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-rose-400 dark:bg-rose-950"
-              />
-              <span
-                v-if="wizard.topSpells[1]"
-                v-text="'charms'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-pink-400 dark:bg-pink-950"
-              />
-              <span
-                v-if="wizard.topSpells[2]"
-                v-text="'curses'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-fuchsia-400 dark:bg-fuchsia-950"
-              />
-              <span
-                v-if="wizard.topSpells[3]"
-                v-text="'spells'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-purple-400 dark:bg-purple-950"
-              />
-              <span
-                v-if="wizard.topSpells[4]"
-                v-text="'counters'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-violet-400 dark:bg-violet-950"
-              />
-              <span
-                v-if="wizard.topSpells[5]"
-                v-text="'healing'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-indigo-400 dark:bg-indigo-950"
-              />
-              <span
-                v-if="wizard.topSpells[6]"
-                v-text="'transfigurations'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-blue-400 dark:bg-blue-950"
+                v-for="(item, idx) of wizard.topSpells"
+                v-text="item"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white"
+                :class="getTopSpellsColor('bg', item)"
               />
             </div>
           </td>
@@ -400,44 +374,10 @@ function getBookAppearancesColor(field, key) {
           >
             <div class="flex justify-center gap-1">
               <span
-                v-if="wizard.bookAppearances[0]"
-                v-text="'1'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-rose-400 dark:bg-rose-950"
-              />
-              <span
-                v-if="wizard.bookAppearances[1]"
-                v-text="'2'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-pink-400 dark:bg-pink-950"
-              />
-              <span
-                v-if="wizard.bookAppearances[2]"
-                v-text="'3'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-fuchsia-400 dark:bg-fuchsia-950"
-              />
-              <span
-                v-if="wizard.bookAppearances[3]"
-                v-text="'4'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-purple-400 dark:bg-purple-950"
-              />
-              <span
-                v-if="wizard.bookAppearances[4]"
-                v-text="'5'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-violet-400 dark:bg-violet-950"
-              />
-              <span
-                v-if="wizard.bookAppearances[5]"
-                v-text="'6'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-indigo-400 dark:bg-indigo-950"
-              />
-              <span
-                v-if="wizard.bookAppearances[6]"
-                v-text="'7'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-blue-400 dark:bg-blue-950"
-              />
-              <span
-                v-if="wizard.bookAppearances[7]"
-                v-text="'8'"
-                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white bg-sky-400 dark:bg-sky-950"
+                v-for="(item, idx) of wizard.bookAppearances"
+                v-text="item"
+                class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white"
+                :class="getBookAppearancesColor('bg', item)"
               />
             </div>
           </td>
