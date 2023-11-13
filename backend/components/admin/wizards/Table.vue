@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps(['searching'])
 
-const { wizards, sort, meta, fetchFilteredWizards } = useWizards()
+let { wizards, sort, meta, fetchPage, fetchFilteredWizards } = useWizards()
 
 const sortFields = reactive({
   email: ref('ASC'),
@@ -94,8 +94,12 @@ function getBookAppearancesColor(field, key) {
       :searching="searching"
       :fetchFilteredWizards="fetchFilteredWizards"
     />
+    <admin-form-pagination
+      :meta="meta"
+      :fetchPage="fetchPage"
+    />
     <table
-      class="overflow-x-auto mb-12 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
+      class="overflow-x-auto my-6 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
     >
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
@@ -384,6 +388,5 @@ function getBookAppearancesColor(field, key) {
         </tr>
       </tbody>
     </table>
-    <admin-form-pagination :meta="meta" />
   </div>
 </template>

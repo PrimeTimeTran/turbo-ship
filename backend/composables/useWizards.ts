@@ -3,7 +3,6 @@ import { useFetch } from '@vueuse/core'
 
 interface Meta {
   limit: number
-  offset: number
   page: number
   pageCount: number
   total: number
@@ -15,10 +14,10 @@ export function useWizards() {
   const baseURL = `${apiUrl}/wizards`
   let newWizard = ref('')
   let wizards = ref<WizardType[]>([])
+  let params = ref('')
   let meta: Meta = reactive({
-    limit: ref(0),
-    offset: ref(0),
-    page: ref(0),
+    limit: ref(10),
+    page: ref(1),
     pageCount: ref(0),
     total: ref(0),
     totalRecords: ref(0),
@@ -49,7 +48,9 @@ export function useWizards() {
   }
 
   onBeforeMount(async () => {
-    const { data, error } = await useFetch(baseURL)
+    const { data, error } = await useFetch(
+      baseURL + `?page=${meta.page}&limit=${meta.limit}`
+    )
     if (!error.value) {
       const val = JSON.parse(data.value as string)
       Object.assign(meta, val.meta)
@@ -59,14 +60,26 @@ export function useWizards() {
 
   // Info fetchFilteredWizards works inside table but not form
   const fetchFilteredWizards = async (fields: object) => {
-    console.log('Hi fetchFilteredWizards')
-    const url = makeApiQueryString(apiUrl + '/wizards', fields)
+    meta.page = 1
+
+    // Convert the combinedFields object to a query string
+    const queryParams = new URLSearchParams(Object.entries(fields)).toString()
+    params.value = queryParams
+    console.log({
+      queryParams,
+      params,
+    })
+
+    const url = makeApiQueryString(
+      apiUrl + `/wizards?page=${meta.page}&limit=${meta.limit}`,
+      fields
+    )
     try {
       let { data, error } = await useFetch(url)
       if (!error.value) {
         const val = JSON.parse(data.value as string)
-        meta.limit = val.meta.limit
-        meta.total = val.meta.total
+        meta.page = val.meta.page
+        meta.totalRecords = val.meta.totalRecords
         Object.assign(meta, val.meta)
         wizards.value = val?.data as WizardType[]
       } else {
@@ -76,12 +89,38 @@ export function useWizards() {
       console.error('Unexpected error:', error)
     }
   }
-  watch(meta, () => {
-    console.log('useWizards meta changed')
-  })
-  watch(wizards, () => {
-    console.log('useWizards meta wizards')
-  })
+
+  const getPaginationString = (diff: number) => {
+    let nextPage = meta.page + diff
+    if (diff == -10) nextPage = 1
+    if (diff == 10) nextPage = meta.pageCount
+    return [
+      `/wizards?page=${nextPage}&limit=${meta.limit}${
+        params.value ? '&' + params.value : ''
+      }`,
+      nextPage,
+    ]
+  }
+
+  const fetchPage = async (diff: number) => {
+    let [str, nextPage] = getPaginationString(diff)
+
+    const url = makeApiQueryString(apiUrl + str, {})
+    console.log({ url })
+    try {
+      let { data, error } = await useFetch(url)
+      if (!error.value) {
+        const val = JSON.parse(data.value as string)
+        meta.page = nextPage as number
+        Object.assign(meta, val.meta)
+        wizards.value = val?.data as WizardType[]
+      } else {
+        console.error('Error fetching wizards:', error.value)
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error)
+    }
+  }
 
   const sort = (field: keyof WizardType, direction: 'ASC' | 'DESC') => {
     if (direction === 'ASC') {
@@ -98,6 +137,7 @@ export function useWizards() {
   return {
     wizards,
     sort,
+    fetchPage,
     meta,
     newWizard,
     addWizard,

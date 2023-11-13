@@ -1,4 +1,10 @@
 import { z } from 'zod'
+declare module 'h3' {
+  interface H3EventContext {
+    page: number
+    limit: number
+  }
+}
 
 const schema = z.object({
   page: z.string().optional(),
@@ -6,15 +12,13 @@ const schema = z.object({
 })
 
 export default defineEventHandler(async (e) => {
-  // http://localhost:3000/api/users?page=10&limit=10
-  // { page: '10', limit: '10' }
-
   const query = schema.parse(getQuery(e))
   const page = Number(query.page || 1)
-  const limit = Number(query.limit || 10)
-  let offset = limit * (page - 1) || 0
-  offset = page == 1 ? 0 : offset
+  let limit = parseInt(query.limit || '10')
+  limit =
+    typeof query['limit'] === 'string'
+      ? parseInt(query['limit']?.split('?')[0])
+      : 10
   e.context.page = page
   e.context.limit = limit
-  e.context.offset = offset
 })
