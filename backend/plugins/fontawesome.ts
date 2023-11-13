@@ -23,6 +23,9 @@ import {
   faCircleXmark,
   faCaretLeft,
   faCaretRight,
+  faDatabase,
+  faEye,
+  faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -44,7 +47,10 @@ library.add(
   faMagnifyingGlass,
   faCircleXmark,
   faCaretLeft,
-  faCaretRight
+  faCaretRight,
+  faDatabase,
+  faEye,
+  faEyeSlash
 )
 
 // This is important, we are going to let Nuxt worry about the CSS
