@@ -1,6 +1,9 @@
 export default {
   darkMode: 'class',
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar-hide'),
+  ],
   content: [
     './app.vue',
     './error.vue',
