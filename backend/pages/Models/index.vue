@@ -59,12 +59,14 @@ const onToggleEntityName = (id) => {
 const onAddAttribute = (id) => {
   if (attributeName.value == '') {
     const item = 'attributeInput' + id
-    document.getElementById(item).classList.add('border-red-200')
+    document.getElementById(item).classList.add('border-2')
+    document.getElementById(item).classList.add('border-red-500')
     document.getElementById(item).classList.add('border-opacity-100')
   }
   if (attributeType.value == '') {
     const item = 'attributeType' + id
-    document.getElementById(item).classList.add('border-red-200')
+    document.getElementById(item).classList.add('border-2')
+    document.getElementById(item).classList.add('border-red-500')
     document.getElementById(item).classList.add('border-opacity-100')
   }
   if (attributeName.value == '' || attributeType.value == '') {
@@ -151,37 +153,34 @@ const onEditAttr = (entityId, attrName, value) => {
         </div>
       </div>
       <br />
-      <div v-for="(entity, idx) of entities">
+      <div
+        v-for="entity of entities"
+        class="bg-slate-100 odd:bg-zinc-100 opacity-[.7] hover:opacity-90"
+      >
         <div
-          class="bg-slate-50 mb-1 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 p-2 hover:bg-slate-100"
+          class="mb-1 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 p-2"
           :class="{
             'bg-opacity-100': entity.showAddAttribute || entity.showAttributes,
           }"
         >
           <div>
+            <label class="font-bold">Name</label>
             <div class="flex justify-between items-center">
               <div class="flex flex-row flex-grow">
-                <span class="p-1">
-                  <font-awesome-icon
-                    icon="fa-solid fa-clipboard"
-                    class="text-gray-400 mr-2"
-                  />
-                </span>
                 <div
                   v-if="entity.editing"
                   @click="onToggleEntityName(entity._id)"
-                  class="flex flex-grow px-2 py-0 rounded border-2 border-opacity-0 border-slate-200"
+                  class="flex flex-grow px-2 py-0 rounded bg-white"
                   :class="{
                     'border-0': entity.editing,
                     'hover:border-opacity-100': !entity.editing,
                   }"
                 >
-                  <span class="text-gray-400 py-1 mr-2">{{ idx + 1 }}.</span>
                   <input
                     :id="entity._id"
                     v-model="entity.name"
                     placeholder="customers, transactions, statements..."
-                    class="flex flex-grow px-2 py-0 rounded border-2 border-opacity-0 border-slate-200"
+                    class="flex flex-grow px-2 py-0 rounded border-opacity-0 border-slate-200 bg-white"
                     @keyup.enter="onEntityNameSave(entity.name, entity._id)"
                     :class="{
                       'hover:border-opacity-100': !entity.editing,
@@ -191,19 +190,18 @@ const onEditAttr = (entityId, attrName, value) => {
                 <div
                   v-else
                   @click="onToggleEntityName(entity._id)"
-                  class="flex flex-grow px-2 py-0 rounded border-2 border-opacity-0 border-slate-200 bg-white"
+                  class="flex flex-grow px-2 py-0 rounded bg-white"
                   :class="{
                     'hover:border-opacity-100': !entity.editing,
                   }"
                 >
-                  <span class="text-gray-400 mr-2">{{ idx + 1 }}.</span>
                   <span class="text-gray-400">{{ entity.name }}</span>
                 </div>
               </div>
-              <div class="ml-1">
+              <div>
                 <button
                   type="button"
-                  class="px-2 rounded border-2 border-opacity-0 border-slate-200 hover:border-opacity-100"
+                  class="px-2 rounded border-2 border-opacity-0 border-slate-200 hover:border-opacity-100 hover:text-green-500"
                   @click="onToggleEntityAttributesShow(entity._id)"
                 >
                   <font-awesome-icon
@@ -216,11 +214,11 @@ const onEditAttr = (entityId, attrName, value) => {
                     icon="fa-solid fa-eye"
                     class="text-gray-400 mr-2"
                   />
-                  Total Attributes: ({{ entity.attributes.length + 1 }})
+                  Total Attributes ({{ entity.attributes.length + 1 }})
                 </button>
                 <button
                   type="button"
-                  class="px-2 rounded border-2 border-opacity-0 border-slate-200 hover:border-opacity-100"
+                  class="px-2 rounded border-2 border-opacity-0 border-slate-200 hover:border-opacity-100 hover:text-green-500"
                   @click="onToggleEntityAdd(entity._id)"
                 >
                   <font-awesome-icon
@@ -239,23 +237,23 @@ const onEditAttr = (entityId, attrName, value) => {
             </div>
             <div
               v-if="entity.showAddAttribute"
-              class="grid grid-cols-4 space-x-1 items-start p-2"
+              class="grid grid-cols-4 space-x-1 items-start m-2"
             >
               <div
-                class="flex flex-col col-span-2 px-6 py-2 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
+                class="flex flex-col col-span-2 p-2 rounded border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96"
               >
-                <label class="font-bold text-gray-500">New Attribute</label>
+                <label class="font-bold">New Attribute</label>
                 <input
                   v-model="attributeName"
                   placeholder="firstName, lastName..."
                   :id="'attributeInput' + entity._id"
-                  class="flex-auto px-2 py-1 bg-white rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
+                  class="flex-auto px-2 bg-white rounded border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-lg h-0"
                   @keyup.enter="onAddAttribute(entity._id)"
                 />
-                <label class="font-bold text-gray-500">Type</label>
+                <label class="font-bold">Type</label>
                 <div
                   :id="'attributeType' + entity._id"
-                  class="flex-auto p-2 my-1 bg-white rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
+                  class="flex-auto p-2 my-1 bg-white rounded border-2 border-gray-200 border-opacity-0 hover:border-opacity-100"
                 >
                   <div>
                     <div v-for="dataType of attributeTypes">
@@ -283,16 +281,18 @@ const onEditAttr = (entityId, attrName, value) => {
                 </div>
               </div>
               <div
-                class="grid flex-grow rounded min-w-max p-2 px-6 border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
+                class="flex flex-col col-span-2 px-6 py-2 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 h-96"
               >
-                <label class="font-bold text-gray-500">
+                <label class="font-bold">
                   Current({{ entity.attributes.length + 1 }})
                 </label>
                 <div
-                  class="overflow-auto min-w-max scrollbar-hide max-h-64 bg-white p-4 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
+                  class="overflow-auto scrollbar-hide bg-white p-4 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
                 >
                   <div v-for="(attribute, attrIdx) of entity.attributes">
-                    <div class="grid grid-cols-4">
+                    <div
+                      class="grid grid-cols-4 hover:bg-slate-100 p-2 rounded"
+                    >
                       <div class="col-span-3">
                         {{ attrIdx + 1 + '. ' + attribute.name + ' ' }}
                       </div>
@@ -306,15 +306,17 @@ const onEditAttr = (entityId, attrName, value) => {
             </div>
             <div
               v-if="!entity.showAddAttribute"
-              class="flex justify-between items-center px-8"
+              class="flex justify-between items-center p-2"
             >
-              <div class="my-2">
-                <span class="font-bold text-gray-400 mr-2">Attributes:</span>
-                <span
-                  class="text-gray-500"
-                  v-for="(attribute, attrIdx) of entity.attributes"
-                  v-text="attrIdx + 1 + '. ' + attribute.name + ' '"
-                />
+              <div class="px-1 py-2">
+                <label class="font-bold">Attributes</label>
+                <div class="my-2">
+                  <span
+                    class="text-gray-500"
+                    v-for="(attribute, attrIdx) of entity.attributes"
+                    v-text="attrIdx + 1 + '. ' + attribute.name + ' '"
+                  />
+                </div>
               </div>
             </div>
           </div>
