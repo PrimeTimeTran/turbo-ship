@@ -1,200 +1,7 @@
 <script setup>
 import { faker } from '@faker-js/faker'
-import SelectGroup from './SelectGroup.vue'
+import AttributeForm from './AttributeForm.vue'
 
-const original = [
-  {
-    _id: faker.database.mongodbObjectId(),
-    name: 'users',
-    label: 'User',
-    plural: 'Users',
-    lowerPlural: 'users',
-    showAttributes: true,
-    showAddAttribute: false,
-    attributes: [
-      {
-        name: '_id',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'email',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'firstName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'lastName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'age',
-        type: 'number',
-        editing: false,
-      },
-      {
-        name: 'owner',
-        type: 'boolean',
-        editing: false,
-      },
-      {
-        name: '_id',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'email',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'firstName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'lastName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'age',
-        type: 'number',
-        editing: false,
-      },
-      {
-        name: 'owner',
-        type: 'boolean',
-        editing: false,
-      },
-      {
-        name: '_id',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'email',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'firstName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'lastName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'age',
-        type: 'number',
-        editing: false,
-      },
-      {
-        name: 'owner',
-        type: 'boolean',
-        editing: false,
-      },
-      {
-        name: '_id',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'email',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'firstName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'lastName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'age',
-        type: 'number',
-        editing: false,
-      },
-      {
-        name: 'owner',
-        type: 'boolean',
-        editing: false,
-      },
-      {
-        name: '_id',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'email',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'firstName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'lastName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'age',
-        type: 'number',
-        editing: false,
-      },
-      {
-        name: 'owner',
-        type: 'boolean',
-        editing: false,
-      },
-      {
-        name: '_id',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'email',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'firstName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'lastName',
-        type: 'string',
-        editing: false,
-      },
-      {
-        name: 'age',
-        type: 'number',
-        editing: false,
-      },
-      {
-        name: 'owner',
-        type: 'boolean',
-        editing: false,
-      },
-    ],
-  },
-]
 const protectedAttributes = ['_id']
 let entities = ref([...original])
 let entityName = ref('')
@@ -252,28 +59,31 @@ const onToggleEntityName = (id) => {
 const onAddAttribute = (id) => {
   if (attributeName.value == '') {
     const item = 'attributeInput' + id
-    document.getElementById(item).classList.add('border-2')
     document.getElementById(item).classList.add('border-red-200')
+    document.getElementById(item).classList.add('border-opacity-100')
   }
   if (attributeType.value == '') {
     const item = 'attributeType' + id
-    document.getElementById(item).classList.add('border-2')
     document.getElementById(item).classList.add('border-red-200')
+    document.getElementById(item).classList.add('border-opacity-100')
   }
   if (attributeName.value == '' || attributeType.value == '') {
     return
+  } else {
+    let item = 'attributeInput' + id
+    document.getElementById(item).classList.remove('border-2')
+    document.getElementById(item).classList.remove('border-opacity-100')
+    item = 'attributeType' + id
+    document.getElementById(item).classList.remove('border-2')
+    document.getElementById(item).classList.remove('border-opacity-100')
   }
   let idx = entities.value.findIndex((item) => item._id == id)
   let entity = entities.value[idx]
   entity.attributes.push({
     name: attributeName.value,
     type: attributeType.value,
+    _id: faker.database.mongodbObjectId(),
   })
-
-  document.getElementById(item).classList.remove('border-2')
-  document.getElementById(item).classList.remove('border-2')
-  document.getElementById(item).classList.remove('border-red-200')
-  document.getElementById(item).classList.remove('border-red-200')
   attributeName.value = ''
 }
 const getAttr = (id, name) => {
@@ -301,9 +111,6 @@ const onEditAttr = (entityId, attrName, value) => {
   const attr = getAttr(entityId, attrName)
   attr.type = value
 }
-// const getAttrKeys = (attr) => {
-//   return Object.entries(attr)
-// }
 </script>
 <template>
   <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen">
@@ -318,15 +125,15 @@ const onEditAttr = (entityId, attrName, value) => {
       />
       <button
         type="button"
-        class="m-3 border-2 rounded border-gray-300 px-3 py-1 text-lg"
         @click="onAdd"
+        class="m-3 border-2 rounded border-gray-300 px-3 py-1 text-lg"
       >
         Add Entity
       </button>
       <button
         type="button"
-        class="m-3 border-2 rounded border-gray-300 px-3 py-1 text-lg"
         @click="reset"
+        class="m-3 border-2 rounded border-gray-300 px-3 py-1 text-lg"
       >
         Reset
       </button>
@@ -346,7 +153,7 @@ const onEditAttr = (entityId, attrName, value) => {
       <br />
       <div v-for="(entity, idx) of entities">
         <div
-          class="bg-slate-100 mb-1 rounded bg-opacity-60 hover:bg-opacity-100 border-opacity-30 border-2 border-slate-200 hover:border-opacity-100 p-2"
+          class="bg-slate-50 mb-1 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 p-2 hover:bg-slate-100"
           :class="{
             'bg-opacity-100': entity.showAddAttribute || entity.showAttributes,
           }"
@@ -363,10 +170,10 @@ const onEditAttr = (entityId, attrName, value) => {
                 <div
                   v-if="entity.editing"
                   @click="onToggleEntityName(entity._id)"
-                  class="flex flex-grow rounded border-2 border-opacity-0 border-slate-200 hover:border-opacity-100"
+                  class="flex flex-grow px-2 py-0 rounded border-2 border-opacity-0 border-slate-200"
                   :class="{
                     'border-0': entity.editing,
-                    'hover:border-opacity-100': entity.editing,
+                    'hover:border-opacity-100': !entity.editing,
                   }"
                 >
                   <span class="text-gray-400 py-1 mr-2">{{ idx + 1 }}.</span>
@@ -374,14 +181,20 @@ const onEditAttr = (entityId, attrName, value) => {
                     :id="entity._id"
                     v-model="entity.name"
                     placeholder="customers, transactions, statements..."
-                    class="flex flex-grow px-2 py-1 rounded border-2 border-opacity-0 border-slate-200 hover:border-opacity-100"
+                    class="flex flex-grow px-2 py-0 rounded border-2 border-opacity-0 border-slate-200"
                     @keyup.enter="onEntityNameSave(entity.name, entity._id)"
+                    :class="{
+                      'hover:border-opacity-100': !entity.editing,
+                    }"
                   />
                 </div>
                 <div
                   v-else
                   @click="onToggleEntityName(entity._id)"
-                  class="flex flex-grow px-2 bg-white py-1 rounded border-2 border-opacity-0 border-slate-200 hover:border-opacity-100 hover:bg-white"
+                  class="flex flex-grow px-2 py-0 rounded border-2 border-opacity-0 border-slate-200 bg-white"
+                  :class="{
+                    'hover:border-opacity-100': !entity.editing,
+                  }"
                 >
                   <span class="text-gray-400 mr-2">{{ idx + 1 }}.</span>
                   <span class="text-gray-400">{{ entity.name }}</span>
@@ -428,51 +241,55 @@ const onEditAttr = (entityId, attrName, value) => {
               v-if="entity.showAddAttribute"
               class="grid grid-cols-4 space-x-1 items-start p-2"
             >
-              <div class="flex flex-grow flex-col col-span-2 px-6 rounded">
+              <div
+                class="flex flex-col col-span-2 px-6 py-2 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
+              >
                 <label class="font-bold text-gray-500">New Attribute</label>
                 <input
                   v-model="attributeName"
                   placeholder="firstName, lastName..."
-                  class="px-2 py-1 flex-auto rounded"
                   :id="'attributeInput' + entity._id"
+                  class="flex-auto px-2 py-1 bg-white rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
                   @keyup.enter="onAddAttribute(entity._id)"
                 />
                 <label class="font-bold text-gray-500">Type</label>
                 <div
                   :id="'attributeType' + entity._id"
-                  class="flex flex-col border-red-50 p-2 my-1 rounded bg-white"
+                  class="flex-auto p-2 my-1 bg-white rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
                 >
                   <div>
-                    <div v-for="(type, idx) of attributeTypes">
+                    <div v-for="dataType of attributeTypes">
                       <label class="text-lg">
                         <input
-                          :id="type"
+                          :id="dataType"
                           type="radio"
-                          :value="type"
+                          :value="dataType"
                           v-model="attributeType"
                           name="attributeName"
                         />
-                        {{ type }}
+                        {{ dataType }}
                       </label>
                     </div>
                   </div>
                 </div>
                 <div>
                   <button
-                    type="button"
-                    class="border-2 border-gray-400 p-2 mt-2 rounded bg-slate-500 text-white"
+                    type="submit"
+                    class="border-2 border-gray-300 p-2 mt-2 rounded bg-slate-500 text-white"
                     @click="onAddAttribute(entity._id)"
                   >
                     Add Attribute
                   </button>
                 </div>
               </div>
-              <div class="grid">
+              <div
+                class="grid flex-grow rounded min-w-max p-2 px-6 border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
+              >
                 <label class="font-bold text-gray-500">
                   Current({{ entity.attributes.length + 1 }})
                 </label>
                 <div
-                  class="overflow-auto scrollbar-hide max-h-64 bg-white rounded p-4"
+                  class="overflow-auto min-w-max scrollbar-hide max-h-64 bg-white p-4 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
                 >
                   <div v-for="(attribute, attrIdx) of entity.attributes">
                     <div class="grid grid-cols-4">
@@ -489,71 +306,36 @@ const onEditAttr = (entityId, attrName, value) => {
             </div>
             <div
               v-if="!entity.showAddAttribute"
-              class="flex justify-between items-center"
+              class="flex justify-between items-center px-8"
             >
-              <div>
+              <div class="my-2">
                 <span class="font-bold text-gray-400 mr-2">Attributes:</span>
                 <span
+                  class="text-gray-500"
                   v-for="(attribute, attrIdx) of entity.attributes"
                   v-text="attrIdx + 1 + '. ' + attribute.name + ' '"
-                  class="text-gray-500"
                 />
               </div>
             </div>
           </div>
           <div
+            class="min-h-32 p-2"
             v-if="entity.showAttributes"
-            class="min-h-32"
           >
-            <div class="p-2">
-              <div v-for="(attr, attrIdx) of entity.attributes">
-                <div class="mb-1 p-2 border-2 rounded">
-                  <div class="flex">
-                    <span
-                      v-text="idx + 1 + '.'"
-                      class="text-gray-400 py-1 mr-2"
-                    />
-                    <input
-                      v-if="attr.editing"
-                      v-model="attr.name"
-                      v-text="attr.name"
-                      :id="entity._id + attr.name"
-                      @click="onToggleAttrName(entity._id, attr.name)"
-                      class="flex flex-grow rounded border-2 px-2 py-1 bg-white border-opacity-0 border-slate-200 hover:border-opacity-100"
-                      @keyup.enter="
-                        onAttrSave(entity._id, attr.name, attr.name)
-                      "
-                      :class="{
-                        'border-0': entity.editing,
-                        'hover:border-opacity-100': entity.editing,
-                      }"
-                    />
-                    <span
-                      v-else
-                      v-text="attr.name"
-                      class="flex flex-grow rounded border-2 px-2 py-1 border-opacity-0 border-slate-200"
-                      @click="onToggleAttrName(entity._id, attr.name)"
-                      :class="{
-                        ['bg-white']: !protectedAttributes.includes(attr.name),
-                        ['hover:border-opacity-100']:
-                          !protectedAttributes.includes(attr.name),
-                      }"
-                    />
-                  </div>
-                  <SelectGroup
-                    :attr="attr"
-                    :attrIdx="attrIdx"
-                    :selectedAttribute="
-                      entity.attributes[attrIdx].type === attr.type
-                    "
-                    :selectedType="entity.attributes[attrIdx].type"
-                    :entity="entity"
-                    :attributeTypes="attributeTypes"
-                    @onEditAttr="onEditAttr"
-                    :protectedAttributes="protectedAttributes"
-                  />
-                </div>
-              </div>
+            <div
+              v-for="(attr, attrIdx) of entity.attributes"
+              class="my-2 border-2 border-gray-300 border-opacity-50 hover:border-opacity-100 rounded"
+            >
+              <attribute-form
+                :attr="attr"
+                :entity="entity"
+                :attrIdx="attrIdx"
+                :onEditAttr="onEditAttr"
+                :onAttrSave="onAttrSave"
+                :attributeTypes="attributeTypes"
+                :onToggleAttrName="onToggleAttrName"
+                :protectedAttributes="protectedAttributes"
+              />
             </div>
           </div>
         </div>

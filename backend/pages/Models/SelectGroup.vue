@@ -5,13 +5,8 @@ const props = defineProps([
   'attr',
   'attrIdx',
   'attributeTypes',
-  'selectedAttribute',
   'selectedType',
 ])
-console.log({
-  selectedType: props.selectedType,
-  gogogog: props.selectedAttribute,
-})
 </script>
 <template>
   <div
@@ -19,18 +14,16 @@ console.log({
     :id="'entityAttributeType' + entity._id + attr.name"
   >
     <div
+      :key="entity._id + attr.name"
       v-for="dataType of attributeTypes"
-      :key="dataType"
-      class="flex flex-grow justify-between space-x-3 rounded bg-white border-2 border-opacity-10 px-2 py-1"
+      class="flex flex-grow justify-between px-2 py-1 space-x-3 bg-white rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100"
       :class="{
         'hover:border-opacity-100': !protectedAttributes.includes(attr.name),
-        'hover:bg-slate-300': !protectedAttributes.includes(attr.name),
       }"
     >
       <label v-if="!protectedAttributes.includes(attr.name)">
         <input
           type="radio"
-          name="attributeName"
           :checked="selectedType === dataType"
           :disabled="protectedAttributes.includes(attr.name)"
           @click="$emit('onEditAttr', entity._id, attr.name, dataType)"
@@ -43,7 +36,6 @@ console.log({
       >
         <input
           type="radio"
-          name="attributeName"
           :checked="selectedType === dataType"
           :disabled="protectedAttributes.includes(attr.name)"
           @click="$emit('onEditAttr', entity._id, attr.name, dataType)"
