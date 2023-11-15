@@ -16,7 +16,7 @@ const copyer = () => {
 }
 </script>
 <template>
-  <div class="col-span-3 overflow-auto scrollbar-hide border-l-2">
+  <div class="col-span-4 overflow-auto scrollbar-hide border-l-2">
     <button @click="copyer()">
       <font-awesome-icon
         color="grey"

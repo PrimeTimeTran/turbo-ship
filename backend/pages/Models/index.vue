@@ -25,14 +25,23 @@ const onAdd = (val) => {
     ],
   })
 }
+
+const onSidebarAdd = (entity) => {
+  entities.value.push({
+    ...entity,
+    editing: false,
+    showAttributes: false,
+    showAddAttribute: false,
+  })
+}
 </script>
 <template>
   <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen">
     <ModelsSidebar
-      @onAdd="onAdd"
+      @onAdd="onSidebarAdd"
       @reset="reset"
     />
-    <div class="col-span-7 overflow-auto scrollbar-hide">
+    <div class="col-span-6 overflow-auto scrollbar-hide">
       <ModelsToolbar :entities="entities" />
       <div
         v-for="entity of entities"
