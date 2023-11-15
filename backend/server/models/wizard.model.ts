@@ -38,6 +38,8 @@ export type PersonType = {
   lastName: String
 }
 
+export const PIE = '3.14'
+
 export type MuggleType = {
   firstName: String
   lastName: String

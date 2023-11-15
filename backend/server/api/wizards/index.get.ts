@@ -1,5 +1,4 @@
-import _ from 'lodash'
-import { Wizard } from '@/server/models/wizard.model'
+import { Wizard } from '~/server/models/wizard.model'
 
 export default defineEventHandler(async (e) => {
   let { limit, page } = e.context

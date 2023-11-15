@@ -29,6 +29,7 @@ import {
   faPenToSquare,
   faRectangleXmark,
   faClipboard,
+  faSquareMinus,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -56,7 +57,8 @@ library.add(
   faEyeSlash,
   faPenToSquare,
   faRectangleXmark,
-  faClipboard
+  faClipboard,
+  faSquareMinus
 )
 
 // This is important, we are going to let Nuxt worry about the CSS

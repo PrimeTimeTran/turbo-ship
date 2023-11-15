@@ -1,4 +1,4 @@
-import { Wizard } from '@/server/models/wizard.model'
+import { Wizard } from '~/server/models/wizard.model'
 
 export default defineEventHandler(async (e) => {
   const body = await readBody(e)
