@@ -3,11 +3,11 @@ export const attributeTypes = [
   'number',
   'decimal',
   'integer',
-  'enumeratorMulti',
   'boolean',
+  'enumeratorMulti',
   'enumerator',
   'date',
-  'datetime',
+  'dateTime',
 ]
 
 export const attributeTypesWithLabels = {
@@ -43,9 +43,9 @@ export const attributeTypesWithLabels = {
     value: 'date',
     label: 'date',
   },
-  datetime: {
-    value: 'datetime',
-    label: 'datetime',
+  dateTime: {
+    value: 'dateTime',
+    label: 'date-time',
   },
 }
 //   { value: 'date', name: 'date' },

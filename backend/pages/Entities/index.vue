@@ -9,9 +9,9 @@ const toggleSortView = () => {
 
 <template>
   <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen">
-    <EntitiesSidebar @onAdd="onAdd" />
+    <EntitiesTheLeftSidebar @onAdd="onAdd" />
     <div class="col-span-9 lg:col-span-6 overflow-auto scrollbar-hide">
-      <EntitiesToolbar
+      <EntitiesTheToolbar
         :entities="entities"
         @toggleSortView="toggleSortView"
       />
@@ -43,13 +43,13 @@ const toggleSortView = () => {
           class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
         >
           <EntitiesEntity
+            :idx="idx +1"
             :entity="entity"
-            :idx="idx"
           />
         </div>
       </div>
     </div>
-    <EntitiesTheRight :entities="entities" />
+    <EntitiesTheRightSidebar :entities="entities" />
   </div>
 </template>
 

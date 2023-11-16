@@ -1,4 +1,43 @@
 export class AttributeValidator {
+  static list = {
+    string: {
+      value: 'string',
+      label: 'string',
+    },
+    number: {
+      value: 'number',
+      label: 'number',
+    },
+    decimal: {
+      value: 'decimal',
+      label: 'decimal',
+    },
+    integer: {
+      value: 'integer',
+      label: 'integer',
+    },
+    enumeratorMulti: {
+      value: 'enumeratorMulti',
+      label: 'enumerator-multi',
+    },
+    boolean: {
+      value: 'boolean',
+      label: 'boolean',
+    },
+    enumerator: {
+      value: 'enumerator',
+      label: 'enumerator',
+    },
+    date: {
+      value: 'date',
+      label: 'date',
+    },
+    dateTime: {
+      value: 'dateTime',
+      label: 'date-time',
+    },
+  }
+
   static number() {
     return ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative']
   }

@@ -30,11 +30,13 @@ const onCollapse = () => {
     <div class="flex flex-row justify-end flex-wrap">
       <div
         class="mr-3"
-        v-for="e of entities"
+        v-for="(e, idx) of entities"
       >
-        <a :href="'/entities#' + e.name">
-          {{ e.name }}
-        </a>
+        <a
+          class="text-sm"
+          v-text="idx + 1 + `. ${e.name}`"
+          :href="`/entities#${e.name}-${idx + 1}`"
+        />
       </div>
     </div>
     <div

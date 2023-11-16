@@ -12,6 +12,7 @@ export function useEntities() {
       return true
     }
   }
+
   return {
     entities,
     addEntity,
