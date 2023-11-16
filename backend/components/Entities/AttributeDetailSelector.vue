@@ -6,7 +6,7 @@ const props = defineProps(['focusAttr', 'attribute', 'entity'])
     <div class="flex overflow-x-auto scrollbar-hide">
       <div
         class="px-2 hover:text-blue-600 text-sm"
-        @click="focusAttr(attribute)"
+        @click="focusAttr(a)"
         v-for="(a, attrIdx) of AttributeValidator.safeAttributes(entity)"
       >
         <span

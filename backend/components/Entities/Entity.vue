@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['entity'])
+const props = defineProps(['entity', 'idx'])
 </script>
 <template>
   <section
@@ -10,7 +10,14 @@ const props = defineProps(['entity'])
       'bg-opacity-100': entity.showAttributeForm || entity.showAttributes,
     }"
   >
-    <EntitiesEntityBody :entity="entity" />
-    <EntitiesEntityAttributes :entity="entity" />
+    <EntitiesEntityBody
+      :entity="entity"
+      :idx="idx + 1 + '.'"
+      :focusAttr="focusAttr"
+    />
+    <EntitiesEntityAttributes
+      :entity="entity"
+      :focusAttr="focusAttr"
+    />
   </section>
 </template>

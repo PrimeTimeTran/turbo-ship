@@ -1,7 +1,16 @@
 <script setup>
-const props = defineProps(['entity'])
-
+// Must keep this guy to update global entities
 const { entities } = useEntities()
+const props = defineProps([
+  'entity',
+  'focusAttr',
+  'attribute',
+  'attributeEditing',
+])
+
+const attributeEditing = ref(props.attributeEditing)
+
+// const entity = ref(props.entity)
 
 const getAttr = (id, name) => {
   let idx = entities.value.findIndex((e) => e._id === id)
@@ -10,16 +19,9 @@ const getAttr = (id, name) => {
   return e.attributes[idx]
 }
 
-const onAttrSave = (entityId, attrName, value) => {
-  const attr = getAttr(entityId, attrName)
-  attr.name = value
-  attr.editing = !attr.editing
-}
-
 const onToggleAttrName = (entityId, attrName) => {
   if (protectedAttributes.includes(attrName)) return
-  const attr = getAttr(entityId, attrName)
-  attr.editing = !attr.editing
+  attributeEditing.value = !attributeEditing.value
   setTimeout(() => {
     document.getElementById(entityId + attrName).focus()
   }, 100)
@@ -47,13 +49,13 @@ const onEditAttr = (entityId, attrName, value) => {
             class="text-gray-400 py-1 mr-2"
           />
           <input
-            v-if="attr.editing"
+            v-if="attributeEditing"
             v-model="attr.name"
             v-text="attr.name"
             :id="entity._id + attr.name"
             @click="onToggleAttrName(entity._id, attr.name)"
             class="flex flex-grow px-2 py-1 bg-white border-2 border-slate-200 border-opacity-50 hover:border-opacity-100 rounded"
-            @keyup.enter="onAttrSave(entity._id, attr.name, attr.name)"
+            @keyup.enter="() => (editing.value = !editing.value)"
             :class="{
               'border-0': entity.editing,
               'hover:border-opacity-100': entity.editing,
@@ -77,8 +79,8 @@ const onEditAttr = (entityId, attrName, value) => {
             }"
           />
         </div>
-        <EntitiesAttributeTypesSelector
-          :attr="attr"
+        <EntitiesAttributeTypeGroup
+          :attr="attribute"
           :entity="entity"
           @onEditAttr="onEditAttr"
           :selectedType="attr.type"

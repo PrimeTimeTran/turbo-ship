@@ -5,7 +5,6 @@ const sorterView = ref(false)
 const toggleSortView = () => {
   sorterView.value = !sorterView.value
 }
-
 </script>
 
 <template>
@@ -40,10 +39,13 @@ const toggleSortView = () => {
       </div>
       <div v-else>
         <div
-          v-for="entity of entities"
+          v-for="(entity, idx) of entities"
           class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
         >
-          <EntitiesEntity :entity="entity" />
+          <EntitiesEntity
+            :entity="entity"
+            :idx="idx"
+          />
         </div>
       </div>
     </div>

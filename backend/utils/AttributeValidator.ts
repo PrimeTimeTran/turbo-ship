@@ -39,8 +39,8 @@ export class AttributeValidator {
     return [
       'required',
       'unique',
-      'min length',
-      'max length',
+      'min-length',
+      'max-length',
       'email',
       'url',
       'lowercase',
@@ -52,6 +52,61 @@ export class AttributeValidator {
       (a) => !protectedAttributes.includes(a.name)
     )
   }
+}
+
+export const validationFields = {
+  required: {
+    value: null,
+    requiresValue: false,
+  },
+  positive: {
+    value: null,
+    requiresValue: false,
+  },
+  negative: {
+    value: null,
+    requiresValue: false,
+  },
+  unique: {
+    value: null,
+    requiresValue: false,
+  },
+  email: {
+    value: null,
+    requiresValue: false,
+  },
+  lowercase: {
+    value: null,
+    requiresValue: false,
+  },
+  uppercase: {
+    value: null,
+    requiresValue: false,
+  },
+  url: {
+    value: null,
+    requiresValue: false,
+  },
+  min: {
+    value: null,
+    requiresValue: true,
+  },
+  max: {
+    value: null,
+    requiresValue: true,
+  },
+  scale: {
+    value: null,
+    requiresValue: true,
+  },
+  'min-length': {
+    value: 'sosos',
+    requiresValue: true,
+  },
+  'max-length': {
+    value: null,
+    requiresValue: true,
+  },
 }
 
 interface Entity {

@@ -16,7 +16,13 @@ const onCollapse = () => {
 <template>
   <div class="sticky top-0 shadow p-2 bg-white z-10">
     <div class="flex justify-between p-1">
-      <div class="text-2xl">Entities</div>
+      <div class="text-2xl">
+        Entities
+        <span
+          v-text="`(${entities.length})`"
+          class="text-gray-400"
+        />
+      </div>
       <div class="flex justify-center p-1">
         <span>Total: ({{ entities.length }})</span>
       </div>
@@ -26,7 +32,7 @@ const onCollapse = () => {
         class="mr-3"
         v-for="e of entities"
       >
-        <a :href="'/models#' + e.name">
+        <a :href="'/entities#' + e.name">
           {{ e.name }}
         </a>
       </div>

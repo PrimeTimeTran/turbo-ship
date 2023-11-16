@@ -21,7 +21,7 @@ import { ref } from 'vue'
 import { faker } from '@faker-js/faker'
 import { getValidationMessages } from '@formkit/validation'
 const emit = defineEmits(['onAdd'])
-const { entities, addEntity } = useEntities()
+const { addEntity } = useEntities()
 const messages = ref([])
 
 function showErrors(node) {
@@ -87,7 +87,7 @@ const attrRemove = (id) => {
 <template>
   <div class="col-span-3 border-r-2 overflow-auto scrollbar-hide">
     <div class="flex flex-col px-2">
-      <h1 class="text-md font-bold">New Entity{{ entities.length }}</h1>
+      <h1 class="text-md font-bold">New Entity</h1>
       <ul
         class="validation-errors"
         v-if="messages.length"
@@ -166,7 +166,7 @@ const attrRemove = (id) => {
           <h5>Attributes (<span v-text="attributes.length" />)</h5>
 
           <FormKit
-            name="name"
+            name="attrName"
             label="Name"
             validation="required"
             :validation-rules="{ aleast }"

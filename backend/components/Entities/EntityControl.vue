@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['entity'])
+const props = defineProps(['entity', 'idx'])
 const { removeEntity } = useEntities()
 const entityName = ref('entityName')
 
@@ -9,7 +9,7 @@ const onEntityNameSave = (val, id) => {
   if (val === '') return
   const e = props.entity
   e.name = val
-  onToggleEntityName(id)
+  toggleName(id)
   entityName.value = ''
   saved.value = true
   setTimeout(() => {
@@ -21,7 +21,8 @@ const onToggleEntityAdd = () => {
   const e = props.entity
   e.showAttributeForm = !e.showAttributeForm
 }
-const onToggleEntityName = () => {
+
+const toggleName = () => {
   const e = props.entity
   e.editing = !e.editing
   setTimeout(() => {
@@ -29,7 +30,7 @@ const onToggleEntityName = () => {
   }, 100)
 }
 
-const onToggleEntityAttributesShow = () => {
+const toggleShow = () => {
   const e = props.entity
   e.showAttributes = !e.showAttributes
 }
@@ -38,6 +39,7 @@ const onToggleEntityAttributesShow = () => {
   <div>
     <div class="flex justify-between items-center">
       <div class="flex flex-row flex-grow items-center text-center">
+        {{ idx }}
         <div
           v-if="entity.editing"
           class="flex flex-grow ml-2 py-0 text-md rounded bg-white"
@@ -62,7 +64,7 @@ const onToggleEntityAttributesShow = () => {
         </div>
         <div
           v-else
-          @click="onToggleEntityName(entity._id)"
+          @click="toggleName(entity._id)"
           class="flex flex-grow ml-2 py-0 text-md rounded bg-white"
           :class="{
             'hover:border-opacity-100': !entity.editing,
@@ -100,7 +102,7 @@ const onToggleEntityAttributesShow = () => {
           <button
             type="button"
             class="px-2 rounded border-slate-200 hover:text-blue-600"
-            @click="onToggleEntityAttributesShow()"
+            @click="toggleShow()"
           >
             <font-awesome-icon
               v-if="entity.showAttributes"

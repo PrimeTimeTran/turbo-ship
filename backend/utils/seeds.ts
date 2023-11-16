@@ -50,6 +50,11 @@ export const original: Entity[] = [
         _id: 'eb1fcbfa88b8cee2c27f490e',
       },
       {
+        name: 'status',
+        type: 'enumerator',
+        _id: 'eb1fcbfa11b1cee2c27f490e',
+      },
+      {
         name: 'owner',
         type: 'boolean',
         _id: 'b606b61e0efa4ff4ba2ef013',
