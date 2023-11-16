@@ -1,6 +1,6 @@
 <script setup>
 import { faker } from '@faker-js/faker'
-const props = defineProps(['entity', 'focusAttr'])
+const props = defineProps(['entity', 'focusAttr', 'focusedAttribute'])
 
 const focused = ref('')
 const attributeName = ref('')
@@ -122,28 +122,45 @@ const attrRemove = (id) => {
           <tbody class="overflow-auto scrollbar-hide">
             <tr
               :key="attribute._id"
-              class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
+              class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer"
               v-for="(attribute, attrIdx) of AttributeValidator.safeAttributes(
                 entity
               )"
             >
               <td
-                class="pl-2"
+                class=""
                 @click="
                   () => {
                     focusAttr(attribute)
                   }
                 "
               >
-                <span v-text="attrIdx + 1 + '. ' + attribute.name" />
+                <span
+                  v-text="attrIdx + 1 + '. ' + attribute.name"
+                  :class="{
+                    'text-blue-400': focusedAttribute.name === attribute.name,
+                  }"
+                />
               </td>
               <td @click="onToggle(attribute._id + attrIdx)">
-                <span v-text="attribute.type" />
+                <span
+                  v-text="attribute.type"
+                  :class="{
+                    'text-blue-400': focusedAttribute.name === attribute.name,
+                  }"
+                />
               </td>
               <td class="flex justify-end align-middle px-2">
                 <span @click="attrRemove(attribute._id)">
-                  <div class="opacity-20">
-                    <font-awesome-icon icon="fa-solid fa-circle-xmark" />
+                  <div
+                    :class="{
+                      'text-blue-400': focusedAttribute.name === attribute.name,
+                    }"
+                  >
+                    <font-awesome-icon
+                      color="gray"
+                      icon="fa-solid fa-circle-xmark"
+                    />
                   </div>
                 </span>
                 <div

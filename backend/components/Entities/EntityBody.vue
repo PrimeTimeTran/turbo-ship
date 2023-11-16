@@ -3,13 +3,13 @@ const props = defineProps(['entity', 'idx'])
 const entity = ref(props.entity)
 
 const attribute = ref('')
-const attributeEditing = ref(false)
+
 const focusAttr = (item) => {
   if (attribute?.value?._id === item._id) {
     attribute.value = ''
     return
   }
-  attributeEditing.value = !attributeEditing.value
+  console.log({ item })
   attribute.value = item
 }
 
@@ -29,17 +29,20 @@ const close = (items) => {
     <EntitiesEntityAttributeForm
       :entity="entity"
       :focusAttr="focusAttr"
+      :selectedType="attribute.type"
+      :focusedAttribute="attribute"
     />
-    <EntitiesAttributeDetailSelector
+    <EntitiesAttributeDetailsSelector
       :entity="entity"
-      :attribute="attribute"
       :focusAttr="focusAttr"
+      :focusedAttribute="attribute"
     />
     <EntitiesAttributeDetails
       v-if="attribute"
       @close="close"
       :entity="entity"
-      :attribute="attribute"
+      :selectedType="attribute.type"
+      :focusedAttribute="attribute"
     />
     <div
       class="flex"

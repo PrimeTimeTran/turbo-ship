@@ -1,9 +1,9 @@
 <script setup>
 import Multiselect from 'vue-multiselect'
 
-const props = defineProps(['attribute', 'entity'])
-
 const { entities } = useEntities()
+
+const props = defineProps(['focusedAttribute', 'entity'])
 const selected = ref('validations')
 const selectedValidations = ref('')
 
@@ -29,12 +29,12 @@ const onEditAttr = (entityId, attrName, value) => {
 
 const getTabText = (tab) => {
   if (tab === 'validations')
-    return `validators (${props?.attribute?.validators?.length || 0})`
+    return `validators (${props?.focusedAttribute?.validators?.length || 0})`
   if (tab === 'type') return getType(tab)
   return tab
 }
 const getType = (tab) => {
-  if (tab === 'type') return `type (${props?.attribute?.type})`
+  if (tab === 'type') return `type (${props?.focusedAttribute?.type})`
   return tab
 }
 
@@ -56,13 +56,13 @@ const invalid = (val) => {
 -->
 <template>
   <div class="p-2 my-2 bg-white rounded min-h-full shadow-md">
-    {{ selectedValidations }}
     <ul
       class="flex flex-wrap p-2 text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 rounded"
     >
       <li>
+        <label class="mt-6 font-bold text-gray-500"> Details: </label>
         <input
-          v-model="attribute.name"
+          v-model="focusedAttribute.name"
           placeholder="firstName, lastName..."
           class="flex-auto py-3 px-2 text-md rounded bg-slate-100 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-0 text-blue-500 dark:text-blue-500"
         />
@@ -81,27 +81,23 @@ const invalid = (val) => {
         </a>
       </li>
     </ul>
-    <EntitiesAttributeDetailsSelecter
-      v-if="selected == 'type'"
+    <EntitiesAttributeTypeGroup
       :entity="entity"
-      :attr="attribute"
+      :attr="focusedAttribute"
       @onEditAttr="onEditAttr"
-      :selectedType="attribute.type"
+      :selectedType="focusedAttribute.type"
     />
-    <div
-      class="pt-1 h-96"
-      v-if="selected == 'validations'"
-    >
+    <div class="pt-1 h-96">
       <div class="grid grid-cols-8 auto-cols-max grid-flow-row-dense gap-x-4">
         <div class="col-span-3">
           <multiselect
-            v-if="attribute.type != 'boolean'"
+            v-if="focusedAttribute.type != 'boolean'"
             :multiple="true"
             v-model="selectedValidations"
             :close-on-select="false"
             :clear-on-select="false"
             placeholder="Select validations"
-            :options="AttributeValidator[attribute.type]()"
+            :options="AttributeValidator[focusedAttribute.type]()"
             @select="$emit('close', selectedValidations)"
             @close="$emit('close', selectedValidations)"
           />

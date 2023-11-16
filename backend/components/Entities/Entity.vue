@@ -13,11 +13,7 @@ const props = defineProps(['entity', 'idx'])
     <EntitiesEntityBody
       :entity="entity"
       :idx="idx + 1 + '.'"
-      :focusAttr="focusAttr"
     />
-    <EntitiesEntityAttributes
-      :entity="entity"
-      :focusAttr="focusAttr"
-    />
+    <EntitiesEntityAttributes :entity="entity" />
   </section>
 </template>

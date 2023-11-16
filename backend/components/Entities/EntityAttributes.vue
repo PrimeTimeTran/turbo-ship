@@ -1,16 +1,8 @@
 <script setup>
 // Must keep this guy to update global entities
 const { entities } = useEntities()
-const props = defineProps([
-  'entity',
-  'focusAttr',
-  'attribute',
-  'attributeEditing',
-])
 
-const attributeEditing = ref(props.attributeEditing)
-
-// const entity = ref(props.entity)
+const props = defineProps(['entity'])
 
 const getAttr = (id, name) => {
   let idx = entities.value.findIndex((e) => e._id === id)
@@ -21,7 +13,6 @@ const getAttr = (id, name) => {
 
 const onToggleAttrName = (entityId, attrName) => {
   if (protectedAttributes.includes(attrName)) return
-  attributeEditing.value = !attributeEditing.value
   setTimeout(() => {
     document.getElementById(entityId + attrName).focus()
   }, 100)
@@ -30,6 +21,9 @@ const onToggleAttrName = (entityId, attrName) => {
 const onEditAttr = (entityId, attrName, value) => {
   if (protectedAttributes.includes(attrName)) return
   const attr = getAttr(entityId, attrName)
+  console.log({
+    onEditAttr,
+  })
   attr.type = value
 }
 </script>
@@ -49,13 +43,11 @@ const onEditAttr = (entityId, attrName, value) => {
             class="text-gray-400 py-1 mr-2"
           />
           <input
-            v-if="attributeEditing"
             v-model="attr.name"
-            v-text="attr.name"
             :id="entity._id + attr.name"
+            @keyup.enter="() => (editing.value = !editing.value)"
             @click="onToggleAttrName(entity._id, attr.name)"
             class="flex flex-grow px-2 py-1 bg-white border-2 border-slate-200 border-opacity-50 hover:border-opacity-100 rounded"
-            @keyup.enter="() => (editing.value = !editing.value)"
             :class="{
               'border-0': entity.editing,
               'hover:border-opacity-100': entity.editing,
@@ -64,23 +56,9 @@ const onEditAttr = (entityId, attrName, value) => {
               'dark:text-blue-500': !protectedAttributes.includes(attr.name),
             }"
           />
-          <span
-            v-else
-            v-text="attr.name"
-            class="flex flex-grow px-2 py-1 bg-white border-2 border-slate-200 border-opacity-50 hover:border-opacity-100 rounded"
-            @click="onToggleAttrName(entity._id, attr.name)"
-            :class="{
-              'text-gray-400 ': protectedAttributes.includes(attr.name),
-              'text-blue-500 ': !protectedAttributes.includes(attr.name),
-              'dark:text-blue-500': !protectedAttributes.includes(attr.name),
-              ['hover:border-opacity-100']: !protectedAttributes.includes(
-                attr.name
-              ),
-            }"
-          />
         </div>
         <EntitiesAttributeTypeGroup
-          :attr="attribute"
+          :attr="attr"
           :entity="entity"
           @onEditAttr="onEditAttr"
           :selectedType="attr.type"

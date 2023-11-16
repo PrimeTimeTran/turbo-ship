@@ -83,14 +83,14 @@ const toggleShow = () => {
         <div class="text-green ml-3">
           <font-awesome-icon
             v-if="saved"
-            icon="fa-solid fa-check"
+            icon="fa-solid fa-check "
             color="green"
           />
         </div>
       </div>
       <div class="flex flex-1 flex-row justify-between">
         <div
-          class="text-green ml-3"
+          class="text-green ml-3 pl-2 cursor-pointer"
           @click="() => removeEntity(entity._id)"
         >
           <font-awesome-icon
@@ -119,7 +119,7 @@ const toggleShow = () => {
         <button
           type="button"
           class="px-2 rounded border-slate-200 hover:text-blue-600"
-          @click="onToggleEntityAdd()"
+          @click="onToggleEntityAdd"
         >
           <font-awesome-icon
             v-if="entity.showAttributeForm"

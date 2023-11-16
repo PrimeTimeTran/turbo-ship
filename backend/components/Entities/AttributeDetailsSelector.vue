@@ -1,8 +1,8 @@
 <script setup>
-const props = defineProps(['focusAttr', 'attribute', 'entity'])
+const props = defineProps(['focusAttr', 'focusedAttribute', 'entity'])
 </script>
 <template>
-  <div class="flex justify-between pt-2">
+  <div class="flex justify-between pt-2 pl-2 cursor-pointer">
     <div class="flex overflow-x-auto scrollbar-hide">
       <div
         class="px-2 hover:text-blue-600 text-sm"
@@ -16,7 +16,7 @@ const props = defineProps(['focusAttr', 'attribute', 'entity'])
         <span
           class="font-semibold"
           v-text="a.name + ' '"
-          :class="{ 'text-blue-500': attribute.name === a.name }"
+          :class="{ 'text-blue-500': focusedAttribute.name === a.name }"
         />
       </div>
     </div>
