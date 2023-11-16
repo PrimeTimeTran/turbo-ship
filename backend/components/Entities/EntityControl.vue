@@ -1,15 +1,13 @@
 <script setup>
-const props = defineProps(['entity', 'entities'])
+const props = defineProps(['entity'])
+const { removeEntity } = useEntities()
 const entityName = ref('entityName')
-const showAttributes = ref(false)
 
 const saved = ref(false)
 
-const entities = ref(props.entities)
 const onEntityNameSave = (val, id) => {
   if (val === '') return
-  const idx = entities.value.findIndex((e) => e._id == id)
-  const e = entities.value[idx]
+  const e = props.entity
   e.name = val
   onToggleEntityName(id)
   entityName.value = ''
@@ -19,25 +17,21 @@ const onEntityNameSave = (val, id) => {
   }, 2000)
 }
 
-const getEntity = (id) => {
-  let idx = entities.value.findIndex((item) => item._id == id)
-  return entities.value[idx]
+const onToggleEntityAdd = () => {
+  const e = props.entity
+  e.showAttributeForm = !e.showAttributeForm
 }
-const onToggleEntityAdd = (id) => {
-  const e = getEntity(id)
-  e.showAddAttribute = !e.showAddAttribute
-}
-const onToggleEntityAttributesShow = (id) => {
-  const e = getEntity(id)
-  e.showAttributes = !e.showAttributes
-  showAttributes.value = !showAttributes.value
-}
-const onToggleEntityName = (id) => {
-  const e = getEntity(id)
+const onToggleEntityName = () => {
+  const e = props.entity
   e.editing = !e.editing
   setTimeout(() => {
     document.getElementById(e._id).focus()
   }, 100)
+}
+
+const onToggleEntityAttributesShow = () => {
+  const e = props.entity
+  e.showAttributes = !e.showAttributes
 }
 </script>
 <template>
@@ -46,7 +40,7 @@ const onToggleEntityName = (id) => {
       <div class="flex flex-row flex-grow items-center text-center">
         <div
           v-if="entity.editing"
-          class="flex flex-grow ml-2 py-0 text-lg rounded bg-white"
+          class="flex flex-grow ml-2 py-0 text-md rounded bg-white"
           :class="{
             'border-0': entity.editing,
             'hover:border-opacity-100': !entity.editing,
@@ -57,7 +51,7 @@ const onToggleEntityName = (id) => {
             :id="entity._id"
             v-model="entity.name"
             placeholder="customer, transaction, statement..."
-            class="flex flex-grow py-2 px-2 text-lg rounded border-2 border-slate-200 bg-white font-bold text-blue-500 dark:text-blue-500 hover:bg-slate-100"
+            class="flex flex-grow py-2 px-2 text-md rounded border-2 border-slate-200 bg-white font-bold text-blue-500 dark:text-blue-500 hover:bg-slate-100"
             @keyup.enter="onEntityNameSave(entity.name, entity._id)"
             :class="{
               'hover:border-opacity-100': !entity.editing,
@@ -69,7 +63,7 @@ const onToggleEntityName = (id) => {
         <div
           v-else
           @click="onToggleEntityName(entity._id)"
-          class="flex flex-grow ml-2 py-0 text-lg rounded bg-white"
+          class="flex flex-grow ml-2 py-0 text-md rounded bg-white"
           :class="{
             'hover:border-opacity-100': !entity.editing,
           }"
@@ -77,7 +71,7 @@ const onToggleEntityName = (id) => {
           <input
             placeholder="customer, transaction, statement..."
             :value="entity.name"
-            class="flex flex-grow px-2 py-2 text-lg rounded border-2 border-slate-200 bg-white font-bold text-blue-500 dark:text-blue-500 hover:bg-slate-100"
+            class="flex flex-grow px-2 py-2 text-md rounded border-2 border-slate-200 bg-white font-bold text-blue-500 dark:text-blue-500 hover:bg-slate-100"
             :class="{
               'border-green-700': saved,
               'text-green-500': saved,
@@ -92,14 +86,41 @@ const onToggleEntityName = (id) => {
           />
         </div>
       </div>
-      <div class="flex flex-1 flex-row justify-end">
+      <div class="flex flex-1 flex-row justify-between">
+        <div
+          class="text-green ml-3"
+          @click="() => removeEntity(entity._id)"
+        >
+          <font-awesome-icon
+            icon="fa-solid fa-circle-xmark"
+            color="red"
+          />
+        </div>
+        <div class="flex justify-end">
+          <button
+            type="button"
+            class="px-2 rounded border-slate-200 hover:text-blue-600"
+            @click="onToggleEntityAttributesShow()"
+          >
+            <font-awesome-icon
+              v-if="entity.showAttributes"
+              icon="fa-solid fa-eye-slash"
+              class="text-gray-400 mr-2"
+            />
+            <font-awesome-icon
+              v-else
+              icon="fa-solid fa-eye"
+              class="text-gray-400 mr-2"
+            />
+          </button>
+        </div>
         <button
           type="button"
           class="px-2 rounded border-slate-200 hover:text-blue-600"
-          @click="onToggleEntityAdd(entity._id)"
+          @click="onToggleEntityAdd()"
         >
           <font-awesome-icon
-            v-if="entity.showAddAttribute"
+            v-if="entity.showAttributeForm"
             icon="fa-solid fa-rectangle-xmark"
             class="text-gray-400 dark:text-white mr-2"
           />
@@ -108,7 +129,6 @@ const onToggleEntityName = (id) => {
             icon="fa-solid fa-plus"
             class="text-gray-400 dark:text-white mr-2"
           />
-          {{ entity.showAddAttribute ? '' : '' }}
         </button>
       </div>
     </div>

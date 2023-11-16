@@ -1,7 +1,6 @@
 <script setup>
 const emit = defineEmits(['toggleSortView'])
-const props = defineProps(['entities'])
-const entities = ref(props.entities)
+const { entities } = useEntities()
 const closed = ref(false)
 
 const onCollapse = () => {
@@ -9,7 +8,7 @@ const onCollapse = () => {
   entities.value.map((e) => {
     e.editing = newValue
     e.showAttributes = newValue
-    e.showAddAttribute = newValue
+    e.showAttributeForm = newValue
   })
   closed.value = !closed.value
 }

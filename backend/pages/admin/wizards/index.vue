@@ -11,7 +11,6 @@ useHead({
 let tab = ref(0)
 
 const changeTab = (i) => {
-  console.log('Chaning tab', i)
   tab.value = i
 }
 
@@ -26,6 +25,28 @@ const toggleSearch = () => {
   changeTab(0)
   searching.value = !searching.value
 }
+const tabs = [
+  {
+    idx: 0,
+    label: 'Records',
+    component: 'table',
+  },
+  {
+    idx: 1,
+    label: 'Overview',
+    component: 'overview',
+  },
+  {
+    idx: 2,
+    label: 'Create/New',
+    component: 'form',
+  },
+  {
+    idx: 3,
+    label: 'Settings',
+    component: 'settings',
+  },
+]
 </script>
 
 <template>
@@ -55,37 +76,13 @@ const toggleSearch = () => {
               </div>
             </div>
           </div>
-
           <div
-            @click="() => changeTab(0)"
+            @click="() => changeTab(tab.idx)"
+            v-for="tab of tabs"
             class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"
-            :class="activeClasses(0)"
+            :class="activeClasses(tab.idx)"
           >
-            Records
-          </div>
-
-          <div
-            @click="() => changeTab(1)"
-            class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"
-            :class="activeClasses(1)"
-          >
-            Overview
-          </div>
-
-          <div
-            @click="() => changeTab(2)"
-            class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"
-            :class="activeClasses(2)"
-          >
-            Create/New
-          </div>
-
-          <div
-            @click="() => changeTab(3)"
-            class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"
-            :class="activeClasses(3)"
-          >
-            Settings
+            <span v-text="tab.label" />
           </div>
         </div>
       </div>
@@ -112,7 +109,7 @@ const toggleSearch = () => {
         hidden: tab != 2,
       }"
     >
-      <admin-form :createForm="true" />
+      <admin-wizards-form :createForm="true" />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -120,15 +117,7 @@ const toggleSearch = () => {
         hidden: tab != 3,
       }"
     >
-      <h1>Contacts</h1>
-    </div>
-    <div
-      class="min-w-full min-h-full pt-1"
-      :class="{
-        hidden: tab != 4,
-      }"
-    >
-      <h1>Disabled</h1>
+      <h1 class="text-gray-400">Settings</h1>
     </div>
   </div>
 </template>

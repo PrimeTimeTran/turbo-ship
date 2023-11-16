@@ -7,11 +7,6 @@
   --background-color-dark: rgb(17, 24, 39);
 }
 
-/* TODO: Fix section navigation hiding under navbar */
-/* https://css-tricks.com/hash-tag-links-padding/ */
-a[href^='#'] {
-}
-
 @layer utilities {
   @variants responsive {
     .no-scrollbar::-webkit-scrollbar {
@@ -65,3 +60,5 @@ a[href^='#'] {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+

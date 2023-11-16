@@ -1,7 +1,7 @@
 <script setup>
 import Multiselect from 'vue-multiselect'
 
-const props = defineProps(['focusedAttr', 'entity', 'entities'])
+const props = defineProps(['attribute', 'entity', 'entities'])
 const selected = ref('validations')
 const validationsVal = ref('')
 
@@ -31,12 +31,12 @@ const onEditAttr = (entityId, attrName, value) => {
 
 const getTabText = (tab) => {
   if (tab === 'validations')
-    return `validators (${props?.focusedAttr?.validators?.length || 0})`
+    return `validators (${props?.attribute?.validators?.length || 0})`
   if (tab === 'type') return getType(tab)
   return tab
 }
 const getType = (tab) => {
-  if (tab === 'type') return `type (${props?.focusedAttr?.type})`
+  if (tab === 'type') return `type (${props?.attribute?.type})`
   return tab
 }
 </script>
@@ -57,7 +57,7 @@ const getType = (tab) => {
     >
       <li class="">
         <input
-          v-model="focusedAttr.name"
+          v-model="attribute.name"
           placeholder="firstName, lastName..."
           class="flex-auto p-4 text-md bg-white rounded border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-0 text-blue-500 dark:text-blue-500"
         />
@@ -84,35 +84,28 @@ const getType = (tab) => {
       <div class="grid grid-cols-4 auto-cols-max grid-flow-row-dense gap-x-4">
         <div class="col-span-2">
           <multiselect
-            v-if="focusedAttr.type != 'boolean'"
+            v-if="attribute.type != 'boolean'"
             :multiple="true"
             v-model="validationsVal"
             :close-on-select="false"
             :clear-on-select="false"
             placeholder="Select validations"
-            :options="AttributeValidator[focusedAttr.type]()"
+            :options="AttributeValidator[attribute.type]()"
             @select="$emit('close', validationsVal)"
             @close="$emit('close', validationsVal)"
           />
         </div>
         <div class="col-span-2 flex justify-start flex-grow p-2 rounded">
-          <div>ssss ssss ssss ssss ssss ssss ssss ssss</div>
-          <div>ssss ssss ssss ssss ssss ssss ssss ssss</div>
-          <div>ssss ssss ssss ssss ssss ssss ssss ssss</div>
-          <div>ssss ssss ssss ssss ssss ssss ssss ssss</div>
-          <div>ssss ssss ssss ssss ssss ssss ssss ssss</div>
-          <div>ssss ssss ssss ssss ssss ssss ssss ssss</div>
-          <div>ssss ssss ssss ssss ssss ssss ssss ssss</div>
-          <div>ssss ssss ssss ssss ssss ssss ssss ssss</div>
+          <div></div>
         </div>
       </div>
     </div>
     <div v-if="selected == 'type'">
-      <ModelsAttributeTypesSelector
+      <EntitiesAttributeTypesSelector
         :entity="entity"
-        :attr="focusedAttr"
+        :attr="attribute"
         @onEditAttr="onEditAttr"
-        :selectedType="focusedAttr.type"
+        :selectedType="attribute.type"
       />
     </div>
   </div>

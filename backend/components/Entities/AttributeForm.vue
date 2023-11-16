@@ -1,25 +1,20 @@
 <script setup>
 import { faker } from '@faker-js/faker'
-const props = defineProps(['entity', 'entities'])
+const props = defineProps(['entity'])
 
-const attributeName = ref('')
-const attributeType = ref('')
 const focused = ref('')
+const attributeName = ref('')
+const attributeType = ref('string')
 
 const invalidName = ref(false)
-const invalidType = ref(false)
-const entities = ref(props.entities)
+
 const entity = ref(props.entity)
 
-const onAddAttribute = (id) => {
+const onAddAttribute = () => {
   if (attributeName.value == '') invalidName.value = true
-  if (attributeType.value == '') invalidType.value = true
   if (attributeName.value == '' || attributeType.value == '') return
   invalidName.value = false
-  invalidType.value = false
-  const idx = entities.value.findIndex((item) => item._id == id)
-  const entity = entities.value[idx]
-  entity.attributes.push({
+  props.entity.attributes.push({
     validators: [],
     name: attributeName.value,
     type: attributeType.value,
@@ -32,23 +27,27 @@ const onToggle = (id) => {
   document.getElementById(id)?.classList.toggle('hidden')
   focused.value = id
 }
-const onPick = (newValue, attrId) => {
-  const attr = entity.value.attributes.filter((attr) => attr._id === attrId)[0]
+const onPick = (newValue, id) => {
+  const attr = entity.value.attributes.filter((attr) => attr._id === id)[0]
   attr.type = newValue
-  closeAll(attrId)
+  closeAll(id)
 }
 
-const closeAll = (attrId) => {
-  // Close all of them just in case
+const closeAll = (id) => {
   entity.value.attributes.forEach((_, idx) => {
-    document.getElementById(attrId + idx)?.classList?.add('hidden')
+    document.getElementById(id + idx)?.classList?.add('hidden')
   })
+}
+
+const attrRemove = (id) => {
+  const idx = entity.value.attributes.findIndex((a) => a._id === id)
+  entity.value.attributes.splice(idx, 1)
 }
 </script>
 
 <template>
   <div
-    v-if="entity.showAddAttribute"
+    v-if="entity.showAttributeForm"
     class="pt-1"
   >
     <div class="flex flex-row justify-between">
@@ -56,7 +55,7 @@ const closeAll = (attrId) => {
       <button
         type="submit"
         class="border-2 border-gray-300 py-1 px-2 rounded bg-green-500 text-white"
-        @click="onAddAttribute(entity._id)"
+        @click="onAddAttribute()"
       >
         Save
       </button>
@@ -70,7 +69,7 @@ const closeAll = (attrId) => {
           v-model="attributeName"
           placeholder="firstName, lastName..."
           :id="'attributeInput' + entity._id"
-          @keyup.enter="onAddAttribute(entity._id)"
+          @keyup.enter="onAddAttribute()"
           class="flex-auto p-4 rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100"
           :class="{
             'border-2': invalidName,
@@ -82,11 +81,6 @@ const closeAll = (attrId) => {
         <div
           :id="'attributeType' + entity._id"
           class="flex-auto rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide shadow-md"
-          :class="{
-            'border-2': invalidName,
-            'border-red-200': invalidName,
-            'border-opacity-100': invalidName,
-          }"
         >
           <div
             v-for="dataType of attributeTypes"
@@ -99,6 +93,7 @@ const closeAll = (attrId) => {
                 :value="dataType"
                 v-model="attributeType"
                 name="attributeName"
+                :checked="dataType == attributeType"
               />
               {{ dataType }}
             </label>
@@ -116,27 +111,40 @@ const closeAll = (attrId) => {
         >
           <div
             :key="attribute._id"
+            class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
             v-for="(attribute, attrIdx) of AttributeValidator.safeAttributes(
               entity
             )"
           >
             <div
-              class="grid grid-cols-4 hover:bg-slate-100 p-2 rounded min-w-100 relative"
+              class="grid grid-cols-12 hover:bg-slate-100 px-2 rounded min-w-100 relative"
             >
-              <div class="col-span-2">
-                {{ attrIdx + 1 + '. ' + attribute.name + ' ' }}
-              </div>
-              <div @click="onToggle(attribute._id + attrIdx)">
-                {{ attribute.type }}
+              <div class="col-span-6 text-sm overflow-wrap break-words">
+                {{ attrIdx + 1 + '. ' + attribute.name }}
               </div>
               <div
+                class="col-span-4 text-sm overflow-clip"
+                @click="onToggle(attribute._id + attrIdx)"
+              >
+                {{ attribute.type }}
+              </div>
+              <span
+                class="col-span-2 ml-auto mr-1"
+                @click="attrRemove(attribute._id)"
+              >
+                <div class="opacity-20">
+                  <font-awesome-icon icon="fa-solid fa-circle-xmark" />
+                </div>
+              </span>
+
+              <div
                 :id="attribute._id + attrIdx"
-                class="absolute hidden mt-2 ml-72 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 space-y-1 w-100 bg-white z-10"
+                class="absolute right-10 hidden ml-72 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 w-100 bg-white z-50"
               >
                 <a
                   v-for="dataType of attributeTypes"
                   @click="onPick(dataType, attribute._id)"
-                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md"
+                  class="block py-1 px-2 text-sm text-gray-700 odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 cursor-pointer"
                 >
                   {{ dataType }}
                 </a>

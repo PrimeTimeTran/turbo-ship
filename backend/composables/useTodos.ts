@@ -32,6 +32,9 @@ export function useTodos() {
   }
 
   const remove = (id: String) => {
+    console.log({
+      id,
+    })
     const idx = todos.value.findIndex((todo) => todo.id == id)
     if (idx !== -1) {
       todos.value.splice(idx, 1)

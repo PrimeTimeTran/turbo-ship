@@ -1,11 +1,11 @@
 <script setup>
-const props = defineProps(['entity', 'entities'])
+const props = defineProps(['entity'])
 
-const entities = ref(props.entities)
+const { entities } = useEntities()
 
 const getAttr = (id, name) => {
   let idx = entities.value.findIndex((e) => e._id === id)
-  const e = entities.value[idx]
+  const e = props.entity
   idx = e.attributes.findIndex((a) => a.name == name)
   return e.attributes[idx]
 }
@@ -77,7 +77,7 @@ const onEditAttr = (entityId, attrName, value) => {
             }"
           />
         </div>
-        <ModelsAttributeTypesSelector
+        <EntitiesAttributeTypesSelector
           :attr="attr"
           :entity="entity"
           @onEditAttr="onEditAttr"

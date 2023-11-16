@@ -21,7 +21,7 @@ import { ref } from 'vue'
 import { faker } from '@faker-js/faker'
 import { getValidationMessages } from '@formkit/validation'
 const emit = defineEmits(['onAdd'])
-
+const { entities, addEntity } = useEntities()
 const messages = ref([])
 
 function showErrors(node) {
@@ -38,7 +38,7 @@ const aleast = () => {
   return !(entity.attributes.length === 0)
 }
 
-const name = ref('')
+const name = ref('New Entity')
 const plural = ref('')
 const label = ref('')
 
@@ -53,7 +53,7 @@ const entity = reactive({
   attributes,
 })
 
-const attrName = ref('')
+const attrName = ref('New Attribute')
 const attrType = ref('string')
 
 const newAttribute = reactive({
@@ -67,6 +67,7 @@ const submit = () => {
   }
   const _id = faker.database.mongodbObjectId()
   entity._id = _id
+  addEntity(entity)
   // reset('form')
   emit('onAdd', entity)
 }
@@ -86,7 +87,7 @@ const attrRemove = (id) => {
 <template>
   <div class="col-span-3 border-r-2 overflow-auto scrollbar-hide">
     <div class="flex flex-col px-2">
-      <h1 class="text-md font-bold">New Entity</h1>
+      <h1 class="text-md font-bold">New Entity{{ entities.length }}</h1>
       <ul
         class="validation-errors"
         v-if="messages.length"
@@ -105,7 +106,6 @@ const attrRemove = (id) => {
       >
         <div class="p-2 rounded border shadow">
           <FormKit
-            autofocus
             name="name"
             type="text"
             label="Name"
@@ -194,7 +194,7 @@ const attrRemove = (id) => {
           <div class="flex flex-col flex-grow border rounded shadow my-2">
             <label
               v-for="fieldType of attributeTypes"
-              class="hover:bg-slate-100 px-2 py-1 rounded w-full"
+              class="px-2 py-1 w-full rounded text-sm odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
             >
               <input
                 class="mr-2"
@@ -244,13 +244,24 @@ const attrRemove = (id) => {
             class="border rounded p-2 mt-2"
           >
             <li
-              class="flex justify-between"
+              class="grid grid-cols-12 justify-between odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
               v-for="(attr, idx) of entity.attributes"
             >
-              <span v-text="idx + 1 + '. ' + attr.name" />
-              <span v-text="attr.type" />
-              <span @click="attrRemove(attr._id)">
-                <font-awesome-icon icon="fa-solid fa-circle-xmark" />
+              <span
+                class="col-span-8"
+                v-text="idx + 1 + '. ' + attr.name"
+              />
+              <span
+                class="col-span-2"
+                v-text="attr.type"
+              />
+              <span
+                class="col-span-2 ml-auto mr-1"
+                @click="attrRemove(attr._id)"
+              >
+                <div class="opacity-20">
+                  <font-awesome-icon icon="fa-solid fa-circle-xmark" />
+                </div>
               </span>
             </li>
           </div>
