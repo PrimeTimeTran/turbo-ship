@@ -33,17 +33,33 @@ export const WizardSchema = z.object({
   bookAppearances: z.array(z.number()).optional(),
 })
 
+
+
+
+
+
+
+
 export type PersonType = {
   firstName: String
   lastName: String
 }
 
-export const PIE = '3.14'
-
 export type MuggleType = {
   firstName: String
   lastName: String
 }
+
+
+
+
+
+
+
+
+
+
+
 
 export type WizardType = z.infer<typeof WizardSchema>
 

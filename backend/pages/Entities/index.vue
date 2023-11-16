@@ -5,6 +5,7 @@ const sorterView = ref(false)
 const toggleSortView = () => {
   sorterView.value = !sorterView.value
 }
+
 </script>
 
 <template>

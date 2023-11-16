@@ -1,5 +1,3 @@
-import { Wizard } from '~/server/models/wizard.model'
-
 export default defineEventHandler(async (e) => {
   let { limit, page } = e.context
   let params = getQuery(e)
