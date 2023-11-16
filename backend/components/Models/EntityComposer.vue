@@ -82,7 +82,6 @@ const onToggleEntityAttributesShow = (id) => {
           icon="fa-solid fa-eye"
           class="text-gray-400 mr-2"
         />
-        <span v-text="entity.showAttributes ? 'Hide' : 'Show'" />
       </button>
     </div>
     <div

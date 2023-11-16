@@ -9,14 +9,16 @@ const source = ref('Hello')
 const { text, copy, copied } = useClipboard({ source })
 
 const copyer = () => {
-  copy(JSON.stringify(entities))
+  copy(JSON.stringify(entities.value))
   setTimeout(() => {
     text.value = 'Done'
   }, 1500)
 }
 </script>
 <template>
-  <div class="col-span-4 overflow-auto scrollbar-hide border-l-2">
+  <div
+    class="hidden invisible lg:visible lg:flex lg:flex-col lg:justify-start lg:items-start lg:col-span-3 overflow-auto scrollbar-hide border-l-2"
+  >
     <button @click="copyer()">
       <font-awesome-icon
         color="grey"

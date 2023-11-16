@@ -1,4 +1,5 @@
 <script setup>
+const emit = defineEmits(['toggleSortView'])
 const props = defineProps(['entities'])
 const entities = ref(props.entities)
 const closed = ref(false)
@@ -21,7 +22,7 @@ const onCollapse = () => {
         <span>Total: ({{ entities.length }})</span>
       </div>
     </div>
-    <div class="flex flex-row justify-end">
+    <div class="flex flex-row justify-end flex-wrap">
       <div
         class="mr-3"
         v-for="e of entities"
@@ -34,6 +35,9 @@ const onCollapse = () => {
     <div
       class="flex flex-row text-center justify-end border-t-2 border-t-gray-50 space-x-2"
     >
+      <div @click="$emit('toggleSortView')">
+        <font-awesome-icon icon="fa-solid fa-sort"></font-awesome-icon>
+      </div>
       <div @click="onCollapse">
         <font-awesome-icon icon="fa-solid fa-square-minus"></font-awesome-icon>
       </div>

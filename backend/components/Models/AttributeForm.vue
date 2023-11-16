@@ -49,12 +49,21 @@ const closeAll = (attrId) => {
 <template>
   <div
     v-if="entity.showAddAttribute"
-    class="pt-6"
+    class="pt-1"
   >
-    <label class="ml-3 font-bold text-gray-500">New Attribute</label>
-    <div class="grid grid-cols-4 space-x-4 items-start m-2 bg-white rounded">
+    <div class="flex flex-row justify-between">
+      <label class="ml-3 font-bold text-gray-500">New Attribute</label>
+      <button
+        type="submit"
+        class="border-2 border-gray-300 py-1 px-2 rounded bg-green-500 text-white"
+        @click="onAddAttribute(entity._id)"
+      >
+        Save
+      </button>
+    </div>
+    <div class="grid grid-cols-12 space-x-4 items-start m-2 bg-white rounded">
       <div
-        class="flex flex-col col-span-2 p-2 rounded border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 shadow"
+        class="flex flex-col col-span-4 p-2 rounded border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 shadow"
       >
         <label class="font-bold text-gray-500">Name</label>
         <input
@@ -62,7 +71,7 @@ const closeAll = (attrId) => {
           placeholder="firstName, lastName..."
           :id="'attributeInput' + entity._id"
           @keyup.enter="onAddAttribute(entity._id)"
-          class="flex-auto p-4 rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-lg h-0 shadow-md hover:bg-slate-100"
+          class="flex-auto p-4 rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100"
           :class="{
             'border-2': invalidName,
             'border-red-200': invalidName,
@@ -81,9 +90,9 @@ const closeAll = (attrId) => {
         >
           <div
             v-for="dataType of attributeTypes"
-            class="flex flex-grow rounded"
+            class="flex flex-grow rounded odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
           >
-            <label class="text-lg rounded hover:bg-slate-100 p-2 w-full">
+            <label class="text-sm rounded p-2 w-full">
               <input
                 :id="dataType"
                 type="radio"
@@ -95,24 +104,15 @@ const closeAll = (attrId) => {
             </label>
           </div>
         </div>
-        <div>
-          <button
-            type="submit"
-            class="border-2 border-gray-300 p-2 mt-2 rounded bg-slate-500 text-white"
-            @click="onAddAttribute(entity._id)"
-          >
-            Save
-          </button>
-        </div>
       </div>
       <div
-        class="flex flex-col col-span-2 px-6 py-2 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 h-96 shadow"
+        class="flex flex-col col-span-8 px-6 py-2 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 h-96 shadow overflow-auto"
       >
         <label class="font-bold text-gray-500">
           Current({{ AttributeValidator.safeAttributes(entity).length }})
         </label>
         <div
-          class="overflow-auto scrollbar-hide bg-neutral-50 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 relative shadow-md"
+          class="scrollbar-hide bg-neutral-50 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 relative shadow-md"
         >
           <div
             :key="attribute._id"

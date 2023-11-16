@@ -16,6 +16,7 @@
  -->
 <script setup>
 import _ from 'lodash'
+
 import { ref } from 'vue'
 import { faker } from '@faker-js/faker'
 import { getValidationMessages } from '@formkit/validation'
@@ -64,6 +65,8 @@ const submit = () => {
   if (entity.attributes.length === 0) {
     return
   }
+  const _id = faker.database.mongodbObjectId()
+  entity._id = _id
   // reset('form')
   emit('onAdd', entity)
 }
@@ -81,7 +84,7 @@ const attrRemove = (id) => {
 }
 </script>
 <template>
-  <div class="col-span-2 border-r-2 overflow-auto scrollbar-hide">
+  <div class="col-span-3 border-r-2 overflow-auto scrollbar-hide">
     <div class="flex flex-col px-2">
       <h1 class="text-md font-bold">New Entity</h1>
       <ul

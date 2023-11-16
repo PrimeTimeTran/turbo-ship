@@ -105,10 +105,10 @@ const onToggleEntityName = (id) => {
           />
           <font-awesome-icon
             v-else
-            icon="fa-solid fa-pen-to-square"
+            icon="fa-solid fa-plus"
             class="text-gray-400 dark:text-white mr-2"
           />
-          {{ entity.showAddAttribute ? 'Close' : 'Create Attribute' }}
+          {{ entity.showAddAttribute ? '' : '' }}
         </button>
       </div>
     </div>

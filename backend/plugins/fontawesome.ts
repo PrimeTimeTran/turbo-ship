@@ -25,10 +25,12 @@ import {
   faCaretRight,
   faDatabase,
   faEye,
+  faSort,
   faEyeSlash,
   faPenToSquare,
   faRectangleXmark,
   faClipboard,
+  faPlus,
   faSquareMinus,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -54,6 +56,8 @@ library.add(
   faCaretRight,
   faDatabase,
   faEye,
+  faSort,
+  faPlus,
   faEyeSlash,
   faPenToSquare,
   faRectangleXmark,
