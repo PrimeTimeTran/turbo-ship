@@ -1,19 +1,15 @@
 <script setup>
-const props = defineProps(['entity', 'idx'])
+const props = defineProps(['entity'])
 </script>
 <template>
   <section
     :key="entity._id"
-    :id="`${entity.name}-${idx}`"
+    :id="`${entity.name}-${entity._id}`"
     class="mb-1 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 p-2 mt-2 shadow"
     :class="{
       'bg-opacity-100': entity.showAttributeForm || entity.showAttributes,
     }"
   >
-    <EntitiesEntityBody
-      :entity="entity"
-      :idx="idx + '.'"
-    />
-    <EntitiesEntityAttributes :entity="entity" />
+    <EntitiesEntityBody :entity="entity" />
   </section>
 </template>

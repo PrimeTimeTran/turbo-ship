@@ -21,6 +21,31 @@ export function generateNewIDs(entities) {
   return newEntities
 }
 
+export function addValidators(entities) {
+  const newEntities = []
+  entities.forEach((e) => {
+    if (e.attributes.length == 0) {
+      e.attributes = [
+        {
+          name: '_id',
+          type: 'string',
+          _id: faker.database.mongodbObjectId(),
+          validators: [],
+        },
+      ]
+    }
+
+    e.attributes.forEach((a) => {
+      a._id = faker.database.mongodbObjectId()
+      if (!a.validators) {
+        a.validators = []
+      }
+    })
+    newEntities.push(e)
+  })
+  return newEntities
+}
+
 export function sparseEntities(entities) {
   const newEntities = []
   entities.forEach((e) => {

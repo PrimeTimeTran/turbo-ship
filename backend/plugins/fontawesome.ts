@@ -15,6 +15,8 @@ import {
   faGear,
   faList,
   faCode,
+  faCube,
+  faCubes,
   faHouse,
   faCheck,
   faSignOut,
@@ -27,6 +29,7 @@ import {
   faCircleInfo,
   faCaretRight,
   faRegistered,
+  faCircleCheck,
   faAddressCard,
   faSquareMinus,
   faCircleXmark,
@@ -35,6 +38,8 @@ import {
   faProjectDiagram,
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons'
+
+// import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
   faCode,
@@ -48,26 +53,28 @@ library.add(
   faPlus,
   faList,
   faGear,
+  faCube,
+  faCubes,
   faCheck,
   faHouse,
   faSignOut,
+  faDatabase,
+  faEyeSlash,
+  faCaretLeft,
+  faClipboard,
   faHamburger,
   faHatWizard,
+  faCircleInfo,
+  faCaretRight,
   faRegistered,
   faAddressCard,
-  faProjectDiagram,
-  faMagnifyingGlass,
   faCircleXmark,
-  faCaretLeft,
-  faCaretRight,
-  faDatabase,
-
-  faEyeSlash,
-  faCircleInfo,
+  faCircleCheck,
+  faSquareMinus,
   faPenToSquare,
   faRectangleXmark,
-  faClipboard,
-  faSquareMinus
+  faProjectDiagram,
+  faMagnifyingGlass
 )
 
 // This is important, we are going to let Nuxt worry about the CSS

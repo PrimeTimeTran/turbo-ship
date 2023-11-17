@@ -68,26 +68,7 @@ export const attributeTypesWithLabels = {
     label: 'many-to-many',
   },
 }
-//   { value: 'date', name: 'date' },
-//   { value: 'string', name: 'string' },
-//   { value: 'number', name: 'number' },
-//   { value: 'decimal', name: 'decimal' },
-//   { value: 'integer', name: 'integer' },
-//   { value: 'boolean', name: 'boolean' },
-//   { value: 'enumerator', name: 'enumerator' },
-//   { value: 'enumeratorMulti', name: 'enumerator-multi' },
-// ]
-// export const attributeTypesWithLabels = [
-//   { value: 'date', name: 'date' },
-//   { value: 'string', name: 'string' },
-//   { value: 'number', name: 'number' },
-//   { value: 'decimal', name: 'decimal' },
-//   { value: 'integer', name: 'integer' },
-//   { value: 'boolean', name: 'boolean' },
-//   { value: 'enumerator', name: 'enumerator' },
-//   { value: 'enumeratorMulti', name: 'enumerator-multi' },
-// ]
 
 export const protectedAttributes = ['_id']
 
-export const tabs = ['validations', 'type']
+export const tabs = ['validations', 'dataTypes']

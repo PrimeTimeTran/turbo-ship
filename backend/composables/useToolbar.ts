@@ -5,7 +5,6 @@ export function useToolbar() {
   const setFocusedContent = (val: string) => {
     console.log({
       val,
-      setFocusedContent,
     })
     focusedContent.value = val
   }

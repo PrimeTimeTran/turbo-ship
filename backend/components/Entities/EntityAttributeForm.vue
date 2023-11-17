@@ -1,6 +1,6 @@
 <script setup>
 import { faker } from '@faker-js/faker'
-const props = defineProps(['entity', 'focusAttr', 'focusedAttribute'])
+const props = defineProps(['entity'])
 
 const focused = ref('')
 const attributeName = ref('')
@@ -16,6 +16,7 @@ const onAddAttribute = () => {
   invalidName.value = false
   props.entity.attributes.push({
     validators: [],
+    valid: false,
     name: attributeName.value,
     type: attributeType.value,
     _id: faker.database.mongodbObjectId(),
@@ -44,13 +45,7 @@ const attrRemove = (id) => {
   entity.value.attributes.splice(idx, 1)
 }
 </script>
-
-<template>
-  <div
-    v-if="entity.showAttributeForm"
-    class="pt-1"
-  >
-    <div class="flex flex-row justify-between">
+<!-- <div class="flex flex-row justify-between">
       <label class="ml-3 font-bold text-gray-500">New Attribute</label>
       <button
         type="submit"
@@ -59,125 +54,49 @@ const attrRemove = (id) => {
       >
         Save
       </button>
-    </div>
-    <div
-      class="grid grid-cols-12 space-x-4 items-start mt-2 py-2 bg-white rounded"
-    >
+    </div> -->
+<template>
+  <div class="flex flex-row space-x-4">
+    <div class="flex flex-1 flex-col px-2">
+      <label class="font-bold text-gray-500">Name</label>
+      <input
+        v-model="attributeName"
+        placeholder="firstName, lastName..."
+        :id="'attributeInput' + entity._id"
+        @keyup.enter="onAddAttribute()"
+        class="flex-auto p-4 rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100"
+        :class="{
+          'border-2': invalidName,
+          'border-blue-500': invalidName,
+          'border-opacity-100': invalidName,
+        }"
+      />
+      <label class="mt-6 font-bold text-gray-500">Type</label>
       <div
-        class="flex flex-col col-span-8 p-2 rounded border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 shadow"
+        :id="'attributeType' + entity._id"
+        class="flex-auto rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide shadow-md"
       >
-        <label class="font-bold text-gray-500">
-          <span
-            v-text="entity.label"
-            class="text-blue-400"
-          />
-          attributes({{ AttributeValidator.safeAttributes(entity).length }})
-        </label>
-
-        <table class="overflow-auto scrollbar-hide">
-          <thead>
-            <tr>
-              <th class="text-left">Name</th>
-              <th class="text-left">Type</th>
-              <th class="text-right">Remove</th>
-            </tr>
-          </thead>
-          <tbody class="overflow-auto scrollbar-hide">
-            <tr
-              :key="attribute._id"
-              class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer"
-              v-for="(attribute, attrIdx) of AttributeValidator.safeAttributes(
-                entity
-              )"
-            >
-              <td
-                @click="() => focusAttr(attribute)"
-                class="pl-1"
-              >
-                <span
-                  v-text="attrIdx + 1 + '. ' + attribute.name"
-                  :class="{
-                    'text-blue-400': focusedAttribute.name === attribute.name,
-                  }"
-                />
-              </td>
-              <td @click="onToggle(attribute._id + attrIdx)">
-                <span
-                  v-text="attributeTypesWithLabels[attribute.type]?.label"
-                  :class="{
-                    'text-blue-400': focusedAttribute.name === attribute.name,
-                  }"
-                />
-              </td>
-              <div
-                :id="attribute._id + attrIdx"
-                class="fixed right-2/4 w-32 hidden rounded-md shadow-lg ring-1 ring-black ring-opacity-5 w-100 bg-white z-50"
-              >
-                <a
-                  v-for="dataType of attributeTypes"
-                  @click="onPick(dataType, attribute._id)"
-                  class="block py-1 px-2 text-sm text-gray-700 odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 cursor-pointer"
-                >
-                  {{ attributeTypesWithLabels[dataType]?.label }}
-                </a>
-              </div>
-              <td class="flex justify-end align-middle px-2">
-                <span @click="attrRemove(attribute._id)">
-                  <div
-                    :class="{
-                      'text-blue-400': focusedAttribute.name === attribute.name,
-                    }"
-                  >
-                    <font-awesome-icon
-                      color="red"
-                      icon="fa-solid fa-circle-xmark"
-                    />
-                  </div>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div
-        class="flex flex-col col-span-4 px-6 py-2 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 h-96 shadow overflow-auto"
-      >
-        <label class="font-bold text-gray-500">Name</label>
-        <input
-          v-model="attributeName"
-          placeholder="firstName, lastName..."
-          :id="'attributeInput' + entity._id"
-          @keyup.enter="onAddAttribute()"
-          class="flex-auto p-4 rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100"
-          :class="{
-            'border-2': invalidName,
-            'border-blue-500': invalidName,
-            'border-opacity-100': invalidName,
-          }"
-        />
-        <label class="mt-6 font-bold text-gray-500">Type</label>
         <div
-          :id="'attributeType' + entity._id"
-          class="flex-auto rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide shadow-md"
+          v-for="dataType of attributeTypes"
+          class="flex flex-grow rounded odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
         >
-          <div
-            v-for="dataType of attributeTypes"
-            class="flex flex-grow rounded odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
-          >
-            <label class="text-sm rounded p-2 w-full">
-              <input
-                :id="dataType"
-                type="radio"
-                :value="dataType"
-                v-model="attributeType"
-                name="attributeName"
-                :checked="dataType == attributeType"
-              />
-              {{ attributeTypesWithLabels[dataType]?.label }}
-            </label>
-          </div>
+          <label class="text-sm rounded p-2 w-full">
+            <input
+              :id="dataType"
+              type="radio"
+              :value="dataType"
+              v-model="attributeType"
+              name="attributeName"
+              :checked="dataType == attributeType"
+            />
+            {{ attributeTypesWithLabels[dataType]?.label }}
+          </label>
         </div>
       </div>
+    </div>
+    <div class="flex flex-1 flex-col px-2"></div>
+    <div class="flex flex-1">
+      <EntitiesAttributesTable :entity="entity" />
     </div>
   </div>
 </template>

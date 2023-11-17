@@ -33,10 +33,13 @@ const sparse = ref(false)
         class="rounded-l-lg border px-4 py-2 hover:bg-gray-100"
       >
         <span
-          v-text="sparse ? 'Full' : 'Dense'"
           class="mr-2"
+          v-text="sparse ? 'Full' : 'Dense'"
         />
-        <font-awesome-icon icon="fa-solid fa-sort"></font-awesome-icon>
+        <font-awesome-icon
+          color="grey"
+          icon="fa-solid fa-sort"
+        ></font-awesome-icon>
       </button>
       <button
         v-if="sparse"
@@ -44,10 +47,12 @@ const sparse = ref(false)
         class="rounded-r-md border px-4 py-2 hover:bg-gray-100"
         @click="copyer(sparseEntities(entities))"
       >
-        Copy
+        <span v-if="!copied">Copy</span>
+        <span v-else>Copied!</span>
         <font-awesome-icon
+          color="grey"
           class="ml-2"
-          icon="fa-solid fa-copy"
+          icon="fa-solid fa-clipboard"
         />
       </button>
       <button
@@ -56,10 +61,12 @@ const sparse = ref(false)
         class="rounded-r-md border px-4 py-2 hover:bg-gray-100"
         @click="copyer(entities)"
       >
-        Copy
+        <span v-if="!copied">Copy</span>
+        <span v-else>Copied!</span>
         <font-awesome-icon
           class="ml-2"
-          icon="fa-solid fa-copy"
+          color="grey"
+          icon="fa-solid fa-clipboard"
         />
       </button>
     </div>

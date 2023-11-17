@@ -1,6 +1,7 @@
 <script setup>
-const props = defineProps(['entity', 'idx'])
+const props = defineProps(['entity'])
 const entity = ref(props.entity)
+const { toggleAttributes } = useEntity()
 
 const attribute = ref('')
 
@@ -9,7 +10,6 @@ const focusAttr = (item) => {
     attribute.value = ''
     return
   }
-  console.log({ item })
   attribute.value = item
 }
 
@@ -20,31 +20,17 @@ const close = (items) => {
   a.validators = items
 }
 const showRelationships = ref(false)
-const toggleRelationships = (item) => {
+const toggleRelationships = () => {
   showRelationships.value = !showRelationships.value
 }
 </script>
 <template>
   <div>
-    <EntitiesEntityControl
-      :idx="idx"
+    <EntitiesEntityTabs
       :entity="entity"
       :focusAttr="focusAttr"
+      :toggleAttributes="toggleAttributes"
       :toggleRelationships="toggleRelationships"
-    />
-    <EntitiesEntityAttributeForm
-      :entity="entity"
-      :focusAttr="focusAttr"
-      :focusedAttribute="attribute"
-      :selectedType="attribute.type"
-      :toggleRelationships="toggleRelationships"
-    />
-    <EntitiesAttributeDetails
-      :focusAttr="focusAttr"
-      @close="close"
-      :entity="entity"
-      :selectedType="attribute.type"
-      :focusedAttribute="attribute"
     />
     <EntitiesEntityRelationships :showRelationships="showRelationships" />
   </div>

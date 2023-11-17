@@ -1,7 +1,5 @@
 <script setup>
-const emit = defineEmits(['toggleSortView'])
 const { entities } = useEntities()
-const { setFocusedContent } = useToolbar()
 const closed = ref(false)
 
 const onCollapse = () => {
@@ -32,7 +30,7 @@ const onCollapse = () => {
           <a
             class="text-sm hover:bg-gray-100 rounded py-1 px-2"
             v-text="idx + 1 + `. ${e.name} (${e.attributes.length - 1})`"
-            :href="`/entities#${e.name}-${idx + 1}`"
+            :href="`/entities#${e.name}-${e._id}`"
           ></a>
         </div>
       </div>
@@ -45,10 +43,29 @@ const onCollapse = () => {
       <button
         type="button"
         @click="store.view = 'Sorter'"
-        class="rounded-l-lg border px-4 py-2 hover:bg-gray-100"
+        class="rounded-l-lg border px-4 py-2 hover:bg-gray-100 text-gray-400"
       >
         Sort
-        <font-awesome-icon icon="fa-solid fa-sort"></font-awesome-icon>
+        <font-awesome-icon
+          class="ml-1 hover:bg-gray-100 text-gray-400"
+          icon="fa-solid fa-sort"
+        />
+      </button>
+      <button
+        type="button"
+        @click="
+          () => {
+            store.view = 'Entities'
+          }
+        "
+        class="border-t border-b border px-4 py-2 hover:bg-gray-100 text-gray-400"
+      >
+        Collapse
+        <font-awesome-icon
+          color="grey"
+          class="ml-1 hover:bg-gray-100 text-gray-400"
+          icon="fa-solid fa-square-minus"
+        />
       </button>
       <button
         type="button"
@@ -56,17 +73,21 @@ const onCollapse = () => {
         class="border-t border-b border px-4 py-2 hover:bg-gray-100 text-gray-400"
       >
         Entities
-        <font-awesome-icon icon="fa-solid fa-square-minus"></font-awesome-icon>
+        <font-awesome-icon
+          icon="fa-solid fa-cubes"
+          class="ml-1 hover:bg-gray-100 text-gray-400"
+        />
       </button>
       <button
         type="button"
-        class="rounded-r-md border px-4 py-2 hover:bg-gray-100"
+        class="rounded-r-md border px-4 py-2 hover:bg-gray-100 text-gray-400"
         @click="store.view = 'Relationships'"
       >
         <u>R</u>elationships
         <font-awesome-icon
+          class="ml-1 hover:bg-gray-100 text-gray-400"
+          color="grey"
           icon="fa-solid fa-database"
-          class="text-gray-400 dark:text-white"
         />
       </button>
     </div>

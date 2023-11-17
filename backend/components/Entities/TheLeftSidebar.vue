@@ -107,7 +107,7 @@ const inputClasses =
   'flex flex-grow justify-center border-2 rounded border-gray-300 px-3 py-1 text-sm mr-2 w-full'
 </script>
 <template>
-  <div class="col-span-3 border-r-2 overflow-auto scrollbar-hide">
+  <div class="col-span-2 border-r-2 overflow-auto scrollbar-hide">
     <div class="flex flex-col px-2">
       <div class="text-md font-bold">
         New Entity(<span v-text="entities.length" />)

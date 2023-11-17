@@ -3,6 +3,7 @@ export default {
   plugins: [
     require('@tailwindcss/typography'),
     require('tailwind-scrollbar-hide'),
+    require('flowbite/plugin'),
   ],
   content: [
     './app.vue',
@@ -11,6 +12,7 @@ export default {
     './layouts/**/*.vue',
     './plugins/**/*.{js,ts}',
     './components/**/*.{js,vue,ts}',
+    './node_modules/flowbite/**/*.{js,ts}',
   ],
   safelist: [
     'safelisted',

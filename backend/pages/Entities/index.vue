@@ -1,33 +1,25 @@
 <script setup>
 import draggable from 'vuedraggable'
-
 const { entities } = useEntities()
-const { focusedContent } = useToolbar()
 </script>
 
 <template>
   <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen">
     <EntitiesTheLeftSidebar />
-    <div class="col-span-9 lg:col-span-6 overflow-auto scrollbar-hide">
-      <EntitiesTheToolbar
-        :entities="entities"
-        @toggleSortView="toggleSortView"
-      />
+
+    <div class="col-span-9 lg:col-span-7 overflow-auto scrollbar-hide">
+      <EntitiesTheToolbar :entities="entities" />
       <div v-if="store.view == 'Relationships'">
         <h1 class="text-red-300 text-lg 2">Relationships</h1>
-        <h1 class="text-red-300 text-lg 2">Relationships</h1>
-        <h1 class="text-red-300 text-lg 2">Relationships</h1>
       </div>
-      <div v-else-if="store.view == 'Entities'">
-        <div
-          v-for="(entity, idx) of entities"
-          class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
-        >
-          <EntitiesEntity
-            :idx="idx + 1"
-            :entity="entity"
-          />
-        </div>
+      <div
+        v-else-if="store.view == 'Entities'"
+        class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
+      >
+        <EntitiesEntity
+          v-for="entity of entities"
+          :entity="entity"
+        />
       </div>
       <div
         v-else-if="store.view == 'Sorter'"
