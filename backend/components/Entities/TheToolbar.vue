@@ -34,7 +34,7 @@ const onCollapse = () => {
       >
         <a
           class="text-sm"
-          v-text="idx + 1 + `. ${e.name}`"
+          v-text="idx + 1 + `. ${e.name} (${e.attributes.length - 1})`"
           :href="`/entities#${e.name}-${idx + 1}`"
         />
       </div>

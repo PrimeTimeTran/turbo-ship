@@ -54,9 +54,7 @@ const entity = reactive({
 
 const attrEnums = ref([])
 const attrType = ref('string')
-const attrName = ref(
-  'Attribute  New AttributeNew Attribute  New AttributeNew Attribute'
-)
+const attrName = ref('New Attribute')
 
 const newAttribute = reactive({
   name: attrName,
@@ -280,12 +278,12 @@ const inputClasses =
           </h4>
           <FormKitMessages :node="input?.node" />
 
-          <div class="overflow-auto scrollbar-hide">
+          <div class="flex flex-col flex-grow overflow-auto scrollbar-hide">
             <table class="table-auto">
-              <tr>
+              <tr class="bg-gray-500">
                 <th></th>
-                <th class="text-left pl-2">Type</th>
-                <th class="text-left">Name</th>
+                <th class="text-white text-left pl-2">Type</th>
+                <th class="text-white text-left">Name</th>
               </tr>
               <tbody>
                 <FormKit
@@ -298,11 +296,11 @@ const inputClasses =
                 >
                   <tr
                     v-for="attr of attributes"
-                    class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8"
+                    class="full-width-row odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8"
                   >
                     <td
+                      class="pl-1"
                       @click="attrRemove(attr._id)"
-                      class="pl-2"
                     >
                       <font-awesome-icon
                         color="red"
@@ -319,11 +317,7 @@ const inputClasses =
                       <span
                         class="overflow-auto scrollbar-hide"
                         v-text="attr.name"
-                        style="
-                          white-space: nowrap;
-                          text-overflow: clip;
-                          flex: auto;
-                        "
+                        style="white-space: nowrap"
                       />
                     </td>
                   </tr>

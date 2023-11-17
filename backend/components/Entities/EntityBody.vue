@@ -19,43 +19,33 @@ const close = (items) => {
   )[0]
   a.validators = items
 }
+const showRelationships = ref(false)
+const toggleRelationships = (item) => {
+  showRelationships.value = !showRelationships.value
+}
 </script>
 <template>
   <div>
     <EntitiesEntityControl
       :idx="idx"
       :entity="entity"
+      :focusAttr="focusAttr"
+      :toggleRelationships="toggleRelationships"
     />
     <EntitiesEntityAttributeForm
       :entity="entity"
       :focusAttr="focusAttr"
+      :focusedAttribute="attribute"
       :selectedType="attribute.type"
-      :focusedAttribute="attribute"
-    />
-    <EntitiesAttributeDetailsSelector
-      :entity="entity"
-      :focusAttr="focusAttr"
-      :focusedAttribute="attribute"
+      :toggleRelationships="toggleRelationships"
     />
     <EntitiesAttributeDetails
-      v-if="attribute"
+      :focusAttr="focusAttr"
       @close="close"
       :entity="entity"
       :selectedType="attribute.type"
       :focusedAttribute="attribute"
     />
-    <div
-      class="flex"
-      v-if="AttributeValidator.safeAttributes(entity).length > 0"
-    >
-      <label
-        class="ml-3 font-bold text-gray-500 mt-4 text-sm"
-        :class="{
-          hidden: !entity.showAttributes,
-        }"
-      >
-        Attributes ({{ AttributeValidator.safeAttributes(entity).length }})
-      </label>
-    </div>
+    <EntitiesEntityRelationships :showRelationships="showRelationships" />
   </div>
 </template>
