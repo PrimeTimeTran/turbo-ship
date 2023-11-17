@@ -8,6 +8,10 @@ export const attributeTypes = [
   'enumerator',
   'date',
   'dateTime',
+  'otm',
+  'mto',
+  'oto',
+  'mtm',
 ]
 
 export const attributeTypesWithLabels = {
@@ -46,6 +50,22 @@ export const attributeTypesWithLabels = {
   dateTime: {
     value: 'dateTime',
     label: 'date-time',
+  },
+  otm: {
+    value: 'otm',
+    label: 'one-to-many',
+  },
+  mto: {
+    value: 'mto',
+    label: 'many-to-one',
+  },
+  oto: {
+    value: 'oto',
+    label: 'one-to-one',
+  },
+  mtm: {
+    value: 'mtm',
+    label: 'many-to-many',
   },
 }
 //   { value: 'date', name: 'date' },

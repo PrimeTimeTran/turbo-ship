@@ -103,7 +103,7 @@ const attrRemove = (id) => {
               </td>
               <td @click="onToggle(attribute._id + attrIdx)">
                 <span
-                  v-text="attribute.type"
+                  v-text="attributeTypesWithLabels[attribute.type]?.label"
                   :class="{
                     'text-blue-400': focusedAttribute.name === attribute.name,
                   }"
@@ -118,7 +118,7 @@ const attrRemove = (id) => {
                   @click="onPick(dataType, attribute._id)"
                   class="block py-1 px-2 text-sm text-gray-700 odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 cursor-pointer"
                 >
-                  {{ dataType }}
+                  {{ attributeTypesWithLabels[dataType]?.label }}
                 </a>
               </div>
               <td class="flex justify-end align-middle px-2">
@@ -173,7 +173,7 @@ const attrRemove = (id) => {
                 name="attributeName"
                 :checked="dataType == attributeType"
               />
-              {{ dataType }}
+              {{ attributeTypesWithLabels[dataType]?.label }}
             </label>
           </div>
         </div>

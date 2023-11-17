@@ -1,3 +1,1 @@
-class Entity {
-  
-}
+class Entity {}

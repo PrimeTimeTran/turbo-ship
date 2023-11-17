@@ -1,8 +1,19 @@
 import { ref } from 'vue'
 
 export function useToolbar() {
-  const tiny = ref(true)
+  const focusedContent = ref('Relationships')
+  const setFocusedContent = (val: string) => {
+    console.log({
+      val,
+      setFocusedContent,
+    })
+    focusedContent.value = val
+  }
+  watch(focusedContent, () => {
+    console.log('Toolbar change ', focusedContent.value)
+  })
   return {
-    tiny,
+    focusedContent,
+    setFocusedContent,
   }
 }

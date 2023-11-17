@@ -1,83 +1,337 @@
-export interface Entity {
-  _id: string
-  name: string
-  label: string
-  plural: string
-  pluralSM: string
-  showAttributes: boolean
-  showAttributeForm: boolean
-  attributes: Attribute[]
-}
-
-export interface Attribute {
-  name: string
-  type: string
-  _id: string
-}
-
 export const original: Entity[] = [
   {
-    _id: 'e0237842035dd5359ffdde24',
+    _id: 'fb80c35deae8c1d25f4acbbd',
     name: 'user',
     pluralSM: 'users',
     label: 'User',
     plural: 'Users',
     showAttributes: false,
-    showAttributeForm: false,
+    showAttributeForm: true,
     attributes: [
-      { name: '_id', type: 'string', _id: 'd25ba6acb588e8ed3dd87e42' },
-      { name: 'email', type: 'string', _id: '3170ec0fad551ad9bd644d5e' },
-      { name: 'firstName', type: 'string', _id: 'f82f5fbcd87b643671acbb7d' },
-      { name: 'lastName', type: 'string', _id: 'caf7bdb6fdefcadec26e733f' },
-      { name: 'age', type: 'number', _id: 'dc9bbaa64f0ffbe1b472032c' },
-      { name: 'status', type: 'enumerator', _id: 'eab0ebc903a8842be527febb' },
-      { name: 'owner', type: 'boolean', _id: '111285afa0e8e306ba0cedef' },
+      { name: '_id', type: 'string', _id: 'a079b9b3c2b6eb1ce585f812' },
+      { name: 'email', type: 'string', _id: '1ada3de6abaed33dcd147ff1' },
+      { name: 'firstName', type: 'string', _id: '49ca07aa9f6fc73fac4a82ef' },
+      { name: 'lastName', type: 'string', _id: '0bdfabf2b3598a955487f03c' },
+      { name: 'age', type: 'number', _id: '8cef045cc74b37da1ecbe5df' },
+      { name: 'status', type: 'enumerator', _id: 'b0e1a1619adb7ab33e70d884' },
+      { name: 'owner', type: 'boolean', _id: 'a072a85f42b8fd2e1e0ec6cd' },
       {
         name: 'role',
         type: 'enumeratorMulti',
-        _id: '0ee72eed6ad6fe4ede60208e',
+        _id: 'c0702acc8ede4e2f45f40bc9',
+      },
+      {
+        validators: [],
+        name: 'account',
+        type: 'otm',
+        _id: 'd6cdd8abc8efbeb9b30f100f',
+      },
+      {
+        validators: [],
+        name: 'transaction',
+        type: 'otm',
+        _id: 'b0b27d0ffcaaeebef7eac27f',
+      },
+      {
+        validators: [],
+        name: 'bank',
+        type: 'otm',
+        _id: 'e3a7c2fd8b5ec8a7d88f557c',
+      },
+      {
+        validators: [],
+        name: 'netWorth',
+        type: 'decimal',
+        _id: '9e1f9de466ce0a2f81a1b26c',
+      },
+    ],
+    relationships: [
+      {
+        type: 'otm',
+        aEntity: 'user',
+        aField: 'transactions',
+        bEntity: 'transaction',
+        bField: 'user',
       },
     ],
   },
   {
-    _id: 'de4c9a4d1d1bbfac83447fed',
+    _id: '9bb6eaefd16bcaadbadb6064',
+    name: 'account',
+    pluralSM: 'accounts',
+    label: 'Account',
+    plural: 'Accounts',
+    showAttributes: false,
+    showAttributeForm: true,
+    attributes: [
+      { name: '_id', type: 'string', _id: 'c5d5bdacdecd5a3ed8b58b26' },
+      {
+        validators: [],
+        name: 'balance',
+        type: 'decimal',
+        _id: '44cc6efbb37577e97e629baa',
+      },
+      {
+        validators: [],
+        name: 'user',
+        type: 'mto',
+        _id: 'efba82fce95f81fbd1e670be',
+      },
+      {
+        validators: [],
+        name: 'bank',
+        type: 'mto',
+        _id: 'eeddb5aebf1bab0325c39ab2',
+      },
+      {
+        validators: [],
+        name: 'transaction',
+        type: 'otm',
+        _id: 'a1d02e5fadb9afafac43cf68',
+      },
+      {
+        validators: [],
+        name: 'status',
+        type: 'enumerator',
+        _id: '023ec0b1cdbdd988ddc2eff4',
+      },
+      {
+        validators: [],
+        name: 'type',
+        type: 'enumerator',
+        _id: '481de8aea5acf1ef6ce41a0b',
+      },
+      {
+        validators: [],
+        name: 'number',
+        type: 'string',
+        _id: 'b3b7facf2ef94dcbdb7e2a3b',
+      },
+      {
+        validators: [],
+        name: 'routingNumber',
+        type: 'string',
+        _id: 'f8ae1240fb09603fe9c3fcf3',
+      },
+      {
+        validators: [],
+        name: 'branch',
+        type: 'mto',
+        _id: 'e1fabdbd7798fcbbbbbcaa8d',
+      },
+    ],
+    relationships: [
+      {
+        type: 'mto',
+        aEntity: 'account',
+        aField: 'user',
+        bEntity: 'user',
+        bField: 'accounts',
+      },
+      {
+        type: 'oto',
+        aEntity: 'account',
+        aField: 'bank',
+        bEntity: 'bank',
+        bField: 'accounts',
+      },
+    ],
+  },
+  {
+    _id: 'dc01d49b61bcb3208597d9e1',
+    name: 'transaction',
+    pluralSM: 'transactions',
+    label: 'Transaction',
+    plural: 'Transactions',
+    showAttributes: false,
+    showAttributeForm: true,
+    attributes: [
+      { name: '_id', type: 'string', _id: 'f80bcfdde00ba4baa3bcf78c' },
+      {
+        validators: [],
+        name: 'amount',
+        type: 'decimal',
+        _id: 'df5b3c8c4ae3fc3a6cbaccda',
+      },
+      {
+        validators: [],
+        name: 'status',
+        type: 'enumerator',
+        _id: 'd43a18268ee8c8899dbcde8b',
+      },
+      {
+        validators: [],
+        name: 'chargeDate',
+        type: 'dateTime',
+        _id: '7aaef933eb28c42f2c764d64',
+      },
+      {
+        validators: [],
+        name: 'description',
+        type: 'string',
+        _id: '008c2cc4c9d4baec2a1294a7',
+      },
+      {
+        validators: [],
+        name: 'user',
+        type: 'mto',
+        _id: '40bc1c4024a703d7e5f6a477',
+      },
+      {
+        validators: [],
+        name: 'account',
+        type: 'mto',
+        _id: 'f227a8bf90aacffebd1dfecd',
+      },
+      {
+        validators: [],
+        name: 'branch',
+        type: 'mto',
+        _id: 'bb947aeff94d48e9cacdd9e7',
+      },
+      {
+        validators: [],
+        name: 'bank',
+        type: 'mto',
+        _id: '2fcf96f09ebacc99bedcbac3',
+      },
+    ],
+    relationships: [
+      {
+        type: 'mto',
+        aEntity: 'transaction',
+        aField: 'user',
+        bEntity: 'user',
+        bField: 'transactions',
+      },
+      {
+        type: 'mto',
+        aEntity: 'transaction',
+        aField: 'account',
+        bEntity: 'account',
+        bField: 'transactions',
+      },
+      {
+        type: 'mto',
+        aEntity: 'transaction',
+        aField: 'bank',
+        bEntity: 'bank',
+        bField: 'transactions',
+      },
+    ],
+  },
+  {
+    _id: 'b4ba1f8610fd6c5badf0dd1e',
     name: 'bank',
     pluralSM: 'banks',
     label: 'Bank',
     plural: 'Banks',
     showAttributes: false,
-    showAttributeForm: false,
+    showAttributeForm: true,
     attributes: [
-      { name: '_id', type: 'string', _id: 'be0af5fe18b923e9d85e29be' },
-      { name: 'name', type: 'string', _id: 'ea0cc9afbadd28c6295dca4b' },
-      { name: 'ceo', type: 'string', _id: 'c0e14aca13f894914e95a225' },
-      { name: 'logoURL', type: 'string', _id: 'fb317df771ba0fa4aedbd8d8' },
+      { name: '_id', type: 'string', _id: 'ca6ad0a5a3acdd4fa92b2fff' },
+      { name: 'name', type: 'string', _id: 'c72e2ecadf529c2b0ddda567' },
+      { name: 'ceo', type: 'string', _id: 'd26d228efaef909fb6ddde69' },
+      { name: 'logoURL', type: 'string', _id: '6b0fc4702e3abd0122be4d97' },
       {
         name: 'creditRating',
         type: 'enumerator',
-        _id: 'fdaadcf8d24880097edcc5ea',
+        _id: 'dd6c70db049d7feaa9b6ed3c',
       },
       {
         name: 'employeeCount',
         type: 'integer',
-        _id: 'df8ecacb229dbaa2fccfc0af',
+        _id: '8c9b26b23e4fb9bce8a60bed',
       },
-      { name: 'hq', type: 'string', _id: '21d8e2c200f0dcbdb4b1aa36' },
+      { name: 'hq', type: 'string', _id: 'a3ff6e1a377f40f474e0a8ee' },
+      {
+        validators: [],
+        name: 'branch',
+        type: 'otm',
+        _id: 'eec7aa9d656fa622a6c24596',
+      },
+      {
+        validators: [],
+        name: 'account',
+        type: 'otm',
+        _id: '981cacecd5d92e98dc7ab8aa',
+      },
+      {
+        validators: [],
+        name: 'user',
+        type: 'otm',
+        _id: '29c0dda9dfb4813e4c34bddf',
+      },
+      {
+        validators: [],
+        name: 'transaction',
+        type: 'otm',
+        _id: '98e7b4bca8c3bab7cbc04994',
+      },
+    ],
+    relationships: [
+      {
+        type: 'one-to-many',
+        aEntity: 'bank',
+        aField: 'branches',
+        bEntity: 'branch',
+        bField: 'bank',
+      },
     ],
   },
   {
-    _id: 'bfdbe15fab99f9bafd8efb00',
+    _id: '32b344ad5e0cfb2645b02f3b',
     name: 'branch',
     pluralSM: 'branches',
     label: 'Branch',
     plural: 'Branches',
     showAttributes: false,
-    showAttributeForm: false,
+    showAttributeForm: true,
     attributes: [
-      { name: '_id', type: 'string', _id: 'fce7b08f1aab7bd523aa8cca' },
-      { name: 'location', type: 'string', _id: '2b0eb3cc0ff387933a874adf' },
-      { name: 'phone', type: 'string', _id: '4d4f93eeb9e7b7d9def04aa1' },
-      { name: 'manager', type: 'string', _id: '39d05127a06cb590daea5f32' },
+      { name: '_id', type: 'string', _id: 'ddc6e9e0b3593ff4aab28aae' },
+      { name: 'location', type: 'string', _id: 'c9ffce403da9915ab6cde2aa' },
+      { name: 'phone', type: 'string', _id: '9b8aebda9ccebcaae036b2bf' },
+      { name: 'manager', type: 'string', _id: 'a8f085ee023c02cfe9f37234' },
+      {
+        validators: [],
+        name: 'account',
+        type: 'otm',
+        _id: '46e6397e6fc30cceae2c01fb',
+      },
+      {
+        validators: [],
+        name: 'user',
+        type: 'otm',
+        _id: 'abccf7cad2e1e4d6ad2d32cc',
+      },
+      {
+        validators: [],
+        name: 'transaction',
+        type: 'otm',
+        _id: 'a6dca56bc200ba68edd7efc2',
+      },
+      {
+        validators: [],
+        name: 'bank',
+        type: 'mto',
+        _id: 'ad20b9b0ed17ce742ddb6f3d',
+      },
+    ],
+    relationships: [
+      {
+        type: 'mto',
+        aEntity: 'branch',
+        aField: 'bank',
+        bEntity: 'bank',
+        bField: 'branches',
+      },
+      {
+        type: 'otm',
+        aEntity: 'branch',
+        aField: 'users',
+        bEntity: 'user',
+        bField: 'branch',
+      },
     ],
   },
 ]

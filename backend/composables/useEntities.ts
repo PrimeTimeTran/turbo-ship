@@ -1,7 +1,8 @@
 import { ref } from 'vue'
 
 export function useEntities() {
-  const entities = ref(generateNewIDs(original))
+  const entities = ref(store.entities)
+  // const entities = ref(generateNewIDs(original))
 
   const addEntity = (e: Entity) => {
     entities.value.push(e)

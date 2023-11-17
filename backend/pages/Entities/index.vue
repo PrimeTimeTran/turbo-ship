@@ -1,12 +1,8 @@
 <script setup>
 import draggable from 'vuedraggable'
 
-const sorterView = ref(false)
 const { entities } = useEntities()
-
-const toggleSortView = () => {
-  sorterView.value = !sorterView.value
-}
+const { focusedContent } = useToolbar()
 </script>
 
 <template>
@@ -17,8 +13,24 @@ const toggleSortView = () => {
         :entities="entities"
         @toggleSortView="toggleSortView"
       />
+      <div v-if="store.view == 'Relationships'">
+        <h1 class="text-red-300 text-lg 2">Relationships</h1>
+        <h1 class="text-red-300 text-lg 2">Relationships</h1>
+        <h1 class="text-red-300 text-lg 2">Relationships</h1>
+      </div>
+      <div v-else-if="store.view == 'Entities'">
+        <div
+          v-for="(entity, idx) of entities"
+          class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
+        >
+          <EntitiesEntity
+            :idx="idx + 1"
+            :entity="entity"
+          />
+        </div>
+      </div>
       <div
-        v-if="sorterView"
+        v-else-if="store.view == 'Sorter'"
         class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
       >
         <draggable
@@ -35,17 +47,6 @@ const toggleSortView = () => {
             </li>
           </template>
         </draggable>
-      </div>
-      <div v-else>
-        <div
-          v-for="(entity, idx) of entities"
-          class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
-        >
-          <EntitiesEntity
-            :idx="idx + 1"
-            :entity="entity"
-          />
-        </div>
       </div>
     </div>
     <EntitiesTheRightSidebar :entities="entities" />
