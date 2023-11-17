@@ -127,14 +127,7 @@ const attrRemove = (id) => {
                 entity
               )"
             >
-              <td
-                class=""
-                @click="
-                  () => {
-                    focusAttr(attribute)
-                  }
-                "
-              >
+              <td @click="() => focusAttr(attribute)">
                 <span
                   v-text="attrIdx + 1 + '. ' + attribute.name"
                   :class="{

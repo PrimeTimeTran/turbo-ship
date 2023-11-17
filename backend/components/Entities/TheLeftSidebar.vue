@@ -19,9 +19,12 @@ import _ from 'lodash'
 
 import { ref } from 'vue'
 import { faker } from '@faker-js/faker'
+import { FormKitMessages } from '@formkit/vue'
 import { getValidationMessages } from '@formkit/validation'
+
 const emit = defineEmits(['onAdd'])
 const { entities, addEntity } = useEntities()
+
 const messages = ref([])
 
 function showErrors(node) {
@@ -34,39 +37,33 @@ function showErrors(node) {
   })
 }
 
-const aleast = () => {
-  return !(entity.attributes.length === 0)
-}
+const label = ref('')
+const plural = ref('')
+const input = ref()
 
 const name = ref('New Entity')
-const plural = ref('')
-const label = ref('')
-
-const _id = faker.database.mongodbObjectId()
-
 const attributes = ref([])
+
 const entity = reactive({
-  _id,
+  _id: faker.database.mongodbObjectId(),
   name,
   label,
   plural,
   attributes,
 })
 
-const attrName = ref('New Attribute')
-const attrType = ref('string')
 const attrEnums = ref([])
+const attrType = ref('string')
+const attrName = ref(
+  'Attribute  New AttributeNew Attribute  New AttributeNew Attribute'
+)
 
 const newAttribute = reactive({
   name: attrName,
   type: attrType,
   enums: attrEnums,
 })
-
 const submit = () => {
-  if (entity.attributes.length === 0) {
-    return
-  }
   const _id = faker.database.mongodbObjectId()
   entity._id = _id
   const clonedEntity = _.cloneDeep(entity)
@@ -83,17 +80,17 @@ const addAttribute = () => {
     return
   }
   const attrId = faker.database.mongodbObjectId()
-  attributes.value.push({
+  const attribute = {
     _id: attrId,
     name: newAttribute.name,
     type: newAttribute.type,
-  })
+  }
+  attributes.value.push(attribute)
 }
 const attrRemove = (id) => {
   const idx = attributes.value.findIndex((a) => a._id === id)
   attributes.value.splice(idx, 1)
 }
-
 const onTypeSelect = (type) => {
   console.log({
     type,
@@ -204,7 +201,6 @@ const inputClasses =
             placeholder="branch, transaction, statement..."
             validation-label="Attribute"
             v-model="newAttribute.name"
-            :validation-rules="{ aleast }"
             :classes="{
               label: 'font-semibold',
               input: inputClasses,
@@ -274,7 +270,6 @@ const inputClasses =
             </FormKit>
           </div>
         </div>
-
         <h2 class="text-md font-bold mt-5">Summary:</h2>
         <div class="mt-2 p-2 rounded border shadow">
           <h3 class="text-md">Name: <span v-text="entity.name" /></h3>
@@ -283,43 +278,68 @@ const inputClasses =
           <h4 class="mt-4 text-md">
             Attributes (<span v-text="attributes.length" />)
           </h4>
-          <div
-            v-if="attributes.length > 0"
-            class="border rounded p-2 mt-2 overflow-auto scrollbar-hide"
-          >
-            <li
-              class="grid grid-cols-12 justify-between odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 scrollbar-hide"
-              v-for="(attr, idx) of entity.attributes"
-            >
-              <span
-                class="col-span-1 ml-1 text-sm"
-                @click="attrRemove(attr._id)"
-              >
-                <div>
-                  <font-awesome-icon
-                    color="red"
-                    icon="fa-solid fa-circle-xmark"
-                  />
-                </div>
-              </span>
-              <span
-                class="col-span-6 ml-2 text-sm"
-                v-text="idx + 1 + '. ' + attr.name"
-              />
-              <span
-                class="col-span-5 text-sm text-right pr-1"
-                v-text="attributeTypesWithLabels[attr.type].label"
-              />
-            </li>
+          <FormKitMessages :node="input?.node" />
+
+          <div class="overflow-auto scrollbar-hide">
+            <table class="table-auto">
+              <tr>
+                <th></th>
+                <th class="text-left pl-2">Type</th>
+                <th class="text-left">Name</th>
+              </tr>
+              <tbody>
+                <FormKit
+                  ref="input"
+                  type="list"
+                  name="Attributes"
+                  v-model="attributes"
+                  validation="required"
+                  validation-label="At least 1 attribute "
+                >
+                  <tr
+                    v-for="attr of attributes"
+                    class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8"
+                  >
+                    <td
+                      @click="attrRemove(attr._id)"
+                      class="pl-2"
+                    >
+                      <font-awesome-icon
+                        color="red"
+                        icon="fa-solid fa-circle-xmark"
+                      />
+                    </td>
+                    <td>
+                      <span
+                        class="mx-2 font-semibold"
+                        v-text="attributeTypesWithLabels[attr.type].label"
+                      />
+                    </td>
+                    <td class="pr-2">
+                      <span
+                        class="overflow-auto scrollbar-hide"
+                        v-text="attr.name"
+                        style="
+                          white-space: nowrap;
+                          text-overflow: clip;
+                          flex: auto;
+                        "
+                      />
+                    </td>
+                  </tr>
+                </FormKit>
+              </tbody>
+            </table>
           </div>
+          <!-- <span v-text="attributeTypesWithLabels[attr.type].label" /> -->
           <FormKit
             type="submit"
             :classes="{
               outer:
-                'bg-green-500 mt-2 text-center p-2 rounded text-white font-bold  shadow-md',
+                'bg-green-500 mt-2 text-center p-2 rounded text-white font-bold shadow-lg text-2xl',
             }"
           >
-            Create
+            Create Entity
           </FormKit>
         </div>
       </FormKit>

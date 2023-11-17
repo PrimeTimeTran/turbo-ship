@@ -3,28 +3,16 @@ const props = defineProps(['entity', 'idx'])
 const { removeEntity } = useEntities()
 const entityName = ref('entityName')
 
-const saved = ref(false)
-
-const onEntityNameSave = (val, id) => {
+const onEntityNameSave = (val) => {
   if (val === '') return
   const e = props.entity
   e.name = val
-  toggleName(id)
   entityName.value = ''
-  saved.value = true
-  setTimeout(() => {
-    saved.value = false
-  }, 2000)
 }
 
 const onToggleEntityAdd = () => {
   const e = props.entity
   e.showAttributeForm = !e.showAttributeForm
-}
-
-const toggleName = () => {
-  const e = props.entity
-  e.editing = !e.editing
 }
 
 const toggleShow = () => {
@@ -45,12 +33,7 @@ const toggleShow = () => {
             v-model="entity.name"
             placeholder="customer, transaction, statement..."
             class="flex flex-grow py-1 px-2 text-md rounded-md border-2 border-slate-200 bg-white font-bold text-blue-500 dark:text-blue-500 hover:bg-slate-100"
-            @keyup.enter="onEntityNameSave(entity.name, entity._id)"
-            :class="{
-              'text-green-500': saved,
-              'border-green-700': saved,
-              'hover:border-opacity-100': !entity.editing,
-            }"
+            @keyup.enter="onEntityNameSave(entity.name)"
           />
         </div>
         <div
