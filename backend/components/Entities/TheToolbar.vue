@@ -16,7 +16,7 @@ const onCollapse = () => {
 <template>
   <div class="sticky top-0 shadow p-2 bg-white z-10">
     <div class="flex justify-between p-1">
-      <div class="text-2xl">
+      <div class="text-xl">
         Entities
         <span
           v-text="`(${entities.length})`"

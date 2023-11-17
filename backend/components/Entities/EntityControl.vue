@@ -60,7 +60,7 @@ const toggleShow = () => {
           <button
             type="button"
             @click="() => removeEntity(entity._id)"
-            class="rounded-l-lg border border-gray-200 bg-white text-sm font-medium px-4 py-2 text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+            class="rounded-l-lg border px-4 py-2 hover:bg-gray-100"
           >
             <font-awesome-icon
               color="red"
@@ -70,33 +70,33 @@ const toggleShow = () => {
           <button
             type="button"
             @click="toggleShow"
-            class="border-t border-b border border-gray-200 bg-white text-sm font-medium px-4 py-2 text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+            class="border-t border-b px-4 py-2 hover:bg-gray-100"
           >
             <font-awesome-icon
               v-if="entity.showAttributes"
               icon="fa-solid fa-eye-slash"
-              class="text-gray-400 mr-2"
+              class="text-gray-400"
             />
             <font-awesome-icon
               v-else
               icon="fa-solid fa-eye"
-              class="text-gray-400 mr-2"
+              class="text-gray-400"
             />
           </button>
           <button
             type="button"
             @click="onToggleEntityAdd"
-            class="rounded-r-md border border-gray-200 bg-white text-sm font-medium px-4 py-2 text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+            class="rounded-r-md border px-4 py-2 hover:bg-gray-100"
           >
             <font-awesome-icon
               v-if="entity.showAttributeForm"
               icon="fa-solid fa-rectangle-xmark"
-              class="text-gray-400 dark:text-white mr-2"
+              class="text-gray-400 dark:text-white"
             />
             <font-awesome-icon
               v-else
               icon="fa-solid fa-plus"
-              class="text-gray-400 dark:text-white mr-2"
+              class="text-gray-400 dark:text-white"
             />
           </button>
         </div>

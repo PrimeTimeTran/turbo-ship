@@ -69,14 +69,16 @@ const submit = () => {
   }
   const _id = faker.database.mongodbObjectId()
   entity._id = _id
-  addEntity(entity)
-  emit('onAdd', entity)
+  const clonedEntity = _.cloneDeep(entity)
+
+  addEntity(clonedEntity)
 }
 const addAttribute = () => {
   if (
-    (newAttribute.type == 'enumerator' ||
+    ((newAttribute.type == 'enumerator' ||
       newAttribute.type == 'enumeratorMulti') &&
-    newAttribute.enums.length === 0
+      newAttribute.enums.length === 0) ||
+    newAttribute.name.length < 2
   ) {
     return
   }
@@ -198,7 +200,7 @@ const inputClasses =
           <FormKit
             label="Name"
             name="attrName"
-            validation="required"
+            validation="required|length:2"
             placeholder="branch, transaction, statement..."
             validation-label="Attribute"
             v-model="newAttribute.name"
@@ -261,12 +263,11 @@ const inputClasses =
               }"
             >
               <span class="text-sm">Add</span>
-              <br />
               <span
                 class="text-sm"
                 v-text="
                   newAttribute.name
-                    ? `${newAttribute.name} (${newAttribute.type})`
+                    ? ` ${newAttribute.name} (${newAttribute.type})`
                     : ''
                 "
               />
@@ -303,9 +304,7 @@ const inputClasses =
               </span>
               <span
                 class="col-span-6 ml-2 text-sm"
-                v-text="
-                  idx + 1 + '. ' + attributeTypesWithLabels[attr.type].label
-                "
+                v-text="idx + 1 + '. ' + attr.name"
               />
               <span
                 class="col-span-5 text-sm text-right pr-1"

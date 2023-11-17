@@ -1,8 +1,7 @@
 <script setup>
 import draggable from 'vuedraggable'
 
-const dragging = ref(false)
-const sorterView = ref(true)
+const sorterView = ref(false)
 const { entities } = useEntities()
 
 const toggleSortView = () => {
@@ -12,7 +11,7 @@ const toggleSortView = () => {
 
 <template>
   <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen">
-    <EntitiesTheLeftSidebar @onAdd="onAdd" />
+    <EntitiesTheLeftSidebar />
     <div class="col-span-9 lg:col-span-6 overflow-auto scrollbar-hide">
       <EntitiesTheToolbar
         :entities="entities"
