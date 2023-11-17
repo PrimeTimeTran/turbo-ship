@@ -14,7 +14,7 @@ const props = defineProps(['entity'])
     <tbody class="overflow-auto scrollbar-hide over rounded">
       <!-- @click="onFocus(attribute._id)" -->
       <tr
-        v-for="(attribute, idx) of AttributeValidator.safeAttributes(entity)"
+        v-for="(attribute, idx) of Validator.safeAttributes(entity)"
         class="odd:bg-slate-200 hover:cursor-pointer hover:bg-slate-300 border-2"
       >
         <td class="pl-1 text-center">

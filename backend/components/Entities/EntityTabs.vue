@@ -1,13 +1,17 @@
 <script setup>
+import _ from 'lodash'
 import { Tabs } from 'flowbite'
+import Multiselect from 'vue-multiselect'
+
 const props = defineProps([
   'entity',
   'focusAttr',
   'toggleAttributes',
   'toggleRelationships',
 ])
-let tabElements
+
 let tabs
+let tabElements
 
 function setupTabs() {
   if (process.browser) {
@@ -25,12 +29,12 @@ function setupTabs() {
           targetEl: document.querySelector('#dashboard-example'),
         },
         {
-          id: 'settings',
+          id: 'validations',
           triggerEl: document.querySelector('#settings-tab-example'),
           targetEl: document.querySelector('#settings-example'),
         },
         {
-          id: 'contacts',
+          id: 'settings',
           triggerEl: document.querySelector('#contacts-tab-example'),
           targetEl: document.querySelector('#contacts-example'),
         },
@@ -66,12 +70,12 @@ onMounted(() => {
 })
 const { removeEntity } = useEntities()
 
-
 const toggleShow = () => {
   const e = props.entity
   e.showAttributes = !e.showAttributes
 }
 
+const selectedValidations = ref([])
 </script>
 <template>
   <div class="flex flex-row mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -141,7 +145,7 @@ const toggleShow = () => {
           aria-controls="settings-example"
           aria-selected="false"
         >
-          Settings
+          Validations
         </button>
       </li>
       <li role="presentation">
@@ -153,7 +157,7 @@ const toggleShow = () => {
           aria-controls="contacts-example"
           aria-selected="false"
         >
-          Contacts
+          Settings
         </button>
       </li>
     </ul>
@@ -256,14 +260,22 @@ const toggleShow = () => {
       role="tabpanel"
       aria-labelledby="settings-tab-example"
     >
-      <p class="text-sm text-gray-500 dark:text-gray-400">
-        This is some placeholder content the
-        <strong class="font-medium text-gray-800 dark:text-white"
-          >Settings tab's associated content</strong
-        >. Clicking another tab will toggle the visibility of this one for the
-        next. The tab JavaScript swaps classes to control the content visibility
-        and styling.
-      </p>
+      <div class="flex flex-1">
+        <div class="flex flex-1 flex-col flex-grow w-1/3">
+          <h1>Validators!</h1>
+          {{ selectedValidations }}
+          <multiselect
+            :multiple="true"
+            v-model="selectedValidations"
+            :close-on-select="false"
+            :clear-on-select="false"
+            placeholder="Select validations"
+            :options="Validator.optionalValidators['string']"
+            @select="$emit('close', selectedValidations)"
+            @close="$emit('close', selectedValidations)"
+          />
+        </div>
+      </div>
     </div>
     <div
       class="hidden rounded-lg bg-gray-50 dark:bg-gray-800"

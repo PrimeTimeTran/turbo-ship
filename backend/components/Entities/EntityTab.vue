@@ -1,4 +1,5 @@
 <script setup>
+import Multiselect from 'vue-multiselect'
 const props = defineProps(['entity'])
 const focused = ref('')
 const onFocus = (idx) => (focused.value = idx)
@@ -11,10 +12,55 @@ const focusedAttribute = computed(() => {
   return item
 })
 
-function valid(attribute) {
-  return Math.random() < 0.5
+function validateNewTypeChange(attr) {
+  console.log({
+    attr,
+  })
+  attr.validations = []
+  attr.validations.push({
+    name: 'enumerator',
+    valid: false,
+    value: [],
+  })
+}
 
-  return attribute.value?.validators?.every((validator) => true)
+function valid(attribute) {
+  const a = attribute
+
+  if (a.validators?.length == 0) {
+    return true
+  }
+
+  if (Validator.enums.includes(a.name)) {
+    console.log('Hi')
+    if (!a.options) a.options = []
+    console.log('Hi')
+    return false
+  }
+
+  if (a.type === 'enum')
+    console.log({
+      attribute,
+      validations: a.validations,
+      what: a.validations?.every((validator) => validator.valid),
+    })
+  return a.validations?.every((validator) => validator.valid)
+}
+
+function close(items) {
+  if (focusedAttribute.value) {
+    focusedAttribute.value.validations = []
+  }
+  items.forEach((i) => {
+    if (Validator.requiresValues.includes(i)) {
+      const item = {
+        name: i,
+        valid: false,
+        value: null,
+      }
+      focusedAttribute.value.validations.push(item)
+    }
+  })
 }
 </script>
 <template>
@@ -33,10 +79,10 @@ function valid(attribute) {
           :key="attribute._id"
           :set="(isValid = valid(attribute))"
           @click="onFocus(attribute._id)"
-          v-for="(attribute, idx) of AttributeValidator.safeAttributes(entity)"
+          v-for="(attribute, idx) of Validator.safeAttributes(entity)"
           class="hover:cursor-pointer hover:bg-slate-300 border-2"
           :class="{
-            'bg-blue-200': focusedAttribute?._id == attribute._id,
+            'bg-blue-200': focusedAttribute?._id === attribute._id,
           }"
         >
           <td class="pl-1 text-center">
@@ -57,18 +103,20 @@ function valid(attribute) {
               v-model="attribute.name"
               class="text-gray-900 bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               :class="{
-                'text-green-600': isValid,
+                'text-green-600':
+                  isValid && focusedAttribute?._id !== attribute._id,
                 'text-red-600': !isValid,
               }"
             />
           </td>
           <td>
             <select
-              @change="notify"
               v-model="attribute.type"
+              @change="validateNewTypeChange(attribute)"
               class="bg-transparent border-0 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 hover:cursor-pointer"
               :class="{
-                'text-green-600': isValid,
+                'text-green-600':
+                  isValid && focusedAttribute?._id !== attribute._id,
                 'text-red-600': !isValid,
               }"
             >
@@ -96,9 +144,7 @@ function valid(attribute) {
     <div
       class="flex flex-1"
       v-if="focused == ''"
-    >
-      ss
-    </div>
+    ></div>
     <div
       class="flex flex-1 flex-col px-2"
       v-if="focusedAttribute"
@@ -113,19 +159,30 @@ function valid(attribute) {
         </div>
       </div>
       <div>
-        <select
-          multiple
-          v-model="focusedAttribute.validations"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        <multiselect
+          :multiple="true"
+          :close-on-select="false"
+          :clear-on-select="false"
+          placeholder="Select validations"
+          v-model="focusedAttribute.validators"
+          :options="Validator.optionalValidators[focusedAttribute.type]"
+          @close="close(focusedAttribute.validators, focusedAttribute)"
+        />
+        <div
+          class="flex flex-col"
+          v-for="val of focusedAttribute?.validations"
         >
-          <option
-            :value="dataType"
-            v-for="dataType of AttributeValidator[focusedAttribute.type]()"
-          >
-            {{ dataType }}
-          </option>
-        </select>
+          <label v-text="val.name"></label>
+          <input
+            type="text"
+            :name="val.name"
+            v-model="val.value"
+            :oninput="(e) => validate(e, val)"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
