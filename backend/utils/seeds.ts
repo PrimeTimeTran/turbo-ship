@@ -8,6 +8,7 @@ export interface Entity {
   showAttributeForm: boolean
   attributes: Attribute[]
 }
+
 export interface Attribute {
   name: string
   type: string

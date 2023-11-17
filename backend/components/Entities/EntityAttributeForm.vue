@@ -73,7 +73,7 @@ const attrRemove = (id) => {
           class="flex-auto p-4 rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100"
           :class="{
             'border-2': invalidName,
-            'border-red-200': invalidName,
+            'border-blue-500': invalidName,
             'border-opacity-100': invalidName,
           }"
         />

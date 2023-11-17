@@ -139,7 +139,7 @@ export const validationFields = {
     requiresValue: true,
   },
   'min-length': {
-    value: 'sosos',
+    value: null,
     requiresValue: true,
   },
   'max-length': {

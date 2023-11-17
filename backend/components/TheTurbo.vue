@@ -1,6 +1,7 @@
 <script setup>
 const { todos } = useTodos()
 </script>
+
 <template>
   <div class="p-16">
     <todos-container />

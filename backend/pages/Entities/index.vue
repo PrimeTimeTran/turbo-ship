@@ -1,7 +1,10 @@
 <script setup>
 import draggable from 'vuedraggable'
+
+const dragging = ref(false)
+const sorterView = ref(true)
 const { entities } = useEntities()
-const sorterView = ref(false)
+
 const toggleSortView = () => {
   sorterView.value = !sorterView.value
 }
@@ -20,9 +23,9 @@ const toggleSortView = () => {
         class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
       >
         <draggable
-          v-model="entities"
-          class="list-group"
           tag="ul"
+          :list="entities"
+          class="list-group"
         >
           <template #item="{ element: entity }">
             <li
@@ -33,9 +36,6 @@ const toggleSortView = () => {
             </li>
           </template>
         </draggable>
-        <pre>
-          {{ entities.map((e) => e.name) }}
-        </pre>
       </div>
       <div v-else>
         <div
@@ -43,7 +43,7 @@ const toggleSortView = () => {
           class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
         >
           <EntitiesEntity
-            :idx="idx +1"
+            :idx="idx + 1"
             :entity="entity"
           />
         </div>

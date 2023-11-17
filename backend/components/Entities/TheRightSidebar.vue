@@ -1,11 +1,9 @@
 <script setup>
 import { useClipboard } from '@vueuse/core'
 
-const props = defineProps(['entities'])
+const { entities } = useEntities()
 
-const entities = ref(props.entities)
-
-const source = ref('Hello')
+const source = ref('')
 const { text, copy, copied } = useClipboard({ source })
 
 const copyer = () => {

@@ -32,9 +32,6 @@ export function useTodos() {
   }
 
   const remove = (id: String) => {
-    console.log({
-      id,
-    })
     const idx = todos.value.findIndex((todo) => todo.id == id)
     if (idx !== -1) {
       todos.value.splice(idx, 1)
@@ -69,7 +66,7 @@ export function useTodos() {
 const seedData: Todo[] = [
   {
     id: '1',
-    status: 'done',
+    status: 'undone',
     firstName: 'Harry',
     lastName: 'Potter',
     house: 'Gryffindor',
@@ -90,7 +87,7 @@ const seedData: Todo[] = [
   },
   {
     id: '4',
-    status: 'done',
+    status: 'undone',
     firstName: 'Luna',
     lastName: 'Lovegood',
     house: 'Ravenclaw',

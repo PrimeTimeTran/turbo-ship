@@ -40,7 +40,7 @@ const getType = (tab) => {
 
 const invalid = (val) => {
   return (
-    validationFields[val].requiresValue && validationFields[val].value == null
+    validationFields[val]?.requiresValue && validationFields[val]?.value == null
   )
 }
 </script>
@@ -113,7 +113,7 @@ const invalid = (val) => {
             </thead>
             <tbody class="overflow-auto scrollbar-hide">
               <tr
-                v-for="val of selectedValidations"
+                v-for="val of validationFields || [{}, {}, {}, {}, {}, {}, {}]"
                 class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
               >
                 <td
@@ -126,7 +126,7 @@ const invalid = (val) => {
                 </td>
                 <td>
                   <input
-                    v-if="validationFields[val].requiresValue"
+                    v-if="validationFields[val]?.requiresValue"
                     class="bg-transparent rounded border-2 border-opacity-0 hover:border-opacity-100 px-2"
                     :class="{
                       'border-gray-400': !invalid(val),
@@ -143,8 +143,10 @@ const invalid = (val) => {
                 >
                   <span
                     v-text="
-                      !validationFields[val].requiresValue ||
-                      validationFields[val].value != null
+                      `${val}` !== '[object Object]'
+                        ? !validationFields[val]?.requiresValue ||
+                          validationFields[val]?.value != null
+                        : ''
                     "
                   />
                 </td>
