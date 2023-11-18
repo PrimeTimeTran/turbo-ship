@@ -211,13 +211,13 @@ const inputClasses =
             }"
           />
           <div
-            v-text="attributeTypesWithLabels[newAttribute.type].label"
+            v-text="Validator.labeledTypes[newAttribute.type].label"
             class="mt-5 font-bold text-blue-400"
           />
           <div class="flex flex-col flex-grow border rounded shadow my-2">
             <label
               :key="fieldType"
-              v-for="fieldType of attributeTypes"
+              v-for="fieldType of Validator.types"
               class="px-2 py-1 w-full text-sm odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
             >
               <input
@@ -227,7 +227,7 @@ const inputClasses =
                 :checked="newAttribute.type === fieldType"
                 @click="() => onTypeSelect(fieldType)"
               />
-              <span v-text="attributeTypesWithLabels[fieldType].label" />
+              <span v-text="Validator.labeledTypes[fieldType].label" />
             </label>
           </div>
 
@@ -317,7 +317,7 @@ const inputClasses =
                     <td>
                       <span
                         class="mx-2 font-semibold"
-                        v-text="attributeTypesWithLabels[attr.type].label"
+                        v-text="Validator.labeledTypes[attr.type].label"
                       />
                     </td>
                     <td class="pr-2">
@@ -332,7 +332,6 @@ const inputClasses =
               </tbody>
             </table>
           </div>
-          <!-- <span v-text="attributeTypesWithLabels[attr.type].label" /> -->
           <FormKit
             type="submit"
             :classes="{

@@ -17,6 +17,10 @@ const invalidName = ref(false)
 const entity = ref(props.entity)
 
 const onAddAttribute = () => {
+  const gogo = new EntityBuilder(attribute)
+  console.log({
+    gogo,
+  })
   if (!validAttribute.value) return
   invalidName.value = false
   const item = {
@@ -103,7 +107,7 @@ const relatedEntity = computed(
       >
         <div
           :key="dataType"
-          v-for="dataType of attributeTypes"
+          v-for="dataType of Validator.types"
           class="flex flex-grow odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
         >
           <label class="text-sm rounded p-2 w-full">
@@ -121,7 +125,7 @@ const relatedEntity = computed(
               v-model="attribute.type"
               :checked="dataType === attribute.type"
             />
-            {{ attributeTypesWithLabels[dataType]?.label }}
+            {{ Validator.labeledTypes[dataType]?.label }}
           </label>
         </div>
       </div>
@@ -182,7 +186,7 @@ const relatedEntity = computed(
           {{ attribute.relatedEntity }}
         </div>
         <h1 class="mb-2 text-lg">Relations</h1>
-        <label v-text="Validator.labeledAttributes[attribute?.type].label" />
+        <label v-text="Validator.labeledTypes[attribute?.type].label" />
         <select
           v-model="attribute.relatedEntity"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"

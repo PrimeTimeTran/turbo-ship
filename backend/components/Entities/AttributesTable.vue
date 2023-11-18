@@ -16,7 +16,7 @@ const props = defineProps(['entity'])
         <tbody>
           <tr
             :key="attribute"
-            v-for="(attribute, idx) of Validator.safeAttributes(entity)"
+            v-for="(attribute, idx) of Validator.attributes(entity)"
             class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 hover:cursor-pointer border-2"
           >
             <td class="text-center">
@@ -46,9 +46,9 @@ const props = defineProps(['entity'])
                 <option
                   :key="dataType"
                   :value="dataType"
-                  v-for="dataType of attributeTypes"
+                  v-for="dataType of Validator.types"
                 >
-                  {{ attributeTypesWithLabels[dataType]?.label }}
+                  {{ Validator.labeledTypes[dataType]?.label }}
                 </option>
               </select>
             </td>

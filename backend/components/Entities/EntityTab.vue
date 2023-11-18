@@ -76,7 +76,7 @@ function close(items) {
           :key="attribute._id"
           :set="(isValid = valid(attribute))"
           @click="onFocus(attribute._id)"
-          v-for="(attribute, idx) of Validator.safeAttributes(entity)"
+          v-for="(attribute, idx) of Validator.attributes(entity)"
           class="hover:cursor-pointer hover:bg-slate-300 border-2"
           :class="{
             'bg-blue-200': focusedAttribute?._id === attribute._id,
@@ -120,9 +120,9 @@ function close(items) {
               <option
                 :key="dataType"
                 :value="dataType"
-                v-for="dataType of attributeTypes"
+                v-for="dataType of Validator.types"
               >
-                {{ attributeTypesWithLabels[dataType]?.label }}
+                {{ Validator.labeledTypes[dataType]?.label }}
               </option>
             </select>
           </td>

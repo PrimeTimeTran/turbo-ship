@@ -83,13 +83,13 @@ export class Validator {
   //   return val.split(',').length > 0
   // }
 
-  static safeAttributes(entity: Entity) {
+  static attributes(entity: Entity) {
     return entity.attributes.filter(
       (a) => !protectedAttributes.includes(a.name)
     )
   }
 
-  static labeledAttributes = {
+  static labeledTypes = {
     string: {
       value: 'string',
       label: 'string',
@@ -143,6 +143,22 @@ export class Validator {
       label: 'many-to-many',
     },
   }
+
+  static types = [
+    'string',
+    'number',
+    'decimal',
+    'integer',
+    'boolean',
+    'enumeratorMulti',
+    'enumerator',
+    'date',
+    'dateTime',
+    'otm',
+    'mto',
+    'oto',
+    'mtm',
+  ]
 }
 
 interface Entity {
