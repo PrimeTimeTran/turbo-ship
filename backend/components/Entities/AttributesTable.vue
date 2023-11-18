@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['entity'])
+const props = defineProps(['entity', 'onFocus', 'focused'])
 </script>
 <template>
   <div class="flex flex-1 h-full">
@@ -10,7 +10,7 @@ const props = defineProps(['entity'])
             <th class="text-gray-500 text-center pl-2 mx-2 px-4">Valid</th>
             <th class="text-gray-500 text-left">Name</th>
             <th class="text-gray-500 text-left">Type</th>
-            <th class="text-gray-500">Focus</th>
+            <th class="text-gray-500">Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@ const props = defineProps(['entity'])
               <span v-text="`${idx + 1}. `" />
               <input
                 v-model="attribute.name"
-                class="text-gray-900 bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
             </td>
             <td>
@@ -48,15 +48,18 @@ const props = defineProps(['entity'])
                   :value="dataType"
                   v-for="dataType of Validator.types"
                 >
-                  {{ Validator.labeledTypes[dataType]?.label }}
+                  <span v-text="Validator.labeledTypes[dataType]?.label" />
                 </option>
               </select>
             </td>
-            <td>
+            <td @click="onFocus(attribute._id)">
               <font-awesome-icon
                 class="px-2"
                 color="grey"
-                icon="fa-solid fa-circle-info"
+                icon="fa-solid fa-pen-to-square"
+                :class="{
+                  'text-blue-500': focused === attribute._id,
+                }"
               />
             </td>
           </tr>

@@ -39,8 +39,6 @@ import {
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons'
 
-// import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'
-
 library.add(
   faCode,
   faBlog,

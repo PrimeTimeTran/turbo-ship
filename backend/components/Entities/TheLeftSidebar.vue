@@ -65,7 +65,7 @@ const submit = () => {
   const _id = faker.database.mongodbObjectId()
   entity._id = _id
   const clonedEntity = _.cloneDeep(entity)
-
+  notify(entity.name + ' added')
   addEntity(clonedEntity)
 }
 const addAttribute = () => {

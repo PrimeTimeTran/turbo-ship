@@ -29,9 +29,7 @@ function valid(attribute) {
   }
 
   if (Validator.enumTypes.includes(a.name)) {
-    console.log('Hi')
     if (!a.options) a.options = []
-    console.log('Hi')
     return false
   }
 

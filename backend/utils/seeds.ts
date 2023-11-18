@@ -47,6 +47,7 @@ export const original: Entity[] = [
         _id: '077cb5ead63ef967d1adcc2c',
         validators: [],
         validations: [],
+        options: 'open,closed,pending',
       },
       {
         name: 'owner',
@@ -61,6 +62,7 @@ export const original: Entity[] = [
         _id: '7f3711fe5bcb2efde166c758',
         validators: [],
         validations: [],
+        options: 'owner,admin,staff,customer',
       },
       {
         validators: [],
