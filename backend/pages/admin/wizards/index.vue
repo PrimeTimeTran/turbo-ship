@@ -77,6 +77,7 @@ const tabs = [
             </div>
           </div>
           <div
+            :key="tab"
             @click="() => changeTab(tab.idx)"
             v-for="tab of tabs"
             class="p-4 border-b-2 border-transparent rounded-t-lg opacity-75 hover:opacity-100"

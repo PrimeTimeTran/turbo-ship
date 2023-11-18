@@ -13,9 +13,6 @@ const focusedAttribute = computed(() => {
 })
 
 function validateNewTypeChange(attr) {
-  console.log({
-    attr,
-  })
   attr.validations = []
   attr.validations.push({
     name: 'enumerator',
@@ -31,7 +28,7 @@ function valid(attribute) {
     return true
   }
 
-  if (Validator.enums.includes(a.name)) {
+  if (Validator.enumTypes.includes(a.name)) {
     console.log('Hi')
     if (!a.options) a.options = []
     console.log('Hi')
@@ -107,7 +104,7 @@ function close(items) {
                   isValid && focusedAttribute?._id !== attribute._id,
                 'text-red-600': !isValid,
               }"
-            />
+            /><!-- Nice character... ≈ -->≈
           </td>
           <td>
             <select
@@ -121,6 +118,7 @@ function close(items) {
               }"
             >
               <option
+                :key="dataType"
                 :value="dataType"
                 v-for="dataType of attributeTypes"
               >
@@ -169,6 +167,7 @@ function close(items) {
           @close="close(focusedAttribute.validators, focusedAttribute)"
         />
         <div
+          :key="val"
           class="flex flex-col"
           v-for="val of focusedAttribute?.validations"
         >

@@ -6,7 +6,10 @@ const props = defineProps(['entity', 'focusedAttribute', 'validators'])
     <h1>Focused</h1>
     {{ focusedAttribute }}
     <h3>loop</h3>
-    <div v-for="val of focusedAttribute.validators.value">
+    <div
+      :key="val"
+      v-for="val of focusedAttribute.validators.value"
+    >
       {{ val }}
     </div>
     <h1>Validators</h1>

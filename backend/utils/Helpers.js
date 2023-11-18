@@ -3,7 +3,7 @@ export function validate(e, val) {
   if (input.length == 0) {
     val.valid = false
   }
-  const isEnum = Validator.enums.includes(val.name)
+  const isEnum = Validator.enumTypes.includes(val.name)
   if (isEnum) {
     const result = input.split(',').length > 0
     if (result) {

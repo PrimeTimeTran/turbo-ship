@@ -10,6 +10,10 @@
 </template>
 
 <script setup>
+// Enable global dark
+// import { useDark, useToggle } from '@vueuse/core'
+// const isDark = useDark()
+
 useHead({
   link: [
     {

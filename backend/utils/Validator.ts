@@ -1,5 +1,6 @@
 export class Validator {
-  static enums = ['enumerator', 'enumeratorMulti', 'enumerator-multi']
+  static enumTypes = ['enumerator', 'enumeratorMulti', 'enumerator-multi']
+  static relationTypes = ['otm', 'mto', 'oto', 'mtm']
   static optionalValidators = {
     boolean: [],
     date: ['required', 'unique'],
@@ -86,6 +87,61 @@ export class Validator {
     return entity.attributes.filter(
       (a) => !protectedAttributes.includes(a.name)
     )
+  }
+
+  static labeledAttributes = {
+    string: {
+      value: 'string',
+      label: 'string',
+    },
+    number: {
+      value: 'number',
+      label: 'number',
+    },
+    decimal: {
+      value: 'decimal',
+      label: 'decimal',
+    },
+    integer: {
+      value: 'integer',
+      label: 'integer',
+    },
+    enumeratorMulti: {
+      value: 'enumeratorMulti',
+      label: 'enumerator-multi',
+    },
+    boolean: {
+      value: 'boolean',
+      label: 'boolean',
+    },
+    enumerator: {
+      value: 'enumerator',
+      label: 'enumerator',
+    },
+    date: {
+      value: 'date',
+      label: 'date',
+    },
+    dateTime: {
+      value: 'dateTime',
+      label: 'date-time',
+    },
+    otm: {
+      value: 'otm',
+      label: 'one-to-many',
+    },
+    mto: {
+      value: 'mto',
+      label: 'many-to-one',
+    },
+    oto: {
+      value: 'oto',
+      label: 'one-to-one',
+    },
+    mtm: {
+      value: 'mtm',
+      label: 'many-to-many',
+    },
   }
 }
 

@@ -12,18 +12,20 @@ const { entities } = useEntities()
       <div v-if="store.view == 'Relationships'">
         <h1 class="text-red-300 text-lg 2">Relationships</h1>
       </div>
+
       <div
         v-else-if="store.view == 'Entities'"
-        class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
+        class="opacity-[.7] hover:opacity-90"
       >
         <EntitiesEntity
-          v-for="entity of entities"
+          :key="entity._id"
           :entity="entity"
+          v-for="entity of entities"
         />
       </div>
       <div
         v-else-if="store.view == 'Sorter'"
-        class="opacity-[.7] hover:opacity-90 bg-slate-50 odd:bg-zinc-50"
+        class="opacity-[.7] hover:opacity-90"
       >
         <draggable
           tag="ul"

@@ -21,7 +21,7 @@ export function generateNewIDs(entities) {
   return newEntities
 }
 
-export function addValidators(entities) {
+export function addValidations(entities) {
   const newEntities = []
   entities.forEach((e) => {
     if (e.attributes.length == 0) {
@@ -39,6 +39,9 @@ export function addValidators(entities) {
       a._id = faker.database.mongodbObjectId()
       if (!a.validators) {
         a.validators = []
+      }
+      if (!a.validations) {
+        a.validations = []
       }
     })
     newEntities.push(e)

@@ -1,19 +1,8 @@
 <script setup>
 const { entities } = useEntities()
-const closed = ref(false)
-
-const onCollapse = () => {
-  const newValue = !closed.value
-  entities.value.map((e) => {
-    e.editing = newValue
-    e.showAttributes = newValue
-    e.showAttributeForm = newValue
-  })
-  closed.value = !closed.value
-}
 </script>
 <template>
-  <div class="sticky top-0 bg-white shadow p-2 z-10">
+  <div class="sticky top-0 bg-white shadow py-1 p-2 z-10">
     <div class="flex p-1 justify-between items-center">
       <div class="text-md">
         Entities
@@ -22,74 +11,59 @@ const onCollapse = () => {
           class="text-gray-400"
         />
       </div>
-      <div class="flex flex-row justify-end flex-wrap">
-        <div
-          class="mr-1"
-          v-for="(e, idx) of entities"
+      <div
+        role="group"
+        class="align-middle items-center text-center ml-6 rounded-md"
+      >
+        <button
+          type="button"
+          @click="store.view = 'Sorter'"
+          class="rounded-l-lg border px-4 py-1 hover:bg-gray-100 text-gray-400"
         >
-          <a
-            class="text-sm hover:bg-gray-100 rounded py-1 px-2"
-            v-text="idx + 1 + `. ${e.name} (${e.attributes.length - 1})`"
-            :href="`/entities#${e.name}-${e._id}`"
-          ></a>
-        </div>
+          Sort
+          <font-awesome-icon
+            class="ml-1 hover:bg-gray-100 text-gray-400"
+            icon="fa-solid fa-sort"
+          />
+        </button>
+
+        <button
+          type="button"
+          @click="store.view = 'Entities'"
+          class="border-t border-b border px-4 py-1 hover:bg-gray-100 text-gray-400"
+        >
+          Entities
+          <font-awesome-icon
+            icon="fa-solid fa-cubes"
+            class="ml-1 hover:bg-gray-100 text-gray-400"
+          />
+        </button>
+        <button
+          type="button"
+          class="rounded-r-md border px-4 py-1 hover:bg-gray-100 text-gray-400"
+          @click="store.view = 'Relationships'"
+        >
+          <u>R</u>elationships
+          <font-awesome-icon
+            class="ml-1 hover:bg-gray-100 text-gray-400"
+            color="grey"
+            icon="fa-solid fa-database"
+          />
+        </button>
       </div>
     </div>
-
-    <div
-      role="group"
-      class="align-middle items-center text-center ml-6 rounded-md"
-    >
-      <button
-        type="button"
-        @click="store.view = 'Sorter'"
-        class="rounded-l-lg border px-4 py-2 hover:bg-gray-100 text-gray-400"
+    <div class="flex flex-row justify-end flex-wrap">
+      <div
+        :key="e._id"
+        class="mr-1"
+        v-for="(e, idx) of entities"
       >
-        Sort
-        <font-awesome-icon
-          class="ml-1 hover:bg-gray-100 text-gray-400"
-          icon="fa-solid fa-sort"
-        />
-      </button>
-      <button
-        type="button"
-        @click="
-          () => {
-            store.view = 'Entities'
-          }
-        "
-        class="border-t border-b border px-4 py-2 hover:bg-gray-100 text-gray-400"
-      >
-        Collapse
-        <font-awesome-icon
-          color="grey"
-          class="ml-1 hover:bg-gray-100 text-gray-400"
-          icon="fa-solid fa-square-minus"
-        />
-      </button>
-      <button
-        type="button"
-        @click="store.view = 'Entities'"
-        class="border-t border-b border px-4 py-2 hover:bg-gray-100 text-gray-400"
-      >
-        Entities
-        <font-awesome-icon
-          icon="fa-solid fa-cubes"
-          class="ml-1 hover:bg-gray-100 text-gray-400"
-        />
-      </button>
-      <button
-        type="button"
-        class="rounded-r-md border px-4 py-2 hover:bg-gray-100 text-gray-400"
-        @click="store.view = 'Relationships'"
-      >
-        <u>R</u>elationships
-        <font-awesome-icon
-          class="ml-1 hover:bg-gray-100 text-gray-400"
-          color="grey"
-          icon="fa-solid fa-database"
-        />
-      </button>
+        <a
+          class="text-sm hover:bg-gray-100 rounded py-1 px-2"
+          v-text="idx + 1 + `. ${e.name} (${e.attributes.length - 1})`"
+          :href="`/entities#${e.name}-${e._id}`"
+        ></a>
+      </div>
     </div>
   </div>
 </template>

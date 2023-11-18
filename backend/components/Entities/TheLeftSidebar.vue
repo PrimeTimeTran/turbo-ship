@@ -116,7 +116,12 @@ const inputClasses =
         class="validation-errors"
         v-if="messages.length"
       >
-        <li v-for="message in messages">{{ message }}</li>
+        <li
+          :key="message"
+          v-for="message in messages"
+        >
+          {{ message }}
+        </li>
       </ul>
       <FormKit
         id="form"
@@ -211,6 +216,7 @@ const inputClasses =
           />
           <div class="flex flex-col flex-grow border rounded shadow my-2">
             <label
+              :key="fieldType"
               v-for="fieldType of attributeTypes"
               class="px-2 py-1 w-full text-sm odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
             >
@@ -295,6 +301,7 @@ const inputClasses =
                   validation-label="At least 1 attribute "
                 >
                   <tr
+                    :key="attr"
                     v-for="attr of attributes"
                     class="full-width-row odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8"
                   >

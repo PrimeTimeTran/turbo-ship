@@ -11,8 +11,6 @@ export interface Entity {
   label: string
   plural: string
   pluralSM: string
-  showAttributes: boolean
-  showAttributeForm: boolean
   attributes: Attribute[]
   relationships?: Relationship[]
 }

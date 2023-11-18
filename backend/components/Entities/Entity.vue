@@ -1,15 +1,22 @@
 <script setup>
 const props = defineProps(['entity'])
+const entity = ref(props.entity)
+
+const showRelationships = ref(false)
+const toggleRelationships = () => {
+  showRelationships.value = !showRelationships.value
+}
 </script>
 <template>
   <section
     :key="entity._id"
     :id="`${entity.name}-${entity._id}`"
-    class="mb-1 rounded border-2 border-slate-200 border-opacity-30 hover:border-opacity-100 p-2 mt-2 shadow"
-    :class="{
-      'bg-opacity-100': entity.showAttributeForm || entity.showAttributes,
-    }"
+    class="p-2 m-2 rounded border even:bg-slate-100 odd:bg-zinc-100 shadow"
   >
-    <EntitiesEntityBody :entity="entity" />
+    <EntitiesEntityTabs
+      :entity="entity"
+      :toggleRelationships="toggleRelationships"
+    />
+    <EntitiesEntityRelationships :showRelationships="showRelationships" />
   </section>
 </template>

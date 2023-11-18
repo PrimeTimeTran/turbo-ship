@@ -365,7 +365,8 @@ function getBookAppearancesColor(field, key) {
           >
             <div class="flex justify-center gap-1">
               <span
-                v-for="(item, idx) of wizard.topSpells"
+                :key="item"
+                v-for="item of wizard.topSpells"
                 v-text="item"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white"
                 :class="getTopSpellsColor('bg', item)"
@@ -378,7 +379,8 @@ function getBookAppearancesColor(field, key) {
           >
             <div class="flex justify-center gap-1">
               <span
-                v-for="(item, idx) of wizard.bookAppearances"
+                :key="item"
+                v-for="item of wizard.bookAppearances"
                 v-text="item"
                 class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-white"
                 :class="getBookAppearancesColor('bg', item)"
