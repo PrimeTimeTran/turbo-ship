@@ -47,7 +47,7 @@ const collapseText = () => {
                 <template #item="{ element: attribute }">
                   <li
                     :key="attribute._id"
-                    class="rounded m-1 p-2 odd:bg-zinc-50 even: bg-slate-50 border"
+                    class="rounded m-1 p-2 odd:bg-zinc-50 even: bg-slate-50 border shadow hover:shadow-lg"
                   >
                     <span v-text="attribute.name" />
                   </li>

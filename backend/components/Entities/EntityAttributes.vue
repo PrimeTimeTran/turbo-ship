@@ -132,7 +132,7 @@ const relatedOptions = computed(() =>
       :focused="focused"
       :onFocus="onFocus"
     />
-    <div class="flex flex-2 flex-col px-2">
+    <div class="flex flex-3 flex-col px-2">
       <label class="font-bold text-gray-500">Name</label>
       <input
         ref="nameRef"
@@ -144,7 +144,7 @@ const relatedOptions = computed(() =>
       <label class="mt-6 font-bold text-gray-500">Type</label>
       <div
         :id="'attributeType' + entity._id"
-        class="flex-auto rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide shadow-md"
+        class="flex-auto rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide hover:shadow-lg"
       >
         <div
           :key="dataType"
@@ -187,6 +187,9 @@ const relatedOptions = computed(() =>
       </div>
       <button
         type="submit"
+        v-if="
+          !editingAttribute || Validator.relationTypes.includes(attribute.type)
+        "
         @click="onAdd"
         :disabled="!valid"
         class="mt-2 border-2 border-gray-300 py-1 px-2 rounded w-full"
@@ -201,7 +204,7 @@ const relatedOptions = computed(() =>
         <span v-text="editingAttribute ? 'Save' : 'Add'" />
       </button>
     </div>
-    <div class="flex flex-2 px-2">
+    <div class="flex flex-3 px-2">
       <div
         class="flex flex-col space-y-4"
         v-if="Validator.enumTypes.includes(attribute.type)"
@@ -210,7 +213,7 @@ const relatedOptions = computed(() =>
         <label>Options:</label>
         <input
           type="text"
-          class="rounded"
+          class="rounded-lg border-gray-300 dark:border-gray-600 dark:placeholder-gray-400 hover:shadow-lg"
           v-model="attribute.options"
         />
         <div v-if="attribute.options">

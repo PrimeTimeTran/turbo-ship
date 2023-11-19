@@ -11,7 +11,7 @@ const onRemove = (id) => {
 }
 </script>
 <template>
-  <div class="flex flex-3 h-full">
+  <div class="flex flex-5 h-full hover:shadow-lg">
     <div class="flex flex-col w-fit overflow-auto scrollbar-hide h-5/6">
       <table class="overflow-auto">
         <thead>
@@ -34,7 +34,7 @@ const onRemove = (id) => {
               <input
                 v-model="attribute.name"
                 class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
+              />≈
             </td>
             <td>
               <EntitiesRelationSelect :attribute="attribute" />
@@ -57,8 +57,8 @@ const onRemove = (id) => {
               @click="onRemove(attribute._id)"
             >
               <font-awesome-icon
-                color="red"
                 icon="fa-solid fa-circle-xmark"
+                class="text-red-400"
               />
             </td>
           </tr>

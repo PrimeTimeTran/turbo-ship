@@ -11,16 +11,6 @@ const focusedAttribute = computed(() => {
   const item = props.entity.attributes.find((a) => a._id === focused.value)
   return item
 })
-
-function validateNewTypeChange(attr) {
-  attr.validations = []
-  attr.validations.push({
-    name: 'enumerator',
-    valid: false,
-    value: [],
-  })
-}
-
 function valid(attribute) {
   const a = attribute
 
@@ -41,7 +31,6 @@ function valid(attribute) {
     })
   return a.validations?.every((validator) => validator.valid)
 }
-
 function close(items) {
   if (focusedAttribute.value) {
     focusedAttribute.value.validations = []
@@ -63,10 +52,9 @@ function close(items) {
     <table class="flex-1 overflow-auto scrollbar-hide w-100">
       <thead>
         <tr>
-          <th class="text-center pl-2 mx-2 px-4">Valid</th>
-          <th class="text-left">Name</th>
-          <th class="text-left">Type</th>
-          <th class="">Focus</th>
+          <th class="text-left text-slate-500">Name</th>
+          <th class="text-left text-slate-500">Type</th>
+          <th class="text-slate-500">Focus</th>
         </tr>
       </thead>
       <tbody class="overflow-auto scrollbar-hide over rounded">
@@ -75,23 +63,11 @@ function close(items) {
           :set="(isValid = valid(attribute))"
           @click="onFocus(attribute._id)"
           v-for="(attribute, idx) of Validator.attributes(entity)"
-          class="hover:cursor-pointer hover:bg-slate-300 border-2"
+          class="hover:cursor-pointer border-2 odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
           :class="{
             'bg-blue-200': focusedAttribute?._id === attribute._id,
           }"
         >
-          <td class="pl-1 text-center">
-            <font-awesome-icon
-              v-if="isValid"
-              color="green"
-              icon="fa-regular fa-circle-check"
-            />
-            <font-awesome-icon
-              v-else
-              color="red"
-              icon="fa-solid fa-circle-xmark"
-            />
-          </td>
           <td class="flex flex-row items-center pl-1">
             <span v-text="`${idx + 1}. `" />
             <input
@@ -129,10 +105,12 @@ function close(items) {
       v-if="focusedAttribute"
     >
       <div class="flex flex-row justify-between mb-2">
-        <div class="font-medium">{{ focusedAttribute.name }}</div>
+        <div class="font-medium text-slate-500">
+          {{ focusedAttribute.name }}
+        </div>
         <div
           for="countries_multiple"
-          class="font-medium text-gray-900 dark:text-white"
+          class="font-medium text-slate-500 dark:text-white"
         >
           Select an option
         </div>

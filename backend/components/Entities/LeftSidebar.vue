@@ -85,7 +85,7 @@ const addAttribute = (e) => {
     _id: faker.database.mongodbObjectId(),
   }
   entity.attributes.push(attribute)
-  newAttribute.name = ''
+  // newAttribute.name = ''
   document.getElementById('attributeForm').focus()
 }
 const attrRemove = (id) => {
@@ -141,7 +141,7 @@ const inputClasses =
           <div class="text-md font-bold text-slate-500">
             New Entity(<span v-text="entities.length" />)
           </div>
-          <div class="flex flex-col rounded border shadow top">
+          <div class="flex flex-col rounded border shadow top hover:shadow-lg">
             <div class="p-2">
               <FormKit
                 autofocus
@@ -202,7 +202,9 @@ const inputClasses =
               />
             </div>
           </div>
-          <div class="flex flex-col overflow-auto scrollbar-hide middle">
+          <div
+            class="flex flex-col overflow-auto scrollbar-hide middle hover:shadow-lg"
+          >
             <div class="text-md font-bold mt-5 text-slate-500">
               New Attribute(<span v-text="entity.attributes.length" />)
             </div>
@@ -266,7 +268,7 @@ const inputClasses =
               </div>
               <button
                 @click="addAttribute"
-                class="w-full flex text-center rounded py-2 justify-center text-white font-bold"
+                class="w-full flex text-center rounded py-2 justify-center text-white font-bold hover:shadow-lg"
                 v-text="'Add'"
                 :class="{
                   'bg-gray-300': !attributeValid,
@@ -319,8 +321,8 @@ const inputClasses =
                           @click="attrRemove(attr._id)"
                         >
                           <font-awesome-icon
-                            color="red"
                             icon="fa-solid fa-circle-xmark"
+                            class="text-red-400"
                           />
                         </td>
                         <td>

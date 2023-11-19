@@ -9,7 +9,7 @@ const { removeEntity } = useEntities()
         :id="entity._id"
         v-model="entity.name"
         placeholder="customer, transaction, statement..."
-        class="flex flex-grow py-1 px-2 text-md rounded-lg border border-slate-200 bg-white font-bold text-blue-500 dark:text-blue-500 hover:bg-slate-100"
+        class="flex flex-grow py-1 px-2 text-md rounded-lg border border-slate-200 bg-white font-bold text-blue-500 dark:text-blue-500 hover:shadow-lg"
       />
     </div>
     <div
@@ -22,7 +22,7 @@ const { removeEntity } = useEntities()
         <button
           type="button"
           @click="removeEntity(entity._id)"
-          class="rounded-l-lg border-0 px-4 py-1 hover:bg-red-50 text-red-500 hover:border"
+          class="rounded-l-lg border-0 px-4 py-1 hover:bg-red-50 text-red-400 hover:border"
         >
           Remove
         </button>
