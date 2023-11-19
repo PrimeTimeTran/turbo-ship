@@ -83,7 +83,7 @@ const selectedValidations = ref([])
     >
       <EntitiesEntityToolbar :entity="entity" />
     </div>
-    <div v-if="store.collapsed != 'collapsed'">
+    <div :class="{ hidden: store.collapsed }">
       <div
         role="tabpanel"
         :id="'new-' + entityId"

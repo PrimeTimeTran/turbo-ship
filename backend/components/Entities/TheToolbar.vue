@@ -1,5 +1,13 @@
 <script setup>
 const { entities } = useEntities()
+function collapse() {
+  store.view = 'composer'
+  store.collapsed = !store.collapsed
+}
+
+const isFocused = (name) => {
+  return store.view === name
+}
 </script>
 <template>
   <div class="sticky top-0 bg-white shadow py-1 p-2 z-10">
@@ -17,24 +25,30 @@ const { entities } = useEntities()
       >
         <button
           type="button"
-          @click="store.view = 'Sorter'"
+          @click="store.view = 'sorter'"
           class="rounded-l-lg border px-4 py-1 hover:bg-gray-100 text-gray-400"
         >
           Sort
           <font-awesome-icon
-            class="ml-1 hover:bg-gray-100 text-gray-400"
             icon="fa-solid fa-sort"
+            class="ml-1 hover:bg-gray-100 text-gray-400"
           />
         </button>
 
         <button
           type="button"
-          @click="store.view = 'Entities'"
+          @click="collapse"
           class="border-t border-b border px-4 py-1 hover:bg-gray-100 text-gray-400"
         >
-          Entities
+          Collapse
           <font-awesome-icon
-            icon="fa-solid fa-cubes"
+            v-if="store.collapsed"
+            icon="fa-solid fa-caret-down"
+            class="ml-1 hover:bg-gray-100 text-gray-400"
+          />
+          <font-awesome-icon
+            v-else
+            icon="fa-solid fa-caret-up"
             class="ml-1 hover:bg-gray-100 text-gray-400"
           />
         </button>
@@ -43,22 +57,53 @@ const { entities } = useEntities()
           @click="store.stateViewer = store.stateViewer ? false : true"
           class="border-t border-b border px-4 py-1 hover:bg-gray-100 text-gray-400"
         >
-          Toggle Store
+          Store
           <font-awesome-icon
-            icon="fa-solid fa-cubes"
+            icon="fa-solid fa-store"
             class="ml-1 hover:bg-gray-100 text-gray-400"
           />
         </button>
         <button
           type="button"
-          class="rounded-r-md border px-4 py-1 hover:bg-gray-100 text-gray-400"
-          @click="store.view = 'Relationships'"
+          @click="store.view = 'composer'"
+          class="border-t border-b border px-4 py-1 hover:bg-gray-100"
+          :class="{
+            'text-gray-400': !isFocused('composer'),
+            'text-blue-500': isFocused('composer'),
+            'border-blue-500': isFocused('composer'),
+          }"
+        >
+          Entities
+          <font-awesome-icon
+            icon="fa-solid fa-cubes"
+            class="ml-1 hover:bg-gray-100"
+            :class="{
+              'text-gray-400': !isFocused('composer'),
+              'text-blue-500': isFocused('composer'),
+              'border-blue-500': isFocused('composer'),
+            }"
+          />
+        </button>
+        <button
+          type="button"
+          class="rounded-r-md border px-4 py-1 hover:bg-gray-100"
+          @click="store.view = 'relationships'"
+          :class="{
+            'text-gray-400': !isFocused('relationships'),
+            'text-blue-500': isFocused('relationships'),
+            'border-blue-500': isFocused('relationships'),
+          }"
         >
           <u>R</u>elationships
           <font-awesome-icon
-            class="ml-1 hover:bg-gray-100 text-gray-400"
             color="grey"
+            class="ml-1 hover:bg-gray-100"
             icon="fa-solid fa-database"
+            :class="{
+              'text-gray-400': !isFocused('relationships'),
+              'text-blue-500': isFocused('relationships'),
+              'border-blue-500': isFocused('relationships'),
+            }"
           />
         </button>
       </div>
