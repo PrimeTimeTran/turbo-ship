@@ -42,11 +42,12 @@ const isFocused = (name) => {
           />
         </button>
         <button
+          id="actionStore"
           type="button"
           @click="store.stateViewer = store.stateViewer ? false : true"
           class="border-t border-b border px-4 py-1 hover:bg-gray-100 text-gray-400"
         >
-          Store
+          S<u>t</u>ore
           <font-awesome-icon
             icon="fa-solid fa-store"
             class="ml-1 hover:bg-gray-100 text-gray-400"
@@ -121,6 +122,8 @@ const isFocused = (name) => {
         </button>
         <button
           type="button"
+          id="viewFeedback"
+          @click="store.view = 'feedback'"
           class="border px-4 py-1 hover:bg-gray-100 text-slate-500"
         >
           <u>F</u>eedback
@@ -131,6 +134,8 @@ const isFocused = (name) => {
         </button>
         <button
           type="button"
+          id="viewHelp"
+          @click="store.view = 'help'"
           class="rounded-r-md border px-4 py-1 hover:bg-gray-100 text-slate-500"
         >
           <u>H</u>elp

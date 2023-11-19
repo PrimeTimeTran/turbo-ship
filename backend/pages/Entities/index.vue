@@ -1,5 +1,6 @@
 <script setup>
 import draggable from 'vuedraggable'
+const props = defineProps('entities')
 const { entities } = useEntities()
 </script>
 
@@ -10,25 +11,33 @@ const { entities } = useEntities()
       class="col-span-9 lg:col-span-7 overflow-auto scrollbar-hide flex flex-col"
     >
       <EntitiesTheToolbar :entities="entities" />
-      <EntitiesTheSorter :entities="entities" />
+      <EntitiesETabSorter :entities="entities" />
+      <!-- When refactored this guy stops rendering -->
       <div v-if="store.view == 'composer'">
         <draggable
           tag="section"
           :list="entities"
           class="list-group"
         >
-          <template #item="{ element: entity }">
+          <template #item="{ element, index }">
             <EntitiesEntity
-              :entity="entity"
-              :key="entity._id"
+              :entity="element"
+              :key="element._id"
+              :tabindex="index + 1"
               class="opacity-[.7] hover:opacity-90"
             />
           </template>
         </draggable>
       </div>
-      <div v-else-if="store.view == 'relationships'">
+      <!-- <EntitiesETabComposer
+        v-if="store.view == 'composer'"
+        :entities="entities"
+      ></EntitiesETabComposer> -->
+      <div v-if="store.view == 'relationships'">
         <h1 class="text-red-300 text-lg 2">Relationships</h1>
       </div>
+      <EntitiesETabFeedback v-if="store.view == 'feedback'" />
+      <EntitiesETabHelp v-if="store.view == 'help'" />
     </div>
     <EntitiesRightSidebar
       :entities="entities"

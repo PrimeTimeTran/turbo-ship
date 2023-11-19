@@ -217,7 +217,13 @@ function thisRelationMethod() {
         <span v-text="editingAttribute ? 'Save' : 'Add'" />
       </button>
     </div>
-    <div class="flex flex-3 px-2">
+    <div
+      class="flex flex-3 px-2"
+      v-if="
+        Validator.enumTypes.includes(attribute.type) ||
+        Validator.relationTypes.includes(attribute.type)
+      "
+    >
       <div
         class="flex flex-col space-y-4"
         v-if="Validator.enumTypes.includes(attribute.type)"
@@ -241,57 +247,74 @@ function thisRelationMethod() {
             />
           </select>
         </div>
-      </div>
-
-      <div
-        class="flex flex-col"
-        v-if="Validator.relationTypes.includes(attribute.type)"
-      >
-        <label class="font-bold text-gray-500">Relations</label>
-        <label
-          v-text="
-            Validator.labeledTypes[
-              attribute?.type === 'relation'
-                ? attribute.relation.type
-                : attribute?.type
-            ].label
-          "
-        />
-        <select
-          v-model="attribute.relation.name"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
-        >
-          <option
-            v-text="option.name"
-            v-for="option of relatedOptions"
-          />
-        </select>
-
         <div
-          class="mt-1 rounded"
-          v-if="attribute.relation.name"
+          class="flex flex-col"
+          v-if="Validator.relationTypes.includes(attribute.type)"
         >
-          <h1>This</h1>
-          <input
-            type="text"
-            disabled="true"
-            :value="thisRelationMethod()"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          <label class="font-bold text-gray-500">Relations</label>
+          <label
+            v-text="
+              Validator.labeledTypes[
+                attribute?.type === 'relation'
+                  ? attribute.relation.type
+                  : attribute?.type
+              ].label
+            "
           />
-        </div>
-        <div
-          class="mt-1 rounded"
-          v-if="attribute.relation.name"
-        >
-          <h1>Other</h1>
-          <input
-            type="text"
-            disabled="true"
-            :value="otherRelationMethod()"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          />
+          <select
+            v-model="attribute.relation.name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
+          >
+            <option
+              v-text="option.name"
+              v-for="option of relatedOptions"
+            />
+          </select>
+
+          <div
+            class="mt-1 rounded"
+            v-if="attribute.relation.name"
+          >
+            <h1>This</h1>
+            <input
+              type="text"
+              disabled="true"
+              :value="thisRelationMethod()"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+          <div
+            class="mt-1 rounded"
+            v-if="attribute.relation.name"
+          >
+            <h1>Other</h1>
+            <input
+              type="text"
+              disabled="true"
+              :value="otherRelationMethod()"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
         </div>
       </div>
+    </div>
+    <div
+      v-else
+      class="flex flex-1 flex-col justify-center items-center text-center"
+    >
+      <p>Use <b>tab</b> to cycle the entities on this page.</p>
+      <br />
+      <p>
+        When you find the entity you want hit <b>enter</b> to focus the name
+        <b>input</b> and begin cycling through the entity's options <b>tab</b>.
+      </p>
+      <br />
+      <p>
+        Labels with <u>underlines</u> can focus with <b>alt</b> + letter. Try
+        <b>alt</b> + c to toggle collapsed and see.
+      </p>
+      <br />
+      <p>Click on table rows/fields/attributes on the left to <b>edit</b>.</p>
     </div>
   </div>
 </template>

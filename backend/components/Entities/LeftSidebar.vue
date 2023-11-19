@@ -64,7 +64,7 @@ const resetForm = () => {
   document.getElementById('inputRef').focus()
   // No success clearing attribute errors after using clearErrors, targeting with id, etc
   setTimeout(() => {
-    clearErrors('attributeForm', true)
+    clearErrors('attributeInput', true)
   }, 200)
 }
 const submit = () => {
@@ -86,7 +86,7 @@ const addAttribute = (e) => {
   }
   entity.attributes.push(attribute)
   // newAttribute.name = ''
-  document.getElementById('attributeForm').focus()
+  document.getElementById('attributeInput').focus()
 }
 const attrRemove = (id) => {
   const idx = entity.attributes.findIndex((a) => a._id === id)
@@ -211,10 +211,12 @@ const inputClasses =
             </div>
             <div class="mt-2 p-2 rounded border shadow">
               <!-- Unable to clear errors after targeting by id & calling function -->
+              <label class="text-slate-500"
+                ><u class="text-slate-500">A</u>ttribute</label
+              >
               <FormKit
-                label="Name"
                 name="attrName"
-                id="attributeForm"
+                id="attributeInput"
                 v-model="newAttribute.name"
                 validation-label="Attribute"
                 validation="required|length:2"
