@@ -17,7 +17,7 @@ const sparse = ref(false)
 </script>
 <template>
   <div
-    class="hidden invisible lg:visible lg:flex lg:flex-col lg:justify-start lg:items-start lg:col-span-3 overflow-auto scrollbar-hide border-l-2"
+    class="hidden invisible md:visible md:flex md:flex-col md:justify-start md:items-start md:col-span-3 overflow-auto scrollbar-hide border-l-2"
   >
     <div
       role="group"

@@ -67,23 +67,35 @@ export const original: Entity[] = [
       {
         validators: [],
         name: 'account',
-        type: 'otm',
+        type: 'relation',
         _id: 'ebed2ca23c6cc7f44afff397',
         validations: [],
+        relation: {
+          type: 'otm',
+          name: 'account',
+        },
       },
       {
         validators: [],
         name: 'transaction',
-        type: 'otm',
+        type: 'relation',
         _id: '16dfc8bb206be2feaa2c6f04',
         validations: [],
+        relation: {
+          type: 'otm',
+          name: 'transaction',
+        },
       },
       {
         validators: [],
         name: 'bank',
-        type: 'otm',
+        type: 'relation',
         _id: 'd6db8ffc08aaed0ee2c9d8ce',
         validations: [],
+        relation: {
+          type: 'otm',
+          name: 'bank',
+        },
       },
       {
         validators: [],
@@ -91,6 +103,18 @@ export const original: Entity[] = [
         type: 'decimal',
         _id: '6f5beab03b55eedac8e92a38',
         validations: [],
+      },
+      {
+        valid: false,
+        validators: [],
+        validations: [],
+        name: 'messages',
+        type: 'relation',
+        _id: '5df7f9807cf4d62f17b0b9af',
+        relation: {
+          type: 'otm',
+          name: 'message',
+        },
       },
     ],
     relationships: [

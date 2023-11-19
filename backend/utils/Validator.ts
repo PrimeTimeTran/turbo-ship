@@ -1,6 +1,6 @@
 export class Validator {
   static enumTypes = ['enumerator', 'enumeratorMulti', 'enumerator-multi']
-  static relationTypes = ['otm', 'mto', 'oto', 'mtm']
+  static relationTypes = ['otm', 'mto', 'oto', 'mtm', 'relation']
   static optionalValidators = {
     boolean: [],
     date: ['required', 'unique'],

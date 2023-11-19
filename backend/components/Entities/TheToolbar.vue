@@ -40,6 +40,17 @@ const { entities } = useEntities()
         </button>
         <button
           type="button"
+          @click="store.stateViewer = store.stateViewer ? false : true"
+          class="border-t border-b border px-4 py-1 hover:bg-gray-100 text-gray-400"
+        >
+          Toggle Store
+          <font-awesome-icon
+            icon="fa-solid fa-cubes"
+            class="ml-1 hover:bg-gray-100 text-gray-400"
+          />
+        </button>
+        <button
+          type="button"
           class="rounded-r-md border px-4 py-1 hover:bg-gray-100 text-gray-400"
           @click="store.view = 'Relationships'"
         >

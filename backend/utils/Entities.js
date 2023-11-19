@@ -49,6 +49,15 @@ export function addValidations(entities) {
   return newEntities
 }
 
+export function sparseEntities(entities) {
+  return entities.map((e) => {
+    return {
+      name: e.name,
+      attributes: e.attributes.map((a) => a.name),
+    }
+  })
+}
+
 export function validateEntities(entities) {
   const invalidItems = []
   entities.forEach((e) => {

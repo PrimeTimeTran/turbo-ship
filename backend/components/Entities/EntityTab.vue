@@ -105,24 +105,7 @@ function close(items) {
             /><!-- Nice character... ≈ -->≈
           </td>
           <td>
-            <select
-              v-model="attribute.type"
-              @change="validateNewTypeChange(attribute)"
-              class="bg-transparent border-0 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 hover:cursor-pointer"
-              :class="{
-                'text-green-600':
-                  isValid && focusedAttribute?._id !== attribute._id,
-                'text-red-600': !isValid,
-              }"
-            >
-              <option
-                :key="dataType"
-                :value="dataType"
-                v-for="dataType of Validator.types"
-              >
-                {{ Validator.labeledTypes[dataType]?.label }}
-              </option>
-            </select>
+            <EntitiesRelationSelect :attribute="attribute" />
           </td>
           <td>
             <font-awesome-icon
