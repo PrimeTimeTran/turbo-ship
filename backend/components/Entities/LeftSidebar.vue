@@ -17,7 +17,6 @@
 <script setup>
 import _ from 'lodash'
 
-import { ref } from 'vue'
 import { faker } from '@faker-js/faker'
 import { FormKitMessages } from '@formkit/vue'
 import { getValidationMessages } from '@formkit/validation'
@@ -37,13 +36,16 @@ function showErrors(node) {
   })
 }
 
+const input = ref()
 const label = ref('')
 const plural = ref('')
-const input = ref()
-
-const name = ref('New Entity')
 const attributes = ref([])
-
+const name = ref('New Entity')
+const newAttribute = reactive({
+  enums: ref([]),
+  type: ref('string'),
+  name: ref('New Attribute'),
+})
 const entity = reactive({
   _id: faker.database.mongodbObjectId(),
   name,
@@ -52,21 +54,19 @@ const entity = reactive({
   attributes,
 })
 
-const attrEnums = ref([])
-const attrType = ref('string')
-const attrName = ref('New Attribute')
-
-const newAttribute = reactive({
-  name: attrName,
-  type: attrType,
-  enums: attrEnums,
-})
 const submit = () => {
   const _id = faker.database.mongodbObjectId()
   entity._id = _id
+  entity.name = camelize(entity.name)
+
   const clonedEntity = _.cloneDeep(entity)
   notify(entity.name + ' added')
   addEntity(clonedEntity)
+  entity.name = ''
+  entity.label = ''
+  entity.plural = ''
+  entity.attributes = []
+  document.getElementById('inputRef').focus()
 }
 const addAttribute = () => {
   if (
@@ -74,14 +74,14 @@ const addAttribute = () => {
       newAttribute.type == 'enumeratorMulti') &&
       newAttribute.enums.length === 0) ||
     newAttribute.name.length < 2
-  ) {
+  )
     return
-  }
-  const attrId = faker.database.mongodbObjectId()
   const attribute = {
-    _id: attrId,
-    name: newAttribute.name,
+    validators: [],
+    validations: [],
     type: newAttribute.type,
+    name: camelize(newAttribute.name),
+    _id: faker.database.mongodbObjectId(),
   }
   attributes.value.push(attribute)
 }
@@ -90,9 +90,6 @@ const attrRemove = (id) => {
   attributes.value.splice(idx, 1)
 }
 const onTypeSelect = (type) => {
-  console.log({
-    type,
-  })
   newAttribute.type = type
   if (type === 'enumerator' || type === 'enumeratorMulti') {
     if (process.browser) {
@@ -102,7 +99,6 @@ const onTypeSelect = (type) => {
     }
   }
 }
-
 const inputClasses =
   'flex flex-grow justify-center border-2 rounded border-gray-300 px-3 py-1 text-sm mr-2 w-full'
 </script>
@@ -113,8 +109,8 @@ const inputClasses =
         New Entity(<span v-text="entities.length" />)
       </div>
       <ul
-        class="validation-errors"
         v-if="messages.length"
+        class="validation-errors"
       >
         <li
           :key="message"
@@ -135,6 +131,7 @@ const inputClasses =
       >
         <div class="p-2 rounded border shadow">
           <FormKit
+            id="inputRef"
             name="name"
             type="text"
             label="Name"
@@ -200,10 +197,10 @@ const inputClasses =
           <FormKit
             label="Name"
             name="attrName"
+            v-model="newAttribute.name"
+            validation-label="Attribute"
             validation="required|length:2"
             placeholder="branch, transaction, statement..."
-            validation-label="Attribute"
-            v-model="newAttribute.name"
             :classes="{
               label: 'font-semibold',
               input: inputClasses,
@@ -224,8 +221,8 @@ const inputClasses =
                 class="mr-2"
                 type="radio"
                 name="fieldType"
-                :checked="newAttribute.type === fieldType"
                 @click="() => onTypeSelect(fieldType)"
+                :checked="newAttribute.type === fieldType"
               />
               <span v-text="Validator.labeledTypes[fieldType].label" />
             </label>
@@ -239,9 +236,9 @@ const inputClasses =
             "
           >
             <FormKit
-              id="enumInput"
               type="text"
               name="enums"
+              id="enumInput"
               label="Enumerator"
               help="Comma seperated list"
               v-model="newAttribute.enums"
@@ -322,9 +319,9 @@ const inputClasses =
                     </td>
                     <td class="pr-2">
                       <span
-                        class="overflow-auto scrollbar-hide"
                         v-text="attr.name"
                         style="white-space: nowrap"
+                        class="overflow-auto scrollbar-hide"
                       />
                     </td>
                   </tr>

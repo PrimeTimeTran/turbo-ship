@@ -1,7 +1,12 @@
 export class Validator {
-  static enumTypes = ['enumerator', 'enumeratorMulti', 'enumerator-multi']
   static relationTypes = ['otm', 'mto', 'oto', 'mtm', 'relation']
-  static optionalValidators = {
+  static enumTypes: Array<string> = [
+    'enumerator',
+    'enumeratorMulti',
+    'enumerator-multi',
+  ]
+
+  static optionalValidators: ValidatorType = {
     boolean: [],
     date: ['required', 'unique'],
     dateTime: ['required', 'unique'],
@@ -163,4 +168,16 @@ export class Validator {
 
 interface Entity {
   attributes: { name: string }[]
+}
+
+interface ValidatorType {
+  boolean: []
+  date: string[]
+  dateTime: string[]
+  enumerator: string[]
+  enumeratorMulti: string[]
+  number: string[]
+  integer: string[]
+  decimal: string[]
+  string: string[]
 }

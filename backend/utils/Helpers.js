@@ -1,6 +1,6 @@
-export function validate(e, val) {
+function validate(e, val) {
   const input = e.target.value
-  if (input.length == 0) {
+  if (input.length === 0) {
     val.valid = false
   }
   const isEnum = Validator.enumTypes.includes(val.name)

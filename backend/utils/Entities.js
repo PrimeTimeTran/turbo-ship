@@ -53,7 +53,13 @@ export function sparseEntities(entities) {
   return entities.map((e) => {
     return {
       name: e.name,
-      attributes: e.attributes.map((a) => a.name),
+      attributes: e.attributes.map((a, idx) => {
+        if (a.type === 'relation') {
+          return a.name + '-' + a.relation.type + '-' + a.relation.name
+        } else {
+          return a.name + '-type-' + a.type
+        }
+      }),
     }
   })
 }

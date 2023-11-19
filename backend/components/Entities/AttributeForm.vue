@@ -18,25 +18,6 @@ const newAttribute = reactive({
     name: ref(''),
   }),
 })
-
-const onFocus = (id) => {
-  if (id === focused.value) {
-    focused.value = ''
-  } else {
-    focused.value = id
-  }
-}
-const attribute = computed(() =>
-  focused.value != ''
-    ? props.entity.attributes.find((e) => e._id === focused.value)
-    : newAttribute
-)
-const attributeNames = computed(() =>
-  props.entity.attributes.map((a) => a.name)
-)
-const editingAttribute = computed(() =>
-  attributeNames.value.includes(attribute.value.name)
-)
 const reset = () => {
   focused.value = ''
   newAttribute.type = ''
@@ -47,45 +28,67 @@ const reset = () => {
   nameRef.value.focus()
   notify('Attribute saved')
 }
-
 const onAdd = () => {
   if (!valid.value) return
-  if (editingAttribute.value) return reset()
-  const item = {
-    valid: false,
-    validators: [],
-    validations: [],
-    name: attribute.value.name,
-    type: attribute.value.type,
-    _id: faker.database.mongodbObjectId(),
+  if (editingAttribute.value) {
+    update()
+    return reset()
   }
-
-  if (Validator.relationTypes.includes(attribute.value.type)) {
-    item.relation = {
-      type: attribute.value.type,
-      name: attribute.value.relation.name,
-    }
-    // Many to one next
-    //
-    if (attribute.value.type === 'otm') {
-      let item = {
-        validators: [],
-        validations: [],
-        type: 'mto',
-        name: props.entity.name,
-        _id: faker.database.mongodbObjectId(),
-      }
-      relatedEntity.value.attributes.push(item)
-    }
-    item.type = 'relation'
-  }
-  if (Validator.enumTypes.includes(newAttribute.type)) {
-    item.options = enumOptions.value.join(',')
-  }
-
+  const item = update()
   props.entity.attributes.push(item)
   reset()
 }
+const update = () => {
+  const a = new AttributeBuilder(props.entity, attribute.value, entities)
+  if (a.existingAttribute()) {
+    // Update the other item for attribute.type == relation
+    a.updateRelation()
+  } else {
+    const item = {
+      valid: false,
+      validators: [],
+      validations: [],
+      name: attribute.value.name,
+      type: attribute.value.type,
+      _id: faker.database.mongodbObjectId(),
+    }
+
+    if (Validator.relationTypes.includes(attribute.value.type)) {
+      item.relation = {
+        type: attribute.value.type,
+        name: attribute.value.relation.name,
+      }
+      if (attribute.value.type === 'otm') {
+        let item = {
+          validators: [],
+          validations: [],
+          type: 'mto',
+          name: props.entity.name,
+          _id: faker.database.mongodbObjectId(),
+        }
+        attribute.value.attributes.push(item)
+      }
+      if (attribute.value.type === 'mto') {
+        let item = {
+          validators: [],
+          validations: [],
+          type: 'oto',
+          name: props.entity.name,
+          _id: faker.database.mongodbObjectId(),
+        }
+        attribute.value.attributes.push(item)
+      }
+      item.type = 'relation'
+    }
+    if (Validator.enumTypes.includes(newAttribute.type)) {
+      item.options = enumOptions.value.join(',')
+    }
+  }
+  if (editingAttribute.value) return
+  return item
+}
+const onFocus = (id) =>
+  id === focused.value ? (focused.value = '') : (focused.value = id)
 const valid = computed(() => {
   if (attribute.value.name == '') return false
   if (attribute.value.type == '') return false
@@ -96,17 +99,27 @@ const valid = computed(() => {
     return false
   return true
 })
+const attribute = computed(() =>
+  focused.value != ''
+    ? props.entity.attributes.find((e) => e._id === focused.value)
+    : newAttribute
+)
+const attributeNames = computed(() =>
+  props.entity.attributes.map((a) => a.name)
+)
+const editingAttribute = computed(() => {
+  return attributeNames.value.includes(attribute.value.name)
+})
 const enumOptions = computed(() => {
   return attribute.value.options
     ? _.compact(attribute.value.options.split(','))
     : _.compact(newAttribute.options.split(','))
 })
-const relatedEntity = computed(
-  () =>
-    entities.value.filter(
-      (e) =>
-        e.name !== props.entity.name && e.name === attribute.value.relation.name
-    )[0]
+const relatedEntity = computed(() =>
+  entities.value.find(
+    (e) =>
+      e.name !== props.entity.name && e.name === attribute.value.relation.name
+  )
 )
 const relatedOptions = computed(() =>
   entities.value.filter((e) => e.name != props.entity.name)
@@ -121,13 +134,12 @@ const relatedOptions = computed(() =>
     />
 
     <div class="flex flex-1 flex-col px-2">
-      {{ attribute }}
       <label class="font-bold text-gray-500">Name</label>
       <input
         ref="nameRef"
+        @keyup.enter="onAdd"
         v-model="attribute.name"
         placeholder="firstName, lastName..."
-        @keyup.enter="onAdd"
         class="p-4 rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100"
       />
       <label class="mt-6 font-bold text-gray-500">Type</label>
@@ -148,8 +160,21 @@ const relatedOptions = computed(() =>
               evaluating true on string.
             -->
             <input
-              :id="dataType"
               type="radio"
+              :id="dataType"
+              name="attributeName"
+              v-model="attribute.relation.type"
+              v-if="attribute.type === 'relation'"
+              :value="Validator.labeledTypes[dataType]?.value"
+              :checked="
+                dataType ===
+                Validator.labeledTypes[attribute.relation.type].value
+              "
+            />
+            <input
+              v-else
+              type="radio"
+              :id="dataType"
               name="attributeName"
               v-model="attribute.type"
               :checked="dataType === attribute.type"
@@ -161,9 +186,9 @@ const relatedOptions = computed(() =>
       </div>
       <button
         type="submit"
+        @click="onAdd"
         :disabled="!valid"
         class="mt-2 border-2 border-gray-300 py-1 px-2 rounded w-full"
-        @click="onAdd"
         :class="{
           'opacity-50': !valid,
           'text-white': valid,
@@ -177,11 +202,10 @@ const relatedOptions = computed(() =>
     </div>
     <div class="flex flex-1 px-2">
       <div
-        v-if="Validator.enumTypes.includes(attribute.type)"
         class="flex flex-col space-y-4"
+        v-if="Validator.enumTypes.includes(attribute.type)"
       >
         <h1 class="mb-2 text-lg">Enumerator</h1>
-
         <label>Options:</label>
         <input
           type="text"
@@ -204,8 +228,8 @@ const relatedOptions = computed(() =>
       </div>
 
       <div
-        v-if="Validator.relationTypes.includes(attribute.type)"
         class="flex flex-col"
+        v-if="Validator.relationTypes.includes(attribute.type)"
       >
         <h1 class="mb-2 text-lg">Relations</h1>
         <label
@@ -222,8 +246,8 @@ const relatedOptions = computed(() =>
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
         >
           <option
-            v-for="option of relatedOptions"
             v-text="option.name"
+            v-for="option of relatedOptions"
           />
         </select>
 
@@ -235,8 +259,8 @@ const relatedOptions = computed(() =>
           <input
             type="text"
             disabled="true"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             :value="entity.name + '.' + attribute.name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div
@@ -247,8 +271,12 @@ const relatedOptions = computed(() =>
           <input
             type="text"
             disabled="true"
+            :value="
+              attribute.type === 'otm'
+                ? relatedEntity.name + '.' + entity.name
+                : relatedEntity.name + '.' + entity.plural
+            "
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            :value="relatedEntity.name + '.' + entity.name"
           />
         </div>
       </div>

@@ -14,10 +14,6 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
   },
-  sourcemap: {
-    server: true,
-    client: true,
-  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/content',

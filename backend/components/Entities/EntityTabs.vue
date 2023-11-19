@@ -90,7 +90,7 @@ const selectedValidations = ref([])
         :aria-labelledby="'new-tab-' + entityId"
         class="hidden rounded-lg bg-gray-50 dark:bg-gray-800"
       >
-        <EntitiesEntityAttributeForm
+        <EntitiesAttributeForm
           :entity="entity"
           :toggleRelationships="toggleRelationships"
         />

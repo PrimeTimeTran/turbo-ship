@@ -157,7 +157,7 @@ function close(items) {
             type="text"
             :name="val.name"
             v-model="val.value"
-            :oninput="(e) => validate(e, val)"
+            :oninput="(e) => Validator.validate(e, val)"
           />
         </div>
       </div>

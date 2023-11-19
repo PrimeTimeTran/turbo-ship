@@ -17,6 +17,5 @@ const toggleRelationships = () => {
       :entity="entity"
       :toggleRelationships="toggleRelationships"
     />
-    <EntitiesEntityRelationships :showRelationships="showRelationships" />
   </section>
 </template>

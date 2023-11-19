@@ -5,9 +5,11 @@ const { entities } = useEntities()
 
 <template>
   <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen">
-    <EntitiesTheLeftSidebar />
+    <EntitiesLeftSidebar />
 
-    <div class="col-span-9 lg:col-span-7 overflow-auto scrollbar-hide">
+    <div
+      class="col-span-9 lg:col-span-7 overflow-auto scrollbar-hide flex flex-col"
+    >
       <EntitiesTheToolbar :entities="entities" />
       <div v-if="store.view == 'Relationships'">
         <h1 class="text-red-300 text-lg 2">Relationships</h1>
@@ -43,7 +45,10 @@ const { entities } = useEntities()
         </draggable>
       </div>
     </div>
-    <EntitiesTheRightSidebar :entities="entities" />
+    <EntitiesRightSidebar
+      v-if="store.stateViewer"
+      :entities="entities"
+    />
   </div>
 </template>
 
