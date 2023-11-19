@@ -1,22 +1,8 @@
 {
-  "cSpell.diagnosticLevel": "Hint",
   "workbench.colorCustomizations": {
     "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#000000CC",
     "titleBar.activeBackground": "#41b883",
-    "titleBar.inactiveForeground": "#35495e",
     "titleBar.inactiveBackground": "#3b8070"
-  },
-  "files.exclude": {
-    "**/.mason": true,
-    "**/package-lock.json": true,
-    "**/bun.lockb": true,
-    "**/mason-lock.json": true,
-    "**/.nuxt": true
-    // "**/node_modules": true
-    // "**/formkit.config.js": true
-    // "**/tsconfig.json": true,
-    // "**/.env": true,
-    // "**/public": true,
-  },
-  "editor.formatOnSave": true
+  }
 }
