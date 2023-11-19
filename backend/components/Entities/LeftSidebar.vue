@@ -143,12 +143,13 @@ const inputClasses =
           </div>
           <div class="flex flex-col rounded border shadow top hover:shadow-lg">
             <div class="p-2">
+              <label class="text-slate-500"
+                ><u class="text-slate-500">N</u>ame</label
+              >
               <FormKit
-                autofocus
                 id="inputRef"
                 name="name"
                 type="text"
-                label="Name"
                 placeholder="bank"
                 :value="entity.name"
                 validation="required|length:3"

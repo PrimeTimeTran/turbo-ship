@@ -26,6 +26,10 @@ useHead({
       src: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js',
       tagPosition: 'head',
     },
+    {
+      src: 'https://unpkg.com/hotkeys-js/dist/hotkeys.min.js',
+      tagPosition: 'head',
+    },
     // Inline
     {
       type: 'text/javascript',

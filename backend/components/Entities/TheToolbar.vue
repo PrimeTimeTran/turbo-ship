@@ -24,11 +24,12 @@ const isFocused = (name) => {
         class="align-middle items-center text-center ml-6 rounded-md"
       >
         <button
+          id="actionCollapse"
           type="button"
           @click="collapse"
           class="rounded-l-lg border-b border px-4 py-1 hover:bg-gray-100 text-gray-400"
         >
-          Collapse
+          <u>C</u>ollapse
           <font-awesome-icon
             v-if="store.collapsed"
             icon="fa-solid fa-caret-down"
@@ -52,6 +53,7 @@ const isFocused = (name) => {
           />
         </button>
         <button
+          id="viewSort"
           type="button"
           @click="store.view = 'sorter'"
           class="border px-4 py-1 hover:bg-gray-100"
@@ -61,7 +63,7 @@ const isFocused = (name) => {
             'border-blue-500': isFocused('sorter'),
           }"
         >
-          Sort
+          <u>S</u>ort
           <font-awesome-icon
             icon="fa-solid fa-sort"
             class="ml-1 hover:bg-gray-100"
@@ -73,6 +75,7 @@ const isFocused = (name) => {
           />
         </button>
         <button
+          id="viewEntities"
           type="button"
           @click="store.view = 'composer'"
           class="border-t border-b border px-4 py-1 hover:bg-gray-100"
@@ -82,7 +85,7 @@ const isFocused = (name) => {
             'border-blue-500': isFocused('composer'),
           }"
         >
-          Entities
+          <u>E</u>ntities
           <font-awesome-icon
             icon="fa-solid fa-cubes"
             class="ml-1 hover:bg-gray-100"
@@ -94,6 +97,7 @@ const isFocused = (name) => {
           />
         </button>
         <button
+          id="viewRelationships"
           type="button"
           class="border px-4 py-1 hover:bg-gray-100"
           @click="store.view = 'relationships'"
@@ -119,7 +123,7 @@ const isFocused = (name) => {
           type="button"
           class="border px-4 py-1 hover:bg-gray-100 text-slate-500"
         >
-          Feedback
+          <u>F</u>eedback
           <font-awesome-icon
             class="ml-1 hover:bg-gray-100 text-slate-500"
             icon="fa-regular fa-message"
@@ -129,7 +133,7 @@ const isFocused = (name) => {
           type="button"
           class="rounded-r-md border px-4 py-1 hover:bg-gray-100 text-slate-500"
         >
-          Help
+          <u>H</u>elp
           <font-awesome-icon
             icon="fa-solid fa-question"
             class="ml-1 hover:bg-gray-100 text-slate-500"
