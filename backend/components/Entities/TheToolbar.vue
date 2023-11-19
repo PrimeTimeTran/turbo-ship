@@ -12,7 +12,7 @@ const isFocused = (name) => {
 <template>
   <div class="sticky top-0 bg-white shadow py-1 p-2 z-10">
     <div class="flex p-1 justify-between items-center">
-      <div class="text-md">
+      <div class="text-md text-slate-500">
         Entities
         <span
           v-text="`(${entities.length})`"
@@ -125,7 +125,7 @@ const isFocused = (name) => {
       >
         <a
           class="text-sm hover:bg-gray-100 rounded py-1 px-2"
-          v-text="idx + 1 + `. ${e.name} (${e.attributes.length - 1})`"
+          v-text="idx + 1 + `. ${e.name} (${e.attributes.length})`"
           :href="`/entities#${e.name}-${e._id}`"
         ></a>
       </div>

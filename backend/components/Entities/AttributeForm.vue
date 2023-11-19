@@ -132,8 +132,7 @@ const relatedOptions = computed(() =>
       :focused="focused"
       :onFocus="onFocus"
     />
-
-    <div class="flex flex-1 flex-col px-2">
+    <div class="flex flex-2 flex-col px-2">
       <label class="font-bold text-gray-500">Name</label>
       <input
         ref="nameRef"
@@ -202,7 +201,7 @@ const relatedOptions = computed(() =>
         <span v-text="editingAttribute ? 'Save' : 'Add'" />
       </button>
     </div>
-    <div class="flex flex-1 px-2">
+    <div class="flex flex-2 px-2">
       <div
         class="flex flex-col space-y-4"
         v-if="Validator.enumTypes.includes(attribute.type)"

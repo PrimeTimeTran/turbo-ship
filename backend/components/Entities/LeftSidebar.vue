@@ -15,67 +15,68 @@
       - D fields in script/template
  -->
 <script setup>
+import { reset, clearErrors } from '@formkit/core'
 import _ from 'lodash'
 
 import { faker } from '@faker-js/faker'
 import { FormKitMessages } from '@formkit/vue'
-import { getValidationMessages } from '@formkit/validation'
+// import { getValidationMessages } from '@formkit/validation'
 
-const emit = defineEmits(['onAdd'])
+// Leaving it here so I don't forget.
+// const emit = defineEmits(['onAdd'])
 const { entities, addEntity } = useEntities()
 
-const messages = ref([])
+// const messages = ref([])
 
-function showErrors(node) {
-  const validations = getValidationMessages(node)
-  messages.value = []
-  validations.forEach((inputMessages) => {
-    messages.value = messages.value.concat(
-      inputMessages.map((message) => message.value)
-    )
-  })
-}
+// function showErrors(node) {
+//   const validations = getValidationMessages(node)
+//   messages.value = []
+//   validations.forEach((inputMessages) => {
+//     messages.value = messages.value.concat(
+//       inputMessages.map((message) => message.value)
+//     )
+//   })
+// }
 
 const input = ref()
-const label = ref('')
-const plural = ref('')
-const attributes = ref([])
-const name = ref('')
+const attributeRef = ref()
 const newAttribute = reactive({
+  name: ref(''),
   enums: ref([]),
   type: ref('string'),
-  name: ref(''),
 })
 const entity = reactive({
+  name: ref(''),
+  label: ref(''),
+  plural: ref(''),
+  attributes: ref([]),
   _id: faker.database.mongodbObjectId(),
-  name,
-  label,
-  plural,
-  attributes,
 })
-
-const submit = () => {
-  const _id = faker.database.mongodbObjectId()
-  entity._id = _id
-  entity.name = camelize(entity.name)
-
-  const clonedEntity = _.cloneDeep(entity)
-  notify(entity.name + ' added')
-  addEntity(clonedEntity)
+const resetForm = () => {
+  reset()
   entity.name = ''
   entity.label = ''
   entity.plural = ''
   entity.attributes = []
+  newAttribute.name = ''
+  newAttribute.enums = ''
+  newAttribute.type = 'string'
   document.getElementById('inputRef').focus()
+  // No success clearing attribute errors after using clearErrors, targeting with id, etc
+  setTimeout(() => {
+    clearErrors('attributeForm', true)
+  }, 200)
 }
-const addAttribute = () => {
-  if (
-    ((newAttribute.type == 'enumerator' ||
-      newAttribute.type == 'enumeratorMulti') &&
-      newAttribute.enums.length === 0) ||
-    newAttribute.name.length < 2
-  )
-    return
+const submit = () => {
+  entity._id = faker.database.mongodbObjectId()
+  const clonedEntity = _.cloneDeep({ ...entity, name: camelize(entity.name) })
+  notify(clonedEntity.name + ' added')
+  addEntity(clonedEntity)
+  resetForm()
+}
+const addAttribute = (e) => {
+  e.preventDefault()
+  if (!attributeValid) return
   const attribute = {
     validators: [],
     validations: [],
@@ -83,15 +84,17 @@ const addAttribute = () => {
     name: camelize(newAttribute.name),
     _id: faker.database.mongodbObjectId(),
   }
-  attributes.value.push(attribute)
+  entity.attributes.push(attribute)
+  newAttribute.name = ''
+  document.getElementById('attributeForm').focus()
 }
 const attrRemove = (id) => {
-  const idx = attributes.value.findIndex((a) => a._id === id)
-  attributes.value.splice(idx, 1)
+  const idx = entity.attributes.findIndex((a) => a._id === id)
+  entity.attributes.splice(idx, 1)
 }
 const onTypeSelect = (type) => {
   newAttribute.type = type
-  if (type === 'enumerator' || type === 'enumeratorMulti') {
+  if (Validator.enumTypes(type)) {
     if (process.browser) {
       setTimeout(() => {
         document.getElementById('enumInput').focus()
@@ -99,6 +102,25 @@ const onTypeSelect = (type) => {
     }
   }
 }
+const validAttributeName = computed(() => newAttribute.name.length > 2)
+const attributeValid = computed(() => {
+  if (!validAttributeName.value) return false
+  if (
+    newAttribute.enums.length === 0 &&
+    Validator.enumTypes.includes(newAttribute.type)
+  )
+    return false
+  return true
+})
+const entityValid = computed(() => {
+  if (
+    !attributeValid.value ||
+    entity.name.length < 3 ||
+    entity.attributes.length === 0
+  )
+    return false
+  return true
+})
 const inputClasses =
   'flex flex-grow justify-center border-2 rounded border-gray-300 px-3 py-1 text-sm mr-2 w-full'
 </script>
@@ -115,24 +137,14 @@ const inputClasses =
           message: 'text-red-400 text-sm',
         }"
       >
-        <div class="flex flex-col justify-between">
-          <div class="flex flex-col top overflow-auto scrollbar-hide">
-            <div class="text-md font-bold">
-              New Entity(<span v-text="entities.length" />)
-            </div>
-            <ul
-              v-if="messages.length"
-              class="validation-errors"
-            >
-              <li
-                :key="message"
-                v-for="message in messages"
-              >
-                {{ message }}
-              </li>
-            </ul>
-            <div class="p-2 rounded border shadow">
+        <div class="flex flex-col">
+          <div class="text-md font-bold text-slate-500">
+            New Entity(<span v-text="entities.length" />)
+          </div>
+          <div class="flex flex-col rounded border shadow top">
+            <div class="p-2">
               <FormKit
+                autofocus
                 id="inputRef"
                 name="name"
                 type="text"
@@ -141,8 +153,8 @@ const inputClasses =
                 :value="entity.name"
                 validation="required|length:3"
                 :classes="{
-                  label: 'font-semibold',
                   input: inputClasses,
+                  label: 'font-semibold text-slate-500',
                   message: 'text-red-400',
                 }"
                 @input="
@@ -165,8 +177,8 @@ const inputClasses =
                 @input="(e) => (entity.plural = e)"
                 :classes="{
                   outer: 'mt-4',
-                  label: 'font-semibold',
                   input: inputClasses,
+                  label: 'font-semibold text-slate-500',
                 }"
               />
               <FormKit
@@ -177,7 +189,7 @@ const inputClasses =
                 v-model="entity.label"
                 :classes="{
                   outer: 'mt-4',
-                  label: 'font-semibold',
+                  label: 'font-semibold text-slate-500',
                   input: inputClasses,
                 }"
                 @input="
@@ -189,33 +201,34 @@ const inputClasses =
                 "
               />
             </div>
-            <div class="text-md font-bold mt-5">
-              New Attribute(<span v-text="attributes.length" />)
+          </div>
+          <div class="flex flex-col overflow-auto scrollbar-hide middle">
+            <div class="text-md font-bold mt-5 text-slate-500">
+              New Attribute(<span v-text="entity.attributes.length" />)
             </div>
-
             <div class="mt-2 p-2 rounded border shadow">
-              <div class="flex flex-row justify-between">
-                <div></div>
-              </div>
-
+              <!-- Unable to clear errors after targeting by id & calling function -->
               <FormKit
                 label="Name"
                 name="attrName"
+                id="attributeForm"
                 v-model="newAttribute.name"
                 validation-label="Attribute"
                 validation="required|length:2"
                 placeholder="branch, transaction, statement..."
                 :classes="{
-                  label: 'font-semibold',
                   input: inputClasses,
+                  label: 'font-semibold text-slate-500',
                   message: 'text-red-400',
                 }"
               />
               <div
-                v-text="Validator.labeledTypes[newAttribute.type].label"
                 class="mt-5 font-bold text-blue-400"
+                v-text="Validator.labeledTypes[newAttribute.type].label"
               />
-              <div class="flex flex-col flex-grow border rounded shadow my-2">
+              <div
+                class="flex flex-col flex-grow border rounded shadow my-2 h-52 max-h-52 overflow-scroll scrollbar-hide"
+              >
                 <label
                   :key="fieldType"
                   v-for="fieldType of Validator.types"
@@ -225,19 +238,16 @@ const inputClasses =
                     class="mr-2"
                     type="radio"
                     name="fieldType"
-                    @click="() => onTypeSelect(fieldType)"
+                    :value="newAttribute.type"
+                    @click="onTypeSelect(fieldType)"
                     :checked="newAttribute.type === fieldType"
                   />
                   <span v-text="Validator.labeledTypes[fieldType].label" />
                 </label>
               </div>
-
               <div
                 class="mt-5"
-                v-if="
-                  newAttribute.type == 'enumerator' ||
-                  newAttribute.type == 'enumeratorMulti'
-                "
+                v-if="Validator.enumTypes.includes(newAttribute.type)"
               >
                 <FormKit
                   type="text"
@@ -254,39 +264,34 @@ const inputClasses =
                   }"
                 />
               </div>
-
-              <div @click="addAttribute">
-                <FormKit
-                  type="button"
-                  :classes="{
-                    outer:
-                      'border-2 border-green-500 text-center p-2 rounded font-bold text-green-500 shadow-md',
-                  }"
-                >
-                  <span class="text-sm">Add</span>
-                  <span
-                    class="text-sm"
-                    v-text="
-                      newAttribute.name
-                        ? ` ${newAttribute.name} (${newAttribute.type})`
-                        : ''
-                    "
-                  />
-                </FormKit>
-              </div>
+              <button
+                @click="addAttribute"
+                class="w-full flex text-center rounded py-2 justify-center text-white font-bold"
+                v-text="'Add'"
+                :class="{
+                  'bg-gray-300': !attributeValid,
+                  'bg-opacity-80': !attributeValid,
+                  'cursor-not-allowed': !attributeValid,
+                  'bg-green-500': attributeValid,
+                }"
+              />
             </div>
           </div>
-          <div class="flex flex-col bottom">
-            <h2 class="text-md font-bold mt-5">Summary:</h2>
-            <div class="mt-2 p-2 rounded border shadow">
-              <h3 class="text-md">Name: <span v-text="entity.name" /></h3>
-              <h4 class="text-md">Label: <span v-text="entity.label" /></h4>
-              <h4 class="text-md">
+          <div class="flex flex-col bottom rounded border shadow mt-2">
+            <div class="mt-2 p-2">
+              <h2 class="text-md font-bold mt-5 text-slate-500">Summary:</h2>
+              <h3 class="text-md text-slate-500">
+                Name: <span v-text="entity.name" />
+              </h3>
+              <h3 class="text-md text-slate-500">
+                Label: <span v-text="entity.label" />
+              </h3>
+              <h3 class="text-md text-slate-500">
                 Pluralized: <span v-text="entity.plural" />
-              </h4>
-              <h4 class="mt-4 text-md">
-                Attributes (<span v-text="attributes.length" />)
-              </h4>
+              </h3>
+              <h3 class="mt-4 text-md">
+                Attributes (<span v-text="entity.attributes.length" />)
+              </h3>
               <FormKitMessages :node="input?.node" />
               <div class="flex flex-col flex-grow overflow-auto scrollbar-hide">
                 <table class="table-auto">
@@ -297,16 +302,16 @@ const inputClasses =
                   </tr>
                   <tbody>
                     <FormKit
-                      ref="input"
                       type="list"
                       name="Attributes"
-                      v-model="attributes"
+                      ref="attributeRef"
+                      v-model="entity.attributes"
                       validation="required"
                       validation-label="At least 1 attribute "
                     >
                       <tr
                         :key="attr"
-                        v-for="attr of attributes"
+                        v-for="attr of entity.attributes"
                         class="full-width-row odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8"
                       >
                         <td
@@ -336,11 +341,14 @@ const inputClasses =
                   </tbody>
                 </table>
               </div>
+              <!-- The button clases won't combine if we try to use string adding, computed, interpolation with nested tertiary  -->
               <FormKit
                 type="submit"
                 :classes="{
-                  outer:
-                    'bg-green-500 mt-2 text-center p-2 rounded text-white font-bold shadow-lg text-2xl',
+                  input: entityValid ? '' : 'cursor-not-allowed',
+                  outer: entityValid
+                    ? 'mt-2 text-center p-2 rounded text-white font-bold shadow-lg text-xl bg-green-500'
+                    : 'mt-2 text-center p-2 rounded text-white font-bold shadow-lg text-xl bg-gray-300 opacity-80',
                 }"
               >
                 Create Entity
@@ -352,12 +360,14 @@ const inputClasses =
     </div>
   </div>
 </template>
-
 <style>
 .top {
-  max-height: 70vh;
+  max-height: 30vh;
+}
+.middle {
+  max-height: 50vh;
 }
 .bottom {
-  max-height: 30vh;
+  max-height: 20vh;
 }
 </style>

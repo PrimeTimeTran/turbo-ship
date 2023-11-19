@@ -28,14 +28,6 @@ const { removeEntity } = useEntities()
         </button>
         <button
           type="button"
-          :id="`new-tab-${entity._id}`"
-          :aria-controls="`new-tab-${entity._id}`"
-          class="border px-4 py-1 hover:bg-gray-100"
-        >
-          New
-        </button>
-        <button
-          type="button"
           :id="`attributes-tab-${entity._id}`"
           :aria-controls="`attributes-tab-${entity._id}`"
           class="border px-4 py-1 hover:bg-gray-100"

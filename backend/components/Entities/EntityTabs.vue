@@ -11,60 +11,64 @@ let tabElements
 const entityId = ref(props.entity._id)
 
 function setupTabs() {
-  if (process.browser) {
-    try {
-      const tabsElement = document.getElementById(
-        'tabs-example' + entityId.value
-      )
-      tabElements = [
-        {
-          id: 'new' + entityId.value,
-          targetEl: document.querySelector(`#new-${entityId.value}`),
-          triggerEl: document.querySelector(`#new-tab-${entityId.value}`),
-        },
-        {
-          id: 'attributes' + entityId.value,
-          targetEl: document.querySelector(`#attributes-${entityId.value}`),
-          triggerEl: document.querySelector(
-            `#attributes-tab-${entityId.value}`
-          ),
-        },
-        {
-          id: 'validations' + entityId.value,
-          targetEl: document.querySelector(`#validations-${entityId.value}`),
-          triggerEl: document.querySelector(
-            `#validations-tab-${entityId.value}`
-          ),
-        },
-        {
-          id: 'settings' + entityId.value,
-          targetEl: document.querySelector(`#settings-${entityId.value}`),
-          triggerEl: document.querySelector(`#settings-tab-${entityId.value}`),
-        },
-      ]
+  setTimeout(() => {
+    if (process.browser) {
+      try {
+        const tabsElement = document.getElementById(
+          'tabs-example-' + entityId.value
+        )
+        tabElements = [
+          // {
+          //   id: 'new' + entityId.value,
+          //   targetEl: document.querySelector(`#new-${entityId.value}`),
+          //   triggerEl: document.querySelector(`#new-tab-${entityId.value}`),
+          // },
+          {
+            id: 'attributes' + entityId.value,
+            targetEl: document.querySelector(`#attributes-${entityId.value}`),
+            triggerEl: document.querySelector(
+              `#attributes-tab-${entityId.value}`
+            ),
+          },
+          {
+            id: 'validations' + entityId.value,
+            targetEl: document.querySelector(`#validations-${entityId.value}`),
+            triggerEl: document.querySelector(
+              `#validations-tab-${entityId.value}`
+            ),
+          },
+          {
+            id: 'settings' + entityId.value,
+            targetEl: document.querySelector(`#settings-${entityId.value}`),
+            triggerEl: document.querySelector(
+              `#settings-tab-${entityId.value}`
+            ),
+          },
+        ]
 
-      const options = {
-        defaultTabId: 'new' + entityId.value,
-        activeClasses:
-          'text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500',
-        inactiveClasses:
-          'text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300',
-        onShow: () => {},
+        const options = {
+          defaultTabId: 'new' + entityId.value,
+          activeClasses:
+            'text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500',
+          inactiveClasses:
+            'text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300',
+          onShow: () => {},
+        }
+
+        const instanceOptions = {
+          id: 'tabs-example' + entityId.value,
+          override: true,
+        }
+        tabs = new Tabs(tabsElement, tabElements, options, instanceOptions)
+
+        return true
+      } catch (error) {
+        console.log({
+          error,
+        })
       }
-
-      const instanceOptions = {
-        id: 'tabs-example' + entityId.value,
-        override: true,
-      }
-      tabs = new Tabs(tabsElement, tabElements, options, instanceOptions)
-
-      return true
-    } catch (error) {
-      console.log({
-        error,
-      })
     }
-  }
+  }, 100)
 }
 
 onMounted(() => {
@@ -86,8 +90,8 @@ const selectedValidations = ref([])
     <div :class="{ hidden: store.collapsed }">
       <div
         role="tabpanel"
-        :id="'new-' + entityId"
-        :aria-labelledby="'new-tab-' + entityId"
+        :id="'attributes-' + entityId"
+        :aria-labelledby="'attributes-tab-' + entityId"
         class="hidden rounded-lg bg-gray-50 dark:bg-gray-800"
       >
         <EntitiesAttributeForm
@@ -97,8 +101,8 @@ const selectedValidations = ref([])
       </div>
       <div
         role="tabpanel"
-        :id="'attributes-' + entityId"
-        :aria-labelledby="'attributes-tab-' + entityId"
+        :id="'validations-' + entityId"
+        :aria-labelledby="'validations-tab-' + entityId"
         class="hidden rounded-lg bg-gray-50 dark:bg-gray-800"
       >
         <EntitiesEntityTab :entity="entity" />
@@ -106,8 +110,8 @@ const selectedValidations = ref([])
 
       <div
         role="tabpanel"
-        :id="'validations-' + entityId"
-        :aria-labelledby="'validations-tab-' + entityId"
+        :id="'settings-' + entityId"
+        :aria-labelledby="'settings-tab-' + entityId"
         class="hidden rounded-lg bg-gray-50 dark:bg-gray-800"
       >
         <div class="flex flex-1">
@@ -127,7 +131,7 @@ const selectedValidations = ref([])
           </div>
         </div>
       </div>
-      <div
+      <!-- <div
         role="tabpanel"
         :id="'settings-' + entityId"
         :aria-labelledby="'settings-tab-' + entityId"
@@ -141,7 +145,7 @@ const selectedValidations = ref([])
           next. The tab JavaScript swaps classes to control the content
           visibility and styling.
         </p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

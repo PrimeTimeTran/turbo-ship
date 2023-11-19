@@ -11,7 +11,7 @@ const onRemove = (id) => {
 }
 </script>
 <template>
-  <div class="flex flex-1 h-full">
+  <div class="flex flex-3 h-full">
     <div class="flex flex-col w-fit overflow-auto scrollbar-hide h-5/6">
       <table class="overflow-auto">
         <thead>
