@@ -8,12 +8,16 @@
         class="p-3 m-1 border-2 border-green-600"
       >
         <div
+          class="dark:text-white"
           :class="{
             done: todo.status == 'done' ? 'line-through' : '',
           }"
         >
           <div class="flex justify-between">
-            <span v-text="todo.firstName" />
+            <span
+              v-text="todo.firstName"
+              class="dark:text-white"
+            />
             <div @click="remove(todo.id)">X</div>
           </div>
         </div>

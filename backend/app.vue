@@ -23,6 +23,13 @@ useHead({
   ],
   script: [
     {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.8.1/cdn.min.js',
+      defer: true,
+    },
+    {
+      src: 'https://unpkg.com/vue@3/dist/vue.global.js',
+    },
+    {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js',
       tagPosition: 'head',
     },
