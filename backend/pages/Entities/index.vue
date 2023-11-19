@@ -9,17 +9,14 @@ const { entities } = useEntities()
       class="col-span-9 lg:col-span-7 overflow-auto scrollbar-hide flex flex-col"
     >
       <EntitiesTheToolbar :entities="entities" />
-      <EntitiesSortView :entities="entities" />
-      <div
+      <EntitiesTheSorter :entities="entities" />
+      <EntitiesEntity
+        :entity="entity"
+        :key="entity._id"
+        v-for="entity of entities"
         v-if="store.view == 'composer'"
         class="opacity-[.7] hover:opacity-90"
-      >
-        <EntitiesEntity
-          :key="entity._id"
-          :entity="entity"
-          v-for="entity of entities"
-        />
-      </div>
+      />
       <div v-else-if="store.view == 'relationships'">
         <h1 class="text-red-300 text-lg 2">Relationships</h1>
       </div>

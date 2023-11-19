@@ -81,19 +81,11 @@ export class Validator {
     console.log('Maxlength', resp)
     return resp
   }
-  // static ['enumerator'](val: any) {
-  //   return val.split(',').length > 0
-  // }
-  // static ['enumeratorMulti'](val: any) {
-  //   return val.split(',').length > 0
-  // }
-
   static attributes(entity: Entity) {
     return entity.attributes.filter(
       (a) => !protectedAttributes.includes(a.name)
     )
   }
-
   static labeledTypes = {
     string: {
       value: 'string',
