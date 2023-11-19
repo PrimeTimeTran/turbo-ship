@@ -6,5 +6,5 @@ export function makeQueryString(fields: Record<string, any>) {
 }
 
 export function makeApiQueryString(url: string, fields: Record<string, any>) {
-  return `${url}?${makeQueryString(fields)}`
+  return `${url}&${makeQueryString(fields)}`
 }

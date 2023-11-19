@@ -19,6 +19,9 @@ export function buildQuery(params: object) {
       // For example wizards where wizard.firstName === '' returns [].
       continue
     value = value?.split('?')[0]
+    console.log({
+      value,
+    })
 
     if (params.hasOwnProperty(key)) {
       // Info Queries 2. A list of values. Multiple houses for example.
@@ -37,6 +40,9 @@ export function buildQuery(params: object) {
         // - 3. Fuzzy matches. So "Har" matches "Harry" or "Mary" matches "Mary" & "Mary-Anne"
         // - 4. Substring matches. So "arry" matches "Harry" or "ione" matches "Hermione"
         const val = getRegexedValue(value)
+        console.log({
+          val,
+        })
         query[key] = !isNaN(val) ? parseFloat(val) : { $regex: val }
       }
     }

@@ -79,10 +79,12 @@ const update = () => {
         attribute.value.attributes.push(item)
       }
       item.type = 'relation'
+      return item
     }
     if (Validator.enumTypes.includes(newAttribute.type)) {
       item.options = enumOptions.value.join(',')
     }
+    return item
   }
   if (editingAttribute.value) return
   return item
@@ -131,10 +133,6 @@ function otherRelationMethod() {
     return relatedEntity.value.name + '.' + props.entity.pluralSM
 }
 function thisRelationMethod() {
-  // props.entity.name + '.' + attribute.name
-  console.log({
-    gogogo: attribute.value.relation.type,
-  })
   return props.entity.name + '.' + attribute.value.name
 }
 </script>
@@ -247,54 +245,54 @@ function thisRelationMethod() {
             />
           </select>
         </div>
-        <div
-          class="flex flex-col"
-          v-if="Validator.relationTypes.includes(attribute.type)"
+      </div>
+      <div
+        class="flex flex-col"
+        v-if="Validator.relationTypes.includes(attribute.type)"
+      >
+        <label class="font-bold text-gray-500">Relations</label>
+        <label
+          v-text="
+            Validator.labeledTypes[
+              attribute?.type === 'relation'
+                ? attribute.relation.type
+                : attribute?.type
+            ].label
+          "
+        />
+        <select
+          v-model="attribute.relation.name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
         >
-          <label class="font-bold text-gray-500">Relations</label>
-          <label
-            v-text="
-              Validator.labeledTypes[
-                attribute?.type === 'relation'
-                  ? attribute.relation.type
-                  : attribute?.type
-              ].label
-            "
+          <option
+            v-text="option.name"
+            v-for="option of relatedOptions"
           />
-          <select
-            v-model="attribute.relation.name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
-          >
-            <option
-              v-text="option.name"
-              v-for="option of relatedOptions"
-            />
-          </select>
+        </select>
 
-          <div
-            class="mt-1 rounded"
-            v-if="attribute.relation.name"
-          >
-            <h1>This</h1>
-            <input
-              type="text"
-              disabled="true"
-              :value="thisRelationMethod()"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
-          <div
-            class="mt-1 rounded"
-            v-if="attribute.relation.name"
-          >
-            <h1>Other</h1>
-            <input
-              type="text"
-              disabled="true"
-              :value="otherRelationMethod()"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
+        <div
+          class="mt-1 rounded"
+          v-if="attribute.relation.name"
+        >
+          <h1>This</h1>
+          <input
+            type="text"
+            disabled="true"
+            :value="thisRelationMethod()"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
+        <div
+          class="mt-1 rounded"
+          v-if="attribute.relation.name"
+        >
+          <h1>Other</h1>
+          <input
+            type="text"
+            disabled="true"
+            :value="otherRelationMethod()"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
         </div>
       </div>
     </div>

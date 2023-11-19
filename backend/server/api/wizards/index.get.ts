@@ -2,6 +2,9 @@ export default defineEventHandler(async (e) => {
   let { limit, page } = e.context
   let params = getQuery(e)
   const query = buildQuery(params)
+  console.log({
+    query,
+  })
   const pipeline = buildPipeline(query, page, limit)
   const results = await Wizard.aggregate(pipeline)
 
