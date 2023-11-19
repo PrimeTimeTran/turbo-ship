@@ -1,4 +1,5 @@
 <script setup>
+import draggable from 'vuedraggable'
 const { entities } = useEntities()
 </script>
 
@@ -10,13 +11,21 @@ const { entities } = useEntities()
     >
       <EntitiesTheToolbar :entities="entities" />
       <EntitiesTheSorter :entities="entities" />
-      <EntitiesEntity
-        :entity="entity"
-        :key="entity._id"
-        v-for="entity of entities"
-        v-if="store.view == 'composer'"
-        class="opacity-[.7] hover:opacity-90"
-      />
+      <div v-if="store.view == 'composer'">
+        <draggable
+          tag="section"
+          :list="entities"
+          class="list-group"
+        >
+          <template #item="{ element: entity }">
+            <EntitiesEntity
+              :entity="entity"
+              :key="entity._id"
+              class="opacity-[.7] hover:opacity-90"
+            />
+          </template>
+        </draggable>
+      </div>
       <div v-else-if="store.view == 'relationships'">
         <h1 class="text-red-300 text-lg 2">Relationships</h1>
       </div>

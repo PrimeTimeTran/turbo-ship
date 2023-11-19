@@ -29,7 +29,7 @@ const collapseText = () => {
         <template #item="{ element: entity }">
           <section
             :key="entity._id"
-            class="my-1 mx-5 p-5 rounded odd:bg-zinc-100 even: bg-slate-100 border"
+            class="my-1 mx-5 p-5 rounded odd:bg-zinc-100 even: bg-slate-100 border hover:shadow-xl"
           >
             <div class="flex flex-row justify-between">
               <div
