@@ -124,6 +124,19 @@ const relatedEntity = computed(() =>
 const relatedOptions = computed(() =>
   entities.value.filter((e) => e.name != props.entity.name)
 )
+function otherRelationMethod() {
+  if (attribute.value.relation.type === 'otm')
+    return relatedEntity.value.name + '.' + props.entity.name
+  if (attribute.value.relation.type === 'mto')
+    return relatedEntity.value.name + '.' + props.entity.pluralSM
+}
+function thisRelationMethod() {
+  // props.entity.name + '.' + attribute.name
+  console.log({
+    gogogo: attribute.value.relation.type,
+  })
+  return props.entity.name + '.' + attribute.value.name
+}
 </script>
 <template>
   <div class="flex flex-1 flex-row">
@@ -262,7 +275,7 @@ const relatedOptions = computed(() =>
           <input
             type="text"
             disabled="true"
-            :value="entity.name + '.' + attribute.name"
+            :value="thisRelationMethod()"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -274,11 +287,7 @@ const relatedOptions = computed(() =>
           <input
             type="text"
             disabled="true"
-            :value="
-              attribute.type === 'otm'
-                ? relatedEntity.name + '.' + entity.name
-                : relatedEntity.name + '.' + entity.plural
-            "
+            :value="otherRelationMethod()"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>

@@ -40,6 +40,8 @@ import {
   faRectangleXmark,
   faProjectDiagram,
   faMagnifyingGlass,
+  faMessage,
+  faQuestion,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -62,6 +64,8 @@ library.add(
   faCaretUp,
   faSignOut,
   faDatabase,
+  faMessage,
+  faQuestion,
   faEyeSlash,
   faCaretLeft,
   faCaretDown,

@@ -3,9 +3,9 @@ import { library, config } from '@fortawesome/fontawesome-svg-core'
 
 config.autoAddCss = false
 
-import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'
+import { faMessage, faCircleCheck } from '@fortawesome/free-regular-svg-icons'
 
-library.add(faCircleCheck)
+library.add(faCircleCheck, faMessage)
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('font-awesome-regular', FontAwesomeIcon)

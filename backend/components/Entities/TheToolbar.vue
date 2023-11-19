@@ -82,7 +82,7 @@ const isFocused = (name) => {
             'border-blue-500': isFocused('composer'),
           }"
         >
-          Composer
+          Entities
           <font-awesome-icon
             icon="fa-solid fa-cubes"
             class="ml-1 hover:bg-gray-100"
@@ -95,7 +95,7 @@ const isFocused = (name) => {
         </button>
         <button
           type="button"
-          class="rounded-r-md border px-4 py-1 hover:bg-gray-100"
+          class="border px-4 py-1 hover:bg-gray-100"
           @click="store.view = 'relationships'"
           :class="{
             'text-gray-400': !isFocused('relationships'),
@@ -113,6 +113,26 @@ const isFocused = (name) => {
               'text-blue-500': isFocused('relationships'),
               'border-blue-500': isFocused('relationships'),
             }"
+          />
+        </button>
+        <button
+          type="button"
+          class="border px-4 py-1 hover:bg-gray-100 text-slate-500"
+        >
+          Feedback
+          <font-awesome-icon
+            class="ml-1 hover:bg-gray-100 text-slate-500"
+            icon="fa-regular fa-message"
+          />
+        </button>
+        <button
+          type="button"
+          class="rounded-r-md border px-4 py-1 hover:bg-gray-100 text-slate-500"
+        >
+          Help
+          <font-awesome-icon
+            icon="fa-solid fa-question"
+            class="ml-1 hover:bg-gray-100 text-slate-500"
           />
         </button>
       </div>
