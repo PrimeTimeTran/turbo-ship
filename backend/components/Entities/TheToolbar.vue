@@ -25,20 +25,8 @@ const isFocused = (name) => {
       >
         <button
           type="button"
-          @click="store.view = 'sorter'"
-          class="rounded-l-lg border px-4 py-1 hover:bg-gray-100 text-gray-400"
-        >
-          Sort
-          <font-awesome-icon
-            icon="fa-solid fa-sort"
-            class="ml-1 hover:bg-gray-100 text-gray-400"
-          />
-        </button>
-
-        <button
-          type="button"
           @click="collapse"
-          class="border-t border-b border px-4 py-1 hover:bg-gray-100 text-gray-400"
+          class="rounded-l-lg border-b border px-4 py-1 hover:bg-gray-100 text-gray-400"
         >
           Collapse
           <font-awesome-icon
@@ -65,6 +53,27 @@ const isFocused = (name) => {
         </button>
         <button
           type="button"
+          @click="store.view = 'sorter'"
+          class="border px-4 py-1 hover:bg-gray-100"
+          :class="{
+            'text-gray-400': !isFocused('sorter'),
+            'text-blue-500': isFocused('sorter'),
+            'border-blue-500': isFocused('sorter'),
+          }"
+        >
+          Sort
+          <font-awesome-icon
+            icon="fa-solid fa-sort"
+            class="ml-1 hover:bg-gray-100"
+            :class="{
+              'text-gray-400': !isFocused('sorter'),
+              'text-blue-500': isFocused('sorter'),
+              'border-blue-500': isFocused('sorter'),
+            }"
+          />
+        </button>
+        <button
+          type="button"
           @click="store.view = 'composer'"
           class="border-t border-b border px-4 py-1 hover:bg-gray-100"
           :class="{
@@ -73,7 +82,7 @@ const isFocused = (name) => {
             'border-blue-500': isFocused('composer'),
           }"
         >
-          Entities
+          Composer
           <font-awesome-icon
             icon="fa-solid fa-cubes"
             class="ml-1 hover:bg-gray-100"

@@ -164,6 +164,7 @@ const relatedOptions = computed(() =>
               :id="dataType"
               name="attributeName"
               v-model="attribute.relation.type"
+              class="mr-3"
               v-if="attribute.type === 'relation'"
               :value="Validator.labeledTypes[dataType]?.value"
               :checked="
@@ -175,6 +176,7 @@ const relatedOptions = computed(() =>
               v-else
               type="radio"
               :id="dataType"
+              class="mr-3"
               name="attributeName"
               v-model="attribute.type"
               :checked="dataType === attribute.type"
@@ -205,7 +207,7 @@ const relatedOptions = computed(() =>
         class="flex flex-col space-y-4"
         v-if="Validator.enumTypes.includes(attribute.type)"
       >
-        <h1 class="mb-2 text-lg">Enumerator</h1>
+        <label class="font-bold text-gray-500">Enumerator</label>
         <label>Options:</label>
         <input
           type="text"
@@ -218,7 +220,6 @@ const relatedOptions = computed(() =>
             :multiple="attribute.type === 'enumeratorMulti'"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
           >
-            <label></label>
             <option
               v-text="option"
               v-for="option of enumOptions"
@@ -231,7 +232,7 @@ const relatedOptions = computed(() =>
         class="flex flex-col"
         v-if="Validator.relationTypes.includes(attribute.type)"
       >
-        <h1 class="mb-2 text-lg">Relations</h1>
+        <label class="font-bold text-gray-500">Relations</label>
         <label
           v-text="
             Validator.labeledTypes[

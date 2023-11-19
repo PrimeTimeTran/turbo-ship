@@ -29,7 +29,7 @@ const collapseText = () => {
         <template #item="{ element: entity }">
           <section
             :key="entity._id"
-            class="my-1 mx-5 p-5 rounded bg-red-200 font-md"
+            class="my-1 mx-5 p-5 rounded odd:bg-zinc-100 even: bg-slate-100 border"
           >
             <div class="flex flex-row justify-between">
               <div
@@ -47,7 +47,7 @@ const collapseText = () => {
                 <template #item="{ element: attribute }">
                   <li
                     :key="attribute._id"
-                    class="rounded m-1 p-2 bg-green-200"
+                    class="rounded m-1 p-2 odd:bg-zinc-50 even: bg-slate-50 border"
                   >
                     <span v-text="attribute.name" />
                   </li>
