@@ -1,19 +1,41 @@
 <!-- https://www.sliderrevolution.com/resources/css-border-animation/ -->
 <!-- https://www.joshwcomeau.com/animation/css-transitions/#ux-touches-10 -->
 <!-- https://alvarotrigo.com/blog/css-page-transitions/ -->
+
+<!-- 
+  Scroll spy awesomness 
+  https://blog.parametricstudios.com/posts/vue-directive-intersection-observer/
+ -->
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-const props = defineProps(['count'])
-const reactiveCount = ref(props.count)
+import animateScrollTo from 'animated-scroll-to'
 
-watch(
-  () => props.count,
-  (newCount) => {
-    reactiveCount.value = newCount
+const tocLinkClick = (event, id) => {
+  if (process.browser) {
+    // setTimeout(() => {
+      try {
+        event.preventDefault(event);
+        event.stopPropagation()
+        
+        let container = document.getElementById('pageContent')
+        const item = document.getElementById(id)
+        animateScrollTo(item, {
+        elementToScroll: container,
+          // linear: (t) => { return t },
+
+        easing: (x) =>
+          1 + (1.70158 + 1) * Math.pow(x - 1, 3) + 1.70158 * Math.pow(x - 1, 2),
+        maxDuration: 600,
+        verticalOffset: 0,
+        cancelOnUserAction: true,
+      })
+    } catch (error) {
+      console.log('Error scrolling', {
+        error
+      })
+    }
+    // }, 250)
   }
-)
-const tocLinkClick = (link) => {
-  activeItem = link.id
 }
 
 const useSpyObservers = (toc) => {
@@ -32,7 +54,11 @@ const useSpyObservers = (toc) => {
           activeItem.value = id.toLowerCase()
         }
       })
-    }, observerOptions)
+    }, {
+      root: null,
+      threshold: 0,
+      rootMargin: '-100px',
+    })
   }
 
   onMounted(setupObservers)
@@ -74,12 +100,6 @@ const useSpyObservers = (toc) => {
   }
 }
 
-const observerOptions = {
-  root: null,
-  threshold: 0,
-  rootMargin: '-100px',
-}
-
 const ScrollSpy = {
   setup() {
     let tocRef = ref(null)
@@ -111,9 +131,8 @@ const ScrollSpy = {
 const { tocRef, showTOC, activeItem} =
   ScrollSpy.setup()
 
-const activeRef = ref(activeItem)
 const isActive = (id) => {
-  return activeRef.value === id.toLowerCase()
+  return activeItem.value === id.toLowerCase()
 }
 </script>
 
@@ -131,10 +150,10 @@ const isActive = (id) => {
           <li
             :key="link.id"
             v-for="link of tocRef?.links"
-            @click="tocLinkClick(link.id)"
+            @click="(e) => tocLinkClick(e, link.id)"
           >
-            <a
-              :href="link.id" 
+          <a
+            :href="'#'+link.id" 
               v-text="link.text"
               :class="{ active: isActive(link.id), 'border-opacity-100': isActive(link.id) }"
               class="pl-2 my-1 border-l-green-400 border-l-4 border-opacity-0 list-item"
@@ -142,13 +161,12 @@ const isActive = (id) => {
             <ul
               v-if="link.children"
             >
-                <li :key="childLink.id" v-for="childLink of link.children">
+                <li :key="childLink.id" v-for="childLink of link.children" @click="(e) => tocLinkClick(e, childLink.id)">
                   <a
-                    :href="childLink.id"
+                    :href="'#' + childLink.id" 
                     v-text="childLink.text"
                     class="pl-4 my-1 border-l-green-400 border-l-4 border-opacity-0 list-item"
                     :class="{ active: isActive(childLink.id), 'border-opacity-100': isActive(childLink.id) }"
-
                   />
                 </li>
             </ul>

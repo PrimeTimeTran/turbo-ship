@@ -6,6 +6,7 @@ definePageMeta({
 </script>
 <template>
   <div
+    id="pageContent"
     class="flex flex-col flex-grow items-center overflow-auto scrollbar-hide"
   >
     <!-- <VPreviewer /> -->
