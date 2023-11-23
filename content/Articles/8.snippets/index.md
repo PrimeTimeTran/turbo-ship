@@ -1,8 +1,8 @@
 ---
 createdAt: 2023-10-29
-title: Code Snippets
-description: Code Snippets
+title: Snippets
+description: Snippets
 navigation: false
 ---
 
-# Code Snippets
+# Snippets

@@ -8,7 +8,7 @@ description: Overview
 
 ## Concepts
 
-- Componentsss
+- Components
   - Template
     - HTML
     - Markup
@@ -64,7 +64,7 @@ description: Overview
     - No import/export
   - Script
 
-### Scripts
+### Script
 
 - Components
   - Template
@@ -93,7 +93,7 @@ description: Overview
     - No import/export
   - Script
 
-### Styles
+### Style
 
 - Components
   - Template

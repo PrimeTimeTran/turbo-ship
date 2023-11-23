@@ -1,7 +1,7 @@
 ---
 createdAt: 2023-10-30
-title: Markdown Syntax
-shortName: Markdown Syntax
+title: Markdown
+shortName: Markdown
 ---
 
 # Markdown

@@ -27,13 +27,13 @@ collections:
         fields:
           - {
               label: Site Name,
-              name: sitename,
+              name: site name,
               widget: string,
               hint: 'This is used for the site title',
             }
           - {
               label: Site Description,
-              name: sitedescription,
+              name: site description,
               widget: string,
               hint: 'This is used as descriptive text for links that link to this site',
             }
@@ -49,10 +49,10 @@ collections:
             }
 
           # - { label: Site Email, name: siteemail, widget: string, required: false }
-  - name: article
+  - name: articles
     create: true
     label: Article
-    folder: content/article
+    folder: content/articles
     format: frontmatter
     slug: '{{fields.createdAt}}-{{slug}}'
     # editor:

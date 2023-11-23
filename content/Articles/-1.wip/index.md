@@ -2,6 +2,7 @@
 createdAt: 2023-11-01
 title: Intro
 description: Intro
+navigation: false
 ---
 
 ## Nuxt Intro

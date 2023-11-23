@@ -1,77 +1,18 @@
-<template>
-  <aside :v-if="showTOC">
-    <div class="sticky top-16">
-      <h2
-        class="dark:text-white uppercase text-black font-h2 text-lg lg:mt-16 tracking-wider"
-      >
-        Table of contents
-      </h2>
-      <nav class="mt-4">
-        <ul>
-          <li
-            :key="link.id"
-            v-for="link of tocRef?.links"
-            @click="tableOfContentsHeadingClick(link.id)"
-          >
-            <a
-              :href="`#${link.id}`"
-              :class="{ active: link.id.toLowerCase() === activeItem }"
-            >
-              {{ link.text }}
-            </a>
-            <div
-              class="pl-2 lg:ml-4"
-              v-if="link.children"
-            >
-              <ul>
-                <li v-for="childLink of link.children">
-                  <a
-                    :href="`#${childLink.id}`"
-                    :class="{
-                      active: childLink.id.toLowerCase() === activeItem,
-                    }"
-                  >
-                    {{ childLink.text }}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </aside>
-</template>
-
-<!-- <script setup>
-let { toc } = useContent()
-let { tocRef, showTOC, activeItem } = useSpyObservers(toc)
-const props = defineProps(['count'])
-const reactiveCount = ref(props.count)
-
-watch(
-  () => props.count,
-  (newCount) => {
-    reactiveCount.value = newCount
-  }
-)
-
-function tableOfContentsHeadingClick(link) {
-  activeItem = link.id
-}
-</script> -->
-
+<!-- https://www.sliderrevolution.com/resources/css-border-animation/ -->
+<!-- https://www.joshwcomeau.com/animation/css-transitions/#ux-touches-10 -->
+<!-- https://alvarotrigo.com/blog/css-page-transitions/ -->
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 const props = defineProps(['count'])
 const reactiveCount = ref(props.count)
+
 watch(
   () => props.count,
   (newCount) => {
     reactiveCount.value = newCount
   }
 )
-const tableOfContentsHeadingClick = (link) => {
+const tocLinkClick = (link) => {
   activeItem = link.id
 }
 
@@ -166,9 +107,57 @@ const ScrollSpy = {
     }
   },
 }
-const { tocRef, showTOC, observer, activeItem, isClickScrolling } =
+
+const { tocRef, showTOC, activeItem} =
   ScrollSpy.setup()
+
+const activeRef = ref(activeItem)
+const isActive = (id) => {
+  return activeRef.value === id.toLowerCase()
+}
 </script>
+
+<template>
+  <aside :v-if="showTOC">
+    <div class="sticky top-16">
+      <h2
+        class="dark:text-white uppercase text-black font-h2 text-lg lg:mt-16 tracking-wider"
+      >
+        Table of contents
+      </h2>
+      <nav class="mt-4">
+        <TransitionGroup name="list" tag="ul">
+
+          <li
+            :key="link.id"
+            v-for="link of tocRef?.links"
+            @click="tocLinkClick(link.id)"
+          >
+            <a
+              :href="link.id" 
+              v-text="link.text"
+              :class="{ active: isActive(link.id), 'border-opacity-100': isActive(link.id) }"
+              class="pl-2 my-1 border-l-green-400 border-l-4 border-opacity-0 list-item"
+            />
+            <ul
+              v-if="link.children"
+            >
+                <li :key="childLink.id" v-for="childLink of link.children">
+                  <a
+                    :href="childLink.id"
+                    v-text="childLink.text"
+                    class="pl-4 my-1 border-l-green-400 border-l-4 border-opacity-0 list-item"
+                    :class="{ active: isActive(childLink.id), 'border-opacity-100': isActive(childLink.id) }"
+
+                  />
+                </li>
+            </ul>
+          </li>
+        </TransitionGroup>
+      </nav>
+    </div>
+  </aside>
+</template>
 
 <style>
 .active {

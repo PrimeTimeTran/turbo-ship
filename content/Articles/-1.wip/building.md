@@ -1,3 +1,7 @@
+---
+createdAt: 2023-11-22
+title: Nuxt troubleshooting
+---
 https://nuxt.com/docs/getting-started/deployment
 
 - Create local build

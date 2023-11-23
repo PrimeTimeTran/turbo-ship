@@ -1,9 +1,12 @@
+---
+createdAt: 2023-11-22
+title: Zod
+---
 // https://zod.dev/?id=schema-methods
 // https://www.npmjs.com/package/nuxt-mongoose
 // https://mongoosejs.com/docs/middleware.html#pre
 // https://mongoosejs.com/docs/schematypes.html
 // https://nuxt-mongoose.nuxt.space/docs/api/utils
-
 
 ```ts
 import { z } from 'zod'

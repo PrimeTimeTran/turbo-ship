@@ -1,3 +1,7 @@
+---
+createdAt: 2023-11-22
+title: Why Nuxt?
+---
 1. 
 Production ready vue isn't easy
   vuex 

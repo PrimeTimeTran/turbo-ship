@@ -32,7 +32,7 @@ export default {
           icon: 'fa-cubes',
         },
         {
-          url: '/articles/vue/vue-1-overview',
+          url: '/articles/vue/vue-1-components',
           name: 'Articles',
           icon: 'fa-blog',
         },
