@@ -8,7 +8,7 @@
       <div
         class="flex relative w-full justify-between lg:w-auto px-4 lg:justify-start py-3"
       >
-        <admin-navbar-logo />
+        <AdminNavbarLogo />
         <NuxtLink
           type="button"
           @click="toggleNavbar"
@@ -18,11 +18,11 @@
         </NuxtLink>
       </div>
       <div
-        class="flex flex-col flex-auto md:flex-row lg:flex lg:flex-grow md:min-w-100 md:min-w-full lg:min-w-0"
+        class="flex flex-col-reverse px-12 flex-auto md:px-4 md:flex-row lg:flex lg:flex-grow md:min-w-100 md:min-w-full lg:min-w-0"
         :class="{ hidden: !showMenu, flex: showMenu }"
       >
-        <admin-navbar-left />
-        <admin-navbar-right />
+        <AdminNavbarLeft />
+        <AdminNavbarRight />
       </div>
     </div>
   </nav>

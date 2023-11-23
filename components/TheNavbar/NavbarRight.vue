@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center md:flex-row space-x-5">
+  <div class="flex flex-grow items-center align-middle md:flex-row space-x-5">
     <div
       id="toggleThemeButton"
       @click="handleToggle()"
@@ -42,7 +42,7 @@
     </div>
     <NuxtLink
       href="/login"
-      class="flex items-center text-gray-500 dark:text-white hover:text-gray-900 hover:border-b-2 hover:border-b-gray-900 dark:hover:border-b-white cursor-pointer transition-colors duration-300 py-3"
+      class="flex flex-auto justify-center items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"
     >
       <svg
         width="24"

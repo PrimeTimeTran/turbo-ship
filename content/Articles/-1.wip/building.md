@@ -9,8 +9,6 @@ npx nuxi generate
 
 Pre render config
 
-
-
 ## Troubleshooting
 
 - When TS complaining about unable to find types.
