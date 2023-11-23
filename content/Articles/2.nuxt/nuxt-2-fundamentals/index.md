@@ -1,11 +1,11 @@
 ---
 createdAt: 2023-10-29
-title: Core Concepts
-description: Core Concepts
+title: Fundamentals
+description: Fundamentals
 tags: Nuxt
 ---
 
-# Nuxt Core Concepts
+# Nuxt Fundamentals
 
 - Initialize
 - Components
