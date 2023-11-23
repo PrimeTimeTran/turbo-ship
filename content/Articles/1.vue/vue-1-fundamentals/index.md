@@ -7,7 +7,7 @@ description: Fundamentals
 
 # Vue Fundamentals
 
-Concepts you'll use on day one.
+Concepts you'll use on day one. :inline{value='hello world'}
 
 ## Components
 
@@ -17,7 +17,7 @@ We create them by combining HTML, JS, & CSS.
 
 ### Templates
 
-A component **must** contain a :inline{value="template"}. Template tags contain HTML.
+A component **must** contain an opening & closing :inline{value="template"} tag. Template tags contain HTML.
 
 ```vue [./component.vue] {2}
 <template>
@@ -40,7 +40,7 @@ Templates contain 1 root tag(best practice).
 </template>
 ```
 
-Every standard & semantic HTML is available.
+Both standard & semantic HTML tags are available.
 
 ```vue [./component.vue] {5-10, 12}
 <template>
@@ -59,19 +59,15 @@ Every standard & semantic HTML is available.
 </template>
 ```
 
-Standard HTML attributes work, although syntax is slightly different.
+Standard HTML attributes such as style, class, autofocus all work.
 
-```vue [./component.vue] {3, 7-9}
+```vue [./component.vue] {3, 6, 16}
 <template>
   <div>
-    <h1 :style="{'color': 'red'}">Wizards</h1>
+    <h1 style="color: red">Wizards</h1>
     <ul>
       <li>
-        <b 
-          :style="{
-            'font-size': '100px'
-          }" 
-        >
+        <b style="font-size: 100px">
          Harry
         </b>
       </li>
@@ -81,10 +77,11 @@ Standard HTML attributes work, although syntax is slightly different.
       <li><em>Severus</em></li>
       <li><pre>Minerva</pre></li>
     </ul>
+    <input autofocus />
   </div>
 </template>
 ```
-
+<!-- 
 ::card
 #info
   The ":" is shorthand for **binding**. More on this later.
@@ -92,20 +89,17 @@ Standard HTML attributes work, although syntax is slightly different.
 
 Lastly we can add methods to our HTML elements to handle events as well.
 
-In this case when a user **clicks** on Harry.
+In this case when a user **clicks** on Harry. -->
 
-```vue [./component.vue] {10}
+Underlining the importance of this, consider how adding the `type` attribute affects this input's behavior.
+
+```vue [./component.vue] {16}
 <template>
   <div>
     <h1 :style="{'color': 'red'}">Wizards</h1>
     <ul>
       <li>
-        <b 
-          :style="{
-            'font-size': '100px'
-          }" 
-          @click="() => console.log('Magic')"
-        >
+        <b style="font-size: 100px">
          Harry
         </b>
       </li>
@@ -115,17 +109,18 @@ In this case when a user **clicks** on Harry.
       <li><em>Severus</em></li>
       <li><pre>Minerva</pre></li>
     </ul>
+    <input autofocus type="number" /> !!!!!
   </div>
 </template>
 ```
 
-We've seen that Vue is fundamentally HTML.
-
 ### Directives
 
-A **directive** is a mechanism for conditionally rendering HTML.
+A **directive** is a mechanism for conditionally rendering HTML with JS.
 
-The simplest directive is :inline{value="v-if"} statement. It evaluates a JS statement and renders it if the expression evaluates to :inline{value="true"}.
+A simple example is the :inline{value="v-if"} directive. 
+
+It evaluates a JS statement and renders it if the expression evaluates to :inline{value='true'}.
 
 ```vue
 <template>
@@ -135,7 +130,9 @@ The simplest directive is :inline{value="v-if"} statement. It evaluates a JS sta
 </template>
 ```
 
-Like conditionals in any language an **else** statement can be added.
+Like conditionals in any language an :inline{value='else'} statement can be added. 
+
+However it's a :inline{value='v-else'} in Vue.
 
 ```vue
 <template>
@@ -148,59 +145,224 @@ Like conditionals in any language an **else** statement can be added.
 </template>
 ```
 
-As well as a  :inline{value="v-else-if"} for an infinite number of possibilities.
+A :inline{value='v-else-if'} produces an infinite number of possibilities.
 
 ```vue
 <template>
   <div v-if="1 === 'one'">
+    False
+  </div>
+  <div v-else-if="1 === 'One'">
     False
   </div>
   <div v-else-if="1 === '1'">
     False
   </div>
-  <div v-else>
-    True
+  <div v-else-if="1 === 'Uno'">
+    False
   </div>
+  <div v-else-if="1 === 'Alpha'">
+    False
+  </div>
+  <div v-else-if="1 === 'Genesis'">
+    False
+  </div>
+  <!-- ...how many more ways might we be wrong...? 🤔 -->
 </template>
 ```
 
 ### Interpolation
 
-We want to separate JS from HTML when possible.
+You want to separate JS from HTML when possible.
 
-This makes the code easier to understand.
+Doing so makes your code easier to understand.
 
-Defined JS variables can be interpolated without our templates using mustache syntax.
+To do so define a :inline{value=script} which will hold your JS.
 
 ```vue
 <script setup>
-  const wizard = 'Harry'
 </script>
 
 <template>
   <div>
-    {{ wizard }}
   </div>
 </template>
 ```
 
-By using multiple variables we can create magical results.
+Now define the variables you want to use in your templates.
 
 ```vue
 <script setup>
-  const wizard = 'Harry'
-  const ability = ' is magical'
+  const pronoun = 'Harry'
+</script>
+
+<template>
+</template>
+```
+
+Now you can interpolate the vars into the template with mustache/handlebar syntax.
+
+```vue
+<script setup>
+  const pronoun = 'Harry'
 </script>
 
 <template>
   <div>
-    {{ wizard }} {{ ability }}
+    {{ pronoun }}
   </div>
 </template>
 ```
+
+You can create something magical by using multiples vars.
+
+```vue
+<script setup>
+  const pronoun = 'Harry'
+  const verb = ' is '
+  const adjective = 'magical'
+</script>
+
+<template>
+  <div>
+    {{ pronoun }} {{ verb }} {{ adjective }}
+  </div>
+</template>
+```
+
+Combing lists & loops in a :inline{value=v-for} creates enchanting possibilities.
+
+```vue
+<script setup>
+  const pronoun = 'Harry'
+  const verb = ' is '
+  const adjective = 'magical'
+  const spells = ['HTML', 'JS', 'Vue']
+</script>
+
+<template>
+  <div>
+    {{ pronoun }} {{ verb }} {{ adjective }}
+  </div>
+  <ul>
+    <li
+      v-for="spell of spells"
+    >
+      <div>{{ spell }}</div>
+    </li>
+  </ul>
+</template>
+```
+
+Especially if you combine new skills with previous abilities like the :inline{value=v-if} directive.
+
+```vue
+<script setup>
+  const pronoun = 'Harry'
+  const verb = ' is '
+  const adjective = 'magical'
+  const spells = ['HTML', 'JS', 'Vue']
+</script>
+
+<template>
+  <div>
+    {{ pronoun }} {{ verb }} {{ adjective }}
+  </div>
+  <ul>
+    <li
+      v-for="spell of spells"
+    >
+      <div v-if="spell === 'Vue'" style="color: green">{{ spell }}</div>
+      <div v-else>{{ spell }}</div>
+    </li>
+  </ul>
+</template>
+```
+
+Add a :inline{value=ternary} operator to simplify the your code a bit.
+
+```vue
+<script setup>
+  const pronoun = 'Harry'
+  const verb = ' is '
+  const adjective = 'magical'
+  const spells = ['HTML', 'JS', 'Vue']
+</script>
+
+<template>
+  <div>
+    {{ pronoun }} {{ verb }} {{ adjective }}
+  </div>
+  <ul>
+    <li
+      v-for="spell of spells"
+    >
+      <div :style="{color: spell === 'Vue' ? 'green' : 'black'}">{{ spell }}</div>
+    </li>
+  </ul>
+</template>
+```
+
+We could have concatenated our vars earlier as well.
+
+```vue
+<script setup>
+  const pronoun = 'Harry'
+  const verb = ' is '
+  const adjective = 'magical'
+  const spells = ['HTML', 'JS', 'Vue']
+</script>
+
+<template>
+  <div>
+    {{ pronoun + verb +  adjective }}
+  </div>
+  <ul>
+    <li
+      v-for="spell of spells"
+    >
+      <div :style="{color: spell === 'Vue' ? 'green' : 'black'}">{{ spell }}</div>
+    </li>
+  </ul>
+</template>
+```
+
+And lastly, we can define functions 
+
+```vue
+<script setup>
+  const pronoun = 'Harry'
+  const verb = ' is '
+  const adjective = 'magical'
+  const spells = ['HTML', 'JS', 'Vue']
+
+  function hotSpell(spell) {
+    return spell === 'Vue' ? 'green' : 'black'
+  }
+</script>
+
+<template>
+  <div>
+    {{ pronoun + verb +  adjective }}
+  </div>
+  <ul>
+    <li
+      v-for="spell of spells"
+    >
+      <div :style="{color: hotSpell(spell)}">{{ spell }}</div>
+    </li>
+  </ul>
+</template>
+```
+
+Combining HTML, JS, directives, handlebars & loops allows
+
 
 
 ### Binding
+
+Data changes
+
 
 Binding HTML to JS ensures that the UI is always up to date with the state of the application.
 
@@ -268,16 +430,44 @@ listening for. For example :inline{value="v-on:click"}
 </template>
 ```
 
-Using an @ allows us to listen to listen for events being emitted.
+The :inline{value="@"} we saw earlier allows us to listen for or bind to future events.
 
 ```vue
 <template>
-  <button v-on:click="console.log('Clicked')">
+  <button v-on:click="console.log('Clicked')">  // [!code  --]
+  <button @click="console.log('Clicked')">  // [!code  ++]
     Log clicked
   </button>
 </template>
 ```
 
+The syntax :inline{value="@click"} is shorthand for bind :inline{value="v-on:click"}
+
+Pay attention to the focused line. What's different about it?
+
+```vue [component.vue]
+<template>
+  <div>
+    <h1 style="color: green">Wizards</h1>
+    <ul> 
+      <li>
+        <b 
+          @click="() => console.log('Magic')" !!!!!
+        >
+         Harry
+        </b>
+      </li>
+      <li><i>Ron</i></li>
+      <li><strong>Hermione</strong></li>
+      <li><u>Albus</u></li>
+      <li><em>Severus</em></li>
+      <li><pre>Minerva</pre></li>
+    </ul>
+  </div>
+</template>
+```
+
+If you said it's JS **excellent**.
 
 ```js [diff.js]
 export default {
@@ -303,12 +493,38 @@ export default {
 
 ## Scripts
 
+
 ### Props
+
+```vue [./component.vue] {}
+<script setup>
+</script>
+
+<template>
+</template>
+```
+
+```vue [./component.vue] {}
+<script setup>
+
+</script>
+<template>
+</template>
+```
+
 ### Lifecycle
 ### Composition
 ### Options
 
-## Style
-### Templates 3
-### Scripts 3
-### Styles 3
+## Styles
+### 
+### 
+### 
+
+## Props
+
+```bash
+components
+├── AComponent.vue
+└── BComponent.vue
+```

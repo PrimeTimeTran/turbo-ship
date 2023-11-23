@@ -2,6 +2,7 @@
 // Info: This must be placed inside of ./components/content to work.
 // To replace the component it's overwriting
 // https://content.nuxt.com/components/prose
+
 import { useClipboard } from '@vueuse/core'
 interface Props {
   code?: string
@@ -64,10 +65,12 @@ const removeCodeBlockIdentifiers = (code: string) => {
     .replace(codeBlockIdentifiers.FOCUS, '')
     .replace(codeBlockIdentifiers.DIFF_ADD, '')
     .replace(codeBlockIdentifiers.DIFF_REMOVE, '')
+    .replace(codeBlockIdentifiers.FOCUS2, '')
 }
 
 const codeBlockIdentifiers = {
   FOCUS: '// [!code  focus]',
+  FOCUS2: '!!!!!',
   DIFF_ADD: '// [!code  ++]',
   DIFF_REMOVE: '// [!code  --]',
 } as const
@@ -84,7 +87,7 @@ watch(
       bg: newHighlighter.getBackgroundColor('dark-plus'),
       elements: {
         pre({ className, style, children }: any) {
-          const shallFocus = props.code.includes(codeBlockIdentifiers.FOCUS)
+          const shallFocus = props.code.includes(codeBlockIdentifiers.FOCUS) || props.code.includes(codeBlockIdentifiers.FOCUS2)
           const hasDiff =
             props.code.includes(codeBlockIdentifiers.DIFF_ADD) || props.code.includes(codeBlockIdentifiers.DIFF_REMOVE)
           return `<pre tabindex="1" class="${className} bg-[#1e1e1e] ${shallFocus ? 'has-focused-lines' : ''} ${hasDiff ? 'has-diff' : ''} mt-0" style="${style}">${children}</pre>`
@@ -94,7 +97,7 @@ watch(
         },
         line({ className, index, children }: any) {
           const shallHighlight = props.highlights?.includes(index + 1) ?? false
-          const shallFocus = children.includes(codeBlockIdentifiers.FOCUS)
+          const shallFocus = children.includes(codeBlockIdentifiers.FOCUS) || children.includes(codeBlockIdentifiers.FOCUS2)
           const shallDiffRemove = children.includes(codeBlockIdentifiers.DIFF_REMOVE)
           const shallDiffAdd = children.includes(codeBlockIdentifiers.DIFF_ADD)
           const modifiedChildren = removeCodeBlockIdentifiers(children)
@@ -245,7 +248,7 @@ watch(
 
 :deep(pre.has-focused-lines:hover) {
   > code {
-    & .line-goline-go:not(.has-focus) {
+    & .line-go:not(.has-focus) {
       filter: blur(0);
       opacity: 1;
     }

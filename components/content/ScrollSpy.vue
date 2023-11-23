@@ -25,7 +25,7 @@ const tocLinkClick = (event, id) => {
 
         easing: (x) =>
           1 + (1.70158 + 1) * Math.pow(x - 1, 3) + 1.70158 * Math.pow(x - 1, 2),
-        maxDuration: 600,
+        maxDuration: 3000,
         verticalOffset: 0,
         cancelOnUserAction: true,
       })

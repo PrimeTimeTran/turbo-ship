@@ -1,5 +1,4 @@
-// https://mokkapps.de/blog/focus-and-code-diff-in-nuxt-content-code-blocks
-import { getHighlighter, Highlighter, renderToHtml } from 'shiki-es'
+import { getHighlighter, type Highlighter, renderToHtml } from 'shiki-es'
 
 const highlighter = ref<Highlighter | null>(null)
 
@@ -13,13 +12,12 @@ export const useShikiHighlighter = () => {
         'scss',
         'js',
         'ts',
-        'groovy',
-        'java',
         'diff',
         'vue',
         'html',
         'json',
-        'xml',
+        'sh',
+        'bash',
       ],
     }).then((_highlighter) => {
       highlighter.value = _highlighter
