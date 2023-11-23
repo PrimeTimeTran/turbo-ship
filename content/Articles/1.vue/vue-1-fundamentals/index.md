@@ -234,8 +234,6 @@ Binding HTML to JS ensures that the UI is always up to date with the state of th
   - :inline{value="'text-green-400': (num % 2) == 0,"} <br/>
 ::
 
-
-
 It's more useful to bind values to a user event though
 
 ```vue
@@ -262,10 +260,6 @@ It's more useful to bind values to a user event though
 We can handle events by binding an handler using :inline{value="v-on"}. We use it with an event we're
 listening for. For example :inline{value="v-on:click"}
 
-
-
-hello [code]{style="color: green;" .after:content-none .before:content-none}
-
 ```vue
 <template>
   <button v-on:click="console.log('Clicked')">
@@ -282,6 +276,29 @@ Using an @ allows us to listen to listen for events being emitted.
     Log clicked
   </button>
 </template>
+```
+
+
+```js [diff.js]
+export default {
+  data () {
+    return {
+      msg: 'Removed' // [!code  --]
+      msg: 'Added' // [!code  ++]
+    }
+  }
+}
+```
+
+
+```js [focus.js]
+export default {
+  data() {
+    return {
+      msg: 'Focused!', // [!code  focus]
+    }
+  },
+}
 ```
 
 ## Scripts

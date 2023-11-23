@@ -55,7 +55,7 @@ const marker = new Marked(
   // spent 6 hours deep diving...
 const computedVal = computed(() => {
   const html = marker.parse(props.value);
-  let str = html.replace(/<p>(.*?)<\/p>/g, '<code class="after:content-none before:content-none text-blue-400 dark:text-blue-400">$1</code>');
+  let str = html.replace(/<p>(.*?)<\/p>/g, '<code class="after:content-none before:content-none text-cyan-400 dark:text-cyan-400">$1</code>');
   return str
 })
 </script>

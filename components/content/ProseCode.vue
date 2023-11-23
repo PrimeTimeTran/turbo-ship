@@ -2,21 +2,23 @@
 // Info: This must be placed inside of ./components/content to work.
 // To replace the component it's overwriting
 // https://content.nuxt.com/components/prose
-
 import { useClipboard } from '@vueuse/core'
+interface Props {
+  code?: string
+  language?: string | null
+  filename?: string | null
+  highlights?: Array<number>
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  code: '',
+  language: null,
+  filename: null,
+  highlights: () => [],
+})
 
 type Color = 'red' | 'blue' | 'green'
 const { copy, copied } = useClipboard()
-
-const props = withDefaults(
-  defineProps<{
-    code?: string
-    language?: string | null
-    filename?: string | null
-    highlights?: Array<number>
-  }>(),
-  { code: '', language: null, filename: null, highlights: () => [] }
-)
 
 const languageMap: Record<
   string,
@@ -54,9 +56,70 @@ const languageBackground = computed(() =>
 const languageColor = computed(() =>
   props.language ? languageMap[props.language]?.color : null
 )
-</script>
 
+const html = ref('')
+const shiki = useShikiHighlighter()
+const removeCodeBlockIdentifiers = (code: string) => {
+  return code
+    .replace(codeBlockIdentifiers.FOCUS, '')
+    .replace(codeBlockIdentifiers.DIFF_ADD, '')
+    .replace(codeBlockIdentifiers.DIFF_REMOVE, '')
+}
+
+const codeBlockIdentifiers = {
+  FOCUS: '// [!code  focus]',
+  DIFF_ADD: '// [!code  ++]',
+  DIFF_REMOVE: '// [!code  --]',
+} as const
+
+watch(
+  shiki.highlighter,
+  (newHighlighter) => {
+    if (!newHighlighter || !props.code) {
+      return
+    }
+    const tokens = newHighlighter.codeToThemedTokens(props.code.trim(), props.language ?? undefined)
+    html.value = shiki.renderToHtml(tokens, {
+      fg: newHighlighter.getForegroundColor('dark-plus'),
+      bg: newHighlighter.getBackgroundColor('dark-plus'),
+      elements: {
+        pre({ className, style, children }: any) {
+          const shallFocus = props.code.includes(codeBlockIdentifiers.FOCUS)
+          const hasDiff =
+            props.code.includes(codeBlockIdentifiers.DIFF_ADD) || props.code.includes(codeBlockIdentifiers.DIFF_REMOVE)
+          return `<pre tabindex="1" class="${className} bg-[#1e1e1e] ${shallFocus ? 'has-focused-lines' : ''} ${hasDiff ? 'has-diff' : ''} mt-0" style="${style}">${children}</pre>`
+        },
+        code({ children, className, style }) {
+          return `<code class="${className}" style="${style}">${children}</code>`
+        },
+        line({ className, index, children }: any) {
+          const shallHighlight = props.highlights?.includes(index + 1) ?? false
+          const shallFocus = children.includes(codeBlockIdentifiers.FOCUS)
+          const shallDiffRemove = children.includes(codeBlockIdentifiers.DIFF_REMOVE)
+          const shallDiffAdd = children.includes(codeBlockIdentifiers.DIFF_ADD)
+          const modifiedChildren = removeCodeBlockIdentifiers(children)
+          let beforeElement = '<div class="ml-4"></div>'
+          if (shallDiffAdd) {
+            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${index + 1} <span class="text-[#10b981]">+</span></div>`
+          } else if (shallDiffRemove) {
+            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${index + 1} <span class="text-[#f43f5e]">-</span></div>`
+          } else {
+            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${index + 1}</div>`
+          }
+          return `<div class="${className+'-go'} ${shallHighlight ? 'bg-[#363b46]' : ''} ${shallFocus ? 'has-focus' : ''} ${shallDiffRemove ? 'diff remove' : ''}${shallDiffAdd ? 'diff add' : ''} w-full inline-flex">${beforeElement}<div>${modifiedChildren}</div></div>`
+        },
+      },
+    })
+  },
+  { immediate: true }
+
+)
+</script>
 <template>
+  <!-- <div class="mb-8 mt-4 rounded-md bg-[#1e1e1e]">
+    <div v-if="html" v-html="html"></div>
+    <span v-else>{{ code }}</span>
+  </div> -->
   <div class="container pt-1 rounded-xl">
     <div
       class="flex justify-center items-center border-b-2 border-gray-600 px-1 py-0"
@@ -98,14 +161,15 @@ const languageColor = computed(() =>
         </button>
       </div>
     </div>
-    <slot />
+    <div v-if="html" v-html="html"></div>
+    <span v-else>{{ code }}</span>
   </div>
 </template>
 
 <style scoped>
 .container {
   position: relative;
-  background: #1f2937;
+  background: #1e1e1e;
 }
 
 :slotted(pre) {
@@ -126,10 +190,10 @@ const languageColor = computed(() =>
   flex-direction: column;
 }
 
-:slotted(pre code .line) {
+/* :slotted(pre code .line) {
   display: inline-table;
   min-height: 1rem;
-}
+} */
 
 :slotted(pre code .line::before) {
   width: 1rem;
@@ -150,5 +214,47 @@ const languageColor = computed(() =>
   background-color: #363b46;
   /* Vue COLOR */
   border-left: 0.25em solid #41b883;
+}
+</style>
+
+<style scoped lang="scss">
+
+:deep(pre) {
+  > code {
+    & .line-go.diff.remove {
+      background-color: rgba(244, 63, 94, 0.2);
+      opacity: 0.7;
+    }
+    & .line-go.diff.add {
+      background-color: rgba(16, 185, 129, 0.2);
+    }
+  }
+}
+
+
+:deep(pre.has-focused-lines) {
+  > code {
+    & .line-go:not(.has-focus) {
+      filter: blur(0.095rem);
+      opacity: 0.4;
+      transition: filter 0.35s, opacity 0.35s;
+    }
+  }
+}
+
+
+:deep(pre.has-focused-lines:hover) {
+  > code {
+    & .line-goline-go:not(.has-focus) {
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+}
+
+pre code .line-go {
+  min-height: 1rem;
+  margin-top: 0px;
+  display:inline-block;
 }
 </style>
