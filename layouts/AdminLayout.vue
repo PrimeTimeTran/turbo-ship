@@ -17,7 +17,7 @@ ensureLoad('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js')
 <template>
   <div class="flex flex-col min-h-screen dark:bg-neutral-950">
     <div class="min-h-screen h-full">
-      <AdminNavbar />
+      <TheNavbar />
       <div class="flex flex-row w-100">
         <div class="flex flex-grow overflow-y-auto no-scrollbar">
           <AdminAside />

@@ -1,3 +1,28 @@
+<script setup>
+const percent = ref(0)
+const showMenu = ref(false)
+const client = process.browser && window.location.pathname != '/login'
+function appInit() {
+  if (client) {
+    window?.addEventListener('scroll', () => {
+      let winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop
+      let height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight
+
+      percent.value = Math.round((winScroll / height) * 100)
+    })
+  }
+}
+function appData() {
+  if (client) return { percent }
+} 
+function toggleNavbar() {
+  showMenu.value = !showMenu.value
+}
+</script>
+
 <template>
   <div
     x-cloak
@@ -7,8 +32,8 @@
   >
     <TheNavbarScrollSpy :percent="percent" />
     <nav
-    class="z-50 fixed top-0 left-0 right-0 w-screen flex flex-wrap items-center justify-around bg-white dark:bg-neutral-950 backdrop-blur-md border-b-2 border-b-gray-300 dark:border-b-zinc-800"
-  >
+      class="z-40 fixed top-0 left-0 right-0 w-screen flex flex-wrap items-center justify-around bg-white dark:bg-neutral-950 backdrop-blur-md border-b-2 border-b-gray-300 dark:border-b-zinc-800"
+    >
     <div
       class="flex flex-wrap flex-grow items-center justify-between md:flex-col md:flex-start lg:flex-row lg:px-3 px-3"
     >
@@ -28,53 +53,9 @@
           class="flex flex-col-reverse px-12 flex-auto md:px-4 md:flex-row lg:flex lg:flex-grow md:min-w-100 md:min-w-full lg:min-w-0"
           v-bind:class="{ hidden: !showMenu, flex: showMenu }"
         >
-          <TheNavbarItems />
+          <TheNavbarItems  />
         </div>
       </div>
     </nav>
   </div>
 </template>
-
-<script>
-const browser = process.browser
-
-export default {
-  data() {
-    return {
-      showMenu: false,
-    }
-  },
-  methods: {
-    toggleNavbar: function () {
-      this.showMenu = !this.showMenu
-    },
-  },
-}
-</script>
-
-<script setup>
-import { ref } from 'vue'
-const percent = ref(0)
-
-function appInit() {
-  if (browser && window.location.pathname != '/login') {
-    window?.addEventListener('scroll', () => {
-      let winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop
-      let height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight
-
-      percent.value = Math.round((winScroll / height) * 100)
-    })
-  }
-}
-
-function appData() {
-  if (browser && window.location.pathname != '/login') {
-    return {
-      percent,
-    }
-  }
-}
-</script>
