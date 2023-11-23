@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
-  plugins: ['~/plugins/fontawesome.ts'],
+  plugins: ['~/plugins/fontawesome.ts', { src: '~/plugins/marked.js' }],
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   nitro: {
     prerender: {

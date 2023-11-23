@@ -11,9 +11,6 @@ export default {
   ],
   theme: {
     extend: {
-      // width: {
-      //   'w-full': '1000px',
-      // },
       typography: ({ theme }) => ({
         invert: {
           css: {
