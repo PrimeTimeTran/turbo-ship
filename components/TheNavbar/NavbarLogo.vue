@@ -9,33 +9,30 @@
   </div>
 </template>
 
-<script>
-import { ref, watch, onMounted } from 'vue'
+<script setup>
 import { useDark } from '@vueuse/core'
+const imageSource = ref('https://i.imgur.com/EP68Vcc.png')
 
-export default {
-  setup() {
-    const isDark = useDark()
-    const imageSource = ref('https://i.imgur.com/EP68Vcc.png')
+const initializeImageSource = () => {
+  imageSource.value = isDark.value
+    ? 'https://i.imgur.com/EP68Vcc.png'
+    : 'https://i.imgur.com/0AtZKAM.png'
+}
 
-    const initializeImageSource = () => {
-      imageSource.value = isDark.value
-        ? 'https://i.imgur.com/EP68Vcc.png'
-        : 'https://i.imgur.com/0AtZKAM.png'
-    }
+onMounted(() => {
+  initializeImageSource()
+})
 
-    onMounted(() => {
-      initializeImageSource()
-    })
+function setup() {
+  // const isDark = useDark()
 
-    // Watch for changes in dark mode and update imageSource accordingly
-    watch(isDark, () => {
-      initializeImageSource()
-    })
+  // Watch for changes in dark mode and update imageSource accordingly
+  // watch(isDark, () => {
+  //   initializeImageSource()
+  // })
 
-    return {
-      imageSource,
-    }
-  },
+  return {
+    imageSource,
+  }
 }
 </script>

@@ -6,15 +6,13 @@ definePageMeta({
 <template>
   <div class="overflow-auto scrollbar-hide">
     <section
-      class="flex items-center justify-center w-screen h-screen odd:bg-orange-100 even:bg-green-100 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white"
+      class="flex items-center justify-center w-screen h-screen even:bg-green-100 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white"
     >
-      <div
-        class="flex justify-center items-center md:mx-auto md:pl-24 overflow-hidden"
-      >
+      <div class="flex justify-center items-center md:mx-auto md:pl-24">
         <div
-          class="flex flex-col-reverse space-y-4 md:flex-row md:items-center md:justify-between lg:flex-row md:py-16"
+          class="flex flex-col-reverse space-y-4 md:flex-row md:items-center md:justify-between lg:flex-row"
         >
-          <div class="flex-4 md:pl-24">
+          <div class="flex-4 flex-col-reverse">
             <p class="flex mb-5 text-sm uppercase">Turboship</p>
             <h2
               class="mb-6 font-light leading-snug tracking-tight sm:text-6xl sm:leading-snug text-center"
@@ -24,8 +22,8 @@ definePageMeta({
                 class="font-bold animate__animated animate__flash"
                 style="white-space: nowrap"
               >
-                your team
-                <span class="border-b-8 border-b-green-400">innovates</span>
+                so you can
+                <span class="border-b-8 border-b-green-400">innovate</span>
               </div>
             </h2>
             <p class="text-base text-gray-700 dark:text-white">
@@ -62,12 +60,9 @@ definePageMeta({
               </a>
             </div>
           </div>
-          <div class="block md:relative md:overflow-hidden">
+          <div>
             <img
-              width="1500"
-              height="900"
-              class="flex-1 md:ml-64 md:relative"
-              src="~/assets/images/Mockups/MacbookAir.png"
+              src="~/assets/images/Mockups/BrowserDark.png"
             />
           </div>
         </div>
@@ -80,16 +75,18 @@ definePageMeta({
     </section>
     <section
       id="2"
-      class="w-screen h-screen odd:bg-red-100 even:bg-green-100"
+      class="w-screen h-screen odd:bg-red-100 even:bg-green-100 dark:odd:bg-slate-900 dark:even:bg-zinc-950"
     >
       2
     </section>
-    <section class="w-screen h-screen odd:bg-red-100 even:bg-green-100">
+    <section class="w-screen h-screen odd:bg-red-100 even:bg-green-100 dark:odd:bg-slate-900 dark:even:bg-zinc-950">
       3
     </section>
-    <section class="w-screen h-screen odd:bg-red-100 even:bg-green-100">
+    <section class="w-screen h-screen odd:bg-red-100 even:bg-green-100 dark:odd:bg-slate-900 dark:even:bg-zinc-950">
       4
     </section>
   </div>
   <ContentDoc class="prose dark:prose-invert" />
 </template>
+<style>
+</style>
