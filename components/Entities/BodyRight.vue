@@ -16,7 +16,7 @@ const copyer = (values) => {
 const sparse = ref(false)
 </script>
 <template>
-  <div v-if="store.stateViewer">
+  <div v-if="store.stateViewer" class="bg-white dark:bg-slate-900 dark:text-white">
     <div
       role="group"
       class="align-middle items-center text-center ml-6 rounded-md"

@@ -5,7 +5,7 @@
         :key="todo.id"
         v-for="todo of todos"
         @click="toggleStatus(todo.id)"
-        class="p-3 m-1 border-2 bg-green-400 rounded-lg shadow-md hover:shadow-lg"
+        class="p-3 m-1 border bg-green-400 rounded-lg shadow-md hover:shadow-lg"
       >
         <div
           class="text-white font-bold"

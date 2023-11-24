@@ -73,7 +73,7 @@ const selectedValidations = ref([])
   <section
     :key="entity._id"
     :id="`${entity.name}-${entity._id}`"
-    class="p-2 m-2 rounded border even:bg-slate-100 odd:bg-zinc-100 shadow hover:shadow-lg"
+    class="p-2 m-2 rounded border dark:even:bg-slate-950 dark:odd:bg-zinc-950 even:bg-slate-100 odd:bg-zinc-100 shadow hover:shadow-lg"
   >
     <div
       role="tablist"

@@ -109,6 +109,7 @@ const scriptUrls = {
 }
 
 export function ensureLoad(url) {
+  return true
   if (!process.browser) return
   console.log('Ensuring load: ', url)
   if (url === scriptUrls.chart) {

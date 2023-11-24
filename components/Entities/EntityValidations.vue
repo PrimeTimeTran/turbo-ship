@@ -63,7 +63,7 @@ function close(items) {
           :set="(isValid = valid(attribute))"
           @click="onFocus(attribute._id)"
           v-for="(attribute, idx) of Validator.attributes(entity)"
-          class="hover:cursor-pointer border-2 odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
+          class="hover:cursor-pointer border odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
           :class="{
             'bg-blue-200': focusedAttribute?._id === attribute._id,
           }"

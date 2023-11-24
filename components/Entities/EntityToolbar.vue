@@ -3,13 +3,15 @@ const props = defineProps(['entity'])
 const { removeEntity } = useEntities()
 </script>
 <template>
-  <div class="flex flex-grow justify-between my-2">
+  <div class="flex flex-grow justify-between my-2 dark:bg-slate-900 hover:bg-slate-100 dark:hover:opacity-80 dark:text-white dark:placeholder-white border-gray-200">
     <div class="flex flex-grow">
       <input
         :id="entity._id"
         v-model="entity.name"
         placeholder="customer, transaction, statement..."
-        class="flex flex-grow py-1 px-2 text-md rounded-lg border border-slate-200 bg-white font-bold text-blue-500 dark:text-blue-500 hover:shadow-lg entity-input"
+        class="flex flex-grow py-1 px-2 text-md rounded border  bg-white 
+        font-bold text-blue-500 hover:shadow-lg entity-input 
+         hover:bg-slate-100 dark:text-white dark:placeholder-white border-gray-200 border-opacity-0 hover:border-opacity-100 dark:border-gray-500 dark:bg-slate-800 dark:hover:border-white"
       />
     </div>
     <div

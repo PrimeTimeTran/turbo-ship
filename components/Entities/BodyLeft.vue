@@ -122,10 +122,32 @@ const entityValid = computed(() => {
   return true
 })
 const inputClasses =
-  'flex-1 justify-center border-2 rounded border-gray-300 px-3 py-1 text-sm mr-2 w-full'
+  "flex-1 justify-center border hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white dark:placeholder-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80"
 </script>
 <template>
-  <div class="flex-1 flex-col px-2 max-h-screen">
+  <div class="flex-1 flex-col px-2 max-h-screen ">
+    <div class="flex">
+      <div
+        role="group"
+        class="align-middle items-center text-center rounded-md"
+      >
+      <NuxtLink
+        :to="'https://localhost:3000'"
+      >
+        <button
+          type="button"
+          id="actionCollapse"
+          class="border px-4 py-1 hover:bg-gray-100 text-gray-400"
+        >
+          <u>Q</u>uit
+          <font-awesome-icon
+            icon="fa-solid fa-caret-down"
+            class="ml-1 hover:bg-gray-100 text-gray-400"
+          />
+        </button>
+        </NuxtLink>
+      </div>
+    </div>
     <FormKit
       id="form"
       type="form"
@@ -140,7 +162,7 @@ const inputClasses =
           New Entity(<span v-text="entities.length" />)
         </div>
         <div class="flex flex-col rounded border shadow top hover:shadow-lg">
-          <div class="p-2">
+          <div class="p-2 bg-white dark:bg-slate-950">
             <label class="text-slate-500"
               ><u class="text-slate-500">N</u>ame</label
             >
@@ -202,10 +224,10 @@ const inputClasses =
         <div
           class="flex flex-col overflow-auto scrollbar-hide middle hover:shadow-lg"
         >
-          <div class="text-md font-bold mt-5 text-slate-500">
+          <div class="text-md font-bold mt-5 text-slate-500 ">
             New Attribute(<span v-text="entity.attributes.length" />)
           </div>
-          <div class="mt-2 p-2 rounded border shadow">
+          <div class="mt-2 p-2 rounded border shadow bg-white dark:bg-slate-950">
             <!-- Unable to clear errors after targeting by id & calling function -->
             <label class="text-slate-500"
               ><u class="text-slate-500">A</u>ttribute</label
@@ -228,22 +250,25 @@ const inputClasses =
               v-text="Validator.labeledTypes[newAttribute.type].label"
             />
             <div
-              class="flex flex-col flex-grow border rounded shadow my-2 h-52 max-h-52 overflow-scroll scrollbar-hide"
+              class="flex flex-col flex-grow border rounded shadow my-1 h-52 max-h-52 overflow-scroll scrollbar-hide"
             >
               <label
                 :key="fieldType"
                 v-for="fieldType of Validator.types"
-                class="px-2 py-1 w-full text-sm odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200"
+                class="px-2 py-1 w-full text-sm hover:opacity-90 
+                hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 
+                hover:cursor-pointer border 
+                dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:border-gray-800"
               >
                 <input
-                  class="mr-2"
+                  class="mr-2 "
                   type="radio"
                   name="fieldType"
                   :value="newAttribute.type"
                   @click="onTypeSelect(fieldType)"
                   :checked="newAttribute.type === fieldType"
                 />
-                <span v-text="Validator.labeledTypes[fieldType].label" />
+                <span class="text-xs" v-text="Validator.labeledTypes[fieldType].label" />
               </label>
             </div>
             <div
@@ -267,7 +292,7 @@ const inputClasses =
             </div>
             <button
               @click="addAttribute"
-              class="w-full flex text-center rounded py-2 justify-center text-white font-bold hover:shadow-lg"
+              class="w-full flex text-center text-md rounded p-1 justify-center text-white font-bold hover:shadow-lg dark:bg-gray-800"
               v-text="'Add'"
               :class="{
                 'bg-gray-300': !attributeValid,
@@ -278,31 +303,30 @@ const inputClasses =
             />
           </div>
         </div>
-        <div class="flex flex-col bottom rounded border shadow mt-2">
-          <div class="mt-2 p-2">
-            <h2 class="text-md font-bold mt-5 text-slate-500">Summary:</h2>
-            <h3 class="text-md text-slate-500">
+        <div class="flex flex-col bottom rounded border shadow mt-2 overflow-scroll scrollbar-hide p-2">
+            <h2 class="text-md font-bold text-slate-500">Summary:</h2>
+            <h3 class="text-sm text-slate-500">
               Name: <span v-text="entity.name" />
             </h3>
-            <h3 class="text-md text-slate-500">
+            <h3 class="text-sm text-slate-500">
               Label: <span v-text="entity.label" />
             </h3>
-            <h3 class="text-md text-slate-500">
+            <h3 class="text-sm text-slate-500">
               Pluralized: <span v-text="entity.plural" />
             </h3>
             <h3 class="mt-4 text-md">
               Attributes (<span v-text="entity.attributes.length" />)
             </h3>
             <FormKitMessages :node="input?.node" />
-            <div class="flex flex-col flex-grow overflow-auto scrollbar-hide">
+            <div class="flex flex-col flex-grow overflow-y-auto scrollbar-hide">
               <table class="table-auto">
                 <thead
                   class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                 >
                   <tr class="bg-gray-500">
                     <th></th>
-                    <th class="text-white text-left pl-2">Type</th>
-                    <th class="text-white text-left">Name</th>
+                    <th class="text-white text-xs text-left pl-2">Type</th>
+                    <th class="text-white text-xs text-left">Name</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -324,13 +348,13 @@ const inputClasses =
                         @click="attrRemove(attr._id)"
                       >
                         <font-awesome-icon
-                          icon="fa-solid fa-circle-xmark"
+                          icon="fa-solid fa-circle-xmark text-xs"
                           class="text-red-400"
                         />
                       </td>
                       <td>
                         <span
-                          class="mx-2 font-semibold"
+                          class="mx-2 font-semibold text-xs"
                           v-text="Validator.labeledTypes[attr.type].label"
                         />
                       </td>
@@ -338,7 +362,7 @@ const inputClasses =
                         <span
                           v-text="attr.name"
                           style="white-space: nowrap"
-                          class="overflow-auto scrollbar-hide"
+                          class="overflow-auto scrollbar-hide text-xs"
                         />
                       </td>
                     </tr>
@@ -352,15 +376,14 @@ const inputClasses =
               :classes="{
                 input: entityValid ? '' : 'cursor-not-allowed',
                 outer: entityValid
-                  ? 'mt-2 text-center p-2 rounded text-white font-bold shadow-lg text-xl bg-green-500'
-                  : 'mt-2 text-center p-2 rounded text-white font-bold shadow-lg text-xl bg-gray-300 opacity-80',
+                  ? 'mt-1 text-center p-1 rounded text-white font-bold shadow-lg text-lg bg-green-500'
+                  : 'mt-1 text-center p-1 rounded text-white font-bold shadow-lg text-lg bg-gray-300 dark:bg-gray-800 opacity-80',
               }"
             >
               Create Entity
             </FormKit>
           </div>
         </div>
-      </div>
     </FormKit>
   </div>
 </template>
@@ -372,6 +395,6 @@ const inputClasses =
   max-height: 50vh;
 }
 .bottom {
-  max-height: 20vh;
+  max-height: 28vh;
 }
 </style>

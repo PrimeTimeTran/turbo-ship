@@ -37,7 +37,7 @@ definePageMeta({
           <a
             href="/"
             aria-label=""
-            class="mb-3 inline-flex min-h-12 py-2 w-full items-center justify-center rounded px-6 text-white lg:text-lg transition hover:bg-blue-800 focus:outline-none md:mr-4 md:mb-0 md:w-auto"
+            class="mb-3 inline-flex min-h-12 py-2 w-full items-center justify-center rounded px-6 text-black dark:text-white hover:text-white lg:text-lg transition hover:bg-blue-800 focus:outline-none md:mr-4 md:mb-0 md:w-auto "
           >
             Read how it works
           </a>

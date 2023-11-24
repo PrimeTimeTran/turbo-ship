@@ -15,7 +15,7 @@ useHead({
 ensureLoad('https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js')
 </script>
 <template>
-  <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen">
+  <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen dark:odd:bg-slate-950">
     <div
       class="hidden invisible md:flex md:visible md:col-span-2 lg:col-span-2 border-r-2 overflow-auto scrollbar-hide"
     >

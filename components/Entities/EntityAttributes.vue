@@ -66,7 +66,7 @@ const showRelationTab = computed(() => {
 })
 </script>
 <template>
-  <div class="grid grid-cols-12 flex-1 flex-row gap-2">
+  <div class="grid grid-cols-12 flex-1 flex-row gap-2 dark:bg-slate-900">
     <div class="col-span-4 flex flex-col">
       <EntitiesAttributesTable
         :entity="entity"
@@ -81,12 +81,12 @@ const showRelationTab = computed(() => {
         @keyup.enter="onAdd"
         v-model="attribute.name"
         placeholder="firstName, lastName..."
-        class="p-4 rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100"
+        class="p-4 rounded border border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100 dark:text-white dark:placeholder-white dark:hover:border-white dark:border-gray-500 dark:bg-slate-800"
       />
       <label class="mt-6 font-bold text-gray-500">Type</label>
       <div
         :id="'attributeType' + entity._id"
-        class="flex-auto rounded bg-neutral-50 border-2 border-gray-200 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide hover:shadow-lg"
+        class="flex-auto rounded border dark:border-gray-800 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide hover:shadow-lg"
       >
         <EntitiesAttributeTypeList :attribute="attribute" />
       </div>
@@ -95,7 +95,7 @@ const showRelationTab = computed(() => {
         v-if="!editing || Validator.relationTypes.includes(attribute.type)"
         @click="onAdd"
         :disabled="!valid"
-        class="mt-2 border-2 border-gray-300 py-1 px-2 rounded w-full"
+        class="mt-2 border border-gray-300 py-1 px-2 rounded w-full"
         :class="{
           'opacity-50': !valid,
           'text-white': valid,

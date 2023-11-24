@@ -21,7 +21,7 @@ const handleToggle = () => {
         >
           <slot />
           <TheNavbar
-            class="main-nav visible lg:block md:invisible rounded border-blue-100 border-2 z-10 shadow"
+            class="main-nav visible lg:block md:invisible rounded border-blue-100 border z-10 shadow"
           >
             <MenuBurger
               :isOpen="isOpen"

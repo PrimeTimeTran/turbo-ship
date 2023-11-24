@@ -32,7 +32,7 @@ const onRemove = (id) => {
           <tr
             :key="attribute"
             v-for="(attribute, idx) of Validator.attributes(entity)"
-            class="odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 hover:cursor-pointer border-2"
+            class=" hover:cursor-pointer border dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white  dark:border-gray-800 dark:hover:opacity-80 odd:bg-gray-200 odd:hover:bg-slate-200"
           >
             <td
               class="flex flex-row items-center pl-1"
@@ -41,7 +41,7 @@ const onRemove = (id) => {
               <span v-text="`${idx + 1}. `" />
               <input
                 v-model="attribute.name"
-                class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               />≈
             </td>
             <td @click="onFocus(attribute._id)">
