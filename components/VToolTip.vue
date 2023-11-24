@@ -1,0 +1,60 @@
+<script setup>
+import { Tooltip } from 'flowbite'
+
+const props = defineProps(['tool', 'tip', 'onPress',])
+function setup() {
+  if (process.browser) {
+    const $targetEl = document.getElementById('tooltip-default')
+
+    const $triggerEl = document.getElementById('tooltipButton')
+
+    const options = {
+      placement: 'bottom',
+      triggerType: 'hover',
+      onHide: () => {
+        console.log('tooltip is shown')
+      },
+      onShow: () => {
+        console.log('tooltip is hidden')
+      },
+      onToggle: () => {
+        console.log('tooltip is toggled')
+      },
+    }
+
+    // instance options with default values
+    const instanceOptions = {
+      id: 'tooltip-default',
+      override: true,
+    }
+    const tooltip = new Tooltip($targetEl, $triggerEl, options, instanceOptions)
+  }
+}
+setup()
+</script>
+<template>
+  <div>
+    <button
+      type="button"
+      @click="$emit('click')"
+      id="tooltipButton"
+      data-tooltip-target="tooltip-default"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      {{ tool }}
+    </button>
+
+    <div
+      id="tooltip-default"
+      role="tooltip"
+      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+    >
+      {{ tip }}
+      <div
+        class="tooltip-arrow"
+        data-popper-arrow
+      ></div>
+    </div>
+  </div>
+</template>
+<style></style>

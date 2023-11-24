@@ -1,3 +1,8 @@
+
+<script setup>
+
+</script>
+
 <template>
   <div class="overflow-clip scrollbar-hide">
     <TheNavbar />
@@ -71,14 +76,25 @@
       </div>
     </section>
     <section
-      class="w-screen h-screen  dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 "
+      class="grid place-content-center w-screen h-screen  dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 "
     >
-      3
+      <VToolTip 
+        tool="loi click" 
+        tip="Loi custom tip" 
+        @click="() => {
+          console.log('click handler in parent')
+        }" 
+      />
     </section>
     <section
       class="w-screen h-screen  dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 "
     >
       4
+    </section>
+    <section
+      class="grid place-content-center  w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 "
+    >
+      <VAccordian />
     </section>
     <TheFooter />
   </div>

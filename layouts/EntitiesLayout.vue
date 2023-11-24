@@ -17,7 +17,7 @@ ensureLoad('https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js')
 <template>
   <div class="absolute left-0 grid grid-cols-12 gap-2 p-2 w-screen h-screen dark:odd:bg-slate-950">
     <div
-      class="hidden invisible md:flex md:visible md:col-span-2 lg:col-span-2 border-r-2 overflow-auto scrollbar-hide"
+      class="hidden invisible md:flex md:visible md:col-span-2 lg:col-span-2 border-r dark:border-r-gray-600 overflow-auto scrollbar-hide"
     >
       <EntitiesBodyLeft />
     </div>
@@ -27,9 +27,10 @@ ensureLoad('https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js')
       <slot />
     </div>
     <div
-      class="hidden invisible col-span-0 lg:col-span-3 lg:flex lg:flex-col lg:visible lg:justify-start lg:items-start overflow-auto scrollbar-hide border-l-2"
+      class="hidden invisible col-span-0 lg:col-span-3 lg:flex lg:flex-col lg:visible lg:justify-start lg:items-start overflow-auto scrollbar-hide border-l dark:border-l-gray-600"
     >
       <EntitiesBodyRight />
     </div>
+    <VDevTools />
   </div>
 </template>

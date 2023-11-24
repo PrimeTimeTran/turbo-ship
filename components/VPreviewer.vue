@@ -1,12 +1,12 @@
 <script setup>
-  const pronoun = 'Harry'
-  const verb = ' is '
-  const adjective = 'magical'
-  const spells = ['HTML', 'JS', 'Vue']
-  
-  function hotSpell(spell) {
-    return spell === 'Vue' ? 'green' : 'black'
-  }
+const pronoun = 'Harry'
+const verb = ' is '
+const adjective = 'magical'
+const spells = ['HTML', 'JS', 'Vue']
+
+function hotSpell(spell) {
+  return spell === 'Vue' ? 'green' : 'black'
+}
 </script>
 <template>
   <div

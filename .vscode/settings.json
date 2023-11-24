@@ -4,5 +4,6 @@
     "titleBar.inactiveForeground": "#000000CC",
     "titleBar.activeBackground": "#41b883",
     "titleBar.inactiveBackground": "#3b8070"
-  }
+  },
+  "cSpell.words": ["headlessui"]
 }

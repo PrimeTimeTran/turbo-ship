@@ -1,10 +1,13 @@
 function setupHotkeys() {
   hotkeys(
-    'alt+e,alt+s,alt+c, alt+r, alt+f, alt+h, alt+d, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
+    'alt+cmd+e, alt+e,alt+s,alt+c, alt+r, alt+f, alt+h, alt+d, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
     function (event, handler) {
       switch (handler.key) {
         case 'alt+e':
           document.getElementById('viewEntities').click()
+          break
+        case 'alt+cmd+e':
+          document.getElementById('devTools').click()
           break
         case 'alt+s':
           document.getElementById('viewSort').click()
@@ -109,10 +112,9 @@ const scriptUrls = {
 }
 
 export function ensureLoad(url) {
-  return true
   if (!process.browser) return
   console.log('Ensuring load: ', url)
-  if (url === scriptUrls.chart) {
+  if (url === scriptUrls.chart && typeof hotkeys === 'undefined') {
     loadJS(url)
   } else if (typeof hotkeys !== 'undefined' && url === scriptUrls.hotkeys) {
     setupHotkeys()

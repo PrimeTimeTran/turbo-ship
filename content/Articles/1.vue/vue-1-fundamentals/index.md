@@ -1,13 +1,11 @@
 ---
 createdAt: 2023-10-28
 title: Fundamentals
-description: Fundamentals
+description: Vue Fundamentals
 ---
-
-
 # Vue Fundamentals
 
-Concepts you'll use on day one. :inline{value='hello world'}
+Concepts you'll use on day one.
 
 ## Components
 

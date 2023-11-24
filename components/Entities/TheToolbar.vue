@@ -13,10 +13,16 @@ const isFocused = (name) => {
     class="flex flex-col justify-between items-center sticky top-0 shadow py-1 z-10 bg-white dark:bg-slate-900 dark:text-white"
   >
     <div class="flex">
+      <!-- <VToolTip
+        tool="Collapse"
+        tip="Toggle Entity collapsed view"
+        @click="collapse"
+      /> -->
       <div
         role="group"
         class="align-middle items-center text-center rounded-md"
       >
+        <VDropdown />
         <button
           id="actionCollapse"
           type="button"

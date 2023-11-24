@@ -122,25 +122,25 @@ const entityValid = computed(() => {
   return true
 })
 const inputClasses =
-  'flex-1 justify-center border hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white dark:placeholder-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
+  'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white dark:placeholder-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
 </script>
 <template>
   <div class="flex-1 flex-col px-2 max-h-screen">
     <div class="flex">
       <div
         role="group"
-        class="align-middle items-center text-center rounded-md"
+        class="align-middle items-center text-center rounded-lg"
       >
-        <NuxtLink :to="'https://localhost:3000'">
+        <NuxtLink :to="'http://localhost:3000'">
           <button
             type="button"
             id="actionCollapse"
-            class="border px-4 py-1 hover:bg-gray-100 text-gray-400"
+            class="border px-4 py-1-100 text-gray-400 dark:border-gray-600 rounded hover:brightness-200"
           >
             <u>Q</u>uit
             <FontAwesomeIcon
               icon="fa-solid fa-caret-down"
-              class="ml-1 hover:bg-gray-100 text-gray-400"
+              class="ml-1  text-gray-400"
             />
           </button>
         </NuxtLink>
@@ -159,8 +159,8 @@ const inputClasses =
         <div class="text-md font-bold text-slate-500">
           New Entity(<span v-text="entities.length" />)
         </div>
-        <div class="flex flex-col rounded border shadow top hover:shadow-lg">
-          <div class="p-2 bg-white dark:bg-slate-950">
+        <div class="flex flex-col border shadow top hover:shadow-lg dark:border-gray-600 rounded-lg">
+          <div class="p-2 bg-white dark:bg-slate-950 rounded-lg">
             <label class="text-slate-500"
               ><u class="text-slate-500">N</u>ame</label
             >
@@ -220,13 +220,13 @@ const inputClasses =
           </div>
         </div>
         <div
-          class="flex flex-col overflow-auto scrollbar-hide middle hover:shadow-lg"
+          class="flex flex-col overflow-auto scrollbar-hide middle hover:shadow-lg "
         >
           <div class="text-md font-bold mt-5 text-slate-500">
             New Attribute(<span v-text="entity.attributes.length" />)
           </div>
           <div
-            class="mt-2 p-2 rounded border shadow bg-white dark:bg-slate-950"
+            class="mt-2 p-2 rounded border shadow bg-white dark:bg-slate-950 dark:border-gray-600 rounded-lg"
           >
             <!-- Unable to clear errors after targeting by id & calling function -->
             <label class="text-slate-500"
@@ -250,7 +250,7 @@ const inputClasses =
               v-text="Validator.labeledTypes[newAttribute.type].label"
             />
             <div
-              class="flex flex-col flex-grow border rounded shadow my-1 h-52 max-h-52 overflow-scroll scrollbar-hide"
+              class="flex flex-col flex-grow border rounded shadow my-1 h-52 max-h-52 overflow-scroll scrollbar-hide dark:border-gray-600 rounded-lg"
             >
               <label
                 :key="fieldType"
@@ -304,7 +304,7 @@ const inputClasses =
           </div>
         </div>
         <div
-          class="flex flex-col bottom rounded border shadow mt-2 overflow-scroll scrollbar-hide p-2"
+          class="flex flex-col bottom rounded border shadow mt-2 overflow-scroll scrollbar-hide p-2 dark:border-gray-600 rounded-lg"
         >
           <h2 class="text-md font-bold text-slate-500">Summary:</h2>
           <h3 class="text-sm text-slate-500">
