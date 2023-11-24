@@ -73,7 +73,7 @@ const selectedValidations = ref([])
   <section
     :key="entity._id"
     :id="`${entity.name}-${entity._id}`"
-    class="p-2 m-2 border dark:border-gray-600 rounded-lg dark:even:bg-slate-950 dark:odd:bg-zinc-950 even:bg-slate-100 odd:bg-zinc-100 shadow hover:shadow-lg"
+    class="p-2 m-2 border dark:border-gray-600 rounded-lg shadow hover:shadow-lg bg-"
   >
     <div
       role="tablist"
@@ -87,7 +87,7 @@ const selectedValidations = ref([])
           role="tabpanel"
           :id="'attributes-' + entityId"
           :aria-labelledby="'attributes-tab-' + entityId"
-          class="hidden rounded-lg bg-gray-50"
+          class="hidden rounded-lg"
         >
           <EntitiesEntityAttributes :entity="entity" />
         </div>
@@ -95,7 +95,7 @@ const selectedValidations = ref([])
           role="tabpanel"
           :id="'validations-' + entityId"
           :aria-labelledby="'validations-tab-' + entityId"
-          class="hidden rounded-lg bg-gray-50"
+          class="hidden rounded-lg "
         >
           <EntitiesEntityValidations :entity="entity" />
         </div>
@@ -104,7 +104,7 @@ const selectedValidations = ref([])
           role="tabpanel"
           :id="'settings-' + entityId"
           :aria-labelledby="'settings-tab-' + entityId"
-          class="hidden rounded-lg bg-gray-50 mt-4 border-t border-gray-200"
+          class="hidden rounded-lg"
         >
           <div class="flex flex-1">
             <div class="flex flex-1 flex-col flex-grow w-1/3">

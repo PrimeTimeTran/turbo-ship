@@ -21,12 +21,12 @@ function handleToggle() {
 </script>
 <template>
   <div
-    class="absolute left-5 bottom-5 h-1/2 w-1/2 bg-white rounded-lg p-2 border"
+    class="absolute left-5 bottom-5 h-1/2 w-1/2 bg-white dark:bg-slate-900 rounded-lg p-2 border"
     :class="{
       hidden: hidden,
     }"
   >
-    <h1>Light/Dark Mode</h1>
+    <h1 class="dark:text-white">Light/Dark Mode</h1>
     <VToggle @change="handleToggle" :enabled="isDark"/>
     <div
       id="devTools"

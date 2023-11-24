@@ -1,6 +1,6 @@
 function setupHotkeys() {
   hotkeys(
-    'alt+cmd+e, alt+e,alt+s,alt+c, alt+r, alt+f, alt+h, alt+d, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
+    'alt+cmd+e, alt+v, alt+e,alt+s,alt+c, alt+r, alt+f, alt+h, alt+d, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
     function (event, handler) {
       switch (handler.key) {
         case 'alt+e':
@@ -9,11 +9,17 @@ function setupHotkeys() {
         case 'alt+cmd+e':
           document.getElementById('devTools').click()
           break
+        case 'alt+v':
+          document.getElementById('ViewMenu').click()
+          break
+        case 'alt+f':
+          document.getElementById('FileMenu').click()
+          break
         case 'alt+s':
           document.getElementById('viewSort').click()
           break
         case 'alt+c':
-          document.getElementById('actionCollapse').click()
+          document.getElementById('CollapseSubmenu').click()
           break
         case 'alt+r':
           document.getElementById('viewRelationships').click()

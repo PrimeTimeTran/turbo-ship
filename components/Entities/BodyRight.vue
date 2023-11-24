@@ -18,7 +18,7 @@ const sparse = ref(false)
 <template>
   <div
     v-if="store.stateViewer"
-    class="bg-white dark:bg-slate-900 dark:text-white"
+    class="bg-white dark:bg-slate-950 dark:text-white"
   >
     <div
       role="group"

@@ -15,3 +15,9 @@ function validate(e, val) {
     val.valid = false
   }
 }
+
+export function replaceWithUnderline(inputString, replaceString) {
+  const regex = new RegExp(replaceString, 'g')
+  const replacedText = inputString.replace(regex, `<u>${replaceString}</u>`)
+  return replacedText
+}

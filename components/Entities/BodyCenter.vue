@@ -17,7 +17,7 @@ const props = defineProps(['entities'])
           :entity="element"
           :key="element._id"
           :tabindex="index + 1"
-          class="opacity-[.7] hover:opacity-90"
+          class="dark:even:bg-slate-950 dark:odd:bg-zinc-950 even:bg-slate-100 odd:bg-zinc-100"
         />
       </template>
     </draggable>

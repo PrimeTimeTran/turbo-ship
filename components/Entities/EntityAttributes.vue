@@ -66,7 +66,7 @@ const showRelationTab = computed(() => {
 })
 </script>
 <template>
-  <div class="grid grid-cols-12 flex-1 flex-row gap-2 dark:bg-slate-900">
+  <div class="grid grid-cols-12 flex-1 flex-row gap-2">
     <div class="col-span-4 flex flex-col">
       <EntitiesAttributesTable
         :entity="entity"
@@ -95,8 +95,9 @@ const showRelationTab = computed(() => {
         v-if="!editing || Validator.relationTypes.includes(attribute.type)"
         @click="onAdd"
         :disabled="!valid"
-        class="mt-2 border border-gray-300 py-1 px-2 rounded w-full"
+        class="mt-2 border border-gray-300 py-1 px-2 rounded w-full dark:text-white dark:bg-gray-800 dark:border-gray-800"
         :class="{
+          'bg-gray-300': !valid,
           'opacity-50': !valid,
           'text-white': valid,
           'bg-green-400': valid,

@@ -84,6 +84,7 @@ const addAttribute = (e) => {
     name: camelize(newAttribute.name),
     _id: faker.database.mongodbObjectId(),
   }
+  newAttribute.name = ''
   entity.attributes.push(attribute)
   // newAttribute.name = ''
   document.getElementById('attributeInput').focus()
@@ -134,7 +135,6 @@ const inputClasses =
         <NuxtLink :to="'http://localhost:3000'">
           <button
             type="button"
-            id="actionCollapse"
             class="border px-4 py-1-100 text-gray-400 dark:border-gray-600 rounded hover:brightness-200"
           >
             <u>Q</u>uit
@@ -226,7 +226,7 @@ const inputClasses =
             New Attribute(<span v-text="entity.attributes.length" />)
           </div>
           <div
-            class="mt-2 p-2 rounded border shadow bg-white dark:bg-slate-950 dark:border-gray-600 rounded-lg"
+            class="mt-2 p-2 rounded border shadow bg-white dark:bg-slate-950 dark:border-gray-600"
           >
             <!-- Unable to clear errors after targeting by id & calling function -->
             <label class="text-slate-500"
@@ -250,12 +250,15 @@ const inputClasses =
               v-text="Validator.labeledTypes[newAttribute.type].label"
             />
             <div
-              class="flex flex-col flex-grow border rounded shadow my-1 h-52 max-h-52 overflow-scroll scrollbar-hide dark:border-gray-600 rounded-lg"
+              class="flex flex-col flex-grow border rounded shadow my-1 h-52 max-h-52 overflow-scroll scrollbar-hide dark:border-gray-600"
             >
               <label
                 :key="fieldType"
                 v-for="fieldType of Validator.types"
-                class="px-2 py-1 w-full text-sm hover:opacity-90 hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 hover:cursor-pointer border dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:border-gray-800"
+                class="px-2 py-1 w-full text-sm hover:opacity-90 hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 
+                hover:cursor-pointer border  dark:border-gray-800
+                dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200
+                "
               >
                 <input
                   class="mr-2"
@@ -304,7 +307,7 @@ const inputClasses =
           </div>
         </div>
         <div
-          class="flex flex-col bottom rounded border shadow mt-2 overflow-scroll scrollbar-hide p-2 dark:border-gray-600 rounded-lg"
+          class="flex flex-col bottom border shadow mt-2 overflow-scroll scrollbar-hide p-2 dark:border-gray-600 rounded"
         >
           <h2 class="text-md font-bold text-slate-500">Summary:</h2>
           <h3 class="text-sm text-slate-500">
@@ -331,7 +334,7 @@ const inputClasses =
                   <th class="text-white text-xs text-left">Name</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="border dark:border-gray-800 rounded-lg">
                 <FormKit
                   type="list"
                   name="Attributes"
@@ -343,7 +346,8 @@ const inputClasses =
                   <tr
                     :key="attr"
                     v-for="attr of entity.attributes"
-                    class="full-width-row odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8"
+                    class="full-width-row odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8 
+                    dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 border dark:border-gray-800"
                   >
                     <td
                       class="pl-1"

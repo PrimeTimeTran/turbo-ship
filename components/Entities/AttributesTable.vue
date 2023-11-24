@@ -32,7 +32,8 @@ const onRemove = (id) => {
           <tr
             :key="attribute"
             v-for="(attribute, idx) of Validator.attributes(entity)"
-            class="hover:cursor-pointer border dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:border-gray-800 dark:hover:opacity-80 odd:bg-gray-200 odd:hover:bg-slate-200"
+            class="hover:cursor-pointer border odd:bg-gray-200 odd:hover:bg-slate-200 
+            dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 dark:border-gray-800"
           >
             <td
               class="flex flex-row items-center pl-1"
