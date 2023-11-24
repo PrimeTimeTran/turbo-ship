@@ -65,7 +65,7 @@
       href="/login"
       class="flex items-center text-gray-500 dark:text-white hover:text-gray-900 hover:border-b-2 hover:border-b-gray-900 dark:hover:border-b-white cursor-pointer transition-colors duration-300 py-3"
     >
-      <font-awesome-icon
+      <FontAwesomeIcon
         icon="fa-solid fa-sign-out"
         class="mr-3"
       />

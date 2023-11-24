@@ -1,10 +1,10 @@
 ---
 createdAt: 2023-10-29
-title: Top Ten Features | Next
-description: Top Ten Features for Success in Next | Next
+title: Top Ten Features
+description: Top Ten Features for Success in Next
 ---
 
-# Top Ten Features for Success in Next | Next
+# Top Ten Features for Success in Next
 
 - Routing
 - Auto imports

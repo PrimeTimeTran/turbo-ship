@@ -1,11 +1,11 @@
 ---
 createdAt: 2023-10-29
-title: Top Ten Features | Nuxt
-description: Top Ten Features for Success in Nuxt | Nuxt
+title: Top Ten Features
+description: Top Ten Features for Success in Nuxt
 tags: Nuxt, Vue, Full Stack
 ---
 
-# Top Ten Features for Success in Nuxt | Nuxt
+# Top Ten Features for Success in Nuxt
 
 - Routing
 - Auto imports

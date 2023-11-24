@@ -21,15 +21,15 @@ const isFocused = (name) => {
           id="actionCollapse"
           type="button"
           @click="collapse"
-          class="border px-4 py-1 hover:bg-gray-100 text-slate-500 dark:hover:bg-slate-700 "
+          class="border px-4 py-1 hover:bg-gray-100 text-slate-500 dark:hover:bg-slate-700"
         >
           <u>C</u>ollapse
-          <font-awesome-icon
+          <FontAwesomeIcon
             v-if="store.collapsed"
             icon="fa-solid fa-caret-down"
             class="ml-1 hover:bg-gray-100 text-slate-500"
           />
-          <font-awesome-icon
+          <FontAwesomeIcon
             v-else
             icon="fa-solid fa-caret-up"
             class="ml-1 hover:bg-gray-100 text-slate-500"
@@ -42,7 +42,7 @@ const isFocused = (name) => {
           class="border-t border-b border px-4 py-1 hover:bg-gray-100 text-slate-500 dark:hover:bg-slate-700"
         >
           S<u>t</u>ore
-          <font-awesome-icon
+          <FontAwesomeIcon
             icon="fa-solid fa-store"
             class="ml-1 hover:bg-gray-100 text-slate-500"
           />
@@ -59,7 +59,7 @@ const isFocused = (name) => {
           }"
         >
           <u>S</u>ort
-          <font-awesome-icon
+          <FontAwesomeIcon
             icon="fa-solid fa-sort"
             class="ml-1 hover:bg-gray-100"
             :class="{
@@ -81,7 +81,7 @@ const isFocused = (name) => {
           }"
         >
           <u>E</u>ntities
-          <font-awesome-icon
+          <FontAwesomeIcon
             icon="fa-solid fa-cubes"
             class="ml-1 hover:bg-gray-100"
             :class="{
@@ -103,7 +103,7 @@ const isFocused = (name) => {
           }"
         >
           <u>R</u>elationships
-          <font-awesome-icon
+          <FontAwesomeIcon
             color="grey"
             class="ml-1 hover:bg-gray-100"
             icon="fa-solid fa-database"
@@ -121,8 +121,8 @@ const isFocused = (name) => {
           class="border px-4 py-1 hover:bg-gray-100 text-slate-500 dark:hover:bg-slate-700"
         >
           <u>F</u>eedback
-          <font-awesome-icon
-            class="ml-1  text-slate-500"
+          <FontAwesomeIcon
+            class="ml-1 text-slate-500"
             icon="fa-regular fa-message"
           />
         </button>
@@ -133,7 +133,7 @@ const isFocused = (name) => {
           class="rounded-r-md border px-4 py-1 hover:bg-gray-100 text-slate-500 dark:hover:bg-slate-700"
         >
           <u>H</u>elp
-          <font-awesome-icon
+          <FontAwesomeIcon
             icon="fa-solid fa-question"
             class="ml-1 text-slate-500"
           />
@@ -154,7 +154,7 @@ const isFocused = (name) => {
         v-for="(e, idx) of entities"
       >
         <a
-          class="text-sm  dark:hover:opacity-80 rounded py-1 px-2"
+          class="text-sm dark:hover:opacity-80 rounded py-1 px-2"
           v-text="idx + 1 + `. ${e.name} (${e.attributes.length})`"
           :href="`/entities#${e.name}-${e._id}`"
         ></a>

@@ -28,12 +28,12 @@
           <div
             class="grid grid-cols-12 gap-x-10 gap-4 flex-1 flex-row flex-wrap justify-between -mx-4 space-x-1 text-center lg:relative lg:-left-40"
           >
-            <VCard :title="'Data Modeling'"  />
-            <VCard :title="'Pre Build Designs'"  />
-            <VCard :title="'Admin Dashboard'"  />
-            <VCard :title="'Mobile App'"  />
-            <VCard :title="'Audit Logs'"  />
-            <VCard :title="'Roles'"  />
+            <VCard :title="'Data Modeling'"  body="Visual data modeling tool to help you visualize & understand more clearly"/>
+            <VCard :title="'Pre-built Templates'"  body="Battle tested schemas to get you going fast"/>
+            <VCard :title="'Admin Dashboard'"  body="Tooling for stakeholders & APIs for clients"/>
+            <VCard :title="'Mobile App'"  body="Because its better to have and not need than need and not have"/>
+            <VCard :title="'Audit Logs'"  body="To ensure that you're ready to scale from the very beginning"/>
+            <VCard :title="'Roles'"  body="Safeguard core business functions behind roles so that your team can rest assured" />
           </div>
           <!-- <p class="text-center text-sm uppercase">Turboship</p>
             <h2 class="text-4xl lg:text-4xl mt-4 text-gray-700 dark:text-white">

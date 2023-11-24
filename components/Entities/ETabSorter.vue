@@ -29,11 +29,11 @@ const collapseText = () => {
         <template #item="{ element: entity }">
           <section
             :key="entity._id"
-            class="my-1 mx-5 p-5 rounded odd:bg-zinc-100 even: bg-slate-100 border hover:shadow-xl"
+            class="my-1 mx-5 p-5 rounded odd:bg-zinc-100 even: bg-slate-100 dark:odd:bg-zinc-800 even: dark:bg-slate-800 dark:text-white border hover:shadow-xl"
           >
             <div class="flex flex-row justify-between">
               <div
-                class="font-bold"
+                class="font-bold dark:text-white"
                 v-text="entity.name"
               ></div>
               <div v-text="`Attributes (${entity.attributes.length})`"></div>
@@ -47,7 +47,7 @@ const collapseText = () => {
                 <template #item="{ element: attribute }">
                   <li
                     :key="attribute._id"
-                    class="rounded m-1 p-2 odd:bg-zinc-50 even: bg-slate-50 border shadow hover:shadow-lg"
+                    class="rounded m-1 p-2 odd:bg-zinc-50 even: bg-slate-50 border shadow hover:shadow-lg dark:odd:bg-zinc-800 even: dark:bg-slate-800 dark:text-white"
                   >
                     <span v-text="attribute.name" />
                   </li>

@@ -37,27 +37,27 @@ const { isOpen, toggleOpen } = useToggleOpen()
           <div
             class="flex flex-col items-middle justify-center dark:text-white space-y-12"
           >
-            <font-awesome-icon
+            <FontAwesomeIcon
               size="2x"
               class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-bars"
             />
-            <font-awesome-icon
+            <FontAwesomeIcon
               size="2x"
               class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-blog"
             />
-            <font-awesome-icon
+            <FontAwesomeIcon
               size="2x"
               class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-hat-wizard"
             />
-            <font-awesome-icon
+            <FontAwesomeIcon
               size="2x"
               class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-user"
             />
-            <font-awesome-icon
+            <FontAwesomeIcon
               size="2x"
               class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-address-card"

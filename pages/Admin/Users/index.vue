@@ -25,7 +25,6 @@ const toggleSearch = () => {
   changeTab(0)
   searching.value = !searching.value
 }
-
 </script>
 
 <template>
@@ -34,7 +33,6 @@ const toggleSearch = () => {
       <div
         class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
       >
-      
         <div class="flex">
           <div class="mr-16">
             <div
@@ -43,7 +41,7 @@ const toggleSearch = () => {
             >
               <p class="mr-3 text-md">Users</p>
               <div>
-                <font-awesome-icon
+                <FontAwesomeIcon
                   class="text-gray-400 mr-2"
                   v-bind:icon="
                     searching

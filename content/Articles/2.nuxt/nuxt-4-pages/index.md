@@ -1,7 +1,7 @@
 ---
 createdAt: 2023-11-01
-title: Routing & Pages | Nuxt
-description: Routing & Pages | Nuxt
+title: Routing & Pages
+description: Routing & Pages
 ---
 
 ## Nuxt Pages & Routing

@@ -81,41 +81,66 @@ watch(
     if (!newHighlighter || !props.code) {
       return
     }
-    const tokens = newHighlighter.codeToThemedTokens(props.code.trim(), props.language ?? undefined)
+    const tokens = newHighlighter.codeToThemedTokens(
+      props.code.trim(),
+      props.language ?? undefined
+    )
     html.value = shiki.renderToHtml(tokens, {
       fg: newHighlighter.getForegroundColor('dark-plus'),
       bg: newHighlighter.getBackgroundColor('dark-plus'),
       elements: {
         pre({ className, style, children }: any) {
-          const shallFocus = props.code.includes(codeBlockIdentifiers.FOCUS) || props.code.includes(codeBlockIdentifiers.FOCUS2)
+          const shallFocus =
+            props.code.includes(codeBlockIdentifiers.FOCUS) ||
+            props.code.includes(codeBlockIdentifiers.FOCUS2)
           const hasDiff =
-            props.code.includes(codeBlockIdentifiers.DIFF_ADD) || props.code.includes(codeBlockIdentifiers.DIFF_REMOVE)
-          return `<pre tabindex="1" class="${className} bg-[#1e1e1e] ${shallFocus ? 'has-focused-lines' : ''} ${hasDiff ? 'has-diff' : ''} mt-0" style="${style}">${children}</pre>`
+            props.code.includes(codeBlockIdentifiers.DIFF_ADD) ||
+            props.code.includes(codeBlockIdentifiers.DIFF_REMOVE)
+          return `<pre tabindex="1" class="${className} bg-[#1e1e1e] ${
+            shallFocus ? 'has-focused-lines' : ''
+          } ${
+            hasDiff ? 'has-diff' : ''
+          } mt-0" style="${style}">${children}</pre>`
         },
         code({ children, className, style }) {
           return `<code class="${className}" style="${style}">${children}</code>`
         },
         line({ className, index, children }: any) {
           const shallHighlight = props.highlights?.includes(index + 1) ?? false
-          const shallFocus = children.includes(codeBlockIdentifiers.FOCUS) || children.includes(codeBlockIdentifiers.FOCUS2)
-          const shallDiffRemove = children.includes(codeBlockIdentifiers.DIFF_REMOVE)
+          const shallFocus =
+            children.includes(codeBlockIdentifiers.FOCUS) ||
+            children.includes(codeBlockIdentifiers.FOCUS2)
+          const shallDiffRemove = children.includes(
+            codeBlockIdentifiers.DIFF_REMOVE
+          )
           const shallDiffAdd = children.includes(codeBlockIdentifiers.DIFF_ADD)
           const modifiedChildren = removeCodeBlockIdentifiers(children)
           let beforeElement = '<div class="ml-4"></div>'
           if (shallDiffAdd) {
-            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${index + 1} <span class="text-[#10b981]">+</span></div>`
+            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${
+              index + 1
+            } <span class="text-[#10b981]">+</span></div>`
           } else if (shallDiffRemove) {
-            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${index + 1} <span class="text-[#f43f5e]">-</span></div>`
+            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${
+              index + 1
+            } <span class="text-[#f43f5e]">-</span></div>`
           } else {
-            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${index + 1}</div>`
+            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${
+              index + 1
+            }</div>`
           }
-          return `<div class="${className+'-go'} ${shallHighlight ? 'bg-[#363b46]' : ''} ${shallFocus ? 'has-focus' : ''} ${shallDiffRemove ? 'diff remove' : ''}${shallDiffAdd ? 'diff add' : ''} w-full inline-flex">${beforeElement}<div>${modifiedChildren}</div></div>`
+          return `<div class="${className + '-go'} ${
+            shallHighlight ? 'bg-[#363b46]' : ''
+          } ${shallFocus ? 'has-focus' : ''} ${
+            shallDiffRemove ? 'diff remove' : ''
+          }${
+            shallDiffAdd ? 'diff add' : ''
+          } w-full inline-flex">${beforeElement}<div>${modifiedChildren}</div></div>`
         },
       },
     })
   },
   { immediate: true }
-
 )
 </script>
 <template>
@@ -149,14 +174,14 @@ watch(
         ]"
       >
         <button>
-          <font-awesome-icon
+          <FontAwesomeIcon
             v-if="copied"
             :style="{
               color: '#64ffda',
             }"
             icon="fa-solid fa-check"
           />
-          <font-awesome-icon
+          <FontAwesomeIcon
             v-else
             color="white"
             icon="fa-solid fa-copy"
@@ -164,7 +189,10 @@ watch(
         </button>
       </div>
     </div>
-    <div v-if="html" v-html="html"></div>
+    <div
+      v-if="html"
+      v-html="html"
+    ></div>
     <span v-else>{{ code }}</span>
   </div>
 </template>
@@ -221,7 +249,6 @@ watch(
 </style>
 
 <style scoped lang="scss">
-
 :deep(pre) {
   > code {
     & .line-go.diff.remove {
@@ -234,7 +261,6 @@ watch(
   }
 }
 
-
 :deep(pre.has-focused-lines) {
   > code {
     & .line-go:not(.has-focus) {
@@ -244,7 +270,6 @@ watch(
     }
   }
 }
-
 
 :deep(pre.has-focused-lines:hover) {
   > code {
@@ -258,6 +283,6 @@ watch(
 pre code .line-go {
   min-height: 1rem;
   margin-top: 0px;
-  display:inline-block;
+  display: inline-block;
 }
 </style>

@@ -16,7 +16,10 @@ const copyer = (values) => {
 const sparse = ref(false)
 </script>
 <template>
-  <div v-if="store.stateViewer" class="bg-white dark:bg-slate-900 dark:text-white">
+  <div
+    v-if="store.stateViewer"
+    class="bg-white dark:bg-slate-900 dark:text-white"
+  >
     <div
       role="group"
       class="align-middle items-center text-center ml-6 rounded-md"
@@ -42,10 +45,10 @@ const sparse = ref(false)
         >
           <u>D</u>ense
         </span>
-        <font-awesome-icon
+        <FontAwesomeIcon
           color="grey"
           icon="fa-solid fa-sort"
-        ></font-awesome-icon>
+        />
       </button>
       <button
         v-if="sparse"
@@ -56,7 +59,7 @@ const sparse = ref(false)
       >
         <span v-if="!copied">Copy</span>
         <span v-else>Copied!</span>
-        <font-awesome-icon
+        <FontAwesomeIcon
           color="grey"
           class="ml-2"
           icon="fa-solid fa-clipboard"
@@ -71,7 +74,7 @@ const sparse = ref(false)
       >
         <span v-if="!copied">C<u>o</u>py</span>
         <span v-else>Copied!</span>
-        <font-awesome-icon
+        <FontAwesomeIcon
           class="ml-2"
           color="grey"
           icon="fa-solid fa-clipboard"

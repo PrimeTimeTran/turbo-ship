@@ -37,7 +37,7 @@ const left = computed(() => {
         :class="getVisibility(meta.page - 3 <= 0)"
       >
         <a :class="meta.page - 3 == meta.pageCount ? first : others">
-          <font-awesome-icon icon="fa-solid fa-caret-left" />
+          <FontAwesomeIcon icon="fa-solid fa-caret-left" />
           <span
             class="ml-3"
             v-text="1"
@@ -93,7 +93,7 @@ const left = computed(() => {
             class="mr-3"
             v-text="meta.pageCount"
           />
-          <font-awesome-icon icon="fa-solid fa-caret-right" />
+          <FontAwesomeIcon icon="fa-solid fa-caret-right" />
         </a>
       </li>
     </ul>

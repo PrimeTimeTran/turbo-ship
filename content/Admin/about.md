@@ -22,6 +22,3 @@ Technologies behind this app
 - [Mongo](https://mongodb.github.io/node-mongodb-native/6.2/)
 - [Mongoose](https://mongoosejs.com/docs/)
 - [Font Awesome Icon List](https://fontawesome.com/search?q=about&o=r)
-
-
-

@@ -1,7 +1,7 @@
 ---
 createdAt: 2023-10-29
 title: Rendering
-description: Rendering Options | Nuxt
+description: Rendering Options
 ---
 
 # Nuxt Rendering

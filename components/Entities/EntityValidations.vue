@@ -84,7 +84,7 @@ function close(items) {
             <EntitiesAttributeTypeSelect :attribute="attribute" />
           </td>
           <td>
-            <font-awesome-icon
+            <FontAwesomeIcon
               class="px-2"
               color="grey"
               icon="fa-solid fa-circle-info"

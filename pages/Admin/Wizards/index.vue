@@ -71,7 +71,7 @@ const tabs = [
             >
               <p class="mr-3 text-md">Wizards</p>
               <div>
-                <font-awesome-icon
+                <FontAwesomeIcon
                   class="text-gray-400 mr-2"
                   v-bind:icon="
                     searching

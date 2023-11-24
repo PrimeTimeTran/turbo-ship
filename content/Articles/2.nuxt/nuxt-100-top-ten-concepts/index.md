@@ -1,10 +1,10 @@
 ---
 createdAt: 2023-10-29
-title: Top Ten Concepts | Nuxt
-description: Top Ten Concepts for Success in Nuxt | Nuxt
+title: Top Ten Concepts
+description: Top Ten Concepts for Success in Nuxt
 tags: Nuxt, Vue, Full Stack
 ---
-# Top Ten Concepts | Nuxt
+# Top Ten Concepts
 
 * Site routes are defined using a tree like structure starting from the ./pages folder.
 * Dynamic routes can be generated using `[...slug].vue` syntax
