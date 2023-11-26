@@ -3,15 +3,17 @@ const props = defineProps(['entity'])
 const { removeEntity } = useEntities()
 </script>
 <template>
-  <div class="flex flex-grow justify-between my-2 dark:bg-slate-900 hover:bg-slate-100 dark:hover:opacity-80 dark:text-white dark:placeholder-white border-gray-200">
+  <div
+    class="flex flex-grow justify-between my-2 dark:text-white dark:placeholder-white border-gray-200"
+  >
     <div class="flex flex-grow">
       <input
         :id="entity._id"
         v-model="entity.name"
         placeholder="customer, transaction, statement..."
-        class="flex flex-grow py-1 px-2 text-md rounded border  bg-white 
-        font-bold text-blue-500 hover:shadow-lg entity-input 
-         hover:bg-slate-100 dark:text-white dark:placeholder-white border-gray-200 border-opacity-0 hover:border-opacity-100 dark:border-gray-500 dark:bg-slate-800 dark:hover:border-white"
+        class="flex flex-grow py-1 px-2 text-md rounded border bg-white font-bold text-blue-500 
+        hover:shadow-lg entity-input hover:bg-slate-100 dark:text-white dark:placeholder-white border-gray-200 
+        border-opacity-0 hover:border-opacity-100 dark:border-gray-500 dark:bg-slate-800 dark:hover:border-white"
       />
     </div>
     <div
@@ -24,7 +26,7 @@ const { removeEntity } = useEntities()
         <button
           type="button"
           @click="removeEntity(entity._id)"
-          class="rounded-l-lg border-0 px-4 py-1 hover:bg-red-50 text-red-400 hover:border"
+          class="rounded-l-lg px-4 py-1 hover:bg-red-50 dark:hover:bg-red-950 text-red-400"
         >
           Remove
         </button>
@@ -32,7 +34,7 @@ const { removeEntity } = useEntities()
           type="button"
           :id="`attributes-tab-${entity._id}`"
           :aria-controls="`attributes-tab-${entity._id}`"
-          class="border px-4 py-1 hover:bg-gray-100"
+          class="px-4 py-1 hover:bg-blue-50 dark:hover:bg-blue-950"
         >
           Attributes
         </button>
@@ -40,7 +42,7 @@ const { removeEntity } = useEntities()
           type="button"
           :id="`validations-tab-${entity._id}`"
           :aria-controls="`validations-tab-${entity._id}`"
-          class="border px-4 py-1 hover:bg-gray-100"
+          class="px-4 py-1 hover:bg-blue-50 dark:hover:bg-blue-950"
         >
           Validations
         </button>
@@ -48,7 +50,7 @@ const { removeEntity } = useEntities()
           type="button"
           :id="`settings-tab-${entity._id}`"
           :aria-controls="`settings-tab-${entity._id}`"
-          class="rounded-r-lg border px-4 py-1 hover:bg-gray-100"
+          class="rounded-r-lg px-4 py-1 hover:bg-blue-50 dark:hover:bg-blue-950"
         >
           Settings
         </button>

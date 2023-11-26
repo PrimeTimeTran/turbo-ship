@@ -3,17 +3,7 @@ createdAt: 2023-10-28
 title: Vue
 description: Vue
 navigation: false
-thumbnail: /public/images/uploads/logo-vue-landscape.webp
 ---
-
-<!-- ---
-createdAt: 2023-10-29
-title: Nuxt
-navigation: false
-description: Nuxt
-tags: Nuxt, Vue, Full Stack
-thumbnail: /public/images/uploads/nuxt-logo-landscape.png
---- -->
 
 # Intro
 
@@ -30,7 +20,7 @@ Here's our table of contents
 - Components
   - Template
     - HTML
-      - Mustache
+      - Mustache/Handlebars
     - Directives
       - v-text
       - v-html

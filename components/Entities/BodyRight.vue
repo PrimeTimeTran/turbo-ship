@@ -8,6 +8,7 @@ const { text, copy, copied } = useClipboard({ source })
 
 const copyer = (values) => {
   copy(JSON.stringify(values))
+  notify('Copied Entities')
   setTimeout(() => {
     text.value = 'Done'
   }, 1500)
@@ -22,7 +23,7 @@ const sparse = ref(false)
   >
     <div
       role="group"
-      class="align-middle items-center text-center ml-6 rounded-md"
+      class="align-middle items-center text-center ml-6 rounded-md hidden"
     >
       <button
         id="actionSparse"

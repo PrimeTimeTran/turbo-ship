@@ -1,4 +1,4 @@
-export const SeedsMint: Entity[] = [
+export const Mint: Entity[] = [
   {
     _id: 'fb80c35deae8c1d25f4acbbd',
     name: 'user',

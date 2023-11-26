@@ -18,8 +18,9 @@ const onRemove = (id) => {
 <!-- <th class="text-gray-500 text-center pl-2 mx-2 px-4">Valid</th> -->
 <template>
   <div class="flex flex-5 h-full hover:shadow-lg">
-    <div class="flex flex-col w-fit overflow-auto scrollbar-hide h-5/6">
-      <table class="overflow-auto">
+    <!-- <div class="flex flex-col w-fit overflow-auto scrollbar-hide h-5/6"> -->
+    <div class="flex flex-col w-fit">
+      <table>
         <thead>
           <tr>
             <th class="text-gray-500 text-left pl-4">Name</th>

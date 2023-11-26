@@ -1,5 +1,5 @@
 <script setup>
-const { entities } = useEntities()
+const { entities, setEntities, clearEntities } = useEntities()
 function collapse() {
   store.view = views.entities
   store.collapsed = !store.collapsed
@@ -19,48 +19,150 @@ function relationships() {
 function feedback() {
   store.view = views.feedback
 }
+async function generate() {
+  try {
+    const { apiUrl } = useAPI()
+    const baseURL = `${apiUrl}/entities`
+    const resp = await $fetch(baseURL, {
+      method: 'post',
+      body: entities.value,
+    })
+
+    console.log({ resp })
+    
+  } catch (error) {
+    console.log('Error: ', error)
+  }
+}
+const fileItems = [
+  {
+    name: 'Generate',
+    click: generate,
+    underline: 'G',
+  },
+  {
+    name: 'Clear',
+    click: generate,
+    underline: '',
+  },
+  {
+    name: 'Quit',
+    click: generate,
+    underline: 'Q',
+  },
+]
 const viewItems = [
   {
     name: 'Collapse',
     click: collapse,
-    underline: 'C'
+    underline: 'C',
   },
   {
     name: 'Sort',
     click: sort,
-    underline: 'S'
+    underline: 'S',
+  },
+  {
+    name: 'Overview',
+    click: onEntities,
+    underline: 'O',
+  },
+  {
+    name: 'New Entity',
+    click: onEntities,
+    underline: 'O',
   },
   {
     name: 'Entities',
     click: onEntities,
-    underline: 'E'
+    underline: 'E',
   },
   {
     name: 'Relationships',
     click: relationships,
-    underline: 'R'
+    underline: 'R',
   },
   {
     name: 'Feedback',
     click: feedback,
-    underline: 'F'
+    underline: 'b',
   },
   {
     name: 'Help',
     click: help,
-    underline: 'H'
+    underline: 'H',
+  },
+]
+const editItems = [
+  {
+    name: 'New Entity',
+    click: generate,
+    underline: 'G',
+  },
+  {
+    name: 'Clear Entities',
+    click: clearEntities,
+    underline: '',
+  },
+]
+const entitiesItems = [
+  {
+    name: 'Copy Entities',
+    click: generate,
+    underline: 'o',
+  },
+  {
+    name: 'Toggle Sparse',
+    click: generate,
+    underline: 'p',
+  },
+]
+const templateItems = [
+  {
+    name: 'Mint',
+    click: () => setEntities('mint'),
+    underline: '',
+  },
+  // {
+  //   name: 'Bank',
+  //   click: () => setEntities('bank'),
+  //   underline: '',
+  // },
+  // {
+  //   name: 'CRM',
+  //   click: () => setEntities('crm'),
+  //   underline: '',
+  // },
+  {
+    name: 'Delivery',
+    click: () => setEntities('delivery'),
+    underline: '',
+  },
+  // {
+  //   name: 'Forum',
+  //   click: () => setEntities('forum'),
+  //   underline: '',
+  // },
+  // {
+  //   name: 'LMS',
+  //   click: () => setEntities('lms'),
+  //   underline: '',
+  // },
+  {
+    name: 'Social',
+    click: () => setEntities('social'),
+    underline: '',
   },
 ]
 </script>
 <template>
-  <div
-    class="flex flex-col sticky top-0 shadow px-2 border-b border-b-black/70 py-1 z-10 bg-white dark:bg-slate-950 dark:text-white"
-  >
+  <div class="flex flex-col px-2 bg-white dark:bg-slate-950 dark:text-white">
     <div class="flex flex-row">
       <VDropdown
         left="true"
         title="File"
         underline="F"
+        :items="fileItems"
       />
       <VDropdown
         title="View"
@@ -70,47 +172,31 @@ const viewItems = [
       <VDropdown
         title="Edit"
         underline="E"
+        :items="editItems"
       />
       <VDropdown
-        title="Relationships"
         underline="R"
+        title="Relationships"
       />
       <VDropdown
-        title="Entities"
         underline="E"
+        title="Entities"
+        :items="entitiesItems"
       />
       <VDropdown
+        title="Templates"
+        underline="T"
+        :items="templateItems"
+      />
+      <VDropdown
+        underline="b"
         title="Feedback"
-        underline="F"
       />
       <VDropdown
         right="true"
         title="Help"
         underline="H"
       />
-    </div>
-    <div class="flex text-center rounded-md">
-      <div class="flex flex-row justify-between flex-wrap">
-        <div class="text-md text-slate-500 mr-auto">
-          Entities
-          <span
-            v-text="`(${entities.length})`"
-            class="text-gray-400 text-sm"
-          />
-        </div>
-        <div
-          :key="e._id"
-          class="mr-1"
-          v-for="(e, idx) of entities"
-        >
-          <a
-            tabindex="-1" 
-            class="text-sm dark:hover:opacity-80 rounded py-1 px-2 dark:text-white/60 dark:hover:text-white"
-            v-text="idx + 1 + `. ${e.name} (${e.attributes.length})`"
-            :href="`/entities#${e.name}-${e._id}`"
-          ></a>
-        </div>
-      </div>
     </div>
   </div>
 </template>

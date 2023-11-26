@@ -1,11 +1,10 @@
 <script setup>
-const props = defineProps(['attribute'])
+const props = defineProps(['attribute', 'focusedType'])
 const attributeRef = ref(props.attribute)
-const type = computed(() => focusedKey)
 const focusedKey = computed(() => {
-  return attributeRef.value.type === 'relation'
-    ? attributeRef.value.relation.type
-    : attributeRef.value.type
+  return props.attribute.type === 'relation'
+    ? props.attribute.relation.type
+    : props.attribute.type
 })
 
 // WIP. Update attribute type from list on click
@@ -31,11 +30,11 @@ function onChange(e) {
       <input
         type="radio"
         class="mr-3"
-        v-model="focusedKey"
         @change="onChange"
+        v-model="focusedKey"
         name="attributeName"
         :value="Validator.labeledTypes[dataType]?.value"
-        :checked="Validator.labeledTypes[dataType]?.value === type"
+        :checked="Validator.labeledTypes[dataType]?.value === focusedType"
       />
       {{ Validator.labeledTypes[dataType]?.label }}
     </label>

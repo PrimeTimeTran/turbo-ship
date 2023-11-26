@@ -21,6 +21,7 @@ function appData() {
 function toggleNavbar() {
   showMenu.value = !showMenu.value
 }
+const route = useRoute()
 </script>
 
 <template>
@@ -38,7 +39,7 @@ function toggleNavbar() {
         class="flex flex-wrap flex-grow items-center justify-between md:flex-col md:flex-start lg:flex-row lg:px-3 px-3"
       >
         <div
-          class="flex relative w-full justify-between lg:w-auto px-4 lg:justify-start py-3"
+          class="flex relative w-full justify-between lg:w-auto px-4 lg:justify-start py-1"
         >
           <TheNavbarLogo />
           <NuxtLink
@@ -53,7 +54,8 @@ function toggleNavbar() {
           class="flex flex-col-reverse px-12 flex-auto md:px-4 md:flex-row lg:flex lg:flex-grow md:min-w-100 md:min-w-full lg:min-w-0"
           v-bind:class="{ hidden: !showMenu, flex: showMenu }"
         >
-          <TheNavbarItems />
+          <EntitiesTheToolbar v-if="route.path === '/entities'"/>
+          <TheNavbarItems v-else />
         </div>
       </div>
     </nav>

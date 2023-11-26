@@ -91,6 +91,11 @@ export function useEntity(e, entities) {
     newAttribute.relation.name = null
     newAttribute.relation.type = null
   }
+  const focusedType = computed(() => {
+    return attribute.value?.type === 'relation'
+      ? attribute.value.relation.type
+      : newAttribute.value?.type
+  })
   const onFocus = (id) => {
     reset()
     id === focused.value ? (focused.value = '') : (focused.value = id)
@@ -104,7 +109,7 @@ export function useEntity(e, entities) {
       ? entity.attributes.find((e) => e._id === focused.value)
       : newAttribute
   })
-  watch(focused.value, (newww, oldd) => {
+  watch(() => focused.value, (newww, oldd) => {
     console.log('FocusedValue', newww)
     console.log('FocusedValue', oldd)
   })

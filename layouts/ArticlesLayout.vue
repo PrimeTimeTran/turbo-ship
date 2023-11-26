@@ -5,7 +5,21 @@ const handleToggle = () => {
   if (window.innerWidth > 768) return
   toggleOpen()
 }
-ensureLoad('https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js')
+useHead({
+  script: [
+    {
+      type: 'text/javascript',
+      innerHTML: 'console.log("Entity scripts loading...")',
+      tagPosition: 'head',
+    },
+    {
+      type: 'text/javascript',
+      src: 'js/Hotkeys.js',
+      tagPosition: 'head',
+    },
+  ],
+})
+ensureLoad('js/Hotkeys.js')
 </script>
 <template>
   <div class="flex flex-col justify-between dark:bg-gray-900 dark:text-white">

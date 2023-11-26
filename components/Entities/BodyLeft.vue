@@ -127,25 +127,6 @@ const inputClasses =
 </script>
 <template>
   <div class="flex-1 flex-col px-2 max-h-screen">
-    <div class="flex">
-      <div
-        role="group"
-        class="align-middle items-center text-center rounded-lg"
-      >
-        <NuxtLink :to="'http://localhost:3000'">
-          <button
-            type="button"
-            class="border px-4 py-1-100 text-gray-400 dark:border-gray-600 rounded hover:brightness-200"
-          >
-            <u>Q</u>uit
-            <FontAwesomeIcon
-              icon="fa-solid fa-caret-down"
-              class="ml-1  text-gray-400"
-            />
-          </button>
-        </NuxtLink>
-      </div>
-    </div>
     <FormKit
       id="form"
       type="form"
@@ -159,8 +140,8 @@ const inputClasses =
         <div class="text-md font-bold text-slate-500">
           New Entity(<span v-text="entities.length" />)
         </div>
-        <div class="flex flex-col border shadow top hover:shadow-lg dark:border-gray-600 rounded-lg">
-          <div class="p-2 bg-white dark:bg-slate-950 rounded-lg">
+        <div class="flex flex-col border shadow top hover:shadow-lg dark:border-gray-600 rounded">
+          <div class="p-2 bg-white dark:bg-slate-950 rounded">
             <label class="text-slate-500"
               ><u class="text-slate-500">N</u>ame</label
             >

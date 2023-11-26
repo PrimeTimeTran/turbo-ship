@@ -73,7 +73,13 @@ const selectedValidations = ref([])
   <section
     :key="entity._id"
     :id="`${entity.name}-${entity._id}`"
-    class="p-2 m-2 border dark:border-gray-600 rounded-lg shadow hover:shadow-lg bg-"
+    class="dark:border-gray-600 rounded shadow hover:shadow"
+    :class="{
+      'border': !store.collapsed,
+      'm-2': !store.collapsed,
+      'p-2': !store.collapsed,
+      'px-2': store.collapsed
+    }"
   >
     <div
       role="tablist"
@@ -84,27 +90,23 @@ const selectedValidations = ref([])
       </div>
       <div :class="{ hidden: store.collapsed }">
         <div
-          role="tabpanel"
+          class="hidden rounded-lg"
           :id="'attributes-' + entityId"
           :aria-labelledby="'attributes-tab-' + entityId"
-          class="hidden rounded-lg"
-        >
+          >
           <EntitiesEntityAttributes :entity="entity" />
         </div>
         <div
-          role="tabpanel"
+          class="hidden rounded-lg "
           :id="'validations-' + entityId"
           :aria-labelledby="'validations-tab-' + entityId"
-          class="hidden rounded-lg "
         >
           <EntitiesEntityValidations :entity="entity" />
         </div>
-
         <div
-          role="tabpanel"
+          class="hidden rounded-lg"
           :id="'settings-' + entityId"
           :aria-labelledby="'settings-tab-' + entityId"
-          class="hidden rounded-lg"
         >
           <div class="flex flex-1">
             <div class="flex flex-1 flex-col flex-grow w-1/3">

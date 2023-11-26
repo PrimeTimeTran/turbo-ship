@@ -1,9 +1,12 @@
 function setupHotkeys() {
   hotkeys(
-    'alt+d, alt+cmd+e, alt+v, alt+e, alt+s,alt+c, alt+r, alt+f, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
+    'alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+s,alt+c, alt+r, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
     function (event, handler) {
       console.log('EnsureLoad click')
       switch (handler.key) {
+        case 'alt+f':
+          document.getElementById('FileMenu').click()
+          break
         case 'alt+d':
           document.getElementById('previewer').click()
           break
@@ -25,7 +28,7 @@ function setupHotkeys() {
         case 'alt+r':
           document.getElementById('RelationshipsSubmenu').click()
           break
-        case 'alt+f':
+        case 'alt+b':
           document.getElementById('FeedbackSubmenu').click()
           break
         case 'alt+h':
@@ -123,7 +126,7 @@ export function ensureLoad(url) {
   console.log('Ensuring load: ', url)
   if (url === scriptUrls.chart && typeof hotkeys === 'undefined') {
     loadJS(url)
-  } else if (typeof hotkeys !== 'undefined' && url === scriptUrls.hotkeys) {
+  } else if (typeof hotkeys !== 'undefined') {
     setupHotkeys()
   } else {
     loadJS(url)

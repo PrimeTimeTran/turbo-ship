@@ -1,4 +1,7 @@
+import _ from 'lodash'
 import { ref } from 'vue'
+
+import seeds from '../utils/seeds/seeds'
 
 export function useEntities() {
   const entities = ref(store.entities)
@@ -13,10 +16,26 @@ export function useEntities() {
       return true
     }
   }
+  function clearEntities() {
+    const length = entities.value.length
+    for (let i = 0; i < length; i++) {
+      entities.value.splice(0, 1)
+    }
+  }
+  function setEntities(template: string) {
+    const newEntities = _.cloneDeep(seeds[template as keyof typeof seeds])
+    clearEntities()
+
+    newEntities.forEach((e: any) => {
+      addEntity(e)
+    })
+  }
 
   return {
     entities,
     addEntity,
+    setEntities,
     removeEntity,
+    clearEntities,
   }
 }
