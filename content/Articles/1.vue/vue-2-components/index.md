@@ -7,9 +7,11 @@ description: Components
 
 By default place components in the :inline{value=components} directory.
 
-## Naming Conventions
+## Conventions
 
-Name them using pascal case.
+### Naming
+
+Name components with pascal case.
 
 ```sh [root]
 .
@@ -36,14 +38,28 @@ Group components by function/feature in subdirectories.
 └── App.vue
 ```
 
+#### Resources
+
+For domain specific resources follow this pattern as well.
+
+```sh
+.
+├── components
+│   └── Todos
+│       ├── TodosList.vue
+│       ├── TodosForm.vue
+│       └── TodosMeta.vue
+└── App.vue
+```
+
+#### The
+
 If there is "one" of something then convention is the prefix with "The".
 
 ```sh [root]
 .
 ├── components
-│   ├── Posts
-│   │   └── ...
-│   ├── Comments
+│   ├── Todos
 │   │   └── ...
 │   ├── TheNavbar
 │   │   └── ...
@@ -52,14 +68,14 @@ If there is "one" of something then convention is the prefix with "The".
 └── App.vue
 ```
 
+#### Base Components
+
 Base components should begin with V, Base, or App.
 
 ```sh [root]
 .
 ├── components
-│   ├── Posts
-│   │   └── ...
-│   ├── Comments
+│   ├── Todos
 │   │   └── ...
 │   ├── TheNavbar
 │   │   └── ...
@@ -78,7 +94,8 @@ Conventions helps others onboard quickly.
 They're community conventions.
 ::
 
-## Organization
+
+### Scripts
 
 If you initialized your project with the default :inline{value="vue create"} command
 
@@ -132,7 +149,7 @@ It's more useful to bind values to a user event though
 All HTML tags are supported. div, img, span, textarea, canvas, etc...
 ::
 
-## Script
+### Script
 
 The script tag is used for defining JS.
 
@@ -160,21 +177,7 @@ const message = 'Hello Vue'
 </template>
 ```
 
-## Closing
 
-Combining these elements we can create dynamic and engaging web pages.
-
-## Todo Structure
-
-```sh
-.
-├── components
-│   └── Todos
-│       ├── List.vue
-│       ├── Form.vue
-│       └── Meta.vue
-└── App.vue
-```
 
 
 
@@ -215,7 +218,6 @@ export default {
 }
 ```
 
-
 ```js [focus.js]
 export default {
   data() {
@@ -247,16 +249,11 @@ export default {
 </template>
 ```
 
-### Lifecycle
-### Composition
-### Options
+
 
 [Script syntax](https://vuejs.org/api/sfc-script-setup.html)
 
 ## Styles
-### 
-### 
-### 
 
 ## Props
 
@@ -265,3 +262,9 @@ components
 ├── AComponent.vue
 └── BComponent.vue
 ```
+
+
+
+<!-- ### Lifecycle
+### Composition
+### Options -->

@@ -10,7 +10,7 @@ ensureLoad('https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js')
 <template>
   <div class="flex flex-col justify-between dark:bg-gray-900 dark:text-white">
     <div class="min-h-screen">
-      <TheNavbar />
+      <The.Navbar />
       <div class="flex flex-row">
         <div
           class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto p-3 dark:bg-slate-800 border-r-2 border-gray dark:border-gray-950"
