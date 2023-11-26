@@ -5,5 +5,5 @@
     "titleBar.activeBackground": "#41b883",
     "titleBar.inactiveBackground": "#3b8070"
   },
-  "cSpell.words": ["headlessui", "vuedraggable"]
+  "cSpell.words": ["headlessui", "Pinia", "vuedraggable"]
 }

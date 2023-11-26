@@ -66,6 +66,7 @@ const removeCodeBlockIdentifiers = (code: string) => {
     .replace(codeBlockIdentifiers.DIFF_ADD, '')
     .replace(codeBlockIdentifiers.DIFF_ADD_2, '')
     .replace(codeBlockIdentifiers.DIFF_REMOVE, '')
+    .replace(codeBlockIdentifiers.DIFF_REMOVE_2, '')
     .replace(codeBlockIdentifiers.FOCUS2, '')
 }
 
@@ -73,8 +74,9 @@ const codeBlockIdentifiers = {
   FOCUS: '// [!code  focus]',
   FOCUS2: '!!!!!',
   DIFF_ADD: '// [!code  ++]',
-  DIFF_ADD_2: '!!!!!!',
+  DIFF_ADD_2: '+!!!',
   DIFF_REMOVE: '// [!code  --]',
+  DIFF_REMOVE_2: '-!!!',
 } as const
 
 watch(
@@ -98,7 +100,8 @@ watch(
           const hasDiff =
             props.code.includes(codeBlockIdentifiers.DIFF_ADD) ||
             props.code.includes(codeBlockIdentifiers.DIFF_ADD_2) ||
-            props.code.includes(codeBlockIdentifiers.DIFF_REMOVE)
+            props.code.includes(codeBlockIdentifiers.DIFF_REMOVE) || 
+            props.code.includes(codeBlockIdentifiers.DIFF_REMOVE_2)
           return `<pre tabindex="1" class="${className} bg-[#1e1e1e] p-0 ${
             shallFocus ? 'has-focused-lines' : ''
           } ${
@@ -115,6 +118,8 @@ watch(
             children.includes(codeBlockIdentifiers.FOCUS2)
           const shallDiffRemove = children.includes(
             codeBlockIdentifiers.DIFF_REMOVE
+          ) || children.includes(
+            codeBlockIdentifiers.DIFF_REMOVE_2
           )
           const shallDiffAdd = children.includes(codeBlockIdentifiers.DIFF_ADD) || children.includes(codeBlockIdentifiers.DIFF_ADD_2)
           const modifiedChildren = removeCodeBlockIdentifiers(children)

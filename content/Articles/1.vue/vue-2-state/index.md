@@ -112,7 +112,7 @@ function addTodo() {
       autofocus
       v-model="newTodo"
       class="text-black px-1"
-      @keyup.enter="addTodo" !!!!!!
+      @keyup.enter="addTodo" +!!!
     />
   </div>
 </template>
@@ -260,7 +260,7 @@ function toggleStatus(id) {
       <li
         :key="todo.id"
         v-for="todo of todos"
-        @click="toggleStatus(todo.id)" !!!!!!
+        @click="toggleStatus(todo.id)" +!!!
         class="flex flex-row justify-between"
       >
         <span v-text="todo.name" />
@@ -454,3 +454,79 @@ function removeTodo(id) {
 }
 </style>
 ```
+
+## Global
+
+### Intro
+
+It's often the case that state needs to be shared throughout the application.
+
+To achieve this a parent component could define state and pass it to it's children using props. 
+
+This works but it creates a few problems:
+  - The parent component bloats.
+  - Components are now tightly coupled.
+  - Components now have parent/child hierarchy.
+
+Vue has a better solution:
+
+### useState()
+
+The :inline{value=useState} method is provided by Vue. 
+
+To refactor :inline{value=todos} to a global state do the following. 
+
+Refactor the initialization of :inline{value=todos} to the following:
+
+
+```vue [./components/Todos/TodosContainer.vue]
+<script setup>
+const todos = ref([]) -!!!
+const todos = useState('todos', () => []) +!!!
+
+// etc...
+</script>
+
+<template>
+  <!-- etc... -->
+</template>
+
+<style>
+/* etc... */
+</style>
+```
+
+Now you can use the same state in other components by calling :inline{value=useState()} again.
+
+This case for example, you grab the todos and count the done and undone to provide additional context to the user.
+
+```vue [./components/Todos/TodosMeta.vue]
+<script setup>
+const todos = useState('todos', () => [])
+const countDone = computed(() => todos.value.filter((t) => t.done).length)
+const countUndone = computed(() => todos.value.filter((t) => !t.done).length)
+</script>
+<template>
+  <div>
+    <div>
+      <label>Done Count</label>
+      <div>
+        <span v-text="countDone" />
+      </div>
+    </div>
+    <div>
+      <label>Undone Count</label>
+      <div>
+        <span v-text="countUndone" />
+      </div>
+    </div>
+  </div>
+</template>
+```
+
+
+Now you'll see that when you add a :inline{value=todo} to your :inline{value=todos} list then both components, :inline{value=TodosMeta} & :inline{value=TodosContainer} update.
+
+
+
+## Pinia

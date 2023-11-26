@@ -1,32 +1,16 @@
 <script setup>
 import XIcon from '~/assets/images/icons/XIcon.vue'
-const hidden = ref(false)
+const props = defineProps(['right'])
+const hidden = ref(true)
 function toggleView() {
   hidden.value = !hidden.value
 }
-
 const newTodo = ref('')
-const todos = ref([
-  {
-    id: 1,
-    name: 'Read docs',
-    done: true,
-  },
-  {
-    id: 2,
-    name: 'Try examples',
-    done: false,
-  },
-  {
-    id: 3,
-    name: 'Build startup',
-    done: false,
-  },
-])
+const todos = useState('todos', () => [])
 
 function addTodo() {
   const todo = {
-    id: todos.value.length+1,
+    id: todos.value.length + 1,
     name: newTodo.value,
     done: false,
   }
@@ -48,9 +32,11 @@ function removeTodo(id) {
 
 <template>
   <div
-    class="fixed left-2 bottom-0 border bg-white dark:bg-slate-900 rounded-lg w-96 h-64 p-2 z-40 overflow-auto"
+    class="fixed bottom-0 border bg-white dark:bg-slate-900 rounded-lg w-96 h-64 p-2 z-40 overflow-auto"
     :class="{
       hidden: hidden,
+      'right-2': right,
+      'left-2': !right,
     }"
   >
     <div>
@@ -73,6 +59,7 @@ function removeTodo(id) {
           <XIcon @click="removeTodo(todo.id)" />
         </li>
       </ol>
+      <VOther />
     </div>
 
     <div
