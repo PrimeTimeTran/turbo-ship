@@ -5,6 +5,7 @@ const handleToggle = () => {
   if (window.innerWidth > 768) return
   toggleOpen()
 }
+ensureLoad('https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js')
 </script>
 <template>
   <div class="flex flex-col justify-between dark:bg-gray-900 dark:text-white">

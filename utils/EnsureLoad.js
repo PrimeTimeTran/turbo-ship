@@ -1,8 +1,12 @@
 function setupHotkeys() {
   hotkeys(
-    'alt+cmd+e, alt+v, alt+e, alt+s,alt+c, alt+r, alt+f, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
+    'alt+d, alt+cmd+e, alt+v, alt+e, alt+s,alt+c, alt+r, alt+f, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
     function (event, handler) {
+      console.log('EnsureLoad click')
       switch (handler.key) {
+        case 'alt+d':
+          document.getElementById('previewer').click()
+          break
         case 'alt+cmd+e':
           document.getElementById('devTools').click()
           break

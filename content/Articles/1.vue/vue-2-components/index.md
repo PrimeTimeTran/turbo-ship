@@ -7,7 +7,7 @@ description: Components
 
 By default place components in the :inline{value=components} directory.
 
-## Structure
+## Naming Conventions
 
 Name them using pascal case.
 
@@ -45,8 +45,6 @@ If there is "one" of something then convention is the prefix with "The".
 │   │   └── ...
 │   ├── Comments
 │   │   └── ...
-│   ├── Conversations
-│   │   └── ...
 │   ├── TheNavbar
 │   │   └── ...
 │   └── TheSidebar
@@ -62,8 +60,6 @@ Base components should begin with V, Base, or App.
 │   ├── Posts
 │   │   └── ...
 │   ├── Comments
-│   │   └── ...
-│   ├── Conversations
 │   │   └── ...
 │   ├── TheNavbar
 │   │   └── ...
@@ -82,16 +78,28 @@ Conventions helps others onboard quickly.
 They're community conventions.
 ::
 
-## Using components
+## Organization
 
-If you initialized your project with the default vue create command
+If you initialized your project with the default :inline{value="vue create"} command
 
-$ npx vue create hello-world
+:inline{value="$ npx vue create hello-world"}
+
+You'll see a project structure like this:
+
+```vue [./component.vue]
+.
+├── public
+└── src
+    ├── assets
+    ├── components
+    ├── router
+    ├── stores
+    └── views
+```
 
 You could then import and use components like so.
 
-
-```vue [./views/HomeView.vue] {2}
+```vue [./views/HomeView.vue] {2,7}
 <script setup lang="ts">
 import Todos from '../components/Todos.vue'
 </script>
@@ -102,16 +110,19 @@ import Todos from '../components/Todos.vue'
   </main>
 </template>
 ```
-```vue [./component.vue] {2}
-.
-├── e2e
-├── public
-└── src
-    ├── assets
-    ├── components
-    ├── router
-    ├── stores
-    └── views
+
+If you're using :inline{value=Nuxt} then you don't have to import anything from the :inline{value=components} dir as :inline{value=Nuxt} will do it for you automatically.
+
+```vue [./views/HomeView.vue] {2}
+<script setup lang="ts">
+import Todos from '../components/Todos.vue'  // [!code  --]
+</script>
+
+<template>
+  <main>
+    <Todos />
+  </main>
+</template>
 ```
 
 It's more useful to bind values to a user event though

@@ -96,7 +96,7 @@ watch(
           const hasDiff =
             props.code.includes(codeBlockIdentifiers.DIFF_ADD) ||
             props.code.includes(codeBlockIdentifiers.DIFF_REMOVE)
-          return `<pre tabindex="1" class="${className} bg-[#1e1e1e] ${
+          return `<pre tabindex="1" class="${className} bg-[#1e1e1e] p-0 ${
             shallFocus ? 'has-focused-lines' : ''
           } ${
             hasDiff ? 'has-diff' : ''
@@ -129,7 +129,7 @@ watch(
               index + 1
             }</div>`
           }
-          return `<div class="${className + '-go fixed-width'} ${
+          return `<div class="${className + '-go'} ${
             shallHighlight ? 'bg-[#363b46]' : ''
           } ${shallFocus ? 'has-focus' : ''} ${
             shallDiffRemove ? 'diff remove' : ''
@@ -288,6 +288,13 @@ pre.shiki {
 .line-go {
   display: flex;
   width: 100px !important;
+}
+
+:deep(pre) {
+  > code {
+    // & .line-go:first-child {
+    // }
+  }
 }
 :deep(pre) {
   div[class^="ml-"]:first-child {
