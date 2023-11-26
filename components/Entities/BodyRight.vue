@@ -25,7 +25,7 @@ const sparse = ref(false)
       class="align-middle items-center text-center ml-6 rounded-md"
     >
       <button
-        id="actionDense"
+        id="actionSparse"
         type="button"
         @click="
           () => {
@@ -43,7 +43,7 @@ const sparse = ref(false)
           v-else
           class="mr-2"
         >
-          <u>D</u>ense
+          S<u>p</u>arse
         </span>
         <FontAwesomeIcon
           color="grey"

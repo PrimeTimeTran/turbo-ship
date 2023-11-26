@@ -1,37 +1,34 @@
 function setupHotkeys() {
   hotkeys(
-    'alt+cmd+e, alt+v, alt+e,alt+s,alt+c, alt+r, alt+f, alt+h, alt+d, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
+    'alt+cmd+e, alt+v, alt+e, alt+s,alt+c, alt+r, alt+f, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
     function (event, handler) {
       switch (handler.key) {
-        case 'alt+e':
-          document.getElementById('viewEntities').click()
-          break
         case 'alt+cmd+e':
           document.getElementById('devTools').click()
           break
         case 'alt+v':
           document.getElementById('ViewMenu').click()
           break
-        case 'alt+f':
-          document.getElementById('FileMenu').click()
-          break
         case 'alt+s':
-          document.getElementById('viewSort').click()
+          document.getElementById('SortSubmenu').click()
+          break
+        case 'alt+e':
+          document.getElementById('EntitiesSubmenu').click()
           break
         case 'alt+c':
           document.getElementById('CollapseSubmenu').click()
           break
         case 'alt+r':
-          document.getElementById('viewRelationships').click()
+          document.getElementById('RelationshipsSubmenu').click()
           break
         case 'alt+f':
-          document.getElementById('viewFeedback').click()
+          document.getElementById('FeedbackSubmenu').click()
           break
         case 'alt+h':
-          document.getElementById('viewHelp').click()
+          document.getElementById('HelpSubmenu').click()
           break
-        case 'alt+d':
-          document.getElementById('actionDense').click()
+        case 'alt+p':
+          document.getElementById('actionSparse').click()
           break
         case 'alt+o':
           document.getElementById('actionCopy').click()

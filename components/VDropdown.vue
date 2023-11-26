@@ -36,30 +36,28 @@ function toggleOpen() {
       leave-from-class="transform scale-100 opacity-100"
       leave-to-class="transform scale-95 opacity-0"
     >
-      <div>
+      <div v-if="items">
         <MenuItems
           class="absolute right-l mt-1 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-gray-900 shadow-lg ring-1 ring-black/5 focus:outline-none dark:ring-gray-800"
         >
           <div class="px-1 py-1">
-            <div v-if="items">
-              <MenuItem
-                :key="item.name"
-                v-slot="{ active }"
-                v-for="item of items"
+            <MenuItem
+              :key="item.name"
+              v-slot="{ active }"
+              v-for="item of items"
+            >
+              <button
+                @click="item.click"
+                :class="[
+                  active ? 'brightness-200 text-white' : 'text-gray-500',
+                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                ]"
               >
-                <button
-                  @click="item.click"
-                  :class="[
-                    active ? 'brightness-200 text-white' : 'text-gray-500',
-                    'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                  ]"
-                >
-                  <span
-                    v-html="replaceWithUnderline(item.name, item.underline)"
-                  />
-                </button>
-              </MenuItem>
-            </div>
+                <span
+                  v-html="replaceWithUnderline(item.name, item.underline)"
+                />
+              </button>
+            </MenuItem>
           </div>
         </MenuItems>
       </div>

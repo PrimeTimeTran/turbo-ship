@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-  view: 'composer',
+view: 'entities',
   collapsed: false,
   stateViewer: true,
   entities: ref(SeedsMint),

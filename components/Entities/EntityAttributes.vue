@@ -81,7 +81,7 @@ const showRelationTab = computed(() => {
         @keyup.enter="onAdd"
         v-model="attribute.name"
         placeholder="firstName, lastName..."
-        class="p-4 rounded border border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100 dark:text-white dark:placeholder-white dark:hover:border-white dark:border-gray-500 dark:bg-slate-800"
+        class="p-4 rounded border border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100 dark:text-white  dark:hover:border-white dark:border-gray-500 dark:bg-slate-800"
       />
       <label class="mt-6 font-bold text-gray-500">Type</label>
       <div

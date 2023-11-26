@@ -62,7 +62,7 @@ setup()
   <div
     id="accordion-collapse"
     data-accordion="collapse"
-    class="grid place-content-stretch w-full lg:max-w-3xl"
+    class="grid place-content "
   >
     <h2 id="accordion-collapse-heading-1">
       <button

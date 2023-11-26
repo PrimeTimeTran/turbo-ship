@@ -6,7 +6,7 @@ const props = defineProps(['entities'])
   <EntitiesTheToolbar :entities="entities" />
   <EntitiesETabSorter :entities="entities" />
   <!-- When refactored this guy stops rendering -->
-  <div v-if="store.view == 'composer'">
+  <div v-if="store.view == views.entities">
     <draggable
       tag="section"
       :list="entities"
@@ -26,9 +26,12 @@ const props = defineProps(['entities'])
         v-if="store.view == 'composer'"
         :entities="entities"
       ></EntitiesETabComposer> -->
-  <div v-if="store.view == 'relationships'">
-    <h1 class="text-red-300 text-lg 2">Relationships</h1>
+  <div v-if="store.view == views.relationships">
+    <h1 class="text-red-300">Relationships</h1>
   </div>
-  <EntitiesETabFeedback v-if="store.view == 'feedback'" />
-  <EntitiesETabHelp v-if="store.view == 'help'" />
+  <!-- <div v-if="store.view == views.help">
+    <h1 class="text-red-300 text-lg">Help</h1>
+  </div> -->
+  <EntitiesETabFeedback v-if="store.view == views.feedback" />
+  <EntitiesETabHelp v-if="store.view == views.help" />
 </template>

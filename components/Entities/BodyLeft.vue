@@ -123,7 +123,7 @@ const entityValid = computed(() => {
   return true
 })
 const inputClasses =
-  'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white dark:placeholder-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
+  'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
 </script>
 <template>
   <div class="flex-1 flex-col px-2 max-h-screen">

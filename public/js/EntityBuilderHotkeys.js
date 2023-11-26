@@ -1,6 +1,6 @@
 function setupHotkeys() {
   hotkeys(
-    'alt+e,alt+s,alt+c, alt+r, alt+f, alt+h, alt+d, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
+    'alt+e,alt+s,alt+c, alt+r, alt+f, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
     function (event, handler) {
       console.log('Handling: ', event)
       switch (handler.key) {
@@ -22,8 +22,8 @@ function setupHotkeys() {
         case 'alt+h':
           document.getElementById('viewHelp').click()
           break
-        case 'alt+d':
-          document.getElementById('actionDense').click()
+        case 'alt+p':
+          document.getElementById('actionSparse').click()
           break
         case 'alt+o':
           document.getElementById('actionCopy').click()

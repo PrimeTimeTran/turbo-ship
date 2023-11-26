@@ -11,7 +11,7 @@ const collapseText = () => {
 </script>
 <template>
   <div
-    v-if="store.view === 'sorter'"
+    v-if="store.view === views.sort"
     class="opacity-[.7] hover:opacity-90 w-100 justify-end flex flex-col max-h-full"
   >
     <div class="self-end my-2">

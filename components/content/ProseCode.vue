@@ -129,7 +129,7 @@ watch(
               index + 1
             }</div>`
           }
-          return `<div class="${className + '-go'} ${
+          return `<div class="${className + '-go fixed-width'} ${
             shallHighlight ? 'bg-[#363b46]' : ''
           } ${shallFocus ? 'has-focus' : ''} ${
             shallDiffRemove ? 'diff remove' : ''
@@ -144,10 +144,6 @@ watch(
 )
 </script>
 <template>
-  <!-- <div class="mb-8 mt-4 rounded-md bg-[#1e1e1e]">
-    <div v-if="html" v-html="html"></div>
-    <span v-else>{{ code }}</span>
-  </div> -->
   <div class="container pt-1 rounded-xl">
     <div
       class="flex justify-center items-center border-b-2 border-gray-600 px-1 py-0"
@@ -164,7 +160,7 @@ watch(
       <div
         @click="copy(code)"
         :class="[
-          'ml-1',
+          // 'ml-1',
           'p-3',
           'py-0',
           'border',
@@ -254,6 +250,7 @@ watch(
     & .line-go.diff.remove {
       background-color: rgba(244, 63, 94, 0.2);
       opacity: 0.7;
+      min-width: 10px;
     }
     & .line-go.diff.add {
       background-color: rgba(16, 185, 129, 0.2);
@@ -265,7 +262,7 @@ watch(
   > code {
     & .line-go:not(.has-focus) {
       filter: blur(0.095rem);
-      opacity: 0.4;
+      opacity: 0.4has-focused-lines;
       transition: filter 0.35s, opacity 0.35s;
     }
   }
@@ -285,4 +282,18 @@ pre code .line-go {
   margin-top: 0px;
   display: inline-block;
 }
+pre.shiki {
+  padding-left: 0px !important;
+}
+.line-go {
+  display: flex;
+  width: 100px !important;
+}
+:deep(pre) {
+  div[class^="ml-"]:first-child {
+    width: 10px;
+    min-width: 10px;
+  }
+}
+
 </style>

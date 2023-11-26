@@ -41,6 +41,7 @@ const onRemove = (id) => {
             >
               <span v-text="`${idx + 1}. `" />
               <input
+                tabindex="-1"
                 v-model="attribute.name"
                 class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               />≈

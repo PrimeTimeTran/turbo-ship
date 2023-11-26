@@ -21,3 +21,11 @@ export function replaceWithUnderline(inputString, replaceString) {
   const replacedText = inputString.replace(regex, `<u>${replaceString}</u>`)
   return replacedText
 }
+
+export const views = {
+  sort: 'sort',
+  help: 'help',
+  feedback: 'feedback',
+  entities: 'entities',
+  relationships: 'relationships',
+}
