@@ -64,6 +64,7 @@ const removeCodeBlockIdentifiers = (code: string) => {
   return code
     .replace(codeBlockIdentifiers.FOCUS, '')
     .replace(codeBlockIdentifiers.DIFF_ADD, '')
+    .replace(codeBlockIdentifiers.DIFF_ADD_2, '')
     .replace(codeBlockIdentifiers.DIFF_REMOVE, '')
     .replace(codeBlockIdentifiers.FOCUS2, '')
 }
@@ -72,6 +73,7 @@ const codeBlockIdentifiers = {
   FOCUS: '// [!code  focus]',
   FOCUS2: '!!!!!',
   DIFF_ADD: '// [!code  ++]',
+  DIFF_ADD_2: '!!!!!!',
   DIFF_REMOVE: '// [!code  --]',
 } as const
 
@@ -95,6 +97,7 @@ watch(
             props.code.includes(codeBlockIdentifiers.FOCUS2)
           const hasDiff =
             props.code.includes(codeBlockIdentifiers.DIFF_ADD) ||
+            props.code.includes(codeBlockIdentifiers.DIFF_ADD_2) ||
             props.code.includes(codeBlockIdentifiers.DIFF_REMOVE)
           return `<pre tabindex="1" class="${className} bg-[#1e1e1e] p-0 ${
             shallFocus ? 'has-focused-lines' : ''
@@ -113,7 +116,7 @@ watch(
           const shallDiffRemove = children.includes(
             codeBlockIdentifiers.DIFF_REMOVE
           )
-          const shallDiffAdd = children.includes(codeBlockIdentifiers.DIFF_ADD)
+          const shallDiffAdd = children.includes(codeBlockIdentifiers.DIFF_ADD) || children.includes(codeBlockIdentifiers.DIFF_ADD_2)
           const modifiedChildren = removeCodeBlockIdentifiers(children)
           let beforeElement = '<div class="ml-4"></div>'
           if (shallDiffAdd) {

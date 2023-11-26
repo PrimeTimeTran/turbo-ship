@@ -26,7 +26,7 @@ const todos = ref([
 
 function addTodo() {
   const todo = {
-    id: todos.length,
+    id: todos.value.length+1,
     name: newTodo.value,
     done: false,
   }
@@ -70,7 +70,7 @@ function removeTodo(id) {
           class="flex flex-row justify-between"
         >
           <span v-text="todo.name" />
-          <XIcon @click="removeTodo(todo.id)" color="indianred"/>
+          <XIcon @click="removeTodo(todo.id)" />
         </li>
       </ol>
     </div>
