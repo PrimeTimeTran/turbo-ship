@@ -35,6 +35,7 @@ export const Mint: Entity[] = [
         _id: 'ebed2ca23c6cc7f44afff397',
         validations: [],
         relation: { type: 'otm', name: 'account' },
+        label: 'Accounts',
       },
       {
         validators: [],
@@ -43,6 +44,7 @@ export const Mint: Entity[] = [
         _id: '16dfc8bb206be2feaa2c6f04',
         validations: [],
         relation: { type: 'otm', name: 'transaction' },
+        label: 'Transactions',
       },
       {
         validators: [],
@@ -51,6 +53,7 @@ export const Mint: Entity[] = [
         _id: 'd6db8ffc08aaed0ee2c9d8ce',
         validations: [],
         relation: { type: 'otm', name: 'bank' },
+        label: 'Banks',
       },
       {
         name: 'email',
@@ -109,6 +112,8 @@ export const Mint: Entity[] = [
         _id: '6f5beab03b55eedac8e92a38',
         validations: [],
         relation: { type: null, name: null },
+        label: 'NetWorth',
+        placeholder: '$88,888,888',
       },
       {
         valid: false,
@@ -118,6 +123,7 @@ export const Mint: Entity[] = [
         type: 'relation',
         _id: '5df7f9807cf4d62f17b0b9af',
         relation: { type: 'otm', name: 'message' },
+        label: '',
       },
       { name: '_id', type: 'string', _id: '5f6ab0bbfb54cf51242ddb6a', validators: [], validations: [] },
     ],
@@ -136,6 +142,8 @@ export const Mint: Entity[] = [
         _id: 'ebed2ca23c6cc8f44afff397',
         validations: [],
         relation: { type: 'mto', name: 'user' },
+        label: 'Owner',
+        placeholder: 'john@gmail.com',
       },
       { name: '_id', type: 'string', _id: '3a1fa3ceb681ccd0bfa9ffbf', validators: [], validations: [] },
       {
@@ -145,6 +153,8 @@ export const Mint: Entity[] = [
         _id: '1fcb66bc9bfffdff5cb2a4d0',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Balance',
+        placeholder: '$88,888',
       },
       {
         validators: [],
@@ -153,6 +163,8 @@ export const Mint: Entity[] = [
         relation: { type: 'mto', name: 'bank' },
         _id: 'b918f9d4301d7fa9f8ffc5cd',
         validations: [],
+        label: 'Bank',
+        placeholder: 'Bank of America',
       },
       {
         validators: [],
@@ -161,6 +173,7 @@ export const Mint: Entity[] = [
         relation: { type: 'otm', name: 'transaction' },
         _id: '3fbbaa1f2f3b78c1cc6e8930',
         validations: [],
+        label: 'Transactions',
       },
       {
         validators: [],
@@ -170,6 +183,8 @@ export const Mint: Entity[] = [
         validations: [],
         relation: { type: null, name: null },
         options: 'checking,banking,creditCard',
+        label: 'Type',
+        placeholder: 'checking, savings, credit',
       },
       {
         validators: [],
@@ -194,6 +209,7 @@ export const Mint: Entity[] = [
         _id: '3b1a2f8bdf4426ab3ac1d4fc',
         validations: [],
         relation: { type: 'mto', name: 'branch' },
+        label: 'Branch',
       },
     ],
   },

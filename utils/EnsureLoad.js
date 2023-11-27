@@ -1,6 +1,6 @@
 function setupHotkeys() {
   hotkeys(
-    'alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
+    'alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1, cmd+alt+d, cmd+alt+o',
     function (event, handler) {
       console.log('EnsureLoad click')
       switch (handler.key) {
@@ -10,8 +10,11 @@ function setupHotkeys() {
         case 'alt+l':
           document.getElementById('showLeft').click()
           break
+        case 'cmd+alt+o':
+          document.getElementById('previewOverlay').click()
+          break
         case 'alt+d':
-          document.getElementById('previewer').click()
+          document.getElementById('dark').click()
           break
         case 'alt+cmd+e':
           document.getElementById('devTools').click()
@@ -37,11 +40,11 @@ function setupHotkeys() {
         case 'alt+h':
           document.getElementById('HelpSubmenu').click()
           break
-        case 'alt+p':
-          document.getElementById('actionSparse').click()
+        case 'cmd+alt+d':
+          document.getElementById('toggleSparse').click()
           break
         case 'alt+o':
-          document.getElementById('actionCopy').click()
+          document.getElementById('copyEntities').click()
           break
         case 'alt+n':
           document.getElementById('inputRef').focus()

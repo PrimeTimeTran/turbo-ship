@@ -46,7 +46,7 @@ function toggleOpen() {
                 :key="item.id"
                 @click="item.click"
                 :class="[
-                  active ? 'brightness-150 text-green-500' : 'text-gray-500',
+                  active ? 'brightness-150 text-green-500' : 'dark:text-white text-gray-500',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
               >

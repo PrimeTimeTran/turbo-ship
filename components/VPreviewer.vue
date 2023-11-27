@@ -1,10 +1,7 @@
 <script setup>
 import XIcon from '~/assets/images/icons/XIcon.vue'
 const props = defineProps(['right'])
-const hidden = ref(true)
-function toggleView() {
-  hidden.value = !hidden.value
-}
+
 const newTodo = ref('')
 const todos = useState('todos', () => [])
 
@@ -32,6 +29,7 @@ function removeTodo(id) {
 
 <template>
   <div
+    v-if="store.previewOverlay"
     class="fixed bottom-0 border bg-white dark:bg-slate-900 rounded-lg w-96 h-64 p-2 z-40 overflow-auto"
     :class="{
       hidden: hidden,
@@ -61,11 +59,6 @@ function removeTodo(id) {
       </ol>
       <VOther />
     </div>
-
-    <div
-      id="previewer"
-      @click="toggleView"
-    />
   </div>
 </template>
 

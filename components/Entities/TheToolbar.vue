@@ -51,7 +51,7 @@ const fileItems = [
   {
     id: faker.database.mongodbObjectId(),
     name: 'Clear',
-    click: generate,
+    click: clearEntities,
     underline: '',
     tip: 'Clear entities',
   },
@@ -116,6 +116,13 @@ const viewItems = [
   },
   {
     id: faker.database.mongodbObjectId(),
+    name: 'Dark',
+    click: help,
+    underline: 'D',
+    tip: 'Toggle Dark Mode',
+  },
+  {
+    id: faker.database.mongodbObjectId(),
     name: 'Toggle Left',
     click: () => (store.leftSidebar = !store.leftSidebar),
     underline: 'L',
@@ -133,7 +140,7 @@ const editItems = [
   {
     id: faker.database.mongodbObjectId(),
     name: 'New Entity',
-    click: generate,
+    click: () => {},
     underline: 'G',
     tip: 'Quite entity builder',
   },
@@ -149,14 +156,14 @@ const entitiesItems = [
   {
     id: faker.database.mongodbObjectId(),
     name: 'Copy Entities',
-    click: generate,
+    click: () => {},
     underline: 'o',
     tip: 'Copy entities to clipboard',
   },
   {
     id: faker.database.mongodbObjectId(),
     name: 'Toggle Sparse',
-    click: generate,
+    click: () => document.getElementById('actionSparse').click(),
     underline: 'p',
     tip: 'Toggle sparse view of right sidebar',
   },
