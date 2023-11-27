@@ -30,7 +30,6 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@formkit/nuxt',
     'nuxt-vuefire',
-    'nuxt-monaco-editor',
   ],
   vuefire: {
     config: {
@@ -75,12 +74,5 @@ export default defineNuxtConfig({
       '@fortawesome/pro-light-svg-icons',
       '@fortawesome/free-brands-svg-icons',
     ],
-  },
-  monacoEditor: {
-    locale: 'en',
-    componentName: {
-      codeEditor: 'MonacoEditor',
-      diffEditor: 'MonacoDiffEditor',
-    },
   },
 })

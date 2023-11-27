@@ -25,31 +25,37 @@ export class Turboship {
       .option('-b, --backend <type>', 'backend choice', 'nuxt')
       .option('-m, --mobile <type>', 'mobile choice', 'flutter')
       .option('-e, --entities <letters...>', 'entities included', 'user')
-
     program.parse(process.argv)
-
     return program.opts()
   }
 
   static async cleanse(root) {
-    const directories = ['nuxt', 'flutter', 'rn']
-    for (const directory of directories) {
-      try {
-        await fs.promises.rm(path.join(root, directory), { recursive: true })
-        log('Cleansed: ', directory, 'magentaBright')
-      } catch (error) {
-        console.log({
-          error,
+    const deleteFolderRecursive = function (dirPath) {
+      if (fs.existsSync(dirPath)) {
+        fs.readdirSync(dirPath).forEach(function (file) {
+          const curPath = path.join(dirPath, file)
+          if (fs.lstatSync(curPath).isDirectory()) {
+            deleteFolderRecursive(curPath)
+          } else {
+            fs.unlinkSync(curPath)
+          }
         })
-        // Handle error if needed
+        fs.rmdirSync(dirPath)
       }
     }
+
+    deleteFolderRecursive(root)
+
+    fs.mkdirSync(root)
+    ;['rn', 'flutter', 'nuxt'].forEach((subDir) => {
+      const subDirPath = path.join(root, subDir)
+      fs.mkdirSync(subDirPath)
+    })
   }
 
   buildEntities(entities) {
     const entityTemplates = ['mint', 'bank', 'lms', 'social', 'pm', 'customer']
     const keys = Object.values(this.options.entities)
-    keys[0] = 'lms'
 
     const chosen = keys.filter((k) => entityTemplates.includes(k))
     chosen.forEach((name) => {
@@ -58,12 +64,7 @@ export class Turboship {
         this.entities[e.name] = e
       })
     })
-
-    console.log({
-      chosen,
-    })
-
-    entities.forEach(e => {
+    entities.forEach((e) => {
       this.entities[e.name] = e
     })
   }
@@ -83,24 +84,11 @@ export class Turboship {
     if (options.debug) console.log(options)
     console.log('\n\n')
     console.log(chalk.green.underline('Run Details:'))
-    if (options.language)
-      console.log(chalk['green']('language'), `- ${options.language}`)
-    if (options.backend)
-      console.log(chalk['green']('backend'), `- ${options.backend}`)
-    if (options.mobile)
-      console.log(chalk['green']('mobile'), `- ${options.mobile}`)
-    if (options.entities)
-      console.log(chalk['green']('entities'), `- ${options.entities}`)
+    if (options.language) console.log(chalk['green']('language'), `- ${options.language}`)
+    if (options.backend) console.log(chalk['green']('backend'), `- ${options.backend}`)
+    if (options.mobile) console.log(chalk['green']('mobile'), `- ${options.mobile}`)
+    if (options.entities) console.log(chalk['green']('entities'), `- ${options.entities}`)
     console.log('\n\n')
     prettify(this.options.root)
   }
 }
-
-// async function main() {
-//   const root = path.join(dirName, '../../temp/')
-//   // const root = path.join(dirName, '../src/')
-//   await Turboship.cleanse(root)
-//   new Turboship(root)
-// }
-
-// main()

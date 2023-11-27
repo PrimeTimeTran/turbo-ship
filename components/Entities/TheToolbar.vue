@@ -28,8 +28,14 @@ async function generate() {
       method: 'post',
       body: entities.value,
     })
-
-    console.log({ resp })
+    const blobUrl = URL.createObjectURL(resp)
+    const downloadLink = document.createElement('a')
+    downloadLink.href = blobUrl
+    downloadLink.download = 'muxter-source.zip'
+    document.body.appendChild(downloadLink)
+    downloadLink.click()
+    document.body.removeChild(downloadLink)
+    URL.revokeObjectURL(blobUrl)
   } catch (error) {
     console.log('Error: ', error)
   }
