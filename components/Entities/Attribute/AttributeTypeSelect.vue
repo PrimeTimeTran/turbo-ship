@@ -8,7 +8,7 @@ const focusedKey = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div class="italic text-xs px-2 text-blue-400">
     {{ Validator.labeledTypes[focusedKey]?.label }}
   </div>
 </template>

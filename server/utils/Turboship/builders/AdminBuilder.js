@@ -75,7 +75,7 @@ export class AdminBuilder {
     function buildAsideItems() {
       return entities.map((e) => {
         return `<p
-          class="text-2xl truncate text-gray-500 dark:text-white my-72 hover:text-green-400 dark:hover:text-green-400"
+          class="text-lg truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400"
         >
           <a href="/admin/${e.plural}">${e.label}</a>
         </p>`
@@ -106,13 +106,13 @@ export class AdminBuilder {
               </div>
               <div
                 v-if="isOpen"
-                class="pt-32 space-y-12"
+                class="pt-20"
               >
                 ${buildAsideItems()}
               </div>
               <div
                 v-else
-                class="pt-32"
+                class="pt-20"
               >
                 <div
                   class="flex flex-col items-middle justify-center dark:text-white space-y-12"
@@ -573,7 +573,6 @@ export class AdminBuilder {
       nextPage,
     ]}`
   }
-
   generateFetchPage() {
     return `const fetchPage = async (diff) => {
       let [str, nextPage] = getPaginationString(diff)

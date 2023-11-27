@@ -6,6 +6,7 @@ export function useEntity(e, entities) {
   const newAttribute = reactive({
     name: ref(''),
     type: ref(''),
+    label: ref(''),
     options: ref(''),
     relation: reactive({
       type: ref(null),

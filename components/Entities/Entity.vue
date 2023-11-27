@@ -67,7 +67,6 @@ function setupTabs() {
 onMounted(() => {
   setupTabs()
 })
-const selectedValidations = ref([])
 </script>
 <template>
   <section
@@ -110,18 +109,7 @@ const selectedValidations = ref([])
         >
           <div class="flex flex-1">
             <div class="flex flex-1 flex-col flex-grow w-1/3">
-              <h1>Validators!</h1>
-              {{ selectedValidations }}
-              <multiselect
-                :multiple="true"
-                v-model="selectedValidations"
-                :close-on-select="false"
-                :clear-on-select="false"
-                placeholder="Select validations"
-                :options="Validator.optionalValidators['string']"
-                @select="$emit('close', selectedValidations)"
-                @close="$emit('close', selectedValidations)"
-              />
+              <h1>Settings</h1>
             </div>
           </div>
         </div>

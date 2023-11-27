@@ -14,6 +14,8 @@ export const Mint: Entity[] = [
         validations: [],
         options: 'owner,admin,staff,customer',
         relation: { type: null, name: null },
+        label: 'Role',
+        placeholder: 'customer, employee, admin',
       },
       {
         name: 'status',
@@ -23,6 +25,8 @@ export const Mint: Entity[] = [
         validations: [],
         options: 'open,closed,pending',
         relation: { type: null, name: null },
+        label: 'Status',
+        placeholder: 'open,closed,pending,cancelled',
       },
       {
         validators: [],
@@ -32,7 +36,6 @@ export const Mint: Entity[] = [
         validations: [],
         relation: { type: 'otm', name: 'account' },
       },
-
       {
         validators: [],
         name: 'transactions',
@@ -56,6 +59,8 @@ export const Mint: Entity[] = [
         validators: ['email', 'unique'],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Email',
+        placeholder: 'john@email.com',
       },
       {
         name: 'firstName',
@@ -64,6 +69,8 @@ export const Mint: Entity[] = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Last Name',
+        placeholder: 'John',
       },
       {
         name: 'lastName',
@@ -72,6 +79,8 @@ export const Mint: Entity[] = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'First Name',
+        placeholder: 'Doe ',
       },
       {
         name: 'age',
@@ -80,6 +89,8 @@ export const Mint: Entity[] = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Age',
+        placeholder: '18',
       },
       {
         name: 'owner',
@@ -88,8 +99,9 @@ export const Mint: Entity[] = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        placeholder: 'true',
+        label: 'owner',
       },
-
       {
         validators: [],
         name: 'netWorth',
@@ -107,13 +119,7 @@ export const Mint: Entity[] = [
         _id: '5df7f9807cf4d62f17b0b9af',
         relation: { type: 'otm', name: 'message' },
       },
-      {
-        name: '_id',
-        type: 'string',
-        _id: '5f6ab0bbfb54cf51242ddb6a',
-        validators: [],
-        validations: [],
-      },
+      { name: '_id', type: 'string', _id: '5f6ab0bbfb54cf51242ddb6a', validators: [], validations: [] },
     ],
   },
   {
@@ -131,13 +137,7 @@ export const Mint: Entity[] = [
         validations: [],
         relation: { type: 'mto', name: 'user' },
       },
-      {
-        name: '_id',
-        type: 'string',
-        _id: '3a1fa3ceb681ccd0bfa9ffbf',
-        validators: [],
-        validations: [],
-      },
+      { name: '_id', type: 'string', _id: '3a1fa3ceb681ccd0bfa9ffbf', validators: [], validations: [] },
       {
         validators: [],
         name: 'balance',
@@ -204,13 +204,7 @@ export const Mint: Entity[] = [
     label: 'Transaction',
     pluralL: 'Transactions',
     attributes: [
-      {
-        name: '_id',
-        type: 'string',
-        _id: 'b8eccaecb1ac1e8725efec2b',
-        validators: [],
-        validations: [],
-      },
+      { name: '_id', type: 'string', _id: 'b8eccaecb1ac1e8725efec2b', validators: [], validations: [] },
       {
         validators: [],
         name: 'amount',
@@ -285,13 +279,7 @@ export const Mint: Entity[] = [
     label: 'Bank',
     pluralL: 'Banks',
     attributes: [
-      {
-        name: '_id',
-        type: 'string',
-        _id: 'd726f6c6ae9dbeb8f8c5fc04',
-        validators: [],
-        validations: [],
-      },
+      { name: '_id', type: 'string', _id: 'd726f6c6ae9dbeb8f8c5fc04', validators: [], validations: [] },
       {
         name: 'name',
         type: 'string',
@@ -382,13 +370,7 @@ export const Mint: Entity[] = [
     label: 'Branch',
     pluralL: 'Branches',
     attributes: [
-      {
-        name: '_id',
-        type: 'string',
-        _id: 'befac3c44322aae773fe0c8d',
-        validators: [],
-        validations: [],
-      },
+      { name: '_id', type: 'string', _id: 'befac3c44322aae773fe0c8d', validators: [], validations: [] },
       {
         name: 'location',
         type: 'string',

@@ -29,7 +29,19 @@ export default defineNuxtConfig({
     'nuxt-mongoose',
     '@nuxtjs/color-mode',
     '@formkit/nuxt',
+    'nuxt-vuefire',
   ],
+  vuefire: {
+    config: {
+      apiKey: 'AIzaSyBaBHq_Igg8V6xDmuNBMDWK_KputgYfSLM',
+      authDomain: 'turboship-dev.firebaseapp.com',
+      projectId: 'turboship-dev',
+      storageBucket: 'turboship-dev.appspot.com',
+      messagingSenderId: '885916988672',
+      appId: '1:885916988672:web:1cca060cfd4ac74a2eafe5',
+      measurementId: 'G-3Y4HHYCZK7',
+    },
+  },
   mongoose: {
     options: {},
     modelsDir: 'models',
@@ -43,17 +55,7 @@ export default defineNuxtConfig({
   content: {
     documentDriven: true,
     highlight: {
-      preload: [
-        'dart',
-        'python',
-        'javascript',
-        'js',
-        'typescript',
-        'ts',
-        'vue',
-        'vue-html',
-        'bash',
-      ],
+      preload: ['dart', 'python', 'javascript', 'js', 'typescript', 'ts', 'vue', 'vue-html', 'bash'],
       theme: {
         light: 'github-light',
         default: 'github-dark',

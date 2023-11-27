@@ -14,17 +14,11 @@
     >
       <div class="flex flex-col text-center justify-center items-middle">
         <h1 class="dark:text-white text-lg mb-24">Why us?</h1>
-        <div
-          class="flex flex-col-reverse lg:flex-row justify-center items-between"
-        >
+        <div class="flex flex-col-reverse lg:flex-row justify-center items-between">
           <div
             data-wow-duration="1s"
             class="flex-1 flex-col items-center justify-center p-2 wow fadeInUp hidden invisible md:flex md:visible"
-            style="
-              visibility: visible;
-              animation-duration: 1s;
-              animation-name: fadeInUp;
-            "
+            style="visibility: visible; animation-duration: 1s; animation-name: fadeInUp"
           >
             <img
               src="~/assets/images/Mockups/BrowserEntity.png"
@@ -37,22 +31,10 @@
               :title="'Data Modeling'"
               body="Visual data modeling tool to help you visualize & understand more clearly"
             />
-            <VCard
-              :title="'Pre-built Templates'"
-              body="Battle tested schemas to get you going fast"
-            />
-            <VCard
-              :title="'Admin Dashboard'"
-              body="Tooling for stakeholders & APIs for clients"
-            />
-            <VCard
-              :title="'Mobile App'"
-              body="Because its better to have and not need than need and not have"
-            />
-            <VCard
-              :title="'Audit Logs'"
-              body="To ensure that you're ready to scale from the very beginning"
-            />
+            <VCard :title="'Pre-built Templates'" body="Battle tested schemas to get you going fast" />
+            <VCard :title="'Admin Dashboard'" body="Tooling for stakeholders & APIs for clients" />
+            <VCard :title="'Mobile App'" body="Because its better to have and not need than need and not have" />
+            <VCard :title="'Audit Logs'" body="To ensure that you're ready to scale from the very beginning" />
             <VCard
               :title="'Roles'"
               body="Safeguard core business functions behind roles so that your team can rest assured"
@@ -63,18 +45,8 @@
     </section>
     <section
       class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
-    >
-      <!-- <VToolTip 
-        tool="loi click" 
-        tip="Loi custom tip" 
-        @click="() => {
-          console.log('click handler in parent')
-        }" 
-      /> -->
-    </section>
-    <section
-      class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
-    >
+    ></section>
+    <section class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200">
       4
     </section>
     <section

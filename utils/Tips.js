@@ -12,8 +12,4 @@ export const tips = [
       </p>
       <br />
       <p>Click on table rows/fields/attributes on the left to <b>edit</b>.</p>`,
-
-  `
-  
-  `
 ]

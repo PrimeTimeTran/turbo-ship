@@ -1,13 +1,12 @@
 <script setup>
 import { Tooltip } from 'flowbite'
 
-const props = defineProps(['tool', 'tip', 'onPress',])
+const props = defineProps(['tool', 'tip', 'onPress', 'id'])
+const tooltip = ref()
 function setup() {
   if (process.browser) {
-    const $targetEl = document.getElementById('tooltip-default')
-
-    const $triggerEl = document.getElementById('tooltipButton')
-
+    const $targetEl = document.getElementById('tooltip-default' + props.id)
+    const $triggerEl = document.getElementById('tooltipButton' + props.id)
     const options = {
       placement: 'bottom',
       triggerType: 'hover',
@@ -24,36 +23,31 @@ function setup() {
 
     // instance options with default values
     const instanceOptions = {
-      id: 'tooltip-default',
+      id: props.id,
       override: true,
     }
-    const tooltip = new Tooltip($targetEl, $triggerEl, options, instanceOptions)
+    tooltip.value = new Tooltip($targetEl, $triggerEl, options, instanceOptions)
   }
 }
-setup()
+onMounted(() => {
+  setup()
+})
 </script>
 <template>
-  <div>
+  <div :key="id">
     <button
       type="button"
-      @click="$emit('click')"
-      id="tooltipButton"
-      data-tooltip-target="tooltip-default"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      {{ tool }}
-    </button>
-
+      v-html="tool"
+      :id="'tooltipButton' + id"
+      :data-tooltip-target="'tooltip-default' + id"
+    />
     <div
-      id="tooltip-default"
       role="tooltip"
-      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+      :id="'tooltip-default' + id"
+      class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
     >
       {{ tip }}
-      <div
-        class="tooltip-arrow"
-        data-popper-arrow
-      ></div>
+      <div class="tooltip-arrow" data-popper-arrow />
     </div>
   </div>
 </template>

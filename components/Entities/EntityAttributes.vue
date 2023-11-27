@@ -3,18 +3,8 @@ import _ from 'lodash'
 const props = defineProps(['entity'])
 
 const { entities } = useEntities()
-const {
-  save,
-  valid,
-  entity,
-  focused,
-  onFocus,
-  editing,
-  attribute,
-  focusedType,
-  newAttribute,
-  relatedEntityOptions,
-} = useEntity(props.entity, entities)
+const { save, valid, entity, focused, onFocus, editing, attribute, focusedType, newAttribute, relatedEntityOptions } =
+  useEntity(props.entity, entities)
 // Consider leaving messy so we don't forget all the little gotcha about computed properties later.
 // Every time you refactor to be clean you forget simple rules =).
 
@@ -47,17 +37,11 @@ function thisRelationMethod() {
 }
 function requiresSubField() {
   const a = attribute.value
-  return (
-    Validator.enumTypes.includes(a.type) ||
-    Validator.relationTypes.includes(a.type)
-  )
+  return Validator.enumTypes.includes(a.type) || Validator.relationTypes.includes(a.type)
 }
 const showEnumTab = computed(() => {
   const a = attribute.value
-  return (
-    (editing.value && Validator.enumTypes.includes(a.type)) ||
-    Validator.enumTypes.includes(a.type)
-  )
+  return (editing.value && Validator.enumTypes.includes(a.type)) || Validator.enumTypes.includes(a.type)
 })
 const showRelationTab = computed(() => {
   const a = attribute.value
@@ -66,15 +50,11 @@ const showRelationTab = computed(() => {
 })
 </script>
 <template>
-  <div class="grid grid-cols-12 flex-1 flex-row gap-2">
-    <div class="col-span-4 flex flex-col">
-      <EntitiesAttributesTable
-        :entity="entity"
-        :focused="focused"
-        :onFocus="onFocus"
-      />
+  <div class="grid grid-cols-12 gap-2">
+    <div class="col-span-7 flex flex-col">
+      <EntitiesAttributesTable :entity="entity" :focused="focused" :onFocus="onFocus" />
     </div>
-    <div class="col-span-4 flex flex-col">
+    <div class="col-span-2 flex flex-col">
       <label class="font-bold text-gray-500">Name</label>
       <input
         ref="nameRef"
@@ -88,10 +68,7 @@ const showRelationTab = computed(() => {
         :id="'attributeType' + entity._id"
         class="flex-auto rounded border dark:border-gray-800 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide hover:shadow-lg"
       >
-        <EntitiesAttributeTypeList
-          :attribute="attribute"
-          :focusedType="focusedType"
-        />
+        <EntitiesAttributeTypeList :attribute="attribute" :focusedType="focusedType" />
       </div>
       <button
         type="submit"
@@ -111,14 +88,8 @@ const showRelationTab = computed(() => {
         <span v-text="editing ? 'Save' : 'Add'" />
       </button>
     </div>
-    <div
-      class="col-span-4 flex flex-col"
-      v-if="requiresSubField"
-    >
-      <div
-        class="flex flex-col space-y-4"
-        v-if="showEnumTab"
-      >
+    <div class="col-span-3 flex flex-col" v-if="requiresSubField">
+      <div class="flex flex-col space-y-4" v-if="showEnumTab">
         <label class="font-bold text-gray-500">Enumerator</label>
         <label class="dark:text-white">Options:</label>
         <input
@@ -132,32 +103,18 @@ const showRelationTab = computed(() => {
             :multiple="attribute.type === 'enumeratorMulti'"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
           >
-            <option
-              v-text="option"
-              v-for="option of enumOptions"
-            />
+            <option v-text="option" v-for="option of enumOptions" />
           </select>
         </div>
       </div>
-
-      <div
-        class="flex flex-col"
-        v-if="showRelationTab"
-      >
+      <div class="flex flex-col" v-if="showRelationTab">
         <label class="font-bold text-gray-500 dark:text-white">Relations</label>
-        <label
-          class="dark:text-white"
-          v-text="Validator.labeledTypes[focusedType]?.label"
-        />
-
+        <label class="dark:text-white" v-text="Validator.labeledTypes[focusedType]?.label" />
         <select
           v-model="attribute.relation.name"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
         >
-          <option
-            v-text="option.name"
-            v-for="option of relatedEntityOptions"
-          />
+          <option v-text="option.name" v-for="option of relatedEntityOptions" />
         </select>
         <div v-if="attribute.relation.name">
           <div class="mt-1 rounded">
@@ -181,11 +138,13 @@ const showRelationTab = computed(() => {
         </div>
       </div>
     </div>
-    <div
-      v-else
-      key="1"
-      v-html="tips[0]"
-      class="flex flex-1 flex-col justify-center items-center text-center"
-    />
+    <div v-else key="1" v-html="tips[0]" class="flex flex-1 flex-col justify-center items-center text-center" />
   </div>
 </template>
+
+<style scoped>
+.col-span-2 {
+  flex: 1;
+  min-width: 158px !important;
+}
+</style>

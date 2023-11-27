@@ -1,6 +1,5 @@
 <script>
 import { createHead } from 'unhead'
-
 createHead()
 </script>
 

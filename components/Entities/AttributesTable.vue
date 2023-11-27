@@ -2,9 +2,7 @@
 const props = defineProps(['entity', 'onFocus', 'focused'])
 const entity = ref(props.entity)
 const onRemove = (id) => {
-  const attributes = entity.value.attributes.filter(
-    (a) => a.name !== '_id' && a.name != 'relation'
-  )
+  const attributes = entity.value.attributes.filter((a) => a.name !== '_id' && a.name != 'relation')
   if (attributes.length <= 1) return
   const idx = entity.value.attributes.findIndex((a) => a._id === id)
   entity.value.attributes.splice(idx, 1)
@@ -24,7 +22,8 @@ const onRemove = (id) => {
         <thead>
           <tr>
             <th class="text-gray-500 text-left pl-4">Name</th>
-            <th class="text-gray-500 text-left">Type</th>
+            <th class="text-gray-500 text-left">Label</th>
+            <th class="text-gray-500 text-left">Prompt</th>
             <th class="text-gray-500"></th>
             <th class="text-gray-500"></th>
           </tr>
@@ -33,27 +32,33 @@ const onRemove = (id) => {
           <tr
             :key="attribute"
             v-for="(attribute, idx) of Validator.attributes(entity)"
-            class="hover:cursor-pointer border odd:bg-gray-200 odd:hover:bg-slate-200 
-            dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 dark:border-gray-800"
+            class="hover:cursor-pointer border odd:bg-gray-200 odd:hover:bg-slate-200 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 dark:border-gray-800 text-xs"
           >
-            <td
-              class="flex flex-row items-center pl-1"
-              @click="onFocus(attribute._id)"
-            >
+            <td class="flex flex-row items-center pl-1" @click="onFocus(attribute._id)">
               <span v-text="`${idx + 1}. `" />
-              <input
-                tabindex="-1"
-                v-model="attribute.name"
-                class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              />≈
+              <div class="ml-1">
+                <input
+                  v-model="attribute.name"
+                  class="bg-transparent text-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 placeholder-blue-400"
+                />
+                <EntitiesAttributeTypeSelect :attribute="attribute" />
+              </div>
             </td>
             <td @click="onFocus(attribute._id)">
-              <EntitiesAttributeTypeSelect :attribute="attribute" />
+              <input
+                v-model="attribute.label"
+                placeholder="..."
+                class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-blue-400"
+              />
             </td>
-            <td
-              class="text-center px-1"
-              @click="onFocus(attribute._id)"
-            >
+            <td @click="onFocus(attribute._id)">
+              <input
+                v-model="attribute.placeholder"
+                placeholder="..."
+                class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-blue-400"
+              />
+            </td>
+            <td class="text-center px-1" @click="onFocus(attribute._id)">
               <FontAwesomeIcon
                 class="px-2"
                 color="grey"
@@ -63,14 +68,8 @@ const onRemove = (id) => {
                 }"
               />
             </td>
-            <td
-              class="text-center px-1"
-              @click="onRemove(attribute._id)"
-            >
-              <FontAwesomeIcon
-                icon="fa-solid fa-circle-xmark"
-                class="text-red-400"
-              />
+            <td class="text-center px-1" @click="onRemove(attribute._id)">
+              <FontAwesomeIcon icon="fa-solid fa-circle-xmark" class="text-red-400" />
             </td>
           </tr>
         </tbody>

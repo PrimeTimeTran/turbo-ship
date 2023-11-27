@@ -12,14 +12,15 @@ useHead({
       innerHTML: 'console.log("Entity scripts loading...")',
       tagPosition: 'head',
     },
-    {
-      type: 'text/javascript',
-      src: 'js/Hotkeys.js',
-      tagPosition: 'head',
-    },
   ],
 })
-ensureLoad('js/Hotkeys.js')
+
+const nuxtApp = useNuxtApp()
+
+console.log({
+  gogogo: nuxtApp.$firebaseApp
+})
+
 </script>
 <template>
   <div class="flex flex-col justify-between dark:bg-gray-900 dark:text-white">
@@ -31,22 +32,12 @@ ensureLoad('js/Hotkeys.js')
         >
           <MenuTableOfContents @toggled="handleToggle" />
         </div>
-        <div
-          class="flex flex-grow overflow-y-auto max-h-screen pt-24 px-4 no-scrollbar md:mr-4 lg:mr-0"
-        >
+        <div class="flex flex-grow overflow-y-auto max-h-screen pt-24 px-4 no-scrollbar md:mr-4 lg:mr-0">
           <slot />
-          <TheNavbar
-            class="main-nav visible lg:block md:invisible rounded border-blue-100 border z-10 shadow"
-          >
-            <MenuBurger
-              :isOpen="isOpen"
-              @toggled="toggleOpen"
-            />
+          <TheNavbar class="main-nav visible lg:block md:invisible rounded border-blue-100 border z-10 shadow">
+            <MenuBurger :isOpen="isOpen" @toggled="toggleOpen" />
           </TheNavbar>
-          <MenuSidebar
-            :isOpen="isOpen"
-            @toggled="toggleOpen"
-          >
+          <MenuSidebar :isOpen="isOpen" @toggled="toggleOpen">
             <MenuTableOfContents @toggled="handleToggle" />
           </MenuSidebar>
         </div>

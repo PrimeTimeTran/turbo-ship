@@ -106,27 +106,22 @@ const onTypeSelect = (type) => {
 const validAttributeName = computed(() => newAttribute.name.length > 2)
 const attributeValid = computed(() => {
   if (!validAttributeName.value) return false
-  if (
-    newAttribute.enums.length === 0 &&
-    Validator.enumTypes.includes(newAttribute.type)
-  )
-    return false
+  if (newAttribute.enums.length === 0 && Validator.enumTypes.includes(newAttribute.type)) return false
   return true
 })
 const entityValid = computed(() => {
-  if (
-    !attributeValid.value ||
-    entity.name.length < 3 ||
-    entity.attributes.length === 0
-  )
-    return false
+  if (!attributeValid.value || entity.name.length < 3 || entity.attributes.length === 0) return false
   return true
 })
 const inputClasses =
   'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
+
+function toggleOpen() {
+  store.leftSidebar = !store.leftSidebar
+}
 </script>
 <template>
-  <div class="flex-1 flex-col px-2 max-h-screen">
+  <div v-if="store.leftSidebar" class="flex-1 flex-col px-2 max-h-screen" id="leftSidebar" @click="toggleOpen">
     <FormKit
       id="form"
       type="form"
@@ -137,14 +132,10 @@ const inputClasses =
       }"
     >
       <div class="flex flex-col">
-        <div class="text-md font-bold text-slate-500">
-          New Entity(<span v-text="entities.length" />)
-        </div>
+        <div class="text-md font-bold text-slate-500">New Entity(<span v-text="entities.length" />)</div>
         <div class="flex flex-col border shadow top hover:shadow-lg dark:border-gray-600 rounded">
           <div class="p-2 bg-white dark:bg-slate-950 rounded">
-            <label class="text-slate-500"
-              ><u class="text-slate-500">N</u>ame</label
-            >
+            <label class="text-slate-500"> <u class="text-slate-500">N</u>ame </label>
             <FormKit
               id="inputRef"
               name="name"
@@ -154,15 +145,14 @@ const inputClasses =
               validation="required|length:3"
               :classes="{
                 input: inputClasses,
-                label: 'font-semibold text-slate-500',
                 message: 'text-red-400',
+                label: 'font-semibold text-slate-500',
               }"
               @input="
                 (e) => {
                   entity.name = e
                   entity.plural = e + 's'
-                  entity.label =
-                    e.toString().charAt(0).toUpperCase() + e.toString().slice(1)
+                  entity.label = e.toString().charAt(0).toUpperCase() + e.toString().slice(1)
                   if (e == '') entity.plural = e + ''
                 }
               "
@@ -188,31 +178,24 @@ const inputClasses =
               v-model="entity.label"
               :classes="{
                 outer: 'mt-4',
-                label: 'font-semibold text-slate-500',
                 input: inputClasses,
+                label: 'font-semibold text-slate-500',
               }"
               @input="
                 (e) => {
-                  entity.label =
-                    e.toString().charAt(0).toUpperCase() + e.toString().slice(1)
+                  entity.label = e.toString().charAt(0).toUpperCase() + e.toString().slice(1)
                 }
               "
             />
           </div>
         </div>
-        <div
-          class="flex flex-col overflow-auto scrollbar-hide middle hover:shadow-lg "
-        >
+        <div class="flex flex-col overflow-auto scrollbar-hide middle hover:shadow-lg">
           <div class="text-md font-bold mt-5 text-slate-500">
             New Attribute(<span v-text="entity.attributes.length" />)
           </div>
-          <div
-            class="mt-2 p-2 rounded border shadow bg-white dark:bg-slate-950 dark:border-gray-600"
-          >
+          <div class="mt-2 p-2 rounded border shadow bg-white dark:bg-slate-950 dark:border-gray-600">
             <!-- Unable to clear errors after targeting by id & calling function -->
-            <label class="text-slate-500"
-              ><u class="text-slate-500">A</u>ttribute</label
-            >
+            <label class="text-slate-500"><u class="text-slate-500">A</u>ttribute</label>
             <FormKit
               name="attrName"
               id="attributeInput"
@@ -222,24 +205,18 @@ const inputClasses =
               placeholder="branch, transaction, statement..."
               :classes="{
                 input: inputClasses,
-                label: 'font-semibold text-slate-500',
                 message: 'text-red-400',
+                label: 'font-semibold text-slate-500',
               }"
             />
-            <div
-              class="mt-5 font-bold text-blue-400"
-              v-text="Validator.labeledTypes[newAttribute.type].label"
-            />
+            <div class="mt-5 font-bold text-blue-400" v-text="Validator.labeledTypes[newAttribute.type].label" />
             <div
               class="flex flex-col flex-grow border rounded shadow my-1 h-52 max-h-52 overflow-scroll scrollbar-hide dark:border-gray-600"
             >
               <label
                 :key="fieldType"
                 v-for="fieldType of Validator.types"
-                class="px-2 py-1 w-full text-sm hover:opacity-90 hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 
-                hover:cursor-pointer border  dark:border-gray-800
-                dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200
-                "
+                class="px-2 py-1 w-full text-sm hover:opacity-90 hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 hover:cursor-pointer border dark:border-gray-800 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200"
               >
                 <input
                   class="mr-2"
@@ -249,16 +226,10 @@ const inputClasses =
                   @click="onTypeSelect(fieldType)"
                   :checked="newAttribute.type === fieldType"
                 />
-                <span
-                  class="text-xs"
-                  v-text="Validator.labeledTypes[fieldType].label"
-                />
+                <span class="text-xs" v-text="Validator.labeledTypes[fieldType].label" />
               </label>
             </div>
-            <div
-              class="mt-5"
-              v-if="Validator.enumTypes.includes(newAttribute.type)"
-            >
+            <div class="mt-5" v-if="Validator.enumTypes.includes(newAttribute.type)">
               <FormKit
                 type="text"
                 name="enums"
@@ -269,8 +240,8 @@ const inputClasses =
                 validation="required|length:2"
                 placeholder="(transaction)... credit, debit, award, deduction..."
                 :classes="{
-                  input: 'border px-2 py-1 w-full rounded',
                   message: 'text-red-400 text-sm',
+                  input: 'border px-2 py-1 w-full rounded',
                 }"
               />
             </div>
@@ -281,8 +252,8 @@ const inputClasses =
               :class="{
                 'bg-gray-300': !attributeValid,
                 'bg-opacity-80': !attributeValid,
-                'cursor-not-allowed': !attributeValid,
                 'bg-green-500': attributeValid,
+                'cursor-not-allowed': !attributeValid,
               }"
             />
           </div>
@@ -291,24 +262,14 @@ const inputClasses =
           class="flex flex-col bottom border shadow mt-2 overflow-scroll scrollbar-hide p-2 dark:border-gray-600 rounded"
         >
           <h2 class="text-md font-bold text-slate-500">Summary:</h2>
-          <h3 class="text-sm text-slate-500">
-            Name: <span v-text="entity.name" />
-          </h3>
-          <h3 class="text-sm text-slate-500">
-            Label: <span v-text="entity.label" />
-          </h3>
-          <h3 class="text-sm text-slate-500">
-            Pluralized: <span v-text="entity.plural" />
-          </h3>
-          <h3 class="mt-4 text-md">
-            Attributes (<span v-text="entity.attributes.length" />)
-          </h3>
+          <h3 class="text-sm text-slate-500">Name: <span v-text="entity.name" /></h3>
+          <h3 class="text-sm text-slate-500">Label: <span v-text="entity.label" /></h3>
+          <h3 class="text-sm text-slate-500">Pluralized: <span v-text="entity.plural" /></h3>
+          <h3 class="mt-4 text-md">Attributes (<span v-text="entity.attributes.length" />)</h3>
           <FormKitMessages :node="input?.node" />
           <div class="flex flex-col flex-grow overflow-y-auto scrollbar-hide">
             <table class="table-auto">
-              <thead
-                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-              >
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="bg-gray-500">
                   <th></th>
                   <th class="text-white text-xs text-left pl-2">Type</th>
@@ -327,23 +288,13 @@ const inputClasses =
                   <tr
                     :key="attr"
                     v-for="attr of entity.attributes"
-                    class="full-width-row odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8 
-                    dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 border dark:border-gray-800"
+                    class="full-width-row odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 border dark:border-gray-800"
                   >
-                    <td
-                      class="pl-1"
-                      @click="attrRemove(attr._id)"
-                    >
-                      <FontAwesomeIcon
-                        icon="fa-solid fa-circle-xmark text-xs"
-                        class="text-red-400"
-                      />
+                    <td class="pl-1" @click="attrRemove(attr._id)">
+                      <FontAwesomeIcon icon="fa-solid fa-circle-xmark text-xs" class="text-red-400" />
                     </td>
                     <td>
-                      <span
-                        class="mx-2 font-semibold text-xs"
-                        v-text="Validator.labeledTypes[attr.type].label"
-                      />
+                      <span class="mx-2 font-semibold text-xs" v-text="Validator.labeledTypes[attr.type].label" />
                     </td>
                     <td class="pr-2">
                       <span
@@ -357,7 +308,7 @@ const inputClasses =
               </tbody>
             </table>
           </div>
-          <!-- The button clases won't combine if we try to use string adding, computed, interpolation with nested tertiary  -->
+          <!-- The button classes won't combine if we try to use string adding, computed, interpolation with nested tertiary  -->
           <FormKit
             type="submit"
             :classes="{

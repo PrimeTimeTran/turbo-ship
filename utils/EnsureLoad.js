@@ -7,6 +7,9 @@ function setupHotkeys() {
         case 'alt+f':
           document.getElementById('FileMenu').click()
           break
+        case 'alt+l':
+          document.getElementById('leftSidebar').click()
+          break
         case 'alt+d':
           document.getElementById('previewer').click()
           break
@@ -76,7 +79,7 @@ function setupHotkeys() {
   )
 }
 
-function loadJS(url, async = true) {
+export function loadJS(url, async = true) {
   let loaded = null
 
   function loadFile() {

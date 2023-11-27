@@ -20,7 +20,7 @@ export function buildEntityFormInput(key, field) {
           type="text"
           name="${key}"
           label="${field.label || field.name}"
-          placeholder="${field.name}"
+          placeholder="${field.placeholder}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
         />
       </div>`
@@ -31,7 +31,7 @@ export function buildEntityFormInput(key, field) {
           name="${key}"
           type="select"
           label="${field.label || field.name}"
-          placeholder="${field.name}"
+          placeholder="${field.placeholder}"
           :options="${buildOptions(field.enumerators)}"
           :multiple="${field.multiselect || 'searching'}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
@@ -46,7 +46,7 @@ export function buildEntityFormInput(key, field) {
           min="${field.min}"
           max="${field.max}"
           label="${field.label || field.name}"
-          placeholder="${field.name}"
+          placeholder="${field.placeholder}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
           
         />
@@ -58,7 +58,7 @@ export function buildEntityFormInput(key, field) {
           name="${key}"
           type="select"
           label="${field.label || field.name}"
-          placeholder="${field.name}"
+          placeholder="${field.placeholder}"
           :options="${buildOptions(field.enumerators)}"
         />
       </div>`
@@ -70,7 +70,7 @@ export function buildEntityFormInput(key, field) {
           type="select"
           :multiple="searching"
           label="${field.label || field.name}"
-          :placeholder="searching ? 'Select house/houses' : 'Select house'"
+          :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
           help="Select all that apply by holding command (macOS) or control (PC)."
         />

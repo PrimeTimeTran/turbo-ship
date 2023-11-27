@@ -38,24 +38,21 @@ function toggleOpen() {
     >
       <div v-if="items">
         <MenuItems
-          class="absolute right-l mt-1 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-gray-900 shadow-lg ring-1 ring-black/5 focus:outline-none dark:ring-gray-800"
+          class="absolute right-l mt-1 w-64 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-gray-900 shadow-lg ring-1 ring-black/5 focus:outline-none dark:ring-gray-800"
         >
           <div class="px-1 py-1">
-            <MenuItem
-              :key="item.name"
-              v-slot="{ active }"
-              v-for="item of items"
-            >
+            <MenuItem :key="item.id" v-slot="{ active }" v-for="item of items">
               <button
+                :key="item.id"
                 @click="item.click"
                 :class="[
-                  active ? 'brightness-200 text-white' : 'text-gray-500',
+                  active ? 'brightness-150 text-green-500' : 'text-gray-500',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
               >
-                <span
-                  v-html="replaceWithUnderline(item.name, item.underline)"
-                />
+                <VToolTip :key="item.id" :tip="item.tip" :id="item.id" :tool="replaceWithUnderline(item.name, item.underline)">
+                  <!-- <span v-html="replaceWithUnderline(item.name, item.underline)" /> -->
+                </VToolTip>
               </button>
             </MenuItem>
           </div>
@@ -64,16 +61,8 @@ function toggleOpen() {
     </transition>
   </Menu>
   <div v-if="items">
-    <div
-      class="hidden"
-      :key="item.name"
-      v-for="item of items"
-    >
-      <span
-        @click="item.click"
-        :id="item.name + 'Submenu'"
-        v-html="replaceWithUnderline(item.name, item.underline)"
-      />
+    <div class="hidden" :key="item.name" v-for="item of items">
+      <span @click="item.click" :id="item.name + 'Submenu'" v-html="replaceWithUnderline(item.name, item.underline)" />
     </div>
   </div>
 </template>

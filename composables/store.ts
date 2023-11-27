@@ -7,5 +7,6 @@ export const store = reactive({
   view: 'entities',
   collapsed: false,
   stateViewer: true,
+  leftSidebar: true,
   entities: ref(_.cloneDeep(seeds.mint)),
 })
