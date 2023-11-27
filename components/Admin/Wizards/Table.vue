@@ -52,13 +52,13 @@ function getHouseColor(field, key) {
 function getTopSpellsColor(field, key) {
   const weight = field == 'bg' ? 500 : 400
   const kolors = {
-    jinxes: `${field}-rose-${weight}`,
+    jinxes: `${field}-red-${weight}`,
     hexes: `${field}-pink-${weight}`,
     charms: `${field}-purple-${weight}`,
     curses: `${field}-violet-${weight}`,
-    spells: `${field}-indigo-${weight}`,
+    spells: `${field}-green-${weight}`,
     counters: `${field}-blue-${weight}`,
-    healing: `${field}-sky-${weight}`,
+    healing: `${field}-yellow-${weight}`,
     transfigurations: `${field}-teal-${weight}`,
   }
   return {
@@ -69,13 +69,13 @@ function getTopSpellsColor(field, key) {
 function getBookAppearancesColor(field, key) {
   const weight = field == 'bg' ? 500 : 400
   const kolors = {
-    1: `${field}-rose-${weight}`,
+    1: `${field}-red-${weight}`,
     2: `${field}-pink-${weight}`,
     3: `${field}-purple-${weight}`,
-    4: `${field}-violet-${weight}`,
+    4: `${field}-green-${weight}`,
     5: `${field}-indigo-${weight}`,
     6: `${field}-blue-${weight}`,
-    7: `${field}-sky-${weight}`,
+    7: `${field}-yellow-${weight}`,
     8: `${field}-teal-${weight}`,
   }
   return {

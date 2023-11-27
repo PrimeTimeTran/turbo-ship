@@ -7,12 +7,13 @@ export const Mint: Entity[] = [
     pluralL: 'Users',
     attributes: [
       {
+        name: 'role',
+        type: 'enumeratorMulti',
+        _id: '7f3711fe5bcb2efde166c758',
         validators: [],
-        name: 'accounts',
-        type: 'relation',
-        _id: 'ebed2ca23c6cc7f44afff397',
         validations: [],
-        relation: { type: 'otm', name: 'account' },
+        options: 'owner,admin,staff,customer',
+        relation: { type: null, name: null },
       },
       {
         name: 'status',
@@ -23,6 +24,15 @@ export const Mint: Entity[] = [
         options: 'open,closed,pending',
         relation: { type: null, name: null },
       },
+      {
+        validators: [],
+        name: 'accounts',
+        type: 'relation',
+        _id: 'ebed2ca23c6cc7f44afff397',
+        validations: [],
+        relation: { type: 'otm', name: 'account' },
+      },
+
       {
         validators: [],
         name: 'transactions',
@@ -79,15 +89,7 @@ export const Mint: Entity[] = [
         validations: [],
         relation: { type: null, name: null },
       },
-      {
-        name: 'role',
-        type: 'enumeratorMulti',
-        _id: '7f3711fe5bcb2efde166c758',
-        validators: [],
-        validations: [],
-        options: 'owner,admin,staff,customer',
-        relation: { type: null, name: null },
-      },
+
       {
         validators: [],
         name: 'netWorth',
@@ -162,19 +164,12 @@ export const Mint: Entity[] = [
       },
       {
         validators: [],
-        name: 'status',
-        type: 'enumerator',
-        _id: '92be01a9105eac235b70cc89',
-        validations: [],
-        relation: { type: null, name: null },
-      },
-      {
-        validators: [],
         name: 'type',
         type: 'enumerator',
         _id: 'fadc5faabe70daffd3b53ddd',
         validations: [],
         relation: { type: null, name: null },
+        options: 'checking,banking,creditCard',
       },
       {
         validators: [],
@@ -228,6 +223,7 @@ export const Mint: Entity[] = [
         validators: [],
         name: 'status',
         type: 'enumerator',
+        options: 'processing,complete,declined,cancelled,rejected',
         _id: '0ec5c1e2cfbb99fe37a844e7',
         validations: [],
         relation: { type: null, name: null },
@@ -324,6 +320,7 @@ export const Mint: Entity[] = [
         name: 'creditRating',
         type: 'enumerator',
         _id: '2fc2d0ecbfc2eece4b50483f',
+        options: 'a,b,c,d,f',
         validators: [],
         validations: [],
         relation: { type: null, name: null },

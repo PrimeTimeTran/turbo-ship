@@ -9,8 +9,9 @@ export default defineNuxtConfig({
       failOnError: false,
       routes: ['/', '/404.html'],
     },
-    ignore: ['/admin/users', '/todos', '/entities', '/login'],
+    ignore: ['/admin/users', '/todos', '/entities', '/login', '/temp'],
   },
+  ignore: ['temp/**'],
   formkit: {
     autoImport: true,
   },

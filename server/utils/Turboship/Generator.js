@@ -14,9 +14,9 @@ export default class Generator {
 
   buildGenesis() {
     if (!backends.includes(this.options.frameworkName)) return
-    this.buildRoutes()
+    // this.buildRoutes()
     this.buildModels()
-    this.buildAdminUI()
+    // this.buildAdminUI()
   }
 
   buildRoutes() {

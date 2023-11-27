@@ -23,9 +23,40 @@ export class ModelBuilder {
   buildModel = () => {
     const {
       e,
-      options,
-      e: { name, label, fields },
+      options,  
+      // Local 
+      // e: { name, label, fields },
+      // From UI
+      e: { name, label, attributes },
     } = this
+
+    const fields = {}
+    if (attributes) {
+      attributes.forEach(f => {
+        if (f.name !== '_id'){
+          fields[f.name] = { ...f }
+          delete fields[f.name]._id
+          if (f.type === 'enumerator' || f.type === 'enumeratorMulti') {
+            fields[f.name].enumerators = {}
+            console.log({
+              options: f
+            })
+            const options = f.options.split(',')
+            options.forEach(o => {
+              fields[f.name].enumerators[o] = {
+                val: o,
+                color: null
+              }
+            })
+          }
+        }
+      })
+    }    
+    
+    // console.log({
+    //   fields,
+    // })
+    // return
 
     const [values, enumerators] = this.generateFields(fields, name)
 
@@ -93,6 +124,10 @@ export class ModelBuilder {
 
   generateFields = (fields, name) => {
     const keys = Object.keys(fields)
+    console.log({
+      keys,
+      fields
+    })
     const values = []
     const enumerators = []
     for (const key of keys) {

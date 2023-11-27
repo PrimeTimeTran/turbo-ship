@@ -62,12 +62,6 @@ export class Turboship {
     entities.forEach(e => {
       this.entities[e.name] = e
     })
-  
-    // console.log({
-    //   parsedData: entities,
-    //   parsedDataOne: entities[0],
-    //   entities: this.entities,
-    // })
   }
 
   setupFrameworks() {
@@ -94,7 +88,7 @@ export class Turboship {
     if (options.entities)
       console.log(chalk['green']('entities'), `- ${options.entities}`)
     console.log('\n\n')
-    // prettify()
+    prettify()
   }
 }
 

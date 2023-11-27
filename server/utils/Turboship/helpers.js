@@ -32,7 +32,7 @@ export const capitalize = (word) => {
 }
 
 export function prettify() {
-  process.chdir(path.join(dirName, '../src'))
+  process.chdir(path.join(dirName, '../../temp'))
 
   exec('npx prettier --write "**/*.{ts,js,vue}"', (prettierError, prettierStdout) => {
     if (prettierError) {
@@ -73,21 +73,15 @@ export function getType(name, type, key) {
 }
 
 export const colors = [
-  'rose',
+  'red',
   'pink',
   'purple',
-  'violet',
+  'green',
   'indigo',
   'blue',
-  'sky',
   'teal',
-  'emerald',
-  'green',
-  'lime',
   'yellow',
-  'amber',
-  'orange',
-  'red',
+  'teal',
 ]
 
 export function makeLowerCase(inputString) {
