@@ -1,6 +1,6 @@
 function setupHotkeys() {
   hotkeys(
-    'alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+s,alt+c, alt+r, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
+    'alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+p, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1',
     function (event, handler) {
       console.log('EnsureLoad click')
       switch (handler.key) {
@@ -8,7 +8,7 @@ function setupHotkeys() {
           document.getElementById('FileMenu').click()
           break
         case 'alt+l':
-          document.getElementById('leftSidebar').click()
+          document.getElementById('showLeft').click()
           break
         case 'alt+d':
           document.getElementById('previewer').click()
@@ -29,7 +29,7 @@ function setupHotkeys() {
           document.getElementById('CollapseSubmenu').click()
           break
         case 'alt+r':
-          document.getElementById('RelationshipsSubmenu').click()
+          document.getElementById('showRight').click()
           break
         case 'alt+b':
           document.getElementById('FeedbackSubmenu').click()
@@ -75,7 +75,7 @@ function setupHotkeys() {
         default:
           alert(event)
       }
-    }
+    },
   )
 }
 

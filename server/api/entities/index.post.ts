@@ -12,6 +12,10 @@ export default defineEventHandler(async (e) => {
     const root = path.join(dirName, '../../temp/')
     await Turboship.cleanse(root)
     const value = await new Turboship(root, body)
+    console.log({
+      value,
+      entities: true,
+    })
     return { code: 200, success: true }
   } catch (error) {
     console.log({

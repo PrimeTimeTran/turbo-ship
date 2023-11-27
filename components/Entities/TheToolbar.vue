@@ -113,7 +113,14 @@ const viewItems = [
     name: 'Toggle Left',
     click: () => (store.leftSidebar = !store.leftSidebar),
     underline: 'L',
-    tip: 'Toggle left sidebar open/closed',
+    tip: 'Toggle Left sidebar open/closed',
+  },
+  {
+    id: faker.database.mongodbObjectId(),
+    name: 'Toggle Right',
+    click: () => (store.leftSidebar = !store.leftSidebar),
+    underline: 'R',
+    tip: 'Toggle Right sidebar open/closed',
   },
 ]
 const editItems = [

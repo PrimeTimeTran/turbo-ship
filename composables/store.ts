@@ -6,7 +6,7 @@ import seeds from '~/utils/seeds/seeds'
 export const store = reactive({
   view: 'entities',
   collapsed: false,
-  stateViewer: true,
-  leftSidebar: true,
+  showLeft: true,
+  showRight: true,
   entities: ref(_.cloneDeep(seeds.mint)),
 })

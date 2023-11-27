@@ -41,5 +41,6 @@ ensureLoad('https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js')
       <EntitiesBodyRight />
     </div>
     <VDevTools />
+    <VGlobals />
   </div>
 </template>

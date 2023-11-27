@@ -116,12 +116,9 @@ const entityValid = computed(() => {
 const inputClasses =
   'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
 
-function toggleOpen() {
-  store.leftSidebar = !store.leftSidebar
-}
 </script>
 <template>
-  <div v-if="store.leftSidebar" class="flex-1 flex-col px-2 max-h-screen" id="leftSidebar" @click="toggleOpen">
+  <div v-if="store.showLeft" class="flex-1 flex-col px-2 max-h-screen">
     <FormKit
       id="form"
       type="form"
