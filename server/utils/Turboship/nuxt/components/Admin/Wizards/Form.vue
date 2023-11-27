@@ -1,62 +1,34 @@
 <script setup>
-async function submit(fields) {
-  const { data, error } = await useFetch('http://localhost:3000/api/wizards', {
-    method: 'post',
-    body: JSON.stringify(fields),
-  })
-  submitted.value = true
-}
-let submitted = ref(false)
-</script>
+const props = defineProps(['searching', 'fetchFilteredWizards', 'createForm'])
 
+// Workaround because FormKit reset seems broken
+// https://formkit.com/inputs/form#resetting
+
+// This reset doesn't work.
+// import { reset } from '@formkit/core'
+
+// Causes blank screen for a bit which sucks
+const num = ref(0)
+const clearForm = () => {
+  num.value = num.value + 1
+}
+</script>
 <template>
-  <div class="w-100 dark:bg-neutral-950 pb-6">
-    <div class="dark:bg-neutral-950">
-      <FormKit
-        type="form"
-        @submit="submit"
-        :actions="false"
-        #default="{ value }"
-        :classes="{
-          help: 'dark:text-white',
-          message: 'text-red-500 dark:text-red-300 absolute',
-        }"
-      >
-        <div class="flex pb-8">
-          <FormKit
-            name="firstName"
-            label="First Name"
-            :classes="{
-              outer: 'flex flex-grow flex-col mr-6 rounded',
-              input: 'min-w-full p-1  rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
-          />
-          <FormKit
-            type="text"
-            name="lastName"
-            label="Last Name"
-            :classes="{
-              outer: 'flex flex-grow flex-col rounded',
-              input: 'min-w-full p-1  rounded border dark:bg-neutral-950 dark:text-white border-2 dark:border-gray-700',
-              label: 'dark:text-white',
-              message: 'text-red-500 dark:text-red-300 absolute',
-            }"
-          />
-        </div>
-        <FormKit
-          type="submit"
-          :disabled="disabled"
-          :classes="{
-            outer: 'bg-green-500 rounded',
-            input: 'flex flex-grow justify-center dark:text-white p-3',
-            wrapper: 'flex flex-grow text-center',
-          }"
-        >
-          Submit
-        </FormKit>
-      </FormKit>
-    </div>
+  <div
+    class="w-100 dark:bg-neutral-950 p-3 main-container"
+    :class="{ hidden: !searching && !createForm }"
+  >
+    <TransitionGroup
+      name="fade-move"
+      class="container"
+    >
+      <div :key="num">
+        <admin-wizards-entity-form
+          :clear="clearForm"
+          :searching="searching"
+          :fetchFilteredWizards="fetchFilteredWizards"
+        />
+      </div>
+    </TransitionGroup>
   </div>
 </template>

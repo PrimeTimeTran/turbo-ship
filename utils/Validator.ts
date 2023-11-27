@@ -98,23 +98,23 @@ export class Validator {
   }
   static labeledTypes = {
     string: {
-      value: 'string',
+      value: 'String',
       label: 'string',
     },
     text: {
-      value: 'text',
+      value: 'String',
       label: 'text',
     },
     number: {
-      value: 'number',
+      value: 'Number',
       label: 'number',
     },
     decimal: {
-      value: 'decimal',
+      value: 'Decimal',
       label: 'decimal',
     },
     integer: {
-      value: 'integer',
+      value: 'Integer',
       label: 'integer',
     },
     enumeratorMulti: {
@@ -122,7 +122,7 @@ export class Validator {
       label: 'enumerator-multi',
     },
     boolean: {
-      value: 'boolean',
+      value: 'Boolean',
       label: 'boolean',
     },
     enumerator: {
@@ -130,11 +130,11 @@ export class Validator {
       label: 'enumerator',
     },
     date: {
-      value: 'date',
+      value: 'Date',
       label: 'date',
     },
     dateTime: {
-      value: 'dateTime',
+      value: 'DateTime',
       label: 'date-time',
     },
     otm: {

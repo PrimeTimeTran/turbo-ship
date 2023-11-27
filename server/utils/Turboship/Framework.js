@@ -61,8 +61,7 @@ export const frameworkMap = {
       // Must be plural
       'server/Utils',
       'components/Admin',
-      'components/Todos',
-      'pages/Developers',
+      'components/The/Navbar',
     ],
     adminUIFiles: ['EntityForm.vue', 'Form.vue', 'Table.vue'],
     adminBuildMethodMap: {
@@ -70,6 +69,9 @@ export const frameworkMap = {
       'Table.vue': 'buildTable',
       'EntityForm.vue': 'buildEntityForm',
     },
+    adminGlobals: [
+      './components/Admin/Form/Field.vue', 
+      './components/Admin/Form/Pagination.vue'],
     apiFiles: ['index.get.', 'create.post.', '[_id].delete.', '[_id].get.', '[_id].put.'],
     apiContent: {
       'index.get.': function (label) {

@@ -55,10 +55,14 @@ chartLabels.value = getData().labels
   >
     <div class="md:flex md:justify-between md:items-center">
       <div>
-        <h2 class="text-xl bg-white text-gray-500 dark:text-gray-500 dark:bg-neutral-900 font-bold leading-tight">
+        <h2
+          class="text-xl bg-white text-gray-500 dark:text-gray-500 dark:bg-neutral-900 font-bold leading-tight"
+        >
           Sales
         </h2>
-        <p class="mb-2 text-gray-400 dark:text-gray-600 text-xl lg:text-2xl bg-white dark:bg-neutral-900">
+        <p
+          class="mb-2 text-gray-400 dark:text-gray-600 text-xl lg:text-2xl bg-white dark:bg-neutral-900"
+        >
           Monthly Average
         </p>
       </div>
@@ -93,7 +97,10 @@ chartLabels.value = getData().labels
 
       <!-- Bar Chart -->
       <div class="flex flex-grow items-end mb-2 bg-white dark:bg-neutral-900">
-        <template :key="chartData" v-for="data in chartData">
+        <template
+          :key="chartData"
+          v-for="data in chartData"
+        >
           <div class="px-2 w-1/6">
             <div
               :style="{
@@ -121,13 +128,18 @@ chartLabels.value = getData().labels
       <!-- Labels -->
       <div
         class="border-t border-gray-400 dark:border-t-gray-950 mx-auto"
-        :style="`height: 1px; width: ${100 - (1 / chartData.length) * 100 + 3}%`"
+        :style="`height: 1px; width: ${
+          100 - (1 / chartData.length) * 100 + 3
+        }%`"
       />
       <div class="flex items-end">
         <template v-for="label in chartLabels">
           <div class="px-2 w-1/6">
             <div class="bg-red-600 relative">
-              <div class="text-center absolute top-0 left-0 right-0 h-2 bg-neutral-400 mx-auto" style="width: 1px" />
+              <div
+                class="text-center absolute top-0 left-0 right-0 h-2 bg-neutral-400 mx-auto"
+                style="width: 1px"
+              />
               <div
                 v-text="label"
                 class="text-center absolute top-0 left-0 right-0 mt-3 text-gray-700 text-sm mr-100 dark:text-gray-300"
@@ -142,9 +154,21 @@ chartLabels.value = getData().labels
 
 <style>
 .line {
-  background: repeating-linear-gradient(to bottom, #eee, #eee 1px, #fff 1px, #fff 8%);
+  background: repeating-linear-gradient(
+    to bottom,
+    #eee,
+    #eee 1px,
+    #fff 1px,
+    #fff 8%
+  );
 }
 .tick {
-  background: repeating-linear-gradient(to right, #eee, #eee 1px, #fff 1px, #fff 5%);
+  background: repeating-linear-gradient(
+    to right,
+    #eee,
+    #eee 1px,
+    #fff 1px,
+    #fff 5%
+  );
 }
 </style>

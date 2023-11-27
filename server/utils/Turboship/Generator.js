@@ -1,4 +1,7 @@
 import fs from 'fs'
+import path from 'path'
+import fsExtra from 'fs-extra'
+
 import { ModelBuilder, AdminBuilder } from './builders/index.js'
 
 import { makeDirRecursive } from './helpers.js'
@@ -14,9 +17,10 @@ export default class Generator {
 
   buildGenesis() {
     if (!backends.includes(this.options.frameworkName)) return
-    // this.buildRoutes()
+    this.buildRoutes()
     this.buildModels()
-    // this.buildAdminUI()
+    this.buildAdminUI()
+    this.buildAdminGlobalComponents()
   }
 
   buildRoutes() {
@@ -48,26 +52,41 @@ export default class Generator {
       const admin = new AdminBuilder(this.entities, this.options)
       admin.e = e
 
-      let fullPath = `${this.root}/components/Admin/${e.plural}`
+      let fullPath = `${this.root}/components/Admin/${e.label}s`
       makeDirRecursive(fullPath)
 
       frameworkMap[this.options.backend].adminUIFiles.forEach((fileName) => {
         const content = admin[frameworkMap[this.options.backend].adminBuildMethodMap[fileName]]()
         fs.writeFileSync(`${fullPath}/${fileName}`, content)
       })
-      fullPath = `${this.root}/pages/Admin/${e.plural}`
+
+      fullPath = `${this.root}/pages/Admin/${e.label}s`
       makeDirRecursive(fullPath)
 
       let content = admin.buildIndexPage()
       fs.writeFileSync(`${fullPath}/index.vue`, content)
 
       content = admin.buildEntityUseHook()
-
-      // Had to add this because some async operations weren't completed yet inside of app
-      // makeDirRecursive(`${this.root}/composables/`)
-
-      fs.writeFileSync(`${this.root}/composables/use${e.plural}.${this.options.language}`, content)
+      fs.writeFileSync(`${this.root}/composables/use${capitalize(e.plural)}.${this.options.language}`, content)
     })
+    const content = AdminBuilder.buildAside(this.entities)
+    fs.writeFileSync(`${this.root}/components/Admin/Aside.vue`, content)
+  }
+
+  buildAdminGlobalComponents() {
+    const fullPath = this.root
+    makeDirRecursive(fullPath)
+
+    const sourcePath = path.resolve(fullPath, '../../server/utils/Turboship/nuxt')
+    const destPath = path.resolve(fullPath, '../../temp/nuxt')
+    fsExtra
+      .copy(sourcePath, destPath)
+      .then(() => {
+        console.log('Files copied successfully!')
+      })
+      .catch((err) => {
+        console.error('Error copying files:', err)
+      })
   }
 }
 

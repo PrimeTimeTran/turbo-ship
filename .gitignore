@@ -24,5 +24,6 @@ logs
 !.env.example
 notes
 
-.gitcopy
-temp
+# temp/nuxt
+# temp/flutter
+# temp/rn

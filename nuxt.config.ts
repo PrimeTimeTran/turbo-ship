@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     },
     ignore: ['/admin/users', '/todos', '/entities', '/login', '/temp'],
   },
-  ignore: ['temp/**'],
+  ignore: ['temp/**', 'output.zip', 'output'],
   formkit: {
     autoImport: true,
   },

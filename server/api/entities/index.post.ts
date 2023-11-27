@@ -11,12 +11,7 @@ export default defineEventHandler(async (e) => {
     // Todo: Generate src, package, send to client.
     const root = path.join(dirName, '../../temp/')
     await Turboship.cleanse(root)
-    const go = await new Turboship(root, body)
-
-    console.log({
-      body,
-    })
-
+    const value = await new Turboship(root, body)
     return { code: 200, success: true }
   } catch (error) {
     console.log({

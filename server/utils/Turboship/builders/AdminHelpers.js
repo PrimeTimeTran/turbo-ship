@@ -16,22 +16,22 @@ export function buildEntityFormInput(key, field) {
     case 'string':
       return `
       <div class="item">
-        <admin-form-field
+        <AdminFormField
           type="text"
           name="${key}"
-          label="${field.label}"
-          placeholder="${field.placeholder}"
+          label="${field.label || field.name}"
+          placeholder="${field.name}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
         />
       </div>`
     case 'enumerator':
       return `
       <div class="item">
-        <admin-form-field
+        <AdminFormField
           name="${key}"
           type="select"
-          label="${field.label}"
-          placeholder="${field.placeholder}"
+          label="${field.label || field.name}"
+          placeholder="${field.name}"
           :options="${buildOptions(field.enumerators)}"
           :multiple="${field.multiselect || 'searching'}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
@@ -40,13 +40,13 @@ export function buildEntityFormInput(key, field) {
     case 'number':
       return `
       <div class="item">
-        <admin-form-field
+        <AdminFormField
           name="${key}"
           type="number"
           min="${field.min}"
           max="${field.max}"
-          label="${field.label}"
-          placeholder="${field.placeholder}"
+          label="${field.label || field.name}"
+          placeholder="${field.name}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
           
         />
@@ -54,22 +54,22 @@ export function buildEntityFormInput(key, field) {
     case 'boolean':
       return `
       <div class="item">
-        <admin-form-field
+        <AdminFormField
           name="${key}"
           type="select"
-          label="${field.label}"
-          placeholder="${field.placeholder}"
+          label="${field.label || field.name}"
+          placeholder="${field.name}"
           :options="${buildOptions(field.enumerators)}"
         />
       </div>`
     case 'date':
       return `
       <div class="item">
-        <admin-form-field
+        <AdminFormField
           name="${key}"
           type="select"
           :multiple="searching"
-          label="${field.label}"
+          label="${field.label || field.name}"
           :placeholder="searching ? 'Select house/houses' : 'Select house'"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
           help="Select all that apply by holding command (macOS) or control (PC)."
@@ -107,7 +107,7 @@ export function buildEntityForm(e) {
   return `<script setup>
     const props = defineProps([
       'searching',
-      'fetchFiltered${e.plural}',
+      'fetchFiltered${capitalize(e.plural)}',
       'createForm',
       'clear',
     ])
@@ -116,11 +116,11 @@ export function buildEntityForm(e) {
 
     async function submit(fields) {
       if (props.searching) {
-        await props.fetchFiltered${e.plural}(fields)
+        await props.fetchFiltered${capitalize(e.plural)}(fields)
         return
       }
 
-      let { data, error } = await useFetch(apiUrl + '/${e.pluralSM}', {
+      let { data, error } = await useFetch(apiUrl + '/${e.plural}', {
         method: 'post',
         body: JSON.stringify(fields),
       })
@@ -179,15 +179,7 @@ export function buildEntityForm(e) {
 
 export function buildForm(e) {
   return `<script setup>
-      const props = defineProps(['searching', 'fetchFiltered${e.plural}', 'createForm'])
-
-      // Info: Workaround because FormKit reset seems broken
-      // https://formkit.com/inputs/form#resetting
-
-      // This reset doesn't work.
-      // import { reset } from '@formkit/core'
-
-      // Causes blank screen for a bit which sucks
+      const props = defineProps(['searching', 'fetchFiltered${capitalize(e.plural)}', 'createForm'])
       const num = ref(0)
       const clearForm = () => {
         num.value = num.value + 1
@@ -203,10 +195,10 @@ export function buildForm(e) {
             class="container"
           >
             <div :key="num">
-              <admin-${e.pluralSM}-entity-form
+              <Admin${e.pluralL}EntityForm
                 :clear="clearForm"
                 :searching="searching"
-                :fetchFiltered${e.plural}="fetchFiltered${e.plural}"
+                :fetchFiltered${e.pluralL}="fetchFiltered${e.pluralL}"
               />
             </div>
           </TransitionGroup>
@@ -311,7 +303,7 @@ export function buildTableHeaders(e) {
       @click="toggleSort('${key}')"
       class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
     >
-      ${e.fields[key]?.label} <span v-text="getSortingIcon('${key}')" />
+      ${key} <span v-text="getSortingIcon('${key}')" />
     </th>`
   }
   return string
@@ -328,32 +320,141 @@ export const buildSortFields = (e) => {
 }
 
 export function buildQueryHook(e) {
-  const apiUrl = `\`\${apiUrl}/${e.pluralSM}\``
+  const apiUrl = `\`\${apiUrl}/${e.plural}\``
+  return `
+  import { ref } from 'vue'
+  import { useFetch } from '@vueuse/core'
 
-  return `import { useFetch } from '@vueuse/core'
-
-  export function use${e.label}Queries(${e.pluralSM}: ${e.label}Type[]) {
+  export function useWizards() {
     const { apiUrl } = useAPI()
     const baseURL = ${apiUrl}
+    let newWizard = ref('')
+    let ${e.plural} = ref([])
+    let params = ref('')
+    let meta = reactive({
+      limit: ref(10),
+      page: ref(1),
+      pageCount: ref(0),
+      total: ref(0),
+      totalRecords: ref(0),
+    })
 
-    const fetchFiltered${e.label}s = async (fields: object) => {
-      const url = makeApiQueryString(baseURL + '/${e.pluralSM}', fields)
+    const addWizard = async () => {
+      if (newWizard.value === '') return
+      const wizard = {
+        _id: Date.now().toString(),
+        firstName: newWizard.value,
+        lastName: newWizard.value,
+      }
+      try {
+        const { error } = await useFetch(baseURL, {
+          method: 'POST',
+          body: JSON.stringify(wizard),
+        })
+        if (!error.value) {
+          ${e.plural}.value.push(wizard)
+          newWizard.value = ''
+          return wizard
+        }
+      } catch (error) {
+        console.error({ error })
+      }
+    }
+
+    onBeforeMount(async () => {
+      const { data, error } = await useFetch(
+        baseURL + \`?page=\${meta.page}&limit=\${meta.limit}\`
+      )
+      if (!error.value) {
+        const val = JSON.parse(data.value)
+        Object.assign(meta, val.meta)
+        ${e.plural}.value = val?.data
+      }
+    })
+
+    const fetchFilteredWizards = async (fields) => {
+      meta.page = 1
+
+      // Convert the combinedFields object to a query string
+      const queryParams = new URLSearchParams(Object.entries(fields)).toString()
+      params.value = queryParams
+      console.log({
+        queryParams,
+        params,
+      })
+
+      const url = makeApiQueryString(
+        apiUrl + \`/${e.plural}?page=\${meta.page}&limit=\${meta.limit}\`,
+        fields
+      )
       try {
         let { data, error } = await useFetch(url)
         if (!error.value) {
           const val = JSON.parse(data.value)
-          Object.assign(${e.pluralSM}, val.data)
+          meta.page = val.meta.page
+          meta.totalRecords = val.meta.totalRecords
+          Object.assign(meta, val.meta)
+          ${e.plural}.value = val?.data
         } else {
-          console.error('Error fetching ${e.pluralSM}:', error.value)
+          console.error('Error fetching ${e.plural}:', error.value)
         }
       } catch (error) {
         console.error('Unexpected error:', error)
       }
     }
 
+    const getPaginationString = (diff) => {
+      let nextPage = meta.page + diff
+      if (diff == -10) nextPage = 1
+      if (diff == 10) nextPage = meta.pageCount
+      return [
+        \`/${e.plural}?page=\${nextPage}&limit=\${meta.limit}\${
+          params.value ? '&' + params.value : ''
+        }\`,
+        nextPage,
+      ]
+    }
+
+    const fetchPage = async (diff) => {
+      let [str, nextPage] = getPaginationString(diff)
+
+      const url = makeApiQueryString(apiUrl + str, {})
+      console.log({ url })
+      try {
+        let { data, error } = await useFetch(url)
+        if (!error.value) {
+          const val = JSON.parse(data.value)
+          meta.page = nextPage
+          Object.assign(meta, val.meta)
+          ${e.plural}.value = val?.data
+        } else {
+          console.error('Error fetching ${e.plural}:', error.value)
+        }
+      } catch (error) {
+        console.error('Unexpected error:', error)
+      }
+    }
+
+    const sort = (field, direction) => {
+      if (direction === 'ASC') {
+        ${e.plural}.value = ${e.plural}.value.sort((a, b) =>
+          (a[field] ?? '') > (b[field] ?? '') ? 1 : -1
+        )
+      } else if (direction === 'DESC') {
+        ${e.plural}.value = ${e.plural}.value.sort((a, b) =>
+          (a[field] ?? '') > (b[field] ?? '') ? -1 : 1
+        )
+      }
+    }
+
     return {
-      ${e.pluralSM},
-      fetchFiltered${e.label}s,
+      ${e.plural},
+      sort,
+      fetchPage,
+      meta,
+      newWizard,
+      addWizard,
+      fetchFilteredWizards,
     }
   }`
 }

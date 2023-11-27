@@ -14,7 +14,6 @@ export function useWizards() {
     total: ref(0),
     totalRecords: ref(0),
   })
-
   const addWizard = async () => {
     if (newWizard.value === '') return
     const wizard = {
@@ -36,7 +35,6 @@ export function useWizards() {
       console.error({ error })
     }
   }
-
   onBeforeMount(async () => {
     const { data, error } = await useFetch(
       baseURL + `?page=${meta.page}&limit=${meta.limit}`
@@ -48,17 +46,12 @@ export function useWizards() {
     }
   })
 
-  // Info fetchFilteredWizards works inside table but not form
   const fetchFilteredWizards = async (fields) => {
     meta.page = 1
 
     // Convert the combinedFields object to a query string
     const queryParams = new URLSearchParams(Object.entries(fields)).toString()
     params.value = queryParams
-    console.log({
-      queryParams,
-      params,
-    })
 
     const url = makeApiQueryString(
       apiUrl + `/wizards?page=${meta.page}&limit=${meta.limit}`,
@@ -96,7 +89,6 @@ export function useWizards() {
     let [str, nextPage] = getPaginationString(diff)
 
     const url = makeApiQueryString(apiUrl + str, {})
-    console.log({ url })
     try {
       let { data, error } = await useFetch(url)
       if (!error.value) {

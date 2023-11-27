@@ -1,12 +1,12 @@
 {
   "files.exclude": {
-    "**/.git": true,
-    "**/.gitcopy": true,
-    "**/.nuxt": true,
-    "**/node_modules": true,
+    // "**/.git": true,
+    // "**/.gitcopy": true,
+    // "**/.nuxt": true,
+    // "**/node_modules": true,
     // "**/.gitignore": true,
-    "**/package-lock.json": true,
-    "**/bun.lockb": true
+    // "**/package-lock.json": true,
+    // "**/bun.lockb": true
   },
   "workbench.colorCustomizations": {
     "titleBar.activeForeground": "#000",

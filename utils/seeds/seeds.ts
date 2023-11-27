@@ -1,3 +1,4 @@
+import { LMS } from './LMS'
 import { Mint } from './Mint'
 import { Forum } from './Forum'
 import { Social } from './Social'
@@ -9,6 +10,7 @@ interface Seeds {
 }
 
 const seeds = {
+  lms: LMS,
   mint: Mint,
   forum: Forum,
   social: Social,

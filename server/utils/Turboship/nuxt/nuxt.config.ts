@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiUrl: 'http://localhost:3000/api',
+      apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
     },
   },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content', 'nuxt-mongoose', '@nuxtjs/color-mode', '@formkit/nuxt'],

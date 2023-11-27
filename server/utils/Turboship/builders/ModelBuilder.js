@@ -1,18 +1,12 @@
 import path from 'path'
-// import { fileExt, camelize, getType, writeToFile, capitalize, dirName } from '../helpers.js'
-import { fileExt, camelize, getType, capitalize, dirName } from '../helpers.js'
+import { camelize, getType, capitalize, dirName } from '../helpers.js'
 
 export class ModelBuilder {
   constructor(entities, options) {
     this.entities = entities
     this.options = options
     this.path = path.join(dirName, `../src/Models`)
-    // this.path = path.join(dirName, '../src', this.options.name + '/turbo')
-    // console.log({
-    //   path: path.join(dirName, '../src', this.options.name + '/turbo'),
-    // })
   }
-
   buildEntities = () => {
     this.entities.map((e) => {
       this.e = e
@@ -20,44 +14,40 @@ export class ModelBuilder {
     })
   }
 
-  buildModel = () => {
-    const {
-      e,
-      options,  
-      // Local 
-      // e: { name, label, fields },
-      // From UI
-      e: { name, label, attributes },
-    } = this
-
+  buildTransformation(attributes) {
     const fields = {}
     if (attributes) {
-      attributes.forEach(f => {
-        if (f.name !== '_id'){
+      attributes.forEach((f) => {
+        if (f.name !== '_id') {
           fields[f.name] = { ...f }
           delete fields[f.name]._id
           if (f.type === 'enumerator' || f.type === 'enumeratorMulti') {
+            fields[f.name].enumeratorType = 'string'
             fields[f.name].enumerators = {}
-            console.log({
-              options: f
-            })
             const options = f.options.split(',')
-            options.forEach(o => {
+            options.forEach((o) => {
               fields[f.name].enumerators[o] = {
                 val: o,
-                color: null
+                color: null,
               }
             })
           }
         }
       })
-    }    
-    
-    // console.log({
-    //   fields,
-    // })
-    // return
+    }
+    this.e.fields = fields
+    this.e.tableFields = Object.keys(fields)
+    return fields
+  }
 
+  buildModel = () => {
+    const {
+      e,
+      options,
+      e: { name, label, attributes },
+    } = this
+
+    const fields = this.buildTransformation(attributes)
     const [values, enumerators] = this.generateFields(fields, name)
 
     const buildImports = () => {
@@ -72,19 +62,16 @@ export class ModelBuilder {
       import mongoose, { Schema } from 'mongoose'
       `
     }
-
     const buildEntitySchema = () => {
       if (!options.typescript) return ''
       return `export const ${e.label}Schema = z.object({
         ${values}
       })`
     }
-
     const buildZodType = () => {
       if (!options.typescript) return ''
       return `export type ${label}Type = z.infer<typeof ${label}Schema>`
     }
-
     const buildNuxtMongoose = () => {
       if (options.typescript) {
         return `
@@ -112,27 +99,22 @@ export class ModelBuilder {
     }
 
     const content = `
-    ${buildImports()}
-    ${this.buildEnumerators(name, enumerators)}
-    ${buildEntitySchema()}
-    ${buildZodType()}
-    ${buildNuxtMongoose()}
+      ${buildImports()}
+      ${this.buildEnumerators(name, enumerators)}
+      ${buildEntitySchema()}
+      ${buildZodType()}
+      ${buildNuxtMongoose()}
     `
-    // writeToFile(`${this.path}/${e.label}.${fileExt(this.options)}`, content)
     return content
   }
 
   generateFields = (fields, name) => {
     const keys = Object.keys(fields)
-    console.log({
-      keys,
-      fields
-    })
     const values = []
     const enumerators = []
     for (const key of keys) {
       const { type, required } = fields[key]
-      if (type === 'enumerator') {
+      if (type === 'enumerator' || type === 'enumeratorMulti') {
         let strings
         if (typeof fields[key].enumerators[0] !== 'string') {
           strings = Object.keys(fields[key].enumerators).map((k) => k)
@@ -147,27 +129,60 @@ export class ModelBuilder {
     return [values, enumerators]
   }
 
+  getType(type) {
+    switch (type) {
+      case 'Decimal':
+        return 'Schema.Types.Decimal128'
+      case 'Relation':
+        return 'Schema.Types.ObjectId'
+      case 'String':
+        return 'String'
+      case 'Boolean':
+        return 'Boolean'
+      case 'Date':
+        return 'Date'
+      case 'DateTime':
+        return 'Date'
+      case 'Number':
+        return 'Number'
+      case 'Number':
+        return 'Number'
+      case 'Integer':
+        return 'BigInt'
+    }
+  }
+
   buildMongoose() {
     const values = []
-    for (const field in this.e.fields) {
-      // [ ] Add document array & one-to-many support
-      // [ ] Add document array & many-to-many support
-      const { type, required, enumeratorType } = this.e.fields[field]
-      if (type == 'enumerator') {
-        // Primitive
-        const item = `${field}: {
-          required: ${required != undefined ? required : 'False'},
+    for (const f in this.e.fields) {
+      const field = this.e.fields[f]
+      const { type, required, enumeratorType, relation, name } = field
+      if (type === 'relation') {
+        let item
+        if (field.relation.type === 'otm') {
+          item = `${name}: {
+            ${required != undefined ? `required: ${required},` : ''}
+            type: [{ type: Schema.Types.ObjectId, ref: "${relation.name}" }],
+          }`
+        } else if (field.relation.type === 'mto') {
+          item = `${name}: {
+            ${required != undefined ? `required: ${required},` : ''}
+            type: { type: Schema.Types.ObjectId, ref: "${relation.name}" },
+          }`
+        }
+        values.push(item)
+      } else if (type == 'enumerator' || type == 'enumeratorMulti') {
+        const item = `${name}: {
+          ${required != undefined ? `required: ${required},` : ''}
           type: [
             ${capitalize(enumeratorType)}
           ],
         }`
-
-        // [ ] Sub-document
         values.push(item)
       } else {
-        const item = `${field}: {
-          type: ${capitalize(type)},
-          required: ${required != undefined ? required : 'false'}
+        const item = `${name}: {
+          type: ${this.getType(capitalize(type))},
+          ${required != undefined ? `required: ${required},` : ''}
         }`
         values.push(item)
       }
@@ -199,21 +214,5 @@ export class ModelBuilder {
   }`
 
     return keyValue
-  }
-
-  generateBarrelFile() {
-    const { typescript } = this.options
-    const exports = []
-
-    for (const model of this.entities) {
-      const { label } = model
-      const path = `./${label}${!typescript ? '.js' : ''}`
-      const line = `export { ${label} } from '${path}'\n`
-      exports.push(line)
-    }
-
-    const content = `${exports.join('')}`
-    const path = `${this.options.path}index.${fileExt(this.options)}`
-    // writeToFile(path, content)
   }
 }

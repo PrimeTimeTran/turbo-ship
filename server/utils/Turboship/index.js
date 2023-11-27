@@ -4,9 +4,8 @@ import chalk from 'chalk'
 import { program } from 'commander'
 
 import Framework from './Framework.js'
-// import seedEntities from './SeedEntities.js'
 import seeds from '../../../utils/seeds/seeds'
-import { log, dirName, prettify } from './helpers.js'
+import { log, prettify } from './helpers.js'
 
 export class Turboship {
   supportedFrameworks = ['flutter', 'nuxt', 'react-native']
@@ -50,6 +49,7 @@ export class Turboship {
   buildEntities(entities) {
     const entityTemplates = ['mint', 'bank', 'lms', 'social', 'pm', 'customer']
     const keys = Object.values(this.options.entities)
+    keys[0] = 'lms'
 
     const chosen = keys.filter((k) => entityTemplates.includes(k))
     chosen.forEach((name) => {
@@ -57,6 +57,10 @@ export class Turboship {
       collection.forEach((e) => {
         this.entities[e.name] = e
       })
+    })
+
+    console.log({
+      chosen,
     })
 
     entities.forEach(e => {
@@ -88,7 +92,7 @@ export class Turboship {
     if (options.entities)
       console.log(chalk['green']('entities'), `- ${options.entities}`)
     console.log('\n\n')
-    prettify()
+    prettify(this.options.root)
   }
 }
 
