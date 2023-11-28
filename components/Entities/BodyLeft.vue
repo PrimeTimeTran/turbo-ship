@@ -186,7 +186,7 @@ const inputClasses =
             />
           </div>
         </div>
-        <div class="flex flex-col overflow-auto scrollbar-hide middle hover:shadow-lg">
+        <div class="flex flex-col middle overflow-auto scrollbar-hide hover:shadow-lg">
           <div class="text-md font-bold mt-5 text-slate-500">
             New Attribute(<span v-text="entity.attributes.length" />)
           </div>
@@ -208,7 +208,7 @@ const inputClasses =
             />
             <div class="mt-5 font-bold text-blue-400" v-text="Validator.labeledTypes[newAttribute.type].label" />
             <div
-              class="flex flex-col flex-grow border rounded shadow my-1 h-52 max-h-52 overflow-scroll scrollbar-hide dark:border-gray-600"
+              class="flex flex-col flex-grow border shadow rounded my-1 h-52 max-h-52 overflow-scroll scrollbar-hide dark:border-gray-600"
             >
               <label
                 :key="fieldType"
@@ -311,8 +311,8 @@ const inputClasses =
             :classes="{
               input: entityValid ? '' : 'cursor-not-allowed',
               outer: entityValid
-                ? 'mt-1 text-center p-1 rounded text-white font-bold shadow-lg text-lg bg-green-500'
-                : 'mt-1 text-center p-1 rounded text-white font-bold shadow-lg text-lg bg-gray-300 dark:bg-gray-800 opacity-80',
+                ? 'mt-1 text-center p-1 rounded text-white font-bold text-lg bg-green-500 hover:shadow-lg'
+                : 'mt-1 text-center p-1 rounded text-white font-bold text-lg bg-gray-300 dark:bg-gray-800 opacity-80 shadow',
             }"
           >
             Create Entity

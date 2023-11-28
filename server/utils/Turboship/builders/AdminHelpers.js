@@ -467,7 +467,7 @@ export function buildEnumeratorHelpers(e) {
     .map(
       (item) =>
         `function get${capitalize(item)}Color(field, key) {
-          ${e.name == 'wizard' && item == 'house' ? 'key = makeLowerCase(key)' : ''}
+          ${e.name == 'wizard' && item == 'house' ? 'key.toLowerCase()' : ''}
           const weight = field == 'bg' ? 500 : 400
           const kolors = ${buildTabs(e, item)}
             return {

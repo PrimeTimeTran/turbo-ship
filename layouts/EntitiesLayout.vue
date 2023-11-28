@@ -6,23 +6,9 @@ useHead({
       innerHTML: 'console.log("Entity scripts loading...")',
       tagPosition: 'head',
     },
-    // {
-    //   src: 'https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js',
-    //   tagPosition: 'head',
-    // },
-    {
-      type: 'text/javascript',
-      src: 'js/Hotkeys.js',
-      tagPosition: 'head',
-    },
-    // {
-    //   type: 'text/javascript',
-    //   src: 'js/Hotkeys.js',
-    //   tagPosition: 'head',
-    // },
   ],
 })
-ensureLoad('https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js')
+ensureLoad(scriptUrls.hotkeys)
 </script>
 <template>
   <TheNavbar />

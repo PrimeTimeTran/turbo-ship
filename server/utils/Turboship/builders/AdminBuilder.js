@@ -395,9 +395,6 @@ export class AdminBuilder {
       const props = defineProps(['searching'])
 
       const { ${e.plural}, sort, meta, fetchFiltered${e.pluralL} } = use${e.pluralL}()
-      function makeLowerCase(inputString) {
-        return inputString.toLowerCase()
-      }
 
       const sortFields = reactive(${buildSortFields(e)})
 

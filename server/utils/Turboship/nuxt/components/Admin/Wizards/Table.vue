@@ -35,7 +35,7 @@ function toggleSort(field) {
 }
 
 function getHouseColor(field, key) {
-  key = makeLowerCase(key)
+  key = key.toLowerCase()
   const weight = field == 'bg' ? 500 : 400
   const kolors = {
     gryffindor: `${field}-red-${weight}`,

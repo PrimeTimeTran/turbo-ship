@@ -20,7 +20,7 @@ const handleToggle = () => {
 function ourCopy() {
   let values
   if (store.isSparse) {
-    values = sparseEntities(entities.value)
+    values = sparseEntities(entities)
   } else {
     values = entities
   }

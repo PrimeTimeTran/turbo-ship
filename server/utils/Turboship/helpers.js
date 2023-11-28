@@ -122,10 +122,6 @@ export const colors = [
   'teal',
 ]
 
-export function makeLowerCase(inputString) {
-  return inputString.toLowerCase()
-}
-
 export function makeDirRecursive(fullPath) {
   fs.mkdirSync(fullPath, { recursive: true }, (err) => {
     if (err) {

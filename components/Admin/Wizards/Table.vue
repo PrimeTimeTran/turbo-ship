@@ -35,7 +35,7 @@ function toggleSort(field) {
 }
 
 function getHouseColor(field, key) {
-  key = makeLowerCase(key)
+  key = key.toLowerCase()
   const weight = field == 'bg' ? 500 : 400
   const kolors = {
     gryffindor: `${field}-red-${weight}`,
@@ -50,12 +50,12 @@ function getHouseColor(field, key) {
 }
 
 function getTopSpellsColor(field, key) {
-  const weight = field == 'bg' ? 500 : 400
+  const weight = field == 'bg' ? 600 : 400
   const kolors = {
     jinxes: `${field}-red-${weight}`,
     hexes: `${field}-pink-${weight}`,
     charms: `${field}-purple-${weight}`,
-    curses: `${field}-violet-${weight}`,
+    curses: `${field}-orange-${weight}`,
     spells: `${field}-green-${weight}`,
     counters: `${field}-blue-${weight}`,
     healing: `${field}-yellow-${weight}`,
@@ -90,14 +90,8 @@ function getBookAppearancesColor(field, key) {
     <!-- Info: Destructuring fetchFilteredWizards from useWizards() breaks it.
             The result is this table doesn't rerender when the API request completes regardless of outcome.
           -->
-    <admin-wizards-form
-      :searching="searching"
-      :fetchFilteredWizards="fetchFilteredWizards"
-    />
-    <admin-form-pagination
-      :meta="meta"
-      :fetchPage="fetchPage"
-    />
+    <admin-wizards-form :searching="searching" :fetchFilteredWizards="fetchFilteredWizards" />
+    <admin-form-pagination :meta="meta" :fetchPage="fetchPage" />
     <table
       class="overflow-x-auto my-6 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
     >
@@ -217,9 +211,7 @@ function getBookAppearancesColor(field, key) {
           </th>
         </tr>
       </thead>
-      <tbody
-        class="divide-y divide-gray-300 border-t border-gray-300 dark:divide-gray-800 dark:border-gray-600"
-      >
+      <tbody class="divide-y divide-gray-300 border-t border-gray-300 dark:divide-gray-800 dark:border-gray-600">
         <tr
           :key="wizard._id"
           v-for="wizard in wizards"
@@ -231,50 +223,30 @@ function getBookAppearancesColor(field, key) {
                 :src="wizard.avatarUrl || 'https://i.pravatar.cc/150?img=4'"
                 class="h-full rounded-full object-cover object-center"
               />
-              <span
-                class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"
-              />
+              <span class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white" />
             </div>
             <div class="text-sm">
-              <span
-                v-text="wizard.firstName"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <span v-text="wizard.firstName" class="font-medium text-gray-700 dark:text-white" />
               <div>
-                <span
-                  v-text="wizard.email"
-                  class="text-gray-400"
-                />
+                <span v-text="wizard.email" class="text-gray-400" />
               </div>
             </div>
           </th>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.lastName"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.lastName" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
-          <td
-            class="px-6 py-4"
-            v-if="wizard.house"
-          >
+          <td class="px-6 py-4" v-if="wizard.house">
             <span
               class="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-slate-900 px-2 py-1 text-xs font-semibold"
               :class="getHouseColor('text', wizard.house)"
             >
-              <span
-                class="h-1.5 w-1.5 rounded-full"
-                :class="getHouseColor('bg', wizard.house)"
-              />
+              <span class="h-1.5 w-1.5 rounded-full" :class="getHouseColor('bg', wizard.house)" />
               <span v-text="wizard.house" />
             </span>
           </td>
-          <td
-            class="px-6 py-4"
-            v-if="wizard.topSpells"
-          >
+          <td class="px-6 py-4" v-if="wizard.topSpells">
             <div class="flex justify-center gap-1">
               <span
                 :key="item"
@@ -285,10 +257,7 @@ function getBookAppearancesColor(field, key) {
               />
             </div>
           </td>
-          <td
-            class="px-6 py-4"
-            v-if="wizard.bookAppearances"
-          >
+          <td class="px-6 py-4" v-if="wizard.bookAppearances">
             <div class="flex justify-center gap-1">
               <span
                 :key="item"
@@ -301,90 +270,57 @@ function getBookAppearancesColor(field, key) {
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.city"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.city" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.country"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.country" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.jobTitle"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.jobTitle" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.industry"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.industry" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.patronus"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.patronus" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.potions"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.potions" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.charms"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.charms" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.apparition"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.apparition" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.dada"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.dada" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.gender"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.gender" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
           <td class="px-3 py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.fanScore"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.fanScore" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
         </tr>

@@ -25,7 +25,7 @@ const left = computed(() => {
 </script>
 <template>
   <div class="flex justify-around my-4">
-    <div class="flex flex-1 justify-center text-white">
+    <div class="flex flex-1 justify-center dark:text-white">
       <span v-text="left" />
     </div>
     <ul class="flex justify-center items-center align-middle w-96">
@@ -65,8 +65,8 @@ const left = computed(() => {
         </a>
       </li>
     </ul>
-    <div class="flex flex-1 justify-center text-white">
-      <span class="text-white" v-text="meta.totalCount" />
+    <div class="flex flex-1 justify-center">
+      <span class="dark:text-white" v-text="meta.totalCount" />
     </div>
   </div>
 </template>

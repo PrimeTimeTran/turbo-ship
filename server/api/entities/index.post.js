@@ -11,7 +11,6 @@ export default defineEventHandler(async (event) => {
   const root = path.join(dirName, '../../temp/')
   await Turboship.cleanse(root)
   const value = await new Turboship(root, body)
-
   await new Promise((resolve) => {
     setTimeout(resolve, 5000)
   })

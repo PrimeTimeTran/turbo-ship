@@ -1,10 +1,5 @@
 <script setup>
-const props = defineProps([
-  'searching',
-  'fetchFilteredWizards',
-  'createForm',
-  'clear',
-])
+const props = defineProps(['searching', 'fetchFilteredWizards', 'createForm', 'clear'])
 
 const { apiUrl } = useAPI()
 
@@ -18,9 +13,7 @@ async function submit(fields) {
     method: 'post',
     body: JSON.stringify(fields),
   })
-  submitted.value = true
 }
-let submitted = ref(false)
 </script>
 
 <template>
@@ -35,124 +28,49 @@ let submitted = ref(false)
         message: 'text-red-500 dark:text-red-300 absolute',
       }"
     >
-      <div
-        id="Wizard"
-        class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3"
-      >
+      <div id="Wizard" class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3">
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="email"
-            label="Email"
-            placeholder="hp87@hogwarts.com"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="email" label="Email" placeholder="hp87@hogwarts.com" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="firstName"
-            label="First Name"
-            placeholder="Harry"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="firstName" label="First Name" placeholder="Harry" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="lastName"
-            label="Last Name"
-            placeholder="Potter"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="lastName" label="Last Name" placeholder="Potter" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="city"
-            label="City"
-            placeholder="London"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="city" label="City" placeholder="London" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="country"
-            label="Country"
-            placeholder="United Kingdom"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="country" label="Country" placeholder="United Kingdom" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="jobTitle"
-            label="Role"
-            placeholder="Auror"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="jobTitle" label="Role" placeholder="Auror" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="industry"
-            label="Industry"
-            placeholder="Defense"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="industry" label="Industry" placeholder="Defense" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="patronus"
-            label="Patronus"
-            placeholder="Stag"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="patronus" label="Patronus" placeholder="Stag" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="number"
-            name="potions"
-            label="Potions"
-            :validation="searching ? '' : 'required'"
-            placeholder="10"
-            min="1"
-            max="10"
-          />
+          <admin-form-field type="number" name="potions" label="Potions" placeholder="10" min="1" max="10" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="number"
-            name="charms"
-            label="Charms"
-            :validation="searching ? '' : 'required'"
-            placeholder="10"
-            min="1"
-            max="10"
-          />
+          <admin-form-field type="number" name="charms" label="Charms" placeholder="10" min="1" max="10" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="number"
-            name="dada"
-            label="D.A.D.A"
-            :validation="searching ? '' : 'required'"
-            placeholder="10"
-            min="1"
-            max="10"
-          />
+          <admin-form-field type="number" name="dada" label="D.A.D.A" placeholder="10" min="1" max="10" />
         </div>
 
         <div class="item">
@@ -182,25 +100,11 @@ let submitted = ref(false)
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="number"
-            name="fanScore"
-            label="Fan Score"
-            :validation="searching ? '' : ''"
-            placeholder="10"
-            min="1"
-            max="10"
-          />
+          <admin-form-field type="number" name="fanScore" label="Fan Score" placeholder="10" min="1" max="10" />
         </div>
 
         <div class="item">
-          <admin-form-field
-            type="text"
-            name="avatarUrl"
-            label="Avatar"
-            placeholder="https://mypic.com"
-            :validation="searching ? '' : 'required'"
-          />
+          <admin-form-field type="text" name="avatarUrl" label="Avatar" placeholder="https://mypic.com" />
         </div>
 
         <div class="item">
@@ -209,7 +113,6 @@ let submitted = ref(false)
             type="select"
             :multiple="searching"
             label="House"
-            :validation="searching ? '' : 'required'"
             placeholder="Select House"
             :options="{
               gryffindor: 'Gryffindor',
@@ -227,7 +130,6 @@ let submitted = ref(false)
             type="select"
             :multiple="true"
             label="Top Spells"
-            :validation="searching ? '' : 'required'"
             placeholder="Select One"
             :options="{
               hexes: 'Hexes',
@@ -248,7 +150,6 @@ let submitted = ref(false)
             type="select"
             :multiple="true"
             label="Book Appearances"
-            :validation="searching ? '' : 'required'"
             placeholder="Select Multiple"
             :options="{
               1: '1',
@@ -270,8 +171,7 @@ let submitted = ref(false)
           @click="clear"
           :classes="{
             outer: 'bg-red-500 rounded basis-1/4',
-            input:
-              'flex flex-grow justify-center text-white dark:text-white p-3',
+            input: 'flex flex-grow justify-center text-white dark:text-white p-3',
             wrapper: 'flex flex-grow text-center',
           }"
         />
@@ -280,8 +180,7 @@ let submitted = ref(false)
           :disabled="disabled"
           :classes="{
             outer: 'bg-green-500 rounded basis-3/4',
-            input:
-              'flex flex-grow justify-center text-white dark:text-white p-3',
+            input: 'flex flex-grow justify-center text-white dark:text-white p-3',
             wrapper: 'flex flex-grow text-center',
           }"
         >

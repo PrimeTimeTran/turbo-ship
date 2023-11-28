@@ -1,3 +1,4 @@
+console.log('Hotkeys local')
 /*! hotkeys-js v3.12.0 | MIT © 2023 kenny wong <wowohoo@qq.com> https://jaywcjlove.github.io/hotkeys-js */
 !(function (e, t) {
   'object' == typeof exports && 'undefined' != typeof module

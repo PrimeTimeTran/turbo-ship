@@ -19,21 +19,6 @@ export const navItems = [
     name: 'Todos',
     icon: 'fa-list',
   },
-  // {
-  //   url: '/tag',
-  //   name: 'Tags',
-  //   icon: 'fa-tags',
-  // },
-  // {
-  //   url: '/project',
-  //   name: 'Projects',
-  //   icon: 'fa-diagram-project',
-  // },
-  // {
-  //   url: '/about',
-  //   name: 'About',
-  //   icon: 'fa-user',
-  // },
 ]
 
 export const adminNavItems = [

@@ -103,7 +103,7 @@ export function useEntity(e, entities) {
   }
   const editing = computed(() => focused.value !== '')
   const relatedEntityOptions = computed(() =>
-    entities.value.filter((e) => e.name != entity.name)
+    entities.filter((e) => e.name != entity.name)
   )
   const attribute = computed(() => {
     return focused.value != ''

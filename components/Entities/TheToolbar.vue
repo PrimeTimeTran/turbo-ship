@@ -1,5 +1,6 @@
 <script setup>
 import { faker } from '@faker-js/faker'
+
 const { entities, setEntities, clearEntities } = useEntities()
 function collapse() {
   store.view = views.entities
@@ -20,13 +21,16 @@ function relationships() {
 function feedback() {
   store.view = views.feedback
 }
+const { fbEvent } = useAnalytics()
+
 async function generate() {
   try {
+    fbEvent('entities_generate_start')
     const { apiUrl } = useAPI()
     const baseURL = `${apiUrl}/entities`
     const resp = await $fetch(baseURL, {
       method: 'post',
-      body: entities.value,
+      body: entities,
     })
     const blobUrl = URL.createObjectURL(resp)
     const downloadLink = document.createElement('a')
@@ -36,7 +40,9 @@ async function generate() {
     downloadLink.click()
     document.body.removeChild(downloadLink)
     URL.revokeObjectURL(blobUrl)
+    fbEvent('entities_generate_success')
   } catch (error) {
+    fbEvent('entities_generate_error', error)
     console.log('Error: ', error)
   }
 }
@@ -50,10 +56,10 @@ const fileItems = [
   },
   {
     id: faker.database.mongodbObjectId(),
-    name: 'Clear',
+    name: 'Clear Entities',
     click: clearEntities,
     underline: '',
-    tip: 'Clear entities',
+    tip: 'Clear all entities',
   },
   {
     id: faker.database.mongodbObjectId(),
@@ -67,6 +73,35 @@ const fileItems = [
 const viewItems = [
   {
     id: faker.database.mongodbObjectId(),
+    name: 'Dark',
+    click: help,
+    underline: 'D',
+    tip: 'Toggle Dark Mode',
+  },
+  {
+    id: faker.database.mongodbObjectId(),
+    name: 'Toggle Left',
+    click: () => (store.leftSidebar = !store.leftSidebar),
+    underline: 'L',
+    tip: 'Toggle Left sidebar open/closed',
+  },
+  {
+    id: faker.database.mongodbObjectId(),
+    name: 'Toggle Right',
+    click: () => (store.leftSidebar = !store.leftSidebar),
+    underline: 'R',
+    tip: 'Toggle Right sidebar open/closed',
+  },
+  {
+    id: faker.database.mongodbObjectId(),
+    name: 'Entities',
+    click: onEntities,
+    underline: 'E',
+    tip: 'View entities editor',
+    groupStart: true,
+  },
+  {
+    id: faker.database.mongodbObjectId(),
     name: 'Collapse',
     click: collapse,
     underline: 'C',
@@ -78,6 +113,7 @@ const viewItems = [
     click: sort,
     underline: 'S',
     tip: 'Switch to sort view of entities',
+    groupEnd: true,
   },
   {
     id: faker.database.mongodbObjectId(),
@@ -86,13 +122,7 @@ const viewItems = [
     underline: 'O',
     tip: 'View overview of entities',
   },
-  {
-    id: faker.database.mongodbObjectId(),
-    name: 'Entities',
-    click: onEntities,
-    underline: 'E',
-    tip: 'View entities editor',
-  },
+
   {
     id: faker.database.mongodbObjectId(),
     name: 'Relationships',
@@ -114,27 +144,6 @@ const viewItems = [
     click: help,
     underline: 'H',
     tip: 'View help window',
-  },
-  {
-    id: faker.database.mongodbObjectId(),
-    name: 'Dark',
-    click: help,
-    underline: 'D',
-    tip: 'Toggle Dark Mode',
-  },
-  {
-    id: faker.database.mongodbObjectId(),
-    name: 'Toggle Left',
-    click: () => (store.leftSidebar = !store.leftSidebar),
-    underline: 'L',
-    tip: 'Toggle Left sidebar open/closed',
-  },
-  {
-    id: faker.database.mongodbObjectId(),
-    name: 'Toggle Right',
-    click: () => (store.leftSidebar = !store.leftSidebar),
-    underline: 'R',
-    tip: 'Toggle Right sidebar open/closed',
   },
 ]
 const editItems = [
@@ -215,7 +224,7 @@ const templateItems = [
     <div class="flex flex-row w-64">
       <VDropdown left="true" title="File" underline="F" :items="fileItems" />
       <VDropdown title="View" underline="V" :items="viewItems" />
-      <VDropdown title="Edit" underline="E" :items="editItems" />
+      <!-- <VDropdown title="Edit" underline="E" :items="editItems" /> -->
       <VDropdown underline="a" title="Relationships" />
       <VDropdown underline="E" title="Entities" :items="entitiesItems" />
       <VDropdown title="Templates" underline="T" :items="templateItems" />

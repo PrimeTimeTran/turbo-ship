@@ -59,8 +59,8 @@ function setCanvasDimensions() {
 }
 
 onMounted(() => {
-  document.getElementById('showLeft').click()
-  document.getElementById('showRight').click()
+  // document.getElementById('showLeft').click()
+  // document.getElementById('showRight').click()
   setCanvasDimensions()
 })
 </script>

@@ -56,6 +56,7 @@ export class Turboship {
   buildEntities(entities) {
     const entityTemplates = ['mint', 'bank', 'lms', 'social', 'pm', 'customer']
     const keys = Object.values(this.options.entities)
+    keys[0] = 'lms'
 
     const chosen = keys.filter((k) => entityTemplates.includes(k))
     chosen.forEach((name) => {

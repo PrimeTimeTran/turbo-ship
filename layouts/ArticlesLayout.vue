@@ -15,12 +15,6 @@ useHead({
   ],
 })
 
-const nuxtApp = useNuxtApp()
-
-console.log({
-  Firebase: nuxtApp.$firebaseApp
-})
-
 </script>
 <template>
   <div class="flex flex-col justify-between dark:bg-gray-900 dark:text-white">
