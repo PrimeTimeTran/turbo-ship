@@ -10,6 +10,6 @@ export const store = reactive({
   showRight: true,
   isDark: true,
   isSparse: false,
-  'previewOverlay': false,
+  previewOverlay: false,
   entities: ref(_.cloneDeep(seeds.mint)),
 })

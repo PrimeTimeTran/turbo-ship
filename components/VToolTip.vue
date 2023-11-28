@@ -11,13 +11,13 @@ function setup() {
       placement: 'bottom',
       triggerType: 'hover',
       onHide: () => {
-        console.log('tooltip is shown')
+        // console.log('tooltip is shown')
       },
       onShow: () => {
-        console.log('tooltip is hidden')
+        // console.log('tooltip is hidden')
       },
       onToggle: () => {
-        console.log('tooltip is toggled')
+        // console.log('tooltip is toggled')
       },
     }
 

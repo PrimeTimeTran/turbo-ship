@@ -1,6 +1,6 @@
 <script setup>
 import draggable from 'vuedraggable'
-const props = defineProps(['entities'])
+const { entities } = useEntities()
 </script>
 <template>
   <div class="overflow-auto scrollbar-hide h-screen">

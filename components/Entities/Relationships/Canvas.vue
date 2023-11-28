@@ -1,6 +1,8 @@
 <script setup>
 const { entities } = useEntities()
-
+watch(entities, () => {
+  setCanvasDimensions()
+})
 function drawEntities() {
   // Todo: Enable vertical scroll if content grows taller than viewport
   if (canvas.value.getContext) {
@@ -9,7 +11,7 @@ function drawEntities() {
     let startX = 10
     let col = 1
     ctx.font = '30px serif'
-    entities.value.forEach((e) => {
+    entities.forEach((e) => {
       startX += 10
       startY += 20
       if (startX != 20) {
@@ -33,7 +35,7 @@ function drawEntities() {
         ctx.font = '20px serif'
         ctx.fillStyle = color
         ctx.fillRect(startX, attributeHeight, 150, 30)
-        ctx.fillStyle = 'white'
+        ctx.fillStyle = 'gray'
         ctx.fillText(a.name, startX, attributeHeight + 16)
         attributeHeight += 30
       })
@@ -51,7 +53,7 @@ function setCanvasDimensions() {
     const navBarHeight = document.getElementById('TheNavBar').offsetHeight
     const height = window.innerHeight - (navBarHeight + 50)
     canvas.value.width = window.innerWidth
-    canvas.value.height = 300
+    canvas.value.height = height
     drawEntities()
   }
 }
@@ -71,7 +73,6 @@ onMounted(() => {
 <style scoped>
 #canvasContainer {
   margin: 5px;
-  border: 1px solid blue;
   overflow: auto;
 }
 </style>

@@ -1,7 +1,6 @@
 <script setup>
 import _ from 'lodash'
 import { Tabs } from 'flowbite'
-import Multiselect from 'vue-multiselect'
 const props = defineProps(['entity'])
 
 let tabs
