@@ -50,7 +50,12 @@ function setupHotkeys() {
           document.getElementById('inputRef').focus()
           break
         case 'alt+a':
-          document.getElementById('attributeInput').focus()
+          document.getElementById('RelationshipsMenu').click()
+          break
+        case 'alt+a':
+          // document.getElementById('attributeInput').focus()
+        // case 'alt+a':
+        //   document.getElementById('attributeInput').focus()
           break
         case 'alt+t':
           document.getElementById('actionStore').click()

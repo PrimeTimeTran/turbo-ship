@@ -97,7 +97,8 @@ const viewItems = [
     id: faker.database.mongodbObjectId(),
     name: 'Relationships',
     click: relationships,
-    underline: 'R',
+    underline: 'a',
+    doubleKey: 'cmd+a',
     tip: 'View relationships overview',
   },
   {
@@ -215,7 +216,7 @@ const templateItems = [
       <VDropdown left="true" title="File" underline="F" :items="fileItems" />
       <VDropdown title="View" underline="V" :items="viewItems" />
       <VDropdown title="Edit" underline="E" :items="editItems" />
-      <VDropdown underline="R" title="Relationships" />
+      <VDropdown underline="a" title="Relationships" />
       <VDropdown underline="E" title="Entities" :items="entitiesItems" />
       <VDropdown title="Templates" underline="T" :items="templateItems" />
       <VDropdown underline="b" title="Feedback" />

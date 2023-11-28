@@ -3,6 +3,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 const props = defineProps(['title', 'underline', 'left', 'right', 'items'])
 
 const isOpen = ref(false)
+
 function toggleOpen() {
   isOpen.value = !isOpen.value
 }
@@ -22,9 +23,21 @@ function toggleOpen() {
       border: !left && !right,
     }"
   >
+
     <MenuButton
+      v-if="false"
       :id="title + 'Menu'"
       @click="toggleOpen"
+      v-html="replaceWithDoubleUnderline(title, underline)"
+      class=".inline-flex w-full justify-center text-black/60 px-4 py-2 text-sm font-medium dark:text-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 rounded dark:hover:brightness-200 dark:hover:text-white"
+    />
+    <MenuButton
+      v-else
+      :id="title + 'Menu'"
+      @click="() => {
+        store.view = views.relationships
+        toggleOpen()
+      }"
       v-html="replaceWithUnderline(title, underline)"
       class="inline-flex w-full justify-center text-black/60 px-4 py-2 text-sm font-medium dark:text-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 rounded dark:hover:brightness-200 dark:hover:text-white"
     />
@@ -50,7 +63,11 @@ function toggleOpen() {
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
               >
-                <VToolTip :key="item.id" :tip="item.tip" :id="item.id" :tool="replaceWithUnderline(item.name, item.underline)">
+
+                <VToolTip v-if="item.doubleKey" :tip="item.tip" :id="item.id" :tool="replaceWithDoubleUnderline(item.name, item.underline)">
+                  <!-- <span v-html="replaceWithUnderline(item.name, item.underline)" /> -->
+                </VToolTip>
+                <VToolTip v-else :tip="item.tip" :id="item.id" :tool="replaceWithUnderline(item.name, item.underline)">
                   <!-- <span v-html="replaceWithUnderline(item.name, item.underline)" /> -->
                 </VToolTip>
               </button>
@@ -66,3 +83,11 @@ function toggleOpen() {
     </div>
   </div>
 </template>
+
+
+<style>
+.double-underline {
+  text-decoration-line: underline;
+  text-decoration-style: double;
+}
+</style>

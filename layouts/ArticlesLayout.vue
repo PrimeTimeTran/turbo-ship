@@ -18,7 +18,7 @@ useHead({
 const nuxtApp = useNuxtApp()
 
 console.log({
-  gogogo: nuxtApp.$firebaseApp
+  Firebase: nuxtApp.$firebaseApp
 })
 
 </script>

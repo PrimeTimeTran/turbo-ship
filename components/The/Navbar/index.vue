@@ -33,6 +33,7 @@ const route = useRoute()
   >
     <TheNavbarScrollSpy :percent="percent" />
     <nav
+      id="TheNavBar"
       class="z-40 fixed top-0 left-0 right-0 w-screen flex flex-wrap items-center justify-around bg-white dark:bg-neutral-950 backdrop-blur-md border-b-2 border-b-gray-300 dark:border-b-zinc-800"
     >
       <div
