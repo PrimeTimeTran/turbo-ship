@@ -27,3 +27,5 @@ notes
 # temp/nuxt
 # temp/flutter
 # temp/rn
+# Local Netlify folder
+.netlify

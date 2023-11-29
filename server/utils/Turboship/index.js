@@ -4,7 +4,7 @@ import chalk from 'chalk'
 import { program } from 'commander'
 
 import Framework from './Framework.js'
-import seeds from '../../../utils/seeds/seeds'
+import seeds from './seeds/seeds.js'
 import { log, prettify } from './helpers.js'
 
 export class Turboship {

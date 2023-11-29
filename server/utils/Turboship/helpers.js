@@ -1,13 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import chalk from 'chalk'
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
 import { exec } from 'child_process'
 import archiver from 'archiver'
-
-export const __filename = fileURLToPath(import.meta.url)
-export const dirName = dirname(__filename)
 
 export const log = (field, val, color = 'green') => console.log(chalk[color](field) + val)
 
@@ -95,8 +90,6 @@ export function getType(name, type, key) {
       return 'z.string()'
     case 'boolean':
       return 'z.boolean()'
-    case 'number':
-      return 'z.number()'
     case 'number':
       return 'z.number()'
     case 'date':

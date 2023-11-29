@@ -5,11 +5,8 @@ const client = process.browser && window.location.pathname != '/login'
 function appInit() {
   if (client) {
     window?.addEventListener('scroll', () => {
-      let winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop
-      let height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight
+      let winScroll = document.body.scrollTop || document.documentElement.scrollTop
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
 
       percent.value = Math.round((winScroll / height) * 100)
     })
@@ -25,12 +22,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <div
-    x-cloak
-    :x-data="appData()"
-    :x-init="appInit()"
-    class="flex flex-col items-center justify-center"
-  >
+  <div x-cloak :x-data="appData()" :x-init="appInit()" class="flex flex-col items-center justify-center">
     <The.NavbarScrollSpy :percent="percent" />
     <nav
       class="z-40 fixed top-0 left-0 right-0 w-screen flex flex-wrap items-center justify-around bg-white dark:bg-neutral-950 backdrop-blur-md border-b-2 border-b-gray-300 dark:border-b-zinc-800"
@@ -38,9 +30,7 @@ const route = useRoute()
       <div
         class="flex flex-wrap flex-grow items-center justify-between md:flex-col md:flex-start lg:flex-row lg:px-3 px-3"
       >
-        <div
-          class="flex relative w-full justify-between lg:w-auto px-4 lg:justify-start py-1"
-        >
+        <div class="flex relative w-full justify-between lg:w-auto px-4 lg:justify-start py-1">
           <The.NavbarLogo />
           <NuxtLink
             type="button"

@@ -82,7 +82,7 @@ library.add(
   faPenToSquare,
   faRectangleXmark,
   faProjectDiagram,
-  faMagnifyingGlass
+  faMagnifyingGlass,
 )
 
 export default defineNuxtPlugin((nuxtApp) => {

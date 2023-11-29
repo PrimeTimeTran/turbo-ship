@@ -26,9 +26,14 @@ const { fbEvent } = useAnalytics()
 async function generate() {
   try {
     fbEvent('entities_generate_start')
-    const { apiUrl } = useAPI()
-    const baseURL = `${apiUrl}/entities`
-    const resp = await $fetch(baseURL, {
+    const { generateUrl } = useAPI()
+    // const baseURL = `${apiUrl}/entities`
+    // Works locally with netlify dev on
+    // const baseURL = `http://localhost:8888/.netlify/functions/build-muxter`
+
+    // Testing on Netlify
+    // const baseURL = `https://turboship.ltran.net/.netlify/functions/build-muxter`
+    const resp = await $fetch(generateUrl, {
       method: 'post',
       body: entities,
     })

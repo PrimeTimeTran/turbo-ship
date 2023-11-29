@@ -4,5 +4,11 @@
   "compilerOptions": {
     "strict": true
   },
-  "exclude": ["./server/utils/Turboship/nuxt", "./temp", "./output", "./server/middleware/02.user.global.ts"]
+  "exclude": [
+    "./temp",
+    "./output",
+    "./server/utils/Turboship/nuxt",
+    "./netlify/functions/nuxt/*",
+    "./server/middleware/02.user.global.ts"
+  ]
 }

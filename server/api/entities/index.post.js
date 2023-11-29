@@ -1,10 +1,6 @@
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
+import { join } from 'path'
 import { readFile } from 'fs/promises'
 import path from 'path'
-
-export const __filename = fileURLToPath(import.meta.url)
-export const dirName = dirname(__filename)
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)

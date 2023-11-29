@@ -7,27 +7,20 @@
   --background-color-dark: rgb(17, 24, 39);
 }
 
-/* TODO: Fix section navigation hiding under navbar */
-/* https://css-tricks.com/hash-tag-links-padding/ */
-a[href^='#'] {
-}
-
 @layer utilities {
   @variants responsive {
-    /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
 
-    /* Hide scrollbar for IE, Edge and Firefox */
     .no-scrollbar {
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
   }
 }
 
-.form-container {
+.main-container {
   min-height: 50vh;
 }
 
@@ -53,7 +46,23 @@ a[href^='#'] {
 }
 
 .form-items-container {
-  display: grid;
   gap: 10px;
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
 }

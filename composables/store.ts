@@ -1,7 +1,11 @@
 import _ from 'lodash'
 import { reactive } from 'vue'
 
-import seeds from '~/utils/seeds/seeds'
+import seeds from '~/utils/seeds/seeds.js'
+
+console.log({
+  seeds,
+})
 
 export const store = reactive({
   view: 'entities',

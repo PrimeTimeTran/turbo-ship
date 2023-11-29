@@ -1,11 +1,11 @@
 import path from 'path'
-import { camelize, getType, capitalize, dirName } from '../helpers.js'
+import { camelize, getType, capitalize } from '../helpers.js'
 
 export class ModelBuilder {
   constructor(entities, options) {
     this.entities = entities
     this.options = options
-    this.path = path.join(dirName, `../src/Models`)
+    this.path = path.join(__dirname, `../src/Models`)
   }
   buildEntities = () => {
     this.entities.map((e) => {
@@ -143,8 +143,6 @@ export class ModelBuilder {
         return 'Date'
       case 'DateTime':
         return 'Date'
-      case 'Number':
-        return 'Number'
       case 'Number':
         return 'Number'
       case 'Integer':

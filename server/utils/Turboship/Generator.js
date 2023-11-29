@@ -4,7 +4,7 @@ import fsExtra from 'fs-extra'
 
 import { ModelBuilder, AdminBuilder } from './builders/index.js'
 
-import { dirName, makeDirRecursive } from './helpers.js'
+import { makeDirRecursive } from './helpers.js'
 
 import { frameworkMap } from './Framework.js'
 
@@ -15,12 +15,12 @@ export default class Generator {
     this.root = `${this.options.root}${this.options.backend}`
   }
 
-  buildGenesis() {
+  async buildGenesis() {
     if (!backends.includes(this.options.frameworkName)) return
+    await this.buildAdminGlobalComponents()
     this.buildRoutes()
     this.buildModels()
     this.buildAdminUI()
-    this.buildAdminGlobalComponents()
   }
 
   buildRoutes() {
@@ -73,21 +73,43 @@ export default class Generator {
     fs.writeFileSync(`/tmp/turboship/nuxt/components/Admin/Aside.vue`, content)
   }
 
-  buildAdminGlobalComponents() {
+  async buildAdminGlobalComponents() {
     const fullPath = '/tmp/turboship/nuxt'
-    makeDirRecursive(fullPath)
+    await makeDirRecursive(fullPath)
 
-    const sourcePath = path.resolve(dirName, '../../server/utils/Turboship/nuxt')
+    const sourcePath = path.resolve('./server/utils/Turboship/nuxt')
     const destPath = path.resolve('/tmp/turboship/nuxt')
-    fsExtra
-      .copy(sourcePath, destPath)
-      .then(() => {
-        console.log('Files copied successfully!')
-      })
-      .catch((err) => {
-        console.error('Error copying files:', err)
-      })
+    console.log({
+      sourcePath,
+      destPath,
+    })
+    try {
+      await fsExtra.copy(sourcePath, destPath)
+      console.log('Files copied successfully!')
+    } catch (err) {
+      console.error('Error copying files:', err)
+      throw err // Propagate the error upwards if needed
+    }
+  }
+  async orchestrateProcess() {
+    try {
+      // Run buildAdminGlobalComponents and wait for its completion
+      await buildAdminGlobalComponents()
+      // Continue with other operations after buildAdminGlobalComponents completes
+      console.log('buildAdminGlobalComponents finished, continuing...')
+      // Other code here...
+    } catch (error) {
+      console.error('Error in orchestrateProcess:', error)
+    }
   }
 }
 
 const backends = ['nuxt']
+
+const capitalize = (word) => {
+  const firstLetter = word?.charAt(0)
+  const firstLetterCap = firstLetter.toUpperCase()
+  const remainingLetters = word.slice(1)
+  const capitalizedWord = firstLetterCap + remainingLetters
+  return capitalizedWord
+}

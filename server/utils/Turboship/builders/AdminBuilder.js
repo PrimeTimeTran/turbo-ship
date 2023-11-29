@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { log } from '../helpers.js'
+import { log, capitalize } from '../helpers.js'
 
 import {
   buildEnumeratorHelpers,

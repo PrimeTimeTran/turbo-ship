@@ -14,18 +14,19 @@ export default {
       typography: ({ theme }) => ({
         invert: {
           css: {
-            '--tw-prose-links': theme('colors.blue[750]'),
+            '--tw-prose-links': theme('colors.green[500]'),
           },
         },
         DEFAULT: {
           css: {
             '--tw-prose-body': theme('colors.gray[800]'),
-            '--tw-prose-headings': theme('colors.gray[500]'),
+            '--tw-prose-headings': theme('colors.green[500]'),
             '--tw-prose-lead': theme('colors.gray[700]'),
-            '--tw-prose-links': theme('colors.blue[400]'),
+            '--tw-prose-links': theme('colors.green[400]'),
             '--tw-prose-bold': theme('colors.gray[900]'),
             '--tw-prose-counters': theme('colors.gray[600]'),
             '--tw-prose-bullets': theme('colors.gray[400]'),
+            '--tw-prose-a': theme('colors.green[400]'),
             '--tw-prose-hr': theme('colors.gray[300]'),
             '--tw-prose-quotes': theme('colors.gray[900]'),
             '--tw-prose-quote-borders': theme('colors.gray[300]'),
@@ -51,10 +52,20 @@ export default {
             '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
             '--tw-prose-invert-th-borders': theme('colors.gray[600]'),
             '--tw-prose-invert-td-borders': theme('colors.gray[700]'),
+            '.inline-code': {
+              color: 'white',
+              backgroundColor: 'gray',
+              padding: '0.2rem 0.4rem',
+              borderRadius: '0.25rem',
+            },
           },
         },
       }),
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar-hide'),
+    require('flowbite/plugin'),
+  ],
 }

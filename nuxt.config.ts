@@ -21,6 +21,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
+      generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
     },
   },
   typescript: {

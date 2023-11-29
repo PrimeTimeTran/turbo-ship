@@ -23,6 +23,11 @@ export const adminNavItems = [
     icon: 'fa-blog',
   },
   {
+    url: '/admin/wizards',
+    name: 'Wizards',
+    icon: 'fa-hat-wizard',
+  },
+  {
     url: '/admin/about',
     name: 'About',
     icon: 'fa-code',
