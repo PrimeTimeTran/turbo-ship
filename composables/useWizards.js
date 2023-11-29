@@ -45,7 +45,6 @@ export function useWizards() {
   const fetchFilteredWizards = async (fields) => {
     meta.page = 1
 
-    // Convert the combinedFields object to a query string
     const queryParams = new URLSearchParams(Object.entries(fields)).toString()
     params.value = queryParams
 

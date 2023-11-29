@@ -1,11 +1,16 @@
 {
   "files.exclude": {
-    // "**/.git": true,
-    // "**/.gitcopy": true,
-    // "**/.nuxt": true,
-    // "**/node_modules": true,
-    // "**/.gitignore": true,
-    // "**/package-lock.json": true,
+    "**/.git": true,
+    "**/.netlify": true,
+    "**/.nuxt": true,
+    "**/package-lock.json": true,
+    "**/bun.lockb": true,
+    "**/prettier.config.cjs": true,
+    "**/tsconfig.json": true,
+    "**/formkit.config.js": true,
+    "**/error.vue": true,
+    "**/node_modules": true,
+    "**/.gitignore": true,
     // "**/bun.lockb": true
   },
   "workbench.colorCustomizations": {
@@ -14,11 +19,5 @@
     "titleBar.activeBackground": "#41b883",
     "titleBar.inactiveBackground": "#3b8070"
   },
-  "cSpell.words": [
-    "headlessui",
-    "Pinia",
-    "realestate",
-    "toastify",
-    "vuedraggable"
-  ]
+  "cSpell.words": ["headlessui", "Pinia", "realestate", "toastify", "vuedraggable"]
 }

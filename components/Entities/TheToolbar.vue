@@ -178,7 +178,7 @@ const entitiesItems = [
   {
     id: faker.database.mongodbObjectId(),
     name: 'Toggle Sparse',
-    click: () => document.getElementById('actionSparse').click(),
+    click: () => document.getElementById('toggleSparse').click(),
     underline: 'p',
     tip: 'Toggle sparse view of right sidebar',
   },

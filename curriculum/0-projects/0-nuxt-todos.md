@@ -1,7 +1,0 @@
-- CRUD Todos
-- Refactor to useState
-  - Counter
-  - Todos
-  - Demo grandparent, child, grandchild not needing props passing & working
-- Styling
-  - Tailwind

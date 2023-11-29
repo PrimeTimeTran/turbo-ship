@@ -2,7 +2,7 @@ console.log('Setup custom hotkeys')
 
 export function setupHotkeys() {
   hotkeys(
-    'alt+g, alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1, cmd+alt+d, cmd+alt+o',
+    'alt+p, alt+g, alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1, cmd+alt+d, cmd+alt+o',
     function (event, handler) {
       console.log('EnsureLoad click')
       switch (handler.key) {
@@ -16,7 +16,7 @@ export function setupHotkeys() {
           document.getElementById('showLeft').click()
           break
         case 'cmd+alt+o':
-          document.getElementById('previewOverlay').click()
+          document.getElementById('showOverlay').click()
           break
         case 'alt+d':
           document.getElementById('dark').click()
@@ -45,7 +45,7 @@ export function setupHotkeys() {
         case 'alt+h':
           document.getElementById('HelpSubmenu').click()
           break
-        case 'cmd+alt+d':
+        case 'alt+p':
           document.getElementById('toggleSparse').click()
           break
         case 'alt+o':

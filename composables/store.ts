@@ -3,17 +3,13 @@ import { reactive } from 'vue'
 
 import seeds from '~/utils/seeds/seeds.js'
 
-console.log({
-  seeds,
-})
-
 export const store = reactive({
-  view: 'entities',
-  collapsed: false,
+  isDark: true,
   showLeft: true,
   showRight: true,
-  isDark: true,
   isSparse: false,
-  previewOverlay: false,
+  collapsed: false,
+  view: 'entities',
+  showOverlay: false,
   entities: ref(_.cloneDeep(seeds.mint)),
 })

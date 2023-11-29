@@ -1,77 +1,19 @@
 export class Validator {
   static relationTypes = ['otm', 'mto', 'oto', 'mtm']
-  static enumTypes: Array<string> = [
-    'enumerator',
-    'enumeratorMulti',
-    'enumerator-multi',
-  ]
-
+  static enumTypes: Array<string> = ['enumerator', 'enumeratorMulti', 'enumerator-multi']
   static optionalValidators: ValidatorType = {
     boolean: [],
     date: ['required', 'unique'],
     dateTime: ['required', 'unique'],
     enumerator: ['required', 'unique'],
     enumeratorMulti: ['required', 'min', 'max'],
-    number: [
-      'required',
-      'unique',
-      'scale',
-      'min',
-      'max',
-      'positive',
-      'negative',
-    ],
-    integer: [
-      'required',
-      'unique',
-      'scale',
-      'min',
-      'max',
-      'positive',
-      'negative',
-    ],
-    decimal: [
-      'required',
-      'unique',
-      'scale',
-      'min',
-      'max',
-      'positive',
-      'negative',
-      'scale',
-    ],
-    string: [
-      'required',
-      'unique',
-      'min-length',
-      'max-length',
-      'email',
-      'url',
-      'lowercase',
-      'uppercase',
-    ],
-    text: [
-      'required',
-      'unique',
-      'min-length',
-      'max-length',
-      'email',
-      'url',
-      'lowercase',
-      'uppercase',
-    ],
+    number: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative'],
+    integer: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative'],
+    decimal: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative', 'scale'],
+    string: ['required', 'unique', 'min-length', 'max-length', 'email', 'url', 'lowercase', 'uppercase'],
+    text: ['required', 'unique', 'min-length', 'max-length', 'email', 'url', 'lowercase', 'uppercase'],
   }
-
-  static requiresValues = [
-    'min',
-    'max',
-    'scale',
-    'min-length',
-    'max-length',
-    'enumerator',
-    'enumeratorMulti',
-  ]
-
+  static requiresValues = ['min', 'max', 'scale', 'min-length', 'max-length', 'enumerator', 'enumeratorMulti']
   static min(val: any) {
     return !isNaN(val)
   }
@@ -92,9 +34,7 @@ export class Validator {
     return resp
   }
   static attributes(entity: Entity) {
-    return entity.attributes.filter(
-      (a) => !protectedAttributes.includes(a.name)
-    )
+    return entity.attributes.filter((a) => !protectedAttributes.includes(a.name))
   }
   static labeledTypes = {
     string: {
@@ -154,7 +94,6 @@ export class Validator {
       label: 'many-to-many',
     },
   }
-
   static types = [
     'string',
     'text',

@@ -67,9 +67,7 @@ export function useEntity(e, entities) {
     return e.attributes.find((a) => a.name === attribute.value?.name)
   }
   function updateAttribute(attribute) {
-    const other = entities.value.find(
-      (entity) => entity.name === attribute.value.relation.name
-    )
+    const other = entities.value.find((entity) => entity.name === attribute.value.relation.name)
     // This guy already gets updated in the UI immediately
     // if (attribute.value.relation.type === 'otm') {
     //   attribute.value.relation.type = 'mto'
@@ -92,37 +90,26 @@ export function useEntity(e, entities) {
     newAttribute.relation.name = null
     newAttribute.relation.type = null
   }
-  const focusedType = computed(() => {
-    return attribute.value?.type === 'relation'
-      ? attribute.value.relation.type
-      : newAttribute.value?.type
-  })
   const onFocus = (id) => {
     reset()
     id === focused.value ? (focused.value = '') : (focused.value = id)
   }
   const editing = computed(() => focused.value !== '')
-  const relatedEntityOptions = computed(() =>
-    entities.filter((e) => e.name != entity.name)
-  )
+  const relatedEntityOptions = computed(() => entities.filter((e) => e.name != entity.name))
   const attribute = computed(() => {
-    return focused.value != ''
-      ? entity.attributes.find((e) => e._id === focused.value)
-      : newAttribute
+    return focused.value != '' ? entity.attributes.find((e) => e._id === focused.value) : newAttribute
   })
-  watch(() => focused.value, (newww, oldd) => {
-    console.log('FocusedValue', newww)
-    console.log('FocusedValue', oldd)
-  })
+  watch(
+    () => focused.value,
+    (newww, oldd) => {
+      console.log('FocusedValue', newww)
+      console.log('FocusedValue', oldd)
+    },
+  )
   const validAttr = (attr) => {
     if (attr.name == '' || attr.type == '') return false
-    if (Validator.enumTypes.includes(attr.type) && attr.options == '')
-      return false
-    if (
-      attr.relation.name === null &&
-      Validator.relationTypes.includes(attr.relation.type)
-    )
-      return false
+    if (Validator.enumTypes.includes(attr.type) && attr.options == '') return false
+    if (attr.relation.name === null && Validator.relationTypes.includes(attr.relation.type)) return false
     return true
   }
   const valid = computed(() => {

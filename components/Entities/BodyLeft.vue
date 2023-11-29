@@ -115,7 +115,6 @@ const entityValid = computed(() => {
 })
 const inputClasses =
   'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
-
 </script>
 <template>
   <div v-if="store.showLeft" class="flex-1 flex-col px-2 max-h-screen">
@@ -142,7 +141,7 @@ const inputClasses =
               validation="required|length:3"
               :classes="{
                 input: inputClasses,
-                message: 'text-red-400',
+                message: 'text-red-400 max-w-32 overflow-x-auto scrollbar-hide',
                 label: 'font-semibold text-slate-500',
               }"
               @input="
@@ -202,7 +201,7 @@ const inputClasses =
               placeholder="branch, transaction, statement..."
               :classes="{
                 input: inputClasses,
-                message: 'text-red-400',
+                message: 'text-red-400 max-w-32 overflow-x-auto scrollbar-hide',
                 label: 'font-semibold text-slate-500',
               }"
             />
@@ -259,9 +258,15 @@ const inputClasses =
           class="flex flex-col bottom border shadow mt-2 overflow-scroll scrollbar-hide p-2 dark:border-gray-600 rounded"
         >
           <h2 class="text-md font-bold text-slate-500">Summary:</h2>
-          <h3 class="text-sm text-slate-500">Name: <span v-text="entity.name" /></h3>
-          <h3 class="text-sm text-slate-500">Label: <span v-text="entity.label" /></h3>
-          <h3 class="text-sm text-slate-500">Pluralized: <span v-text="entity.plural" /></h3>
+          <h3 class="text-sm text-slate-500 limit-width overflow-x-auto scrollbar-hide">
+            Name: <span class="limit-width overflow-x-auto scrollbar-hide" v-text="entity.name" />
+          </h3>
+          <h3 class="text-sm text-slate-500 limit-width overflow-x-auto scrollbar-hide">
+            Label: <span class="limit-width overflow-x-auto scrollbar-hide" v-text="entity.label" />
+          </h3>
+          <h3 class="text-sm text-slate-500 limit-width overflow-x-auto scrollbar-hide">
+            Pluralized: <span class="limit-width overflow-x-auto scrollbar-hide" v-text="entity.plural" />
+          </h3>
           <h3 class="mt-4 text-md">Attributes (<span v-text="entity.attributes.length" />)</h3>
           <FormKitMessages :node="input?.node" />
           <div class="flex flex-col flex-grow overflow-y-auto scrollbar-hide">
@@ -322,7 +327,7 @@ const inputClasses =
     </FormKit>
   </div>
 </template>
-<style>
+<style scoped>
 .top {
   max-height: 30vh;
 }
@@ -331,5 +336,22 @@ const inputClasses =
 }
 .bottom {
   max-height: 28vh;
+}
+
+.limit-width {
+  overflow-x: scroll;
+  white-space: nowrap;
+  max-width: 10rem !important;
+}
+:deep(input.formkit-input) {
+  overflow-x: scroll;
+  white-space: nowrap;
+  max-width: 10rem !important;
+}
+
+:deep(.formkit-message) {
+  overflow-x: scroll;
+  white-space: nowrap;
+  max-width: 10rem !important;
 }
 </style>

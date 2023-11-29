@@ -29,7 +29,7 @@ function removeTodo(id) {
 
 <template>
   <div
-    v-if="store.previewOverlay"
+    v-if="store.showOverlay"
     class="fixed bottom-0 border bg-white dark:bg-slate-900 rounded-lg w-96 h-64 p-2 z-40 overflow-auto"
     :class="{
       hidden: hidden,
@@ -39,12 +39,7 @@ function removeTodo(id) {
   >
     <div>
       <h1>Todos</h1>
-      <input
-        autofocus
-        v-model="newTodo"
-        class="text-black px-1"
-        @keyup.enter="addTodo"
-      />
+      <input autofocus v-model="newTodo" class="text-black px-1" @keyup.enter="addTodo" />
       <ol class="text-white">
         <li
           :key="todo.id"

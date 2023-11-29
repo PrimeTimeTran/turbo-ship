@@ -4,7 +4,6 @@ import { ref } from 'vue'
 import seeds from '../utils/seeds/seeds'
 
 export function useEntities() {
-  // const entities = ref(store.entities)
   const entities = reactive(store.entities)
 
   const addEntity = (e: Entity) => {

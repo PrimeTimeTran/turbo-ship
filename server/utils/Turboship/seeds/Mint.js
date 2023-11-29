@@ -470,4 +470,23 @@ export const Mint = [
       },
     ],
   },
+  {
+    name: 'product',
+    label: 'Product',
+    plural: 'products',
+    attributes: [
+      { validators: [], validations: [], type: 'string', name: 'companyUrl', _id: '4acfff5b2e00ed48f4e89fc4' },
+      { validators: [], validations: [], type: 'enumerator', name: 'type', _id: 'a4bef4b64787f89aacd0c1ff' },
+      { validators: [], validations: [], type: 'string', name: 'title', _id: '851a7a5d44f14fad1b78aebe' },
+      { validators: [], validations: [], type: 'string', name: 'imageUrl', _id: '94f4f21ad2f5dfdff163bad5' },
+      { validators: [], validations: [], type: 'string', name: 'linkForm', _id: '4c79a90f8f4242c48d0f5cf5' },
+      { validators: [], validations: [], type: 'string', name: 'linkTerms', _id: 'fa001a1b295dad7eadbc04db' },
+      { validators: [], validations: [], type: 'string', name: 'linkDisclosure', _id: '6a9fec5a196f55a30bb51dea' },
+      { validators: [], validations: [], type: 'text', name: 'description', _id: '3beb8a3b3d68cbffddab2feb' },
+      { validators: [], validations: [], type: 'text', name: 'meta', _id: 'bf3bb0ddaf719cea923a3c8c' },
+      { validators: [], validations: [], type: 'enumerator', name: 'insuranceType', _id: '8ded18f527bfd644eaff8e41' },
+      { validators: [], validations: [], type: 'string', name: 'linkInsuranceQuote', _id: '9e4507dde31b9d41b5d6ba1f' },
+    ],
+    _id: '308125ed79bddab87be3cabd',
+  },
 ]

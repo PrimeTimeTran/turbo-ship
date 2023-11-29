@@ -1,5 +1,0 @@
-- Plan
-- Prototype
-- Refactor
-- Screen cast
-- Record Voice
