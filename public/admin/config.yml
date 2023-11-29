@@ -2,11 +2,11 @@ backend:
   branch: main
   name: git-gateway
   squash_merges: true
-  site_domain: https://ltran.net
-  repo: PrimeTimeTran/nuxtoverflow
+  site_domain: https://turboship.ltran.net/
+  repo: PrimeTimeTran/turbo-ship
 
-site_url: https://ltran.net/
-logo_url: https://ltran.net/images/icon-black.png
+site_url: https://turboship.ltran.net/
+logo_url: https://turboship.ltran.net/images/icon-black.png
 publish_mode: editorial_workflow
 media_folder: '/public/images/uploads'
 
@@ -25,12 +25,7 @@ collections:
         editor:
           preview: false
         fields:
-          - {
-              label: Site Name,
-              name: site name,
-              widget: string,
-              hint: 'This is used for the site title',
-            }
+          - { label: Site Name, name: site name, widget: string, hint: 'This is used for the site title' }
           - {
               label: Site Description,
               name: site description,
@@ -41,18 +36,14 @@ collections:
               label: Site Language,
               name: sitelang,
               widget: string,
-              pattern:
-                [
-                  '^[a-z]{2}([-])?([A-Za-z]{2})?$',
-                  'Must match "xx" or "xx-XX" syntax (ex. "en" or "sv-SE")',
-                ],
+              pattern: ['^[a-z]{2}([-])?([A-Za-z]{2})?$', 'Must match "xx" or "xx-XX" syntax (ex. "en" or "sv-SE")'],
             }
 
           # - { label: Site Email, name: siteemail, widget: string, required: false }
   - name: articles
     create: true
     label: Article
-    folder: content/articles
+    folder: content/Articles
     format: frontmatter
     slug: '{{fields.createdAt}}-{{slug}}'
     # editor:
@@ -70,20 +61,10 @@ collections:
           time_format: false,
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
-      - {
-          label: 'Description',
-          name: 'description',
-          widget: 'string',
-          required: false,
-        }
+      - { label: 'Description', name: 'description', widget: 'string', required: false }
       - { label: 'Tag', name: 'tags', widget: 'string', required: false }
       - { label: 'Body', name: 'body', widget: 'markdown', required: false }
-      - {
-          label: 'Featured Image',
-          name: 'thumbnail',
-          widget: 'image',
-          required: false,
-        }
+      - { label: 'Featured Image', name: 'thumbnail', widget: 'image', required: false }
       - label: Images
         name: images
         widget: list
@@ -113,26 +94,11 @@ collections:
           name: 'category',
           widget: 'select',
           default: 'animals',
-          options:
-            [
-              { label: 'Animals', value: 'animals' },
-              { label: 'Food', value: 'food' },
-            ],
+          options: [{ label: 'Animals', value: 'animals' }, { label: 'Food', value: 'food' }],
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
-      - {
-          label: 'Description',
-          name: 'description',
-          widget: 'string',
-          required: false,
-        }
-      - {
-          label: 'Cover Image',
-          name: 'cover',
-          widget: 'image',
-          required: false,
-          allow_multiple: false,
-        }
+      - { label: 'Description', name: 'description', widget: 'string', required: false }
+      - { label: 'Cover Image', name: 'cover', widget: 'image', required: false, allow_multiple: false }
       - { label: 'Content', name: 'body', widget: 'markdown', required: false }
       - {
           label: 'Gallery',
