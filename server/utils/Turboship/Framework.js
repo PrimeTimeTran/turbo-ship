@@ -31,8 +31,6 @@ export default class Framework {
     } catch (err) {
       // Handle error if needed
     }
-
-    // Code will proceed after all directories are created
   }
 
   build() {
@@ -69,10 +67,8 @@ export const frameworkMap = {
       'Table.vue': 'buildTable',
       'EntityForm.vue': 'buildEntityForm',
     },
-    adminGlobals: [
-      './components/Admin/Form/Field.vue', 
-      './components/Admin/Form/Pagination.vue'],
-    apiFiles: ['index.get.', 'create.post.', '[_id].delete.', '[_id].get.', '[_id].put.'],
+    adminGlobals: ['./components/Admin/Form/Field.vue', './components/Admin/Form/Pagination.vue'],
+    apiFiles: ['index.get.', 'index.post.', '[_id].delete.', '[_id].get.', '[_id].put.'],
     apiContent: {
       'index.get.': function (label) {
         return `export default defineEventHandler(async (e) => {
@@ -96,7 +92,7 @@ export const frameworkMap = {
         })
       `
       },
-      'create.post.': function (label) {
+      'index.post.': function (label) {
         return `export default defineEventHandler(async (event) => {
           const body = await readBody(event)
           try {

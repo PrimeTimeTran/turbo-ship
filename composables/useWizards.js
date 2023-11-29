@@ -1,10 +1,9 @@
 import { ref } from 'vue'
 import { useFetch } from '@vueuse/core'
-
+// https://stackoverflow.com/questions/76839341/which-to-use-fetch-useasyncdata-or-usefetch-for-get-and-post-requests-in-nuxt
 export function useWizards() {
   const { apiUrl } = useAPI()
   const baseURL = `${apiUrl}/wizards`
-  let newWizard = ref('')
   let wizards = ref([])
   let params = ref('')
   let meta = reactive({
@@ -14,21 +13,20 @@ export function useWizards() {
     total: ref(0),
     totalRecords: ref(0),
   })
-  const addWizard = async () => {
-    if (newWizard.value === '') return
-    const wizard = {
-      _id: Date.now().toString(),
-      firstName: newWizard.value,
-      lastName: newWizard.value,
-    }
+  const addWizard = async (fields) => {
     try {
-      const { error } = await useFetch(baseURL, {
-        method: 'POST',
-        body: JSON.stringify(wizard),
+      const { data, error } = await useFetch(baseURL, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fields),
       })
+
       if (!error.value) {
+        let wizard = JSON.parse(data.value)
         wizards.value.push(wizard)
-        newWizard.value = ''
+        toastEm('Wizard created')
         return wizard
       }
     } catch (error) {
@@ -36,9 +34,7 @@ export function useWizards() {
     }
   }
   onBeforeMount(async () => {
-    const { data, error } = await useFetch(
-      baseURL + `?page=${meta.page}&limit=${meta.limit}`
-    )
+    const { data, error } = await useFetch(baseURL + `?page=${meta.page}&limit=${meta.limit}`)
     if (!error.value) {
       const val = JSON.parse(data.value)
       Object.assign(meta, val.meta)
@@ -53,10 +49,7 @@ export function useWizards() {
     const queryParams = new URLSearchParams(Object.entries(fields)).toString()
     params.value = queryParams
 
-    const url = makeApiQueryString(
-      apiUrl + `/wizards?page=${meta.page}&limit=${meta.limit}`,
-      fields
-    )
+    const url = makeApiQueryString(apiUrl + `/wizards?page=${meta.page}&limit=${meta.limit}`, fields)
     try {
       let { data, error } = await useFetch(url)
       if (!error.value) {
@@ -77,12 +70,7 @@ export function useWizards() {
     let nextPage = meta.page + diff
     if (diff == -10) nextPage = 1
     if (diff == 10) nextPage = meta.pageCount
-    return [
-      `/wizards?page=${nextPage}&limit=${meta.limit}${
-        params.value ? '&' + params.value : ''
-      }`,
-      nextPage,
-    ]
+    return [`/wizards?page=${nextPage}&limit=${meta.limit}${params.value ? '&' + params.value : ''}`, nextPage]
   }
 
   const fetchPage = async (diff) => {
@@ -106,13 +94,9 @@ export function useWizards() {
 
   const sort = (field, direction) => {
     if (direction === 'ASC') {
-      wizards.value = wizards.value.sort((a, b) =>
-        (a[field] ?? '') > (b[field] ?? '') ? 1 : -1
-      )
+      wizards.value = wizards.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? 1 : -1))
     } else if (direction === 'DESC') {
-      wizards.value = wizards.value.sort((a, b) =>
-        (a[field] ?? '') > (b[field] ?? '') ? -1 : 1
-      )
+      wizards.value = wizards.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? -1 : 1))
     }
   }
 
@@ -121,7 +105,6 @@ export function useWizards() {
     sort,
     fetchPage,
     meta,
-    newWizard,
     addWizard,
     fetchFilteredWizards,
   }

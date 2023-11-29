@@ -25,7 +25,7 @@ function ourCopy() {
     values = entities
   }
   copy(JSON.stringify(values))
-  notify('Copied Entities')
+  toastEm('Copied Entities')
   setTimeout(() => {
     text.value = 'Done'
   }, 1500)

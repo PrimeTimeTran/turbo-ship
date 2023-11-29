@@ -1,24 +1,23 @@
 <script setup>
+import { reset } from '@formkit/core'
 const props = defineProps(['searching', 'fetchFilteredWizards', 'createForm', 'clear'])
-
-const { apiUrl } = useAPI()
-
+const { addWizard } = useWizards()
 async function submit(fields) {
   if (props.searching) {
     await props.fetchFilteredWizards(fields)
     return
   }
-
-  let { data, error } = await useFetch(apiUrl + '/wizards', {
-    method: 'post',
-    body: JSON.stringify(fields),
-  })
+  const wizard = addWizard(fields)
+  if (wizard) {
+    reset('entityForm')
+  }
 }
 </script>
 
 <template>
   <div class="relative">
     <FormKit
+      id="entityForm"
       type="form"
       @submit="submit"
       :actions="false"
@@ -30,51 +29,51 @@ async function submit(fields) {
     >
       <div id="Wizard" class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3">
         <div class="item">
-          <admin-form-field type="text" name="email" label="Email" placeholder="hp87@hogwarts.com" />
+          <AdminFormField type="text" name="email" label="Email" placeholder="hp87@hogwarts.com" />
         </div>
 
         <div class="item">
-          <admin-form-field type="text" name="firstName" label="First Name" placeholder="Harry" />
+          <AdminFormField type="text" name="firstName" label="First Name" placeholder="Harry" />
         </div>
 
         <div class="item">
-          <admin-form-field type="text" name="lastName" label="Last Name" placeholder="Potter" />
+          <AdminFormField type="text" name="lastName" label="Last Name" placeholder="Potter" />
         </div>
 
         <div class="item">
-          <admin-form-field type="text" name="city" label="City" placeholder="London" />
+          <AdminFormField type="text" name="city" label="City" placeholder="London" />
         </div>
 
         <div class="item">
-          <admin-form-field type="text" name="country" label="Country" placeholder="United Kingdom" />
+          <AdminFormField type="text" name="country" label="Country" placeholder="United Kingdom" />
         </div>
 
         <div class="item">
-          <admin-form-field type="text" name="jobTitle" label="Role" placeholder="Auror" />
+          <AdminFormField type="text" name="jobTitle" label="Role" placeholder="Auror" />
         </div>
 
         <div class="item">
-          <admin-form-field type="text" name="industry" label="Industry" placeholder="Defense" />
+          <AdminFormField type="text" name="industry" label="Industry" placeholder="Defense" />
         </div>
 
         <div class="item">
-          <admin-form-field type="text" name="patronus" label="Patronus" placeholder="Stag" />
+          <AdminFormField type="text" name="patronus" label="Patronus" placeholder="Stag" />
         </div>
 
         <div class="item">
-          <admin-form-field type="number" name="potions" label="Potions" placeholder="10" min="1" max="10" />
+          <AdminFormField type="number" name="potions" label="Potions" placeholder="10" min="1" max="10" />
         </div>
 
         <div class="item">
-          <admin-form-field type="number" name="charms" label="Charms" placeholder="10" min="1" max="10" />
+          <AdminFormField type="number" name="charms" label="Charms" placeholder="10" min="1" max="10" />
         </div>
 
         <div class="item">
-          <admin-form-field type="number" name="dada" label="D.A.D.A" placeholder="10" min="1" max="10" />
+          <AdminFormField type="number" name="dada" label="D.A.D.A" placeholder="10" min="1" max="10" />
         </div>
 
         <div class="item">
-          <admin-form-field
+          <AdminFormField
             name="gender"
             type="select"
             label="Gender"
@@ -87,7 +86,7 @@ async function submit(fields) {
         </div>
 
         <div class="item">
-          <admin-form-field
+          <AdminFormField
             name="apparition"
             type="boolean"
             label="Apparate?"
@@ -100,15 +99,15 @@ async function submit(fields) {
         </div>
 
         <div class="item">
-          <admin-form-field type="number" name="fanScore" label="Fan Score" placeholder="10" min="1" max="10" />
+          <AdminFormField type="number" name="fanScore" label="Fan Score" placeholder="10" min="1" max="10" />
         </div>
 
         <div class="item">
-          <admin-form-field type="text" name="avatarUrl" label="Avatar" placeholder="https://mypic.com" />
+          <AdminFormField type="text" name="avatarUrl" label="Avatar" placeholder="https://mypic.com" />
         </div>
 
         <div class="item">
-          <admin-form-field
+          <AdminFormField
             name="house"
             type="select"
             :multiple="searching"
@@ -125,7 +124,7 @@ async function submit(fields) {
         </div>
 
         <div class="item">
-          <admin-form-field
+          <AdminFormField
             name="topSpells"
             type="select"
             :multiple="true"
@@ -145,7 +144,7 @@ async function submit(fields) {
         </div>
 
         <div class="item">
-          <admin-form-field
+          <AdminFormField
             name="bookAppearances"
             type="select"
             :multiple="true"

@@ -1,31 +1,23 @@
 <script setup>
-const props = defineProps([
-  'searching',
-  'fetchFilteredWizards',
-  'createForm',
-  'clear',
-])
-
-const { apiUrl } = useAPI()
-
+import { reset } from '@formkit/core'
+const props = defineProps(['searching', 'fetchFilteredWizards', 'createForm', 'clear'])
+const { addWizard } = useWizards()
 async function submit(fields) {
   if (props.searching) {
     await props.fetchFilteredWizards(fields)
     return
   }
-
-  let { data, error } = await useFetch(apiUrl + '/wizards', {
-    method: 'post',
-    body: JSON.stringify(fields),
-  })
-  submitted.value = true
+  const wizard = addWizard(fields)
+  if (wizard) {
+    reset('wizardForm')
+  }
 }
-let submitted = ref(false)
 </script>
 
 <template>
   <div class="relative">
     <FormKit
+      id="wizardForm"
       type="form"
       @submit="submit"
       :actions="false"
@@ -35,10 +27,7 @@ let submitted = ref(false)
         message: 'text-red-500 dark:text-red-300 absolute',
       }"
     >
-      <div
-        id="Wizard"
-        class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3"
-      >
+      <div id="Wizard" class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3">
         <div class="item">
           <admin-form-field
             type="text"
@@ -270,8 +259,7 @@ let submitted = ref(false)
           @click="clear"
           :classes="{
             outer: 'bg-red-500 rounded basis-1/4',
-            input:
-              'flex flex-grow justify-center text-white dark:text-white p-3',
+            input: 'flex flex-grow justify-center text-white dark:text-white p-3',
             wrapper: 'flex flex-grow text-center',
           }"
         />
@@ -280,8 +268,7 @@ let submitted = ref(false)
           :disabled="disabled"
           :classes="{
             outer: 'bg-green-500 rounded basis-3/4',
-            input:
-              'flex flex-grow justify-center text-white dark:text-white p-3',
+            input: 'flex flex-grow justify-center text-white dark:text-white p-3',
             wrapper: 'flex flex-grow text-center',
           }"
         >

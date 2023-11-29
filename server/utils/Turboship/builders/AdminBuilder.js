@@ -7,7 +7,6 @@ import {
   buildTableHeaders,
   buildSortFields,
   buildTableRows,
-  buildQueryHook,
   buildEntityForm,
   buildForm,
 } from './AdminHelpers.js'
@@ -68,7 +67,6 @@ export class AdminBuilder {
       this.buildForm()
       this.buildEntityForm()
       this.buildEntityUseHook()
-      // admin.buildEntityUseQueryHook()
     })
   }
   static buildAside(entities) {
@@ -108,7 +106,7 @@ export class AdminBuilder {
                 v-if="isOpen"
                 class="pt-20"
               >
-                ${buildAsideItems()}
+                ${buildAsideItems().join()}
               </div>
               <div
                 v-else
@@ -462,7 +460,6 @@ export class AdminBuilder {
     export function use${capitalized}() {
       const { apiUrl } = useAPI()
       const baseURL = ${apiUrl}
-      let new${this.e.label} = ref('')
       let ${this.e.plural} = ref([])
       let params = ref('')
       let meta = reactive({
@@ -485,34 +482,30 @@ export class AdminBuilder {
         sort,
         fetchPage,
         meta,
-        new${this.e.label},
         add${this.e.label},
         fetchFiltered${this.e.label}s,
       }
     }`
     return content
   }
-  buildEntityUseQueryHook() {
-    const content = buildQueryHook(this.e)
-    return content
-  }
+  // buildEntityUseQueryHook() {
+  //   const content = buildQueryHook(this.e)
+  //   return content
+  // }
   generateAdd() {
-    return `const add${this.e.label} = async () => {
-      if (new${this.e.label}.value === '') return
-      const ${this.e.name} = {
-        firstName: new${this.e.label}.value,
-        lastName: new${this.e.label}.value,
-      }
+    return `const add${this.e.label} = async (fields) => {
       try {
         const { data, error } = await useFetch(baseURL, {
           method: 'POST',
-          body: JSON.stringify(${this.e.name}),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(fields),
         })
         if (!error.value) {
-          ${this.e.plural}.value.push(
-            ${this.e.name}
-          )
-          new${this.e.label}.value = ''
+          const ${this.e.name} = JSON.parse(data.value)
+          ${this.e.plural}.value.push(${this.e.name})
+          toastEm('${this.e.label} created')
           return ${this.e.name}
         }
       } catch (error) {

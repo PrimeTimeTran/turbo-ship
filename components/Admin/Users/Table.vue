@@ -42,13 +42,8 @@ const getColor = (field, house) => {
     <!-- Info Destructuring fetchFilteredWizards from useWizards() breaks it.
       The result is this table doesn't rerender when the API request completes regardless of outcome.
     -->
-    <admin-users-form
-      :searching="searching"
-      :fetchFilteredWizards="fetchFilteredWizards"
-    />
-    <table
-      class="w-full border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
-    >
+    <AdminUsersForm :searching="searching" :fetchFilteredWizards="fetchFilteredWizards" />
+    <table class="w-full border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950">
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
           <th
@@ -81,12 +76,7 @@ const getColor = (field, house) => {
           >
             Role <span v-text="getSortingIcon('jobTitle')" />
           </th>
-          <th
-            scope="col"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            Team
-          </th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate">Team</th>
           <th
             scope="col"
             @click="toggleSort('charms')"
@@ -117,9 +107,7 @@ const getColor = (field, house) => {
           </th>
         </tr>
       </thead>
-      <tbody
-        class="divide-y divide-gray-300 border-t border-gray-300 dark:divide-gray-800 dark:border-gray-600"
-      >
+      <tbody class="divide-y divide-gray-300 border-t border-gray-300 dark:divide-gray-800 dark:border-gray-600">
         <tr
           :key="wizard._id"
           v-for="wizard in wizards"
@@ -131,57 +119,34 @@ const getColor = (field, house) => {
                 :src="wizard.avatarUrl || 'https://i.pravatar.cc/150?img=4'"
                 class="h-full rounded-full object-cover object-center"
               />
-              <span
-                class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"
-              />
+              <span class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white" />
             </div>
             <div class="text-sm">
-              <span
-                v-text="wizard.firstName"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <span v-text="wizard.firstName" class="font-medium text-gray-700 dark:text-white" />
               <div>
-                <span
-                  v-text="wizard.email"
-                  class="text-gray-400"
-                />
+                <span v-text="wizard.email" class="text-gray-400" />
               </div>
             </div>
           </th>
           <td class="py-4">
             <div class="text-sm">
-              <div
-                v-text="wizard.lastName"
-                class="font-medium text-gray-700 dark:text-white"
-              />
+              <div v-text="wizard.lastName" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
-          <td
-            class="px-6 py-4"
-            v-if="wizard.house"
-          >
+          <td class="px-6 py-4" v-if="wizard.house">
             <span
               class="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-slate-900 px-2 py-1 text-xs font-semibold"
               :class="getColor('text', wizard.house)"
             >
-              <span
-                class="h-1.5 w-1.5 rounded-full"
-                :class="getColor('bg', wizard.house)"
-              />
+              <span class="h-1.5 w-1.5 rounded-full" :class="getColor('bg', wizard.house)" />
               <span v-text="wizard.house" />
             </span>
           </td>
 
-          <td
-            class="px-6 py-4 dark:text-white"
-            v-if="wizard.jobTitle"
-          >
+          <td class="px-6 py-4 dark:text-white" v-if="wizard.jobTitle">
             <span v-text="wizard.jobTitle" />
           </td>
-          <td
-            class="px-3 py-4"
-            v-if="wizard.topSpells.length > 0"
-          >
+          <td class="px-3 py-4" v-if="wizard.topSpells.length > 0">
             <div class="flex justify-center gap-1">
               <span
                 v-text="wizard.topSpells[0]"

@@ -23,7 +23,7 @@ function drawEntities() {
 
       // Hor, Ver, Width, Height
       ctx.fillRect(startX, startY, 150, itemsHeight + 20)
-      ctx.fillStyle = 'black'
+      ctx.fillStyle = 'grey'
       ctx.font = '30px serif'
       ctx.fillText(e.name, startX, startY)
 
@@ -39,7 +39,7 @@ function drawEntities() {
         ctx.fillText(a.name, startX, attributeHeight + 16)
         attributeHeight += 30
       })
-      ctx.fillStyle = 'black'
+      ctx.fillStyle = 'grey'
       startY = attributeHeight + 10
     })
   }

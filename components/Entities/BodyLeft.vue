@@ -70,7 +70,7 @@ const resetForm = () => {
 const submit = () => {
   entity._id = faker.database.mongodbObjectId()
   const clonedEntity = _.cloneDeep({ ...entity, name: camelize(entity.name) })
-  notify(clonedEntity.name + ' added')
+  toastEm(clonedEntity.name + ' added')
   addEntity(clonedEntity)
   resetForm()
 }

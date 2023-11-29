@@ -1,6 +1,9 @@
 export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
+  devServer: {
+    port: 3005,
+  },
   plugins: ['~/plugins/fontawesome.ts', { src: '~/plugins/marked.js' }],
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   nitro: {
