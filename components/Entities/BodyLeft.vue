@@ -15,28 +15,12 @@
       - D fields in script/template
  -->
 <script setup>
-import { reset, clearErrors } from '@formkit/core'
+import { reset } from '@formkit/core'
 import _ from 'lodash'
 
 import { faker } from '@faker-js/faker'
 import { FormKitMessages } from '@formkit/vue'
-// import { getValidationMessages } from '@formkit/validation'
-
-// Leaving it here so I don't forget.
-// const emit = defineEmits(['onAdd'])
 const { entities, addEntity } = useEntities()
-
-// const messages = ref([])
-
-// function showErrors(node) {
-//   const validations = getValidationMessages(node)
-//   messages.value = []
-//   validations.forEach((inputMessages) => {
-//     messages.value = messages.value.concat(
-//       inputMessages.map((message) => message.value)
-//     )
-//   })
-// }
 
 const input = ref()
 const attributeRef = ref()
@@ -53,32 +37,41 @@ const entity = reactive({
   attributes: ref([]),
   _id: faker.database.mongodbObjectId(),
 })
-const resetForm = () => {
+function resetEntity() {
+  // No success clearing attribute errors after using clearErrors, targeting with id, etc
   reset()
   entity.name = ''
   entity.label = ''
   entity.plural = ''
   entity.pluralL = ''
   entity.attributes = []
+  resetAttribute()
+  document.getElementById('inputRef').value = ''
+  document.getElementById('inputRef').focus()
+  setTimeout(() => {
+    document.getElementById('attributeInput-rule_required').remove()
+  }, 100)
+}
+function resetAttribute() {
   newAttribute.name = ''
   newAttribute.enums = ''
   newAttribute.type = 'string'
-  document.getElementById('inputRef').focus()
-  // No success clearing attribute errors after using clearErrors, targeting with id, etc
+  document.getElementById('attributeInput').value = ''
+  document.getElementById('attributeInput').focus()
   setTimeout(() => {
-    clearErrors('attributeInput', true)
-  }, 200)
+    document.getElementById('attributeInput-rule_required').remove()
+  }, 100)
 }
 const submit = () => {
   entity._id = faker.database.mongodbObjectId()
   const clonedEntity = _.cloneDeep({ ...entity, name: camelize(entity.name) })
   toastEm(clonedEntity.name + ' added')
   addEntity(clonedEntity)
-  resetForm()
+  resetEntity()
 }
 const addAttribute = (e) => {
   e.preventDefault()
-  if (!attributeValid) return
+  if (!validAttributeName.value) return
   const attribute = {
     validators: [],
     validations: [],
@@ -87,10 +80,9 @@ const addAttribute = (e) => {
     label: camelize(newAttribute.name),
     _id: faker.database.mongodbObjectId(),
   }
-  newAttribute.name = ''
+
   entity.attributes.push(attribute)
-  // newAttribute.name = ''
-  document.getElementById('attributeInput').focus()
+  resetAttribute()
 }
 const attrRemove = (id) => {
   const idx = entity.attributes.findIndex((a) => a._id === id)
@@ -113,6 +105,7 @@ const attributeValid = computed(() => {
   return true
 })
 const entityValid = computed(() => {
+  if (entity.attributes.length > 0 && entity.name.length > 2) return true
   if (!attributeValid.value || entity.name.length < 3 || entity.attributes.length === 0) return false
   return true
 })
@@ -162,6 +155,7 @@ const inputClasses =
               name="plural"
               label="Plural"
               placeholder="banks"
+              v-model="entity.plural"
               :value="entity.plural"
               @input="
                 (e) => {
@@ -206,7 +200,7 @@ const inputClasses =
               id="attributeInput"
               v-model="newAttribute.name"
               validation-label="Attribute"
-              validation="required|length:2"
+              validation-visibility="dirty"
               placeholder="branch, transaction, statement..."
               :classes="{
                 input: inputClasses,
@@ -258,6 +252,7 @@ const inputClasses =
                 'bg-gray-300': !attributeValid,
                 'bg-opacity-80': !attributeValid,
                 'bg-green-500': attributeValid,
+                'dark:bg-green-500': attributeValid,
                 'cursor-not-allowed': !attributeValid,
               }"
             />
@@ -325,7 +320,7 @@ const inputClasses =
             :classes="{
               input: entityValid ? '' : 'cursor-not-allowed',
               outer: entityValid
-                ? 'mt-1 text-center p-1 rounded text-white font-bold text-lg bg-green-500 hover:shadow-lg'
+                ? 'mt-1 text-center p-1 rounded text-white font-bold text-lg dark:bg-green-500 bg-green-500 hover:shadow-lg'
                 : 'mt-1 text-center p-1 rounded text-white font-bold text-lg bg-gray-300 dark:bg-gray-800 opacity-80 shadow',
             }"
           >
