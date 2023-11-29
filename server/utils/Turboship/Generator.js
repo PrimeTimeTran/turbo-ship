@@ -88,18 +88,7 @@ export default class Generator {
       console.log('Files copied successfully!')
     } catch (err) {
       console.error('Error copying files:', err)
-      throw err // Propagate the error upwards if needed
-    }
-  }
-  async orchestrateProcess() {
-    try {
-      // Run buildAdminGlobalComponents and wait for its completion
-      await buildAdminGlobalComponents()
-      // Continue with other operations after buildAdminGlobalComponents completes
-      console.log('buildAdminGlobalComponents finished, continuing...')
-      // Other code here...
-    } catch (error) {
-      console.error('Error in orchestrateProcess:', error)
+      throw err
     }
   }
 }

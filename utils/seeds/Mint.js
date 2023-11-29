@@ -570,7 +570,7 @@ export const Mint = [
       {
         validators: [],
         validations: [],
-        type: 'text',
+        type: 'string',
         name: 'description',
         _id: '3beb8a3b3d68cbffddab2feb',
         relation: { type: null, name: null },
@@ -579,7 +579,7 @@ export const Mint = [
       {
         validators: [],
         validations: [],
-        type: 'text',
+        type: 'string',
         name: 'meta',
         _id: 'bf3bb0ddaf719cea923a3c8c',
         relation: { type: null, name: null },

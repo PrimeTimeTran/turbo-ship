@@ -179,5 +179,6 @@ const getColor = (field, house) => {
         </tr>
       </tbody>
     </table>
+    <AdminFormPagination :meta="meta" :fetchPage="fetchPage" />
   </div>
 </template>

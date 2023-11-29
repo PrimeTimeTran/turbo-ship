@@ -13,14 +13,10 @@ export default class Framework {
   setup() {
     const framework = frameworkMap[this.name]
     const root = '/tmp/turboship/' + framework.name
-    // Blocking, but we need these directories to exist.
-    // How long would it take a machine to create 10 files realistically? 5 seconds? 10?
-    // That's high ball estimate as well.
     try {
       fs.mkdirSync(root, { recursive: true })
-
       framework.rootDirectories.forEach((dir) => {
-        const fullPath = `/tmp/turboship/${this.name}/${dir}`
+        const fullPath = `${root}/${dir}`
         try {
           fs.mkdirSync(fullPath, { recursive: true })
           log('Create: ', fullPath, 'yellow')

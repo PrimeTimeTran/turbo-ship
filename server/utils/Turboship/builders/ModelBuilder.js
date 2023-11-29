@@ -30,18 +30,20 @@ export class ModelBuilder {
             fields[f.name].enumeratorType = 'string'
             fields[f.name].enumerators = {}
             const options = f.options?.split(',')
-            options.forEach((o) => {
-              fields[f.name].enumerators[o] = {
-                val: o,
-                color: null,
-              }
-            })
+            if (options) {
+              options.forEach((o) => {
+                fields[f.name].enumerators[o] = {
+                  val: o,
+                  color: null,
+                }
+              })
+            }
           }
         }
       })
+      this.e.fields = fields
+      this.e.tableFields = Object.keys(fields)
     }
-    this.e.fields = fields
-    this.e.tableFields = Object.keys(fields)
     return fields
   }
 
@@ -57,6 +59,7 @@ export class ModelBuilder {
     } else {
       fields = this.buildTransformation(attributes)
     }
+
     const [values, enumerators] = this.generateFields(fields, name)
 
     const buildImports = () => {
@@ -161,6 +164,12 @@ export class ModelBuilder {
 
   buildMongoose() {
     const values = []
+    if (this.e.name == 'wizard') {
+      // console.log({
+      //   name: this.e.name,
+      //   fields: this.e.fields,
+      // })
+    }
     for (const f in this.e.fields) {
       const field = this.e.fields[f]
       const { type, required, enumeratorType, relation, name } = field
@@ -187,12 +196,24 @@ export class ModelBuilder {
         }`
         values.push(item)
       } else {
-        const item = `${name}: {
+        if (this.e.name == 'wizard') {
+          console.log({
+            name,
+            field,
+            f,
+          })
+        }
+        const item = `${name || f}: {
           type: ${this.getType(capitalize(type))},
           ${required != undefined ? `required: ${required},` : ''}
         }`
         values.push(item)
       }
+    }
+    if (this.e.name == 'wizard') {
+      // console.log({
+      //   values,
+      // })
     }
     return values.join(',')
   }

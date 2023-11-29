@@ -38,16 +38,10 @@ export class Turboship {
     chosen.forEach((name) => {
       const collection = seeds[name]
       collection.forEach((e) => {
-        console.log({
-          entityName: e.name,
-        })
         this.entities[e.name] = e
       })
     })
     entities.forEach((e) => {
-      console.log({
-        entityName: e.name,
-      })
       this.entities[e.name] = e
     })
   }
