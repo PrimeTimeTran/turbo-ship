@@ -228,6 +228,8 @@ export const Mint = [
         _id: 'f66fd03735b45cad81d42d88',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Amount',
+        placeholder: 'Amount',
       },
       {
         validators: [],
@@ -237,6 +239,8 @@ export const Mint = [
         _id: '0ec5c1e2cfbb99fe37a844e7',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Status',
+        placeholder: 'pending,completed,cancelled,denied',
       },
       {
         validators: [],
@@ -245,6 +249,8 @@ export const Mint = [
         _id: 'b5b16d729dbbd5e6c87807be',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Date',
+        placeholder: '11/29/23',
       },
       {
         validators: [],
@@ -253,6 +259,8 @@ export const Mint = [
         _id: 'dbcd9fd9b6e64f52f07bf8dc',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Desc',
+        placeholder: 'Detailed description...',
       },
       {
         validators: [],
@@ -261,6 +269,8 @@ export const Mint = [
         relation: { type: 'mto', name: 'user' },
         _id: 'a51f1f44e1bcb61b32d3bdcc',
         validations: [],
+        label: 'User',
+        placeholder: 'john@gmail.com',
       },
       {
         validators: [],
@@ -269,6 +279,7 @@ export const Mint = [
         relation: { type: 'mto', name: 'account' },
         _id: 'acff83fa7aeae96c6d0b7a1c',
         validations: [],
+        label: 'Account',
       },
       {
         validators: [],

@@ -15,35 +15,21 @@ const collapseText = () => {
     class="opacity-[.7] hover:opacity-90 w-100 justify-end flex flex-col max-h-full"
   >
     <div class="self-end my-2">
-      <button
-        @click="collapse"
-        v-text="collapseText()"
-      />
+      <button class="dark:text-white font-semibold" @click="collapse" v-text="collapseText()" />
     </div>
     <div class="overflow-auto scrollbar-hide">
-      <draggable
-        tag="section"
-        :list="entities"
-        class="list-group"
-      >
+      <draggable tag="section" :list="entities" class="list-group">
         <template #item="{ element: entity }">
           <section
             :key="entity._id"
             class="my-1 mx-5 p-5 rounded odd:bg-zinc-100 even: bg-slate-100 dark:odd:bg-zinc-800 even: dark:bg-slate-800 dark:text-white border hover:shadow-xl"
           >
             <div class="flex flex-row justify-between">
-              <div
-                class="font-bold dark:text-white"
-                v-text="entity.name"
-              ></div>
+              <div class="font-bold dark:text-white" v-text="entity.name"></div>
               <div v-text="`Attributes (${entity.attributes.length})`"></div>
             </div>
             <div v-if="!collapsed">
-              <draggable
-                tag="ul"
-                class="list-group"
-                :list="entity.attributes"
-              >
+              <draggable tag="ul" class="list-group" :list="entity.attributes">
                 <template #item="{ element: attribute }">
                   <li
                     :key="attribute._id"

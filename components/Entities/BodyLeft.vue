@@ -49,6 +49,7 @@ const entity = reactive({
   name: ref(''),
   label: ref(''),
   plural: ref(''),
+  pluralL: ref(''),
   attributes: ref([]),
   _id: faker.database.mongodbObjectId(),
 })
@@ -57,6 +58,7 @@ const resetForm = () => {
   entity.name = ''
   entity.label = ''
   entity.plural = ''
+  entity.pluralL = ''
   entity.attributes = []
   newAttribute.name = ''
   newAttribute.enums = ''
@@ -114,7 +116,7 @@ const entityValid = computed(() => {
   return true
 })
 const inputClasses =
-  'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
+  'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80 overflow-auto'
 </script>
 <template>
   <div class="flex-col px-2 max-h-screen w-100">
@@ -149,17 +151,24 @@ const inputClasses =
                   entity.name = e
                   entity.plural = e + 's'
                   entity.label = e.toString().charAt(0).toUpperCase() + e.toString().slice(1)
+                  entity.pluralL = e.toString().charAt(0).toUpperCase() + e.toString().slice(1) + 's'
                   if (e == '') entity.plural = e + ''
                 }
               "
             />
+            <div class="dark:text-white">{{ entity.pluralL }}</div>
             <FormKit
               type="text"
               name="plural"
               label="Plural"
               placeholder="banks"
-              v-model="entity.plural"
-              @input="(e) => (entity.plural = e)"
+              :value="entity.plural"
+              @input="
+                (e) => {
+                  entity.plural = e
+                  entity.pluralL = e.toString().charAt(0).toUpperCase() + e.toString().slice(1) + 's'
+                }
+              "
               :classes="{
                 outer: 'mt-4',
                 input: inputClasses,
