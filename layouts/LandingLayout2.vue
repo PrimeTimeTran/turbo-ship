@@ -1,10 +1,5 @@
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" /> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>  -->
-<!-- 
-  Add flowbite by CDN to avoid clashing with daisyui
-  Removing flowbite from tailwind lets daisy work & tooltip/tab still works.
--->
 <script setup></script>
+
 <template>
   <div class="overflow-clip scrollbar-hide">
     <The.Navbar />
@@ -51,15 +46,62 @@
     <section
       class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
     >
-      3
+      <div class="collapse bg-base-200">
+        <input type="radio" name="my-accordion-1" checked="checked" />
+        <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
+        <div class="collapse-content">
+          <p>hello</p>
+        </div>
+      </div>
+      <div class="collapse bg-base-200">
+        <input type="radio" name="my-accordion-1" />
+        <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
+        <div class="collapse-content">
+          <p>hello</p>
+        </div>
+      </div>
+      <div class="collapse bg-base-200">
+        <input type="radio" name="my-accordion-1" />
+        <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
+        <div class="collapse-content">
+          <p>hello</p>
+        </div>
+      </div>
     </section>
     <section class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200">
-      4
+      <div class="tooltip" data-tip="hello">
+        <button class="btn">Hover me</button>
+      </div>
     </section>
     <section
       class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2 lg:p-96"
     >
-      <VAccordion />
+      <details class="dropdown">
+        <summary class="m-1 btn">open or close</summary>
+        <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+          <li><a>Item 1</a></li>
+          <li><a>Item 2</a></li>
+        </ul>
+      </details>
+    </section>
+    <section
+      class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2 lg:p-96"
+    >
+      <div role="tablist" class="tabs tabs-bordered">
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Tab 1" />
+        <div role="tabpanel" class="tab-content p-10">Tab content 1</div>
+
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Tab 2" checked />
+        <div role="tabpanel" class="tab-content p-10">Tab content 2</div>
+
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Tab 3" />
+        <div role="tabpanel" class="tab-content p-10">Tab content 3</div>
+      </div>
+    </section>
+    <section
+      class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2 lg:p-96"
+    >
+      7
     </section>
     <TheFooter />
   </div>

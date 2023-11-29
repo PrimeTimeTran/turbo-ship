@@ -4,9 +4,14 @@ title: About
 description: About
 ---
 
-# About
+# Muxter
 
-Technologies behind this app
+Mongo
+Vue
+Nuxt
+Flutter
+
+Muxter Deep Dive
 
 ## [Nuxt](https://nuxt.com/docs/getting-started/introduction)
 
@@ -17,6 +22,28 @@ Technologies behind this app
 - [Form Kit](https://formkit.com/getting-started/installation)
 - [Alpine](https://alpinejs.dev/essentials/state)
 - [ChartJS](https://www.chartjs.org/docs/latest/getting-started/)
+
+<!-- Internal -->
+- [Headless](https://headlessui.com/)
+- [Flowbite](https://flowbite.com/)
+  - VTabs
+  - VTooltip
+  - VDropdown
+  - VAccordian
+
+<!-- To Try -->
+- [PicoCSS](https://picocss.com/)
+- [DaisyUI](https://daisyui.com)
+
+  - Tabs
+    https://daisyui.com/components/tab/
+  - Tooltip
+    https://daisyui.com/components/tooltip/
+  - Dropdown
+    https://daisyui.com/components/dropdown/
+  - Accordian
+    https://daisyui.com/components/accordion/
+
 
 ### Backend
 - [Nitro](https://nitro.unjs.io/)
