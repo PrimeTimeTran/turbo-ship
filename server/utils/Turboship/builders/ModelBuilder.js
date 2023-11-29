@@ -1,5 +1,10 @@
 import path from 'path'
 import { camelize, getType, capitalize } from '../helpers.js'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export class ModelBuilder {
   constructor(entities, options) {
@@ -46,8 +51,12 @@ export class ModelBuilder {
       options,
       e: { name, label, attributes },
     } = this
-
-    const fields = this.buildTransformation(attributes)
+    let fields
+    if (name == 'wizard') {
+      fields = this.e.fields
+    } else {
+      fields = this.buildTransformation(attributes)
+    }
     const [values, enumerators] = this.generateFields(fields, name)
 
     const buildImports = () => {

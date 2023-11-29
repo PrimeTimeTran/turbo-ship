@@ -32142,33 +32142,35 @@ var init_AdminBuilder = __esm({
       buildEntities() {
         this.entities.map((e) => {
           this.e = e;
-          this.e.fields = {};
-          const fields = {};
-          const attributes = this.e.attributes;
-          if (attributes) {
-            attributes.forEach((f) => {
-              if (f.name !== "_id") {
-                fields[f.name] = { ...f };
-                const field = fields[f.name];
-                delete field._id;
-                if (f.type === "enumerator" || f.type === "enumeratorMulti") {
-                  field.enumeratorType = "string";
-                  field.enumerators = {};
-                  const options = f.options.split(",");
-                  options.forEach((o) => {
-                    field.enumerators[o] = {
-                      val: o,
-                      color: null
-                    };
-                  });
+          if (e.name !== "wizard") {
+            this.e.fields = {};
+            const fields = {};
+            const attributes = this.e.attributes;
+            if (attributes) {
+              attributes.forEach((f) => {
+                if (f.name !== "_id") {
+                  fields[f.name] = { ...f };
+                  const field = fields[f.name];
+                  delete field._id;
+                  if (f.type === "enumerator" || f.type === "enumeratorMulti") {
+                    field.enumeratorType = "string";
+                    field.enumerators = {};
+                    const options = f.options.split(",");
+                    options.forEach((o) => {
+                      field.enumerators[o] = {
+                        val: o,
+                        color: null
+                      };
+                    });
+                  }
+                  field.label = f.label;
+                  field.type = f.type;
+                  field.placeholder = f.label;
                 }
-                field.label = f.label;
-                field.type = f.type;
-                field.placeholder = f.label;
-              }
-            });
+              });
+            }
+            this.e.tableFields = Object.keys(fields);
           }
-          this.e.tableFields = Object.keys(fields);
           this.path = `${this.root}/${e.label}`;
           this.buildIndexPage();
           this.buildTable();
@@ -32542,7 +32544,7 @@ var init_AdminBuilder = __esm({
               </tr>
             </tbody>
           </table>
-          <admin-form-pagination :meta="meta" />
+          <AdminFormPagination :meta="meta" />
         </div>
       </template>
     `;
@@ -32709,12 +32711,17 @@ var init_AdminBuilder = __esm({
 });
 
 // server/utils/Turboship/builders/ModelBuilder.js
-var import_path3, ModelBuilder;
+var import_path3, import_url, import_path4, import_meta, __filename, __dirname, ModelBuilder;
 var init_ModelBuilder = __esm({
   "server/utils/Turboship/builders/ModelBuilder.js"() {
     "use strict";
     import_path3 = __toESM(require("path"), 1);
     init_helpers();
+    import_url = require("url");
+    import_path4 = require("path");
+    import_meta = {};
+    __filename = (0, import_url.fileURLToPath)(import_meta.url);
+    __dirname = (0, import_path4.dirname)(__filename);
     ModelBuilder = class {
       constructor(entities, options) {
         this.entities = entities;
@@ -32932,12 +32939,12 @@ var init_builders = __esm({
 });
 
 // server/utils/Turboship/Generator.js
-var import_fs3, import_path4, import_fs_extra, Generator, backends, capitalize2;
+var import_fs3, import_path5, import_fs_extra, Generator, backends, capitalize2;
 var init_Generator = __esm({
   "server/utils/Turboship/Generator.js"() {
     "use strict";
     import_fs3 = __toESM(require("fs"), 1);
-    import_path4 = __toESM(require("path"), 1);
+    import_path5 = __toESM(require("path"), 1);
     import_fs_extra = __toESM(require_lib4(), 1);
     init_builders();
     init_helpers();
@@ -33001,8 +33008,8 @@ var init_Generator = __esm({
       async buildAdminGlobalComponents() {
         const fullPath = "/tmp/turboship/nuxt";
         await makeDirRecursive(fullPath);
-        const sourcePath = import_path4.default.resolve("./server/utils/Turboship/nuxt");
-        const destPath = import_path4.default.resolve("/tmp/turboship/nuxt");
+        const sourcePath = import_path5.default.resolve("./server/utils/Turboship/nuxt");
+        const destPath = import_path5.default.resolve("/tmp/turboship/nuxt");
         console.log({
           sourcePath,
           destPath
@@ -35253,12 +35260,12 @@ var Turboship_exports = {};
 __export(Turboship_exports, {
   Turboship: () => Turboship
 });
-var import_fs5, import_path5, Turboship;
+var import_fs5, import_path6, Turboship;
 var init_Turboship = __esm({
   "server/utils/Turboship/index.js"() {
     "use strict";
     import_fs5 = __toESM(require("fs"), 1);
-    import_path5 = __toESM(require("path"), 1);
+    import_path6 = __toESM(require("path"), 1);
     init_source();
     init_esm();
     init_Framework();
@@ -35283,7 +35290,7 @@ var init_Turboship = __esm({
         const deleteFolderRecursive = function(dirPath) {
           if (import_fs5.default.existsSync(dirPath)) {
             import_fs5.default.readdirSync(dirPath).forEach(function(file) {
-              const curPath = import_path5.default.join(dirPath, file);
+              const curPath = import_path6.default.join(dirPath, file);
               if (import_fs5.default.lstatSync(curPath).isDirectory()) {
                 deleteFolderRecursive(curPath);
               } else {
@@ -35296,7 +35303,7 @@ var init_Turboship = __esm({
         deleteFolderRecursive(root);
         import_fs5.default.mkdirSync(root);
         ["rn", "flutter", "nuxt"].forEach((subDir) => {
-          const subDirPath = import_path5.default.join(root, subDir);
+          const subDirPath = import_path6.default.join(root, subDir);
           import_fs5.default.mkdirSync(subDirPath);
         });
       }
@@ -35308,10 +35315,16 @@ var init_Turboship = __esm({
         chosen.forEach((name) => {
           const collection = seeds_default[name];
           collection.forEach((e) => {
+            console.log({
+              entityName: e.name
+            });
             this.entities[e.name] = e;
           });
         });
         entities.forEach((e) => {
+          console.log({
+            entityName: e.name
+          });
           this.entities[e.name] = e;
         });
       }
@@ -35345,44 +35358,35 @@ var init_Turboship = __esm({
   }
 });
 
-// netlify/functions/build-muxter/build-muxter.mjs
-var fs6 = require("fs");
-var path6 = require("path");
+// netlify/functions/build-muxter/build-muxter.js
 var JSZip = require_lib3();
 var { Turboship: Turboship2 } = (init_Turboship(), __toCommonJS(Turboship_exports));
+var fs6 = require("fs");
+var path6 = require("path");
 async function addFolderToZip(zip, folderPath, parentFolderName) {
   const files = await fs6.promises.readdir(folderPath);
-  const promises = [];
   for (const file of files) {
     const filePath = path6.join(folderPath, file);
     const stat = await fs6.promises.stat(filePath);
     if (stat.isDirectory()) {
       const subFolderName = path6.join(parentFolderName, file);
-      promises.push(addFolderToZip(zip, filePath, subFolderName));
+      await addFolderToZip(zip, filePath, subFolderName);
     } else {
       const content = await fs6.promises.readFile(filePath);
       const relativePath = path6.join(parentFolderName, file);
       zip.file(relativePath, content);
     }
   }
-  await Promise.all(promises);
 }
 exports.handler = async (event, context) => {
   try {
     fs6.rmSync("/tmp/turboship", { recursive: true, force: true });
     const body = JSON.parse(event.body);
-    console.log("Starting src gen...");
     await new Turboship2("/tmp/turboship", body);
-    await new Promise((resolve) => setImmediate(resolve));
-    await new Promise(
-      (resolve) => setTimeout(() => {
-        resolve();
-      }, 9e3)
-    );
-    console.log("Zipping...");
     const zip = new JSZip();
     await addFolderToZip(zip, "/tmp/turboship/flutter", "flutter");
     await addFolderToZip(zip, "/tmp/turboship/nuxt", "nuxt");
+    await new Promise((resolve) => setTimeout(resolve, 9e3));
     const zipFile = await zip.generateAsync({ type: "base64" });
     const response = {
       headers: {

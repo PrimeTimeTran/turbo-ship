@@ -10,6 +10,8 @@ export const LMS = [
       'firstName',
       'lastName',
       'house',
+      'topSpells',
+      'bookAppearances',
       'city',
       'country',
       'jobTitle',
@@ -21,8 +23,6 @@ export const LMS = [
       'dada',
       'gender',
       'fanScore',
-      'topSpells',
-      'bookAppearances',
     ],
     fields: {
       email: {

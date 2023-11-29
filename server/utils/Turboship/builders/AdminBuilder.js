@@ -32,34 +32,36 @@ export class AdminBuilder {
   buildEntities() {
     this.entities.map((e) => {
       this.e = e
-      this.e.fields = {}
-      const fields = {}
-      const attributes = this.e.attributes
-      if (attributes) {
-        attributes.forEach((f) => {
-          if (f.name !== '_id') {
-            fields[f.name] = { ...f }
-            const field = fields[f.name]
-            delete field._id
-            if (f.type === 'enumerator' || f.type === 'enumeratorMulti') {
-              field.enumeratorType = 'string'
-              field.enumerators = {}
-              const options = f.options.split(',')
-              options.forEach((o) => {
-                field.enumerators[o] = {
-                  val: o,
-                  color: null,
-                }
-              })
-            }
-            field.label = f.label
-            field.type = f.type
-            field.placeholder = f.label
-          }
-        })
-      }
 
-      this.e.tableFields = Object.keys(fields)
+      if (e.name !== 'wizard') {
+        this.e.fields = {}
+        const fields = {}
+        const attributes = this.e.attributes
+        if (attributes) {
+          attributes.forEach((f) => {
+            if (f.name !== '_id') {
+              fields[f.name] = { ...f }
+              const field = fields[f.name]
+              delete field._id
+              if (f.type === 'enumerator' || f.type === 'enumeratorMulti') {
+                field.enumeratorType = 'string'
+                field.enumerators = {}
+                const options = f.options.split(',')
+                options.forEach((o) => {
+                  field.enumerators[o] = {
+                    val: o,
+                    color: null,
+                  }
+                })
+              }
+              field.label = f.label
+              field.type = f.type
+              field.placeholder = f.label
+            }
+          })
+        }
+        this.e.tableFields = Object.keys(fields)
+      }
       this.path = `${this.root}/${e.label}`
 
       this.buildIndexPage()
@@ -435,7 +437,7 @@ export class AdminBuilder {
               </tr>
             </tbody>
           </table>
-          <admin-form-pagination :meta="meta" />
+          <AdminFormPagination :meta="meta" />
         </div>
       </template>
     `

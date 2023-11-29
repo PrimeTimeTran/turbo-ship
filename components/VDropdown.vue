@@ -49,7 +49,6 @@ function toggleOpen() {
                   item.groupEnd ? 'border-b-2 border-b-gray-300' : '',
                 ]"
               >
-
                 <VToolTip v-if="item.doubleKey" :tip="item.tip" :id="item.id" :tool="replaceWithDoubleUnderline(item.name, item.underline)">
                   <!-- <span v-html="replaceWithUnderline(item.name, item.underline)" /> -->
                 </VToolTip>

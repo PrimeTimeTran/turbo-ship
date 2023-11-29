@@ -2,12 +2,15 @@ console.log('Setup custom hotkeys')
 
 export function setupHotkeys() {
   hotkeys(
-    'alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1, cmd+alt+d, cmd+alt+o',
+    'alt+g, alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1, cmd+alt+d, cmd+alt+o',
     function (event, handler) {
       console.log('EnsureLoad click')
       switch (handler.key) {
         case 'alt+f':
           document.getElementById('FileMenu').click()
+          break
+        case 'alt+g':
+          document.getElementById('GenerateSubmenu').click()
           break
         case 'alt+l':
           document.getElementById('showLeft').click()
