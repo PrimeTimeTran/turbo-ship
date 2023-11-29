@@ -47,7 +47,6 @@
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.9.4",
     "@tailwindcss/typography": "^0.5.10",
-    "@vueform/nuxt": "^1.1.0",
     "@vueuse/core": "^10.5.0",
     "animated-scroll-to": "^2.3.0",
     "archiver": "^6.0.1",

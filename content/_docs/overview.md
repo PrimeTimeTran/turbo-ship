@@ -18,14 +18,6 @@ Technologies behind this app
 - [Alpine](https://alpinejs.dev/essentials/state)
 - [ChartJS](https://www.chartjs.org/docs/latest/getting-started/)
 
-<!-- Internal -->
-- [Headless](https://headlessui.com/)
-- [Flowbite](https://flowbite.com/)
-
-<!-- To Try -->
-- [PicoCSS](https://picocss.com/)
-- [DaisyUI](https://daisyui.com)
-
 ### Backend
 - [Nitro](https://nitro.unjs.io/)
 - [Mongoose](https://mongoosejs.com/docs/)
