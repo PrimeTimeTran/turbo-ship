@@ -1,8 +1,5 @@
 <script setup>
 const { entities } = useEntities()
-watch(entities, () => {
-  setCanvasDimensions()
-})
 function drawEntities() {
   // Todo: Enable vertical scroll if content grows taller than viewport
   if (canvas.value.getContext) {
@@ -10,6 +7,7 @@ function drawEntities() {
     let startY = 10
     let startX = 10
     let col = 1
+    ctx.fillStyle = 'grey'
     ctx.font = '30px serif'
     entities.forEach((e) => {
       startX += 10
@@ -44,9 +42,7 @@ function drawEntities() {
     })
   }
 }
-
 const canvas = ref(null)
-
 function setCanvasDimensions() {
   if (process.browser) {
     canvas.value = document.getElementById('canvas')
@@ -57,10 +53,10 @@ function setCanvasDimensions() {
     drawEntities()
   }
 }
-
 onMounted(() => {
-  // document.getElementById('showLeft').click()
-  // document.getElementById('showRight').click()
+  setCanvasDimensions()
+})
+watch(entities, () => {
   setCanvasDimensions()
 })
 </script>

@@ -72,7 +72,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
-        label: 'Last Name',
+        label: 'FirstName',
         placeholder: 'John',
       },
       {
@@ -82,7 +82,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
-        label: 'First Name',
+        label: 'LastName',
         placeholder: 'Doe ',
       },
       {
@@ -103,7 +103,7 @@ export const Mint = [
         validations: [],
         relation: { type: null, name: null },
         placeholder: 'true',
-        label: 'owner',
+        label: 'Owner',
       },
       {
         validators: [],
@@ -123,9 +123,9 @@ export const Mint = [
         type: 'relation',
         _id: '5df7f9807cf4d62f17b0b9af',
         relation: { type: 'otm', name: 'message' },
-        label: '',
+        label: 'Messages',
       },
-      { name: '_id', type: 'string', _id: '5f6ab0bbfb54cf51242ddb6a', validators: [], validations: [] },
+      { name: '_id', type: 'string', _id: '5f6ab0bbfb54cf51242ddb6a', validators: [], validations: [], label: '_id' },
     ],
   },
   {
@@ -142,10 +142,10 @@ export const Mint = [
         _id: 'ebed2ca23c6cc8f44afff397',
         validations: [],
         relation: { type: 'mto', name: 'user' },
-        label: 'Owner',
+        label: 'User',
         placeholder: 'john@gmail.com',
       },
-      { name: '_id', type: 'string', _id: '3a1fa3ceb681ccd0bfa9ffbf', validators: [], validations: [] },
+      { name: '_id', type: 'string', _id: '3a1fa3ceb681ccd0bfa9ffbf', validators: [], validations: [], label: '_id' },
       {
         validators: [],
         name: 'balance',
@@ -193,6 +193,7 @@ export const Mint = [
         _id: 'e94b64fd360d25f8335ba9bb',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Number',
       },
       {
         validators: [],
@@ -201,6 +202,7 @@ export const Mint = [
         _id: 'a42ede376f3edf8e23dc685e',
         validations: [],
         relation: { type: null, name: null },
+        label: 'RoutingNumber',
       },
       {
         validators: [],
@@ -220,7 +222,7 @@ export const Mint = [
     label: 'Transaction',
     pluralL: 'Transactions',
     attributes: [
-      { name: '_id', type: 'string', _id: 'b8eccaecb1ac1e8725efec2b', validators: [], validations: [] },
+      { name: '_id', type: 'string', _id: 'b8eccaecb1ac1e8725efec2b', validators: [], validations: [], label: '_id' },
       {
         validators: [],
         name: 'amount',
@@ -228,6 +230,7 @@ export const Mint = [
         _id: 'f66fd03735b45cad81d42d88',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Amount',
       },
       {
         validators: [],
@@ -237,6 +240,7 @@ export const Mint = [
         _id: '0ec5c1e2cfbb99fe37a844e7',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Status',
       },
       {
         validators: [],
@@ -245,6 +249,7 @@ export const Mint = [
         _id: 'b5b16d729dbbd5e6c87807be',
         validations: [],
         relation: { type: null, name: null },
+        label: 'ChargeDate',
       },
       {
         validators: [],
@@ -253,6 +258,7 @@ export const Mint = [
         _id: 'dbcd9fd9b6e64f52f07bf8dc',
         validations: [],
         relation: { type: null, name: null },
+        label: 'Description',
       },
       {
         validators: [],
@@ -261,6 +267,7 @@ export const Mint = [
         relation: { type: 'mto', name: 'user' },
         _id: 'a51f1f44e1bcb61b32d3bdcc',
         validations: [],
+        label: 'User',
       },
       {
         validators: [],
@@ -269,6 +276,7 @@ export const Mint = [
         relation: { type: 'mto', name: 'account' },
         _id: 'acff83fa7aeae96c6d0b7a1c',
         validations: [],
+        label: 'Account',
       },
       {
         validators: [],
@@ -277,6 +285,7 @@ export const Mint = [
         relation: { type: 'mto', name: 'branch' },
         _id: 'ce0ffe8cfedbb01fa2f5dc3f',
         validations: [],
+        label: 'Branch',
       },
       {
         validators: [],
@@ -285,6 +294,7 @@ export const Mint = [
         relation: { type: 'mto', name: 'bank' },
         _id: '984e2fb0aefbdf9ca7f280ef',
         validations: [],
+        label: 'Bank',
       },
     ],
   },
@@ -295,7 +305,7 @@ export const Mint = [
     label: 'Bank',
     pluralL: 'Banks',
     attributes: [
-      { name: '_id', type: 'string', _id: 'd726f6c6ae9dbeb8f8c5fc04', validators: [], validations: [] },
+      { name: '_id', type: 'string', _id: 'd726f6c6ae9dbeb8f8c5fc04', validators: [], validations: [], label: '_id' },
       {
         name: 'name',
         type: 'string',
@@ -303,6 +313,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Name',
       },
       {
         name: 'ceo',
@@ -311,6 +322,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Ceo',
       },
       {
         name: 'logoURL',
@@ -319,6 +331,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'LogoURL',
       },
       {
         name: 'creditRating',
@@ -328,6 +341,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'CreditRating',
       },
       {
         name: 'employeeCount',
@@ -336,6 +350,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'EmployeeCount',
       },
       {
         name: 'hq',
@@ -344,6 +359,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Hq',
       },
       {
         validators: [],
@@ -352,6 +368,7 @@ export const Mint = [
         relation: { type: 'otm', name: 'branch' },
         _id: '67041d6acede08e4eae8cb33',
         validations: [],
+        label: 'Branches',
       },
       {
         validators: [],
@@ -360,6 +377,7 @@ export const Mint = [
         relation: { type: 'otm', name: 'account' },
         _id: '5c8ebbce5f1cd7add8fbbaf3',
         validations: [],
+        label: 'Accounts',
       },
       {
         validators: [],
@@ -368,6 +386,7 @@ export const Mint = [
         relation: { type: 'otm', name: 'user' },
         _id: 'c17fab9cec56ab42a572fa13',
         validations: [],
+        label: 'Users',
       },
       {
         validators: [],
@@ -376,6 +395,7 @@ export const Mint = [
         relation: { type: 'otm', name: 'user' },
         _id: '91c0354c89aad627bad7ee81',
         validations: [],
+        label: 'Transactions',
       },
     ],
   },
@@ -386,7 +406,7 @@ export const Mint = [
     label: 'Branch',
     pluralL: 'Branches',
     attributes: [
-      { name: '_id', type: 'string', _id: 'befac3c44322aae773fe0c8d', validators: [], validations: [] },
+      { name: '_id', type: 'string', _id: 'befac3c44322aae773fe0c8d', validators: [], validations: [], label: '_id' },
       {
         name: 'location',
         type: 'string',
@@ -394,6 +414,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Location',
       },
       {
         name: 'phone',
@@ -402,6 +423,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Phone',
       },
       {
         name: 'manager',
@@ -410,6 +432,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Manager',
       },
       {
         validators: [],
@@ -418,6 +441,7 @@ export const Mint = [
         relation: { type: 'otm', name: 'account' },
         _id: '0d4a88ee4eecabfb510fbaff',
         validations: [],
+        label: 'Accounts',
       },
       {
         validators: [],
@@ -426,6 +450,7 @@ export const Mint = [
         relation: { type: 'otm', name: 'user' },
         _id: 'e7d4fd7aebca50aa19cf4a90',
         validations: [],
+        label: 'Users',
       },
       {
         validators: [],
@@ -434,6 +459,7 @@ export const Mint = [
         relation: { type: 'otm', name: 'transaction' },
         _id: 'bcccb89665db4cc3dbdc9702',
         validations: [],
+        label: 'Transactions',
       },
       {
         validators: [],
@@ -442,6 +468,7 @@ export const Mint = [
         relation: { type: 'mto', name: 'bank' },
         _id: 'f7939e9ecaeefedeac928e92',
         validations: [],
+        label: 'Bank',
       },
     ],
   },
@@ -459,6 +486,7 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Body',
       },
       {
         validators: [],
@@ -467,6 +495,7 @@ export const Mint = [
         relation: { type: 'mto', name: 'user' },
         name: 'user',
         _id: '23da767f77e3c87f05df80ce',
+        label: 'User',
       },
     ],
   },
@@ -475,17 +504,105 @@ export const Mint = [
     label: 'Product',
     plural: 'products',
     attributes: [
-      { validators: [], validations: [], type: 'string', name: 'companyUrl', _id: '4acfff5b2e00ed48f4e89fc4' },
-      { validators: [], validations: [], type: 'enumerator', name: 'type', _id: 'a4bef4b64787f89aacd0c1ff' },
-      { validators: [], validations: [], type: 'string', name: 'title', _id: '851a7a5d44f14fad1b78aebe' },
-      { validators: [], validations: [], type: 'string', name: 'imageUrl', _id: '94f4f21ad2f5dfdff163bad5' },
-      { validators: [], validations: [], type: 'string', name: 'linkForm', _id: '4c79a90f8f4242c48d0f5cf5' },
-      { validators: [], validations: [], type: 'string', name: 'linkTerms', _id: 'fa001a1b295dad7eadbc04db' },
-      { validators: [], validations: [], type: 'string', name: 'linkDisclosure', _id: '6a9fec5a196f55a30bb51dea' },
-      { validators: [], validations: [], type: 'text', name: 'description', _id: '3beb8a3b3d68cbffddab2feb' },
-      { validators: [], validations: [], type: 'text', name: 'meta', _id: 'bf3bb0ddaf719cea923a3c8c' },
-      { validators: [], validations: [], type: 'enumerator', name: 'insuranceType', _id: '8ded18f527bfd644eaff8e41' },
-      { validators: [], validations: [], type: 'string', name: 'linkInsuranceQuote', _id: '9e4507dde31b9d41b5d6ba1f' },
+      {
+        validators: [],
+        validations: [],
+        type: 'string',
+        name: 'companyUrl',
+        _id: '4acfff5b2e00ed48f4e89fc4',
+        relation: { type: null, name: null },
+        label: 'CompanyUrl',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'enumerator',
+        name: 'type',
+        _id: 'a4bef4b64787f89aacd0c1ff',
+        relation: { type: null, name: null },
+        label: 'Type',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'string',
+        name: 'title',
+        _id: '851a7a5d44f14fad1b78aebe',
+        relation: { type: null, name: null },
+        label: 'Title',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'string',
+        name: 'imageUrl',
+        _id: '94f4f21ad2f5dfdff163bad5',
+        relation: { type: null, name: null },
+        label: 'ImageUrl',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'string',
+        name: 'linkForm',
+        _id: '4c79a90f8f4242c48d0f5cf5',
+        relation: { type: null, name: null },
+        label: 'LinkForm',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'string',
+        name: 'linkTerms',
+        _id: 'fa001a1b295dad7eadbc04db',
+        relation: { type: null, name: null },
+        label: 'LinkTerms',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'string',
+        name: 'linkDisclosure',
+        _id: '6a9fec5a196f55a30bb51dea',
+        relation: { type: null, name: null },
+        label: 'LinkDisclosure',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'text',
+        name: 'description',
+        _id: '3beb8a3b3d68cbffddab2feb',
+        relation: { type: null, name: null },
+        label: 'Description',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'text',
+        name: 'meta',
+        _id: 'bf3bb0ddaf719cea923a3c8c',
+        relation: { type: null, name: null },
+        label: 'Meta',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'enumerator',
+        name: 'insuranceType',
+        _id: '8ded18f527bfd644eaff8e41',
+        relation: { type: null, name: null },
+        label: 'InsuranceType',
+      },
+      {
+        validators: [],
+        validations: [],
+        type: 'string',
+        name: 'linkInsuranceQuote',
+        _id: '9e4507dde31b9d41b5d6ba1f',
+        relation: { type: null, name: null },
+        label: 'LinkInsuranceQuote',
+      },
     ],
     _id: '308125ed79bddab87be3cabd',
   },

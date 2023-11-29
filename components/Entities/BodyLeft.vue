@@ -84,6 +84,7 @@ const addAttribute = (e) => {
     validations: [],
     type: newAttribute.type,
     name: camelize(newAttribute.name),
+    label: camelize(newAttribute.name),
     _id: faker.database.mongodbObjectId(),
   }
   newAttribute.name = ''
@@ -156,7 +157,6 @@ const inputClasses =
                 }
               "
             />
-            <div class="dark:text-white">{{ entity.pluralL }}</div>
             <FormKit
               type="text"
               name="plural"
@@ -347,7 +347,7 @@ const inputClasses =
   max-height: 50vh;
 }
 .bottom {
-  max-height: 28vh;
+  max-height: 25vh;
 }
 
 .limit-width {

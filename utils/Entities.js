@@ -93,3 +93,17 @@ export function addRelations(entities) {
   })
   return newEntities
 }
+
+export function generateLabels(entities) {
+  const newEntities = []
+
+  entities.forEach((e) => {
+    e.attributes.forEach((a) => {
+      if (!a.label) a.label = capitalize(camelize(a.name))
+    })
+    newEntities.push(e)
+  })
+  return newEntities
+}
+
+export function prepGenerate(entities) {}
