@@ -163,32 +163,36 @@ export class ModelBuilder {
   }
 
   buildMongoose() {
-    const values = []
-    if (this.e.name == 'wizard') {
-      // console.log({
-      //   name: this.e.name,
-      //   fields: this.e.fields,
-      // })
+    const relationMap = {
+      otm: function (relation) {
+        return `{ type: Schema.Types.ObjectId, ref: "${relation.name}" }`
+      },
+      mto: function (relation) {
+        return `[{ type: Schema.Types.ObjectId, ref: '${relation.name}' }]`
+      },
     }
+    function buildRequired(required) {
+      return `${required != undefined ? `required: ${required},` : ''}`
+    }
+    const values = []
     for (const f in this.e.fields) {
       const field = this.e.fields[f]
       const { type, required, enumeratorType, relation, name } = field
+      const fieldName = name || f
       if (type === 'relation') {
-        let item
-        if (field.relation.type === 'otm') {
-          item = `${name}: {
-            ${required != undefined ? `required: ${required},` : ''}
-            type: [{ type: Schema.Types.ObjectId, ref: "${relation.name}" }],
-          }`
-        } else if (field.relation.type === 'mto') {
-          item = `${name}: {
-            ${required != undefined ? `required: ${required},` : ''}
-            type: { type: Schema.Types.ObjectId, ref: "${relation.name}" },
-          }`
+        // 1:1, 1:many, many:1, many:many
+        // Need to support all the different relationships.
+        // Guarding against null values for relationships
+        const fn = relationMap[type]
+        if (fn) {
+          let item = `${fieldName}: {
+              ${buildRequired(required)}
+              type: ${fn(relation)},
+            }`
+          values.push(item)
         }
-        values.push(item)
       } else if (type == 'enumerator' || type == 'enumeratorMulti') {
-        const item = `${name}: {
+        const item = `${fieldName}: {
           ${required != undefined ? `required: ${required},` : ''}
           type: [
             ${capitalize(enumeratorType)}
@@ -196,24 +200,13 @@ export class ModelBuilder {
         }`
         values.push(item)
       } else {
-        if (this.e.name == 'wizard') {
-          console.log({
-            name,
-            field,
-            f,
-          })
-        }
-        const item = `${name || f}: {
+        // Because FE entities dont match hardcoded entities 100% yet.
+        const item = `${fieldName}: {
           type: ${this.getType(capitalize(type))},
           ${required != undefined ? `required: ${required},` : ''}
         }`
         values.push(item)
       }
-    }
-    if (this.e.name == 'wizard') {
-      // console.log({
-      //   values,
-      // })
     }
     return values.join(',')
   }

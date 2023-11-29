@@ -394,7 +394,7 @@ export class AdminBuilder {
     <script setup>
       const props = defineProps(['searching'])
 
-      const { ${e.plural}, sort, meta, fetchFiltered${e.pluralL} } = use${e.pluralL}()
+      const { ${e.plural}, sort, meta, fetchPage, fetchFiltered${e.pluralL} } = use${e.pluralL}()
 
       const sortFields = reactive(${buildSortFields(e)})
 
@@ -437,7 +437,7 @@ export class AdminBuilder {
               </tr>
             </tbody>
           </table>
-          <AdminFormPagination :meta="meta" />
+          <AdminFormPagination :meta="meta" :fetchPage="fetchPage" />
         </div>
       </template>
     `
