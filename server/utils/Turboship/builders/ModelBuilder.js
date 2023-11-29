@@ -29,7 +29,7 @@ export class ModelBuilder {
           if (f.type === 'enumerator' || f.type === 'enumeratorMulti') {
             fields[f.name].enumeratorType = 'string'
             fields[f.name].enumerators = {}
-            const options = f.options.split(',')
+            const options = f.options?.split(',')
             options.forEach((o) => {
               fields[f.name].enumerators[o] = {
                 val: o,

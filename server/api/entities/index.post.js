@@ -5,7 +5,6 @@ import path from 'path'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const root = path.join('/tmp/turboship')
-  await Turboship.cleanse(root)
   const value = await new Turboship(root, body)
   await new Promise((resolve) => {
     setTimeout(resolve, 5000)

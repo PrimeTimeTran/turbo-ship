@@ -91,10 +91,8 @@ function getBookAppearancesColor(field, key) {
             The result is this table doesn't rerender when the API request completes regardless of outcome.
           -->
     <admin-wizards-form :searching="searching" :fetchFilteredWizards="fetchFilteredWizards" />
-    <admin-form-pagination :meta="meta" :fetchPage="fetchPage" />
-    <table
-      class="overflow-x-auto my-6 border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950"
-    >
+
+    <table class="overflow-x-auto border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950">
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
           <th
@@ -326,5 +324,6 @@ function getBookAppearancesColor(field, key) {
         </tr>
       </tbody>
     </table>
+    <admin-form-pagination :meta="meta" :fetchPage="fetchPage" />
   </div>
 </template>

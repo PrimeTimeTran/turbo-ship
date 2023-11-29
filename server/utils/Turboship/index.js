@@ -29,30 +29,6 @@ export class Turboship {
     return program.opts()
   }
 
-  static async cleanse(root) {
-    const deleteFolderRecursive = function (dirPath) {
-      if (fs.existsSync(dirPath)) {
-        fs.readdirSync(dirPath).forEach(function (file) {
-          const curPath = path.join(dirPath, file)
-          if (fs.lstatSync(curPath).isDirectory()) {
-            deleteFolderRecursive(curPath)
-          } else {
-            fs.unlinkSync(curPath)
-          }
-        })
-        fs.rmdirSync(dirPath)
-      }
-    }
-
-    deleteFolderRecursive(root)
-
-    fs.mkdirSync(root)
-    ;['rn', 'flutter', 'nuxt'].forEach((subDir) => {
-      const subDirPath = path.join(root, subDir)
-      fs.mkdirSync(subDirPath)
-    })
-  }
-
   buildEntities(entities) {
     const entityTemplates = ['mint', 'bank', 'lms', 'social', 'pm', 'customer']
     const keys = Object.values(this.options.entities)

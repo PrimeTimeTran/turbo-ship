@@ -1,5 +1,12 @@
 <script setup>
 useHead({
+  link: [
+    {
+      type: 'text/yaml',
+      rel: 'cms-config-url',
+      href: 'writer/config.yml',
+    },
+  ],
   script: [
     {
       innerHTML: 'console.log("Admin scripts loading...")',
