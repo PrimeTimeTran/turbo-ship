@@ -8,7 +8,7 @@ import seeds from '../../../utils/seeds/seeds'
 import { log, prettify } from './helpers.js'
 
 export class Turboship {
-  supportedFrameworks = ['flutter', 'nuxt', 'react-native']
+  supportedFrameworks = ['flutter', 'nuxt', 'rn']
   constructor(root, entities) {
     this.entities = {}
     this.options = this.options()

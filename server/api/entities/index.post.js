@@ -1,6 +1,6 @@
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
-import { readFile } from 'fs/promises';
+import { readFile } from 'fs/promises'
 import path from 'path'
 
 export const __filename = fileURLToPath(import.meta.url)
@@ -8,20 +8,20 @@ export const dirName = dirname(__filename)
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
-  const root = path.join(dirName, '../../temp/')
+  const root = path.join('/tmp/turboship')
   await Turboship.cleanse(root)
   const value = await new Turboship(root, body)
   await new Promise((resolve) => {
     setTimeout(resolve, 5000)
   })
-  const zipFilePath = join(dirName, '../../output.zip')
+  const zipFilePath = join('/tmp', 'muxter.zip')
 
   try {
     const zipFileContent = await readFile(zipFilePath)
 
     const responseHeaders = {
       'Content-Type': 'application/zip',
-      'Content-Disposition': 'attachment; filename=output.zip',
+      'Content-Disposition': 'attachment; filename=muxter.zip',
     }
 
     setResponseHeaders(event, responseHeaders)

@@ -4,7 +4,7 @@ import fsExtra from 'fs-extra'
 
 import { ModelBuilder, AdminBuilder } from './builders/index.js'
 
-import { makeDirRecursive } from './helpers.js'
+import { dirName, makeDirRecursive } from './helpers.js'
 
 import { frameworkMap } from './Framework.js'
 
@@ -26,7 +26,7 @@ export default class Generator {
   buildRoutes() {
     const routes = frameworkMap[this.options.backend].apiFiles
     this.entities.map((e) => {
-      const fullPath = `${this.root}/server/API/${e.plural}`
+      const fullPath = `/tmp/turboship/nuxt/server/API/${e.plural}`
       makeDirRecursive(fullPath)
       routes.forEach((r) => {
         const fileName = r + this.options.language
@@ -39,7 +39,7 @@ export default class Generator {
   buildModels() {
     const backend = new ModelBuilder(this.entities, this.options)
     this.entities.map((e) => {
-      let fullPath = `${this.root}/server/models`
+      let fullPath = `/tmp/turboship/nuxt/server/models`
       backend.e = e
       makeDirRecursive(fullPath)
       const content = backend.buildModel()
@@ -52,7 +52,7 @@ export default class Generator {
       const admin = new AdminBuilder(this.entities, this.options)
       admin.e = e
 
-      let fullPath = `${this.root}/components/Admin/${e.label}s`
+      let fullPath = `/tmp/turboship/nuxt/components/Admin/${e.label}s`
       makeDirRecursive(fullPath)
 
       frameworkMap[this.options.backend].adminUIFiles.forEach((fileName) => {
@@ -60,25 +60,25 @@ export default class Generator {
         fs.writeFileSync(`${fullPath}/${fileName}`, content)
       })
 
-      fullPath = `${this.root}/pages/Admin/${e.label}s`
+      fullPath = `/tmp/turboship/nuxt/pages/Admin/${e.label}s`
       makeDirRecursive(fullPath)
 
       let content = admin.buildIndexPage()
       fs.writeFileSync(`${fullPath}/index.vue`, content)
 
       content = admin.buildEntityUseHook()
-      fs.writeFileSync(`${this.root}/composables/use${capitalize(e.plural)}.${this.options.language}`, content)
+      fs.writeFileSync(`/tmp/turboship/nuxt/composables/use${capitalize(e.plural)}.${this.options.language}`, content)
     })
     const content = AdminBuilder.buildAside(this.entities)
-    fs.writeFileSync(`${this.root}/components/Admin/Aside.vue`, content)
+    fs.writeFileSync(`/tmp/turboship/nuxt/components/Admin/Aside.vue`, content)
   }
 
   buildAdminGlobalComponents() {
-    const fullPath = this.root
+    const fullPath = '/tmp/turboship/nuxt'
     makeDirRecursive(fullPath)
 
-    const sourcePath = path.resolve(fullPath, '../../server/utils/Turboship/nuxt')
-    const destPath = path.resolve(fullPath, '../../temp/nuxt')
+    const sourcePath = path.resolve(dirName, '../../server/utils/Turboship/nuxt')
+    const destPath = path.resolve('/tmp/turboship/nuxt')
     fsExtra
       .copy(sourcePath, destPath)
       .then(() => {

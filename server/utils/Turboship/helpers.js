@@ -33,7 +33,7 @@ export const capitalize = (word) => {
 }
 
 export async function prettify(root) {
-  const tmp = path.join(root, '../temp')
+  const tmp = path.join('/tmp/turboship/nuxt')
   const cmd = `npx prettier --write "${tmp}/**/*.{ts,js,vue}"`
   await exec(cmd, (prettierError, prettierStdout) => {
     if (prettierError) {
@@ -46,8 +46,8 @@ export async function prettify(root) {
 }
 
 export function zipUp(root) {
-  const folderPath = path.join(root, '../temp')
-  const outputZipFilePath = path.join(root, '../output.zip')
+  const folderPath = path.join('/tmp/turboship')
+  const outputZipFilePath = '/tmp/muxter.zip'
 
   const output = fs.createWriteStream(outputZipFilePath)
   const archive = archiver('zip', {
@@ -110,17 +110,7 @@ export function getType(name, type, key) {
   }
 }
 
-export const colors = [
-  'red',
-  'pink',
-  'purple',
-  'green',
-  'indigo',
-  'blue',
-  'teal',
-  'yellow',
-  'teal',
-]
+export const colors = ['red', 'pink', 'purple', 'green', 'indigo', 'blue', 'teal', 'yellow', 'teal']
 
 export function makeDirRecursive(fullPath) {
   fs.mkdirSync(fullPath, { recursive: true }, (err) => {
