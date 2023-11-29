@@ -303,6 +303,8 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Name',
+        placeholder: 'Bank of America...',
       },
       {
         name: 'ceo',
@@ -311,6 +313,8 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'CEO',
+        placeholder: 'Brian Moynihan...',
       },
       {
         name: 'logoURL',
@@ -328,6 +332,8 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Rating',
+        placeholder: 'A+',
       },
       {
         name: 'employeeCount',
@@ -336,6 +342,8 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'Employee Count',
+        placeholder: '250,000...',
       },
       {
         name: 'hq',
@@ -344,6 +352,8 @@ export const Mint = [
         validators: [],
         validations: [],
         relation: { type: null, name: null },
+        label: 'HQ Location',
+        placeholder: 'Charlotte, NC',
       },
       {
         validators: [],
@@ -360,6 +370,7 @@ export const Mint = [
         relation: { type: 'otm', name: 'account' },
         _id: '5c8ebbce5f1cd7add8fbbaf3',
         validations: [],
+        label: '',
       },
       {
         validators: [],

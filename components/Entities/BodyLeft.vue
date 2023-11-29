@@ -117,7 +117,7 @@ const inputClasses =
   'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80'
 </script>
 <template>
-  <div v-if="store.showLeft" class="flex-1 flex-col px-2 max-h-screen">
+  <div class="flex-col px-2 max-h-screen w-100">
     <FormKit
       id="form"
       type="form"
@@ -127,9 +127,9 @@ const inputClasses =
         message: 'text-red-400 text-sm',
       }"
     >
-      <div class="flex flex-col">
+      <div class="flex flex-col w-100">
         <div class="text-md font-bold text-slate-500">New Entity(<span v-text="entities.length" />)</div>
-        <div class="flex flex-col border shadow top hover:shadow-lg dark:border-gray-600 rounded">
+        <div class="flex flex-col w-100 border shadow top hover:shadow-lg dark:border-gray-600 rounded">
           <div class="p-2 bg-white dark:bg-slate-950 rounded">
             <label class="text-slate-500"> <u class="text-slate-500">N</u>ame </label>
             <FormKit
@@ -185,7 +185,7 @@ const inputClasses =
             />
           </div>
         </div>
-        <div class="flex flex-col middle overflow-auto scrollbar-hide hover:shadow-lg">
+        <div class="flex flex-col w-100 middle overflow-auto scrollbar-hide hover:shadow-lg">
           <div class="text-md font-bold mt-5 text-slate-500">
             New Attribute(<span v-text="entity.attributes.length" />)
           </div>
@@ -328,6 +328,9 @@ const inputClasses =
   </div>
 </template>
 <style scoped>
+.left {
+  min-width: 300px !important;
+}
 .top {
   max-height: 30vh;
 }
@@ -341,17 +344,17 @@ const inputClasses =
 .limit-width {
   overflow-x: scroll;
   white-space: nowrap;
-  max-width: 10rem !important;
+  max-width: 100% !important;
 }
 :deep(input.formkit-input) {
   overflow-x: scroll;
   white-space: nowrap;
-  max-width: 10rem !important;
+  max-width: 100% !important;
 }
 
 :deep(.formkit-message) {
   overflow-x: scroll;
   white-space: nowrap;
-  max-width: 10rem !important;
+  max-width: 100% !important;
 }
 </style>

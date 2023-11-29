@@ -69,6 +69,7 @@
     "nuxt-gtag": "^1.1.1",
     "nuxt-mongoose": "^1.0.3",
     "nuxt-vuefire": "^0.4.1",
+    "postcss-loader": "^7.3.3",
     "shiki-es": "^0.14.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "unhead": "^1.8.7",

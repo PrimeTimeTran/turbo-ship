@@ -2,9 +2,7 @@
 const props = defineProps(['attribute', 'focusedType'])
 const attributeRef = ref(props.attribute)
 const focusedKey = computed(() => {
-  return props.attribute.type === 'relation'
-    ? props.attribute.relation.type
-    : props.attribute.type
+  return props.attribute.type === 'relation' ? props.attribute.relation.type : props.attribute.type
 })
 
 // WIP. Update attribute type from list on click

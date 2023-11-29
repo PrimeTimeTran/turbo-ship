@@ -50,7 +50,7 @@ const showRelationTab = computed(() => {
 })
 </script>
 <template>
-  <div class="grid grid-cols-12 gap-2">
+  <div class="grid grid-cols-12 gap-2 max-w-6xl">
     <div class="col-span-7 flex flex-col">
       <EntitiesAttributesTable :entity="entity" :focused="focused" :onFocus="onFocus" />
     </div>
@@ -88,7 +88,7 @@ const showRelationTab = computed(() => {
         <span v-text="editing ? 'Save' : 'Add'" />
       </button>
     </div>
-    <div class="col-span-3 flex flex-col" v-if="requiresSubField">
+    <div class="col-span-3 flex flex-col justify-center" v-if="requiresSubField">
       <div class="flex flex-col space-y-4" v-if="showEnumTab">
         <label class="font-bold text-gray-500">Enumerator</label>
         <label class="dark:text-white">Options:</label>
@@ -107,7 +107,7 @@ const showRelationTab = computed(() => {
           </select>
         </div>
       </div>
-      <div class="flex flex-col" v-if="showRelationTab">
+      <div class="flex flex-col" v-else-if="showRelationTab">
         <label class="font-bold text-gray-500 dark:text-white">Relations</label>
         <label class="dark:text-white" v-text="Validator.labeledTypes[focusedType]?.label" />
         <select
@@ -137,8 +137,8 @@ const showRelationTab = computed(() => {
           </div>
         </div>
       </div>
+      <div class="col-span-3 flex flex-col" v-if="!showEnumTab && !showRelationTab" v-html="tips[0]"></div>
     </div>
-    <div v-else key="1" v-html="tips[0]" class="flex flex-1 flex-col justify-center items-center text-center" />
   </div>
 </template>
 
