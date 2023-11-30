@@ -1,5 +1,5 @@
 <template>
-  <ContentDoc class="prose dark:prose-invert" />
+  <h1>Admin</h1>
 </template>
 
 <script setup>

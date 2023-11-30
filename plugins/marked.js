@@ -13,7 +13,7 @@ const marker = new Marked(
       const language = hljs.getLanguage(lang) ? lang : 'javascript'
       return hljs.highlight(code, { language }).value
     },
-  })
+  }),
 )
 
 export default defineNuxtPlugin(() => {

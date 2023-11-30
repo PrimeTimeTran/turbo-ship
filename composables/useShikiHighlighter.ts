@@ -7,18 +7,7 @@ export const useShikiHighlighter = () => {
     getHighlighter({
       theme: 'dark-plus',
       themes: ['dark-plus'],
-      langs: [
-        'css',
-        'scss',
-        'js',
-        'ts',
-        'diff',
-        'vue',
-        'html',
-        'json',
-        'sh',
-        'bash',
-      ],
+      langs: ['dart', 'css', 'scss', 'js', 'ts', 'diff', 'vue', 'html', 'json', 'sh', 'bash'],
     }).then((_highlighter) => {
       highlighter.value = _highlighter
     })

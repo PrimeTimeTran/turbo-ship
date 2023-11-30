@@ -4,24 +4,30 @@ const JSZip = require('jszip')
 const Turboship = require('@turboship/muxter').default
 
 async function addFolderToZip(zip, folderPath, parentFolderName) {
-  const files = await fs.promises.readdir(folderPath)
-  const promises = []
+  try {
+    const files = await fs.promises.readdir(folderPath)
+    const promises = []
 
-  for (const file of files) {
-    const filePath = path.join(folderPath, file)
-    const stat = await fs.promises.stat(filePath)
+    for (const file of files) {
+      const filePath = path.join(folderPath, file)
+      const stat = await fs.promises.stat(filePath)
 
-    if (stat.isDirectory()) {
-      const subFolderName = path.join(parentFolderName, file)
-      promises.push(addFolderToZip(zip, filePath, subFolderName))
-    } else {
-      const content = await fs.promises.readFile(filePath)
-      const relativePath = path.join(parentFolderName, file)
-      zip.file(relativePath, content)
+      if (stat.isDirectory()) {
+        const subFolderName = path.join(parentFolderName, file)
+        promises.push(addFolderToZip(zip, filePath, subFolderName))
+      } else {
+        const content = await fs.promises.readFile(filePath)
+        const relativePath = path.join(parentFolderName, file)
+        zip.file(relativePath, content)
+      }
     }
-  }
 
-  await Promise.all(promises)
+    await Promise.all(promises)
+  } catch (error) {
+    console.log({
+      error,
+    })
+  }
 }
 
 exports.handler = async (event, context) => {
