@@ -1,31 +1,29 @@
 <script setup>
+import { reset } from "@formkit/core";
 const props = defineProps([
-  'searching',
-  'fetchFilteredUsers',
-  'createForm',
-  'clear',
-])
-
-const { apiUrl } = useAPI()
+  "searching",
+  "fetchFilteredUsers",
+  "createForm",
+  "clear",
+]);
+const { addUser } = useUsers();
 
 async function submit(fields) {
   if (props.searching) {
-    await props.fetchFilteredUsers(fields)
-    return
+    await props.fetchFilteredUsers(fields);
+    return;
   }
-
-  let { data, error } = await useFetch(apiUrl + '/users', {
-    method: 'post',
-    body: JSON.stringify(fields),
-  })
-  submitted.value = true
+  const user = addUser(fields);
+  if (user) {
+    reset("userForm");
+  }
 }
-let submitted = ref(false)
 </script>
 
 <template>
-  <div class="p-3">
+  <div class="relative">
     <FormKit
+      id="userForm"
       type="form"
       @submit="submit"
       :actions="false"
@@ -37,96 +35,72 @@ let submitted = ref(false)
     >
       <div
         id="User"
-        class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7"
+        class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3"
       >
         <div class="item">
-          <admin-form-field
+          <AdminFormField
             type="text"
             name="email"
             label="Email"
-            placeholder="hp87@hogwarts.com"
-            :validation="searching ? '' : 'required'"
+            placeholder="john@email.com"
+            :validation="searching ? '' : ''"
           />
         </div>
-
         <div class="item">
-          <admin-form-field
+          <AdminFormField
             type="text"
             name="firstName"
-            label="Last Name"
-            placeholder="Potter"
-            :validation="searching ? '' : 'required'"
-          />
-        </div>
-
-        <div class="item">
-          <admin-form-field
-            type="text"
-            name="userName"
-            label="Username"
-            placeholder="HPotterBolts"
-            :validation="searching ? '' : 'required'"
-          />
-        </div>
-
-        <div class="item">
-          <admin-form-field
-            name="dob"
-            type="select"
-            :multiple="searching"
-            label="D.O.B."
-            :placeholder="searching ? 'Select house/houses' : 'Select house'"
-            :validation="searching ? '' : 'required'"
-            :options="{
-              Gryffindor: 'Gryffindor',
-              Slytherin: 'Slytherin',
-              Hufflepuff: 'Hufflepuff',
-              Ravenclaw: 'Ravenclaw',
-              Unknown: 'Unknown',
-            }"
-            help="Select all that apply by holding command (macOS) or control (PC)."
-          />
-        </div>
-
-        <div class="item">
-          <admin-form-field
-            name="createdAt"
-            type="select"
-            :multiple="searching"
-            label="undefined"
-            :placeholder="searching ? 'Select house/houses' : 'Select house'"
-            :validation="searching ? '' : 'required'"
-            :options="{
-              Gryffindor: 'Gryffindor',
-              Slytherin: 'Slytherin',
-              Hufflepuff: 'Hufflepuff',
-              Ravenclaw: 'Ravenclaw',
-              Unknown: 'Unknown',
-            }"
-            help="Select all that apply by holding command (macOS) or control (PC)."
-          />
-        </div>
-
-        <div class="item">
-          <admin-form-field
-            name="updatedAt"
-            type="select"
-            :multiple="searching"
-            label="undefined"
-            :placeholder="searching ? 'Select house/houses' : 'Select house'"
+            label="FirstName"
+            placeholder="John"
             :validation="searching ? '' : ''"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            type="text"
+            name="lastName"
+            label="LastName"
+            placeholder="Doe "
+            :validation="searching ? '' : ''"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            name="age"
+            type="number"
+            min="undefined"
+            max="undefined"
+            label="Age"
+            placeholder="18"
+            :validation="searching ? '' : ''"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            name="owner"
+            type="select"
+            label="Owner"
+            placeholder="true"
+            :options="{}"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            name="status"
+            type="select"
+            label="Status"
+            placeholder="open,closed,pending,cancelled"
             :options="{
-              Gryffindor: 'Gryffindor',
-              Slytherin: 'Slytherin',
-              Hufflepuff: 'Hufflepuff',
-              Ravenclaw: 'Ravenclaw',
-              Unknown: 'Unknown',
+              open: 'Open',
+              closed: 'Closed',
+              pending: 'Pending',
             }"
-            help="Select all that apply by holding command (macOS) or control (PC)."
+            :multiple="searching"
+            :validation="searching ? '' : ''"
           />
         </div>
       </div>
-      <div class="flex flex-row px-12 space-x-10 mt-6">
+      <div class="flex flex-row space-x-1 mt-6">
         <FormKit
           type="button"
           label="Clear"

@@ -93,7 +93,7 @@ const toggleSearch = () => {
         hidden: tab != 0,
       }"
     >
-      <admin-users-table :searching="searching" />
+      <AdminUsersTable :searching="searching" />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -101,7 +101,7 @@ const toggleSearch = () => {
         hidden: tab != 1,
       }"
     >
-      <admin-users-overview />
+      <AdminUsersOverview />
     </div>
     <div
       class="min-w-full min-h-full pt-1"
@@ -109,7 +109,7 @@ const toggleSearch = () => {
         hidden: tab != 2,
       }"
     >
-      <admin-users-entity-form :createForm="true" />
+      <AdminUsersEntityForm :createForm="true" />
     </div>
     <div
       class="min-w-full min-h-full pt-1"

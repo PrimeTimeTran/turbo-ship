@@ -1,6 +1,6 @@
 <script setup>
 const route = useRoute()
-const isAdmin = route.fullPath.split('/')[1] === 'admin'
+const isAdmin = route.fullPath.split('/')[1] === 'administrator'
 const items = isAdmin ? adminNavItems : navItems
 </script>
 <template>
@@ -13,10 +13,7 @@ const items = isAdmin ? adminNavItems : navItems
       v-for="item in items"
       class="flex flex-auto lg:flex-none items-center lg:px-6 py-3 text-gray-500 hover:text-green-400 dark:text-white dark:hover:text-green-400 cursor-pointer transition-colors duration-300 text-xs font-bold"
     >
-      <FontAwesomeIcon
-        :icon="item.icon"
-        class="mr-3"
-      />
+      <FontAwesomeIcon :icon="item.icon" class="mr-3" />
       {{ item.name }}
     </NuxtLink>
   </div>

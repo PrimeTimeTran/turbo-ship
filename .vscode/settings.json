@@ -1,7 +1,7 @@
 {
   "files.exclude": {
     "**/.git": true,
-    "**/.netlify": true,
+    // "**/.netlify": true,
     "**/.nuxt": true,
     "**/package-lock.json": true,
     "**/bun.lockb": true,

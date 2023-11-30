@@ -23,22 +23,22 @@ export const navItems = [
 
 export const adminNavItems = [
   {
-    url: '/admin',
+    url: '/administrator',
     name: 'Admin',
     icon: 'fa-house',
   },
   {
-    url: '/admin/users',
+    url: '/administrator/users',
     name: 'Users',
     icon: 'fa-blog',
   },
   {
-    url: '/admin/wizards',
+    url: '/administrator/wizards',
     name: 'Wizards',
     icon: 'fa-hat-wizard',
   },
   {
-    url: '/admin/about',
+    url: '/administrator/about',
     name: 'About',
     icon: 'fa-code',
   },
