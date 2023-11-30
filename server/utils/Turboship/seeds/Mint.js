@@ -252,7 +252,6 @@ export const Mint = [
         validations: [],
         relation: { type: null, name: null },
         label: 'ChargeDate',
-        label: 'Date',
         placeholder: '11/29/23',
       },
       {
@@ -350,7 +349,6 @@ export const Mint = [
         validations: [],
         relation: { type: null, name: null },
         label: 'CreditRating',
-        label: 'Rating',
         placeholder: 'A+',
       },
       {

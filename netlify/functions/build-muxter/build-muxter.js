@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const JSZip = require('jszip')
-const { Turboship } = require('../../../server/utils/Turboship')
+const Turboship = require('@turboship/muxter').default
 
 async function addFolderToZip(zip, folderPath, parentFolderName) {
   const files = await fs.promises.readdir(folderPath)
@@ -26,7 +26,6 @@ async function addFolderToZip(zip, folderPath, parentFolderName) {
 
 exports.handler = async (event, context) => {
   try {
-    fs.rmSync('/tmp/turboship', { recursive: true, force: true })
     const body = JSON.parse(event.body)
     console.log('Starting src gen...')
     await new Turboship('/tmp/turboship', body)

@@ -77,7 +77,6 @@ const showRelationTab = computed(() => {
         :disabled="!valid"
         class="mt-2 border border-gray-300 py-1 px-2 rounded w-full dark:text-white dark:bg-gray-800 dark:border-gray-800"
         :class="{
-          'bg-gray-300': !valid,
           'opacity-50': !valid,
           'text-white': valid,
           'bg-green-400': valid,

@@ -2,6 +2,8 @@ import { join } from 'path'
 import { readFile } from 'fs/promises'
 import path from 'path'
 
+import Turboship from '@turboship/muxter'
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const root = path.join('/tmp/turboship')
