@@ -22,6 +22,7 @@
     "npm": "^10.2.4",
     "nuxt": "^3.8.0",
     "postcss": "^8.4.31",
+    "sass": "^1.69.5",
     "shikiji": "^0.7.2",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2",
@@ -52,7 +53,7 @@
     "@vueuse/core": "^10.5.0",
     "animated-scroll-to": "^2.3.0",
     "archiver": "^6.0.1",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "chalk": "^5.3.0",
     "chart.js": "^4.4.0",
     "commander": "^11.1.0",
@@ -79,6 +80,7 @@
     "vue-use-active-scroll": "^1.1.1",
     "vue3-toastify": "^0.1.14",
     "vuedraggable": "next",
+    "vuefire": "^3.1.18",
     "zod": "^3.22.4"
   }
 }

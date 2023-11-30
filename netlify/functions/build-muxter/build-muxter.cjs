@@ -33,20 +33,32 @@ async function addFolderToZip(zip, folderPath, parentFolderName) {
 exports.handler = async (event, context) => {
   try {
     const body = JSON.parse(event.body)
-    console.log('Starting src gen...')
-    await new Turboship('/tmp/turboship', body)
-    await new Promise((resolve) => setImmediate(resolve))
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve()
-      }, 9000),
-    )
-    console.log('Zipping...')
-    const zip = new JSZip()
-    await addFolderToZip(zip, '/tmp/turboship/flutter', 'flutter')
-    await addFolderToZip(zip, '/tmp/turboship/nuxt', 'nuxt')
+    const resp = await new Turboship('/tmp/turboship', body)
+    const zipFile = await resp.generateAsync()
 
-    const zipFile = await zip.generateAsync({ type: 'base64' })
+    console.log({
+      zipFile,
+    })
+
+    // Works locally but not deployed to Netlify
+    // const body = JSON.parse(event.body)
+    // console.log('Starting src gen...')
+    // await new Turboship('/tmp/turboship', body)
+    // await new Promise((resolve) => setImmediate(resolve))
+    // await new Promise((resolve) =>
+    //   setTimeout(() => {
+    //     resolve()
+    //   }, 9000),
+    // )
+    // console.log('Zipping...')
+    // const zip = new JSZip()
+    // await addFolderToZip(zip, '/tmp/turboship/flutter', 'flutter')
+    // await addFolderToZip(zip, '/tmp/turboship/nuxt', 'nuxt')
+    // const zip = new JSZip()
+    // zip.folder('components')
+    // zip.file('components/new.txt', 'Inside folder')
+
+    // let zipFile = await zip.generateAsync({ type: 'base64' })
 
     const response = {
       headers: {

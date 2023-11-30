@@ -6,7 +6,7 @@
     "**/package-lock.json": true,
     "**/bun.lockb": true,
     "**/prettier.config.cjs": true,
-    "**/tsconfig.json": true,
+    // "**/tsconfig.json": true,
     "**/formkit.config.js": true,
     "**/error.vue": true,
     // "**/node_modules": true,

@@ -1,5 +1,7 @@
 <script setup>
 import { faker } from '@faker-js/faker'
+// import JSZip from 'jszip'
+// import TurboShip, { seeds } from '@turboship/muxter'
 
 const { entities, setEntities, clearEntities } = useEntities()
 function collapse() {
@@ -23,17 +25,49 @@ function feedback() {
 }
 const { fbEvent } = useAnalytics()
 
+// async function test() {
+//   try {
+//     console.log('Starting src gen...')
+//     // await new Turboship('/tmp/turboship', entities)
+//     // console.log('Zipping...')
+//     // const zip = new JSZip()
+//     // await addFolderToZip(zip, '/tmp/turboship/flutter', 'flutter')
+//     // await addFolderToZip(zip, '/tmp/turboship/nuxt', 'nuxt')
+
+//     // const zipFile = await zip.generateAsync({ type: 'base64' })
+//     // return zipFile
+
+//     // const response = {
+//     //   headers: {
+//     //     'Content-Type': 'application/zip, application/octet-stream',
+//     //     'Content-disposition': `attachment; filename=${`muxter_${new Date().toJSON()}.zip`}`,
+//     //   },
+//     //   body: zipFile,
+//     //   statusCode: 200,
+//     //   isBase64Encoded: true,
+//     // }
+
+//     // return response
+//   } catch (error) {
+//     console.error(error)
+//     return {
+//       statusCode: 500,
+//       body: JSON.stringify({ message: 'Internal Server Error' }),
+//     }
+//   }
+// }
+
 async function generate() {
   try {
     fbEvent('entities_generate_start')
     const { apiUrl, generateUrl } = useAPI()
-    const baseURL = `${apiUrl}/entities`
+    // const baseURL = `${apiUrl}/entities`
     // Works locally with netlify dev on
     // const baseURL = `http://localhost:8888/.netlify/functions/build-muxter`
 
     // Testing on Netlify
     // const baseURL = `https://turboship.ltran.net/.netlify/functions/build-muxter`
-    const resp = await $fetch(baseURL, {
+    const resp = await $fetch(generateUrl, {
       method: 'post',
       body: entities,
     })

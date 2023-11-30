@@ -4,3 +4,6 @@
 
 [context.production]
   environment = { NODE_VERSION = "18", GENERATE_URL = "https://turboship.ltran.net/.netlify/functions/build-muxter"  }
+
+[functions]
+  node_bundler = "esbuild" 

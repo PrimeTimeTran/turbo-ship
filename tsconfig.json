@@ -8,6 +8,7 @@
     "./temp",
     "./output",
     "./server/utils/Turboship/nuxt",
+    "./composables/useEntities.ts",
     "./netlify/functions/nuxt/*",
     "./server/middleware/02.user.global.ts"
   ]

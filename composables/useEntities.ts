@@ -6,11 +6,11 @@ import seeds from '../utils/seeds/seeds'
 export function useEntities() {
   const entities = reactive(store.entities)
 
-  const addEntity = (e: Entity) => {
+  const addEntity = (e: any) => {
     entities.push(e)
   }
   const removeEntity = (id: string) => {
-    const idx = entities.findIndex((e: Entity) => e._id === id)
+    const idx = entities.findIndex((e: any) => e._id === id)
     if (idx !== -1) {
       entities.splice(idx, 1)
       return true
