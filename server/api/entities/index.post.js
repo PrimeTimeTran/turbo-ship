@@ -4,9 +4,9 @@ import JSZip from 'jszip-sync'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const resp = await new Turboship(body)
-  await new Promise((resolve) => {
-    setTimeout(resolve, 9000)
-  })
+  // await new Promise((resolve) => {
+  //   setTimeout(resolve, 9000)
+  // })
 
   try {
     // Works local. Download unzip no problem

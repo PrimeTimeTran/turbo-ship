@@ -12,7 +12,6 @@ export default defineNuxtConfig({
       failOnError: false,
       routes: ['/', '/404.html'],
     },
-    ignore: ['/admin/users', '/todos', '/entities', '/login', '/temp'],
   },
   ignore: ['temp/**', 'output.zip', 'output'],
   formkit: {
@@ -49,7 +48,9 @@ export default defineNuxtConfig({
   mongoose: {
     options: {},
     modelsDir: 'models',
+    uri: 'process.env.MONGODB_URI',
   },
+
   postcss: {
     plugins: {
       tailwindcss: {},
