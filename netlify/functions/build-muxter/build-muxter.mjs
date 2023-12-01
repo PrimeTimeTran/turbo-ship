@@ -8,7 +8,7 @@ const Turboship = (event, context) =>
       await new Promise((resolve) =>
         setTimeout(() => {
           resolve()
-        }, 9000),
+        }, 5000),
       )
 
       const zipFile = await resp.zip.generateAsync({ type: 'base64' })

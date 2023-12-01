@@ -32,14 +32,37 @@ async function generate() {
       method: 'post',
       body: entities,
     })
-    const blobUrl = URL.createObjectURL(resp)
-    const downloadLink = document.createElement('a')
-    downloadLink.href = blobUrl
-    downloadLink.download = 'muxter-source.zip'
-    document.body.appendChild(downloadLink)
-    downloadLink.click()
-    document.body.removeChild(downloadLink)
-    URL.revokeObjectURL(blobUrl)
+    // Local only, download & unzip no problem.
+    if (true) {
+      const byteCharacters = atob(resp)
+      const byteNumbers = new Array(byteCharacters.length)
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i)
+      }
+      const byteArray = new Uint8Array(byteNumbers)
+
+      const blob = new Blob([byteArray], { type: 'application/zip' })
+
+      const blobUrl = URL.createObjectURL(blob)
+      const downloadLink = document.createElement('a')
+      downloadLink.href = blobUrl
+      downloadLink.download = 'muxter-source.zip'
+      document.body.appendChild(downloadLink)
+
+      downloadLink.click()
+
+      document.body.removeChild(downloadLink)
+      URL.revokeObjectURL(blobUrl)
+    } else {
+      const blobUrl = URL.createObjectURL(resp)
+      const downloadLink = document.createElement('a')
+      downloadLink.href = blobUrl
+      downloadLink.download = 'muxter-source.zip'
+      document.body.appendChild(downloadLink)
+      downloadLink.click()
+      document.body.removeChild(downloadLink)
+      URL.revokeObjectURL(blobUrl)
+    }
     fbEvent('entities_generate_success')
   } catch (error) {
     fbEvent('entities_generate_error', error)
