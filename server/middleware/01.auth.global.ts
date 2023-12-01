@@ -1,4 +1,3 @@
-// const protectedRoutes = ['/admin', '/api']
 const protectedRoutes: string[] = []
 
 function isProtectedPath(path: string) {

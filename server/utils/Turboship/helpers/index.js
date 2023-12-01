@@ -1,1 +1,0 @@
-export { createDirectories } from './createDirectories'

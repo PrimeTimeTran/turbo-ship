@@ -1,10 +1,10 @@
 export default defineEventHandler(async (e) => {
   const token = jwtSign({ foo: 'bar' })
 
-  const verfied = jwtVerify(token)
+  const verified = jwtVerify(token)
 
   return {
     token,
-    verfied,
+    verified,
   }
 })

@@ -2,9 +2,9 @@
 
 import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
-export const toastEm = (val: string) => {
+export const toastEm = (val: string, time: number = 1500) => {
   toast(val, {
-    autoClose: 1500,
+    autoClose: time,
     position: toast.POSITION.BOTTOM_RIGHT,
   })
 }

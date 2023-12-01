@@ -3,7 +3,11 @@
   publish = "dist"
 
 [context.production]
-  environment = { NODE_VERSION = "18", GENERATE_URL = "https://turboship.ltran.net/.netlify/functions/build-muxter"  }
+  environment = { API_URL = "https://turboship.ltran.net/api", MONGODB_URI = "mongodb+srv://primetimetran:rJXDAEyN8Amd6IMK@cluster0.xfhlaio.mongodb.net/?retryWrites=true&w=majority", AUTH_TOKEN_EXPIRES_IN = "3650 days", AUTH_TOKEN_SECRET = "mysecret", API_URL = "https://turboship.ltran.net/api", GENERATE_URL = "https://turboship.ltran.net/.netlify/functions/build-muxter"}
 
 [functions]
-  node_bundler = "esbuild" 
+  node_bundler = "esbuild"
+  external_node_modules = ["@primetimetran/muxter"]
+
+[dev]
+  targetPort = 3005

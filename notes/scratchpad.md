@@ -1,64 +1,11 @@
-Mint DB Design
-
-Overview
-  Net Worth
-  Checking & Savings
-  Credit Cards
-  Investments
-  Loans
-  Property
-
-Budget
-  Begin
-  End
-
-  sumGoalSpend
-  sumGoalInc
-
-  sumSpend
-  sumInc
-
-  Gas & Fuel
-  Alcohol & Bars
-  Fast Food
-  Groceries
-  Restaurants
-
-Accounts
-  Type
-  Balance
-  Category
 
 
-Transactions
-  Date
-  Description
-  Category
-  Amount
+
+1:29:49 AM: Failed during stage "Install dependencies": dependency_installation script returned non-zero exit code: 1
+1:29:49 AM: [error] Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies 
+
+https://app.netlify.com/sites/turboship/deploys/65697d3586fb990008f94288
 
 
-Product
-  companyUrl string
-  type: enum
-    creditCards, personalLoans, investments, banking, studentLoans, insurance
-  title string
-  imageUrl string
-  linkForm string
-  linkTerms string
-  linkDisclosure string
-  description text
-  meta obj
-    <!-- Credit cards -->
-    annualFee, miles, aprRange
-
-    <!-- Investmnets -->
-    welcomeOffer, minInvestment, fees, tradingCosts, accountFeeds, openMin,
-
-    <!-- Banking -->
-    APY, openMin, fees, termRange, bonus,
-
-    <!-- Insurance -->
-  insuranceType
-    auto, home, life, renters, pet
-  linkInsuranceQuote
-
+Last one to get past install
+https://app.netlify.com/sites/turboship/deploys/65681d78700dea000891c681

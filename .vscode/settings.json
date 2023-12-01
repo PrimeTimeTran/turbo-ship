@@ -3,7 +3,7 @@
     "**/.git": true,
     // "**/.netlify": true,
     "**/.nuxt": true,
-    "**/package-lock.json": true,
+    // "**/package-lock.json": true,
     "**/bun.lockb": true,
     "**/prettier.config.cjs": true,
     // "**/tsconfig.json": true,

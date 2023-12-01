@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { reactive } from 'vue'
 
-import seeds from '~/utils/seeds/seeds.js'
+import seeds from '../utils/seeds/seeds.js'
 
 export const store = reactive({
   isDark: true,

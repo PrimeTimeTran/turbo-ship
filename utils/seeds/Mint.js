@@ -503,6 +503,7 @@ export const Mint = [
     name: 'product',
     label: 'Product',
     plural: 'products',
+    pluralL: 'Products',
     attributes: [
       {
         validators: [],
