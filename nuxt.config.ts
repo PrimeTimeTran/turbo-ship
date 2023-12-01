@@ -14,9 +14,8 @@ export default defineNuxtConfig({
       routes: ['/articles/*', '/'],
       ignore: ['/admin'],
     },
-    ignore: ['/admin/users', '/todos', '/entities', '/login', '/temp'],
   },
-  ignore: ['temp/**', 'output.zip', 'output'],
+  ignore: ['temp/**'],
   formkit: {
     autoImport: true,
   },
@@ -56,7 +55,7 @@ export default defineNuxtConfig({
   hooks: {
     'build:done': (go: HookResult) => {
       console.log({
-        go,
+        buildComplete: true,
       })
     },
   },

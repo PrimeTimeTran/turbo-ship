@@ -33,7 +33,8 @@ async function generate() {
       body: entities,
     })
     // Local only, download & unzip no problem.
-    if (true) {
+    const isDev = process.env.NODE_ENV === 'development'
+    if (isDev) {
       const byteCharacters = atob(resp)
       const byteNumbers = new Array(byteCharacters.length)
       for (let i = 0; i < byteCharacters.length; i++) {
