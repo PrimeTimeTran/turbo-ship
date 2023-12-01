@@ -2,9 +2,9 @@
   "files.exclude": {
     "**/.git": true,
     // "**/.netlify": true,
-    "**/.nuxt": true,
+    // "**/.nuxt": true,
     // "**/package-lock.json": true,
-    "**/bun.lockb": true,
+    // "**/bun.lockb": true,
     "**/prettier.config.cjs": true,
     // "**/tsconfig.json": true,
     "**/formkit.config.js": true,

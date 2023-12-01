@@ -7,7 +7,7 @@
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["@primetimetran/muxter", "shikiji/onig.wasm", "tslib"]
+  external_node_modules = ["shikiji/onig.wasm", "tslib"]
 
 [dev]
   targetPort = 3005

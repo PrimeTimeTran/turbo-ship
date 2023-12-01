@@ -1,5 +1,5 @@
 import Turboship from '@primetimetran/muxter'
-import JSZip from 'jszip-sync'
+// import JSZip from 'jszip-sync'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
