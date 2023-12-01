@@ -1,3 +1,5 @@
+import type { HookResult } from 'nuxt/schema'
+
 export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
@@ -8,9 +10,9 @@ export default defineNuxtConfig({
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   nitro: {
     prerender: {
-      crawlLinks: true,
       failOnError: false,
-      routes: ['/', '/404.html'],
+      routes: ['/articles/*', '/'],
+      ignore: ['/admin'],
     },
     ignore: ['/admin/users', '/todos', '/entities', '/login', '/temp'],
   },
@@ -47,8 +49,16 @@ export default defineNuxtConfig({
     },
   },
   mongoose: {
+    uri: 'process.env.MONGODB_URI',
     options: {},
     modelsDir: 'models',
+  },
+  hooks: {
+    'build:done': (go: HookResult) => {
+      console.log({
+        go,
+      })
+    },
   },
   postcss: {
     plugins: {
