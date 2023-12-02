@@ -26,15 +26,26 @@ const { fbEvent } = useAnalytics()
 async function generate() {
   try {
     fbEvent('entities_generate_start')
-    const { generateUrl } = useAPI()
+    let { generateUrl } = useAPI()
+    const isDev = process.env.NODE_ENV === 'development'
+    if (isDev) {
+      generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'
+    }
+    // 12/2/23 - 2.12
+    //   Local netlify dev server files dl no problem
+
+    console.log({
+      generateUrl,
+      toolbarIsDev: isDev,
+    })
     toastEm('Processing build... Your project will download once done.', 5000)
     const resp = await $fetch(generateUrl, {
       method: 'post',
       body: entities,
     })
-    // Local only, download & unzip no problem.
-    const isDev = process.env.NODE_ENV === 'development'
-    if (isDev) {
+
+    if (false) {
+      console.log('Hi Im Dev')
       const byteCharacters = atob(resp)
       const byteNumbers = new Array(byteCharacters.length)
       for (let i = 0; i < byteCharacters.length; i++) {
@@ -55,6 +66,7 @@ async function generate() {
       document.body.removeChild(downloadLink)
       URL.revokeObjectURL(blobUrl)
     } else {
+      console.log('Hi Im not dev')
       const blobUrl = URL.createObjectURL(resp)
       const downloadLink = document.createElement('a')
       downloadLink.href = blobUrl
