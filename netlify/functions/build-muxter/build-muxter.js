@@ -43,12 +43,7 @@ const { Turboship } = require('@primetimetran/muxter')
 // 12/2/23
 //    - 2.12 Local - Netlify dev server files dl no problem
 //    - 2.36 Prod - Netlify doesn't error but also doesn't dl src
-//    -
-
-console.log({
-  foo: 'bar',
-  Turboship,
-})
+//    - 3:30 Prod - Netlify success gen & dl src
 
 const currentDirectory = process.cwd()
 
@@ -108,4 +103,5 @@ const handler = async (event, context) => {
     }
   }
 }
+
 module.exports = { handler }

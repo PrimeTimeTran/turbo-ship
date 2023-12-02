@@ -1,7 +1,6 @@
 import type { HookResult } from 'nuxt/schema'
 
 export default defineNuxtConfig({
-  ssr: true,
   devtools: { enabled: true },
   devServer: {
     port: 3005,
@@ -12,7 +11,6 @@ export default defineNuxtConfig({
     prerender: {
       failOnError: false,
       routes: ['/articles/*', '/'],
-      ignore: ['/admin'],
     },
   },
   ignore: ['temp/**'],
@@ -48,14 +46,14 @@ export default defineNuxtConfig({
     },
   },
   mongoose: {
-    uri: 'process.env.MONGODB_URI',
+    uri: process.env.MONGODB_URI,
     options: {},
     modelsDir: 'models',
   },
   hooks: {
     'build:done': (go: HookResult) => {
       console.log({
-        buildComplete: true,
+        buildDone: true,
       })
     },
   },

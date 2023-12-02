@@ -3,7 +3,7 @@
   command = "npm run build"
 
 [context.production]
-  environment = { API_URL = "https://turboship.ltran.net/api", MONGODB_URI = "", AUTH_TOKEN_EXPIRES_IN = "3650 days", AUTH_TOKEN_SECRET = "mysecret", API_URL = "https://turboship.ltran.net/api", GENERATE_URL = "https://turboship.ltran.net/.netlify/functions/build-muxter"}
+  environment = { API_URL = "https://turboship.ltran.net/api", MONGODB_URI = "mongodb+srv://primetimetran:rJXDAEyN8Amd6IMK@cluster0.xfhlaio.mongodb.net/?retryWrites=true&w=majority", AUTH_TOKEN_EXPIRES_IN = "3650 days", AUTH_TOKEN_SECRET = "mysecret", API_URL = "https://turboship.ltran.net/api", GENERATE_URL = "https://turboship.ltran.net/.netlify/functions/build-muxter"}
 
 [functions]
   external_node_modules = ["shikiji/onig.wasm", "tslib"]
