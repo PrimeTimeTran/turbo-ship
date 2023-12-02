@@ -24,6 +24,10 @@ Muxter Deep Dive
 - [ChartJS](https://www.chartjs.org/docs/latest/getting-started/)
 
 <!-- Internal -->
+- [Netlify]
+  - [Netlify Hosting]
+  - [Netlify Functions]
+
 - [Headless](https://headlessui.com/)
 - [Flowbite](https://flowbite.com/)
   - VTabs
@@ -43,7 +47,6 @@ Muxter Deep Dive
     https://daisyui.com/components/dropdown/
   - Accordian
     https://daisyui.com/components/accordion/
-
 
 ### Backend
 - [Nitro](https://nitro.unjs.io/)
