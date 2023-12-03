@@ -9,7 +9,7 @@ const { removeEntity } = useEntities()
         :id="entity._id"
         v-model="entity.name"
         placeholder="customer, transaction, statement..."
-        class="flex flex-grow py-1 px-2 text-md rounded border bg-white font-bold text-blue-500 hover:shadow-lg entity-input hover:bg-slate-100 dark:text-white dark:placeholder-white border-gray-200 border-opacity-0 hover:border-opacity-100 dark:border-gray-500 dark:bg-slate-800 dark:hover:border-white"
+        class="flex flex-grow py-1 px-2 text-md rounded border bg-white font-bold text-blue-500 entity-input dark:text-white dark:placeholder-white border-gray-200 border-opacity-0 hover:border-opacity-100 dark:border-gray-500 dark:bg-slate-800 dark:hover:border-white shadow-md hover:shadow-lg"
       />
     </div>
     <div class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 items-center ml-auto">

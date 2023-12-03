@@ -1,21 +1,16 @@
 <script setup>
-import { reset } from "@formkit/core";
-const props = defineProps([
-  "searching",
-  "fetchFilteredUsers",
-  "createForm",
-  "clear",
-]);
-const { addUser } = useUsers();
+import { reset } from '@formkit/core'
+const props = defineProps(['searching', 'fetchFilteredUsers', 'createForm', 'clear'])
+const { addUser } = useUsers()
 
 async function submit(fields) {
   if (props.searching) {
-    await props.fetchFilteredUsers(fields);
-    return;
+    await props.fetchFilteredUsers(fields)
+    return
   }
-  const user = addUser(fields);
+  const user = addUser(fields)
   if (user) {
-    reset("userForm");
+    reset('userForm')
   }
 }
 </script>
@@ -33,10 +28,7 @@ async function submit(fields) {
         message: 'text-red-500 dark:text-red-300 absolute',
       }"
     >
-      <div
-        id="User"
-        class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3"
-      >
+      <div id="User" class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3">
         <div class="item">
           <AdminFormField
             type="text"
@@ -76,24 +68,32 @@ async function submit(fields) {
           />
         </div>
         <div class="item">
-          <AdminFormField
-            name="owner"
-            type="select"
-            label="Owner"
-            placeholder="true"
-            :options="{}"
-          />
+          <AdminFormField name="owner" type="select" label="Owner" placeholder="true" :options="{}" />
         </div>
         <div class="item">
           <AdminFormField
             name="status"
             type="select"
             label="Status"
-            placeholder="open,closed,pending,cancelled"
+            placeholder="pending,open,closed"
             :options="{
+              pending: 'Pending',
               open: 'Open',
               closed: 'Closed',
-              pending: 'Pending',
+            }"
+            :multiple="searching"
+            :validation="searching ? '' : ''"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            name="standing"
+            type="select"
+            label="Standing"
+            placeholder="current,behind"
+            :options="{
+              current: 'Current',
+              behind: 'Behind',
             }"
             :multiple="searching"
             :validation="searching ? '' : ''"
@@ -107,8 +107,7 @@ async function submit(fields) {
           @click="clear"
           :classes="{
             outer: 'bg-red-500 rounded basis-1/4',
-            input:
-              'flex flex-grow justify-center text-white dark:text-white p-3',
+            input: 'flex flex-grow justify-center text-white dark:text-white p-3',
             wrapper: 'flex flex-grow text-center',
           }"
         />
@@ -117,8 +116,7 @@ async function submit(fields) {
           :disabled="disabled"
           :classes="{
             outer: 'bg-green-500 rounded basis-3/4',
-            input:
-              'flex flex-grow justify-center text-white dark:text-white p-3',
+            input: 'flex flex-grow justify-center text-white dark:text-white p-3',
             wrapper: 'flex flex-grow text-center',
           }"
         >
@@ -128,3 +126,5 @@ async function submit(fields) {
     </FormKit>
   </div>
 </template>
+
+<style></style>

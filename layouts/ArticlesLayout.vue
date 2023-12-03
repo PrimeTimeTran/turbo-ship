@@ -14,7 +14,6 @@ useHead({
     },
   ],
 })
-
 </script>
 <template>
   <div class="flex flex-col justify-between dark:bg-gray-900 dark:text-white">
@@ -26,7 +25,7 @@ useHead({
         >
           <MenuTableOfContents @toggled="handleToggle" />
         </div>
-        <div class="flex flex-grow overflow-y-auto max-h-screen pt-24 px-4 no-scrollbar md:mr-4 lg:mr-0">
+        <div class="flex flex-grow overflow-y-auto max-h-screen px-4 no-scrollbar md:mr-4 lg:mr-0">
           <slot />
           <TheNavbar class="main-nav visible lg:block md:invisible rounded border-blue-100 border z-10 shadow">
             <MenuBurger :isOpen="isOpen" @toggled="toggleOpen" />

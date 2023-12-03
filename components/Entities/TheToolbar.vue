@@ -1,4 +1,5 @@
 <script setup>
+import _ from 'lodash'
 import { faker } from '@faker-js/faker'
 
 const { entities, setEntities, clearEntities } = useEntities()
@@ -27,22 +28,23 @@ async function generate() {
   try {
     fbEvent('entities_generate_start')
     let { generateUrl } = useAPI()
-    const isDev = process.env.NODE_ENV === 'development'
-    if (true) {
+    const isDeveloping = false
+    if (isDeveloping) {
       // Testing Netlify function
       // generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'
-
       // Testing package
       generateUrl = 'http://localhost:3005/api/entities'
     }
 
+    let newEntities = _.cloneDeep([...entities])
+    newEntities.unshift(seeds.lms[0])
     toastEm('Processing build... Your project will download once done.', 5000)
     const resp = await $fetch(generateUrl, {
       method: 'post',
-      body: [seeds.lms[0], ...entities],
+      body: newEntities,
     })
 
-    if (true) {
+    if (isDeveloping) {
       console.log('Hi Im Dev')
       const byteCharacters = atob(resp)
       const byteNumbers = new Array(byteCharacters.length)
@@ -74,6 +76,7 @@ async function generate() {
       document.body.removeChild(downloadLink)
       URL.revokeObjectURL(blobUrl)
     }
+
     fbEvent('entities_generate_success')
   } catch (error) {
     fbEvent('entities_generate_error', error)
@@ -254,14 +257,14 @@ const templateItems = [
 </script>
 <template>
   <div class="flex flex-col px-2 bg-white dark:bg-slate-950 dark:text-white">
-    <div class="flex flex-row w-64">
+    <div class="flex flex-row">
       <VDropdown left="true" title="File" underline="F" :items="fileItems" />
       <VDropdown title="View" underline="V" :items="viewItems" />
       <VDropdown underline="E" title="Entities" :items="entitiesItems" />
       <VDropdown title="Templates" underline="T" :items="templateItems" />
-      <VDropdown underline="a" title="Relationships" />
-      <VDropdown underline="b" title="Feedback" />
-      <VDropdown right="true" title="Help" underline="H" />
+      <VDropdown underline="a" title="Relationships" :items="templateItems" />
+      <VDropdown underline="b" title="Feedback" :items="templateItems" />
+      <VDropdown right="true" title="Help" underline="H" :items="templateItems" />
     </div>
   </div>
 </template>

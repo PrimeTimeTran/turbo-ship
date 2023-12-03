@@ -5,14 +5,12 @@ const { isOpen, toggleOpen } = useToggleOpen()
 <template>
   <aside
     :class="isOpen ? 'w-64' : 'w-26'"
-    class="hidden sm:flex overflow-y-scroll h-screen z-30 ease-in-out transition-all duration-300 bg-white dark:bg-neutral-950 border-r-2 dark:border-r-zinc-800"
+    class="hidden sm:flex overflow-y-scroll h-screen ease-in-out transition-all duration-300 bg-white dark:bg-neutral-950 border-r-2 dark:border-r-zinc-800"
   >
-    <div
-      class="flex px-3"
-      @click="toggleOpen"
-    >
+    <div class="flex px-3">
       <div :class="{ 'menu-trigger-open': isOpen }">
         <div
+          @click="toggleOpen"
           class="menu-link-wrapper bg-white dark:bg-neutral-950 border-t-2 border-t-gray-100 dark:border-t-zinc-800 w-26"
           :class="{ 'w-64': isOpen }"
         >
@@ -20,48 +18,36 @@ const { isOpen, toggleOpen } = useToggleOpen()
             <span class="lines"></span>
           </div>
         </div>
-        <div
-          v-if="isOpen"
-          class="pt-32 space-y-12"
-        >
-          <p
-            class="text-2xl truncate text-gray-500 dark:text-white my-72 hover:text-green-400 dark:hover:text-green-400"
-          >
-            Item 1
+        <div v-if="isOpen" class="space-y-12">
+          <p class="text-lg truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400">
+            <a href="/administrator/wizards">Wizard</a>
+          </p>
+          <p class="text-lg truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400">
+            <a href="/administrator/users">User</a>
           </p>
         </div>
-        <div
-          v-else
-          class="pt-32"
-        >
-          <div
-            class="flex flex-col items-middle justify-center dark:text-white space-y-12"
-          >
+        <div v-else class="">
+          <div class="flex flex-col items-middle justify-center dark:text-white space-y-12">
             <FontAwesomeIcon
               size="2x"
               class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
               icon="fa-solid fa-bars"
+              @click="toggleOpen"
             />
-            <FontAwesomeIcon
-              size="2x"
-              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
-              icon="fa-solid fa-blog"
-            />
-            <FontAwesomeIcon
-              size="2x"
-              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
-              icon="fa-solid fa-hat-wizard"
-            />
-            <FontAwesomeIcon
-              size="2x"
-              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
-              icon="fa-solid fa-user"
-            />
-            <FontAwesomeIcon
-              size="2x"
-              class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
-              icon="fa-solid fa-address-card"
-            />
+            <a href="/administrator/wizards">
+              <FontAwesomeIcon
+                size="2x"
+                class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+                icon="fa-solid fa-hat-wizard"
+              />
+            </a>
+            <a href="/administrator/users">
+              <FontAwesomeIcon
+                size="2x"
+                class="text-gray-400 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+                icon="fa-solid fa-user"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -115,12 +101,9 @@ const { isOpen, toggleOpen } = useToggleOpen()
   position: absolute;
   left: 0;
   content: '';
-  -moz-transition: -moz-transform 0.2s ease 0s, width 0.2s ease 0.2s,
-    top 0.2s ease 0.4s;
-  -o-transition: -o-transform 0.2s ease 0s, width 0.2s ease 0.2s,
-    top 0.2s ease 0.4s;
-  -webkit-transition: -webkit-transform 0.2s ease, width 0.2s ease,
-    top 0.2s ease;
+  -moz-transition: -moz-transform 0.2s ease 0s, width 0.2s ease 0.2s, top 0.2s ease 0.4s;
+  -o-transition: -o-transform 0.2s ease 0s, width 0.2s ease 0.2s, top 0.2s ease 0.4s;
+  -webkit-transition: -webkit-transform 0.2s ease, width 0.2s ease, top 0.2s ease;
   -webkit-transition-delay: 0s, 0.2s, 0.4s;
   transition: transform 0.2s ease 0s, width 0.2s ease 0.2s, top 0.2s ease 0.4s;
   -moz-transform-origin: 0 50%;
@@ -147,12 +130,9 @@ const { isOpen, toggleOpen } = useToggleOpen()
 
 .menu-trigger-open .lines:before,
 .menu-trigger-open .lines:after {
-  -moz-transition: top 0.2s ease 0s, width 0.2s ease 0.2s,
-    -moz-transform 0.2s ease 0.4s;
-  -o-transition: top 0.2s ease 0s, width 0.2s ease 0.2s,
-    -o-transform 0.2s ease 0.4s;
-  -webkit-transition: top 0.2s ease, width 0.2s ease,
-    -webkit-transform 0.2s ease;
+  -moz-transition: top 0.2s ease 0s, width 0.2s ease 0.2s, -moz-transform 0.2s ease 0.4s;
+  -o-transition: top 0.2s ease 0s, width 0.2s ease 0.2s, -o-transform 0.2s ease 0.4s;
+  -webkit-transition: top 0.2s ease, width 0.2s ease, -webkit-transform 0.2s ease;
   -webkit-transition-delay: 0s, 0.2s, 0.4s;
   transition: top 0.2s ease 0s, width 0.2s ease 0.2s, transform 0.2s ease 0.4s;
   top: 0;

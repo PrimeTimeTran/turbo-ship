@@ -15,8 +15,8 @@
       - D fields in script/template
  -->
 <script setup>
-import { reset } from '@formkit/core'
 import _ from 'lodash'
+import { reset } from '@formkit/core'
 
 import { faker } from '@faker-js/faker'
 import { FormKitMessages } from '@formkit/vue'
@@ -120,11 +120,12 @@ const entityValid = computed(() => {
   if (!attributeValid.value || entity.name.length < 3 || entity.attributes.length === 0) return false
   return true
 })
+
 const inputClasses =
-  'flex-1 justify-center dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80 overflow-auto'
+  'flex-1 justify-center bg-gray-100 dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80 overflow-auto'
 </script>
 <template>
-  <div class="flex-col px-2 max-h-screen w-100">
+  <div class="flex-col px-2 max-h-screen w-100 pt-8">
     <FormKit
       id="form"
       type="form"
@@ -229,9 +230,10 @@ const inputClasses =
                 class="px-2 py-1 w-full text-sm hover:opacity-90 hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 hover:cursor-pointer border dark:border-gray-800 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200"
               >
                 <input
-                  class="mr-2"
+                  class="mr-2 radio radio-xs radio-info"
                   type="radio"
                   name="fieldType"
+                  placeholder="bg-white"
                   :value="newAttribute.type"
                   @click="onTypeSelect(fieldType)"
                   :checked="newAttribute.type === fieldType"
@@ -356,6 +358,10 @@ const inputClasses =
   max-height: 25vh;
 }
 
+.radio:checked,
+.radio[aria-checked='true'] {
+  box-shadow: none;
+}
 .limit-width {
   overflow-x: scroll;
   white-space: nowrap;

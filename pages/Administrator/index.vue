@@ -1,5 +1,5 @@
 <template>
-  <h1>Admin</h1>
+  <ContentDoc class="prose dark:prose-invert pb-32 w-11/12 nuxt-content" />
 </template>
 
 <script setup>

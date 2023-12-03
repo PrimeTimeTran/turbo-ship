@@ -61,7 +61,7 @@ const showRelationTab = computed(() => {
         @keyup.enter="onAdd"
         v-model="attribute.name"
         placeholder="firstName, lastName..."
-        class="p-4 rounded border border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 shadow-md hover:bg-slate-100 dark:text-white dark:hover:border-white dark:border-gray-500 dark:bg-slate-800"
+        class="p-4 rounded border bg-white border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 dark:text-white dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 shadow-md hover:shadow-lg"
       />
       <label class="mt-2 font-bold text-gray-500">Type</label>
       <div
@@ -100,7 +100,7 @@ const showRelationTab = computed(() => {
         <input
           type="text"
           placeholder="gryffindor, slytherin, hufflepuff..."
-          class="rounded-lg border-gray-300 dark:border-gray-600 dark:placeholder-gray-400 hover:shadow-lg"
+          class="p-4 pl-2 rounded bg-white border border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 dark:text-white dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 shadow-md hover:shadow-lg"
           v-model="attribute.options"
         />
         <div v-if="attribute.options">

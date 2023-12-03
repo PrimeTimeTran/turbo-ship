@@ -30,7 +30,7 @@ ensureLoad(scriptUrls.hotkeys)
 <template>
   <TheNavbar />
   <div
-    class="flex flex-row justify-center align-middle items-center bg-white dark:bg-slate-950 h-screen overflow-hidden scrollbar-hide pt-24 min-w-max"
+    class="flex flex-row justify-center align-middle items-center bg-white dark:bg-slate-950 h-screen overflow-hidden scrollbar-hide min-w-max"
   >
     <div v-if="store.showLeft" class="lg:min-w-72 lg:max-w-72 lg:w-72 h-screen overflow-auto scrollbar-hide">
       <EntitiesBodyLeft />

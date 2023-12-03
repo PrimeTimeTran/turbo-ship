@@ -13,25 +13,24 @@ import animateScrollTo from 'animated-scroll-to'
 const tocLinkClick = (event, id) => {
   if (process.browser) {
     // setTimeout(() => {
-      try {
-        event.preventDefault(event);
-        event.stopPropagation()
-        
-        let container = document.getElementById('pageContent')
-        const item = document.getElementById(id)
-        animateScrollTo(item, {
-        elementToScroll: container,
-          // linear: (t) => { return t },
+    try {
+      event.preventDefault(event)
+      event.stopPropagation()
 
-        easing: (x) =>
-          1 + (1.70158 + 1) * Math.pow(x - 1, 3) + 1.70158 * Math.pow(x - 1, 2),
+      let container = document.getElementById('pageContent')
+      const item = document.getElementById(id)
+      animateScrollTo(item, {
+        elementToScroll: container,
+        // linear: (t) => { return t },
+
+        easing: (x) => 1 + (1.70158 + 1) * Math.pow(x - 1, 3) + 1.70158 * Math.pow(x - 1, 2),
         maxDuration: 3000,
         verticalOffset: 0,
         cancelOnUserAction: true,
       })
     } catch (error) {
       console.log('Error scrolling', {
-        error
+        error,
       })
     }
     // }, 250)
@@ -47,18 +46,21 @@ const useSpyObservers = (toc) => {
   let observer = ref(newObserver())
 
   function newObserver() {
-    return new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const id = entry.target.getAttribute('id')
-        if (entry.isIntersecting) {
-          activeItem.value = id.toLowerCase()
-        }
-      })
-    }, {
-      root: null,
-      threshold: 0,
-      rootMargin: '-100px',
-    })
+    return new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute('id')
+          if (entry.isIntersecting) {
+            activeItem.value = id.toLowerCase()
+          }
+        })
+      },
+      {
+        root: null,
+        threshold: 0,
+        rootMargin: '-100px',
+      },
+    )
   }
 
   onMounted(setupObservers)
@@ -67,9 +69,7 @@ const useSpyObservers = (toc) => {
     if (process.browser) {
       console.log('setupObservers')
       try {
-        let sections = document.querySelectorAll(
-          '.nuxt-content h2[id], .nuxt-content h3[id]'
-        )
+        let sections = document.querySelectorAll('.nuxt-content h2[id], .nuxt-content h3[id]')
         for (let section of sections) {
           observer.value.observe(section)
         }
@@ -88,7 +88,7 @@ const useSpyObservers = (toc) => {
     () => {
       setTimeout(setupObservers, 100)
     },
-    { deep: true }
+    { deep: true },
   )
 
   return {
@@ -128,8 +128,7 @@ const ScrollSpy = {
   },
 }
 
-const { tocRef, showTOC, activeItem} =
-  ScrollSpy.setup()
+const { tocRef, showTOC, activeItem } = ScrollSpy.setup()
 
 const isActive = (id) => {
   return activeItem.value === id.toLowerCase()
@@ -139,36 +138,25 @@ const isActive = (id) => {
 <template>
   <aside :v-if="showTOC">
     <div class="sticky top-16">
-      <h2
-        class="dark:text-white uppercase text-black font-h2 text-lg lg:mt-16 tracking-wider"
-      >
-        Table of contents
-      </h2>
+      <h2 class="dark:text-white uppercase text-black font-h2 text-lg lg:mt-16 tracking-wider">Table of contents</h2>
       <nav class="mt-4">
         <TransitionGroup name="list" tag="ul">
-
-          <li
-            :key="link.id"
-            v-for="link of tocRef?.links"
-            @click="(e) => tocLinkClick(e, link.id)"
-          >
-          <a
-            :href="'#'+link.id" 
+          <li :key="link.id" v-for="link of tocRef?.links" @click="(e) => tocLinkClick(e, link.id)">
+            <a
+              :href="'#' + link.id"
               v-text="link.text"
               :class="{ active: isActive(link.id), 'border-opacity-100': isActive(link.id) }"
               class="pl-2 my-1 border-l-green-400 border-l-4 border-opacity-0 list-item"
             />
-            <ul
-              v-if="link.children"
-            >
-                <li :key="childLink.id" v-for="childLink of link.children" @click="(e) => tocLinkClick(e, childLink.id)">
-                  <a
-                    :href="'#' + childLink.id" 
-                    v-text="childLink.text"
-                    class="pl-4 my-1 border-l-green-400 border-l-4 border-opacity-0 list-item"
-                    :class="{ active: isActive(childLink.id), 'border-opacity-100': isActive(childLink.id) }"
-                  />
-                </li>
+            <ul v-if="link.children">
+              <li :key="childLink.id" v-for="childLink of link.children" @click="(e) => tocLinkClick(e, childLink.id)">
+                <a
+                  :href="'#' + childLink.id"
+                  v-text="childLink.text"
+                  class="pl-4 my-1 border-l-green-400 border-l-4 border-opacity-0 list-item"
+                  :class="{ active: isActive(childLink.id), 'border-opacity-100': isActive(childLink.id) }"
+                />
+              </li>
             </ul>
           </li>
         </TransitionGroup>

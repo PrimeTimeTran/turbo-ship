@@ -4,7 +4,7 @@ definePageMeta({
 })
 </script>
 <template>
-  <div class="justify-center items-center lg:pt-12">
+  <div class="justify-center items-center">
     <!-- class="flex flex-col-reverse lg:flex-row justify-center items-center bg-red-200 sm:bg-orange-200 md:bg-blue-200 lg:bg-green-200" -->
     <div class="flex flex-col-reverse lg:flex-row justify-center items-center">
       <div

@@ -29,15 +29,15 @@ Muxter Deep Dive
   - [Netlify Functions]
 
 - [Headless](https://headlessui.com/)
-- [Flowbite](https://flowbite.com/)
-  - VTabs
-  - VTooltip
-  - VDropdown
-  - VAccordian
+- [DaisyUI](https://daisyui.com)
+
+
+- Icons
+  - https://vue-hero-icons.netlify.app/
+  - https://fontawesome.com/search?q=admin&o=r
 
 <!-- To Try -->
 - [PicoCSS](https://picocss.com/)
-- [DaisyUI](https://daisyui.com)
 
   - Tabs
     https://daisyui.com/components/tab/
@@ -47,6 +47,15 @@ Muxter Deep Dive
     https://daisyui.com/components/dropdown/
   - Accordian
     https://daisyui.com/components/accordion/
+
+<!-- Tried -->
+- [Flowbite](https://flowbite.com/)
+  Problem is required too much JS
+    - VTabs
+    - VTooltip
+    - VDropdown
+    - VAccordian
+
 
 ### Backend
 - [Nitro](https://nitro.unjs.io/)

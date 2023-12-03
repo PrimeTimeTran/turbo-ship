@@ -26,7 +26,7 @@ function onChange(e) {
     <label class="text-sm rounded p-2 w-full">
       <input
         type="radio"
-        class="overflow-x-scroll"
+        class="overflow-x-scroll radio radio-xs radio-info"
         @change="onChange"
         v-model="focusedKey"
         name="attributeName"
@@ -37,3 +37,10 @@ function onChange(e) {
     </label>
   </div>
 </template>
+
+<style>
+.radio:checked,
+.radio[aria-checked='true'] {
+  box-shadow: none;
+}
+</style>

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     port: 3005,
   },
   plugins: ['~/plugins/fontawesome.ts', { src: '~/plugins/marked.js' }],
-  css: ['@fortawesome/fontawesome-svg-core/styles.css'],
+  css: ['@fortawesome/fontawesome-svg-core/styles.css', '~/assets/css/main.css'],
   nitro: {
     prerender: {
       failOnError: false,

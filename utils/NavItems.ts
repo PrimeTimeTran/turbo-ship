@@ -15,6 +15,11 @@ export const navItems = [
     icon: 'fa-blog',
   },
   {
+    url: '/administrator',
+    name: 'Administrator',
+    icon: 'fa-blog',
+  },
+  {
     url: '/todos',
     name: 'Todos',
     icon: 'fa-list',

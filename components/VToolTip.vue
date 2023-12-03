@@ -37,13 +37,13 @@ onMounted(() => {
   <div :key="id">
     <button type="button" v-html="tool" :id="'tooltipButton' + id" :data-tooltip-target="'tooltip-default' + id" />
     <div
+      v-if="tip"
       role="tooltip"
       :id="'tooltip-default' + id"
-      class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+      class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-400 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
     >
       <span v-text="tip" />
       <div class="tooltip-arrow" data-popper-arrow />
     </div>
   </div>
 </template>
-<style></style>

@@ -3,7 +3,7 @@ import draggable from 'vuedraggable'
 const { entities } = useEntities()
 </script>
 <template>
-  <div class="grow overflow-auto scrollbar-hide h-screen">
+  <div class="grow overflow-auto scrollbar-hide h-screen pt-8">
     <div class="flex flex-col" id="TheToolBar">
       <div class="flex text-center rounded-md">
         <div class="flex flex-row justify-between flex-wrap">

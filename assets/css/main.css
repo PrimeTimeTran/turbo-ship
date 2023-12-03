@@ -39,18 +39,6 @@
   position: absolute;
 }
 
-.admin-form-entity-form {
-  width: 100%;
-  box-sizing: border-box;
-  position: relative;
-}
-
-.form-items-container {
-  gap: 10px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-}
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -65,4 +53,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000;
+}
+
+::selection {
+  color: white;
+  background: rgb(189, 189, 189);
 }
