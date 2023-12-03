@@ -182,7 +182,7 @@ export const Mint = [
         _id: 'fadc5faabe70daffd3b53ddd',
         validations: [],
         relation: { type: null, name: null },
-        options: 'checking,banking,creditCard',
+        options: 'checking,banking,credit,investing,savings',
         label: 'Type',
         placeholder: 'checking, savings, credit',
       },
@@ -194,6 +194,7 @@ export const Mint = [
         validations: [],
         relation: { type: null, name: null },
         label: 'Number',
+        placeholder: '88888888',
       },
       {
         validators: [],
@@ -203,6 +204,7 @@ export const Mint = [
         validations: [],
         relation: { type: null, name: null },
         label: 'RoutingNumber',
+        placeholder: '8888-8888',
       },
       {
         validators: [],
@@ -212,6 +214,7 @@ export const Mint = [
         validations: [],
         relation: { type: 'mto', name: 'branch' },
         label: 'Branch',
+        placeholder: 'Downtown',
       },
     ],
   },
@@ -241,6 +244,7 @@ export const Mint = [
         validations: [],
         relation: { type: null, name: null },
         label: 'Status',
+        placeholder: 'processing,complete,declined,cancelled,rejected',
       },
       {
         validators: [],
@@ -250,6 +254,7 @@ export const Mint = [
         validations: [],
         relation: { type: null, name: null },
         label: 'ChargeDate',
+        placeholder: '12/02/23',
       },
       {
         validators: [],
@@ -259,6 +264,7 @@ export const Mint = [
         validations: [],
         relation: { type: null, name: null },
         label: 'Description',
+        placeholder: 'Description...',
       },
       {
         validators: [],
@@ -268,6 +274,7 @@ export const Mint = [
         _id: 'a51f1f44e1bcb61b32d3bdcc',
         validations: [],
         label: 'User',
+        placeholder: 'User...',
       },
       {
         validators: [],

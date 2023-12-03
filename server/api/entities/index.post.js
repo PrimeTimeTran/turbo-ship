@@ -1,26 +1,29 @@
-// import Turboship from '@primetimetran/muxter'
+import { Turboship } from '@primetimetran/muxter'
 // import JSZip from 'jszip-sync'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
-  // const resp = await new Turboship(body)
-  // await new Promise((resolve) => {
-  //   setTimeout(resolve, 9000)
-  // })
+  const resp = await new Turboship(body)
+  await new Promise((resolve) => {
+    setTimeout(resolve, 9000)
+  })
 
   try {
     // Works local. Download unzip no problem
-    // const zipFile = await resp.zip.generateAsync({ type: 'base64' })
+    const zipFile = await resp.zip.generateAsync({ type: 'base64' })
     const response = {
-      // headers: {
-      //   'Content-Type': 'application/zip, application/octet-stream',
-      //   'Content-disposition': `attachment; filename=muxter_source.zip`,
-      // },
-      // statusCode: 200,
-      // isBase64Encoded: true,
+      headers: {
+        'Content-Type': 'application/zip, application/octet-stream',
+        'Content-disposition': `attachment; filename=muxter_source.zip`,
+      },
+      statusCode: 200,
+      isBase64Encoded: true,
     }
-    // setResponseHeaders(event, response)
-    return send(event, { message: 'Good Work' })
+    setResponseHeaders(event, response)
+    return send(event, zipFile)
+
+    // Leave to test sending any zip back
+    // return send(event, { message: 'Good Work' })
     // const zip = await new JSZip()
     // var zipFile = await zip.sync(function () {
     //   var data = null

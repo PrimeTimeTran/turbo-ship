@@ -29,7 +29,11 @@ async function generate() {
     let { generateUrl } = useAPI()
     const isDev = process.env.NODE_ENV === 'development'
     if (isDev) {
-      generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'
+      // Testing Netlify function
+      // generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'
+
+      // Testing package
+      generateUrl = 'http://localhost:3005/api/entities'
     }
     // 12/2/23 - 2.12
     //   Local netlify dev server files dl no problem
