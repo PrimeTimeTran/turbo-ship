@@ -39,13 +39,9 @@ export default {
 </script>
 
 <template>
-  <footer
-    class="bg-white font-sans dark:bg-gray-900 border-t-2 border-top-gray-100 dark:border-t-gray-950"
-  >
+  <footer class="bg-white font-sans dark:bg-gray-900 border-t-2 border-top-gray-100 dark:border-t-gray-950">
     <div class="container px-6 py-12 mx-auto">
-      <div
-        class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4"
-      >
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
         <div class="sm-col">
           <p class="text-black dark:text-white font-semibold">Frameworks</p>
           <div class="flex flex-col items-start mt-5 space-y-2">
@@ -53,8 +49,8 @@ export default {
               :to="item.url"
               v-for="item in frameworks"
               class="text-black hover:text-green-500 dark:text-gray-300 dark:hover:text-green-500 transition-colors duration-300 hover:underline hover:cursor-pointer"
+              v-text="item.name"
             >
-              {{ item.name }}
             </NuxtLink>
           </div>
         </div>
@@ -64,8 +60,8 @@ export default {
             <NuxtLink
               v-for="item in backends"
               class="text-black hover:text-green-500 dark:text-gray-300 dark:hover:text-green-500 transition-colors duration-300 hover:underline hover:cursor-pointer"
+              v-text="item"
             >
-              {{ item }}
             </NuxtLink>
           </div>
         </div>
@@ -82,4 +78,3 @@ export default {
     </div>
   </footer>
 </template>
-

@@ -5,7 +5,6 @@ const focusedKey = computed(() => {
   return props.attribute.type === 'relation' ? props.attribute.relation.type : props.attribute.type
 })
 
-// WIP. Update attribute type from list on click
 function onChange(e) {
   const selected = e.target.value
   if (Validator.relationTypes.includes(selected)) {
@@ -34,7 +33,7 @@ function onChange(e) {
         :value="Validator.labeledTypes[dataType]?.value"
         :checked="Validator.labeledTypes[dataType]?.value === focusedType"
       />
-      {{ Validator.labeledTypes[dataType]?.label }}
+      <span class="ml-2" v-text="Validator.labeledTypes[dataType]?.label"></span>
     </label>
   </div>
 </template>

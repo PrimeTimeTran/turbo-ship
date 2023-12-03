@@ -28,27 +28,21 @@ async function generate() {
     fbEvent('entities_generate_start')
     let { generateUrl } = useAPI()
     const isDev = process.env.NODE_ENV === 'development'
-    if (isDev) {
+    if (true) {
       // Testing Netlify function
       // generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'
 
       // Testing package
       generateUrl = 'http://localhost:3005/api/entities'
     }
-    // 12/2/23 - 2.12
-    //   Local netlify dev server files dl no problem
 
-    console.log({
-      generateUrl,
-      toolbarIsDev: isDev,
-    })
     toastEm('Processing build... Your project will download once done.', 5000)
     const resp = await $fetch(generateUrl, {
       method: 'post',
-      body: entities,
+      body: [seeds.lms[0], ...entities],
     })
 
-    if (false) {
+    if (true) {
       console.log('Hi Im Dev')
       const byteCharacters = atob(resp)
       const byteNumbers = new Array(byteCharacters.length)
@@ -109,12 +103,11 @@ const fileItems = [
     tip: 'Quite entity builder',
   },
 ]
-
 const viewItems = [
   {
     id: faker.database.mongodbObjectId(),
     name: 'Dark',
-    click: help,
+    click: () => document.getElementById('dark').click(),
     underline: 'D',
     tip: 'Toggle Dark Mode',
   },
@@ -221,8 +214,8 @@ const entitiesItems = [
 const templateItems = [
   {
     id: faker.database.mongodbObjectId(),
-    name: 'Mint',
-    click: () => setEntities('mint'),
+    name: 'Bank',
+    click: () => setEntities('bank'),
     underline: '',
   },
   // {
@@ -264,10 +257,9 @@ const templateItems = [
     <div class="flex flex-row w-64">
       <VDropdown left="true" title="File" underline="F" :items="fileItems" />
       <VDropdown title="View" underline="V" :items="viewItems" />
-      <!-- <VDropdown title="Edit" underline="E" :items="editItems" /> -->
-      <VDropdown underline="a" title="Relationships" />
       <VDropdown underline="E" title="Entities" :items="entitiesItems" />
       <VDropdown title="Templates" underline="T" :items="templateItems" />
+      <VDropdown underline="a" title="Relationships" />
       <VDropdown underline="b" title="Feedback" />
       <VDropdown right="true" title="Help" underline="H" />
     </div>

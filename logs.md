@@ -3,8 +3,10 @@ Problems:
 
 Latest
 Oldest
- -->
+-->
 
+12/3/23
+Add table column handler. Currently it's a blank array
 
 12/2/23
 Fix Netlify function/connection success!
@@ -16,3 +18,10 @@ Fix Netlify function/connection success!
     - netlify build
     - when nuxi hangs close connection
     - netlify deploy --prod
+
+- Fix relationships generation
+- Fix broker filterFilteredEntity
+- Update Bank seeds
+- Learn: Must RS Nuxt when working on package
+- Fix new entity breaking attribute editor
+- Cleanup {{ }} syntax

@@ -72,13 +72,24 @@ const submit = () => {
 const addAttribute = (e) => {
   e.preventDefault()
   if (!validAttributeName.value) return
+  let type = newAttribute.type
+  let relation = {
+    name: null,
+    type: '',
+  }
+  if (Validator.relationTypes.includes(newAttribute.type)) {
+    type = 'relation'
+    relation.type = newAttribute.type
+  }
   const attribute = {
     validators: [],
     validations: [],
-    type: newAttribute.type,
+    type: type,
     name: camelize(newAttribute.name),
     label: camelize(newAttribute.name),
     _id: faker.database.mongodbObjectId(),
+    placeholder: 'placeholder...',
+    relation: relation,
   }
 
   entity.attributes.push(attribute)
@@ -144,8 +155,8 @@ const inputClasses =
                 (e) => {
                   entity.name = e
                   entity.plural = e + 's'
-                  entity.label = e.toString().charAt(0).toUpperCase() + e.toString().slice(1)
-                  entity.pluralL = e.toString().charAt(0).toUpperCase() + e.toString().slice(1) + 's'
+                  entity.label = capitalize(e)
+                  entity.pluralL = capitalize(e) + 's'
                   if (e == '') entity.plural = e + ''
                 }
               "
@@ -160,7 +171,7 @@ const inputClasses =
               @input="
                 (e) => {
                   entity.plural = e
-                  entity.pluralL = e.toString().charAt(0).toUpperCase() + e.toString().slice(1) + 's'
+                  entity.pluralL = capitalize(e) + 's'
                 }
               "
               :classes="{

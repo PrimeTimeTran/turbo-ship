@@ -14,7 +14,7 @@ const items = isAdmin ? adminNavItems : navItems
       class="flex flex-auto lg:flex-none items-center lg:px-6 py-3 text-gray-500 hover:text-green-400 dark:text-white dark:hover:text-green-400 cursor-pointer transition-colors duration-300 text-xs font-bold"
     >
       <FontAwesomeIcon :icon="item.icon" class="mr-3" />
-      {{ item.name }}
+      <span v-text="item.name"></span>
     </NuxtLink>
   </div>
   <TheNavbarRight id="navItems-right" />

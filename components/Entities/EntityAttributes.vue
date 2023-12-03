@@ -11,7 +11,7 @@ const { save, valid, entity, focused, onFocus, editing, attribute, focusedType, 
 const nameRef = ref(null)
 const onAdd = () => {
   if (!valid.value) return
-  const newAttribute = _.cloneDeep({ ...attribute.value })
+  const newAttribute = _.cloneDeep({ ...attribute.value, placeholder: 'placeholder...' })
 
   save(newAttribute)
 }
@@ -87,12 +87,19 @@ const showRelationTab = computed(() => {
         <span v-text="editing ? 'Save' : 'Add'" />
       </button>
     </div>
-    <div class="col-span-3 flex flex-col justify-center" v-if="requiresSubField">
+    <div
+      v-if="requiresSubField"
+      class="col-span-3 flex flex-col"
+      :class="{
+        'justify-center': !showEnumTab && !showRelationTab,
+      }"
+    >
       <div class="flex flex-col space-y-4" v-if="showEnumTab">
         <label class="font-bold text-gray-500">Enumerator</label>
         <label class="dark:text-white">Options:</label>
         <input
           type="text"
+          placeholder="gryffindor, slytherin, hufflepuff..."
           class="rounded-lg border-gray-300 dark:border-gray-600 dark:placeholder-gray-400 hover:shadow-lg"
           v-model="attribute.options"
         />
@@ -136,7 +143,11 @@ const showRelationTab = computed(() => {
           </div>
         </div>
       </div>
-      <div class="col-span-3 flex flex-col" v-if="!showEnumTab && !showRelationTab" v-html="tips[0]"></div>
+      <div
+        v-html="tips[0]"
+        v-if="!showEnumTab && !showRelationTab"
+        class="col-span-3 flex flex-col dark:text-gray-600"
+      ></div>
     </div>
   </div>
 </template>

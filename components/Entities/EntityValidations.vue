@@ -93,9 +93,7 @@ function close(items) {
     </div>
     <div class="flex flex-1 flex-col px-2" v-if="focusedAttribute">
       <div class="flex flex-row justify-between mb-2">
-        <div class="font-medium text-slate-500">
-          {{ focusedAttribute.name }}
-        </div>
+        <div class="font-medium text-slate-500" v-text="focusedAttribute.name"></div>
         <div for="countries_multiple" class="font-medium text-slate-500 dark:text-white">Select an option</div>
       </div>
       <div>

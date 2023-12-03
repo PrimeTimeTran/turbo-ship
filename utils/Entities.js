@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker'
+import { seeds } from './seeds.js'
 
 export function generateNewIDs(entities) {
   const newEntities = []
@@ -105,5 +106,3 @@ export function generateLabels(entities) {
   })
   return newEntities
 }
-
-export function prepGenerate(entities) {}

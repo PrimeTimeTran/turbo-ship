@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import seeds from '../utils/seeds/seeds.js'
+import seeds from '../utils/seeds.js'
 
 export function useEntities() {
   const entities = reactive(store.entities)

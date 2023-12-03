@@ -21,10 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
 type Color = 'red' | 'blue' | 'green'
 const { copy, copied } = useClipboard()
 
-const languageMap: Record<
-  string,
-  { text: string; color: string; background: string }
-> = {
+const languageMap: Record<string, { text: string; color: string; background: string }> = {
   vue: {
     text: 'vue',
     background: '#42b883',
@@ -47,16 +44,10 @@ const languageMap: Record<
   },
 }
 
-const languageText = computed(() =>
-  props.language ? languageMap[props.language]?.text : null
-)
+const languageText = computed(() => (props.language ? languageMap[props.language]?.text : null))
 
-const languageBackground = computed(() =>
-  props.language ? languageMap[props.language]?.background : null
-)
-const languageColor = computed(() =>
-  props.language ? languageMap[props.language]?.color : null
-)
+const languageBackground = computed(() => (props.language ? languageMap[props.language]?.background : null))
+const languageColor = computed(() => (props.language ? languageMap[props.language]?.color : null))
 
 const html = ref('')
 const shiki = useShikiHighlighter()
@@ -85,26 +76,20 @@ watch(
     if (!newHighlighter || !props.code) {
       return
     }
-    const tokens = newHighlighter.codeToThemedTokens(
-      props.code.trim(),
-      props.language ?? undefined
-    )
+    const tokens = newHighlighter.codeToThemedTokens(props.code.trim(), props.language ?? undefined)
     html.value = shiki.renderToHtml(tokens, {
       fg: newHighlighter.getForegroundColor('dark-plus'),
       bg: newHighlighter.getBackgroundColor('dark-plus'),
       elements: {
         pre({ className, style, children }: any) {
           const shallFocus =
-            props.code.includes(codeBlockIdentifiers.FOCUS) ||
-            props.code.includes(codeBlockIdentifiers.FOCUS2)
+            props.code.includes(codeBlockIdentifiers.FOCUS) || props.code.includes(codeBlockIdentifiers.FOCUS2)
           const hasDiff =
             props.code.includes(codeBlockIdentifiers.DIFF_ADD) ||
             props.code.includes(codeBlockIdentifiers.DIFF_ADD_2) ||
-            props.code.includes(codeBlockIdentifiers.DIFF_REMOVE) || 
+            props.code.includes(codeBlockIdentifiers.DIFF_REMOVE) ||
             props.code.includes(codeBlockIdentifiers.DIFF_REMOVE_2)
-          return `<pre tabindex="1" class="${className} bg-[#1e1e1e] p-0 ${
-            shallFocus ? 'has-focused-lines' : ''
-          } ${
+          return `<pre tabindex="1" class="${className} bg-[#1e1e1e] p-0 ${shallFocus ? 'has-focused-lines' : ''} ${
             hasDiff ? 'has-diff' : ''
           } mt-0" style="${style}">${children}</pre>`
         },
@@ -114,14 +99,11 @@ watch(
         line({ className, index, children }: any) {
           const shallHighlight = props.highlights?.includes(index + 1) ?? false
           const shallFocus =
-            children.includes(codeBlockIdentifiers.FOCUS) ||
-            children.includes(codeBlockIdentifiers.FOCUS2)
-          const shallDiffRemove = children.includes(
-            codeBlockIdentifiers.DIFF_REMOVE
-          ) || children.includes(
-            codeBlockIdentifiers.DIFF_REMOVE_2
-          )
-          const shallDiffAdd = children.includes(codeBlockIdentifiers.DIFF_ADD) || children.includes(codeBlockIdentifiers.DIFF_ADD_2)
+            children.includes(codeBlockIdentifiers.FOCUS) || children.includes(codeBlockIdentifiers.FOCUS2)
+          const shallDiffRemove =
+            children.includes(codeBlockIdentifiers.DIFF_REMOVE) || children.includes(codeBlockIdentifiers.DIFF_REMOVE_2)
+          const shallDiffAdd =
+            children.includes(codeBlockIdentifiers.DIFF_ADD) || children.includes(codeBlockIdentifiers.DIFF_ADD_2)
           const modifiedChildren = removeCodeBlockIdentifiers(children)
           let beforeElement = '<div class="ml-4"></div>'
           if (shallDiffAdd) {
@@ -133,42 +115,33 @@ watch(
               index + 1
             } <span class="text-[#f43f5e]">-</span></div>`
           } else {
-            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${
-              index + 1
-            }</div>`
+            beforeElement = `<div class="ml-4 mr-6 text-[#738a9466]">${index + 1}</div>`
           }
-          return `<div class="${className + '-go'} ${
-            shallHighlight ? 'bg-[#363b46]' : ''
-          } ${shallFocus ? 'has-focus' : ''} ${
-            shallDiffRemove ? 'diff remove' : ''
-          }${
+          return `<div class="${className + '-go'} ${shallHighlight ? 'bg-[#363b46]' : ''} ${
+            shallFocus ? 'has-focus' : ''
+          } ${shallDiffRemove ? 'diff remove' : ''}${
             shallDiffAdd ? 'diff add' : ''
           } w-full inline-flex">${beforeElement}<div>${modifiedChildren}</div></div>`
         },
       },
     })
   },
-  { immediate: true }
+  { immediate: true },
 )
 </script>
 <template>
   <div class="container pt-1 rounded-xl">
-    <div
-      class="flex justify-center items-center border-b-2 border-gray-600 px-1 py-0"
-    >
-      <div class="ml-2 text-gray-500">
-        {{ filename }}
-      </div>
+    <div class="flex justify-center items-center border-b-2 border-gray-600 px-1 py-0">
+      <div class="ml-2 text-gray-500" v-text="filename"></div>
       <span
         class="p-1 py-0 ml-auto rounded"
         :style="{ background: languageBackground || '', color: languageColor as Color | undefined }"
+        v-text="languageText"
       >
-        {{ languageText }}
       </span>
       <div
         @click="copy(code)"
         :class="[
-          // 'ml-1',
           'p-3',
           'py-0',
           'border',
@@ -185,19 +158,12 @@ watch(
             }"
             icon="fa-solid fa-check"
           />
-          <FontAwesomeIcon
-            v-else
-            color="white"
-            icon="fa-solid fa-copy"
-          />
+          <FontAwesomeIcon v-else color="white" icon="fa-solid fa-copy" />
         </button>
       </div>
     </div>
-    <div
-      v-if="html"
-      v-html="html"
-    ></div>
-    <span v-else>{{ code }}</span>
+    <div v-if="html" v-html="html"></div>
+    <span v-else v-text="code"></span>
   </div>
 </template>
 
@@ -305,10 +271,9 @@ pre.shiki {
   }
 }
 :deep(pre) {
-  div[class^="ml-"]:first-child {
+  div[class^='ml-']:first-child {
     width: 10px;
     min-width: 10px;
   }
 }
-
 </style>

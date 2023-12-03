@@ -2,11 +2,7 @@
   <div class="md:pt-24 overflow-auto scrollbar-hide">
     <ContentNavigation v-slot="{ navigation }">
       <ul>
-        <li
-          class="list-none"
-          :key="category._path"
-          v-for="category in navigation[1].children"
-        >
+        <li class="list-none" :key="category._path" v-for="category in navigation[1].children">
           <ul class="list-none">
             <!-- Makes the scroll spy more tricky to code -->
             <NuxtLink
@@ -17,8 +13,8 @@
                 'hover:text-green-400': true,
                 active: currentRoute === category._path,
               }"
+              v-text="category.title"
             >
-              {{ category.title }}
             </NuxtLink>
             <div class="py-3 ml-1">
               <li
@@ -34,8 +30,8 @@
                     'hover:text-green-400': true,
                     active: currentRoute === child._path,
                   }"
+                  v-text="child.title"
                 >
-                  {{ child.title }}
                 </NuxtLink>
                 <div
                   class="w-1/12 border-b border-b-gray-900/25 dark:border-b-white/25 overflow-visible relative bottom-3"
