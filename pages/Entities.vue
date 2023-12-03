@@ -2,7 +2,6 @@
 definePageMeta({
   layout: 'entities-layout',
 })
-
 </script>
 <template>
   <EntitiesBodyCenter />
