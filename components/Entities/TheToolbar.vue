@@ -1,6 +1,8 @@
 <script setup>
 import _ from 'lodash'
 import { faker } from '@faker-js/faker'
+const runtimeConfig = useRuntimeConfig()
+const isDeveloping = runtimeConfig.public.generateUrl.includes('localhost')
 
 const { entities, setEntities, clearEntities } = useEntities()
 function collapse() {
@@ -28,12 +30,11 @@ async function generate() {
   try {
     fbEvent('entities_generate_start')
     let { generateUrl } = useAPI()
-    const isDeveloping = false
     if (isDeveloping) {
+      // Testing package
+      // generateUrl = 'http://localhost:3005/api/entities'
       // Testing Netlify function
       // generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'
-      // Testing package
-      generateUrl = 'http://localhost:3005/api/entities'
     }
 
     let newEntities = _.cloneDeep([...entities])
@@ -45,7 +46,7 @@ async function generate() {
     })
 
     if (isDeveloping) {
-      console.log('Hi Im Dev')
+      console.log('Gen src is prod')
       const byteCharacters = atob(resp)
       const byteNumbers = new Array(byteCharacters.length)
       for (let i = 0; i < byteCharacters.length; i++) {

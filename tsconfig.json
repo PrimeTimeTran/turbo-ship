@@ -3,5 +3,10 @@
   "compilerOptions": {
     "strict": true
   },
-  "exclude": ["./composables/useEntities.ts", "./server/middleware/02.user.global.ts"]
+  "exclude": [
+    "./composables/useEntities.ts",
+    "./server/middleware/02.user.global.ts",
+    "server/utils/Turboship/nuxt",
+    "netlify/functions/build-muxter/Turboship"
+  ]
 }
