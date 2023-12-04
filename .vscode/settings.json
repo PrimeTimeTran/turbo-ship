@@ -1,10 +1,50 @@
 {
+  // "problems.decorations.enabled": false,
+  "dart.analysisExcludedFolders": [
+    "netlify/functions/esm-muxter/Turboship/flutter",
+    "netlify/functions/esm-muxter/TurboshipCJS/flutter"
+  ],
   "files.exclude": {
+    // flutter
+    "**/.dart_tool": true,
+    "**/mobile.iml": true,
+    "**/analysis_options.yaml": true,
+    "flutter/pubspec.lock": true,
+    "flutter/build": true,
+    "**/macos": true,
+    "**/web": true,
+    "**/.flutter-plugins": true,
+    "**/.metadata": true,
+    "**/*.freezed.dart": true,
+    "**/*.g.dart": true,
+    "**/.flutter-plugins-dependencies": true,
+
+    // Focus flutter start
+    "assets": true,
+    "components": true,
+    "composables": true,
+    "content": true,
+    "layouts": true,
+    "pages": true,
+    "plugins": true,
+    "public": true,
+    "utils": true,
+    "tailwind.config.js": true,
+    "package.json": true,
+    "app.vue": true,
+    "tsconfig.json": true,
+    ".env": true,
+    "netlify": true,
+    // Focus flutter end
+
+    // Root
+    ".netlify": true,
+    "tsconfig-base.json": true,
+    "tsconfig-cjs.json": true,
     "**/dist": true,
     "**/.git": true,
     "**/.nuxt": true,
     "**/.output": true,
-    // "**/.netlify": true,
     "**/bun.lockb": true,
     "**/error.vue": true,
     "**/options.vite": true,
@@ -12,8 +52,11 @@
     "**/firebase.json": true,
     "**/formkit.config.js": true,
     "**/package-lock.json": true,
+
+    // Netlify functions
     // "netlify/functions/esm-muxter/Turboship/nuxt": true,
     // "netlify/functions/esm-muxter/Turboship/flutter": true,
+
     "**/prettier.config.cjs": true
   },
   "workbench.colorCustomizations": {

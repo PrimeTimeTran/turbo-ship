@@ -1,0 +1,6 @@
+pubspec.yaml
+lib
+l10n.yaml
+ios/Podfile
+assets/env/env.example
+assets/env/.env.development
