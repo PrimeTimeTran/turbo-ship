@@ -29,7 +29,6 @@ notes
 # temp/rn
 # Local Netlify folder
 .netlify
-mobile
 server/utils/Turboship
 netlify/functions/esm-muxter.zip
 netlify/functions/build-muxter.zip
