@@ -1,8 +1,14 @@
 import type { HookResult } from 'nuxt/schema'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ignore: ['/mobile', '/turboship'],
+  ignore: ['/mobile'],
   plugins: ['~/plugins/fontawesome.ts', { src: '~/plugins/marked.js' }],
   devServer: {
     port: 3005,
@@ -39,6 +45,9 @@ export default defineNuxtConfig({
     '@formkit/nuxt',
     'nuxt-vuefire',
   ],
+  alias: {
+    '@netlify': path.resolve(__dirname, 'netlify'),
+  },
   hooks: {
     'build:done': (go: HookResult) => {
       console.log({
