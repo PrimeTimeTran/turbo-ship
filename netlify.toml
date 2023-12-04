@@ -1,15 +1,66 @@
+[dev]
+  targetPort = 3005
+  publish = "./.output/public/index.html"
+  functionsPort = 8888
+
 [build]
   publish = "dist"
   command = "npm run build"
-
-[context.production]
-  environment = { API_URL = "https://turboship.ltran.net/api", MONGODB_URI = "mongodb+srv://primetimetran:rJXDAEyN8Amd6IMK@cluster0.xfhlaio.mongodb.net/?retryWrites=true&w=majority", AUTH_TOKEN_EXPIRES_IN = "3650 days", AUTH_TOKEN_SECRET = "mysecret", API_URL = "https://turboship.ltran.net/api", GENERATE_URL = "https://turboship.ltran.net/.netlify/functions/build-muxter"}
+  functions = "netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["shikiji/onig.wasm", "tslib"]
+  included_files = [
+    "./netlify/functions/esm-muxter/Turboship/Turboship.js",
+    "./netlify/functions/esm-muxter/Turboship/Framework.js",
+    "./netlify/functions/esm-muxter/Turboship/Generator.js",
+    "./netlify/functions/esm-muxter/Turboship/helpers.js",
+    "./netlify/functions/esm-muxter/Turboship/builders/AdminBuilder.js",
+    "./netlify/functions/esm-muxter/Turboship/builders/AdminHelpers.js",
+    "./netlify/functions/esm-muxter/Turboship/builders/ModelBuilder.js",
+    "./netlify/functions/esm-muxter/Turboship/helpers/createDirectories.js",
+    "./netlify/functions/esm-muxter/Turboship/helpers/index.js",
+  ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[build.environment]
+  AUTH_TOKEN_SECRET = "mySecret"
+  AUTH_TOKEN_EXPIRES_IN = "3650 days"
+  API_URL = "https://turboship.ltran.net/api"
+  MONGODB_URI = "mongodb+srv://primetimetran:rJXDAEyN8Amd6IMK@cluster0.xfhlaio.mongodb.net/?retryWrites=true&w=majority"
+
+[context.production]
+  command = "echo 'production'"
+[context.production.environment]
+  GENERATE_URL = "https://turboship.ltran.net/.netlify/functions/build-muxter"
+
+[context.production.functions]
+  external_node_modules = ["shikiji/onig.wasm", "tslib"]
   included_files = ["./netlify/functions/build-muxter/Turboship/Turboship.js"]
 
-[dev]
-  publish = "./.output/public/index.html"
-  targetPort = 3005
+[context.branch-deploy]
+command = "echo 'branch-deploy'"
+[context.branch-deploy.environment]
+  GENERATE_URL = "https://turboship.ltran.net/.netlify/functions/esm-muxter"
+
+[context.branch-deploy.functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["shikiji/onig.wasm", "tslib"]
+  included_files = ["./netlify/functions/esm-muxter/Turboship/Turboship.js"]

@@ -4,7 +4,7 @@
     "**/.git": true,
     "**/.nuxt": true,
     "**/.output": true,
-    "**/.netlify": true,
+    // "**/.netlify": true,
     "**/bun.lockb": true,
     "**/error.vue": true,
     "**/options.vite": true,
