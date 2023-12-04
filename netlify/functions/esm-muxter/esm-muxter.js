@@ -1,25 +1,26 @@
-// ESM Netlify function.
-// - Works Locally
-// - Fails in prod
+import fs from 'fs'
+const currentDirectory = process.cwd()
+
+// printPath()
 
 export const handler = async (event, context) => {
   try {
-    let path = './Turboship/Turboship.js'
+    let path = './TurboshipCJS/Turboship.js'
     if (false) {
-      path = './netlify/functions/build-muxter/Turboship/Turboship.js'
+      path = './netlify/functions/build-muxter/TurboshipCJS/Turboship.js'
     }
     let response
     await import(path)
       .then(async (module) => {
-        let { Turboship } = module
+        const { Turboship } = module
         const body = JSON.parse(event.body)
         const resp = await new Turboship(body)
-        await stallForZip()
+        await stall()
         const zipFile = await resp.zip.generateAsync({ type: 'base64' })
         response = {
           headers: {
+            'Content-disposition': 'attachment',
             'Content-Type': 'application/zip, application/octet-stream',
-            'Content-disposition': `attachment; filename=${`muxter_${new Date().toJSON()}.zip`}`,
           },
           body: zipFile,
           statusCode: 200,
@@ -41,11 +42,37 @@ export const handler = async (event, context) => {
   }
 }
 
-async function stallForZip() {
+async function stall() {
   await new Promise((resolve) => setImmediate(resolve))
   await new Promise((resolve) =>
     setTimeout(() => {
       resolve()
     }, 9000),
   )
+}
+
+function printPath() {
+  fs.readdir(currentDirectory, (err, files) => {
+    if (err) {
+      console.error('Error reading directory:', err)
+      return
+    }
+
+    console.log(`Contents of current directory (${currentDirectory}):`)
+    files.forEach((file) => {
+      console.log(file)
+    })
+  })
+
+  fs.readdir(currentDirectory + '/netlify', (err, files) => {
+    if (err) {
+      console.error('Error reading directory:', err)
+      return
+    }
+
+    console.log(`Contents of current directory (${currentDirectory}):`)
+    files.forEach((file) => {
+      console.log(file)
+    })
+  })
 }

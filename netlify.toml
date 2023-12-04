@@ -12,15 +12,19 @@
   node_bundler = "esbuild"
   external_node_modules = ["shikiji/onig.wasm", "tslib"]
   included_files = [
-    "./netlify/functions/esm-muxter/Turboship/Turboship.js",
-    "./netlify/functions/esm-muxter/Turboship/Framework.js",
-    "./netlify/functions/esm-muxter/Turboship/Generator.js",
-    "./netlify/functions/esm-muxter/Turboship/helpers.js",
-    "./netlify/functions/esm-muxter/Turboship/builders/AdminBuilder.js",
-    "./netlify/functions/esm-muxter/Turboship/builders/AdminHelpers.js",
-    "./netlify/functions/esm-muxter/Turboship/builders/ModelBuilder.js",
-    "./netlify/functions/esm-muxter/Turboship/helpers/createDirectories.js",
-    "./netlify/functions/esm-muxter/Turboship/helpers/index.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/Turboship.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/Framework.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/Generator.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/helpers.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/builders/AdminBuilder.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/builders/AdminHelpers.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/builders/ModelBuilder.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/helpers/createDirectories.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/helpers/index.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/nuxt/**",
+    "./netlify/functions/esm-muxter/TurboshipCJS/flutter/**",
+    "./netlify/functions/esm-muxter/TurboshipCJS/flutter/go.js",
+    "./netlify/functions/esm-muxter/TurboshipCJS/nuxt/tailwind.config.js",
   ]
 
 

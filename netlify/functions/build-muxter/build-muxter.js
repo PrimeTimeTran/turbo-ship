@@ -22,7 +22,6 @@ fs.readdir(currentDirectory + '/netlify', (err, files) => {
     console.error('Error reading directory:', err)
     return
   }
-
   console.log(`Contents of current directory (${currentDirectory}):`)
   files.forEach((file) => {
     console.log(file)
@@ -33,15 +32,12 @@ const handler = async (event, context) => {
   try {
     const body = JSON.parse(event.body)
     const resp = await new Turboship(body)
-
-    await stallForZip()
-
+    await stall()
     const zipFile = await resp.zip.generateAsync({ type: 'base64' })
-
     const response = {
       headers: {
+        'Content-disposition': 'attachment',
         'Content-Type': 'application/zip, application/octet-stream',
-        'Content-disposition': `attachment; filename=${`muxter_${new Date().toJSON()}.zip`}`,
       },
       body: zipFile,
       statusCode: 200,
@@ -58,7 +54,7 @@ const handler = async (event, context) => {
   }
 }
 
-async function stallForZip() {
+async function stall() {
   await new Promise((resolve) => setImmediate(resolve))
   await new Promise((resolve) =>
     setTimeout(() => {

@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-// import { useRuntimeConfig } from '#imports'
 
 import Generator from './Generator.js'
 
@@ -22,16 +21,11 @@ export default class Framework {
   }
 
   zipBaseDirectory() {
-    // const runtimeConfig = useRuntimeConfig()
-    // const isDeveloping = runtimeConfig.public.generateUrl.includes('localhost')
     const isDeveloping = true
     const name = this.options.frameworkName
     let basePath = '/var/task/node_modules/@primetimetran/muxter/src/Turboship/'
-    console.log({
-      isDeveloping,
-    })
-    if (isDeveloping) {
-      basePath = '/Users/loi/Desktop/work/turboship/turboship/server/utils/Turboship/'
+    if (true) {
+      basePath = '/Users/loi/Desktop/work/turboship/web/netlify/functions/esm-muxter/TurboshipCJS/'
     }
     basePath += name
     getZippedFolderSync(basePath, this.zip)

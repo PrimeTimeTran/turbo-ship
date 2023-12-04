@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "buildNetlify": "rm -fr netlify/functions/esm-muxter/TurboshipCJS/* && tsc -p tsconfig-cjs.json && cp -a netlify/functions/esm-muxter/Turboship/nuxt/. netlify/functions/esm-muxter/TurboshipCJS/nuxt && cp -a netlify/functions/esm-muxter/Turboship/flutter/. netlify/functions/esm-muxter/TurboshipCJS/flutter"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

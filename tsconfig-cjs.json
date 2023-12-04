@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig-base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "netlify/functions/esm-muxter/TurboshipCJS",
+    "target": "es2015"
+  }
+}

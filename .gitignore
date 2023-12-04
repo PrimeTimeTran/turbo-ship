@@ -31,4 +31,7 @@ notes
 .netlify
 mobile
 server/utils/Turboship
-netlify/functions/build-muxter/Turboship
+netlify/functions/esm-muxter.zip
+netlify/functions/build-muxter.zip
+netlify/functions/esm-muxter/TurboshipCJS
+netlify/functions/esm-muxter/Turboship/flutter

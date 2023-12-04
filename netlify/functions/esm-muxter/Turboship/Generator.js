@@ -1,5 +1,6 @@
 import { frameworkMap } from './Framework.js'
-import { ModelBuilder, AdminBuilder } from './builders/index.js'
+import { AdminBuilder } from './builders/AdminBuilder.js'
+import { ModelBuilder } from './builders/ModelBuilder.js'
 
 export default class Generator {
   constructor(e, options, zip) {
@@ -75,8 +76,6 @@ function buildRoutes(routes, entities, options, zip) {
     zip.generateAsync({ type: 'nodebuffer' }).then((content) => {})
   })
 }
-
-const backends = ['nuxt']
 
 const capitalize = (word) => {
   const firstLetter = word?.charAt(0)

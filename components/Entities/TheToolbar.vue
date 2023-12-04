@@ -32,9 +32,9 @@ async function generate() {
     let { generateUrl } = useAPI()
     if (isDeveloping) {
       // Testing package
-      // generateUrl = 'http://localhost:3005/api/entities'
+      generateUrl = 'http://localhost:3005/api/entities'
       // Testing Netlify function
-      // generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'
+      // generateUrl = 'http://localhost:8888/.netlify/functions/esm-muxter'
     }
 
     let newEntities = _.cloneDeep([...entities])
@@ -46,7 +46,7 @@ async function generate() {
     })
 
     if (isDeveloping) {
-      console.log('Gen src is prod')
+      console.log('Gen src is dev')
       const byteCharacters = atob(resp)
       const byteNumbers = new Array(byteCharacters.length)
       for (let i = 0; i < byteCharacters.length; i++) {
@@ -67,7 +67,7 @@ async function generate() {
       document.body.removeChild(downloadLink)
       URL.revokeObjectURL(blobUrl)
     } else {
-      console.log('Hi Im not dev')
+      console.log('Gen src is prod')
       const blobUrl = URL.createObjectURL(resp)
       const downloadLink = document.createElement('a')
       downloadLink.href = blobUrl

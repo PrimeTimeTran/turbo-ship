@@ -7,6 +7,7 @@
     "./composables/useEntities.ts",
     "./server/middleware/02.user.global.ts",
     "server/utils/Turboship/nuxt",
-    "netlify/functions/build-muxter/Turboship"
+    "netlify/functions/esm-muxter/Turboship",
+    "netlify/functions/esm-muxter/TurboshipCJS"
   ]
 }

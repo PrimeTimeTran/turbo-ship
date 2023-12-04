@@ -1,10 +1,10 @@
-import { Turboship } from '@netlify/functions/build-muxter/Turboship/Turboship.js'
+import { Turboship } from '~/netlify/functions/esm-muxter/Turboship/Turboship.js'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const resp = await new Turboship(body)
   await new Promise((resolve) => {
-    setTimeout(resolve, 9000)
+    setTimeout(resolve, 5000)
   })
 
   try {
