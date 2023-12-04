@@ -17,6 +17,31 @@
       "cwd": "${fileWorkspaceFolder}",
       "program": "${fileWorkspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
       "args": ["dev"]
+    },
+    {
+      "name": "iPhone 15 Pro Max dev(debug)",
+      "type": "dart",
+      "request": "launch",
+      "program": "mobile/lib/main_development.dart",
+      "flutterMode": "debug",
+      "deviceId": "3CAE8793-2B07-4522-917B-C56BC2E84F9D",
+      "args": ["--flavor", "development", "--dart-define=FLAVOR=development"]
+    },
+    {
+      "type": "dart",
+      "request": "launch",
+      "flutterMode": "debug",
+      "program": "lib/main_development.dart",
+      "name": "Loi iPhone(device)",
+      "deviceId": "00008110-000218C20C0B801E"
+    },
+    {
+      "type": "dart",
+      "request": "launch",
+      "flutterMode": "debug",
+      "name": "Flutter for web",
+      "program": "lib/main.dart",
+      "args": ["-d", "chrome", "--flavor", "development", "--dart-define=FLAVOR=development"]
     }
   ],
   "compounds": [

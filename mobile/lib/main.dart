@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'all.dart';
 // import 'firebase/prod.dart';
+import 'core/configs/configs.dart';
 
 void main() async {
-  // p('Env: Main', icon: '🏃');
   env = 'main';
 
   WidgetsFlutterBinding.ensureInitialized();
+  await configureApp();
+
   // HttpOverrides.global = MyHttpOverrides();
 
   // Not 100% sure the advantage of multiple main files(main_development, main_staging, main_production) other than initializing Firebase(FB).
@@ -30,6 +32,9 @@ void main() async {
     // }
   }
 
-  // await configApp();
+  // final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // Show splash screen
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   setupApp(() => const Providers());
 }

@@ -23,6 +23,10 @@ bool isXL(BuildContext c) {
   return W(c) > 1366;
 }
 
+bool isXS(BuildContext c) {
+  return W(c) <= 431;
+}
+
 double W(BuildContext c) {
   return MediaQuery.of(c).size.width;
 }

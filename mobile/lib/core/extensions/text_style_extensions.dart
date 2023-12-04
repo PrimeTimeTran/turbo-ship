@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'all.dart';
+
 extension TextStyleExtensions on TextStyle {
   TextStyle get bold => copyWith(fontWeight: FontWeight.bold);
-  TextStyle get semibold => copyWith(fontWeight: FontWeight.w600);
-  TextStyle get medium => copyWith(fontWeight: FontWeight.w500);
-  TextStyle get regular => copyWith(fontWeight: FontWeight.w400);
-  TextStyle get light => copyWith(fontWeight: FontWeight.w300);
-
+  TextStyle get regular => copyWith(fontWeight: FontWeight.normal);
   TextStyle get italic => copyWith(fontStyle: FontStyle.italic);
   TextStyle get underline => copyWith(decoration: TextDecoration.underline);
+  TextStyle branchColor(BuildContext context) => copyWith(color: context.colorTheme.txtNormalBrand);
+  TextStyle primaryTextColor(BuildContext context) => copyWith(color: context.colorTheme.txtNormalPrimary);
+  TextStyle secondaryTextColor(BuildContext context) => copyWith(color: context.colorTheme.txtNormalSecondary);
+  TextStyle errorColor(BuildContext context) => copyWith(color: context.colorTheme.txtStatusDanger);
+  TextStyle tertiaryTextColor(BuildContext context) => copyWith(color: context.colorTheme.txtNormalTertiary);
 
-  TextStyle get lightColor => copyWith(color: color!.withOpacity(0.87));
   TextStyle toColor(Color color) => copyWith(color: color);
 }

@@ -5,7 +5,6 @@ import 'all.dart';
 // import 'firebase/prod.dart';
 
 void main() async {
-  // p('Env: Production', icon: '🏃');
   env = 'production';
 
   WidgetsFlutterBinding.ensureInitialized();

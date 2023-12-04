@@ -15,7 +15,6 @@ Future<void> setupApp(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
-  // p('Bootstrapping', icon: '👢');
 
   // FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
   // FirebaseAnalytics analytics = FirebaseAnalytics.instance;
@@ -26,7 +25,6 @@ Future<void> setupApp(FutureOr<Widget> Function() builder) async {
     await Env().setup();
   } catch (e) {
     await Env().setup();
-    p('Error Setting up: $e', icon: '😩');
   }
 
   runApp(await builder());

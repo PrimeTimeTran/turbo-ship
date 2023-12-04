@@ -52,14 +52,9 @@ class Env {
     //   BUDGET = budget;
     //   budget.updateTotals();
     //   budget.overview.updateCategoryGoals();
-    //   p('BUDGET ${BUDGET.history.length}');
-    //   p('BUDGET ${BUDGET.history.last.date}');
-    //   p('BUDGET ${BUDGET.date}');
     // } else {
     //   final json = await FileUtils.loadJson('assets/data/budget.json');
     //   final b = Budget.fromJson(json);
-    //   p('Clear Budget $BUDGET');
-    //   p('Clear Budget $b');
     // }
   }
 }

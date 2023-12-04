@@ -12,6 +12,8 @@
     "**/firebase.json": true,
     "**/formkit.config.js": true,
     "**/package-lock.json": true,
+    // "netlify/functions/esm-muxter/Turboship/nuxt": true,
+    // "netlify/functions/esm-muxter/Turboship/flutter": true,
     "**/prettier.config.cjs": true
   },
   "workbench.colorCustomizations": {

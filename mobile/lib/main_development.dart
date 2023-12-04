@@ -3,10 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import './all.dart';
+import 'core/configs/configs.dart';
 // import 'firebase/dev.dart';
 
 void main() async {
-  // p('Env: Development', icon: '🏃');
   env = 'development';
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ void main() async {
     // }
   }
 
-  // await configApp();
+  await configureApp();
 
   setupApp(() => const Providers());
 }
