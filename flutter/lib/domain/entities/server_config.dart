@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import '../../core/configs/di/di.dart';
 import '../../core/helpers/app_info.dart';
 import '../../core/utils/platform_util.dart';
 
@@ -20,7 +19,7 @@ class ServerConfig extends Equatable {
       return false;
     }
 
-    final appBuildNumber = getIt.get<AppInfo>().buildNumber;
+    final appBuildNumber = AppInfo.buildNumber;
 
     return PlatformUtil.isAndroid
         ? int.parse(appBuildNumber) < androidRequiredBuildNumber

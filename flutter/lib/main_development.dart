@@ -10,6 +10,8 @@ void main() async {
   env = 'development';
 
   WidgetsFlutterBinding.ensureInitialized();
+  await configureApp();
+
   // HttpOverrides.global = MyHttpOverrides();
 
   if (kIsWeb) {
@@ -26,8 +28,6 @@ void main() async {
     //   });
     // }
   }
-
-  await configureApp();
 
   setupApp(() => const Providers());
 }

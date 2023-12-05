@@ -19,15 +19,6 @@
       "args": ["dev"]
     },
     {
-      "name": "iPhone 15 Pro Max dev(debug)",
-      "type": "dart",
-      "request": "launch",
-      "program": "flutter/lib/main_development.dart",
-      "flutterMode": "debug",
-      "deviceId": "3CAE8793-2B07-4522-917B-C56BC2E84F9D",
-      "args": ["--flavor", "development", "--dart-define=FLAVOR=development"]
-    },
-    {
       "type": "dart",
       "request": "launch",
       "flutterMode": "debug",
@@ -39,9 +30,18 @@
       "type": "dart",
       "request": "launch",
       "flutterMode": "debug",
-      "name": "Flutter for web",
+      "name": "Flutter(web)(dev)",
       "program": "flutter/lib/main.dart",
-      "args": ["-d", "chrome", "--flavor", "development", "--dart-define=FLAVOR=development"]
+      "args": ["-d", "chrome", "--flavor", "development"]
+    },
+    {
+      "name": "Flutter(iPhone 15 Max)(dev)",
+      "type": "dart",
+      "request": "launch",
+      "flutterMode": "debug",
+      "program": "flutter/lib/main.dart",
+      "deviceId": "3CAE8793-2B07-4522-917B-C56BC2E84F9D",
+      "args": ["--flavor", "development"]
     }
   ],
   "compounds": [

@@ -37,6 +37,11 @@
     "netlify": true,
     // Focus flutter end
 
+    //Nuxt start
+    // "flutter": true,
+
+    //Nuxt end
+
     // Root
     ".netlify": true,
     "tsconfig-base.json": true,

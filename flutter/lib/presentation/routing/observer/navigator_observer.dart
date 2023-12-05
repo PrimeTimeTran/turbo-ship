@@ -1,10 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:turboship/all.dart';
 
 import '../../../core/configs/configs.dart';
-import '../../../core/mixins/log_mixin.dart';
-import '../all.dart';
 
 // TODO: add firebase analytics here
 

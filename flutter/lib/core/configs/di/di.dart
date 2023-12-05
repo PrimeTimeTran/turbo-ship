@@ -1,9 +1,8 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:turboship/all.dart';
 
-import '../../../data/datasources/app_preferences.dart';
-import '../../utils/log_util.dart';
 import 'di.config.dart';
 import 'raw_config.dart';
 
@@ -22,7 +21,7 @@ abstract class RegisterModule {
   @singleton
   @preResolve
   Future<RawConfig> configEnv() async {
-    const flavor = String.fromEnvironment('FLAVOR', defaultValue: 'dev');
+    final flavor = AppInfo.appFlavor.name;
 
     LogUtil.i(name: 'Flavor', flavor);
 

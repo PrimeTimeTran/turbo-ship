@@ -1,4 +1,4 @@
-// part of 'app_router.dart';
+part of 'app_router.dart';
 
 enum AppPages {
   onBoarding,
