@@ -8,22 +8,24 @@ part of 'app_bloc.dart';
 
 _$AppStateImpl _$$AppStateImplFromJson(Map<String, dynamic> json) =>
     _$AppStateImpl(
-      locale: json['locale'] as String? ?? LocaleConfig.defaultLocale,
-      isDarkTheme: json['isDarkTheme'] as bool? ?? false,
       currentUser: json['currentUser'] == null
           ? null
           : User.fromJson(json['currentUser'] as Map<String, dynamic>),
+      lastUserId: json['lastUserId'] as String?,
+      palette: json['palette'] ?? 'Blue',
       isForceUpdate: json['isForceUpdate'] ?? false,
       isMaintaining: json['isMaintaining'] ?? false,
-      lastUserId: json['lastUserId'] as String?,
+      isDarkTheme: json['isDarkTheme'] as bool? ?? false,
+      locale: json['locale'] as String? ?? LocaleConfig.defaultLocale,
     );
 
 Map<String, dynamic> _$$AppStateImplToJson(_$AppStateImpl instance) =>
     <String, dynamic>{
-      'locale': instance.locale,
-      'isDarkTheme': instance.isDarkTheme,
       'currentUser': instance.currentUser,
+      'lastUserId': instance.lastUserId,
+      'palette': instance.palette,
       'isForceUpdate': instance.isForceUpdate,
       'isMaintaining': instance.isMaintaining,
-      'lastUserId': instance.lastUserId,
+      'isDarkTheme': instance.isDarkTheme,
+      'locale': instance.locale,
     };

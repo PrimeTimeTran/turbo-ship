@@ -15,6 +15,11 @@ class AppLanguageChanged extends AppEvent with _$AppLanguageChanged {
 }
 
 @freezed
+class AppPaletteChanged extends AppEvent with _$AppPaletteChanged {
+  const factory AppPaletteChanged(String name) = _AppPaletteChanged;
+}
+
+@freezed
 class AppResumed extends AppEvent with _$AppResumed {
   const factory AppResumed() = _AppResumed;
 }

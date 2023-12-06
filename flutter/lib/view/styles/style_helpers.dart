@@ -1,95 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:turboship/all.dart';
 
-Color C(BuildContext context, String key) {
-  final cs = Theme.of(context).colorScheme;
-  switch (key) {
-    case 'primary':
-      return cs.primary;
-    case 'onPrimary':
-      return cs.onPrimary;
-    case 'primaryContainer':
-      return cs.primaryContainer;
-    case 'onPrimaryContainer':
-      return cs.onPrimaryContainer;
-    case 'secondary':
-      return cs.secondary;
-    case 'onSecondary':
-      return cs.onSecondary;
-    case 'secondaryContainer':
-      return cs.secondaryContainer;
-    case 'onSecondaryContainer':
-      return cs.onSecondaryContainer;
-    case 'tertiary':
-      return cs.tertiary;
-    case 'onTertiary':
-      return cs.onTertiary;
-    case 'tertiaryContainer':
-      return cs.tertiaryContainer;
-    case 'onTertiaryContainer':
-      return cs.onSecondaryContainer;
-    case 'error':
-      return cs.error;
-    case 'onError':
-      return cs.onError;
-    case 'errorContainer':
-      return cs.errorContainer;
-    case 'onErrorContainer':
-      return cs.onSecondaryContainer;
-    case 'background':
-      return cs.background;
-    case 'onBackground':
-      return cs.onBackground;
-    case 'surface':
-      return cs.surface;
-    case 'onSurface':
-      return cs.onSurface;
-    case 'surfaceVariant':
-      return cs.surfaceVariant;
-    case 'onSurfaceVariant':
-      return cs.onSurfaceVariant;
-    case 'outline':
-      return cs.outline;
-    case 'shadow':
-      return cs.shadow;
-    case 'inverseSurface':
-      return cs.inverseSurface;
-    case 'onInverseSurface':
-      return cs.onInverseSurface;
-    case 'inversePrimary':
-      return cs.inversePrimary;
-    default:
-      throw Exception('Invalid color key: $key');
-  }
-}
-
-ThemeData createTheme(Brightness brightness, s, color) {
-  return ThemeData(
-    useMaterial3: true,
-    brightness: brightness,
-    colorSchemeSeed: Color(color),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        shape: s,
-      ),
-    ),
-    filledButtonTheme: FilledButtonThemeData(
-      style: FilledButton.styleFrom(
-        shape: s,
-      ),
-    ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        shape: s,
-      ),
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        shape: s,
-      ),
-    ),
-  );
-}
+// Color C(BuildContext context, String key) {
+//   final cs = Theme.of(context).colorScheme;
+//   switch (key) {
+//     case 'primary':
+//       return cs.primary;
+//     case 'onPrimary':
+//       return cs.onPrimary;
+//     case 'primaryContainer':
+//       return cs.primaryContainer;
+//     case 'onPrimaryContainer':
+//       return cs.onPrimaryContainer;
+//     case 'secondary':
+//       return cs.secondary;
+//     case 'onSecondary':
+//       return cs.onSecondary;
+//     case 'secondaryContainer':
+//       return cs.secondaryContainer;
+//     case 'onSecondaryContainer':
+//       return cs.onSecondaryContainer;
+//     case 'tertiary':
+//       return cs.tertiary;
+//     case 'onTertiary':
+//       return cs.onTertiary;
+//     case 'tertiaryContainer':
+//       return cs.tertiaryContainer;
+//     case 'onTertiaryContainer':
+//       return cs.onSecondaryContainer;
+//     case 'error':
+//       return cs.error;
+//     case 'onError':
+//       return cs.onError;
+//     case 'errorContainer':
+//       return cs.errorContainer;
+//     case 'onErrorContainer':
+//       return cs.onSecondaryContainer;
+//     case 'background':
+//       return cs.background;
+//     case 'onBackground':
+//       return cs.onBackground;
+//     case 'surface':
+//       return cs.surface;
+//     case 'onSurface':
+//       return cs.onSurface;
+//     case 'surfaceVariant':
+//       return cs.surfaceVariant;
+//     case 'onSurfaceVariant':
+//       return cs.onSurfaceVariant;
+//     case 'outline':
+//       return cs.outline;
+//     case 'shadow':
+//       return cs.shadow;
+//     case 'inverseSurface':
+//       return cs.inverseSurface;
+//     case 'onInverseSurface':
+//       return cs.onInverseSurface;
+//     case 'inversePrimary':
+//       return cs.inversePrimary;
+//     default:
+//       throw Exception('Invalid color key: $key');
+//   }
+// }
 
 fontHeader(c) => isS(c)
     ? isXS(c)
@@ -97,47 +69,47 @@ fontHeader(c) => isS(c)
         : 'bLarge'
     : 'hLarge';
 
-getDarkTheme(theme) {
-  switch (theme) {
-    case 'green':
-      return darkGreen;
-    case 'blue':
-      return darkBlue;
-    case 'gold':
-      return darkGold;
-    case 'red':
-      return darkRed;
-    case 'orange':
-      return darkOrange;
-    case 'purple':
-      return darkPurple;
-    case 'pink':
-      return darkPink;
-    default:
-      return darkTheme;
-  }
-}
+// getDarkTheme(theme) {
+//   switch (theme) {
+//     case 'green':
+//       return darkGreen;
+//     case 'blue':
+//       return darkBlue;
+//     case 'gold':
+//       return darkGold;
+//     case 'red':
+//       return darkRed;
+//     case 'orange':
+//       return darkOrange;
+//     case 'purple':
+//       return darkPurple;
+//     case 'pink':
+//       return darkPink;
+//     default:
+//       return darkTheme;
+//   }
+// }
 
-getLightTheme(theme) {
-  switch (theme) {
-    case 'green':
-      return lightGreen;
-    case 'blue':
-      return lightBlue;
-    case 'gold':
-      return lightGold;
-    case 'red':
-      return lightRed;
-    case 'orange':
-      return lightOrange;
-    case 'purple':
-      return lightPurple;
-    case 'pink':
-      return lightPink;
-    default:
-      return lightTheme;
-  }
-}
+// getLightTheme(theme) {
+//   switch (theme) {
+//     case 'green':
+//       return lightGreen;
+//     case 'blue':
+//       return lightBlue;
+//     case 'gold':
+//       return lightGold;
+//     case 'red':
+//       return lightRed;
+//     case 'orange':
+//       return lightOrange;
+//     case 'purple':
+//       return lightPurple;
+//     case 'pink':
+//       return lightPink;
+//     default:
+//       return lightTheme;
+//   }
+// }
 
 bool isDarkMode(BuildContext context) {
   final theme = Theme.of(context).brightness;

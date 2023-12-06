@@ -195,6 +195,124 @@ abstract class _AppLanguageChanged implements AppLanguageChanged {
 }
 
 /// @nodoc
+mixin _$AppPaletteChanged {
+  String get name => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AppPaletteChangedCopyWith<AppPaletteChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AppPaletteChangedCopyWith<$Res> {
+  factory $AppPaletteChangedCopyWith(
+          AppPaletteChanged value, $Res Function(AppPaletteChanged) then) =
+      _$AppPaletteChangedCopyWithImpl<$Res, AppPaletteChanged>;
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class _$AppPaletteChangedCopyWithImpl<$Res, $Val extends AppPaletteChanged>
+    implements $AppPaletteChangedCopyWith<$Res> {
+  _$AppPaletteChangedCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AppPaletteChangedImplCopyWith<$Res>
+    implements $AppPaletteChangedCopyWith<$Res> {
+  factory _$$AppPaletteChangedImplCopyWith(_$AppPaletteChangedImpl value,
+          $Res Function(_$AppPaletteChangedImpl) then) =
+      __$$AppPaletteChangedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name});
+}
+
+/// @nodoc
+class __$$AppPaletteChangedImplCopyWithImpl<$Res>
+    extends _$AppPaletteChangedCopyWithImpl<$Res, _$AppPaletteChangedImpl>
+    implements _$$AppPaletteChangedImplCopyWith<$Res> {
+  __$$AppPaletteChangedImplCopyWithImpl(_$AppPaletteChangedImpl _value,
+      $Res Function(_$AppPaletteChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_$AppPaletteChangedImpl(
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AppPaletteChangedImpl implements _AppPaletteChanged {
+  const _$AppPaletteChangedImpl(this.name);
+
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'AppPaletteChanged(name: $name)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppPaletteChangedImpl &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AppPaletteChangedImplCopyWith<_$AppPaletteChangedImpl> get copyWith =>
+      __$$AppPaletteChangedImplCopyWithImpl<_$AppPaletteChangedImpl>(
+          this, _$identity);
+}
+
+abstract class _AppPaletteChanged implements AppPaletteChanged {
+  const factory _AppPaletteChanged(final String name) = _$AppPaletteChangedImpl;
+
+  @override
+  String get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$AppPaletteChangedImplCopyWith<_$AppPaletteChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AppResumed {}
 
 /// @nodoc
@@ -835,12 +953,13 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppState {
-  String get locale => throw _privateConstructorUsedError;
-  bool get isDarkTheme => throw _privateConstructorUsedError;
   User? get currentUser => throw _privateConstructorUsedError;
+  String? get lastUserId => throw _privateConstructorUsedError;
+  dynamic get palette => throw _privateConstructorUsedError;
   dynamic get isForceUpdate => throw _privateConstructorUsedError;
   dynamic get isMaintaining => throw _privateConstructorUsedError;
-  String? get lastUserId => throw _privateConstructorUsedError;
+  bool get isDarkTheme => throw _privateConstructorUsedError;
+  String get locale => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -854,12 +973,13 @@ abstract class $AppStateCopyWith<$Res> {
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
   $Res call(
-      {String locale,
-      bool isDarkTheme,
-      User? currentUser,
+      {User? currentUser,
+      String? lastUserId,
+      dynamic palette,
       dynamic isForceUpdate,
       dynamic isMaintaining,
-      String? lastUserId});
+      bool isDarkTheme,
+      String locale});
 }
 
 /// @nodoc
@@ -875,26 +995,27 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locale = null,
-    Object? isDarkTheme = null,
     Object? currentUser = freezed,
+    Object? lastUserId = freezed,
+    Object? palette = freezed,
     Object? isForceUpdate = freezed,
     Object? isMaintaining = freezed,
-    Object? lastUserId = freezed,
+    Object? isDarkTheme = null,
+    Object? locale = null,
   }) {
     return _then(_value.copyWith(
-      locale: null == locale
-          ? _value.locale
-          : locale // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDarkTheme: null == isDarkTheme
-          ? _value.isDarkTheme
-          : isDarkTheme // ignore: cast_nullable_to_non_nullable
-              as bool,
       currentUser: freezed == currentUser
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
               as User?,
+      lastUserId: freezed == lastUserId
+          ? _value.lastUserId
+          : lastUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      palette: freezed == palette
+          ? _value.palette
+          : palette // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       isForceUpdate: freezed == isForceUpdate
           ? _value.isForceUpdate
           : isForceUpdate // ignore: cast_nullable_to_non_nullable
@@ -903,10 +1024,14 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.isMaintaining
           : isMaintaining // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      lastUserId: freezed == lastUserId
-          ? _value.lastUserId
-          : lastUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      isDarkTheme: null == isDarkTheme
+          ? _value.isDarkTheme
+          : isDarkTheme // ignore: cast_nullable_to_non_nullable
+              as bool,
+      locale: null == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -920,12 +1045,13 @@ abstract class _$$AppStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String locale,
-      bool isDarkTheme,
-      User? currentUser,
+      {User? currentUser,
+      String? lastUserId,
+      dynamic palette,
       dynamic isForceUpdate,
       dynamic isMaintaining,
-      String? lastUserId});
+      bool isDarkTheme,
+      String locale});
 }
 
 /// @nodoc
@@ -939,34 +1065,36 @@ class __$$AppStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locale = null,
-    Object? isDarkTheme = null,
     Object? currentUser = freezed,
+    Object? lastUserId = freezed,
+    Object? palette = freezed,
     Object? isForceUpdate = freezed,
     Object? isMaintaining = freezed,
-    Object? lastUserId = freezed,
+    Object? isDarkTheme = null,
+    Object? locale = null,
   }) {
     return _then(_$AppStateImpl(
-      locale: null == locale
-          ? _value.locale
-          : locale // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDarkTheme: null == isDarkTheme
-          ? _value.isDarkTheme
-          : isDarkTheme // ignore: cast_nullable_to_non_nullable
-              as bool,
       currentUser: freezed == currentUser
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
               as User?,
-      isForceUpdate:
-          freezed == isForceUpdate ? _value.isForceUpdate! : isForceUpdate,
-      isMaintaining:
-          freezed == isMaintaining ? _value.isMaintaining! : isMaintaining,
       lastUserId: freezed == lastUserId
           ? _value.lastUserId
           : lastUserId // ignore: cast_nullable_to_non_nullable
               as String?,
+      palette: freezed == palette ? _value.palette! : palette,
+      isForceUpdate:
+          freezed == isForceUpdate ? _value.isForceUpdate! : isForceUpdate,
+      isMaintaining:
+          freezed == isMaintaining ? _value.isMaintaining! : isMaintaining,
+      isDarkTheme: null == isDarkTheme
+          ? _value.isDarkTheme
+          : isDarkTheme // ignore: cast_nullable_to_non_nullable
+              as bool,
+      locale: null == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -975,25 +1103,25 @@ class __$$AppStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AppStateImpl extends _AppState {
   const _$AppStateImpl(
-      {this.locale = LocaleConfig.defaultLocale,
-      this.isDarkTheme = false,
-      this.currentUser,
+      {this.currentUser,
+      this.lastUserId,
+      this.palette = 'Blue',
       this.isForceUpdate = false,
       this.isMaintaining = false,
-      this.lastUserId})
+      this.isDarkTheme = false,
+      this.locale = LocaleConfig.defaultLocale})
       : super._();
 
   factory _$AppStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppStateImplFromJson(json);
 
   @override
-  @JsonKey()
-  final String locale;
-  @override
-  @JsonKey()
-  final bool isDarkTheme;
-  @override
   final User? currentUser;
+  @override
+  final String? lastUserId;
+  @override
+  @JsonKey()
+  final dynamic palette;
   @override
   @JsonKey()
   final dynamic isForceUpdate;
@@ -1001,11 +1129,15 @@ class _$AppStateImpl extends _AppState {
   @JsonKey()
   final dynamic isMaintaining;
   @override
-  final String? lastUserId;
+  @JsonKey()
+  final bool isDarkTheme;
+  @override
+  @JsonKey()
+  final String locale;
 
   @override
   String toString() {
-    return 'AppState(locale: $locale, isDarkTheme: $isDarkTheme, currentUser: $currentUser, isForceUpdate: $isForceUpdate, isMaintaining: $isMaintaining, lastUserId: $lastUserId)';
+    return 'AppState(currentUser: $currentUser, lastUserId: $lastUserId, palette: $palette, isForceUpdate: $isForceUpdate, isMaintaining: $isMaintaining, isDarkTheme: $isDarkTheme, locale: $locale)';
   }
 
   @override
@@ -1013,29 +1145,31 @@ class _$AppStateImpl extends _AppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppStateImpl &&
-            (identical(other.locale, locale) || other.locale == locale) &&
-            (identical(other.isDarkTheme, isDarkTheme) ||
-                other.isDarkTheme == isDarkTheme) &&
             (identical(other.currentUser, currentUser) ||
                 other.currentUser == currentUser) &&
+            (identical(other.lastUserId, lastUserId) ||
+                other.lastUserId == lastUserId) &&
+            const DeepCollectionEquality().equals(other.palette, palette) &&
             const DeepCollectionEquality()
                 .equals(other.isForceUpdate, isForceUpdate) &&
             const DeepCollectionEquality()
                 .equals(other.isMaintaining, isMaintaining) &&
-            (identical(other.lastUserId, lastUserId) ||
-                other.lastUserId == lastUserId));
+            (identical(other.isDarkTheme, isDarkTheme) ||
+                other.isDarkTheme == isDarkTheme) &&
+            (identical(other.locale, locale) || other.locale == locale));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      locale,
-      isDarkTheme,
       currentUser,
+      lastUserId,
+      const DeepCollectionEquality().hash(palette),
       const DeepCollectionEquality().hash(isForceUpdate),
       const DeepCollectionEquality().hash(isMaintaining),
-      lastUserId);
+      isDarkTheme,
+      locale);
 
   @JsonKey(ignore: true)
   @override
@@ -1053,29 +1187,32 @@ class _$AppStateImpl extends _AppState {
 
 abstract class _AppState extends AppState {
   const factory _AppState(
-      {final String locale,
-      final bool isDarkTheme,
-      final User? currentUser,
+      {final User? currentUser,
+      final String? lastUserId,
+      final dynamic palette,
       final dynamic isForceUpdate,
       final dynamic isMaintaining,
-      final String? lastUserId}) = _$AppStateImpl;
+      final bool isDarkTheme,
+      final String locale}) = _$AppStateImpl;
   const _AppState._() : super._();
 
   factory _AppState.fromJson(Map<String, dynamic> json) =
       _$AppStateImpl.fromJson;
 
   @override
-  String get locale;
-  @override
-  bool get isDarkTheme;
-  @override
   User? get currentUser;
+  @override
+  String? get lastUserId;
+  @override
+  dynamic get palette;
   @override
   dynamic get isForceUpdate;
   @override
   dynamic get isMaintaining;
   @override
-  String? get lastUserId;
+  bool get isDarkTheme;
+  @override
+  String get locale;
   @override
   @JsonKey(ignore: true)
   _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith =>

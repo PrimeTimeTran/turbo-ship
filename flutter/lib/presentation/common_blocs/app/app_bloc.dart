@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
-
-// import 'package:turboship/all.dart';
+import 'package:turboship/all.dart';
 
 import '../../../core/configs/configs.dart';
 import '../../../domain/all.dart';
@@ -34,6 +33,7 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
     on<AppResumed>(_onAppResumed);
     on<GetAppServerConfig>(_onGetAppServerConfig);
     on<AppThemeChanged>(_onAppThemeChanged);
+    on<AppPaletteChanged>(_onAppPaletteChanged);
     on<AppLanguageChanged>(_onAppLanguageChanged);
     on<GetCurrentUser>(_onGetCurrentUser);
     on<LoggedUserChanged>(_onIsLoggedUserChanged);
@@ -70,6 +70,10 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
 
   void _onAppLanguageChanged(AppLanguageChanged event, Emitter<AppState> emit) {
     emit(state.copyWith(locale: event.locale));
+  }
+
+  void _onAppPaletteChanged(AppPaletteChanged event, Emitter<AppState> emit) {
+    emit(state.copyWith(palette: event.name));
   }
 
   void _onAppResumed(AppResumed event, Emitter<AppState> emit) {

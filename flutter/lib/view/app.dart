@@ -35,8 +35,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       routerConfig: goRouter,
       locale: Locale(lang, null),
-      theme: getLightTheme(theme),
-      darkTheme: getDarkTheme(theme),
+      // theme: getLightTheme(theme),
+      // darkTheme: getDarkTheme(theme),
       title: 'Turboship',
       debugShowCheckedModeBanner: false,
       supportedLocales: supportedLocales,

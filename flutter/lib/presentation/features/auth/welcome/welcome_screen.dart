@@ -21,7 +21,6 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      backgroundColor: context.colorTheme.bgSurfaceInverseMain,
       applyAutoPaddingBottom: true,
       padding: AppSpacing.edgeInsetsH20,
       body: Column(
@@ -59,14 +58,14 @@ class _WelcomePageState extends State<WelcomePage> {
         AppButton.primary(
           onPressed: () => context.go(AppPages.signUp.path),
           width: double.infinity,
-          label: 'ws0',
+          label: 'Sign Up',
           bgColor: context.colorTheme.bgDecorBrandLightest,
           textColor: context.colorTheme.txtNormalPrimary,
         ),
         AppButton.primary(
           onPressed: () => context.go(AppPages.home.path),
           width: double.infinity,
-          label: 'ws0',
+          label: 'Home',
           bgColor: context.colorTheme.bgDecorBrandLightest,
           textColor: context.colorTheme.txtNormalPrimary,
         ),
@@ -74,7 +73,7 @@ class _WelcomePageState extends State<WelcomePage> {
         TextButton(
           onPressed: () => context.go(AppPages.signIn.path),
           child: Text(
-            'ws0',
+            'Sign In',
             style: context.textTheme.b14BaseMedium.toColor(
               context.colorTheme.txtInversePrimary,
             ),
