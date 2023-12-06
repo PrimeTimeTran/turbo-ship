@@ -31,7 +31,7 @@
       "request": "launch",
       "flutterMode": "debug",
       "name": "Flutter(web)(dev)",
-      "program": "flutter/lib/main.dart",
+      "program": "flutter/lib/main_two.dart",
       "args": ["-d", "chrome", "--flavor", "development"]
     },
     {
@@ -39,7 +39,7 @@
       "type": "dart",
       "request": "launch",
       "flutterMode": "debug",
-      "program": "flutter/lib/main.dart",
+      "program": "flutter/lib/main_two.dart",
       "deviceId": "3CAE8793-2B07-4522-917B-C56BC2E84F9D",
       "args": ["--flavor", "development"]
     }

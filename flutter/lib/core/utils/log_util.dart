@@ -5,18 +5,9 @@ import 'package:intl/intl.dart';
 
 import '../configs/logging_config.dart';
 
-enum _LogLevel {
-  debug,
-  info,
-  warning,
-  error,
-}
-
 class LogUtil {
-  const LogUtil._();
-
   static final _emojiMap = <_LogLevel, String>{
-    _LogLevel.debug: '🔎🐛',
+    _LogLevel.debug: '🔎 🐛',
     _LogLevel.info: '📝',
     _LogLevel.warning: '🚨',
     _LogLevel.error: '❌',
@@ -28,6 +19,8 @@ class LogUtil {
     _LogLevel.warning: '\x1B[33m', // yellow
     _LogLevel.error: '\x1B[31m', // red
   };
+
+  const LogUtil._();
 
   static void d(Object? message, {String? name}) {
     _log(_LogLevel.debug, message, name: name);
@@ -105,4 +98,11 @@ class LogUtil {
         return 1000;
     }
   }
+}
+
+enum _LogLevel {
+  debug,
+  info,
+  warning,
+  error,
 }

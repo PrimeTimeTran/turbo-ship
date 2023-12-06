@@ -36,9 +36,7 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
     on<AppThemeChanged>(_onAppThemeChanged);
     on<AppLanguageChanged>(_onAppLanguageChanged);
     on<GetCurrentUser>(_onGetCurrentUser);
-    on<GetUserSignContractStatus>(_onGetSignContractStatus);
     on<LoggedUserChanged>(_onIsLoggedUserChanged);
-
     _initCommonBloc();
   }
 
@@ -71,7 +69,7 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
   }
 
   void _onAppLanguageChanged(AppLanguageChanged event, Emitter<AppState> emit) {
-    // emit(state.copyWith(locale: event.locale));
+    emit(state.copyWith(locale: event.locale));
   }
 
   void _onAppResumed(AppResumed event, Emitter<AppState> emit) {
@@ -79,8 +77,23 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
   }
 
   void _onAppThemeChanged(AppThemeChanged event, Emitter<AppState> emit) {
-    // emit(state.copyWith(isDarkTheme: event.isDarkTheme));
+    emit(state.copyWith(isDarkTheme: event.isDarkTheme));
   }
+
+  // FutureOr<void> _onGetAppThemeConfig() {
+  //   return runBlocCatching(
+  //     handleLoading: false,
+  //     action: () async {
+  //       // final serverConfig = await _getServerConfigUseCase.execute();
+  //       // emit(
+  //       //   state.copyWith(
+  //       //     isForceUpdate: serverConfig.isForceUpdate,
+  //       //     isMaintaining: serverConfig.isMaintaining,
+  //       //   ),
+  //       // );
+  //     },
+  //   );
+  // }
 
   FutureOr<void> _onGetAppServerConfig(
       GetAppServerConfig event, Emitter<AppState> emit) {
@@ -117,25 +130,6 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
         // });
 
         // event.completer?.complete();
-      },
-    );
-  }
-
-  FutureOr<void> _onGetSignContractStatus(
-      GetUserSignContractStatus event, Emitter<AppState> emit) async {
-    // if (!state.isLoggedIn) {
-    //   return;
-    // }
-
-    return runBlocCatching(
-      handleLoading: false,
-      action: () async {
-        // final isSigned = await _checkSignedContractUseCase.execute();
-
-        // if (state.currentUser == null || state.currentUser!.hasSignedContract == isSigned) {
-        //   return;
-        // }
-        // add(LoggedUserChanged(state.currentUser, hasSignedContract: isSigned));
       },
     );
   }

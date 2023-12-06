@@ -5,31 +5,34 @@ import '../../presentation/resource/styles/all.dart';
 import '../../presentation/resource/styles/scheme_constants.dart';
 
 extension ContextExtensions on BuildContext {
-  MediaQueryData get mediaQuery => MediaQuery.of(this);
+  double get bottomPadding => padding.bottom;
+  double get bottomViewInsets => viewInsets.bottom;
+  AppColors get colorTheme =>
+      theme.extension<AppColors>() ?? SchemeConstants.lightColorsTheme;
   double get height => mediaQuery.size.height;
-  double get width => mediaQuery.size.width;
-  double get pixelRatio => mediaQuery.devicePixelRatio;
   bool get isLandscape => mediaQuery.orientation == Orientation.landscape;
   bool get isPortrait => mediaQuery.orientation == Orientation.portrait;
-  EdgeInsets get padding => mediaQuery.padding;
-  EdgeInsets get viewInsets => mediaQuery.viewInsets;
-  double get topPadding => padding.top;
-  double get bottomPadding => padding.bottom;
+  AppLocalizations get l10n => AppLocalizations.of(this);
   double get leftPadding => padding.left;
-  double get rightPadding => padding.right;
-  double get topViewInsets => viewInsets.top;
-  double get bottomViewInsets => viewInsets.bottom;
   double get leftViewInsets => viewInsets.left;
+  MediaQueryData get mediaQuery => MediaQuery.of(this);
+  EdgeInsets get padding => mediaQuery.padding;
+  double get pixelRatio => mediaQuery.devicePixelRatio;
+  Color get primaryColor => colorTheme.bdDecorBrandBase;
+  double get rightPadding => padding.right;
   double get rightViewInsets => viewInsets.right;
+  AppTextTheme get textTheme =>
+      theme.extension<AppTextTheme>() ?? SchemeConstants.textTheme;
 
   ThemeData get theme => Theme.of(this);
-  AppColors get colorTheme => theme.extension<AppColors>() ?? SchemeConstants.lightColorsTheme;
-  Color get primaryColor => colorTheme.bdDecorBrandBase;
-  AppTextTheme get textTheme => theme.extension<AppTextTheme>() ?? SchemeConstants.textTheme;
+  double get topPadding => padding.top;
+  double get topViewInsets => viewInsets.top;
+  EdgeInsets get viewInsets => mediaQuery.viewInsets;
 
-  AppLocalizations get l10n => AppLocalizations.of(this)!;
+  double get width => mediaQuery.size.width;
 
   // navigator
-  void popUntil(String routeName) => Navigator.of(this).popUntil(ModalRoute.withName(routeName));
+  void popUntil(String routeName) =>
+      Navigator.of(this).popUntil(ModalRoute.withName(routeName));
   void popUntilFirst() => Navigator.of(this).popUntil((route) => route.isFirst);
 }

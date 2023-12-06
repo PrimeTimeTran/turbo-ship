@@ -8,14 +8,14 @@ import '../../../common_widgets/all.dart';
 import '../../../resource/all.dart';
 import '../../../routing/routing.dart';
 
-class OnBoardingPage extends StatefulWidget {
-  const OnBoardingPage({super.key});
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
 
   @override
-  State<OnBoardingPage> createState() => _OnBoardingPageState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _OnBoardingPageState extends State<OnBoardingPage> {
+class _WelcomePageState extends State<WelcomePage> {
   final _pageController = PageController();
 
   @override
@@ -58,6 +58,13 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       children: [
         AppButton.primary(
           onPressed: () => context.go(AppPages.signUp.path),
+          width: double.infinity,
+          label: 'ws0',
+          bgColor: context.colorTheme.bgDecorBrandLightest,
+          textColor: context.colorTheme.txtNormalPrimary,
+        ),
+        AppButton.primary(
+          onPressed: () => context.go(AppPages.home.path),
           width: double.infinity,
           label: 'ws0',
           bgColor: context.colorTheme.bgDecorBrandLightest,

@@ -1,7 +1,7 @@
 part of 'app_router.dart';
 
 enum AppPages {
-  onBoarding,
+  welcome,
   signIn,
   signUp,
   forgotPassword,
@@ -17,15 +17,16 @@ class RouterHelper {
     return location == AppPages.signIn.path ||
         location == AppPages.signUp.path ||
         location == AppPages.forgotPassword.path ||
-        location == AppPages.changePassword.path;
+        location == AppPages.changePassword.path ||
+        location == AppPages.home.path;
   }
 }
 
 extension AppPageX on AppPages {
   String get name {
     switch (this) {
-      case AppPages.onBoarding:
-        return 'ONBOARDING';
+      case AppPages.welcome:
+        return 'WELCOME';
       case AppPages.signIn:
         return 'SIGN_IN';
       case AppPages.signUp:
@@ -43,8 +44,8 @@ extension AppPageX on AppPages {
 
   String get path {
     switch (this) {
-      case AppPages.onBoarding:
-        return '/onboarding';
+      case AppPages.welcome:
+        return '/welcome';
       case AppPages.signIn:
         return '/sign-in';
       case AppPages.signUp:

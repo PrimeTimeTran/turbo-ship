@@ -11,10 +11,10 @@ import 'common_blocs/app/app_bloc.dart';
 import 'overlay_wrapper.dart';
 import 'providers.dart';
 import 'resource/styles/all.dart';
-// import 'routing/routing.dart';
+import 'routing/routing.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyAppTwo extends StatelessWidget {
+  const MyAppTwo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             builder: (context, state) {
               return MaterialApp.router(
                 builder: (context, child) => _TurboshipApp(child!),
-                // routerConfig: AppRouter.router,
+                routerConfig: AppRouter.router,
                 themeMode: state.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
                 theme: AppThemeConstants.light,
                 darkTheme: AppThemeConstants.dark,
@@ -75,7 +75,6 @@ class _TurboshipAppState extends State<_TurboshipApp>
   @override
   Widget build(BuildContext context) {
     final MediaQueryData data = MediaQuery.of(context);
-
     return MediaQuery(
       data: data.copyWith(textScaler: const TextScaler.linear(1.0)),
       child: ScrollConfiguration(

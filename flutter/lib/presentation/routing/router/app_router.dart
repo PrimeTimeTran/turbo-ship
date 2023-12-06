@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:turboship/presentation/features/home/home_screen.dart';
 
 import '../../../core/configs/di/di.dart';
 import '../../common_blocs/app/app_bloc.dart';
-import '../../features/features.dart';
+import '../../features/all.dart';
 import '../observer/navigator_observer.dart';
 
 part '_route_helper.dart';
@@ -24,23 +25,23 @@ class AppRouter {
       // ########## AUTH ##########
       GoRoute(
         parentNavigatorKey: _rootNavigatorKey,
-        path: AppPages.onBoarding.path,
-        name: AppPages.onBoarding.name,
+        path: AppPages.welcome.path,
+        name: AppPages.welcome.name,
         builder: (BuildContext context, GoRouterState state) {
-          return const OnBoardingPage();
+          return const WelcomePage();
         },
         pageBuilder: (context, state) => FadeTransitionPage(
-          child: const OnBoardingPage(),
+          child: const WelcomePage(),
         ),
       ),
-      // GoRoute(
-      //   parentNavigatorKey: _rootNavigatorKey,
-      //   path: AppPages.signIn.path,
-      //   name: AppPages.signIn.name,
-      //   builder: (BuildContext context, GoRouterState state) {
-      //     return const SignInPage();
-      //   },
-      // ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppPages.home.path,
+        name: AppPages.home.name,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HomeScreen();
+        },
+      ),
       // GoRoute(
       //   parentNavigatorKey: _rootNavigatorKey,
       //   path: AppPages.signUp.path,
@@ -186,9 +187,7 @@ class AppRouter {
       return null;
     },
   );
-
   static GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
   static GoRouter get router => _router;
-
   const AppRouter._();
 }
