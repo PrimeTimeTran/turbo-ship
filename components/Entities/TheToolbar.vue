@@ -238,6 +238,11 @@ const templateItems = [
     click: () => setEntities('delivery'),
     underline: '',
   },
+  {
+    name: 'Hotel',
+    click: () => setEntities('hotel'),
+    underline: '',
+  },
   // {
   //   name: 'Forum',
   //   click: () => setEntities('forum'),

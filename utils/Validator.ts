@@ -1,19 +1,38 @@
 export class Validator {
+  static types = [
+    'boolean',
+    'string',
+    'text',
+    'integer',
+    'decimal',
+    'date',
+    'dateTime',
+    'array',
+    'map',
+    'enumerator',
+    'enumeratorMulti',
+    'otm',
+    'mto',
+    'oto',
+    'mtm',
+  ]
   static relationTypes = ['otm', 'mto', 'oto', 'mtm']
   static enumTypes: Array<string> = ['enumerator', 'enumeratorMulti', 'enumerator-multi']
+  static requiresValues = ['min', 'max', 'scale', 'min-length', 'max-length', 'enumerator', 'enumeratorMulti']
   static optionalValidators: ValidatorType = {
     boolean: [],
-    date: ['required', 'unique'],
-    dateTime: ['required', 'unique'],
-    enumerator: ['required', 'unique'],
-    enumeratorMulti: ['required', 'min', 'max'],
-    number: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative'],
-    integer: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative'],
-    decimal: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative', 'scale'],
     string: ['required', 'unique', 'min-length', 'max-length', 'email', 'url', 'lowercase', 'uppercase'],
     text: ['required', 'unique', 'min-length', 'max-length', 'email', 'url', 'lowercase', 'uppercase'],
+    // number: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative'],
+    integer: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative'],
+    decimal: ['required', 'unique', 'scale', 'min', 'max', 'positive', 'negative', 'scale'],
+    date: ['required', 'unique'],
+    dateTime: ['required', 'unique'],
+    array: [],
+    map: [],
+    enumerator: ['required', 'unique'],
+    enumeratorMulti: ['required', 'min', 'max'],
   }
-  static requiresValues = ['min', 'max', 'scale', 'min-length', 'max-length', 'enumerator', 'enumeratorMulti']
   static min(val: any) {
     return !isNaN(val)
   }
@@ -25,18 +44,20 @@ export class Validator {
   }
   static ['min-length'](val: any) {
     const resp = !isNaN(val) && val.length > 0
-    console.log('minLength', resp)
     return resp
   }
   static ['max-length'](val: any) {
     const resp = !isNaN(val) && val.length > 0
-    console.log('Maxlength', resp)
     return resp
   }
   static attributes(entity: Entity) {
     return entity.attributes.filter((a) => !protectedAttributes.includes(a.name))
   }
   static labeledTypes = {
+    boolean: {
+      value: 'boolean',
+      label: 'boolean',
+    },
     string: {
       value: 'string',
       label: 'string',
@@ -45,29 +66,13 @@ export class Validator {
       value: 'text',
       label: 'text',
     },
-    number: {
-      value: 'number',
-      label: 'number',
-    },
-    decimal: {
-      value: 'decimal',
-      label: 'decimal',
-    },
     integer: {
       value: 'integer',
       label: 'integer',
     },
-    enumeratorMulti: {
-      value: 'enumeratorMulti',
-      label: 'enumerator-multi',
-    },
-    boolean: {
-      value: 'boolean',
-      label: 'boolean',
-    },
-    enumerator: {
-      value: 'enumerator',
-      label: 'enumerator',
+    decimal: {
+      value: 'decimal',
+      label: 'decimal',
     },
     date: {
       value: 'date',
@@ -76,6 +81,22 @@ export class Validator {
     dateTime: {
       value: 'dateTime',
       label: 'date-time',
+    },
+    array: {
+      value: 'array',
+      label: 'array',
+    },
+    map: {
+      value: 'map',
+      label: 'map',
+    },
+    enumerator: {
+      value: 'enumerator',
+      label: 'enumerator',
+    },
+    enumeratorMulti: {
+      value: 'enumeratorMulti',
+      label: 'enumerator-multi',
     },
     otm: {
       value: 'otm',
@@ -94,22 +115,6 @@ export class Validator {
       label: 'many-to-many',
     },
   }
-  static types = [
-    'string',
-    'text',
-    'number',
-    'decimal',
-    'integer',
-    'boolean',
-    'enumeratorMulti',
-    'enumerator',
-    'date',
-    'dateTime',
-    'otm',
-    'mto',
-    'oto',
-    'mtm',
-  ]
 }
 
 interface Entity {
@@ -122,9 +127,11 @@ interface ValidatorType {
   dateTime: string[]
   enumerator: string[]
   enumeratorMulti: string[]
-  number: string[]
+  // number: string[]
   integer: string[]
   decimal: string[]
   string: string[]
   text: string[]
+  array: string[]
+  map: string[]
 }

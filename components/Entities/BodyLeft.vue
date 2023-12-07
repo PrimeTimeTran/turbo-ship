@@ -20,10 +20,8 @@ import { reset } from '@formkit/core'
 
 import { faker } from '@faker-js/faker'
 import { FormKitMessages } from '@formkit/vue'
-const { entities, addEntity } = useEntities()
+const { addEntity } = useEntities()
 
-const input = ref()
-const attributeRef = ref()
 const newAttribute = reactive({
   name: ref(''),
   enums: ref([]),
@@ -124,8 +122,9 @@ const entityValid = computed(() => {
 const inputClasses =
   'flex-1 justify-center bg-gray-100 dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80 overflow-auto'
 </script>
+
 <template>
-  <div class="flex-col px-2 max-h-screen w-100 pt-8">
+  <div class="join join-vertical w-full flex-col px-2 max-h-screen w-100 pt-16 overflow-auto scrollbar-hide">
     <FormKit
       id="form"
       type="form"
@@ -135,145 +134,170 @@ const inputClasses =
         message: 'text-red-400 text-sm',
       }"
     >
-      <div class="flex flex-col w-100">
-        <div class="text-md font-bold text-slate-500">New Entity(<span v-text="entities.length" />)</div>
-        <div class="flex flex-col w-100 border shadow top hover:shadow-lg dark:border-gray-600 rounded">
-          <div class="p-2 bg-white dark:bg-slate-950 rounded">
-            <label class="text-slate-500"> <u class="text-slate-500">N</u>ame </label>
-            <FormKit
-              id="inputRef"
-              name="name"
-              type="text"
-              placeholder="bank"
-              :value="entity.name"
-              validation="required|length:3"
-              :classes="{
-                input: inputClasses,
-                message: 'text-red-400 max-w-32 overflow-x-auto scrollbar-hide',
-                label: 'font-semibold text-slate-500',
-              }"
-              @input="
-                (e) => {
-                  entity.name = e
-                  entity.plural = e + 's'
-                  entity.label = capitalize(e)
-                  entity.pluralL = capitalize(e) + 's'
-                  if (e == '') entity.plural = e + ''
-                }
-              "
-            />
-            <FormKit
-              type="text"
-              name="plural"
-              label="Plural"
-              placeholder="banks"
-              v-model="entity.plural"
-              :value="entity.plural"
-              @input="
-                (e) => {
-                  entity.plural = e
-                  entity.pluralL = capitalize(e) + 's'
-                }
-              "
-              :classes="{
-                outer: 'mt-4',
-                input: inputClasses,
-                label: 'font-semibold text-slate-500',
-              }"
-            />
-            <FormKit
-              type="text"
-              name="label"
-              label="Label"
-              placeholder="Bank"
-              v-model="entity.label"
-              :classes="{
-                outer: 'mt-4',
-                input: inputClasses,
-                label: 'font-semibold text-slate-500',
-              }"
-              @input="
-                (e) => {
-                  entity.label = e.toString().charAt(0).toUpperCase() + e.toString().slice(1)
-                }
-              "
-            />
-          </div>
+      <section tabindex="0" class="collapse collapse-arrow join-item border">
+        <input type="checkbox" checked="checked" />
+        <div class="collapse-title text-md font-medium">
+          New Entity <span v-if="entity.name" v-text="`(${entity.name})`" />
         </div>
-        <div class="flex flex-col w-100 middle overflow-auto scrollbar-hide hover:shadow-lg">
-          <div class="text-md font-bold mt-5 text-slate-500">
-            New Attribute(<span v-text="entity.attributes.length" />)
-          </div>
-          <div class="mt-2 p-2 rounded border shadow bg-white dark:bg-slate-950 dark:border-gray-600">
-            <!-- Unable to clear errors after targeting by id & calling function -->
-            <label class="text-slate-500"><u class="text-slate-500">A</u>ttribute</label>
-            <FormKit
-              name="attrName"
-              id="attributeInput"
-              v-model="newAttribute.name"
-              validation-label="Attribute"
-              validation-visibility="dirty"
-              placeholder="branch, transaction, statement..."
-              :classes="{
-                input: inputClasses,
-                message: 'text-red-400 max-w-32 overflow-x-auto scrollbar-hide',
-                label: 'font-semibold text-slate-500',
-              }"
-            />
-            <div class="mt-5 font-bold text-blue-400" v-text="Validator.labeledTypes[newAttribute.type].label" />
-            <div
-              class="flex flex-col flex-grow border shadow rounded my-1 h-52 max-h-52 overflow-scroll scrollbar-hide dark:border-gray-600"
+        <div class="collapse-content">
+          <FormKit
+            type="text"
+            id="inputRef"
+            name="name"
+            label="Name"
+            placeholder="bank"
+            :value="entity.name"
+            validation="required|length:3"
+            :classes="{
+              input: inputClasses,
+              message: 'text-red-400 max-w-32 overflow-x-auto scrollbar-hide',
+              label: 'font-semibold text-slate-500',
+            }"
+            @input="
+              (e) => {
+                entity.name = e
+                entity.plural = e + 's'
+                entity.label = capitalize(e)
+                entity.pluralL = capitalize(e) + 's'
+                if (e == '') entity.plural = e + ''
+              }
+            "
+          />
+          <FormKit
+            type="text"
+            name="plural"
+            label="Plural"
+            placeholder="banks"
+            v-model="entity.plural"
+            :value="entity.plural"
+            @input="
+              (e) => {
+                entity.plural = e
+                entity.pluralL = capitalize(e) + 's'
+              }
+            "
+            :classes="{
+              outer: 'mt-4',
+              input: inputClasses,
+              label: 'font-semibold text-slate-500',
+            }"
+          />
+          <FormKit
+            type="text"
+            name="label"
+            label="Label"
+            placeholder="Bank"
+            v-model="entity.label"
+            :classes="{
+              outer: 'mt-4',
+              input: inputClasses,
+              label: 'font-semibold text-slate-500',
+            }"
+            @input="
+              (e) => {
+                entity.label = e.toString().charAt(0).toUpperCase() + e.toString().slice(1)
+              }
+            "
+          />
+          <FormKit
+            id="pluralL"
+            type="text"
+            name="label"
+            label="Plural Label"
+            placeholder="Banks"
+            v-model="entity.pluralL"
+            :classes="{
+              outer: 'mt-4',
+              input: inputClasses,
+              label: 'font-semibold text-slate-500',
+            }"
+            @input="
+              (e) => {
+                entity.pluralL = e
+              }
+            "
+          />
+        </div>
+      </section>
+      <section tabindex="0" class="collapse collapse-arrow join-item border">
+        <input type="checkbox" checked="checked" />
+        <div class="collapse-title text-md font-medium">New Attribute(<span v-text="entity.attributes.length" />)</div>
+        <div class="collapse-content">
+          <FormKit
+            type="text"
+            id="attributeInput"
+            name="attrName"
+            label="Name"
+            ref="inputRef"
+            tabindex="0"
+            v-model="newAttribute.name"
+            validation-label="Attribute"
+            validation="required|length:2"
+            validation-visibility="dirty"
+            placeholder="branch, transaction, statement..."
+            :classes="{
+              input: inputClasses,
+              label: 'font-semibold text-slate-500',
+              message: 'text-red-400 max-w-32 overflow-x-auto scrollbar-hide',
+            }"
+          />
+          <div class="mt-5 font-bold text-blue-400" v-text="Validator.labeledTypes[newAttribute.type].label" />
+          <div
+            class="flex flex-col flex-grow border shadow rounded my-1 h-96 overflow-scroll scrollbar-hide dark:border-gray-600"
+          >
+            <label
+              :key="fieldType"
+              v-for="fieldType of Validator.types"
+              class="px-2 py-1 w-full text-sm hover:opacity-90 hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 hover:cursor-pointer border dark:border-gray-800 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200"
             >
-              <label
-                :key="fieldType"
-                v-for="fieldType of Validator.types"
-                class="px-2 py-1 w-full text-sm hover:opacity-90 hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 hover:cursor-pointer border dark:border-gray-800 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200"
-              >
-                <input
-                  class="mr-2 radio radio-xs radio-info"
-                  type="radio"
-                  name="fieldType"
-                  placeholder="bg-white"
-                  :value="newAttribute.type"
-                  @click="onTypeSelect(fieldType)"
-                  :checked="newAttribute.type === fieldType"
-                />
-                <span class="text-xs" v-text="Validator.labeledTypes[fieldType].label" />
-              </label>
-            </div>
-            <div class="mt-5" v-if="Validator.enumTypes.includes(newAttribute.type)">
-              <FormKit
-                type="text"
-                name="enums"
-                id="enumInput"
-                label="Enumerator"
-                help="Comma seperated list"
-                v-model="newAttribute.enums"
-                validation="required|length:2"
-                placeholder="(transaction)... credit, debit, award, deduction..."
-                :classes="{
-                  message: 'text-red-400 text-sm',
-                  input: 'border px-2 py-1 w-full rounded',
-                }"
+              <input
+                type="radio"
+                tabindex="0"
+                name="fieldType"
+                placeholder="bg-white"
+                class="mr-2 radio radio-xs radio-info"
+                :value="newAttribute.type"
+                @click="onTypeSelect(fieldType)"
+                :checked="newAttribute.type === fieldType"
               />
-            </div>
-            <button
-              @click="addAttribute"
-              class="w-full flex text-center text-md rounded p-1 justify-center text-white font-bold hover:shadow-lg dark:bg-gray-800"
-              v-text="'Add'"
-              :class="{
-                'bg-gray-300': !attributeValid,
-                'bg-opacity-80': !attributeValid,
-                'bg-green-500': attributeValid,
-                'dark:bg-green-500': attributeValid,
-                'cursor-not-allowed': !attributeValid,
+              <span class="text-xs" v-text="Validator.labeledTypes[fieldType].label" />
+            </label>
+          </div>
+          <div class="mt-5" v-if="Validator.enumTypes.includes(newAttribute.type)">
+            <FormKit
+              type="text"
+              name="enums"
+              id="enumInput"
+              label="Enumerator"
+              help="Comma separated list"
+              v-model="newAttribute.enums"
+              validation="required|length:2"
+              placeholder="(transaction)... credit, debit, award, deduction..."
+              :classes="{
+                help: 'italic',
+                message: 'text-red-400 text-sm',
+                input: 'border bg-white shadow-md px-2 py-1 w-full rounded',
               }"
             />
           </div>
+          <button
+            @click="addAttribute"
+            class="w-full flex text-center text-md rounded p-1 justify-center text-white font-bold hover:shadow-lg dark:bg-gray-800"
+            v-text="'Add'"
+            :class="{
+              'bg-gray-300': !attributeValid,
+              'bg-opacity-80': !attributeValid,
+              'bg-green-500': attributeValid,
+              'dark:bg-green-500': attributeValid,
+              'cursor-not-allowed': !attributeValid,
+            }"
+          />
         </div>
-        <div
-          class="flex flex-col bottom border shadow mt-2 overflow-scroll scrollbar-hide p-2 dark:border-gray-600 rounded"
-        >
+      </section>
+      <section tabindex="0" class="collapse collapse-arrow join-item border">
+        <input type="checkbox" checked="checked" />
+        <div class="collapse-title text-md font-medium">Review</div>
+        <div class="collapse-content">
           <h2 class="text-md font-bold text-slate-500">Summary:</h2>
           <h3 class="text-sm text-slate-500 limit-width overflow-x-auto scrollbar-hide">
             Name: <span class="limit-width overflow-x-auto scrollbar-hide" v-text="entity.name" />
@@ -282,7 +306,10 @@ const inputClasses =
             Label: <span class="limit-width overflow-x-auto scrollbar-hide" v-text="entity.label" />
           </h3>
           <h3 class="text-sm text-slate-500 limit-width overflow-x-auto scrollbar-hide">
-            Pluralized: <span class="limit-width overflow-x-auto scrollbar-hide" v-text="entity.plural" />
+            Plural: <span class="limit-width overflow-x-auto scrollbar-hide" v-text="entity.plural" />
+          </h3>
+          <h3 class="text-sm text-slate-500 limit-width overflow-x-auto scrollbar-hide">
+            Plural(Label): <span class="limit-width overflow-x-auto scrollbar-hide" v-text="entity.pluralL" />
           </h3>
           <h3 class="mt-4 text-md">Attributes (<span v-text="entity.attributes.length" />)</h3>
           <FormKitMessages :node="input?.node" />
@@ -291,8 +318,8 @@ const inputClasses =
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="bg-gray-500">
                   <th></th>
-                  <th class="text-white text-xs text-left pl-2">Type</th>
                   <th class="text-white text-xs text-left">Name</th>
+                  <th class="text-white text-xs text-left pl-2">Type</th>
                 </tr>
               </thead>
               <tbody class="border dark:border-gray-800 rounded-lg">
@@ -312,9 +339,6 @@ const inputClasses =
                     <td class="pl-1" @click="attrRemove(attr._id)">
                       <FontAwesomeIcon icon="fa-solid fa-circle-xmark text-xs" class="text-red-400" />
                     </td>
-                    <td>
-                      <span class="mx-2 font-semibold text-xs" v-text="Validator.labeledTypes[attr.type].label" />
-                    </td>
                     <td class="pr-2">
                       <span
                         v-text="attr.name"
@@ -322,13 +346,16 @@ const inputClasses =
                         class="overflow-auto scrollbar-hide text-xs"
                       />
                     </td>
+                    <td>
+                      <span class="mx-2 font-semibold text-xs" v-text="Validator.labeledTypes[attr.type].label" />
+                    </td>
                   </tr>
                 </FormKit>
               </tbody>
             </table>
           </div>
-          <!-- The button classes won't combine if we try to use string adding, computed, interpolation with nested tertiary  -->
           <FormKit
+            tabindex="0"
             type="submit"
             :classes="{
               input: entityValid ? '' : 'cursor-not-allowed',
@@ -340,24 +367,15 @@ const inputClasses =
             Create Entity
           </FormKit>
         </div>
-      </div>
+      </section>
     </FormKit>
   </div>
 </template>
+
 <style scoped>
 .left {
   min-width: 300px !important;
 }
-.top {
-  max-height: 30vh;
-}
-.middle {
-  max-height: 50vh;
-}
-.bottom {
-  max-height: 25vh;
-}
-
 .radio:checked,
 .radio[aria-checked='true'] {
   box-shadow: none;
