@@ -22,7 +22,7 @@ export function useEntities() {
     }
   }
   function setEntities(template: string) {
-    const newEntities = _.cloneDeep(seeds[template as keyof typeof seeds])
+    const newEntities = _.cloneDeep(seeds[template as keyof typeof seeds].entities)
     clearEntities()
 
     newEntities.forEach((e: any) => {

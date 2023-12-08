@@ -16,7 +16,12 @@ export const navItems = [
   },
   {
     url: '/administrator',
-    name: 'Administrator',
+    name: 'Dashboard',
+    icon: 'fa-blog',
+  },
+  {
+    url: '/previews',
+    name: 'Previews',
     icon: 'fa-blog',
   },
   {

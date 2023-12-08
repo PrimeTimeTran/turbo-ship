@@ -33,7 +33,7 @@ ensureLoad(scriptUrls.hotkeys)
     class="flex flex-row justify-center align-middle items-center bg-white dark:bg-slate-950 h-screen overflow-hidden scrollbar-hide min-w-max"
   >
     <div v-if="store.showLeft" class="lg:min-w-72 lg:max-w-72 lg:w-72 h-screen overflow-auto scrollbar-hide">
-      <EntitiesBodyLeft />
+      <EntitiesTheLeft />
     </div>
     <div class="flex grow h-screen overflow-hidden scrollbar-hide justify-center items-center min-w-[40%]">
       <slot />
@@ -42,7 +42,7 @@ ensureLoad(scriptUrls.hotkeys)
       v-if="store.showRight"
       class="hidden lg:flex lg:min-w-64 lg:max-w-64 lg:w-64 h-screen overflow-auto scrollbar-hide"
     >
-      <EntitiesBodyRight />
+      <EntitiesTheRight />
     </div>
   </div>
   <VDevTools />

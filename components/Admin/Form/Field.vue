@@ -63,7 +63,17 @@ const allClasses = {
     :options="options"
   />
   <FormKit
-    v-else-if="type == 'number'"
+    v-else-if="type == 'integer'"
+    :min="min"
+    :max="max"
+    type="number"
+    :name="name"
+    :label="label"
+    :classes="allClasses"
+    :placeholder="placeholder"
+  />
+  <FormKit
+    v-else-if="type == 'decimal'"
     :min="min"
     :max="max"
     type="number"

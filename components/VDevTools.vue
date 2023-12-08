@@ -1,22 +1,29 @@
 <script setup>
 import { useDark, useToggle } from '@vueuse/core'
+// const isDark = useDark()
+// const toggleDark = useToggle(isDark)
+const handleToggle = () => {
+  if (process.client) {
+    const isDark = document.getElementsByTagName('html')[0].classList.contains('dark')
+    let html = document.getElementsByTagName('html')[0]
+    if (isDark) {
+      localStorage.theme = 'light'
+      localStorage.setItem('theme', 'light')
+    } else {
+      localStorage.setItem('theme', 'dark')
+      localStorage.theme = 'dark'
+    }
+    html.classList.toggle('dark')
+    html.classList.toggle('dark-mode')
+  }
+}
 
 const hidden = ref(true)
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+// const isDark = useDark()
+// const toggleDark = useToggle(isDark)
 
 function toggleHidden() {
   hidden.value = !hidden.value
-}
-
-function handleToggle() {
-  var htmlElement = document.getElementsByTagName('html')[0]
-  const theme = isDark.value
-    ? 'var(--background-color-light)'
-    : 'var(--background-color-dark)'
-  document.body.style.background = theme
-  htmlElement.style.backgroundColor = theme
-  toggleDark()
 }
 </script>
 <template>
@@ -27,11 +34,8 @@ function handleToggle() {
     }"
   >
     <h1 class="dark:text-white">Light/Dark Mode</h1>
-    <VToggle @change="handleToggle" :enabled="isDark"/>
-    <div
-      id="devTools"
-      @click="toggleHidden"
-    />
+    <VToggle @change="handleToggle" :enabled="isDark" />
+    <div id="devTools" @click="toggleHidden" />
   </div>
 </template>
 <style></style>

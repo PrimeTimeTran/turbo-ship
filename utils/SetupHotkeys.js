@@ -1,5 +1,18 @@
 console.log('Setup custom hotkeys')
 
+function findParentWithClass(element, className) {
+  let parent = element.parentNode
+
+  while (parent) {
+    if (parent.classList.contains(className)) {
+      return parent
+    }
+    parent = parent.parentNode
+  }
+
+  return null
+}
+
 export function setupHotkeys() {
   hotkeys(
     'alt+p, alt+g, alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1, cmd+alt+d, cmd+alt+o',
@@ -14,6 +27,9 @@ export function setupHotkeys() {
           break
         case 'alt+l':
           document.getElementById('showLeft').click()
+          break
+        case 'alt+r':
+          document.getElementById('showRight').click()
           break
         case 'cmd+alt+o':
           document.getElementById('showOverlay').click()
@@ -35,9 +51,6 @@ export function setupHotkeys() {
           break
         case 'alt+c':
           document.getElementById('CollapseSubmenu').click()
-          break
-        case 'alt+r':
-          document.getElementById('showRight').click()
           break
         case 'alt+b':
           document.getElementById('FeedbackSubmenu').click()
@@ -73,8 +86,18 @@ export function setupHotkeys() {
           break
         case 'enter':
           const active = document.activeElement
-          const child = active.querySelector('.entity-input')
-          child.focus()
+          let child = active.querySelector('.entity-input')
+          if (child) {
+            child.focus()
+          } else {
+            child = active.querySelector('input')
+            if (child) {
+              child.focus()
+              let parent = findParentWithClass(child, 'collapse')
+              parent.click()
+              break
+            }
+          }
           break
         case 'cmd+alt+1':
           // Unable to unfocus an input
@@ -83,7 +106,6 @@ export function setupHotkeys() {
           // setTimeout(() => {
           //   document.activeElement.blur()
           // }, 1000)
-
           break
         default:
           alert(event)

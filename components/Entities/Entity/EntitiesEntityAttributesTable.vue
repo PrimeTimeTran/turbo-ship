@@ -16,7 +16,6 @@ const onRemove = (id) => {
 <!-- <th class="text-gray-500 text-center pl-2 mx-2 px-4">Valid</th> -->
 <template>
   <div class="flex flex-5 h-full hover:shadow-lg">
-    <!-- <div class="flex flex-col w-fit overflow-auto scrollbar-hide h-5/6"> -->
     <div class="flex flex-col w-fit">
       <table>
         <thead>
@@ -32,30 +31,32 @@ const onRemove = (id) => {
           <tr
             :key="attribute"
             v-for="(attribute, idx) of Validator.attributes(entity)"
-            class="hover:cursor-pointer border odd:bg-gray-200 odd:hover:bg-slate-200 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 dark:border-gray-800 text-xs"
+            class="hover:cursor-pointer odd:bg-gray-200 odd:hover:bg-slate-200 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 text-xs"
           >
             <td class="flex flex-row items-center pl-1" @click="onFocus(attribute._id)">
-              <span v-text="`${idx + 1}. `" />
+              <span
+                v-text="`${idx + 1}. `"
+                :class="{
+                  ['text-green-400']: focused === attribute._id,
+                }"
+              />
               <div class="ml-1">
-                <input
-                  v-model="attribute.name"
-                  class="bg-transparent text-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 placeholder-blue-400"
-                />
+                <input v-model="attribute.name" class="bg-transparent text-lg -full px-2 placeholder-blue-400" />
                 <EntitiesAttributeTypeSelect :attribute="attribute" />
               </div>
             </td>
             <td @click="onFocus(attribute._id)">
               <input
-                v-model="attribute.label"
                 placeholder="..."
-                class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-blue-400"
+                v-model="attribute.label"
+                class="bg-transparent text-sm p-2.5 placeholder-blue-400"
               />
             </td>
             <td @click="onFocus(attribute._id)">
               <input
-                v-model="attribute.placeholder"
                 placeholder="..."
-                class="bg-transparent text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-blue-400"
+                v-model="attribute.placeholder"
+                class="bg-transparent text-sm p-2.5 placeholder-blue-400"
               />
             </td>
             <td class="text-center px-1" @click="onFocus(attribute._id)">
@@ -64,7 +65,7 @@ const onRemove = (id) => {
                 color="grey"
                 icon="fa-solid fa-pen-to-square"
                 :class="{
-                  'text-blue-500': focused === attribute._id,
+                  'text-green-400': focused === attribute._id,
                 }"
               />
             </td>

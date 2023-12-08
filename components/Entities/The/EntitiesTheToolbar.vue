@@ -25,7 +25,6 @@ function feedback() {
   store.view = views.feedback
 }
 const { fbEvent } = useAnalytics()
-
 async function generate() {
   try {
     fbEvent('entities_generate_start')
@@ -38,8 +37,8 @@ async function generate() {
     }
 
     let newEntities = _.cloneDeep([...entities])
-    newEntities.unshift(seeds.lms[0])
-    toastEm('Processing build... Your project will download once done.', 5000)
+    newEntities.unshift(seeds.lms.entities[0])
+    toastEm('Processing build... Your project will download once done.', 5000, 'info')
     const resp = await $fetch(generateUrl, {
       method: 'post',
       body: newEntities,
@@ -84,6 +83,11 @@ async function generate() {
     console.log('Error: ', error)
   }
 }
+
+function getShortString(shortcut) {
+  return `<span class='end-0'><kbd class="kbd kbd-xs [--fallback-b2:gray] text-white dark:[--fallback-b2:gray]">⌥</kbd>+<kbd class="kbd kbd-xs [--fallback-b2:gray] text-white dark:[--fallback-b2:gray]">${shortcut}</kbd></span>`
+}
+
 const fileItems = [
   {
     id: faker.database.mongodbObjectId(),
@@ -91,6 +95,7 @@ const fileItems = [
     click: generate,
     underline: 'G',
     tip: 'Generate project source files',
+    shortcut: getShortString('G'),
   },
   {
     id: faker.database.mongodbObjectId(),
@@ -105,34 +110,39 @@ const fileItems = [
     click: generate,
     underline: 'Q',
     tip: 'Quite entity builder',
+    shortcut: getShortString('Q'),
   },
 ]
 const viewItems = [
   {
-    id: faker.database.mongodbObjectId(),
     name: 'Dark',
-    click: () => document.getElementById('dark').click(),
     underline: 'D',
     tip: 'Toggle Dark Mode',
+    id: faker.database.mongodbObjectId(),
+    click: () => document.getElementById('dark').click(),
+    shortcut: getShortString('D'),
   },
   {
     id: faker.database.mongodbObjectId(),
     name: 'Toggle Left',
-    click: () => (store.leftSidebar = !store.leftSidebar),
+    click: () => document.getElementById('showLeft').click(),
     underline: 'L',
     tip: 'Toggle Left sidebar open/closed',
+    shortcut: getShortString('L'),
   },
   {
     id: faker.database.mongodbObjectId(),
     name: 'Toggle Right',
-    click: () => (store.leftSidebar = !store.leftSidebar),
+    click: () => document.getElementById('showRight').click(),
     underline: 'R',
     tip: 'Toggle Right sidebar open/closed',
+    shortcut: getShortString('R'),
   },
   {
     id: faker.database.mongodbObjectId(),
     name: 'Entities',
     click: onEntities,
+    shortcut: getShortString('E'),
     underline: 'E',
     tip: 'View entities editor',
     groupStart: true,
@@ -143,6 +153,7 @@ const viewItems = [
     click: collapse,
     underline: 'C',
     tip: 'Toggle collapsed view of entities',
+    shortcut: getShortString('C'),
   },
   {
     id: faker.database.mongodbObjectId(),
@@ -151,11 +162,12 @@ const viewItems = [
     underline: 'S',
     tip: 'Switch to sort view of entities',
     groupEnd: true,
+    shortcut: getShortString('S'),
   },
   {
     id: faker.database.mongodbObjectId(),
     name: 'Overview',
-    click: onEntities,
+    click: () => document.getElementById('CollapseSubmenu').click(),
     underline: 'O',
     tip: 'View overview of entities',
   },
@@ -167,6 +179,7 @@ const viewItems = [
     underline: 'a',
     doubleKey: 'cmd+a',
     tip: 'View relationships overview',
+    shortcut: getShortString('A'),
   },
   {
     id: faker.database.mongodbObjectId(),
@@ -174,6 +187,7 @@ const viewItems = [
     click: feedback,
     underline: 'b',
     tip: 'View feedback window',
+    shortcut: getShortString('b'),
   },
   {
     id: faker.database.mongodbObjectId(),
@@ -181,24 +195,10 @@ const viewItems = [
     click: help,
     underline: 'H',
     tip: 'View help window',
+    shortcut: getShortString('H'),
   },
 ]
-const editItems = [
-  {
-    id: faker.database.mongodbObjectId(),
-    name: 'New Entity',
-    click: () => {},
-    underline: 'G',
-    tip: 'Quite entity builder',
-  },
-  {
-    id: faker.database.mongodbObjectId(),
-    name: 'Clear Entities',
-    click: clearEntities,
-    underline: '',
-    tip: 'Clear entities',
-  },
-]
+const entitiesList = entities.map((e) => ({ name: e.name, id: e._id, click: () => {}, tip: '', underline: '' }))
 const entitiesItems = [
   {
     id: faker.database.mongodbObjectId(),
@@ -206,6 +206,7 @@ const entitiesItems = [
     click: () => {},
     underline: 'o',
     tip: 'Copy entities to clipboard',
+    shortcut: getShortString('o'),
   },
   {
     id: faker.database.mongodbObjectId(),
@@ -213,7 +214,10 @@ const entitiesItems = [
     click: () => document.getElementById('toggleSparse').click(),
     underline: 'p',
     tip: 'Toggle sparse view of right sidebar',
+    shortcut: getShortString('p'),
+    groupEnd: true,
   },
+  ...entitiesList,
 ]
 const templateItems = [
   {
@@ -222,16 +226,6 @@ const templateItems = [
     click: () => setEntities('bank'),
     underline: '',
   },
-  // {
-  //   name: 'Bank',
-  //   click: () => setEntities('bank'),
-  //   underline: '',
-  // },
-  // {
-  //   name: 'CRM',
-  //   click: () => setEntities('crm'),
-  //   underline: '',
-  // },
   {
     id: faker.database.mongodbObjectId(),
     name: 'Delivery',
@@ -243,16 +237,6 @@ const templateItems = [
     click: () => setEntities('hotel'),
     underline: '',
   },
-  // {
-  //   name: 'Forum',
-  //   click: () => setEntities('forum'),
-  //   underline: '',
-  // },
-  // {
-  //   name: 'LMS',
-  //   click: () => setEntities('lms'),
-  //   underline: '',
-  // },
   {
     id: faker.database.mongodbObjectId(),
     name: 'Social',
@@ -262,15 +246,15 @@ const templateItems = [
 ]
 </script>
 <template>
-  <div class="flex flex-col px-2 bg-white dark:bg-slate-950 dark:text-white">
+  <div class="flex flex-col px-2 bg-white dark:bg-slate-950 dark:text-white z-50">
     <div class="flex flex-row">
       <VDropdown left="true" title="File" underline="F" :items="fileItems" />
       <VDropdown title="View" underline="V" :items="viewItems" />
       <VDropdown underline="E" title="Entities" :items="entitiesItems" />
       <VDropdown title="Templates" underline="T" :items="templateItems" />
-      <VDropdown underline="a" title="Relationships" :items="templateItems" />
-      <VDropdown underline="b" title="Feedback" :items="templateItems" />
-      <VDropdown right="true" title="Help" underline="H" :items="templateItems" />
+      <VDropdown underline="a" title="Relationships" :items="[]" />
+      <VDropdown underline="b" title="Feedback" :items="[]" />
+      <VDropdown right="true" title="Help" underline="H" :items="[]" />
     </div>
   </div>
 </template>

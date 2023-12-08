@@ -86,7 +86,7 @@ const addAttribute = (e) => {
     name: camelize(newAttribute.name),
     label: camelize(newAttribute.name),
     _id: faker.database.mongodbObjectId(),
-    placeholder: 'placeholder...',
+    placeholder: '',
     relation: relation,
   }
 

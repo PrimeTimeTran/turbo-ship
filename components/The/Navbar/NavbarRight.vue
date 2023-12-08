@@ -63,10 +63,13 @@ const isDark = useDark()
 const toggleDark = useToggle(isDark)
 
 const handleToggle = () => {
-  var htmlElement = document.getElementsByTagName('html')[0]
-  const newColor = isDark.value ? 'var(--background-color-light)' : 'var(--background-color-dark)'
-  document.body.style.background = newColor
-  htmlElement.style.backgroundColor = newColor
-  toggleDark()
+  let html = document.getElementsByTagName('html')[0]
+  html.classList.toggle('dark')
+  html.classList.toggle('dark-mode')
+  if (isDark.value) {
+    localStorage.theme = 'light'
+  } else {
+    localStorage.theme = 'dark'
+  }
 }
 </script>

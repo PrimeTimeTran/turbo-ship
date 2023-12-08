@@ -48,6 +48,12 @@ export default defineNuxtConfig({
   alias: {
     '@netlify': path.resolve(__dirname, 'netlify'),
   },
+  app: {
+    head: {
+      script: [{ src: '/js/Theme.js', tagPosition: 'head' }],
+    },
+  },
+
   hooks: {
     'build:done': (go: HookResult) => {
       console.log({

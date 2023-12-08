@@ -98,7 +98,7 @@ export const User = [
       },
       {
         name: 'age',
-        type: 'number',
+        type: 'integer',
         _id: 'zcb9b448e5bce7c8bdea1ece',
         validators: [],
         validations: [],

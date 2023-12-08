@@ -52,7 +52,7 @@ const showRelationTab = computed(() => {
 <template>
   <div class="grid grid-cols-12 gap-2 max-w-6xl">
     <div class="col-span-7 flex flex-col">
-      <EntitiesAttributesTable :entity="entity" :focused="focused" :onFocus="onFocus" />
+      <EntitiesEntityAttributesTable :entity="entity" :focused="focused" :onFocus="onFocus" />
     </div>
     <div class="col-span-2 flex flex-col">
       <label class="font-bold text-gray-500">Name</label>
@@ -68,7 +68,7 @@ const showRelationTab = computed(() => {
         :id="'attributeType' + entity._id"
         class="flex-auto rounded border dark:border-gray-800 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide hover:shadow-lg"
       >
-        <EntitiesAttributeTypeList :attribute="attribute" :focusedType="focusedType" />
+        <EntitiesEntityAttributeTypeList :attribute="attribute" :focusedType="focusedType" />
       </div>
       <button
         type="submit"
