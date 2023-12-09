@@ -6,10 +6,14 @@ const props = defineProps({
   help: { type: String },
   name: { type: String },
   label: { type: String },
-  options: { type: String },
   validation: { type: String },
   placeholder: { type: String },
   multiple: { type: Boolean, default: false },
+  options: {
+    validator: (value) => {
+      return typeof value === 'string' || typeof value === 'object'
+    },
+  },
 })
 
 const inputClasses =
@@ -24,14 +28,16 @@ const allClasses = {
 }
 </script>
 <template>
-  <FormKit
-    v-if="type === 'boolean'"
-    type="toggle"
-    :name="name"
+  <input
     :label="label"
     :classes="allClasses"
     :placeholder="placeholder"
     :options="options"
+    v-if="type === 'boolean'"
+    type="checkbox"
+    class="toggle"
+    checked
+    :name="name"
   />
   <FormKit
     v-else-if="type === 'string'"
@@ -43,7 +49,7 @@ const allClasses = {
     :placeholder="placeholder"
   />
   <FormKit
-    v-else-if="type === 'text'"
+    v-else-if="type === 'textarea'"
     type="textarea"
     :name="name"
     :label="label"
@@ -56,6 +62,8 @@ const allClasses = {
     :min="min"
     :max="max"
     type="number"
+    number="integer"
+    step="1"
     :name="name"
     :label="label"
     :classes="allClasses"
@@ -65,7 +73,8 @@ const allClasses = {
     v-else-if="type === 'decimal'"
     :min="min"
     :max="max"
-    type="float"
+    type="number"
+    number
     :name="name"
     :label="label"
     :classes="allClasses"
@@ -82,7 +91,7 @@ const allClasses = {
     :placeholder="placeholder"
   />
   <FormKit
-    v-else-if="type === 'dateTime'"
+    v-else-if="type === 'datetime-local'"
     type="datetime-local"
     :help="help"
     :name="name"
@@ -91,7 +100,7 @@ const allClasses = {
     :validation="validation"
     :placeholder="placeholder"
   />
-  <FormKit
+  <!-- <FormKit
     v-else-if="type === 'array'"
     type="array"
     :help="help"
@@ -100,8 +109,8 @@ const allClasses = {
     :classes="allClasses"
     :validation="validation"
     :placeholder="placeholder"
-  />
-  <FormKit
+  /> -->
+  <!-- <FormKit
     v-else-if="type === map"
     type="map"
     :help="help"
@@ -110,7 +119,7 @@ const allClasses = {
     :classes="allClasses"
     :validation="validation"
     :placeholder="placeholder"
-  />
+  /> -->
   <FormKit
     v-else-if="type === 'select' && multiple"
     type="select"

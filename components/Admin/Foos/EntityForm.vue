@@ -1,6 +1,6 @@
 <script setup>
 import { reset } from '@formkit/core'
-const props = defineProps(['searching', 'fetchFilteredFoos', 'createForm', 'clear'])
+const props = defineProps(['clear', 'searching', 'createForm', 'fetchFilteredFoos'])
 const { addFoo } = useFoos()
 
 async function submit(fields) {
@@ -29,15 +29,21 @@ async function submit(fields) {
       }"
     >
       <div id="Foo" class="form-items-container grid grid-cols-4 gap-x-7 gap-y-7 px-3">
-        <!-- <div class="item">
-          <AdminFormField name="fooBoolean" type="boolean" label="fooBoolean" placeholder="" :options="{}" />
-        </div> -->
         <div class="item">
           <AdminFormField
-            type="text"
+            name="fooBoolean"
+            type="boolean"
+            label="fooBoolean"
+            placeholder="fooPlaceBoolean"
+            :options="{}"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            type="string"
             name="fooString"
             label="fooString"
-            placeholder=""
+            placeholder="fooPlaceString"
             :validation="searching ? '' : ''"
           />
         </div>
@@ -46,29 +52,25 @@ async function submit(fields) {
             type="textarea"
             name="fooText"
             label="fooText"
-            placeholder=""
+            placeholder="fooPlaceText"
             :validation="searching ? '' : ''"
           />
         </div>
         <div class="item">
           <AdminFormField
             name="fooInteger"
-            type="number"
-            min="undefined"
-            max="undefined"
+            type="integer"
             label="fooInteger"
-            placeholder=""
+            placeholder="fooPlaceInteger"
             :validation="searching ? '' : ''"
           />
         </div>
         <div class="item">
           <AdminFormField
             name="fooDecimal"
-            type="float"
-            min="undefined"
-            max="undefined"
+            type="decimal"
             label="fooDecimal"
-            placeholder=""
+            placeholder="fooPlaceDecimal"
             :validation="searching ? '' : ''"
           />
         </div>
@@ -80,7 +82,6 @@ async function submit(fields) {
             label="fooDate"
             :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
             :validation="searching ? '' : ''"
-            help="Select all that apply by holding command (macOS) or control (PC)."
           />
         </div>
         <div class="item">
@@ -91,7 +92,6 @@ async function submit(fields) {
             label="fooDateTime"
             :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
             :validation="searching ? '' : ''"
-            help="Select all that apply by holding command (macOS) or control (PC)."
           />
         </div>
         <div class="item">
@@ -102,7 +102,6 @@ async function submit(fields) {
             label="fooArray"
             :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
             :validation="searching ? '' : ''"
-            help="Select all that apply by holding command (macOS) or control (PC)."
           />
         </div>
         <div class="item">
@@ -112,7 +111,6 @@ async function submit(fields) {
             label="fooMap"
             :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
             :validation="searching ? '' : ''"
-            help="Select all that apply by holding command (macOS) or control (PC)."
           />
         </div>
         <div class="item">
@@ -120,13 +118,57 @@ async function submit(fields) {
             name="foodEnumeratorMulti"
             type="select"
             label="foodEnumeratorMulti"
-            placeholder=""
+            placeholder="a,b,c"
             :options="{
               a: 'A',
               b: 'B',
               c: 'C',
             }"
-            :multiple="searching"
+            multiple
+            :validation="searching ? '' : ''"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            multiple
+            type="select"
+            name="relation-fooOTM"
+            label="fooOTM"
+            placeholder="one-to-many"
+            :options="{}"
+            :validation="searching ? '' : ''"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            multiple
+            type="select"
+            name="relation-fooMTO"
+            label="fooMTO"
+            placeholder="many-to-one"
+            :options="{}"
+            :validation="searching ? '' : ''"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            multiple
+            type="select"
+            name="relation-fooOTO"
+            label="fooOTO"
+            placeholder="one-to-one"
+            :options="{}"
+            :validation="searching ? '' : ''"
+          />
+        </div>
+        <div class="item">
+          <AdminFormField
+            multiple
+            type="select"
+            name="relation-fooMTM"
+            label="fooMTM"
+            placeholder="many-to-many"
+            :options="{}"
             :validation="searching ? '' : ''"
           />
         </div>
@@ -135,7 +177,7 @@ async function submit(fields) {
             name="fooEnumerator"
             type="select"
             label="fooEnumerator"
-            placeholder=""
+            placeholder="a,b,c,"
             :options="{
               a: 'A',
               b: 'B',
@@ -159,7 +201,6 @@ async function submit(fields) {
         />
         <FormKit
           type="submit"
-          :disabled="disabled"
           :classes="{
             outer: 'bg-green-500 rounded basis-3/4',
             input: 'flex flex-grow justify-center text-white dark:text-white p-3',
@@ -172,4 +213,3 @@ async function submit(fields) {
     </FormKit>
   </div>
 </template>
-<style></style>

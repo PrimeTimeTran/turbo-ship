@@ -37,7 +37,7 @@ async function generate() {
     }
 
     let newEntities = _.cloneDeep([...entities])
-    newEntities.unshift(seeds.lms.entities[0])
+    // newEntities.unshift(seeds.lms.entities[0])
     toastEm('Processing build... Your project will download once done.', 5000, 'info')
     const resp = await $fetch(generateUrl, {
       method: 'post',

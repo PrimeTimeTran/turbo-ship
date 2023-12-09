@@ -26,21 +26,24 @@ export class ModelBuilder {
     if (attributes) {
       attributes.forEach((f) => {
         if (f.name !== '_id') {
-          fields[f.name] = { ...f }
-          delete fields[f.name]._id
-          if (f.type === 'enumerator' || f.type === 'enumeratorMulti') {
-            fields[f.name].enumeratorType = 'string'
-            fields[f.name].enumerators = {}
-            const options = f.options?.split(',')
+          let field = {}
+          field = { ...f }
+          delete field._id
+          if (isEnumerator(field.type)) {
+            field.enumerators = {}
+            field.enumeratorType = 'string'
+            const options = field.options?.split(',')
             if (options) {
+              field.options = field.options
               options.forEach((o) => {
-                fields[f.name].enumerators[o] = {
+                field.enumerators[o] = {
                   val: o,
                   color: null,
                 }
               })
             }
           }
+          fields[f.name] = field
         }
       })
       this.e.fields = fields
@@ -128,7 +131,7 @@ export class ModelBuilder {
     const enumerators = []
     for (const key of keys) {
       const { type, required } = fields[key]
-      if (type === 'enumerator' || type === 'enumeratorMulti') {
+      if (isEnumerator(type)) {
         let strings
         if (typeof fields[key].enumerators[0] !== 'string') {
           strings = Object.keys(fields[key].enumerators).map((k) => k)
@@ -145,10 +148,8 @@ export class ModelBuilder {
 
   getType(type) {
     switch (type) {
-      case 'Decimal':
-        return 'Schema.Types.Decimal128'
-      case 'Relation':
-        return 'Schema.Types.ObjectId'
+      case 'Boolean':
+        return 'Boolean'
       case 'String':
         return 'String'
       case 'Text':
@@ -161,12 +162,16 @@ export class ModelBuilder {
         return 'Date'
       case 'Number':
         return 'Number'
+      case 'Integer':
+        return 'BigInt'
+      case 'Decimal':
+        return 'Schema.Types.Decimal128'
       case 'Map':
         return 'Map'
       case 'Array':
         return '[]'
-      case 'Integer':
-        return 'BigInt'
+      case 'Relation':
+        return 'Schema.Types.ObjectId'
     }
   }
 
@@ -194,7 +199,7 @@ export class ModelBuilder {
     const values = []
     for (const f in this.e.fields) {
       const field = this.e.fields[f]
-      const { type, required, enumeratorType, relation, name } = field
+      const { type, required, enumeratorType, relation, name, options } = field
       const fieldName = name || f
       if (type === 'relation') {
         const fn = relationMap[relation.type]
@@ -205,20 +210,20 @@ export class ModelBuilder {
             }`
           values.push(item)
         }
-      } else if (type == 'enumerator' || type == 'enumeratorMulti') {
+      } else if (isEnumerator(type)) {
         function getEnumType(t) {
-          if (t === 'enumerator') return `[${capitalize(enumeratorType)}]`
-          if (t === 'enumeratorMulti') return `[${capitalize(enumeratorType)}]`
+          if (isEnumerator(t)) return `[${capitalize(enumeratorType)}]`
         }
         const item = `${fieldName}: {
           ${required != undefined ? `required: ${required},` : ''}
           type: ${getEnumType(type)},
+          enum: [${options.split(',').map((i) => `"${i}"`)}]
         }`
         values.push(item)
       } else {
-        // Because FE entities dont match hardcoded entities 100% yet.
         const item = `${fieldName}: {
           type: ${this.getType(capitalize(type))},
+          ${this.getType(capitalize(type)) === 'Map' ? 'of: String,' : ''}
           ${required != undefined ? `required: ${required},` : ''}
         }`
         values.push(item)
@@ -255,3 +260,7 @@ export class ModelBuilder {
 }
 
 // let shown = false
+
+function isEnumerator(type) {
+  return ['enumerator', 'enumeratorMulti'].includes(type)
+}

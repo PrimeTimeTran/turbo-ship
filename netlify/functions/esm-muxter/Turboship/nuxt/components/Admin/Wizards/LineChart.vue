@@ -1,13 +1,4 @@
 <script setup>
-useHead({
-  script: [
-    // {
-    //   src: 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js',
-    //   tagPosition: 'head',
-    // },
-  ],
-})
-
 Number.prototype.comma_formatter = function () {
   return this.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
 }
@@ -26,11 +17,7 @@ const options = {
       },
       ticks: {
         callback: function (value, index, array) {
-          return value > 1000
-            ? value < 1000000
-              ? value / 1000 + 'K'
-              : value / 1000000 + 'M'
-            : value
+          return value > 1000 ? (value < 1000000 ? value / 1000 + 'K' : value / 1000000 + 'M') : value
         },
       },
     },
@@ -74,9 +61,7 @@ const bgColorPlugin = {
 }
 
 function getData() {
-  fetch(
-    'https://cdn.jsdelivr.net/gh/swindon/fake-api@master/tailwindAlpineJsChartJsEx1.json'
-  )
+  fetch('https://cdn.jsdelivr.net/gh/swindon/fake-api@master/tailwindAlpineJsChartJsEx1.json')
     .then((res) => res.json())
     .then((res) => {
       chartData.data = res.dates
@@ -157,7 +142,7 @@ async function renderCharts() {
   ]
 
   let ctx = document.getElementById('canvas').getContext('2d')
-  let chart = await new Chart(ctx, {
+  await new Chart(ctx, {
     type: 'line',
     data: {
       datasets: data,
@@ -169,7 +154,6 @@ async function renderCharts() {
   toggleDropdown()
 }
 function toggleDropdown() {
-  console.log('Clicked', showDropdown.value)
   showDropdown.value = !showDropdown
 }
 function switchCharts(idx) {
@@ -178,26 +162,17 @@ function switchCharts(idx) {
 </script>
 
 <template>
-  <div
-    class="flex flex-1 flex-col min-h-full p-4 dark:bg-neutral-900 rounded-lg shadow-xl"
-  >
+  <div class="flex flex-1 flex-col min-h-full p-4 dark:bg-neutral-900 rounded-lg shadow-xl">
     <div class="flex flex-wrap items-end rounded-full">
       <div class="flex-1">
-        <h3
-          class="text-xl text-gray-500 dark:text-gray-500 dark:bg-neutral-900 font-bold leading-tight"
-        >
-          Income
-        </h3>
+        <h3 class="text-xl text-gray-500 dark:text-gray-500 dark:bg-neutral-900 font-bold leading-tight">Income</h3>
       </div>
       <div class="relative">
         <button
           class="text-xs hover:text-gray-300 h-6 focus:outline-none text-gray"
           @click="showDropdown = !showDropdown"
         >
-          <span
-            class="text-gray-500 dark:text-white"
-            v-text="chartData.options[chartData.selectedOption].label"
-          />
+          <span class="text-gray-500 dark:text-white" v-text="chartData.options[chartData.selectedOption].label" />
           <i class="ml-1 mdi mdi-chevron-down" />
         </button>
         <div
@@ -206,9 +181,7 @@ function switchCharts(idx) {
             hidden: !showDropdown,
           }"
         >
-          <span
-            class="absolute top-0 right-0 w-3 h-3 dark:bg-neutral-900 transform rotate-45 -mt-1 mr-3"
-          />
+          <span class="absolute top-0 right-0 w-3 h-3 dark:bg-neutral-900 transform rotate-45 -mt-1 mr-3" />
           <div class="dark:bg-neutral-900 rounded w-full relative z-10 py-1">
             <ul class="list-reset text-xs">
               <template v-for="(item, index) in chartData.options">
@@ -227,38 +200,17 @@ function switchCharts(idx) {
     <div class="flex flex-1 items-end mb-5">
       <h4
         class="text-xl lg:text-2xl text-gray-400 dark:text-gray-600 dark:text-white-500/100 dark:bg-neutral-900 font-semibold leading-tight inline-block mr-2"
-        v-text="
-          '$' +
-          (chartData.data
-            ? chartData.data[chartData.date].total.comma_formatter()
-            : 0)
-        "
+        v-text="'$' + (chartData.data ? chartData.data[chartData.date].total.comma_formatter() : 0)"
       ></h4>
       <span
         class="inline-block"
-        :class="
-          chartData.data && chartData.data[chartData.date].upDown < 0
-            ? 'text-red-500'
-            : 'text-green-500'
-        "
-        ><span
-          v-text="
-            chartData.data && chartData.data[chartData.date].upDown < 0
-              ? '▼'
-              : '▲'
-          "
-        ></span>
-        <span
-          v-text="chartData.data ? chartData.data[chartData.date].upDown : 0"
-        ></span
-        >%</span
+        :class="chartData.data && chartData.data[chartData.date].upDown < 0 ? 'text-red-500' : 'text-green-500'"
+        ><span v-text="chartData.data && chartData.data[chartData.date].upDown < 0 ? '▼' : '▲'"></span>
+        <span v-text="chartData.data ? chartData.data[chartData.date].upDown : 0"></span>%</span
       >
     </div>
     <div>
-      <canvas
-        id="canvas"
-        class="w-100"
-      />
+      <canvas id="canvas" class="w-100" />
     </div>
   </div>
 </template>

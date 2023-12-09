@@ -17,7 +17,7 @@ export const FooBars = {
           name: 'fooBoolean',
           label: 'fooBoolean',
           _id: '6dcc79ee7eb4f14dc1e0ce4b',
-          placeholder: '',
+          placeholder: 'fooPlaceBoolean',
           relation: { name: null, type: '' },
         },
         {
@@ -27,7 +27,7 @@ export const FooBars = {
           name: 'fooString',
           label: 'fooString',
           _id: '3d00e44df2b3bb22da6723cb',
-          placeholder: '',
+          placeholder: 'fooPlaceString',
           relation: { name: null, type: '' },
         },
         {
@@ -37,7 +37,7 @@ export const FooBars = {
           name: 'fooText',
           label: 'fooText',
           _id: 'bcbbfc4c1547d1627cd15fe2',
-          placeholder: '',
+          placeholder: 'fooPlaceText',
           relation: { name: null, type: '' },
         },
         {
@@ -47,7 +47,7 @@ export const FooBars = {
           name: 'fooInteger',
           label: 'fooInteger',
           _id: '25baeb5cb6b90eb3dd68ce9d',
-          placeholder: '',
+          placeholder: 'fooPlaceInteger',
           relation: { name: null, type: '' },
         },
         {
@@ -57,7 +57,7 @@ export const FooBars = {
           name: 'fooDecimal',
           label: 'fooDecimal',
           _id: 'b0dc5b861bf1cccdffa63ae4',
-          placeholder: '',
+          placeholder: 'fooPlaceDecimal',
           relation: { name: null, type: '' },
         },
         {
@@ -67,7 +67,7 @@ export const FooBars = {
           name: 'fooDate',
           label: 'fooDate',
           _id: 'ad24804ffbd5a7932701d5f1',
-          placeholder: '',
+          placeholder: 'fooPlaceDate',
           relation: { name: null, type: '' },
         },
         {
@@ -77,7 +77,7 @@ export const FooBars = {
           name: 'fooDateTime',
           label: 'fooDateTime',
           _id: '10ebc11ec20a1cac1e1abdfe',
-          placeholder: '',
+          placeholder: 'fooPlaceDateTime',
           relation: { name: null, type: '' },
         },
         {
@@ -87,7 +87,7 @@ export const FooBars = {
           name: 'fooArray',
           label: 'fooArray',
           _id: '2acf20585fe9beac06d823d8',
-          placeholder: '',
+          placeholder: 'fooPlaceArray',
           relation: { name: null, type: '' },
         },
         {
@@ -97,7 +97,7 @@ export const FooBars = {
           name: 'fooMap',
           label: 'fooMap',
           _id: '6fbadff36a541a3730eceabc',
-          placeholder: '',
+          placeholder: 'fooPlaceMap',
           relation: { name: null, type: '' },
         },
         {
@@ -107,7 +107,7 @@ export const FooBars = {
           name: 'fooEnumerator',
           label: 'fooEnumerator',
           _id: 'df3dab2f94babfb3eb2decef',
-          placeholder: '',
+          placeholder: 'a,b,c,',
           relation: { name: null, type: '' },
           options: 'a,b,c',
         },
@@ -118,7 +118,7 @@ export const FooBars = {
           name: 'foodEnumeratorMulti',
           label: 'foodEnumeratorMulti',
           _id: 'd35baeae0fdea2f0aaba41ad',
-          placeholder: '',
+          placeholder: 'a,b,c',
           relation: { name: null, type: '' },
           options: 'a,b,c',
         },
@@ -129,7 +129,7 @@ export const FooBars = {
           name: 'fooOTM',
           label: 'fooOTM',
           _id: '3b91bb9236bf6ae409babfed',
-          placeholder: '',
+          placeholder: 'one-to-many',
           relation: { name: 'related', type: 'otm' },
         },
         {
@@ -139,7 +139,7 @@ export const FooBars = {
           name: 'fooMTO',
           label: 'fooMTO',
           _id: 'cb9e4df7b51061a10b22ba8c',
-          placeholder: '',
+          placeholder: 'many-to-one',
           relation: { name: 'related', type: 'mto' },
         },
         {
@@ -149,7 +149,7 @@ export const FooBars = {
           name: 'fooOTO',
           label: 'fooOTO',
           _id: '9ba3dbf02fd484ec618a9e8f',
-          placeholder: '',
+          placeholder: 'one-to-one',
           relation: { name: 'related', type: 'oto' },
         },
         {
@@ -159,7 +159,7 @@ export const FooBars = {
           name: 'fooMTM',
           label: 'fooMTM',
           _id: 'ec2ef0ec3cd71cfecabfbcd4',
-          placeholder: '',
+          placeholder: 'many-to-many',
           relation: { name: 'related', type: 'mtm' },
         },
       ],

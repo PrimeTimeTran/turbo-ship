@@ -11,7 +11,7 @@ export function buildOptions(obj) {
   return (string += '}')
 }
 
-export function buildEntityFormInput(key, field) {
+export function buildEntityFormInput(e, key, field) {
   switch (field.type) {
     case 'boolean':
       return `<div class="item">
@@ -26,7 +26,7 @@ export function buildEntityFormInput(key, field) {
     case 'string':
       return `<div class="item">
         <AdminFormField
-          type="text"
+          type="string"
           name="${key}"
           label="${field.label || field.name || ''}"
           placeholder="${field.placeholder}"
@@ -47,9 +47,9 @@ export function buildEntityFormInput(key, field) {
       return `<div class="item">
         <AdminFormField
           name="${key}"
-          type="number"
-          min="${field.min}"
-          max="${field.max}"
+          type="integer"
+          ${field.min !== undefined ? `min="${field.min}"` : ''}
+          ${field.max !== undefined ? `max="${field.max}"` : ''}
           label="${field.label || field.name || ''}"
           placeholder="${field.placeholder}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
@@ -60,9 +60,9 @@ export function buildEntityFormInput(key, field) {
       return `<div class="item">
         <AdminFormField
           name="${key}"
-          type="float"
-          min="${field.min}"
-          max="${field.max}"
+          type="decimal"
+          ${field.min !== undefined ? `min="${field.min}"` : ''}
+          ${field.max !== undefined ? `max="${field.max}"` : ''}
           label="${field.label || field.name || ''}"
           placeholder="${field.placeholder}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
@@ -78,7 +78,6 @@ export function buildEntityFormInput(key, field) {
           label="${field.label || field.name || ''}"
           :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
-          help="Select all that apply by holding command (macOS) or control (PC)."
         />
       </div>`
     case 'dateTime':
@@ -90,7 +89,6 @@ export function buildEntityFormInput(key, field) {
           label="${field.label || field.name || ''}"
           :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
-          help="Select all that apply by holding command (macOS) or control (PC)."
         />
       </div>`
     case 'array':
@@ -102,7 +100,6 @@ export function buildEntityFormInput(key, field) {
           label="${field.label || field.name || ''}"
           :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
-          help="Select all that apply by holding command (macOS) or control (PC)."
         />
       </div>`
     case 'map':
@@ -113,7 +110,6 @@ export function buildEntityFormInput(key, field) {
           label="${field.label || field.name || ''}"
           :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
-          help="Select all that apply by holding command (macOS) or control (PC)."
         />
       </div>`
     case 'enumerator':
@@ -136,7 +132,19 @@ export function buildEntityFormInput(key, field) {
           label="${field.label || field.name || ''}"
           placeholder="${field.placeholder}"
           :options="${buildOptions(field.enumerators)}"
-          :multiple="${field.multiselect || 'searching'}"
+          multiple
+          :validation="searching ? '' : '${field.required ? 'required' : ''}'"
+        />
+      </div>`
+    case 'relation':
+      return `<div class="item">
+        <AdminFormField
+          multiple
+          type="select"
+          name="${field.type}-${key}"
+          label="${field.label || field.name || ''}"
+          placeholder="${field.placeholder}"
+          :options="${buildOptions(field.enumerators)}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
         />
       </div>`
@@ -163,7 +171,7 @@ export function buildEntityFormInputs(e) {
   keys.sort(customSort)
   return keys
     .map((key) => {
-      return buildEntityFormInput(key, e.fields[key])
+      return buildEntityFormInput(e, key, e.fields[key])
     })
     .join('')
 }
@@ -172,10 +180,10 @@ export function buildEntityForm(e) {
   return `<script setup>
     import { reset } from '@formkit/core'
     const props = defineProps([
-      'searching',
-      'fetchFiltered${e.pluralL}',
-      'createForm',
       'clear',
+      'searching',
+      'createForm',
+      'fetchFiltered${e.pluralL}',
     ])
     const { add${capitalize(e.name)} } = use${e.pluralL}()
 
@@ -224,7 +232,6 @@ export function buildEntityForm(e) {
             />
             <FormKit
               type="submit"
-              :disabled="disabled"
               :classes="{
                 outer: 'bg-green-500 rounded basis-3/4',
                 input:
@@ -238,7 +245,6 @@ export function buildEntityForm(e) {
       </FormKit>
       </div>
     </template>
-    <style></style>
     `
 }
 
