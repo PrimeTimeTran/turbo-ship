@@ -91,6 +91,10 @@ const addAttribute = (e) => {
   }
 
   entity.attributes.push(attribute)
+  // console.log({
+  //   entity: entity.value,
+  //   attributes: entity.attributes.value,
+  // })
   resetAttribute()
 }
 const attrRemove = (id) => {
@@ -99,7 +103,7 @@ const attrRemove = (id) => {
 }
 const onTypeSelect = (type) => {
   newAttribute.type = type
-  if (Validator.enumTypes(type)) {
+  if (Validator.enumTypes.includes(type)) {
     if (process.browser) {
       setTimeout(() => {
         document.getElementById('enumInput').focus()
@@ -369,6 +373,7 @@ const inputClasses =
         </div>
       </section>
     </FormKit>
+    <pre>{{ entity }}</pre>
   </div>
 </template>
 

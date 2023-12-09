@@ -102,6 +102,10 @@ export class Validator {
       value: 'otm',
       label: 'one-to-many',
     },
+    relation: {
+      value: 'relation',
+      label: 'Relation',
+    },
     mto: {
       value: 'mto',
       label: 'many-to-one',

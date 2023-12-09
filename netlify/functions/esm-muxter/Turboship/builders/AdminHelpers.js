@@ -3,10 +3,7 @@ import { capitalize, colors } from '../helpers.js'
 export function buildOptions(obj) {
   let string = '{\n'
   for (const key in obj) {
-    const newVal =
-      typeof obj[key] === 'string'
-        ? capitalize(obj[key])
-        : capitalize(obj[key].val)
+    const newVal = typeof obj[key] === 'string' ? capitalize(obj[key]) : capitalize(obj[key].val)
     if (obj.hasOwnProperty(key)) {
       string += `${key}: '${newVal}',\n`
     }
@@ -16,9 +13,18 @@ export function buildOptions(obj) {
 
 export function buildEntityFormInput(key, field) {
   switch (field.type) {
+    case 'boolean':
+      return `<div class="item">
+        <AdminFormField
+          name="${key}"
+          type="boolean"
+          label="${field.label || field.name || ''}"
+          placeholder="${field.placeholder}"
+          :options="${buildOptions(field.enumerators)}"
+        />
+      </div>`
     case 'string':
-      return `
-      <div class="item">
+      return `<div class="item">
         <AdminFormField
           type="text"
           name="${key}"
@@ -27,22 +33,18 @@ export function buildEntityFormInput(key, field) {
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
         />
       </div>`
-    case 'enumerator':
-      return `
-      <div class="item">
+    case 'text':
+      return `<div class="item">
         <AdminFormField
+          type="textarea"
           name="${key}"
-          type="select"
           label="${field.label || field.name || ''}"
           placeholder="${field.placeholder}"
-          :options="${buildOptions(field.enumerators)}"
-          :multiple="${field.multiselect || 'searching'}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
         />
       </div>`
-    case 'number':
-      return `
-      <div class="item">
+    case 'integer':
+      return `<div class="item">
         <AdminFormField
           name="${key}"
           type="number"
@@ -54,28 +56,88 @@ export function buildEntityFormInput(key, field) {
           
         />
       </div>`
-    case 'boolean':
-      return `
-      <div class="item">
+    case 'decimal':
+      return `<div class="item">
+        <AdminFormField
+          name="${key}"
+          type="float"
+          min="${field.min}"
+          max="${field.max}"
+          label="${field.label || field.name || ''}"
+          placeholder="${field.placeholder}"
+          :validation="searching ? '' : '${field.required ? 'required' : ''}'"
+          
+        />
+      </div>`
+    case 'date':
+      return `<div class="item">
+        <AdminFormField
+          name="${key}"
+          type="date"
+          :multiple="searching"
+          label="${field.label || field.name || ''}"
+          :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
+          :validation="searching ? '' : '${field.required ? 'required' : ''}'"
+          help="Select all that apply by holding command (macOS) or control (PC)."
+        />
+      </div>`
+    case 'dateTime':
+      return `<div class="item">
+        <AdminFormField
+          name="${key}"
+          type="datetime-local"
+          :multiple="searching"
+          label="${field.label || field.name || ''}"
+          :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
+          :validation="searching ? '' : '${field.required ? 'required' : ''}'"
+          help="Select all that apply by holding command (macOS) or control (PC)."
+        />
+      </div>`
+    case 'array':
+      return `<div class="item">
+        <AdminFormField
+          name="${key}"
+          type="array"
+          :multiple="searching"
+          label="${field.label || field.name || ''}"
+          :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
+          :validation="searching ? '' : '${field.required ? 'required' : ''}'"
+          help="Select all that apply by holding command (macOS) or control (PC)."
+        />
+      </div>`
+    case 'map':
+      return `<div class="item">
+        <AdminFormField
+          name="${key}"
+          type="map"
+          label="${field.label || field.name || ''}"
+          :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
+          :validation="searching ? '' : '${field.required ? 'required' : ''}'"
+          help="Select all that apply by holding command (macOS) or control (PC)."
+        />
+      </div>`
+    case 'enumerator':
+      return `<div class="item">
         <AdminFormField
           name="${key}"
           type="select"
           label="${field.label || field.name || ''}"
           placeholder="${field.placeholder}"
           :options="${buildOptions(field.enumerators)}"
+          :multiple="${field.multiselect || 'searching'}"
+          :validation="searching ? '' : '${field.required ? 'required' : ''}'"
         />
       </div>`
-    case 'date':
-      return `
-      <div class="item">
+    case 'enumeratorMulti':
+      return `<div class="item">
         <AdminFormField
           name="${key}"
           type="select"
-          :multiple="searching"
           label="${field.label || field.name || ''}"
-          :placeholder="searching ? 'Select house/houses' : 'Select placeholder'"
+          placeholder="${field.placeholder}"
+          :options="${buildOptions(field.enumerators)}"
+          :multiple="${field.multiselect || 'searching'}"
           :validation="searching ? '' : '${field.required ? 'required' : ''}'"
-          help="Select all that apply by holding command (macOS) or control (PC)."
         />
       </div>`
     default:
@@ -291,9 +353,7 @@ export function buildTabs(e, prop) {
   const keyMap = {}
   houseKeys.forEach(([k, v], idx) => (keyMap[k] = colors[idx]))
   function makeKey(k, v) {
-    return `${k.toLowerCase()}: \`\${field}-${
-      v.color ? v.color : keyMap[k]
-    }-\${weight}\`,`
+    return `${k.toLowerCase()}: \`\${field}-${v.color ? v.color : keyMap[k]}-\${weight}\`,`
   }
   return `{${houseKeys.map(([k, v]) => makeKey(k, v)).join('')}}`
 }
@@ -337,7 +397,7 @@ export function buildEnumeratorHelpers(e) {
             return {
               [kolors[key]]: true,
             }
-        }`
+        }`,
     )
     .join('')
 }

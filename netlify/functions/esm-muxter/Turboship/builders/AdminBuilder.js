@@ -38,6 +38,9 @@ export class AdminBuilder {
               fields[f.name] = { ...f }
               const field = fields[f.name]
               delete field._id
+              field.label = f.label
+              field.type = f.type
+              field.placeholder = f.label
               if (f.type === 'enumerator' || f.type === 'enumeratorMulti') {
                 field.enumeratorType = 'string'
                 field.enumerators = {}
@@ -49,9 +52,6 @@ export class AdminBuilder {
                   }
                 })
               }
-              field.label = f.label
-              field.type = f.type
-              field.placeholder = f.label
             }
           })
         }

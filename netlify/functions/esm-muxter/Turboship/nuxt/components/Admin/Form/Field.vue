@@ -25,7 +25,16 @@ const allClasses = {
 </script>
 <template>
   <FormKit
-    v-if="type == 'text'"
+    v-if="type === 'boolean'"
+    type="toggle"
+    :name="name"
+    :label="label"
+    :classes="allClasses"
+    :placeholder="placeholder"
+    :options="options"
+  />
+  <FormKit
+    v-else-if="type === 'string'"
     type="text"
     :name="name"
     :label="label"
@@ -34,36 +43,16 @@ const allClasses = {
     :placeholder="placeholder"
   />
   <FormKit
-    v-else-if="type == 'boolean'"
-    type="select"
+    v-else-if="type === 'text'"
+    type="textarea"
     :name="name"
     :label="label"
-    :placeholder="placeholder"
     :classes="allClasses"
-    :options="options"
+    :validation="validation"
+    :placeholder="placeholder"
   />
   <FormKit
-    v-else-if="type == 'select' && multiple"
-    type="select"
-    :name="name"
-    :label="label"
-    :multiple="multiple"
-    :placeholder="placeholder"
-    :classes="allClasses"
-    :options="options"
-  />
-  <FormKit
-    v-else-if="type == 'select' && !multiple"
-    type="select"
-    :name="name"
-    :label="label"
-    :multiple="multiple"
-    :placeholder="placeholder"
-    :classes="allClasses"
-    :options="options"
-  />
-  <FormKit
-    v-else-if="type == 'number'"
+    v-else-if="type === 'integer'"
     :min="min"
     :max="max"
     type="number"
@@ -73,7 +62,17 @@ const allClasses = {
     :placeholder="placeholder"
   />
   <FormKit
-    v-else-if="type == 'date'"
+    v-else-if="type === 'decimal'"
+    :min="min"
+    :max="max"
+    type="float"
+    :name="name"
+    :label="label"
+    :classes="allClasses"
+    :placeholder="placeholder"
+  />
+  <FormKit
+    v-else-if="type === 'date'"
     type="date"
     :help="help"
     :name="name"
@@ -81,5 +80,55 @@ const allClasses = {
     :classes="allClasses"
     :validation="validation"
     :placeholder="placeholder"
+  />
+  <FormKit
+    v-else-if="type === 'dateTime'"
+    type="datetime-local"
+    :help="help"
+    :name="name"
+    :label="label"
+    :classes="allClasses"
+    :validation="validation"
+    :placeholder="placeholder"
+  />
+  <FormKit
+    v-else-if="type === 'array'"
+    type="array"
+    :help="help"
+    :name="name"
+    :label="label"
+    :classes="allClasses"
+    :validation="validation"
+    :placeholder="placeholder"
+  />
+  <FormKit
+    v-else-if="type === map"
+    type="map"
+    :help="help"
+    :name="name"
+    :label="label"
+    :classes="allClasses"
+    :validation="validation"
+    :placeholder="placeholder"
+  />
+  <FormKit
+    v-else-if="type === 'select' && multiple"
+    type="select"
+    :name="name"
+    :label="label"
+    :multiple="multiple"
+    :placeholder="placeholder"
+    :classes="allClasses"
+    :options="options"
+  />
+  <FormKit
+    v-else-if="type === 'select' && !multiple"
+    type="select"
+    :name="name"
+    :label="label"
+    :multiple="multiple"
+    :placeholder="placeholder"
+    :classes="allClasses"
+    :options="options"
   />
 </template>

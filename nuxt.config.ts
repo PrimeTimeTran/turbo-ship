@@ -8,7 +8,7 @@ const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ignore: ['/mobile'],
+  ignore: ['/mobile', '/notes', '/utils/seeds'],
   plugins: ['~/plugins/fontawesome.ts', { src: '~/plugins/marked.js' }],
   devServer: {
     port: 3005,

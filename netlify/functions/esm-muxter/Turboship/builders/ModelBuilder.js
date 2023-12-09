@@ -138,11 +138,7 @@ export class ModelBuilder {
           enumerators: strings || fields[key].enumerators,
         })
       }
-      values.push(
-        `${camelize(key)}: ${getType(name, type, key)}${
-          !required ? '.optional()' : ''
-        }`
-      )
+      values.push(`${camelize(key)}: ${getType(name, type, key)}${!required ? '.optional()' : ''}`)
     }
     return [values, enumerators]
   }
@@ -167,6 +163,8 @@ export class ModelBuilder {
         return 'Number'
       case 'Map':
         return 'Map'
+      case 'Array':
+        return '[]'
       case 'Integer':
         return 'BigInt'
     }
@@ -209,7 +207,7 @@ export class ModelBuilder {
         }
       } else if (type == 'enumerator' || type == 'enumeratorMulti') {
         function getEnumType(t) {
-          if (t === 'enumerator') return `${capitalize(enumeratorType)}`
+          if (t === 'enumerator') return `[${capitalize(enumeratorType)}]`
           if (t === 'enumeratorMulti') return `[${capitalize(enumeratorType)}]`
         }
         const item = `${fieldName}: {

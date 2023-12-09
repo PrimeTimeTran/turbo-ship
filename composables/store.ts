@@ -11,5 +11,5 @@ export const store = reactive({
   collapsed: false,
   view: 'entities',
   showOverlay: false,
-  entities: ref(_.cloneDeep(seeds.hotel.entities)),
+  entities: ref(_.cloneDeep(seeds.foobars.entities)),
 })
