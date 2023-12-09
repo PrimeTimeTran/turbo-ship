@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import { addHooks } from './Audit/Audit'
 
 export const fooEnumerators = {
   fooEnumerator: {
@@ -14,7 +15,7 @@ export const fooEnumerators = {
   },
 }
 
-export const Foo = mongoose.model('Foo', {
+const fooSchema = new Schema({
   fooBoolean: {
     type: Boolean,
   },
@@ -64,3 +65,7 @@ export const Foo = mongoose.model('Foo', {
     type: [{ type: Schema.Types.ObjectId, ref: 'Related' }],
   },
 })
+
+addHooks(fooSchema)
+export { fooSchema }
+export const Foo = mongoose.model('Foo', fooSchema)

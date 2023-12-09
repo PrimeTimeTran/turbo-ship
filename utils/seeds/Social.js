@@ -268,6 +268,7 @@ export const Social = {
           validations: [],
           type: 'enumerator',
           name: 'type',
+          options: 'like,love,wow,laugh,cry,angry',
           _id: 'f8499edfb24acffab5dbbccc',
           relation: { type: null, name: null },
           label: 'Type',

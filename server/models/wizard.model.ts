@@ -8,6 +8,8 @@ import { z } from 'zod'
 import { Model, Document } from 'mongoose'
 import { defineMongooseModel } from '#nuxt/mongoose'
 
+import { addHooks } from './Audit/Audit'
+
 export const WizardSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
@@ -95,13 +97,14 @@ export const Wizard = defineMongooseModel({
   },
   options: {},
   hooks(schema) {
-    schema.pre('find', function (this: Combined, next) {
-      console.log('Wizard hook pre find')
-      next()
-    })
-    schema.post('find', function (docs, next) {
-      console.log('Wizard hook post find')
-      next()
-    })
+    addHooks(schema)
+    // schema.pre('find', function (this: Combined, next) {
+    //   console.log('Wizard hook pre find')
+    //   next()
+    // })
+    // schema.post('find', function (docs, next) {
+    //   console.log('Wizard hook post find')
+    //   next()
+    // })
   },
 })
