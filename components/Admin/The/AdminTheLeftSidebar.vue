@@ -1,12 +1,5 @@
 <script setup>
-import {
-  LanguageIcon,
-  Bars4Icon,
-  ChartPieIcon,
-  ClockIcon,
-  UserGroupIcon,
-  TableCellsIcon,
-} from '@heroicons/vue/20/solid'
+import { Bars4Icon, LanguageIcon, TableCellsIcon } from '@heroicons/vue/20/solid'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -19,16 +12,6 @@ const state = ref({
   leftOpen: true,
   rightOpen: false,
 })
-
-const entities = [
-  { path: 'dashboard', label: 'Dashboard', icon: ChartPieIcon },
-  { path: 'auditlogs', label: 'Audit Logs', icon: ClockIcon },
-  { path: 'users', label: 'Users', icon: UserGroupIcon },
-  { path: 'wizards', label: 'Wizards' },
-  { path: 'foos', label: 'Foos' },
-  { path: 'bars', label: 'Bars' },
-  { path: 'spams', label: 'Spams' },
-]
 </script>
 <template>
   <div class="drawer-side">
@@ -43,7 +26,7 @@ const entities = [
       <VSidebarItem :text="'Turboship'" :state="state" @click="state.leftOpen = !state.leftOpen" :icon="Bars4Icon" />
       <div class="divider"></div>
       <VSidebarItem
-        v-for="foo in entities"
+        v-for="foo in globalMeta.meta.sidebar"
         :text="foo.label"
         :state="state"
         @click="redirect(foo.path)"

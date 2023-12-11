@@ -8,10 +8,7 @@ export class ModelBuilder {
     this.path = this.getModelPath()
   }
   getModelPath() {
-    // Get the current working directory
     const currentWorkingDir = process.cwd()
-
-    // Calculate the path to the Models directory
     return path.join(currentWorkingDir, 'src', 'Models')
   }
   buildEntities = () => {
@@ -73,21 +70,27 @@ export class ModelBuilder {
         import { z } from 'zod'
         import { Model, Document } from 'mongoose'
         import { defineMongooseModel } from '#nuxt/mongoose'
+        import { Auditor } from './Audit/Audit'
         `
       }
       return `
       import mongoose, { Schema } from 'mongoose'
+      import { Auditor } from './Audit/Audit'
       `
     }
     const buildEntitySchema = () => {
-      if (!options.typescript) return ''
-      return `export const ${e.label}Schema = z.object({
-        ${values}
-      })`
+      if (options.typescript) {
+        return `export const ${e.label}Schema = z.object({
+          ${values}
+        })`
+      }
+      return ''
     }
     const buildZodType = () => {
-      if (!options.typescript) return ''
-      return `export type ${label}Type = z.infer<typeof ${label}Schema>`
+      if (options.typescript) {
+        return `export type ${label}Type = z.infer<typeof ${label}Schema>`
+      }
+      return ''
     }
     const buildNuxtMongoose = () => {
       if (options.typescript) {
@@ -99,6 +102,7 @@ export class ModelBuilder {
           schema: { ...${name} },
           options: {},
           hooks(schema) {
+            Auditor.addHooks(schema)
             schema.pre('find', function (this: Combined, next) {
               console.log('${label} hook pre find')
               next()
@@ -110,9 +114,13 @@ export class ModelBuilder {
           },
         })`
       }
-      return `export const ${label} = mongoose.model('${label}', {
-        ${this.buildMongoose(e)}
-      })`
+      return `const ${name}Schema = new Schema({
+          ${this.buildMongoose(e)}
+        })
+        Auditor.addHooks(${name}Schema)
+        export { ${name}Schema }
+        export const ${label} = mongoose.model('${label}', ${name}Schema)
+      `
     }
 
     const content = `
@@ -176,23 +184,6 @@ export class ModelBuilder {
   }
 
   buildMongoose() {
-    function getRelationType(name) {
-      return `{ type: Schema.Types.ObjectId, ref: "${capitalize(name)}" }`
-    }
-    const relationMap = {
-      otm: function (relation) {
-        return `[${getRelationType(relation.name)}]`
-      },
-      oto: function (relation) {
-        return `${getRelationType(relation.name)}`
-      },
-      mto: function (relation) {
-        return `${getRelationType(relation.name)}`
-      },
-      mtm: function (relation) {
-        return `[${getRelationType(relation.name)}]`
-      },
-    }
     function buildRequired(required) {
       return `${required != undefined ? `required: ${required},` : ''}`
     }
@@ -201,33 +192,33 @@ export class ModelBuilder {
       const field = this.e.fields[f]
       const { type, required, enumeratorType, relation, name, options } = field
       const fieldName = name || f
+      let item
       if (type === 'relation') {
-        const fn = relationMap[relation.type]
-        if (fn) {
-          let item = `${fieldName}: {
-              ${buildRequired(required)}
-              type: ${fn(relation)},
-            }`
-          values.push(item)
+        item = ''
+        let relationType = relation.type
+        if (relationType === 'mto' || relationType === 'oto') {
+          item = `${name}: { type: Schema.Types.ObjectId, ref: '${capitalize(name)}', ${buildRequired(required)} }`
+        } else {
+          item = `${name}: [{ type: Schema.Types.ObjectId, ref: '${capitalize(name)}' }]`
         }
       } else if (isEnumerator(type)) {
         function getEnumType(t) {
-          if (isEnumerator(t)) return `[${capitalize(enumeratorType)}]`
+          if (t === 'enumeratorMulti') return `[${capitalize(enumeratorType)}]`
+          return capitalize(enumeratorType)
         }
-        const item = `${fieldName}: {
-          ${required != undefined ? `required: ${required},` : ''}
+        item = `${fieldName}: {
+          ${buildRequired(required)}
           type: ${getEnumType(type)},
           enum: [${options.split(',').map((i) => `"${i}"`)}]
         }`
-        values.push(item)
       } else {
-        const item = `${fieldName}: {
+        item = `${fieldName}: {
           type: ${this.getType(capitalize(type))},
           ${this.getType(capitalize(type)) === 'Map' ? 'of: String,' : ''}
-          ${required != undefined ? `required: ${required},` : ''}
+          ${buildRequired(required)}
         }`
-        values.push(item)
       }
+      values.push(item)
     }
     return values.join(',')
   }
@@ -258,8 +249,6 @@ export class ModelBuilder {
     return keyValue
   }
 }
-
-// let shown = false
 
 function isEnumerator(type) {
   return ['enumerator', 'enumeratorMulti'].includes(type)

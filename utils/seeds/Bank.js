@@ -198,9 +198,9 @@ export const Bank = {
           _id: 'fadc5faabe70daffd3b53ddd',
           validations: [],
           relation: { type: null, name: null },
-          options: 'checking,banking,credit,investing,savings',
+          options: 'checking,banking,credit,investing,savings,home,auto',
           label: 'Type',
-          placeholder: 'checking, savings, credit',
+          placeholder: 'checking, savings, credit...',
         },
         {
           validators: [],
@@ -556,6 +556,7 @@ export const Bank = {
           _id: 'a4bef4b64787f89aacd0c1ff',
           relation: { type: null, name: null },
           label: 'Type',
+          options: 'bank,hedgeFund,diversified',
           placeholder: 'bank,hedgeFund,diversified',
         },
         {
@@ -636,7 +637,8 @@ export const Bank = {
           _id: '8ded18f527bfd644eaff8e41',
           relation: { type: null, name: null },
           label: 'InsuranceType',
-          placeholder: 'car,home,health,life...',
+          placeholder: 'car,home,health,life',
+          options: 'car,home,health,life',
         },
         {
           validators: [],

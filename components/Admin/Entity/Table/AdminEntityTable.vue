@@ -4,22 +4,11 @@ import { useClipboard } from '@vueuse/core'
 const source = ref('')
 const { copy } = useClipboard({ source })
 
-const attributesWithTypes = [
-  { type: 'ObjectId', name: '_id', label: '' },
-  { type: 'string', name: 'email', label: 'Email' },
-  { type: 'string', name: 'firstName', label: 'First Name' },
-  { type: 'string', name: 'lastName', label: 'Last Name' },
-  { type: 'enumeratorMulti', name: 'bookAppearances', label: 'Book Appearances' },
-  { type: 'enumerator', name: 'status', label: 'Status' },
-]
 const { meta, fetchPage } = useUsers()
 const route = useRoute()
-// const entityType = route.path.split('/administrator/')[1]
-const entityType = 'wizards'
-// Need to map available types with the fields from data
+const entityType = route.path.split('/administrator/')[1]
 const { apiUrl } = useAPI()
-// const url = `${apiUrl}/${path}`
-const url = `${apiUrl}/wizards`
+const url = `${apiUrl}/${entityType}`
 const { data, pending, error, refresh } = await useFetch(url, {
   onRequest({ request, options }) {},
   onRequestError({ request, options, error }) {
@@ -38,6 +27,22 @@ const { data, pending, error, refresh } = await useFetch(url, {
 })
 
 let localData = ref(data.value.data)
+const attributesWithTypes = ref([
+  // { type: 'ObjectId', name: '_id', label: '' },
+  // { type: 'string', name: 'email', label: 'Email' },
+  // { type: 'string', name: 'firstName', label: 'First Name' },
+  // { type: 'string', name: 'lastName', label: 'Last Name' },
+  // { type: 'enumeratorMulti', name: 'bookAppearances', label: 'Book Appearances' },
+  // { type: 'enumerator', name: 'status', label: 'Status' },
+])
+
+function setupAttributes() {
+  const values = Object.keys(globalMeta[entityType])
+  attributesWithTypes.value = values.map((a) => ({ name: a, ...globalMeta[entityType][a] }))
+}
+
+setupAttributes()
+
 const state = reactive({
   selected: ref([]),
   hidden: ref([]),
@@ -69,7 +74,7 @@ function deleteItem(id) {
 const sortableTypes = ['string', 'decimal', 'integer']
 function createSortFields() {
   const fields = {}
-  attributesWithTypes.forEach((attribute) => {
+  attributesWithTypes.value.forEach((attribute) => {
     if (sortableTypes.includes(attribute.type)) {
       fields[attribute.name] = ref('')
     }

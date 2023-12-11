@@ -16,13 +16,10 @@ export const userEnumerators = {
 }
 
 const userSchema = new Schema({
-  role: {
-    type: [String],
-  },
-  status: {
-    type: [String],
-  },
   email: {
+    type: String,
+  },
+  bio: {
     type: String,
   },
   firstName: {
@@ -31,9 +28,37 @@ const userSchema = new Schema({
   lastName: {
     type: String,
   },
-  age: {
-    type: Number,
+  sex: {
+    type: String,
   },
+  dob: {
+    type: String,
+  },
+  zodiacSign: {
+    type: String,
+  },
+  urlAvatar: {
+    type: String,
+  },
+  jobArea: {
+    type: String,
+  },
+  jobDescriptor: {
+    type: String,
+  },
+  jobTitle: {
+    type: String,
+  },
+  jobType: {
+    type: String,
+  },
+  role: {
+    type: [String],
+  },
+  status: {
+    type: [String],
+  },
+  accounts: [{ type: Schema.Types.ObjectId, ref: 'Account' }],
 })
 
 userSchema.virtual('fullName').get(function () {

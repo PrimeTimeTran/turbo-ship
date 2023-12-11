@@ -124,25 +124,24 @@ const allClasses = {
     :placeholder="placeholder"
   /> -->
   <FormKit
-    v-else-if="type === 'select' && multiple"
+    v-else-if="type === 'enumeratorMulti' && multiple"
+    multiple
     type="select"
     :name="name"
     :label="label"
-    :multiple="multiple"
     :value="value"
     :placeholder="placeholder"
     :classes="allClasses"
-    :options="options ? turboship[entityType][name].options : null"
+    :options="options"
   />
   <FormKit
-    v-else-if="type === 'select' && !multiple"
+    v-else-if="type === 'enumerator' && !multiple"
     type="select"
     :name="name"
     :label="label"
-    :multiple="multiple"
     :value="value"
     :placeholder="placeholder"
     :classes="allClasses"
-    :options="options ? turboship[entityType][name].options : null"
+    :options="options"
   />
 </template>

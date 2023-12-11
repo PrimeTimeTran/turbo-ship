@@ -55,6 +55,10 @@ const tabs = [
 ]
 </script>
 
+<!-- <template>
+  <AdminEntityContainer />
+</template> -->
+
 <template>
   <div class="flex flex-col min-w-full max-h-full overflow-y-none overflow-y-hidden z-0">
     <div class="relative flex flex-col">
