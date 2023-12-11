@@ -8,7 +8,7 @@ import { z } from 'zod'
 import { Model, Document } from 'mongoose'
 import { defineMongooseModel } from '#nuxt/mongoose'
 
-import { addHooks } from './Audit/Audit'
+import { Auditor } from './Audit/Audit'
 
 export const WizardSchema = z.object({
   firstName: z.string().optional(),
@@ -97,7 +97,7 @@ export const Wizard = defineMongooseModel({
   },
   options: {},
   hooks(schema) {
-    addHooks(schema)
+    Auditor.addHooks(schema)
     // schema.pre('find', function (this: Combined, next) {
     //   console.log('Wizard hook pre find')
     //   next()

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import { addHooks } from './Audit/Audit'
+import { Auditor } from './Audit/Audit'
 
 export const fooEnumerators = {
   fooEnumerator: {
@@ -66,6 +66,6 @@ const fooSchema = new Schema({
   },
 })
 
-addHooks(fooSchema)
+Auditor.addHooks(fooSchema)
 export { fooSchema }
 export const Foo = mongoose.model('Foo', fooSchema)

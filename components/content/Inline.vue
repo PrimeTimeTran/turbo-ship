@@ -13,7 +13,6 @@
 //   return $marker(props.value);
 // });
 
-
 // Not inline
 // import { getHighlighter } from 'shikiji'
 
@@ -35,7 +34,7 @@ import javascript from 'highlight.js/lib/languages/javascript'
 import hljs from 'highlight.js'
 hljs.registerLanguage('javascript', javascript)
 
-const props = defineProps(['value']);
+const props = defineProps(['value'])
 
 const marker = new Marked(
   markedHighlight({
@@ -44,30 +43,24 @@ const marker = new Marked(
       const language = hljs.getLanguage(lang) ? lang : 'javascript'
       return hljs.highlight(code, { language: language }).value
     },
-  })
+  }),
 )
 
-  // A lot of work for inline code but:
-  // - Removed backticks
-  // - Defines MDC component which is parsed before MDC parses it.
-  // - Removes <p> tags
-  // - Makes inline
-  // spent 6 hours deep diving...
+// A lot of work for inline code but:
+// - Removed backticks
+// - Defines MDC component which is parsed before MDC parses it.
+// - Removes <p> tags
+// - Makes inline
+// spent 6 hours deep diving...
 const computedVal = computed(() => {
-  const html = marker.parse(props.value);
-  let str = html.replace(/<p>(.*?)<\/p>/g, '<code class="after:content-none before:content-none text-cyan-400 dark:text-cyan-400">$1</code>');
+  const html = marker.parse(props.value)
+  let str = html.replace(
+    /<p>(.*?)<\/p>/g,
+    '<code class="after:content-none before:content-none text-cyan-400 dark:text-cyan-400">$1</code>',
+  )
   return str
 })
 </script>
 <template>
   <span v-html="computedVal" />
 </template>
-<style>
-
-
-/* @media (prefers-color-scheme: dark) {
-  .dark-mode code {
-    color: pink;
-  }
-} */
-</style>

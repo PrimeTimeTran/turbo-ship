@@ -142,7 +142,6 @@ async function submit(fields) {
             }"
           />
         </div>
-
         <div class="item">
           <AdminFormField
             name="bookAppearances"
@@ -176,7 +175,6 @@ async function submit(fields) {
         />
         <FormKit
           type="submit"
-          :disabled="disabled"
           :classes="{
             outer: 'bg-green-500 rounded basis-3/4',
             input: 'flex flex-grow justify-center text-white dark:text-white p-3',
@@ -189,5 +187,3 @@ async function submit(fields) {
     </FormKit>
   </div>
 </template>
-
-<style></style>

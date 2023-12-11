@@ -14,14 +14,8 @@ const clearForm = () => {
 }
 </script>
 <template>
-  <div
-    class="w-100 dark:bg-neutral-950 p-3 main-container"
-    :class="{ hidden: !searching && !createForm }"
-  >
-    <TransitionGroup
-      name="fade-move"
-      class="container"
-    >
+  <div class="w-100 p-3 main-container" :class="{ hidden: !searching && !createForm }">
+    <TransitionGroup name="fade-move" class="container">
       <div :key="num">
         <admin-wizards-entity-form
           :clear="clearForm"

@@ -18,7 +18,6 @@ useHead({
   Consider removing <NuxtLayout> from app.vue and using it in your pages."
 -->
 <template>
-  <!-- Hello World -->
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

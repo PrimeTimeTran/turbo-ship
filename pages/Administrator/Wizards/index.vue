@@ -56,10 +56,10 @@ const tabs = [
 </script>
 
 <template>
-  <div class="flex flex-col min-w-full max-h-full overflow-y-none overflow-y-hidden">
+  <div class="flex flex-col min-w-full max-h-full overflow-y-none overflow-y-hidden z-0">
     <div class="relative flex flex-col">
       <div
-        class="text-sm bg-white dark:bg-slate-950 w-screen z-10 text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
+        class="text-sm bg-white dark:bg-slate-950 w-screen text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
       >
         <div class="flex">
           <div class="mr-16">

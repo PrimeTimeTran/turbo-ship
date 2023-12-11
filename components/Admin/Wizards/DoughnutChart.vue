@@ -27,9 +27,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex flex-1 flex-col justify-between min-h-full shadow-xl p-4 rounded-lg bg-white dark:bg-neutral-900">
-    <div class="text-xl text-gray-500 dark:text-gray-500 dark:bg-neutral-900 font-bold leading-tight">Languages</div>
-    <p class="mb-2 text-gray-400 dark:text-gray-600 text-xl lg:text-2xl bg-white dark:bg-neutral-900">Most Popular</p>
+  <div class="flex flex-1 flex-col justify-between min-h-full shadow-xl p-4 rounded-lg">
+    <div class="text-xl text-gray-500 dark:text-gray-500 font-bold leading-tight">Languages</div>
+    <p class="mb-2 text-gray-400 dark:text-gray-600 text-xl lg:text-2xl">Most Popular</p>
     <canvas id="chartDoughnut" />
   </div>
 </template>

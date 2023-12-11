@@ -3,10 +3,11 @@ import mongoose, { Schema } from 'mongoose'
 export const auditLogSchema = new Schema({
   actorId: String,
   actorEmail: String,
-  actorName: String,
+  actorFirstName: String,
   action: String,
-  collection: String,
+  model: String,
   documentId: String,
+  data: Map,
   timestamp: { type: Date, default: Date.now },
 })
 

@@ -4,7 +4,7 @@ const props = defineProps(['searching'])
 const { foos, sort, meta, fetchPage, fetchFilteredFoos } = useFoos()
 
 const sortFields = reactive({
-  // fooBoolean: ref('ASC'),
+  fooBoolean: ref('ASC'),
   fooString: ref('ASC'),
   fooText: ref('ASC'),
   fooInteger: ref('ASC'),
@@ -21,15 +21,16 @@ const sortFields = reactive({
   fooMTM: ref('ASC'),
 })
 
+function toggleSort(field) {
+  sortFields[field] = sortFields[field] === 'ASC' ? 'DESC' : 'ASC'
+  sort(field, sortFields[field])
+}
+
 function getSortingIcon(field) {
   const order = sortFields[field]
   return order === 'ASC' ? '▼' : '▲'
 }
 
-function toggleSort(field) {
-  sortFields[field] = sortFields[field] === 'ASC' ? 'DESC' : 'ASC'
-  sort(field, sortFields[field])
-}
 function getFooEnumeratorColor(field, key) {
   key = isNaN(key) ? key?.toString()?.toLowerCase() : key
   const weight = field == 'bg' ? 500 : 400
@@ -249,6 +250,6 @@ function getFooEnumeratorColor(field, key) {
         </tr>
       </tbody>
     </table>
-    <AdminFormPagination :meta="meta" :fetchPage="fetchPage" />
+    <AdminPagination :meta="meta" :fetchPage="fetchPage" />
   </div>
 </template>

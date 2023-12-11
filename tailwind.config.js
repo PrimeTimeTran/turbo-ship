@@ -10,6 +10,9 @@ export default {
     './plugins/**/*.{js,ts}',
     './components/**/*.{js,vue,ts}',
   ],
+  daisyui: {
+    themes: ['light', 'dark'],
+  },
   theme: {
     extend: {
       typography: ({ theme }) => ({

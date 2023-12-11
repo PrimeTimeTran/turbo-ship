@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  // devtools: { enabled: false },
   ignore: ['/mobile', '/notes', '/utils/seeds'],
   plugins: ['~/plugins/fontawesome.ts', { src: '~/plugins/marked.js' }],
   devServer: {
@@ -56,9 +56,9 @@ export default defineNuxtConfig({
 
   hooks: {
     'build:done': (go: HookResult) => {
-      console.log({
-        buildDone: true,
-      })
+      // console.log({
+      //   buildDone: true,
+      // })
     },
   },
   postcss: {

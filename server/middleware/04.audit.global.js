@@ -1,10 +1,23 @@
-import { Auditor } from '../models/Audit/Audit'
+let closure = () => {}
+
+export function captureEvent(val) {
+  let event = val
+  closure = function () {
+    const user = {
+      id: event?.user?._id || '1',
+      firstName: event?.user?.firstName || 'cleverprogrammer',
+      email: event?.user?.email || 'dev@ltran.net',
+    }
+    return user
+  }
+  return closure
+}
+
+export { closure }
 
 export default defineEventHandler(async (e) => {
   try {
-    Auditor.setKey('id', e.context?.user?._id || '1')
-    Auditor.setKey('firstName', e.context?.user?.firstName || 'genius')
-    Auditor.setKey('email', e.context?.user?.email || 'genius@gmail.com')
+    captureEvent(e)
   } catch (error) {
     console.log({
       error,

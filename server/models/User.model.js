@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import { addHooks } from './Audit/Audit'
+import { Auditor } from './Audit/Audit'
 
 export const userEnumerators = {
   role: {
@@ -8,7 +8,6 @@ export const userEnumerators = {
     staff: 'staff',
     customer: 'customer',
   },
-
   status: {
     open: 'open',
     closed: 'closed',
@@ -35,14 +34,12 @@ const userSchema = new Schema({
   age: {
     type: Number,
   },
-  owner: {
-    type: Boolean,
-  },
-  netWorth: {
-    type: Schema.Types.Decimal128,
-  },
 })
 
-addHooks(userSchema)
+userSchema.virtual('fullName').get(function () {
+  return `${this.firstName} ${this.lastName}`
+})
+
+Auditor.addHooks(userSchema)
 export { userSchema }
 export const User = mongoose.model('User', userSchema)

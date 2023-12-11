@@ -35,7 +35,7 @@ export function setupHotkeys() {
           document.getElementById('showOverlay').click()
           break
         case 'alt+d':
-          document.getElementById('dark').click()
+          document.getElementById('themeToggler').click()
           break
         case 'alt+cmd+e':
           document.getElementById('devTools').click()

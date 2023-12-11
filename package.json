@@ -63,6 +63,7 @@
     "jsonwebtoken": "^9.0.2",
     "jszip-sync": "^3.2.1-sync",
     "lodash": "^4.17.21",
+    "luxon": "^3.4.4",
     "marked": "^10.0.0",
     "marked-highlight": "^2.0.7",
     "mongoose": "^8.0.2",

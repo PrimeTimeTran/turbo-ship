@@ -373,7 +373,7 @@ const inputClasses =
         </div>
       </section>
     </FormKit>
-    <pre>{{ entity }}</pre>
+    <!-- <pre>{{ entity }}</pre> -->
   </div>
 </template>
 

@@ -1,24 +1,14 @@
-// Paid solution?
-// https://www.mongodb.com/docs/manual/core/auditing/
-export class Auditor {
-  static keys = {}
-  static getKey(k) {
-    return Auditor.keys[k]
-  }
-  static setKey(k, v) {
-    Auditor.keys[k] = v
-  }
+import { closure } from '../../middleware/04.audit.global.js'
 
-  static saveId() {}
-  static async createEntry(modelName, action, doc) {
+export class Auditor {
+  static async createEntry(modelName, action, user, doc) {
     try {
-      console.log('Creating an entry')
       const auditLogEntry = await new AuditLog({
-        actorId: Auditor.getKey('id'),
-        actorEmail: Auditor.getKey('email'),
-        actorName: Auditor.getKey('firstName'),
+        actorId: user.id,
+        actorEmail: user.email,
+        actorFirstName: user.firstName,
         action,
-        collection: modelName,
+        model: modelName,
         documentId: doc._id,
       })
       await auditLogEntry.save()
@@ -28,19 +18,16 @@ export class Auditor {
       })
     }
   }
-}
-
-export function addHooks(schema) {
-  schema.pre('save', async function () {
-    const modelName = this.constructor.modelName
-    await Auditor.createEntry(modelName, 'create', this)
-  })
-  schema.post('update', async function () {
-    const modelName = this.constructor.modelName
-    await Auditor.createEntry(modelName, 'update', this)
-  })
-  schema.post('remove', async function () {
-    const modelName = this.constructor.modelName
-    await Auditor.createEntry(modelName, 'remove', this)
-  })
+  static createHook(hook) {
+    return async function () {
+      const user = closure()
+      const modelName = this.constructor.modelName
+      await Auditor.createEntry(modelName, hook, user, this)
+    }
+  }
+  static addHooks(schema) {
+    schema.pre('save', this.createHook('create'))
+    schema.post('update', this.createHook('update'))
+    schema.post('remove', this.createHook('delete'))
+  }
 }

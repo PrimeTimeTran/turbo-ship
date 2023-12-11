@@ -1,8 +1,3 @@
-<!-- 
-  Add flowbite by CDN to avoid clashing with daisyui
-  Removing flowbite from tailwind lets daisy work & tooltip/tab still works.
--->
-
 <script setup>
 // Doesn't work =(
 useHead({
