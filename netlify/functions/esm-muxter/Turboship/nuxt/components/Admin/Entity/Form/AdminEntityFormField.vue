@@ -8,10 +8,16 @@ const props = defineProps({
   label: { type: String },
   validation: { type: String },
   placeholder: { type: String },
+  entityType: { type: String },
   multiple: { type: Boolean, default: false },
   options: {
     validator: (value) => {
-      return typeof value === 'string' || typeof value === 'object'
+      return typeof value === 'string' || typeof value === 'object' || typeof value === 'array'
+    },
+  },
+  value: {
+    validator: (value) => {
+      return true
     },
   },
 })
@@ -23,29 +29,29 @@ const outerClasses = 'flex flex-grow flex-col rounded'
 const allClasses = {
   outer: outerClasses,
   input: inputClasses,
-  label: 'dark:text-white',
+  label: 'dark:text-white font-semibold',
   message: messageClasses,
 }
 </script>
 <template>
-  <input
-    :label="label"
-    :classes="allClasses"
-    :placeholder="placeholder"
-    :options="options"
-    v-if="type === 'boolean'"
-    type="checkbox"
-    class="toggle"
-    checked
-    :name="name"
-  />
+  <div v-if="type === 'boolean'" class="flex grow pt-6">
+    <label class="mr-2" v-text="label"></label>
+    <input
+      checked
+      :placeholder="placeholder"
+      :options="options"
+      type="checkbox"
+      class="toggle"
+      :classes="allClasses"
+      :name="name"
+    />
+  </div>
   <FormKit
     v-else-if="type === 'string'"
     type="text"
     :name="name"
     :label="label"
     :classes="allClasses"
-    :validation="validation"
     :placeholder="placeholder"
   />
   <FormKit
@@ -54,7 +60,6 @@ const allClasses = {
     :name="name"
     :label="label"
     :classes="allClasses"
-    :validation="validation"
     :placeholder="placeholder"
   />
   <FormKit
@@ -71,10 +76,10 @@ const allClasses = {
   />
   <FormKit
     v-else-if="type === 'decimal'"
+    number
     :min="min"
     :max="max"
     type="number"
-    number
     :name="name"
     :label="label"
     :classes="allClasses"
@@ -84,20 +89,18 @@ const allClasses = {
     v-else-if="type === 'date'"
     type="date"
     :help="help"
-    :name="name"
     :label="label"
+    :value="value"
     :classes="allClasses"
-    :validation="validation"
     :placeholder="placeholder"
   />
   <FormKit
     v-else-if="type === 'datetime-local'"
     type="datetime-local"
     :help="help"
-    :name="name"
     :label="label"
+    :value="value"
     :classes="allClasses"
-    :validation="validation"
     :placeholder="placeholder"
   />
   <!-- <FormKit
@@ -107,7 +110,7 @@ const allClasses = {
     :name="name"
     :label="label"
     :classes="allClasses"
-    :validation="validation"
+
     :placeholder="placeholder"
   /> -->
   <!-- <FormKit
@@ -117,7 +120,7 @@ const allClasses = {
     :name="name"
     :label="label"
     :classes="allClasses"
-    :validation="validation"
+
     :placeholder="placeholder"
   /> -->
   <FormKit
@@ -126,9 +129,10 @@ const allClasses = {
     :name="name"
     :label="label"
     :multiple="multiple"
+    :value="value"
     :placeholder="placeholder"
     :classes="allClasses"
-    :options="options"
+    :options="options ? turboship[entityType][name].options : null"
   />
   <FormKit
     v-else-if="type === 'select' && !multiple"
@@ -136,8 +140,9 @@ const allClasses = {
     :name="name"
     :label="label"
     :multiple="multiple"
+    :value="value"
     :placeholder="placeholder"
     :classes="allClasses"
-    :options="options"
+    :options="options ? turboship[entityType][name].options : null"
   />
 </template>

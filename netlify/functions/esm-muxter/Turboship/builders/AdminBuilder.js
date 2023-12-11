@@ -73,7 +73,7 @@ export class AdminBuilder {
           return `<p
           class="text-lg truncate text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400"
         >
-          <a href="/Administrator/${e.plural}">${e.label}</a>
+          <NuxtLink href="/Administrator/${e.plural}">${e.label}</NuxtLink>
         </p>`
         })
         .join('')
@@ -420,7 +420,7 @@ export class AdminBuilder {
               </tr>
             </tbody>
           </table>
-          <AdminFormPagination :meta="meta" :fetchPage="fetchPage" />
+          <AdminPagination :meta="meta" :fetchPage="fetchPage" />
         </div>
       </template>
     `

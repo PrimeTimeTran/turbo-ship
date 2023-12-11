@@ -102,26 +102,35 @@ export const frameworkMap = {
     ],
     apiContent: {
       'index.get.': function (label) {
-        return `export default defineEventHandler(async (e) => {
-          let { limit, page } = e.context
-          let params = getQuery(e)
-          const query = buildQuery(params)
-          const pipeline = buildPipeline(query, page, limit)
-          const results = await ${label}.aggregate(pipeline)
-
-          const { data, totalCount } = results[0]
-
-          const response = {
-            meta: {
-              page,
-              pageCount: Math.ceil(parseInt(totalCount[0].total) / limit),
-              totalCount: totalCount.length > 0 ? totalCount[0].total : 0,
-            },
-            data,
-          }
-          return response
-        })
-      `
+        return `import _ from 'lodash'
+          export default defineEventHandler(async (e) => {
+            try {
+              let { limit, page } = e.context
+              let params = getQuery(e)
+              const query = buildQuery(params)
+              const pipeline = buildPipeline(query, page, limit)
+              const results = await ${label}.aggregate(pipeline)
+              let { data, totalCount } = results[0]
+              let pageCount = 0
+              if (!_.isEmpty(totalCount)) {
+                pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
+                totalCount = totalCount[0].total
+              }
+              const response = {
+                meta: {
+                  page,
+                  pageCount: pageCount,
+                  totalCount: totalCount,
+                },
+                data,
+              }
+              return response
+            } catch (error) {
+              console.log({
+                error,
+              })
+            }
+          })`
       },
       'index.post.': function (label) {
         return `export default defineEventHandler(async (event) => {
@@ -166,7 +175,7 @@ export const frameworkMap = {
             )
           } catch (error) {
             return error
-              }
+          }
         })
       `
       },
