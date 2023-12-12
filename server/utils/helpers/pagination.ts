@@ -50,23 +50,84 @@ export function buildQuery(params: object) {
   return query
 }
 
+// Populates but only populates user
+// export function buildPipeline(query: object, page: number, limit: number): mongoose.PipelineStage[] {
+//   return [
+//     {
+//       $facet: {
+//         data: [
+//           { $match: query },
+//           { $skip: (page - 1) * 10 },
+//           { $limit: limit },
+//           {
+//             $lookup: {
+//               from: 'users',
+//               foreignField: '_id',
+//               localField: 'user',
+//               as: 'user',
+//             },
+//           },
+//           {
+//             $unwind: {
+//               path: '$user',
+//               preserveNullAndEmptyArrays: true, // Optional, use if 'user' might be empty
+//             },
+//           },
+//         ],
+//         totalCount: [{ $match: query }, { $count: 'total' }],
+//       },
+//     },
+//     {
+//       $project: {
+//         data: 1,
+//         totalCount: {
+//           $arrayElemAt: ['$totalCount.total', 0],
+//         },
+//       },
+//     },
+//   ]
+// }
+
+interface PopulateField {
+  from: string
+  localField: string
+}
+
+// Successfully populates document & sub-documents
 export function buildPipeline(
   query: object,
   page: number,
-  limit: number
+  limit: number,
+  fieldsToPopulate: PopulateField[] = [],
 ): mongoose.PipelineStage[] {
-  return [
-    {
-      $facet: {
-        data: [
-          { $match: query },
-          { $skip: (page - 1) * 10 },
-          { $limit: limit },
-        ],
-        totalCount: [{ $match: query }, { $count: 'total' }],
+  const lookupStages = fieldsToPopulate.map((field) => ({
+    $lookup: {
+      from: field.from,
+      foreignField: '_id',
+      localField: field.localField,
+      as: field.localField,
+    },
+  }))
+
+  const stages = [{ $match: query }, { $skip: (page - 1) * limit }, { $limit: limit }, ...lookupStages]
+
+  const facetStage = {
+    $facet: {
+      data: stages,
+      totalCount: [{ $match: query }, { $count: 'total' }],
+    },
+  }
+
+  const projectStage = {
+    $project: {
+      data: 1,
+      totalCount: {
+        $arrayElemAt: ['$totalCount.total', 0],
       },
     },
-  ]
+  }
+
+  return [facetStage, projectStage]
 }
 
 function isArray(params: Record<string, any>, key: string) {

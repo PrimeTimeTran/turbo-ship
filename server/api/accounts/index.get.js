@@ -4,7 +4,11 @@ export default defineEventHandler(async (e) => {
     let { limit, page } = e.context
     let params = getQuery(e)
     const query = buildQuery(params)
-    const pipeline = buildPipeline(query, page, limit)
+    const fieldsToPopulate = [
+      { from: 'users', localField: 'user' },
+      { from: 'banks', localField: 'bank' },
+    ]
+    const pipeline = buildPipeline(query, page, limit, fieldsToPopulate)
     const results = await Account.aggregate(pipeline)
     let { data, totalCount } = results[0]
     let pageCount = 0

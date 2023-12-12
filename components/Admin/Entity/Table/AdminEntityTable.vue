@@ -127,7 +127,13 @@ const sort = (field, dir) => {
             />
             <div v-else-if="attribute.name !== ''" @click="turboCopy(item[attribute.name])">
               <span v-text="item[attribute.name]" />
-              <FontAwesomeIcon size="sm" class="ml-2" color="grey" icon="fa-solid fa-copy" />
+              <FontAwesomeIcon
+                v-if="item[attribute.name]"
+                size="sm"
+                class="ml-2"
+                color="grey"
+                icon="fa-solid fa-copy"
+              />
             </div>
           </div>
         </td>
