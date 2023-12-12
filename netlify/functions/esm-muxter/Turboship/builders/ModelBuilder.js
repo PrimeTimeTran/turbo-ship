@@ -1,6 +1,10 @@
 import path from 'path'
 import { camelize, getType, capitalize } from '../helpers.js'
 
+class Type {
+  static enums = ['enumerator', 'enumeratorMulti']
+}
+
 export class ModelBuilder {
   constructor(entities, options) {
     this.entities = entities
@@ -26,7 +30,7 @@ export class ModelBuilder {
           let field = {}
           field = { ...f }
           delete field._id
-          if (isEnumerator(field.type)) {
+          if (Type.enums.includes(field.type)) {
             field.enumerators = {}
             field.enumeratorType = 'string'
             const options = field.options?.split(',')
@@ -139,7 +143,7 @@ export class ModelBuilder {
     const enumerators = []
     for (const key of keys) {
       const { type, required } = fields[key]
-      if (isEnumerator(type)) {
+      if (Type.enums.includes(type)) {
         let strings
         if (typeof fields[key].enumerators[0] !== 'string') {
           strings = Object.keys(fields[key].enumerators).map((k) => k)
@@ -201,7 +205,7 @@ export class ModelBuilder {
         } else {
           item = `${name}: [{ type: Schema.Types.ObjectId, ref: '${capitalize(name)}' }]`
         }
-      } else if (isEnumerator(type)) {
+      } else if (Type.enums.includes(type)) {
         function getEnumType(t) {
           if (t === 'enumeratorMulti') return `[${capitalize(enumeratorType)}]`
           return capitalize(enumeratorType)
@@ -248,8 +252,4 @@ export class ModelBuilder {
 
     return keyValue
   }
-}
-
-function isEnumerator(type) {
-  return ['enumerator', 'enumeratorMulti'].includes(type)
 }

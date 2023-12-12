@@ -6,41 +6,204 @@ import _ from 'lodash'
 import mongoose from 'mongoose'
 
 export async function seedBanks() {
-  function createTransaction(user, account, bank) {
-    return {
-      user: user._id,
-      bank: bank._id,
-      account: account._id,
-      amount: faker.commerce.price({ min: 10, max: 250 }),
-      status: _.sample(['processing', 'complete', 'declined', 'cancelled', 'rejected']),
-      chargeDate: faker.date.recent({ days: 30 }),
-      description: faker.commerce.productDescription(),
+  async function createTransactions(banks, branches, users, accounts) {
+    function createTransaction(account) {
+      return {
+        user: account.user,
+        bank: account.bank,
+        branch: account.branch,
+        account: account._id,
+        chargeDate: faker.date.recent({ days: 30 }),
+        amount: faker.commerce.price({ min: 5, max: 2500 }),
+        description: faker.finance.transactionDescription(),
+        status: _.sample(['processing', 'complete', 'declined', 'cancelled', 'rejected']),
+      }
+    }
+    try {
+      let transactions = []
+      accounts.map((a) => {
+        let i = 0
+        while (i < faker.number.int({ min: 5, max: 20 })) {
+          transactions.push(createTransaction(a))
+          i++
+        }
+      })
+      transactions = await mongoose.models.Transaction.insertMany(transactions)
+      let promises = await transactions.map(async (t) => {
+        let bank = await Bank.findById(t.bank).exec()
+        let branch = await Branch.findById(t.branch).exec()
+        let user = await User.findById(t.user).exec()
+        let account = await Account.findById(t.account).exec()
+        if (bank && branch && user && account) {
+          bank.transactions.push(t._id)
+          branch.transactions.push(t._id)
+          user.transactions.push(t._id)
+          account.transactions.push(t._id)
+          await bank.save()
+          await branch.save()
+          await user.save()
+          await account.save()
+        }
+      })
+      await Promise.all(promises)
+      return transactions
+    } catch (error) {
+      console.log({
+        error,
+      })
     }
   }
 
-  async function createAccount(user, banks, type) {
-    try {
-      let bank = _.sample(banks)
-      let item = {
-        type,
+  async function createAccounts(banks, branches, users) {
+    let accountTypes = ['checking', 'savings', 'credit', 'investing', 'home', 'auto']
+    function createAccount(user) {
+      let branch = _.sample(branches)
+      return {
         user: user._id,
-        bank: bank._id,
+        branch: branch._id,
+        bank: branch.bank._id,
+        type: _.sample(accountTypes),
+        accountNumber: faker.finance.accountNumber(),
+        routingNumber: faker.finance.routingNumber(),
         balance: faker.commerce.price({ min: 250, max: 20000 }),
       }
-      let account = await new mongoose.models.Account(item)
-      await account.save()
-      const numTransactions = faker.number.int({ min: 5, max: 20 })
+    }
+    let accounts = []
+    users.map((user) => {
       let i = 0
-      let items = []
-      while (i < numTransactions) {
-        items.push(createTransaction(user, account, bank))
+      while (i < faker.number.int({ min: 1, max: 5 })) {
+        accounts.push(createAccount(user))
         i++
       }
-      let transactions = await mongoose.models.Transaction.insertMany(items)
-      console.log({
-        transactions,
+    })
+    accounts = await mongoose.models.Account.insertMany(accounts)
+    let promises = await accounts.map(async (a) => {
+      let bank = await Bank.findById(a.bank).exec()
+      if (bank) {
+        let branch = await Branch.findById(bank._id).exec()
+        if (branch) {
+          let user = await User.findById(a.user).exec()
+          if (user) {
+            user.accounts.push(a)
+            bank.accounts.push(a)
+            branch.accounts.push(a)
+            await user.save()
+            await bank.save()
+            await branch.save()
+          }
+        }
+      }
+    })
+    await Promise.all(promises)
+    return accounts
+  }
+
+  async function createUsers(banks, branches) {
+    function createUser() {
+      let randomNum = faker.number.int({ min: 1, max: 10 })
+      let sex = faker.person.sex()
+      let genderPic = sex == 'male' ? 'men' : 'women'
+      let img = { min: 1, max: 90 }
+      let urlAvatar = `https://randomuser.me/api/portraits/${genderPic}/${faker.number.int(img)}.jpg`
+      let roles = _.sampleSize(['Admin', 'Customer', 'Manager', 'Owner', 'Staff'], randomNum >= 5 ? 1 : 2)
+      return {
+        email: faker.internet.email(),
+        bio: faker.person.bio(),
+        firstName: faker.person.firstName(sex),
+        lastName: faker.person.lastName(sex),
+        sex,
+        dob: faker.date.birthdate(),
+        zodiacSign: faker.person.zodiacSign(),
+        urlAvatar: urlAvatar,
+        jobArea: faker.person.jobArea(),
+        jobDescriptor: faker.person.jobDescriptor(),
+        jobTitle: faker.person.jobTitle(),
+        jobType: faker.person.jobType(),
+        role: roles,
+      }
+    }
+    try {
+      let i = 0
+      let users = []
+      while (i < faker.number.int({ min: 750, max: 1000 })) {
+        // while (i < faker.number.int({ min: 5, max: 10 })) {
+        users.push(createUser())
+        i++
+      }
+      users = await mongoose.models.User.insertMany(users)
+      let promises = await users.map(async (u) => {
+        let branch = _.sample(branches)
+        branch = await Branch.findById(branch._id).exec()
+        if (branch) {
+          let bank = await Bank.findById(branch.bank).exec()
+          if (bank) {
+            await u.branches.push(branch._id)
+            await u.banks.push(bank._id)
+            await bank.users.push(u._id)
+            await branch.users.push(u._id)
+            await u.save()
+            await branch.save()
+            await bank.save()
+          }
+        } else {
+          console.log({
+            branch,
+            error: `Bank with _id ${branch} not found`,
+          })
+        }
       })
-      return transactions
+      await Promise.all(promises)
+      return users
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async function createBranches(banks) {
+    function createBankBranches(bank) {
+      let randomNum = faker.number.int({ min: 5, max: 20 })
+      // let randomNum = faker.number.int({ min: 5, max: 7 })
+      let i = 0
+      let branches = []
+      while (i < randomNum) {
+        branches.push({
+          bank,
+          phone: faker.phone.number(),
+          manager: {
+            phone: faker.phone.number(),
+            email: faker.internet.email(),
+            fullName: faker.person.fullName({ sex: 'male' }),
+          },
+          location: {
+            email: faker.internet.email(),
+            streetAddress: faker.location.streetAddress(),
+            city: faker.location.city(),
+            county: faker.location.county(),
+            state: faker.location.state({ abbreviated: true }),
+            country: faker.location.country(),
+            latitude: faker.location.latitude(),
+            longitude: faker.location.longitude(),
+            zipCode: faker.location.zipCode(),
+          },
+          description: faker.lorem.paragraphs(5),
+          opened: faker.date.between({ from: '1850-01-01T00:00:00.000Z', to: '1950-01-01T00:00:00.000Z' }),
+        })
+        i++
+      }
+      return branches
+    }
+    let branches = banks.map((b) => createBankBranches(b))
+    try {
+      branches = await mongoose.models.Branch.insertMany(_.flatten(branches))
+      let promises = await branches.map(async (branch) => {
+        let bank = await Bank.findById(branch.bank._id).exec()
+        if (bank) {
+          await bank.branches.push(branch._id)
+          await bank.save()
+        }
+      })
+      await Promise.all(promises)
+      return await branches
     } catch (error) {
       console.log({
         error,
@@ -62,61 +225,48 @@ export async function seedBanks() {
 
     try {
       let items = names.map((name) => {
+        let founded = faker.date.between({ from: '1850-01-01T00:00:00.000Z', to: '1950-01-01T00:00:00.000Z' })
         return {
-          name: name,
+          name,
+          founded,
           creditRating: 'a',
           hq: faker.location.city(),
           ceo: faker.person.fullName({ sex: 'male' }),
+          description: faker.lorem.paragraphs({ min: 7, max: 12 }),
+          email: faker.internet.email(),
+          phone: faker.phone.number(),
         }
       })
+
+      // let banks = await Bank.where({}).exec()
+      // let branches = await Branch.where({}).exec()
+      // let users = await User.where({}).exec()
+      // let accounts = await Account.where({}).exec()
+      // let transactions = await createTransactions(banks, branches, users, accounts)
+      // if (transactions) {
+      //   console.log({
+      //     transactions: transactions.length,
+      //   })
+      // }
 
       let banks = await mongoose.models.Bank.insertMany(items)
-      await createUsers(banks)
-      return banks
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  async function createUsers(banks) {
-    let randomNum
-    try {
-      let items = []
-      for (let idx = 0; idx < 20; idx++) {
-        randomNum = faker.number.int({ min: 1, max: 10 })
-        let sex = faker.person.sex()
-        let urlAvatar = `https://randomuser.me/api/portraits/${sex == 'male' ? 'men' : 'women'}/${faker.number.int({
-          min: 1,
-          max: 90,
-        })}.jpg`
-        let roles = _.sampleSize(['Admin', 'Customer', 'Manager', 'Owner', 'Staff'], randomNum >= 5 ? 1 : 2)
-        let data = {
-          email: faker.internet.email(),
-          bio: faker.person.bio(),
-          firstName: faker.person.firstName(sex),
-          lastName: faker.person.lastName(sex),
-          sex,
-          dob: faker.date.birthdate(),
-          zodiacSign: faker.person.zodiacSign(),
-          urlAvatar: urlAvatar,
-          jobArea: faker.person.jobArea(),
-          jobDescriptor: faker.person.jobDescriptor(),
-          jobTitle: faker.person.jobTitle(),
-          jobType: faker.person.jobType(),
-          role: roles,
+      if (banks) {
+        let branches = await createBranches(banks)
+        if (branches) {
+          let users = await createUsers(banks, branches)
+          if (users) {
+            let accounts = await createAccounts(banks, branches, users)
+            if (accounts) {
+              let transactions = await createTransactions(banks, branches, users, accounts)
+              if (transactions) {
+                console.log({
+                  transactions: transactions.length,
+                })
+              }
+            }
+          }
         }
-        items.push(data)
       }
-      let accounts
-      let users = await mongoose.models.User.insertMany(items)
-      let accountTypes = ['checking', 'savings', 'credit', 'investing', 'home', 'auto']
-      await users.forEach(async (user) => {
-        randomNum = faker.number.int({ min: 1, max: 10 })
-        accounts = _.sampleSize(accountTypes, randomNum >= 5 ? 2 : 3)
-        accounts.map(async (accountType) => {
-          return await createAccount(user, banks, accountType)
-        })
-      })
     } catch (error) {
       console.error(error)
     }
@@ -127,7 +277,7 @@ export async function seedBanks() {
 
 export async function seedWizards() {
   let wizards = []
-  for (const wizard of wizardSeeds) {
+  for (const wizard of Seeder.wizardSeeds) {
     let w = await Seeder.createWizard(wizard)
     wizards.push(w)
   }
@@ -135,8 +285,8 @@ export async function seedWizards() {
 }
 
 class Seeder {
-  spells = ['hexes', 'charms', 'curses', 'spells', 'jinxes', 'healing', 'counters', 'transfigurations']
-  programmingLangs = [
+  static spells = ['hexes', 'charms', 'curses', 'spells', 'jinxes', 'healing', 'counters', 'transfigurations']
+  static programmingLangs = [
     'Javascript',
     'Typescript',
     'Dart',
@@ -157,7 +307,7 @@ class Seeder {
     'R',
     'COBOL',
   ]
-  getRandomUniqueValues(arr, count) {
+  static getRandomUniqueValues(arr, count) {
     if (count >= arr.length) {
       return arr
     }
@@ -185,7 +335,7 @@ class Seeder {
     do {
       country = faker.location.country()
     } while (country.length > 30)
-    const randomSpells = this.getRandomUniqueValues(this.spells, 3)
+    const randomSpells = Seeder.getRandomUniqueValues(Seeder.spells, 3)
 
     const avatarUrl = `https://randomuser.me/api/portraits/${wizard.gender == 'm' ? 'men' : 'women'}/${faker.number.int(
       {
@@ -194,7 +344,7 @@ class Seeder {
       },
     )}.jpg`
 
-    const languages = _.sampleSize(this.programmingLangs, randomNumber1 >= 5 ? 3 : 6)
+    const languages = _.sampleSize(Seeder.programmingLangs, randomNumber1 >= 5 ? 3 : 6)
 
     const toWizard = {
       gender: wizard.gender,
@@ -233,7 +383,7 @@ class Seeder {
 
     return w.toObject()
   }
-  wizardSeeds = [
+  static wizardSeeds = [
     {
       firstName: 'Albus',
       lastName: 'Dumbledore',

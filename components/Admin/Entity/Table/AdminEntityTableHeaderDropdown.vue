@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps(['deleteItem', 'attribute', 'state'])
-const emit = defineEmits(['toggleSort'])
+const emit = defineEmits(['toggleSort', 'hideColumn'])
 </script>
 <template>
   <div class="dropdown w-full rounded">
@@ -14,7 +14,7 @@ const emit = defineEmits(['toggleSort'])
       <button class="btn btn-xs btn-ghost flex justify-start" @click="$emit('toggleSort', attribute.name, 'DESC')">
         <FontAwesomeIcon class="mr-2 text-gray-600 dark:text-white" icon="fa-solid fa-caret-down" /> Descending
       </button>
-      <button @click="state.hidden.push(attribute.name)" class="btn btn-xs btn-ghost flex justify-start">
+      <button @click="emit('hideColumn', attribute.name)" class="btn btn-xs btn-ghost flex justify-start">
         <FontAwesomeIcon class="mr-2 text-gray-600 dark:text-white" icon="fa-solid fa-eye-slash" /> Hide
       </button>
     </ul>

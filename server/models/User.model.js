@@ -52,13 +52,19 @@ const userSchema = new Schema({
   jobType: {
     type: String,
   },
+  phone: {
+    type: String,
+  },
   role: {
     type: [String],
   },
   status: {
     type: [String],
   },
+  banks: [{ type: Schema.Types.ObjectId, ref: 'Bank' }],
+  branches: [{ type: Schema.Types.ObjectId, ref: 'Branch' }],
   accounts: [{ type: Schema.Types.ObjectId, ref: 'Account' }],
+  transactions: [{ type: Schema.Types.ObjectId, ref: 'Transaction' }],
 })
 
 userSchema.virtual('fullName').get(function () {

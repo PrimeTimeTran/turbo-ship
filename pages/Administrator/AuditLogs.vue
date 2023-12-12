@@ -43,7 +43,7 @@ function parseTime(time) {
           <td class="max-w-32 w-32"><span v-text="parseTime(audit.timestamp)" /></td>
           <td class="flex flex-col w-64"><span v-text="audit.actorFirstName" /><span v-text="audit.actorEmail" /></td>
           <td><span v-text="audit.action" /></td>
-          <td><span v-text="audit.collection" /></td>
+          <td><span v-text="audit.model" /></td>
           <td><span v-text="audit.documentId" /></td>
         </tr>
       </tbody>

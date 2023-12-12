@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import { Auditor } from './Audit/Audit'
 
 export const bankEnumerators = {
   creditRating: {
@@ -10,9 +11,12 @@ export const bankEnumerators = {
   },
 }
 
-export const Bank = mongoose.model('Bank', {
+const bankSchema = new Schema({
   name: {
     type: String,
+  },
+  founded: {
+    type: Date,
   },
   ceo: {
     type: String,
@@ -21,7 +25,7 @@ export const Bank = mongoose.model('Bank', {
     type: String,
   },
   creditRating: {
-    type: [String],
+    type: String,
     enum: ['a', 'b', 'c', 'd', 'f'],
   },
   employeeCount: {
@@ -30,16 +34,20 @@ export const Bank = mongoose.model('Bank', {
   hq: {
     type: String,
   },
-  branches: {
-    type: [{ type: Schema.Types.ObjectId, ref: 'Branch' }],
+  phone: {
+    type: String,
   },
-  accounts: {
-    type: [{ type: Schema.Types.ObjectId, ref: 'Account' }],
+  email: {
+    type: String,
   },
-  users: {
-    type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  description: {
+    type: String,
   },
-  transactions: {
-    type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  },
+  users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  branches: [{ type: Schema.Types.ObjectId, ref: 'Branch' }],
+  accounts: [{ type: Schema.Types.ObjectId, ref: 'Account' }],
+  transactions: [{ type: Schema.Types.ObjectId, ref: 'Transaction' }],
 })
+Auditor.addHooks(bankSchema)
+export { bankSchema }
+export const Bank = mongoose.model('Bank', bankSchema)

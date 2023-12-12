@@ -50,50 +50,11 @@ export function buildQuery(params: object) {
   return query
 }
 
-// Populates but only populates user
-// export function buildPipeline(query: object, page: number, limit: number): mongoose.PipelineStage[] {
-//   return [
-//     {
-//       $facet: {
-//         data: [
-//           { $match: query },
-//           { $skip: (page - 1) * 10 },
-//           { $limit: limit },
-//           {
-//             $lookup: {
-//               from: 'users',
-//               foreignField: '_id',
-//               localField: 'user',
-//               as: 'user',
-//             },
-//           },
-//           {
-//             $unwind: {
-//               path: '$user',
-//               preserveNullAndEmptyArrays: true, // Optional, use if 'user' might be empty
-//             },
-//           },
-//         ],
-//         totalCount: [{ $match: query }, { $count: 'total' }],
-//       },
-//     },
-//     {
-//       $project: {
-//         data: 1,
-//         totalCount: {
-//           $arrayElemAt: ['$totalCount.total', 0],
-//         },
-//       },
-//     },
-//   ]
-// }
-
 interface PopulateField {
   from: string
   localField: string
 }
 
-// Successfully populates document & sub-documents
 export function buildPipeline(
   query: object,
   page: number,
@@ -104,12 +65,27 @@ export function buildPipeline(
     $lookup: {
       from: field.from,
       foreignField: '_id',
-      localField: field.localField,
       as: field.localField,
+      localField: field.localField,
     },
   }))
 
-  const stages = [{ $match: query }, { $skip: (page - 1) * limit }, { $limit: limit }, ...lookupStages]
+  const stages = [
+    { $match: query },
+    { $skip: (page - 1) * limit },
+    { $limit: limit },
+    ...lookupStages,
+    {
+      $addFields: {
+        amount: {
+          $toString: '$amount',
+        },
+        balance: {
+          $toString: '$balance',
+        },
+      },
+    },
+  ]
 
   const facetStage = {
     $facet: {

@@ -54,6 +54,7 @@ export const LMS = {
           label: 'House',
           enumeratorType: 'string',
           placeholder: 'Select House',
+          options: 'gryffindor, slytherin, hufflepuff, ravenclaw, unknown',
           enumerators: {
             gryffindor: {
               val: 'Gryffindor',
@@ -174,6 +175,7 @@ export const LMS = {
           placeholder: 'Select One',
           enumeratorColors: [],
           colorsGrouped: true,
+          options: 'jinxes, hexes, charms, curses, spells, counters, healing, transfigurations',
           enumerators: {
             jinxes: {
               val: 'jinxes',
@@ -210,6 +212,7 @@ export const LMS = {
           placeholder: 'Select Multiple',
           enumeratorColors: [],
           colorsGrouped: false,
+          options: '1,2,3,4,5,6,7,8',
           enumerators: {
             1: {
               val: '1',

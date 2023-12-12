@@ -9,13 +9,6 @@ definePageMeta({
 const { apiUrl } = useAPI()
 let url = apiUrl + '/auditlogs'
 const { data } = await useFetch(url)
-
-function parseTime(time) {
-  const dateTime = DateTime.fromISO(time)
-
-  const formattedDate = dateTime.toFormat('ff')
-  return formattedDate
-}
 </script>
 <template>
   <AdminTheAuditLogs />

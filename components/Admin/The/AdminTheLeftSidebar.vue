@@ -26,7 +26,7 @@ const state = ref({
       <VSidebarItem :text="'Turboship'" :state="state" @click="state.leftOpen = !state.leftOpen" :icon="Bars4Icon" />
       <div class="divider"></div>
       <VSidebarItem
-        v-for="foo in globalMeta.meta.sidebar"
+        v-for="foo in GlobalState.sidebar"
         :text="foo.label"
         :state="state"
         @click="redirect(foo.path)"

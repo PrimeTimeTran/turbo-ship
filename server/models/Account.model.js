@@ -22,9 +22,17 @@ const accountSchema = new Schema({
   transactions: [{ type: Schema.Types.ObjectId, ref: 'Transactions' }],
   type: {
     type: String,
-    enum: ['checking', 'banking', 'credit', 'investing', 'savings', 'home', 'auto'],
+    enum: [
+      'checking',
+      'banking',
+      'credit',
+      'investing',
+      'savings',
+      'home',
+      'auto',
+    ],
   },
-  number: {
+  accountNumber: {
     type: String,
   },
   routingNumber: {

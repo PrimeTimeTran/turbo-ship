@@ -146,19 +146,32 @@ export const frameworkMap = {
     adminUIFiles: ['EntityForm.vue', 'Form.vue', 'Table.vue'],
     apiFiles: ['index.get.', 'index.post.', '[_id].delete.', '[_id].get.', '[_id].put.'],
     buildGlobalMeta: (entities) => {
-      return `import { ClockIcon, ChartPieIcon, UserGroupIcon } from '@heroicons/vue/20/solid'
-      export const globalMeta = {
-        meta: {
-          entities: ['auditlogs', 'users', ${buildEntities(entities)}],
-          sidebar: [
+      return `import _ from 'lodash'
+        import { ClockIcon, ChartPieIcon, UserGroupIcon } from '@heroicons/vue/20/solid'
+
+        export class GlobalState { 
+          static entityNames = ['auditlogs', ${buildEntities(entities)}]
+          static entityCols(entityName) {
+            // Sort cols => primitives, enums, relations
+            // Add empty & _id cols to the start for ellipsis & checkbox respectively
+            let thisEntity = this.entities[entityName]
+            let attributes = Object.keys(thisEntity).filter((a) => a !== '_id')
+            attributes = Object.entries(thisEntity)
+              .map(([k, v]) => ({ name: k, ...v }))
+              .filter((a) => a.name !== '_id')
+            attributes = Type.sortOnType(attributes)
+            return [{ name: '', type: '' }, { name: '_id', type: 'string' }, ...attributes]
+          }
+          static sidebar = [
             { path: 'dashboard', label: 'Dashboard', icon: ChartPieIcon },
             { path: 'auditlogs', label: 'Audit Logs', icon: ClockIcon },
             { path: 'users', label: 'Users', icon: UserGroupIcon },
             ${buildSidebarItems(entities)}
-          ],
-        },
-        ${buildEntitiesDefinitions(entities)}
-      `
+          ]
+          static entities = {
+            ${buildEntitiesDefinitions(entities)}
+          }
+        }`
     },
     rootDirectories: [
       'components',

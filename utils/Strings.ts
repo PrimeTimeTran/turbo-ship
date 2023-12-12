@@ -13,3 +13,11 @@ export function camelize(str: string) {
     })
     .replace(/\s+/g, '')
 }
+
+export function formatMoney(price: string) {
+  let USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
+  return USDollar.format(parseFloat(price))
+}

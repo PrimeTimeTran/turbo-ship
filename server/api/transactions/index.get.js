@@ -9,25 +9,37 @@ export default defineEventHandler(async (e) => {
       { from: 'banks', localField: 'bank' },
       { from: 'accounts', localField: 'account' },
     ]
+
     const pipeline = buildPipeline(query, page, limit, fieldsToPopulate)
     const results = await Transaction.aggregate(pipeline)
+    let result = await Transaction.populate(results[0].data, [
+      {
+        path: 'user',
+        select: '_id',
+      },
+      {
+        path: 'account',
+        select: '_id',
+      },
+      {
+        path: 'bank',
+        select: '_id',
+      },
+    ])
     let { data, totalCount } = results[0]
     let pageCount = 0
     if (!_.isEmpty(totalCount)) {
-      pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
       totalCount = totalCount[0].total
+      pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
     }
-
-    console.log({
-      lalaldata: data,
-    })
     const response = {
       meta: {
         page,
-        pageCount: pageCount,
-        totalCount: totalCount,
+        pageCount,
+        totalCount,
       },
       data,
+      result,
     }
     return response
   } catch (error) {

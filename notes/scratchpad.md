@@ -1,3 +1,26 @@
+[{type: 'string'}, {type: 'enumerator'}, {type:'relation'}]
+
+
+  static opts = [
+    'boolean',
+    'string',
+    'text',
+    'integer',
+    'decimal',
+    'date',
+    'dateTime',
+    'array',
+    'map',
+    'enumerator',
+    'enumeratorMulti',
+    'relation',
+    'otm',
+    'mto',
+    'oto',
+    'mtm',
+  ]
+
+
 db.foos.insertOne({
     fooBolean: true,
     fooString: 'A Foo String',

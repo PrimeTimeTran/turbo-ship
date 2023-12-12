@@ -26,7 +26,7 @@ export class Auditor {
     }
   }
   static addHooks(schema) {
-    schema.pre('save', this.createHook('create'))
+    schema.post('save', this.createHook('create'))
     schema.post('update', this.createHook('update'))
     schema.post('remove', this.createHook('delete'))
   }
