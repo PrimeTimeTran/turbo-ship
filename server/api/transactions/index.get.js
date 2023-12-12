@@ -12,6 +12,10 @@ export default defineEventHandler(async (e) => {
       pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
       totalCount = totalCount[0].total
     }
+
+    console.log({
+      lalaldata: data,
+    })
     const response = {
       meta: {
         page,

@@ -9,13 +9,13 @@ const emit = defineEmits(['toggleSort'])
     </div>
     <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
       <button class="btn btn-xs btn-ghost flex justify-start" @click="$emit('toggleSort', attribute.name, 'ASC')">
-        <FontAwesomeIcon class="mr-2" color="white" icon="fa-solid fa-caret-up" /> Ascending
+        <FontAwesomeIcon class="mr-2 text-black dark:text-white" icon="fa-solid fa-caret-up" /> Ascending
       </button>
       <button class="btn btn-xs btn-ghost flex justify-start" @click="$emit('toggleSort', attribute.name, 'DESC')">
-        <FontAwesomeIcon class="mr-2" color="white" icon="fa-solid fa-caret-down" /> Descending
+        <FontAwesomeIcon class="mr-2 text-black dark:text-white" icon="fa-solid fa-caret-down" /> Descending
       </button>
       <button @click="state.hidden.push(attribute.name)" class="btn btn-xs btn-ghost flex justify-start">
-        <FontAwesomeIcon class="mr-2" color="white" icon="fa-solid fa-eye-slash" /> Hide
+        <FontAwesomeIcon class="mr-2 text-black dark:text-white" icon="fa-solid fa-eye-slash" /> Hide
       </button>
     </ul>
   </div>
