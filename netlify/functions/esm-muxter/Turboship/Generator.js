@@ -1,5 +1,5 @@
 import { frameworkMap } from './Framework.js'
-import { AdminBuilder } from './builders/AdminBuilder.js'
+// import { AdminBuilder } from './builders/AdminBuilder.js'
 import { ModelBuilder } from './builders/ModelBuilder.js'
 
 export default class Generator {
@@ -26,9 +26,9 @@ function buildAdminUI(entities, options, zip) {
   let content = frameworkMap[options.backend].buildGlobalMeta(entities)
   let name = `nuxt/utils/Global.js`
   zip.file(name, content + '}')
-  content = AdminBuilder.buildAside(entities)
-  name = `nuxt/components/Admin/Aside.vue`
-  zip.file(name, content)
+  // content = AdminBuilder.buildAside(entities)
+  // name = `nuxt/components/Admin/Aside.vue`
+  // zip.file(name, content)
 }
 
 function buildModels(entities, options, zip) {
