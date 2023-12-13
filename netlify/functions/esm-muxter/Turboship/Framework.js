@@ -3,6 +3,8 @@ import path from 'path'
 
 import Generator from './Generator.js'
 
+import { buildOptions } from './helpers.js'
+
 export default class Framework {
   constructor(name, options, entities, zip) {
     this.name = name
@@ -79,19 +81,15 @@ function buildEntities(entities) {
   return entities.map((e) => `'${e.plural}',`).join('')
 }
 
-function isEnumerator(type) {
-  return ['enumerator', 'enumeratorMulti'].includes(type)
-}
-
 function buildEntityDefinition(e) {
-  function buildOptions(a) {
-    if (!isEnumerator(a.type)) return ''
-    return `options: [${a.options
-      ?.replace(/(^,)|(,$)/g, '')
-      ?.split(',')
-      ?.sort((a, b) => a.localeCompare(b))
-      ?.map((item) => `'${item}'`)}],`
-  }
+  // function buildOptions(a) {
+  //   if (!isEnumerator(a.type)) return ''
+  //   return `options: [${a.options
+  //     ?.replace(/(^,)|(,$)/g, '')
+  //     ?.split(',')
+  //     ?.sort((a, b) => a.localeCompare(b))
+  //     ?.map((item) => `'${item}'`)}],`
+  // }
   function setupAttributes() {
     e.fields = {}
     const fields = {}
@@ -171,7 +169,7 @@ export const frameworkMap = {
           static entities = {
             ${buildEntitiesDefinitions(entities)}
           }
-        }`
+        `
     },
     rootDirectories: [
       'components',

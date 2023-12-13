@@ -1,4 +1,5 @@
 export class Validator {
+  static protectedFields: []
   static types = [
     'boolean',
     'string',

@@ -48,6 +48,9 @@ const state = ref({
           class="dropdown-content menu px-2 shadow bg-slate-200 dark:bg-base-200 dark:text-white rounded-box w-52 border"
         >
           <li><a>English</a></li>
+          <li>
+            <a><div @click="document.getElementById('globalModalBtn').click()" id="toggleModal"></div></a>
+          </li>
           <li><a>Vietnamese</a></li>
         </ul>
       </div>

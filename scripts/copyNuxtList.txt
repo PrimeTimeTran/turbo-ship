@@ -22,6 +22,7 @@ components/Admin/Wizards/LineChart.vue
 components/Admin/Wizards/Overview.vue
 
 components/VSidebarItem.vue
+components/VTable.vue
 
 composables/useToast.ts
 
@@ -58,6 +59,13 @@ server/utils/security/permissions.ts
 server/utils/security/roles.ts
 server/utils/security/token.ts
 
-utils/DirectorTheme.ts
+utils/VHelpers.ts
+utils/VNavItems.ts
+utils/VColors.ts
+utils/VStrings.ts
+utils/VThemeDirector.ts
+utils/VTime.js
+utils/VType.ts
+utils/VShortcuts.ts
 
 app.vue

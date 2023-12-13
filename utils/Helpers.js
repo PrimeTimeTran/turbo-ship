@@ -18,4 +18,3 @@ export const views = {
   relationships: 'relationships',
 }
 export const toolBarScreens = ['relationships', 'entities', 'feedback', 'help']
-

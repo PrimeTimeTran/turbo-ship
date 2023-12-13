@@ -60,11 +60,8 @@ export class ModelBuilder {
       e: { name, label, attributes },
     } = this
     let fields
-    if (name == 'wizard') {
-      fields = this.e.fields
-    } else {
-      fields = this.buildTransformation(attributes)
-    }
+
+    fields = this.buildTransformation(attributes)
 
     const [values, enumerators] = this.generateFields(fields, name)
 
@@ -119,7 +116,7 @@ export class ModelBuilder {
         })`
       }
       return `const ${name}Schema = new Schema({
-          ${this.buildMongoose(e)}
+          ${this.buildSchema(e)}
         })
         Auditor.addHooks(${name}Schema)
         export { ${name}Schema }
@@ -187,9 +184,9 @@ export class ModelBuilder {
     }
   }
 
-  buildMongoose() {
+  buildSchema() {
     function buildRequired(required) {
-      return `${required != undefined ? `required: ${required},` : ''}`
+      return required ? `required: ${required},` : ''
     }
     const values = []
     for (const f in this.e.fields) {
@@ -207,18 +204,19 @@ export class ModelBuilder {
         }
       } else if (Type.enums.includes(type)) {
         function getEnumType(t) {
-          if (t === 'enumeratorMulti') return `[${capitalize(enumeratorType)}]`
-          return capitalize(enumeratorType)
+          const name = capitalize(enumeratorType)
+          return t === 'enumerator' ? name : `[${name}]`
         }
         item = `${fieldName}: {
           ${buildRequired(required)}
           type: ${getEnumType(type)},
-          enum: [${options.split(',').map((i) => `"${i}"`)}]
+          enum: [${options.split(',').map((i) => `'${i.trim()}'`)}]
         }`
       } else {
+        let kind = this.getType(capitalize(type))
         item = `${fieldName}: {
-          type: ${this.getType(capitalize(type))},
-          ${this.getType(capitalize(type)) === 'Map' ? 'of: String,' : ''}
+          type: ${kind},
+          ${kind === 'Map' ? 'of: String,' : ''}
           ${buildRequired(required)}
         }`
       }

@@ -22,7 +22,7 @@ const onRemove = (id) => {
           <tr>
             <th class="text-gray-500 text-left pl-4">Name</th>
             <th class="text-gray-500 text-left">Label</th>
-            <th class="text-gray-500 text-left">Prompt</th>
+            <th class="text-gray-500 text-left">Placeholder</th>
             <th class="text-gray-500"></th>
             <th class="text-gray-500"></th>
           </tr>

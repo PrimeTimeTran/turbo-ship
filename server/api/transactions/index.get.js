@@ -8,21 +8,26 @@ export default defineEventHandler(async (e) => {
       { from: 'users', localField: 'user' },
       { from: 'banks', localField: 'bank' },
       { from: 'accounts', localField: 'account' },
+      { from: 'branch', localField: 'branch' },
     ]
 
     const pipeline = buildPipeline(query, page, limit, fieldsToPopulate)
     const results = await Transaction.aggregate(pipeline)
     let result = await Transaction.populate(results[0].data, [
       {
+        path: 'bank',
+        select: '_id',
+      },
+      {
+        path: 'branch',
+        select: '_id',
+      },
+      {
         path: 'user',
         select: '_id',
       },
       {
         path: 'account',
-        select: '_id',
-      },
-      {
-        path: 'bank',
         select: '_id',
       },
     ])

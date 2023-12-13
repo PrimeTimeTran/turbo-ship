@@ -28,5 +28,6 @@ function ourCopy() {
     <div id="showOverlay" @click="store.showOverlay = !store.showOverlay" />
     <div @click="ourCopy()" id="copyEntities"></div>
     <div @click="store.isSparse = !store.isSparse" id="toggleSparse"></div>
+    <div @click="document.getElementById('globalModalButton').click()" id="toggleModal"></div>
   </div>
 </template>

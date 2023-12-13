@@ -1,4 +1,6 @@
 export class Type {
+  static protected = ['_id']
+  static sortableTypes = ['string', 'decimal', 'integer']
   static opts: string[] = [
     'boolean',
     'string',

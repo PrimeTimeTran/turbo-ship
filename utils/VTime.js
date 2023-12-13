@@ -3,7 +3,6 @@ import { DateTime } from 'luxon'
 
 export function parseTime(time) {
   const dateTime = DateTime.fromISO(time)
-
   const formattedDate = dateTime.toFormat('ff')
   return formattedDate
 }

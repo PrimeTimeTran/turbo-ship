@@ -1,15 +1,4 @@
-import { capitalize, colors } from '../helpers.js'
-
-export function buildOptions(obj) {
-  let string = '{\n'
-  for (const key in obj) {
-    const newVal = typeof obj[key] === 'string' ? capitalize(obj[key]) : capitalize(obj[key].val)
-    if (obj.hasOwnProperty(key)) {
-      string += `${key}: '${newVal}',\n`
-    }
-  }
-  return (string += '}')
-}
+import { buildOptions, capitalize, colors } from '../helpers.js'
 
 export function buildEntityFormInput(e, key, field) {
   switch (field.type) {

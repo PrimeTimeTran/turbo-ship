@@ -1,69 +1,47 @@
 <script setup>
 import _ from 'lodash'
-import { faker } from '@faker-js/faker'
-const placeholders = faker.number.int({ min: 10, max: 30 })
+const props = defineProps(['headers', 'items', 'keys'])
 </script>
 <template>
   <div class="relative">
     <div class="overflow-x-auto overflow-auto scrollbar-hide">
-      <table class="table min-w-full">
+      <table class="table min-w-full rounded-lg z-10">
         <thead class="bg-base-100">
           <tr class="border-b border-gray-500">
-            <th></th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
+            <th :key="col.label" v-for="col of headers" v-text="col.label" />
           </tr>
         </thead>
         <tbody>
-          <tr v-for="i of placeholders" :key="i" class="odd:bg-base-100 even: bg-base-200 hover:text-green-400">
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <th>1</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
+          <tr :key="item._id" v-for="item of items" class="odd:bg-base-100 even: bg-base-200 hover:text-green-400">
+            <td v-for="(key, idx) of keys">
+              <span v-if="headers[idx].type === 'dateTime'" v-text="parseTime(item[key])" />
+              <span v-else-if="false" />
+              <span v-else v-text="item[key]" />
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <footer class="footer absolute bottom-0 flex w-full justify-center mt-20">
+    <footer class="footer absolute bottom-0 flex w-full justify-center mt-20 -z-0">
       <div class="flex end-0 grow">
         <div class="flex h-10 px-2 grow">
-          <div>Left Content</div>
+          <!-- Left -->
+          <div></div>
         </div>
-        <div class="flex justify-end h-10 px-2 grow">
-          <div>Right Content</div>
+        <div class="flex h-10 px-2 grow justify-end">
+          <!-- Right -->
+          <div></div>
         </div>
       </div>
     </footer>
   </div>
 </template>
 
-<style>
-/* Custom CSS */
+<style scoped>
+tr > th,
+td > span {
+  min-width: 150px !important;
+}
 .footer {
   bottom: 0;
   width: 100%;

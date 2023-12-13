@@ -12,6 +12,8 @@ export class GlobalState {
     'messages',
     'products',
     'referrals',
+    'wizards',
+    'foos',
   ]
   static entityCols(entityName) {
     // Sort cols => primitives, enums, relations
@@ -35,8 +37,175 @@ export class GlobalState {
     { path: 'messages', label: 'Messages' },
     { path: 'products', label: 'Products' },
     { path: 'referrals', label: 'Referrals' },
+    { path: 'wizards', label: 'Wizards' },
+    { path: 'foos', label: 'Foos' },
   ]
   static entities = {
+    wizards: {
+      email: {
+        type: 'string',
+        label: 'email',
+        placeholder: '',
+      },
+      firstName: {
+        type: 'string',
+        label: 'firstName',
+        placeholder: '',
+      },
+      lastName: {
+        type: 'string',
+        label: 'lastName',
+        placeholder: '',
+      },
+      dob: {
+        type: 'string',
+        label: 'dob',
+        placeholder: '',
+      },
+      location: {
+        type: 'map',
+        label: 'location',
+        placeholder: '',
+      },
+      jobTitle: {
+        type: 'string',
+        label: 'jobTitle',
+        placeholder: '',
+      },
+      industry: {
+        type: 'string',
+        label: 'industry',
+        placeholder: '',
+      },
+      patronus: {
+        type: 'enumerator',
+        label: 'patronus',
+        placeholder: 'a,b,c,d,e',
+        options: ['stag', 'b', 'c', 'd', 'e'],
+      },
+      potions: {
+        type: 'decimal',
+        label: 'potions',
+        placeholder: '',
+      },
+      charms: {
+        type: 'string',
+        label: 'charms',
+        placeholder: '',
+      },
+      dada: {
+        type: 'string',
+        label: 'dada',
+        placeholder: '',
+      },
+      sex: {
+        type: 'string',
+        label: 'sex',
+        placeholder: '',
+      },
+      avatarUrl: {
+        type: 'string',
+        label: 'avatarUrl',
+        placeholder: '',
+      },
+      topSpells: {
+        type: 'enumeratorMulti',
+        label: 'topSpells',
+        placeholder: 'jinxes, hexes, charms, curses, spells, counters, healing, transfigurations',
+        options: ['charms', 'counters', 'curses', 'healing', 'hexes', 'spells', 'transfigurations', 'jinxes'],
+      },
+      bookAppearances: {
+        type: 'enumerator',
+        label: 'bookAppearances',
+        placeholder: '1,2,3,4,5,6,7,8',
+        options: ['1', '2', '3', '4', '5', '6', '7', '8'],
+      },
+      house: {
+        type: 'enumerator',
+        label: 'house',
+        placeholder: '',
+        options: ['hufflepuff', 'ravenclaw', 'slytherin', 'unknown', 'gryffindor'],
+      },
+    },
+    foos: {
+      fooBoolean: {
+        type: 'boolean',
+        label: 'Foo Boolean',
+        placeholder: 'foo boolean placeholder',
+      },
+      fooString: {
+        type: 'string',
+        label: 'Foo String',
+        placeholder: 'foo string placeholder',
+      },
+      fooText: {
+        type: 'text',
+        label: 'Foo Text',
+        placeholder: 'foo text placeholder',
+      },
+      fooInteger: {
+        type: 'integer',
+        label: 'Foo Integer',
+        placeholder: 'foo integer placeholder',
+      },
+      fooDecimal: {
+        type: 'decimal',
+        label: 'Foo Decimal',
+        placeholder: 'foo decimal placeholder',
+      },
+      fooDate: {
+        type: 'date',
+        label: 'Foo Date',
+        placeholder: 'foo date placeholder',
+      },
+      fooDateTime: {
+        type: 'dateTime',
+        label: 'Foo Date Time',
+        placeholder: 'foo datetime placeholder',
+      },
+      fooArray: {
+        type: 'array',
+        label: 'Foo Array',
+        placeholder: 'foo array placeholder',
+      },
+      fooMap: {
+        type: 'map',
+        label: 'Foo Map',
+        placeholder: 'foo map placeholder',
+      },
+      fooEnumerator: {
+        type: 'enumerator',
+        label: 'Foo Enumerator',
+        placeholder: 'a,b,c,',
+        options: ['a', 'b', 'c'],
+      },
+      foodEnumeratorMulti: {
+        type: 'enumeratorMulti',
+        label: 'Foo Enum Multi',
+        placeholder: 'a,b,c',
+        options: ['a', 'b', 'c'],
+      },
+      fooOTM: {
+        type: 'relation',
+        label: 'Foo OTM',
+        placeholder: 'one-to-many',
+      },
+      fooMTO: {
+        type: 'relation',
+        label: 'Foo MTO',
+        placeholder: 'many-to-one',
+      },
+      fooOTO: {
+        type: 'relation',
+        label: 'Foo OTO',
+        placeholder: 'one-to-one',
+      },
+      fooMTM: {
+        type: 'relation',
+        label: 'Foo MTM',
+        placeholder: 'many-to-many',
+      },
+    },
     users: {
       status: {
         type: 'enumerator',
