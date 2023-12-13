@@ -7,12 +7,16 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
-  // devtools: { enabled: false },
+  devServer: { port: 3005 },
+  devtools: {
+    enabled: true,
+    reuseExistingServer: true,
+    timeline: {
+      enabled: true,
+    },
+  },
   ignore: ['/mobile', '/notes', '/utils/seeds'],
   plugins: ['~/plugins/fontawesome.ts', { src: '~/plugins/marked.js' }],
-  devServer: {
-    port: 3005,
-  },
   formkit: {
     autoImport: true,
   },
@@ -38,6 +42,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    '@nuxt/devtools',
     '@nuxtjs/tailwindcss',
     '@nuxt/content',
     'nuxt-mongoose',
@@ -51,14 +56,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       script: [{ src: '/js/Theme.js', tagPosition: 'head' }],
-    },
-  },
-
-  hooks: {
-    'build:done': (go: HookResult) => {
-      // console.log({
-      //   buildDone: true,
-      // })
     },
   },
   postcss: {
