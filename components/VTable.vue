@@ -1,7 +1,7 @@
 <script setup>
 import _ from 'lodash'
 import { faker } from '@faker-js/faker'
-const placeholders = faker.number.int({ min: 5, max: 10 })
+const placeholders = faker.number.int({ min: 10, max: 30 })
 </script>
 <template>
   <div class="relative">

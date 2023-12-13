@@ -3,7 +3,6 @@ import { Bars4Icon, LanguageIcon, TableCellsIcon } from '@heroicons/vue/20/solid
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-
 function redirect(entity) {
   router.push(`/administrator/${entity}`)
 }
@@ -31,6 +30,7 @@ const state = ref({
         :state="state"
         @click="redirect(foo.path)"
         :icon="foo.icon || TableCellsIcon"
+        :focused="router.currentRoute.value.fullPath.includes(foo.path)"
       />
       <div class="grow" />
       <div class="divider" />
