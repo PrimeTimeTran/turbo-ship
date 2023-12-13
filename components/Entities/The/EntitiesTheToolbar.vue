@@ -118,7 +118,7 @@ const viewItems = [
     underline: 'D',
     tip: 'Toggle Dark Mode',
     id: faker.database.mongodbObjectId(),
-    click: () => document.getElementById('themeToggler').click(),
+    click: () => document.getElementById('tThemeToggle').click(),
     shortcut: getShortString('D'),
   },
   {

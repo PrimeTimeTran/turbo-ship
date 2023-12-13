@@ -1,5 +1,3 @@
-console.log('Setup custom hotkeys')
-
 function findParentWithClass(element, className) {
   let parent = element.parentNode
 
@@ -13,12 +11,58 @@ function findParentWithClass(element, className) {
   return null
 }
 
-export function setupHotkeys() {
+function setupShortcuts() {
+  if (window.location.href.includes('entities')) {
+    console.log('Shortcut entities')
+    setupEntitiesShortcuts()
+  } else {
+    console.log('TShortcuts')
+    setupGlobals()
+  }
+}
+
+class TurboShortcuts {
+  static shortcuts = 'alt+r, alt+m, alt+d, alt+l'
+  static items = {
+    'alt+r': function () {
+      document.getElementById('tRightDrawerToggle').click()
+    },
+    'alt+l': function () {
+      document.getElementById('tLeftDrawerToggle').click()
+    },
+    'alt+m': function () {
+      document.getElementById('tModalToggle').click()
+    },
+    'alt+d': function () {
+      document.getElementById('tThemeToggle').click()
+    },
+  }
+}
+
+function setupGlobals() {
+  hotkeys(TurboShortcuts.shortcuts, function (event, handler) {
+    console.log('Shortcut pressed')
+    try {
+      let fn = TurboShortcuts.items[handler.key]
+      if (fn) fn()
+    } catch (error) {
+      alert('Missing shortcut handler', event)
+    }
+  })
+}
+
+function setupEntitiesShortcuts() {
   hotkeys(
-    'alt+p, alt+g, alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1, cmd+alt+d, cmd+alt+o',
+    'alt+q, cmd+opt+k,alt+p, alt+g, alt+f, alt+b, alt+d, alt+cmd+e, alt+v, alt+e, alt+r, alt+l, alt+s,alt+c, alt+h, alt+o, alt+n, alt+a, alt+t, alt+1, alt+2, enter, cmd+alt+1, cmd+alt+d, cmd+alt+o',
     function (event, handler) {
-      console.log('EnsureLoad click')
+      console.log('Shortcut pressed')
       switch (handler.key) {
+        case 'cmd+opt+k':
+          document.getElementById('tSidebar').click()
+          break
+        case 'alt+q':
+          document.getElementById('tSidebar').click()
+          break
         case 'alt+f':
           document.getElementById('FileMenu').click()
           break
@@ -33,9 +77,6 @@ export function setupHotkeys() {
           break
         case 'cmd+alt+o':
           document.getElementById('showOverlay').click()
-          break
-        case 'alt+d':
-          document.getElementById('themeToggler').click()
           break
         case 'alt+cmd+e':
           document.getElementById('devTools').click()

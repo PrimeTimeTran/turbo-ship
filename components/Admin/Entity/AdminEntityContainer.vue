@@ -30,7 +30,7 @@ useHead({
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Create New" />
     <div role="tabpanel" class="tab-content dark:bg-base-100 border-base-300 rounded-box p-2">
-      <AdminWizardsForm :createForm="true" />
+      <AdminEntityDashboard :createForm="true" />
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Settings" />
     <div role="tabpanel" class="tab-content dark:bg-base-100 border-base-300 rounded-box p-2">

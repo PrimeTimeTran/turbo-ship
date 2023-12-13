@@ -11,7 +11,7 @@ export function loadJS(url, async = true) {
 
       scriptEle.addEventListener('load', () => {
         console.log('Loaded!')
-        if (url === scriptUrls.hotkeys) setupHotkeys()
+        if (url === scriptUrls.hotkeys) setupShortcuts()
         loaded = true
       })
 
@@ -44,12 +44,12 @@ export const scriptUrls = {
 }
 
 export function ensureLoad(url) {
-  if(!process.browser) return
+  if (!process.browser) return
   console.log('Ensuring load: ', url)
   if (url === scriptUrls.chart && typeof hotkeys === 'undefined') {
     loadJS(url)
   } else if (typeof hotkeys !== 'undefined') {
-    setupHotkeys()
+    setupShortcuts()
   } else {
     loadJS(url)
   }

@@ -1,4 +1,4 @@
-export class Validator {
+export class TValidator {
   static protectedFields: []
   static types = [
     'boolean',
