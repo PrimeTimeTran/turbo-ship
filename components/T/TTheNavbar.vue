@@ -15,7 +15,7 @@
             </svg>
           </label>
         </div>
-        <div class="flex-1 px-2 mx-2">Navbar Title</div>
+        <div class="flex-1 px-2 mx-2">Turboship</div>
         <div class="flex-none hidden lg:block">
           <ul class="menu menu-horizontal">
             <li><a>Navbar Item 1</a></li>
@@ -23,7 +23,6 @@
           </ul>
         </div>
       </div>
-      Content
     </div>
     <div class="drawer-side">
       <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>

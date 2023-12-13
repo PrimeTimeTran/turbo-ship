@@ -10,7 +10,6 @@ const props = defineProps({})
     <input id="tRightDrawerToggle" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
       <slot />
-      <label for="tRightDrawerToggle" class="drawer-button btn btn-primary">Open drawer</label>
     </div>
     <div class="drawer-side">
       <label for="tRightDrawerToggle" aria-label="close sidebar" class="drawer-overlay"></label>

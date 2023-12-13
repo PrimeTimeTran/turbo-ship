@@ -12,10 +12,13 @@ useHead({
 </script>
 <template>
   <TTheLeftDrawer>
+    <!-- 
+      Feels convoluted but by taking a dependency injection approach we add a lot of flexibility
+    -->
     <template v-slot:navbar>
       <TTheNavbar />
     </template>
-    <template v-slot:sidebar>
+    <template v-slot:left-drawer>
       <TTheLeftDrawerContent />
     </template>
     <template v-slot:scripts>

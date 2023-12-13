@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { useDark, useToggle } from '@vueuse/core'
 
 let isDark = useDark()
@@ -32,4 +33,20 @@ export function toggleTheme() {
   const toggleDark = useToggle(isDark)
   daisyThemeToggle()
   toggleDark()
+}
+
+export function setTheme(val) {
+  const htmlElement = document.querySelector('html')
+  htmlElement.setAttribute('data-theme', val)
+}
+let themes = []
+export function sampleTheme() {
+  let theme = _.sample(TApp.themes)
+  const htmlElement = document.querySelector('html')
+  themes.push(theme)
+  htmlElement.setAttribute('data-theme', theme)
+  let items = document.querySelectorAll('.brandName')
+  items.forEach((item) => {
+    item.innerHTML = theme
+  })
 }

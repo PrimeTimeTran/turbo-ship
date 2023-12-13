@@ -2,6 +2,9 @@
   - Stop server, remove .nuxt, nuxi cleanup to remove cached files and see 
     public file changes reflected
  -->
+
+<!-- [ ] How to disable caching of files? -->
+<!-- [ ] How to easily generate this layout pattern with different content via code? -->
 <script setup>
 useHead({
   link: [],
@@ -24,6 +27,9 @@ useHead({
   ],
 })
 ensureLoad(scriptUrls.hotkeys)
+function tSampleThemes() {
+  TApp.sampleThemes()
+}
 </script>
 <template>
   <div>
@@ -42,5 +48,6 @@ ensureLoad(scriptUrls.hotkeys)
 
     <div @click="store.isSparse = !store.isSparse" id="toggleSparse"></div>
     <div @click="toggleTheme" id="tThemeToggle"></div>
+    <div @click="tSampleThemes" id="tSampleThemes"></div>
   </div>
 </template>

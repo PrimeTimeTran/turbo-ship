@@ -1,4 +1,3 @@
-<!-- [ ] How to disable caching of files? -->
 <script setup>
 import { defineProps } from 'vue'
 
@@ -16,7 +15,7 @@ const props = defineProps({})
     <div class="drawer-side">
       <label for="tLeftDrawerToggle" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-        <slot name="sidebar" />
+        <slot name="left-drawer" />
       </ul>
     </div>
     <slot name="scripts" />

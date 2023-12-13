@@ -22,7 +22,7 @@ function setupShortcuts() {
 }
 
 class TurboShortcuts {
-  static shortcuts = 'alt+r, alt+m, alt+d, alt+l'
+  static shortcuts = 'alt+r, alt+m, alt+d, alt+l,alt+s'
   static items = {
     'alt+r': function () {
       document.getElementById('tRightDrawerToggle').click()
@@ -35,6 +35,9 @@ class TurboShortcuts {
     },
     'alt+d': function () {
       document.getElementById('tThemeToggle').click()
+    },
+    'alt+s': function () {
+      document.getElementById('tSampleThemes').click()
     },
   }
 }
