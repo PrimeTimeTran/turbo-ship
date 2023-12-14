@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:turboship/all_two.dart';
+import 'package:turboship/all.dart';
 
 import '../../../core/constants/ui/paging_constants.dart';
 

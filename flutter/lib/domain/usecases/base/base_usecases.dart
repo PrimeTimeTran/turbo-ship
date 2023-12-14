@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:turboship/all_two.dart';
+import 'package:turboship/all.dart';
 
 import '../../entities/base/paged_list.dart';
 

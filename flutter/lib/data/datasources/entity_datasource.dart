@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:turboship/core/utils/all.dart';
 import 'package:turboship/data/models/entity_data.dart';
 
 import 'providers/api/clients/authenticated_rest_api_client.dart';
@@ -19,10 +20,13 @@ class EntityDataSourceImpl implements EntityDataSource {
   Future<List<EntityData>> getEntities() {
     return _client
         .get(
-          '/wizards',
-          decoder: (json) => EntityData.fromJson(json as Map<String, dynamic>),
-        )
-        .then((response) => response.data);
+      '/wizards',
+      decoder: (json) => EntityData.fromJson(json as Map<String, dynamic>),
+    )
+        .then((response) {
+      LogUtil.i(name: 'sososo', response);
+      return response.data;
+    });
   }
 
   @override

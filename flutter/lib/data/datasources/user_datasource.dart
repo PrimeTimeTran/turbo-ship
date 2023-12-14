@@ -1,9 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
-import '../models/user_data.dart';
-import 'providers/api/clients/authenticated_rest_api_client.dart';
-
 abstract interface class UserDataSource {
   Future<UserData> getCurrentUser();
 

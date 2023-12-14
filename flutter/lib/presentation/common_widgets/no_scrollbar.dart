@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:turboship/all.dart';
 
 class NoScrollbar extends StatelessWidget {
   final Widget child;
@@ -14,7 +13,7 @@ class NoScrollbar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.all(isS(context) ? 10 : 30),
+              padding: const EdgeInsets.all(true ? 10 : 30),
               child: child,
             )
           ],

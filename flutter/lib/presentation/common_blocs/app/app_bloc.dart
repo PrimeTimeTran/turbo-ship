@@ -6,7 +6,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
-import '../../../core/configs/configs.dart';
 import '../../base/bloc/base_bloc.dart';
 import '../../base/bloc/common/common_bloc.dart';
 
@@ -18,16 +17,16 @@ part 'app_state.dart';
 @lazySingleton
 class AppBloc extends BaseBloc<AppEvent, AppState>
     with HydratedMixin, ChangeNotifier {
-  // final GetCurrentUserUseCase _getCurrentUserUseCase;
-  // final GetServerConfigUseCase _getServerConfigUseCase;
+  final GetCurrentUserUseCase _getCurrentUserUseCase;
+  final GetEntitiesUseCase _getEntities;
   // final CheckSignedContractUseCase _checkSignedContractUseCase;
 
   AppBloc(
-      // this._getCurrentUserUseCase,
-      // this._getServerConfigUseCase,
-      // this._checkSignedContractUseCase,
-      )
-      : super(const AppState()) {
+    this._getCurrentUserUseCase,
+    this._getEntities,
+    // this._getServerConfigUseCase,
+    // this._checkSignedContractUseCase,
+  ) : super(const AppState()) {
     on<AppInitiated>(_onAppInitiated);
     on<AppResumed>(_onAppResumed);
     on<GetAppServerConfig>(_onGetAppServerConfig);
@@ -36,6 +35,7 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
     on<AppLanguageChanged>(_onAppLanguageChanged);
     on<GetCurrentUser>(_onGetCurrentUser);
     on<LoggedUserChanged>(_onIsLoggedUserChanged);
+    on<GetEntities>(_onGetEntities);
     _initCommonBloc();
   }
 
@@ -119,20 +119,41 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
     return runBlocCatching(
       handleLoading: false,
       action: () async {
-        // final user = await _getCurrentUserUseCase.execute(
-        //   GetCurrentUserParams(forceRefreshToken: event.forceRefreshToken),
-        // );
+        final user = await _getCurrentUserUseCase.execute(
+          GetCurrentUserParams(forceRefreshToken: event.forceRefreshToken),
+        );
+        add(LoggedUserChanged(user));
+
+        if (event.checkContractStatus) {
+          add(const GetUserSignContractStatus());
+        }
+
+        await Future.delayed(const Duration(milliseconds: 300), () {
+          event.onSuccess?.call(user);
+        });
+
+        event.completer?.complete();
+      },
+    );
+  }
+
+  FutureOr<void> _onGetEntities(
+      GetEntities event, Emitter<AppState> emit) async {
+    return runBlocCatching(
+      handleLoading: false,
+      action: () async {
+        final entities = await _getEntities.execute();
         // add(LoggedUserChanged(user));
 
         // if (event.checkContractStatus) {
         //   add(const GetUserSignContractStatus());
         // }
 
-        // await Future.delayed(const Duration(milliseconds: 300), () {
-        //   event.onSuccess?.call(user);
-        // });
+        await Future.delayed(const Duration(milliseconds: 300), () {
+          event.onSuccess?.call(entities);
+        });
 
-        // event.completer?.complete();
+        event.completer?.complete();
       },
     );
   }

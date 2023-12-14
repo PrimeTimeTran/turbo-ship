@@ -2,9 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 import 'package:turboship/data/datasources/entity_datasource.dart';
 import 'package:turboship/data/models/entity_data.dart';
-import 'package:turboship/domain/repositories/entity_repo.dart';
-
-import 'refresh_token_repo.dart';
 
 // UserRepositoryImpl
 @LazySingleton(as: EntityRepository)

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:turboship/all.dart';
+import 'package:turboship/presentation/common_blocs/app/app_bloc.dart';
 import 'package:turboship/presentation/common_widgets/all.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,7 +28,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             AppButton.primary(
               onPressed: () => context.push(AppPages.wizards.path),
               width: double.infinity,
-              label: 'Welcome',
+              label: 'Wizards Screen',
+            ),
+            AppButton.primary(
+              onPressed: () {
+                getIt.get<AppBloc>().add(const GetEntities());
+              },
+              width: double.infinity,
+              label: 'Wizards',
             ),
           ],
         ),

@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:turboship/all_two.dart';
+import 'package:turboship/all.dart';
 
-import '../core/configs/configs.dart';
 import 'common_blocs/app/app_bloc.dart';
 import 'overlay_wrapper.dart';
 import 'providers.dart';

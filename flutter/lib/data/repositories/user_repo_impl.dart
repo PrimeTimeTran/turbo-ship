@@ -2,8 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:turboship/all.dart';
 
-import 'refresh_token_repo.dart';
-
 @LazySingleton(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
   final UserDataSource _datasource;

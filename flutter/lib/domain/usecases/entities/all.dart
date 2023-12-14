@@ -1,1 +1,1 @@
-export 'get_entities.dart';
+export 'get_entities_usecase.dart';
