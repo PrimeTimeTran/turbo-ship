@@ -55,13 +55,13 @@ import 'package:turboship/data/repositories/auth_repo_impl.dart' as _i34;
 import 'package:turboship/data/repositories/refresh_token_repo.dart' as _i20;
 import 'package:turboship/data/repositories/user_repo_impl.dart' as _i31;
 import 'package:turboship/domain/all.dart' as _i33;
-import 'package:turboship/domain/repositories/user_repo.dart' as _i37;
+import 'package:turboship/domain/repositories/user_repo.dart' as _i39;
 import 'package:turboship/domain/usecases/get_server_config_usecases.dart'
-    as _i38;
+    as _i37;
 import 'package:turboship/domain/usecases/user/get_current_user_usecase.dart'
     as _i36;
 import 'package:turboship/domain/usecases/user/update_user_usecase.dart'
-    as _i39;
+    as _i38;
 import 'package:turboship/presentation/base/bloc/common/common_bloc.dart'
     as _i8;
 import 'package:turboship/presentation/common_blocs/app/app_bloc.dart' as _i4;
@@ -158,11 +158,11 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i35.ServerConfigMapper>(),
         ));
     gh.factory<_i36.GetCurrentUserUseCase>(
-        () => _i36.GetCurrentUserUseCase(gh<_i37.UserRepository>()));
-    gh.factory<_i38.GetServerConfigUseCase>(
-        () => _i38.GetServerConfigUseCase(gh<_i33.AuthRepository>()));
-    gh.factory<_i39.UpdateUserUseCase>(
-        () => _i39.UpdateUserUseCase(gh<_i37.UserRepository>()));
+        () => _i36.GetCurrentUserUseCase(gh<_i7.UserRepository>()));
+    gh.factory<_i37.GetServerConfigUseCase>(
+        () => _i37.GetServerConfigUseCase(gh<_i33.AuthRepository>()));
+    gh.factory<_i38.UpdateUserUseCase>(
+        () => _i38.UpdateUserUseCase(gh<_i39.UserRepository>()));
     return this;
   }
 }
