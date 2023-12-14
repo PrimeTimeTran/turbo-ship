@@ -7,7 +7,6 @@ import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
 import '../../../core/configs/configs.dart';
-import '../../../domain/all.dart';
 import '../../base/bloc/base_bloc.dart';
 import '../../base/bloc/common/common_bloc.dart';
 
@@ -58,6 +57,7 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
 
   FutureOr<void> _onAppInitiated(AppInitiated event, Emitter<AppState> emit) {
     add(const GetAppServerConfig());
+    LogUtil.i('_onAppInitiated');
     // if (state.isLoggedIn) {
     //   add(
     //     GetCurrentUser(

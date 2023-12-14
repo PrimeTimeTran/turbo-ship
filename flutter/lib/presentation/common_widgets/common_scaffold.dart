@@ -5,24 +5,25 @@ import '../../core/utils/view_util.dart';
 import '../resource/styles/all.dart';
 
 class CommonScaffold extends StatelessWidget {
-  const CommonScaffold({
-    required this.body,
-    Key? key,
-    this.appBar,
-    this.bottomNavigationBar,
-    this.backgroundColor,
-    this.padding = EdgeInsets.zero,
-    this.hideKeyboardWhenTouchOutside = false,
-    this.applyAutoPaddingBottom = false,
-  }) : super(key: key);
-
   final PreferredSizeWidget? appBar;
+
   final Widget body;
   final Color? backgroundColor;
   final bool hideKeyboardWhenTouchOutside;
   final bool applyAutoPaddingBottom;
   final EdgeInsets padding;
   final Widget? bottomNavigationBar;
+
+  const CommonScaffold({
+    required this.body,
+    super.key,
+    this.appBar,
+    this.bottomNavigationBar,
+    this.backgroundColor,
+    this.padding = EdgeInsets.zero,
+    this.hideKeyboardWhenTouchOutside = false,
+    this.applyAutoPaddingBottom = false,
+  });
 
   @override
   Widget build(BuildContext context) {

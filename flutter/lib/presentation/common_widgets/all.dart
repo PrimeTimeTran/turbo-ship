@@ -16,3 +16,4 @@ export 'tab_bar.dart';
 export 'text_field.dart';
 export 'user_avatar.dart';
 export 'web_view.dart';
+export 'bottom_tabs.dart';

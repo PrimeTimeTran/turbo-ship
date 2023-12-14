@@ -1,7 +1,4 @@
 {
-  "editor.codeActionsOnSave": {
-    "quickfix.insertSemicolon": true
-  },
   // Focusing flutter so ignore server when searching
   "search.exclude": {
     "**/server": true
@@ -74,7 +71,9 @@
     // ##### Leave forever because we always want to ignore and don't wanna mess up due to missing comma
     "**/bun.lockb": true
   },
-  // "problems.decorations.enabled": false,
+  "editor.codeActionsOnSave": {
+    "quickfix.insertSemicolon": true
+  },
   "dart.analysisExcludedFolders": [
     "netlify/functions/esm-muxter/Turboship/flutter",
     "netlify/functions/esm-muxter/TurboshipCJS/flutter"

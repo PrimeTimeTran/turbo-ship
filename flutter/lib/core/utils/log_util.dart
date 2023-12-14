@@ -41,7 +41,7 @@ class LogUtil {
     );
   }
 
-  static void i(Object? message, {String? name}) {
+  static void i(Object? message, String? s, {String? name}) {
     _log(_LogLevel.info, message, name: name);
   }
 

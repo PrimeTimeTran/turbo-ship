@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:turboship/presentation/features/feed/feed_screen.dart';
 import 'package:turboship/presentation/features/home/home_screen.dart';
+import 'package:turboship/presentation/features/notification/notification_screen.dart';
 
 import '../../../core/configs/di/di.dart';
 import '../../common_blocs/app/app_bloc.dart';
@@ -42,6 +44,46 @@ class AppRouter {
           return const HomeScreen();
         },
       ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppPages.feed.path,
+        name: AppPages.feed.name,
+        builder: (BuildContext context, GoRouterState state) {
+          return const FeedScreen();
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppPages.notification.path,
+        name: AppPages.notification.name,
+        builder: (BuildContext context, GoRouterState state) {
+          return const NotificationScreen();
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppPages.wizards.path,
+        name: AppPages.wizards.name,
+        builder: (BuildContext context, GoRouterState state) {
+          return const WizardsScreen();
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppPages.profile.path,
+        name: AppPages.profile.name,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ProfileScreen();
+        },
+      ),
+      // GoRoute(
+      //   parentNavigatorKey: _rootNavigatorKey,
+      //   path: AppPages.signUp.path,
+      //   name: AppPages.signUp.name,
+      //   builder: (BuildContext context, GoRouterState state) {
+      //     return const SignUpPage();
+      //   },
+      // ),
       // GoRoute(
       //   parentNavigatorKey: _rootNavigatorKey,
       //   path: AppPages.signUp.path,

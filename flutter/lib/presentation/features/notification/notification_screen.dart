@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:turboship/presentation/common_widgets/all.dart';
 
-class WizardsScreen extends StatefulWidget {
-  const WizardsScreen({super.key});
+class NotificationScreen extends StatefulWidget {
+  const NotificationScreen({super.key});
 
   @override
-  State<WizardsScreen> createState() => _WizardsScreenState();
+  State<NotificationScreen> createState() => _NotificationScreenState();
 }
 
-class _WizardsScreenState extends State<WizardsScreen>
+class _NotificationScreenState extends State<NotificationScreen>
     with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class _WizardsScreenState extends State<WizardsScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('WizardsScreen'),
+            Text('NotificationScreen'),
           ],
         ),
       ),
