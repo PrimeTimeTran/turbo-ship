@@ -11,57 +11,62 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:turboship/all.dart' as _i7;
-import 'package:turboship/core/configs/di/di.dart' as _i40;
-import 'package:turboship/core/configs/di/raw_config.dart' as _i16;
-import 'package:turboship/core/configs/env_config.dart' as _i26;
-import 'package:turboship/data/datasources/all.dart' as _i21;
-import 'package:turboship/data/datasources/auth_datasource.dart' as _i32;
-import 'package:turboship/data/datasources/providers/api/api.dart' as _i19;
+import 'package:turboship/all_two.dart' as _i34;
+import 'package:turboship/core/configs/di/di.dart' as _i45;
+import 'package:turboship/core/configs/di/raw_config.dart' as _i17;
+import 'package:turboship/core/configs/env_config.dart' as _i27;
+import 'package:turboship/data/datasources/all.dart' as _i22;
+import 'package:turboship/data/datasources/auth_datasource.dart' as _i37;
+import 'package:turboship/data/datasources/entity_datasource.dart' as _i31;
+import 'package:turboship/data/datasources/providers/api/api.dart' as _i20;
 import 'package:turboship/data/datasources/providers/api/clients/authenticated_rest_api_client.dart'
-    as _i28;
+    as _i29;
 import 'package:turboship/data/datasources/providers/api/clients/none_authenticated_rest_api_client.dart'
-    as _i15;
+    as _i16;
 import 'package:turboship/data/datasources/providers/api/clients/refresh_token_rest_api_client.dart'
-    as _i22;
+    as _i23;
 import 'package:turboship/data/datasources/providers/api/interceptor/access_token_interceptor.dart'
     as _i3;
 import 'package:turboship/data/datasources/providers/api/interceptor/connectivity_interceptor.dart'
     as _i9;
 import 'package:turboship/data/datasources/providers/api/interceptor/interceptor.dart'
-    as _i29;
+    as _i30;
 import 'package:turboship/data/datasources/providers/api/interceptor/log_interceptor.dart'
     as _i10;
 import 'package:turboship/data/datasources/providers/api/interceptor/refresh_token_interceptor.dart'
-    as _i27;
+    as _i28;
 import 'package:turboship/data/datasources/providers/api/interceptor/trim_interceptor.dart'
-    as _i24;
+    as _i25;
 import 'package:turboship/data/datasources/refresh_token_datasource.dart'
-    as _i18;
-import 'package:turboship/data/datasources/user_datasource.dart' as _i30;
-import 'package:turboship/data/mappers/all.dart' as _i35;
+    as _i19;
+import 'package:turboship/data/datasources/user_datasource.dart' as _i35;
+import 'package:turboship/data/mappers/all.dart' as _i40;
+import 'package:turboship/data/mappers/entity_mapper.dart' as _i13;
 import 'package:turboship/data/mappers/response_mapper/success_response/data_json_array_response_mapper.dart'
     as _i11;
 import 'package:turboship/data/mappers/response_mapper/success_response/data_json_object_response_mapper.dart'
     as _i12;
 import 'package:turboship/data/mappers/response_mapper/success_response/json_array_success_response_mapper.dart'
-    as _i13;
-import 'package:turboship/data/mappers/response_mapper/success_response/json_object_success_response_mapper.dart'
     as _i14;
+import 'package:turboship/data/mappers/response_mapper/success_response/json_object_success_response_mapper.dart'
+    as _i15;
 import 'package:turboship/data/mappers/response_mapper/success_response/paged_json_array_success_response_mapper.dart'
-    as _i17;
-import 'package:turboship/data/mappers/server_config_mapper.dart' as _i23;
-import 'package:turboship/data/mappers/user_mapper.dart' as _i25;
-import 'package:turboship/data/repositories/auth_repo_impl.dart' as _i34;
-import 'package:turboship/data/repositories/refresh_token_repo.dart' as _i20;
-import 'package:turboship/data/repositories/user_repo_impl.dart' as _i31;
-import 'package:turboship/domain/all.dart' as _i33;
-import 'package:turboship/domain/repositories/user_repo.dart' as _i39;
+    as _i18;
+import 'package:turboship/data/mappers/server_config_mapper.dart' as _i24;
+import 'package:turboship/data/mappers/user_mapper.dart' as _i26;
+import 'package:turboship/data/repositories/auth_repo_impl.dart' as _i39;
+import 'package:turboship/data/repositories/entity_repo_impl.dart' as _i32;
+import 'package:turboship/data/repositories/refresh_token_repo.dart' as _i21;
+import 'package:turboship/data/repositories/user_repo_impl.dart' as _i36;
+import 'package:turboship/domain/all.dart' as _i38;
+import 'package:turboship/domain/repositories/user_repo.dart' as _i44;
+import 'package:turboship/domain/usecases/entities/get_entities.dart' as _i33;
 import 'package:turboship/domain/usecases/get_server_config_usecases.dart'
-    as _i37;
+    as _i42;
 import 'package:turboship/domain/usecases/user/get_current_user_usecase.dart'
-    as _i36;
+    as _i41;
 import 'package:turboship/domain/usecases/user/update_user_usecase.dart'
-    as _i38;
+    as _i43;
 import 'package:turboship/presentation/base/bloc/common/common_bloc.dart'
     as _i8;
 import 'package:turboship/presentation/common_blocs/app/app_bloc.dart' as _i4;
@@ -106,65 +111,76 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i11.DataJsonArrayResponseMapper<dynamic>());
     gh.factory<_i12.DataJsonObjectResponseMapper<dynamic>>(
         () => _i12.DataJsonObjectResponseMapper<dynamic>());
-    gh.factory<_i13.JsonArraySuccessResponseMapper<dynamic>>(
-        () => _i13.JsonArraySuccessResponseMapper<dynamic>());
-    gh.factory<_i14.JsonObjectSuccessResponseMapper<dynamic>>(
-        () => _i14.JsonObjectSuccessResponseMapper<dynamic>());
-    gh.lazySingleton<_i15.NoneAuthenticatedRestApiClient>(
-        () => _i15.NoneAuthenticatedRestApiClient());
-    await gh.singletonAsync<_i16.RawConfig>(
+    gh.factory<_i13.EntityMapper>(() => _i13.EntityMapper());
+    gh.factory<_i14.JsonArraySuccessResponseMapper<dynamic>>(
+        () => _i14.JsonArraySuccessResponseMapper<dynamic>());
+    gh.factory<_i15.JsonObjectSuccessResponseMapper<dynamic>>(
+        () => _i15.JsonObjectSuccessResponseMapper<dynamic>());
+    gh.lazySingleton<_i16.NoneAuthenticatedRestApiClient>(
+        () => _i16.NoneAuthenticatedRestApiClient());
+    await gh.singletonAsync<_i17.RawConfig>(
       () => registerModule.configEnv(),
       preResolve: true,
     );
-    gh.factory<_i17.RecordsJsonArraySuccessResponseMapper<dynamic>>(
-        () => _i17.RecordsJsonArraySuccessResponseMapper<dynamic>());
-    gh.lazySingleton<_i18.RefreshTokenDatasource>(() =>
-        _i18.RefreshTokenDatasource(gh<_i19.NoneAuthenticatedRestApiClient>()));
-    gh.lazySingleton<_i20.RefreshTokenRepository>(
-        () => _i20.RefreshTokenRepository(
-              gh<_i21.RefreshTokenDatasource>(),
-              gh<_i21.AppPreferences>(),
+    gh.factory<_i18.RecordsJsonArraySuccessResponseMapper<dynamic>>(
+        () => _i18.RecordsJsonArraySuccessResponseMapper<dynamic>());
+    gh.lazySingleton<_i19.RefreshTokenDatasource>(() =>
+        _i19.RefreshTokenDatasource(gh<_i20.NoneAuthenticatedRestApiClient>()));
+    gh.lazySingleton<_i21.RefreshTokenRepository>(
+        () => _i21.RefreshTokenRepository(
+              gh<_i22.RefreshTokenDatasource>(),
+              gh<_i22.AppPreferences>(),
             ));
-    gh.lazySingleton<_i22.RefreshTokenRestApiClient>(
-        () => _i22.RefreshTokenRestApiClient());
-    gh.factory<_i23.ServerConfigMapper>(() => _i23.ServerConfigMapper());
-    gh.factory<_i24.TrimInterceptor>(() => _i24.TrimInterceptor());
-    gh.factory<_i25.UserMapper>(() => _i25.UserMapper());
-    gh.singleton<_i26.EnvConfig>(_i26.EnvConfig(gh<_i16.RawConfig>()));
-    gh.factory<_i27.RefreshTokenInterceptor>(() => _i27.RefreshTokenInterceptor(
-          gh<_i20.RefreshTokenRepository>(),
-          gh<_i19.NoneAuthenticatedRestApiClient>(),
+    gh.lazySingleton<_i23.RefreshTokenRestApiClient>(
+        () => _i23.RefreshTokenRestApiClient());
+    gh.factory<_i24.ServerConfigMapper>(() => _i24.ServerConfigMapper());
+    gh.factory<_i25.TrimInterceptor>(() => _i25.TrimInterceptor());
+    gh.factory<_i26.UserMapper>(() => _i26.UserMapper());
+    gh.singleton<_i27.EnvConfig>(_i27.EnvConfig(gh<_i17.RawConfig>()));
+    gh.factory<_i28.RefreshTokenInterceptor>(() => _i28.RefreshTokenInterceptor(
+          gh<_i21.RefreshTokenRepository>(),
+          gh<_i20.NoneAuthenticatedRestApiClient>(),
         ));
-    gh.lazySingleton<_i28.AuthenticatedRestApiClient>(
-        () => _i28.AuthenticatedRestApiClient(
-              refreshTokenInterceptor: gh<_i29.RefreshTokenInterceptor>(),
-              accessTokenInterceptor: gh<_i29.AccessTokenInterceptor>(),
+    gh.lazySingleton<_i29.AuthenticatedRestApiClient>(
+        () => _i29.AuthenticatedRestApiClient(
+              refreshTokenInterceptor: gh<_i30.RefreshTokenInterceptor>(),
+              accessTokenInterceptor: gh<_i30.AccessTokenInterceptor>(),
             ));
-    gh.lazySingleton<_i30.UserDataSource>(
-        () => _i30.UserDataSourceImpl(gh<_i28.AuthenticatedRestApiClient>()));
-    gh.lazySingleton<_i7.UserRepository>(() => _i31.UserRepositoryImpl(
+    gh.lazySingleton<_i31.EntityDataSource>(
+        () => _i31.EntityDataSourceImpl(gh<_i29.AuthenticatedRestApiClient>()));
+    gh.lazySingleton<_i7.EntityRepository>(() => _i32.EntityRepositoryImpl(
+          gh<_i31.EntityDataSource>(),
+          gh<_i7.EntityMapper>(),
+          gh<_i7.AppPreferences>(),
+          gh<_i21.RefreshTokenRepository>(),
+        ));
+    gh.factory<_i33.GetEntitiesUseCase>(
+        () => _i33.GetEntitiesUseCase(gh<_i34.EntityRepository>()));
+    gh.lazySingleton<_i35.UserDataSource>(
+        () => _i35.UserDataSourceImpl(gh<_i29.AuthenticatedRestApiClient>()));
+    gh.lazySingleton<_i7.UserRepository>(() => _i36.UserRepositoryImpl(
           gh<_i7.UserDataSource>(),
           gh<_i7.UserMapper>(),
           gh<_i7.AppPreferences>(),
-          gh<_i20.RefreshTokenRepository>(),
+          gh<_i21.RefreshTokenRepository>(),
         ));
-    gh.factory<_i32.AuthDatasource>(() => _i32.AuthDataSourceImpl(
-          gh<_i19.NoneAuthenticatedRestApiClient>(),
-          gh<_i19.AuthenticatedRestApiClient>(),
+    gh.factory<_i37.AuthDatasource>(() => _i37.AuthDataSourceImpl(
+          gh<_i20.NoneAuthenticatedRestApiClient>(),
+          gh<_i20.AuthenticatedRestApiClient>(),
         ));
-    gh.factory<_i33.AuthRepository>(() => _i34.AuthRepositoryImpl(
-          gh<_i21.AppPreferences>(),
-          gh<_i21.AuthDatasource>(),
-          gh<_i35.ServerConfigMapper>(),
+    gh.factory<_i38.AuthRepository>(() => _i39.AuthRepositoryImpl(
+          gh<_i22.AppPreferences>(),
+          gh<_i22.AuthDatasource>(),
+          gh<_i40.ServerConfigMapper>(),
         ));
-    gh.factory<_i36.GetCurrentUserUseCase>(
-        () => _i36.GetCurrentUserUseCase(gh<_i7.UserRepository>()));
-    gh.factory<_i37.GetServerConfigUseCase>(
-        () => _i37.GetServerConfigUseCase(gh<_i33.AuthRepository>()));
-    gh.factory<_i38.UpdateUserUseCase>(
-        () => _i38.UpdateUserUseCase(gh<_i39.UserRepository>()));
+    gh.factory<_i41.GetCurrentUserUseCase>(
+        () => _i41.GetCurrentUserUseCase(gh<_i7.UserRepository>()));
+    gh.factory<_i42.GetServerConfigUseCase>(
+        () => _i42.GetServerConfigUseCase(gh<_i38.AuthRepository>()));
+    gh.factory<_i43.UpdateUserUseCase>(
+        () => _i43.UpdateUserUseCase(gh<_i44.UserRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i40.RegisterModule {}
+class _$RegisterModule extends _i45.RegisterModule {}

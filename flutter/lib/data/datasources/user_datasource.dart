@@ -14,7 +14,6 @@ abstract interface class UserDataSource {
 class UserDataSourceImpl implements UserDataSource {
   final AuthenticatedRestApiClient _client;
 
-  // CRUD Users
   UserDataSourceImpl(this._client);
 
   @override

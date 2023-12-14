@@ -94,9 +94,7 @@ class AppRouter {
       GoRoute(
         path: AppPages.wizards.path,
         name: AppPages.wizards.name,
-        pageBuilder: (context, state) => const NoTransitionPage(
-          child: WizardsScreen(),
-        ),
+        builder: (context, state) => const WizardsScreen(),
       ),
       // GoRoute(
       //   parentNavigatorKey: _rootNavigatorKey,
