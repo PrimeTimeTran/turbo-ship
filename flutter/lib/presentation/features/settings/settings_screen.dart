@@ -25,6 +25,9 @@ class _SettingsScreenState extends State<SettingsScreen>
     var alpha = context.l10n.accommodations;
     var locale = BlocProvider.of<AppBloc>(context).state.locale;
     return CommonScaffold(
+      appBar: CommonAppBar(
+        onLeadingPressed: _handleOnLeadingPressed,
+      ),
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -181,5 +184,9 @@ class _SettingsScreenState extends State<SettingsScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+  }
+
+  void _handleOnLeadingPressed() {
+    context.pop();
   }
 }

@@ -72,7 +72,7 @@
     "**/bun.lockb": true
   },
   "editor.codeActionsOnSave": {
-    "quickfix.insertSemicolon": true
+    "quickfix.insertSemicolon": "explicit"
   },
   "dart.analysisExcludedFolders": [
     "netlify/functions/esm-muxter/Turboship/flutter",

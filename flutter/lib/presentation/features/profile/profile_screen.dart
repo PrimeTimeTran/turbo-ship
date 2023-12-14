@@ -12,8 +12,9 @@ class _ProfileScreenState extends State<ProfileScreen>
     with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    return const CommonScaffold(
-      body: SizedBox(
+    return CommonScaffold(
+      appBar: CommonAppBar(),
+      body: const SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

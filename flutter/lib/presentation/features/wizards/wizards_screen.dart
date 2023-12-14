@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:turboship/presentation/common_widgets/all.dart';
 
 class WizardsScreen extends StatefulWidget {
@@ -12,8 +13,11 @@ class _WizardsScreenState extends State<WizardsScreen>
     with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    return const CommonScaffold(
-      body: SizedBox(
+    return CommonScaffold(
+      appBar: CommonAppBar(
+        onLeadingPressed: _handleOnLeadingPressed,
+      ),
+      body: const SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -30,5 +34,9 @@ class _WizardsScreenState extends State<WizardsScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+  }
+
+  void _handleOnLeadingPressed() {
+    context.pop();
   }
 }

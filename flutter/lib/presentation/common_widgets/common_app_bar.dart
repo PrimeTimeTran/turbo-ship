@@ -6,9 +6,45 @@ import '../../core/extensions/all.dart';
 import '../resource/styles/all.dart';
 import 'all.dart';
 
+enum AppBarTitle {
+  text,
+  none,
+}
+
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String? title;
+
+  final VoidCallback? onLeadingPressed;
+  final VoidCallback? onTitlePressed;
+  final LeadingIcon leadingIcon;
+  final AppBarTitle titleType;
+  final bool? centerTitle;
+  final double elevation;
+  final List<Widget>? actions;
+  final double? height;
+  final bool automaticallyImplyLeading;
+  final Widget? flexibleSpace;
+  final PreferredSizeWidget? bottom;
+  final Color? shadowColor;
+  final ShapeBorder? shape;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final IconThemeData? iconTheme;
+  final IconThemeData? actionsIconTheme;
+  final bool primary;
+  final bool excludeHeaderSemantics;
+  final double? titleSpacing;
+  final double toolbarOpacity;
+  final double bottomOpacity;
+  final double? leadingWidth;
+  final TextStyle? titleTextStyle;
+  final Color? leadingIconColor;
+  final SystemUiOverlayStyle? systemOverlayStyle;
+  @override
+  final Size preferredSize;
+
   CommonAppBar({
-    Key? key,
+    super.key,
     this.title,
     this.onLeadingPressed,
     this.onTitlePressed,
@@ -36,45 +72,14 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleTextStyle,
     this.systemOverlayStyle,
     this.leadingIconColor,
-  })  : preferredSize = Size.fromHeight(height ?? Sizes.s56),
-        super(key: key);
-
-  final String? title;
-  final VoidCallback? onLeadingPressed;
-  final VoidCallback? onTitlePressed;
-  final LeadingIcon leadingIcon;
-  final AppBarTitle titleType;
-  final bool? centerTitle;
-  final double elevation;
-  final List<Widget>? actions;
-  final double? height;
-  final bool automaticallyImplyLeading;
-  final Widget? flexibleSpace;
-  final PreferredSizeWidget? bottom;
-  final Color? shadowColor;
-  final ShapeBorder? shape;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final IconThemeData? iconTheme;
-  final IconThemeData? actionsIconTheme;
-  final bool primary;
-  final bool excludeHeaderSemantics;
-  final double? titleSpacing;
-  final double toolbarOpacity;
-  final double bottomOpacity;
-  final double? leadingWidth;
-  final TextStyle? titleTextStyle;
-  final Color? leadingIconColor;
-  final SystemUiOverlayStyle? systemOverlayStyle;
-
-  @override
-  final Size preferredSize;
+  }) : preferredSize = Size.fromHeight(height ?? Sizes.s56);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: preferredSize.height,
-      automaticallyImplyLeading: leadingIcon != LeadingIcon.none ? automaticallyImplyLeading : false,
+      automaticallyImplyLeading:
+          leadingIcon != LeadingIcon.none ? automaticallyImplyLeading : false,
       flexibleSpace: flexibleSpace,
       bottom: bottom,
       shadowColor: shadowColor,
@@ -90,28 +95,13 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottomOpacity: bottomOpacity,
       leadingWidth: leadingWidth,
       systemOverlayStyle: systemOverlayStyle,
-      leading: leadingIcon == LeadingIcon.none ? null : _buildLeadingIcon().clickable(onLeadingPressed ?? context.pop),
+      leading: leadingIcon == LeadingIcon.none
+          ? null
+          : _buildLeadingIcon().clickable(onLeadingPressed ?? context.pop),
       centerTitle: centerTitle,
       title: _buildTitle(context),
       actions: actions != null ? [...actions!, AppSpacing.gapW12] : null,
       elevation: elevation,
-    );
-  }
-
-  Widget _buildTitle(BuildContext context) {
-    Widget? child = titleType == AppBarTitle.text ? Text(title ?? '', style: _getAppBarTextStyle(context)) : null;
-
-    if (child != null && leadingIcon == LeadingIcon.none) {
-      child = Padding(
-        padding: const EdgeInsets.only(left: 4.0),
-        child: child,
-      );
-    }
-
-    return GestureDetector(
-      onTap: onTitlePressed,
-      behavior: HitTestBehavior.translucent,
-      child: child,
     );
   }
 
@@ -158,6 +148,25 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
+  Widget _buildTitle(BuildContext context) {
+    Widget? child = titleType == AppBarTitle.text
+        ? Text(title ?? '', style: _getAppBarTextStyle(context))
+        : null;
+
+    if (child != null && leadingIcon == LeadingIcon.none) {
+      child = Padding(
+        padding: const EdgeInsets.only(left: 4.0),
+        child: child,
+      );
+    }
+
+    return GestureDetector(
+      onTap: onTitlePressed,
+      behavior: HitTestBehavior.translucent,
+      child: child,
+    );
+  }
+
   TextStyle _getAppBarTextStyle(BuildContext context) {
     if (titleTextStyle != null) {
       return titleTextStyle!;
@@ -171,10 +180,5 @@ enum LeadingIcon {
   logo,
   back,
   close,
-  none,
-}
-
-enum AppBarTitle {
-  text,
   none,
 }

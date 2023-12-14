@@ -66,16 +66,16 @@ extension AppPageX on AppPages {
         return '/forgot-password';
       case AppPages.changePassword:
         return '/change-password';
-      case AppPages.home:
-        return '/';
       case AppPages.settings:
         return '/settings';
       case AppPages.feed:
         return '/feed';
       case AppPages.notification:
         return '/notification';
+      case AppPages.home:
+        return '/home';
       case AppPages.wizards:
-        return '/wizards';
+        return '/home/wizards';
       case AppPages.profile:
         return '/profile';
     }

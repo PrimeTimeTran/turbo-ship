@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:turboship/core/all.dart';
 
-import '../../core/extensions/all.dart';
 import '../common_widgets/app_icon.dart';
 import '../common_widgets/common_scaffold.dart';
 import '../resource/gen/assets.gen.dart';
