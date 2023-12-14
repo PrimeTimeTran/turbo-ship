@@ -71,14 +71,11 @@ class MyAppTwo extends StatelessWidget {
                 previous.palette != current.palette ||
                 previous.locale != current.locale,
             builder: (context, state) {
-              LogUtil.i(state);
               var palette = state.palette;
               // ThemeMode goDark = getDarkTheme(palette);
               // ThemeMode goLight = getLightTheme(palette);
               ThemeData dark = themeMap[palette]!['dark']!;
               ThemeData light = themeMap[palette]!['light']!;
-              LogUtil.i(state.palette);
-              LogUtil.i(state.isDarkTheme);
               ThemeMode themeMode =
                   state.isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 

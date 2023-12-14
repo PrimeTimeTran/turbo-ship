@@ -22,7 +22,7 @@ class CustomTable extends StatefulWidget {
   State<CustomTable> createState() => _CustomTableState();
 }
 
-enum Sizes { extraSmall, small, medium, large, extraLarge }
+enum Sizes { extraSmall, small, medium, large, extraLarge, s32 }
 
 class _CustomTableState extends State<CustomTable> {
   List selectedContacts = [];

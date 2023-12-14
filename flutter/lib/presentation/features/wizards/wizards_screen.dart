@@ -13,7 +13,6 @@ class _WizardsScreenState extends State<WizardsScreen>
   @override
   Widget build(BuildContext context) {
     return const CommonScaffold(
-      bottomNavigationBar: BottomTabs(),
       body: SizedBox(
         width: double.infinity,
         child: Column(

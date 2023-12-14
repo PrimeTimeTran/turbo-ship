@@ -57,7 +57,6 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
 
   FutureOr<void> _onAppInitiated(AppInitiated event, Emitter<AppState> emit) {
     add(const GetAppServerConfig());
-    LogUtil.i('_onAppInitiated');
     // if (state.isLoggedIn) {
     //   add(
     //     GetCurrentUser(

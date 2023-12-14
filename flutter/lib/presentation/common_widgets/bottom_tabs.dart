@@ -20,14 +20,24 @@ class _BottomTabsState extends State<BottomTabs> {
   var idx = 0;
   @override
   Widget build(BuildContext context) {
+    // GoRouteInformationProvider routeInfo =
+    //     AppRouter.router.routeInformationProvider;
+
+    // Map<String, dynamic> routeMap = {
+    //   'location': routeInfo,
+    // };
+
+    // var go = AppRouter.router.namedLocation();
+    // LogUtil.i(name: 'Route', go);
+    // LogUtil.prettyJson({'sosos': 'sososo'});
+
     return NavigationBar(
       onDestinationSelected: (int index) {
-        LogUtil.i(name: '$index', '$index', 'sososo');
         final screen = bottomTabs[index];
         context.go(screen);
-        // setState(() {
-        //   idx = index;
-        // });
+        setState(() {
+          idx = index;
+        });
       },
       destinations: const <Widget>[
         NavigationDestination(

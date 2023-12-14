@@ -11,14 +11,20 @@ import 'package:turboship/presentation/routing/router/app_router.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 
-class __SettingsScreenStateState extends State<_SettingsScreenState>
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen>
     with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     var alpha = context.l10n.accommodations;
     var locale = BlocProvider.of<AppBloc>(context).state.locale;
     return CommonScaffold(
-      bottomNavigationBar: const BottomTabs(),
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -176,11 +182,4 @@ class __SettingsScreenStateState extends State<_SettingsScreenState>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
-}
-
-class _SettingsScreenState extends StatefulWidget {
-  const _SettingsScreenState({super.key});
-
-  @override
-  State<_SettingsScreenState> createState() => __SettingsScreenStateState();
 }

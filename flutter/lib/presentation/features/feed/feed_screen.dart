@@ -16,7 +16,6 @@ class _FeedScreenState extends State<FeedScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return const CommonScaffold(
-      bottomNavigationBar: BottomTabs(),
       body: SizedBox(
         width: double.infinity,
         child: Column(

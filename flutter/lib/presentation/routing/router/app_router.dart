@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:turboship/core/utils/all.dart';
 import 'package:turboship/presentation/features/feed/feed_screen.dart';
 import 'package:turboship/presentation/features/home/home_screen.dart';
 import 'package:turboship/presentation/features/notification/notification_screen.dart';
+import 'package:turboship/presentation/features/settings/settings_screen.dart';
 
 import '../../../core/configs/di/di.dart';
 import '../../common_blocs/app/app_bloc.dart';
@@ -11,6 +13,8 @@ import '../observer/navigator_observer.dart';
 
 part '_route_helper.dart';
 part '_transitions.dart';
+
+// https://medium.com/@ahm4d.bilal/using-gorouters-shellroute-in-flutter-for-nested-navigation-777a9a20642f
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -25,56 +29,74 @@ class AppRouter {
     initialLocation: _initialLocation,
     routes: [
       // ########## AUTH ##########
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppPages.welcome.path,
-        name: AppPages.welcome.name,
-        builder: (BuildContext context, GoRouterState state) {
-          return const WelcomePage();
+      // GoRoute(
+      //   parentNavigatorKey: _rootNavigatorKey,
+      //   path: AppPages.welcome.path,
+      //   name: AppPages.welcome.name,
+      //   builder: (BuildContext context, GoRouterState state) {
+      //     return const WelcomePage();
+      //   },
+      //   pageBuilder: (context, state) => FadeTransitionPage(
+      //     child: const WelcomePage(),
+      //   ),
+      // ),
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return ScaffoldWithNavigationBar(
+              location: state.matchedLocation, child: child);
         },
-        pageBuilder: (context, state) => FadeTransitionPage(
-          child: const WelcomePage(),
-        ),
-      ),
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppPages.home.path,
-        name: AppPages.home.name,
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomeScreen();
-        },
-      ),
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppPages.feed.path,
-        name: AppPages.feed.name,
-        builder: (BuildContext context, GoRouterState state) {
-          return const FeedScreen();
-        },
-      ),
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppPages.notification.path,
-        name: AppPages.notification.name,
-        builder: (BuildContext context, GoRouterState state) {
-          return const NotificationScreen();
-        },
-      ),
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppPages.wizards.path,
-        name: AppPages.wizards.name,
-        builder: (BuildContext context, GoRouterState state) {
-          return const WizardsScreen();
-        },
-      ),
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppPages.profile.path,
-        name: AppPages.profile.name,
-        builder: (BuildContext context, GoRouterState state) {
-          return const ProfileScreen();
-        },
+        routes: [
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: AppPages.home.path,
+            name: AppPages.home.name,
+            builder: (BuildContext context, GoRouterState state) {
+              LogUtil.i(name: 'dodo', state.name);
+              return const HomeScreen();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: AppPages.feed.path,
+            name: AppPages.feed.name,
+            builder: (BuildContext context, GoRouterState state) {
+              return const FeedScreen();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: AppPages.notification.path,
+            name: AppPages.notification.name,
+            builder: (BuildContext context, GoRouterState state) {
+              return const NotificationScreen();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: AppPages.profile.path,
+            name: AppPages.profile.name,
+            builder: (BuildContext context, GoRouterState state) {
+              return const ProfileScreen();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: AppPages.wizards.path,
+            name: AppPages.wizards.name,
+            builder: (BuildContext context, GoRouterState state) {
+              return const WizardsScreen();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: AppPages.settings.path,
+            name: AppPages.settings.name,
+            builder: (BuildContext context, GoRouterState state) {
+              return const SettingsScreen();
+            },
+          ),
+        ],
       ),
       // GoRoute(
       //   parentNavigatorKey: _rootNavigatorKey,
