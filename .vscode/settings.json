@@ -1,4 +1,11 @@
 {
+  "editor.codeActionsOnSave": {
+    "quickfix.insertSemicolon": true
+  },
+  // Focusing flutter so ignore server when searching
+  "search.exclude": {
+    "**/server": true
+  },
   "files.exclude": {
     // #### Root
     ".netlify": true,
@@ -30,28 +37,33 @@
     "**/*.g.dart": true,
     "**/.flutter-plugins-dependencies": true,
 
+    // Temp while focusiong on clean archi/di
+    "**/android": true,
+    "**/ios": true,
+    "**/l10n": true,
+
     // #### Focus Flutter: start
 
-    // "assets": true,
-    // "components": true,
-    // "composables": true,
-    // "content": true,
-    // "layouts": true,
-    // "pages": true,
-    // "plugins": true,
-    // "public": true,
-    // "utils": true,
-    // "tailwind.config.js": true,
-    // "package.json": true,
-    // "app.vue": true,
-    // "tsconfig.json": true,
-    // ".env": true,
-    // "netlify": true,
+    "assets": true,
+    "components": true,
+    "composables": true,
+    "content": true,
+    "layouts": true,
+    "pages": true,
+    "plugins": true,
+    "public": true,
+    "utils": true,
+    "tailwind.config.js": true,
+    "package.json": true,
+    "app.vue": true,
+    "tsconfig.json": true,
+    ".env": true,
+    "netlify": true,
 
     // #### Focus Flutter: end
     // #### Focus Nuxt: start
 
-    "flutter": true,
+    // "flutter": true,
 
     // #### Focus Nuxt: end
 
@@ -73,5 +85,5 @@
     "titleBar.inactiveBackground": "#3b8070",
     "titleBar.inactiveForeground": "#000000CC"
   },
-  "cSpell.words": ["headlessui", "Pinia", "Reactionable", "realestate", "toastify", "vuedraggable"]
+  "cSpell.words": ["headlessui", "Pinia", "Reactionable", "realestate", "toastify", "usecases", "vuedraggable"]
 }

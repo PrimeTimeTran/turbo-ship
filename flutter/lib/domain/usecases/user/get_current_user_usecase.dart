@@ -1,12 +1,15 @@
 import 'package:injectable/injectable.dart';
+import 'package:turboship/all.dart';
 
-import '../../entities/user.dart';
-import '../../repositories/user_repo.dart';
-import '../base/base_params.dart';
-import '../base/base_usecases.dart';
+class GetCurrentUserParams extends BaseUsecaseParams {
+  final bool forceRefreshToken;
+
+  const GetCurrentUserParams({this.forceRefreshToken = false});
+}
 
 @injectable
-class GetCurrentUserUseCase extends BaseFutureUseCase<GetCurrentUserParams, User> {
+class GetCurrentUserUseCase
+    extends BaseFutureUseCase<GetCurrentUserParams, User> {
   final UserRepository _repository;
 
   GetCurrentUserUseCase(this._repository);
@@ -17,10 +20,4 @@ class GetCurrentUserUseCase extends BaseFutureUseCase<GetCurrentUserParams, User
       forceRefreshToken: params.forceRefreshToken,
     );
   }
-}
-
-class GetCurrentUserParams extends BaseUsecaseParams {
-  final bool forceRefreshToken;
-
-  const GetCurrentUserParams({this.forceRefreshToken = false});
 }

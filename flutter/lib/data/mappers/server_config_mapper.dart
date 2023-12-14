@@ -5,7 +5,8 @@ import '../models/all.dart';
 import 'base/base_data_mapper.dart';
 
 @injectable
-class ServerConfigMapper extends BaseDataMapper<ServerConfigData, ServerConfig> {
+class ServerConfigMapper
+    extends BaseDataMapper<ServerConfigData, ServerConfig> {
   @override
   ServerConfig mapToEntity(ServerConfigData data) {
     return ServerConfig(

@@ -1,10 +1,6 @@
 import '../../../../core/exceptions/all.dart';
 import '../error_response/error_response_mapper.dart';
 
-enum ErrorResponseMapperType {
-  jsonObject,
-}
-
 abstract class BaseErrorResponseMapper<T> {
   const BaseErrorResponseMapper();
 
@@ -42,4 +38,8 @@ abstract class BaseErrorResponseMapper<T> {
   }
 
   ServerError mapToServerError(T? errorResponse);
+}
+
+enum ErrorResponseMapperType {
+  jsonObject,
 }

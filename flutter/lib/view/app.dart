@@ -4,9 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:turboship/all.dart';
 
-import 'blocs/app/app_bloc.dart';
-import 'blocs/app/app_state.dart';
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
