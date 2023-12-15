@@ -13,6 +13,6 @@ class GetEntitiesUseCase extends BaseFutureListUseCase<NoParams, Entity> {
 
   @override
   Future<List<Entity>> buildUseCase(NoParams params) async {
-    return _repository.getEntities();
+    return await _repository.getEntities();
   }
 }

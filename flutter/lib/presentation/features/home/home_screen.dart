@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:turboship/all.dart';
-import 'package:turboship/presentation/common_blocs/app/app_bloc.dart';
-import 'package:turboship/presentation/common_widgets/all.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,6 +36,28 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               width: double.infinity,
               label: 'Wizards',
             ),
+            BlocProvider(
+              create: (_) => getIt.get<EntityBloc>(),
+              child: BlocBuilder<EntityBloc, EntityState>(
+                buildWhen: (previous, current) =>
+                    previous.entities?.length != current.entities?.length,
+                builder: (context, state) {
+                  LogUtil.i(name: 'Building Bloc', state.entities?.length);
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: state.entities?.length ?? 0,
+                      itemBuilder: (context, idx) {
+                        LogUtil.i(
+                            name: 'Widget: Home Screen ',
+                            state.entities?.length);
+                        return itemBuilder(state.entities![
+                            idx]); // Assuming itemBuilder takes Entity data
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -47,6 +68,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+  }
+
+  itemBuilder(item) {
+    return Text(item.firstName);
   }
 
   void _handleOnLeadingPressed() {

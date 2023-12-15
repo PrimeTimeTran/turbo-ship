@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
+// Data sources are responsible for handling all the operations]
+// related to data retrieval & manipulation
 abstract interface class UserDataSource {
   Future<UserData> getCurrentUser();
 

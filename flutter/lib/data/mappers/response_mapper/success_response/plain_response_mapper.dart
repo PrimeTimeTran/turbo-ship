@@ -1,9 +1,11 @@
-import '../../../../core/exceptions/all.dart';
+import 'package:turboship/all.dart';
+
 import '../base/base_success_response_mapper.dart';
 
 class PlainResponseMapper<T> extends BaseSuccessResponseMapper<T, T> {
   @override
   T mapToDataModel(response, Decoder<T>? decoder) {
+    LogUtil.i(name: 'plain_response_mapper', 'plain_response_mapper');
     assert(decoder == null);
     if (response is T) {
       return response;

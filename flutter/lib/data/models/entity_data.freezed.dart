@@ -20,14 +20,9 @@ EntityData _$EntityDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EntityData {
-  String get id => throw _privateConstructorUsedError;
-  String get fullName => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  DateTime? get dateOfBirth => throw _privateConstructorUsedError;
-  String? get gender => throw _privateConstructorUsedError;
-  String? get referralCode => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,15 +36,7 @@ abstract class $EntityDataCopyWith<$Res> {
           EntityData value, $Res Function(EntityData) then) =
       _$EntityDataCopyWithImpl<$Res, EntityData>;
   @useResult
-  $Res call(
-      {String id,
-      String fullName,
-      String firstName,
-      String lastName,
-      String email,
-      DateTime? dateOfBirth,
-      String? gender,
-      String? referralCode});
+  $Res call({String? id, String? firstName, String? email});
 }
 
 /// @nodoc
@@ -65,47 +52,22 @@ class _$EntityDataCopyWithImpl<$Res, $Val extends EntityData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? fullName = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? email = null,
-    Object? dateOfBirth = freezed,
-    Object? gender = freezed,
-    Object? referralCode = freezed,
+    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
+              as String?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateOfBirth: freezed == dateOfBirth
-          ? _value.dateOfBirth
-          : dateOfBirth // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      gender: freezed == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      referralCode: freezed == referralCode
-          ? _value.referralCode
-          : referralCode // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -119,15 +81,7 @@ abstract class _$$EntityDataImplCopyWith<$Res>
       __$$EntityDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String fullName,
-      String firstName,
-      String lastName,
-      String email,
-      DateTime? dateOfBirth,
-      String? gender,
-      String? referralCode});
+  $Res call({String? id, String? firstName, String? email});
 }
 
 /// @nodoc
@@ -141,47 +95,22 @@ class __$$EntityDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? fullName = null,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? email = null,
-    Object? dateOfBirth = freezed,
-    Object? gender = freezed,
-    Object? referralCode = freezed,
+    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? email = freezed,
   }) {
     return _then(_$EntityDataImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
+              as String?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateOfBirth: freezed == dateOfBirth
-          ? _value.dateOfBirth
-          : dateOfBirth // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      gender: freezed == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
-      referralCode: freezed == referralCode
-          ? _value.referralCode
-          : referralCode // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -190,39 +119,21 @@ class __$$EntityDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EntityDataImpl implements _EntityData {
-  const _$EntityDataImpl(
-      {required this.id,
-      required this.fullName,
-      required this.firstName,
-      required this.lastName,
-      required this.email,
-      this.dateOfBirth,
-      this.gender,
-      this.referralCode});
+  const _$EntityDataImpl({this.id, this.firstName, this.email});
 
   factory _$EntityDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$EntityDataImplFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String fullName;
+  final String? firstName;
   @override
-  final String firstName;
-  @override
-  final String lastName;
-  @override
-  final String email;
-  @override
-  final DateTime? dateOfBirth;
-  @override
-  final String? gender;
-  @override
-  final String? referralCode;
+  final String? email;
 
   @override
   String toString() {
-    return 'EntityData(id: $id, fullName: $fullName, firstName: $firstName, lastName: $lastName, email: $email, dateOfBirth: $dateOfBirth, gender: $gender, referralCode: $referralCode)';
+    return 'EntityData(id: $id, firstName: $firstName, email: $email)';
   }
 
   @override
@@ -231,24 +142,14 @@ class _$EntityDataImpl implements _EntityData {
         (other.runtimeType == runtimeType &&
             other is _$EntityDataImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.dateOfBirth, dateOfBirth) ||
-                other.dateOfBirth == dateOfBirth) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.referralCode, referralCode) ||
-                other.referralCode == referralCode));
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, fullName, firstName,
-      lastName, email, dateOfBirth, gender, referralCode);
+  int get hashCode => Object.hash(runtimeType, id, firstName, email);
 
   @JsonKey(ignore: true)
   @override
@@ -266,34 +167,19 @@ class _$EntityDataImpl implements _EntityData {
 
 abstract class _EntityData implements EntityData {
   const factory _EntityData(
-      {required final String id,
-      required final String fullName,
-      required final String firstName,
-      required final String lastName,
-      required final String email,
-      final DateTime? dateOfBirth,
-      final String? gender,
-      final String? referralCode}) = _$EntityDataImpl;
+      {final String? id,
+      final String? firstName,
+      final String? email}) = _$EntityDataImpl;
 
   factory _EntityData.fromJson(Map<String, dynamic> json) =
       _$EntityDataImpl.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
-  String get fullName;
+  String? get firstName;
   @override
-  String get firstName;
-  @override
-  String get lastName;
-  @override
-  String get email;
-  @override
-  DateTime? get dateOfBirth;
-  @override
-  String? get gender;
-  @override
-  String? get referralCode;
+  String? get email;
   @override
   @JsonKey(ignore: true)
   _$$EntityDataImplCopyWith<_$EntityDataImpl> get copyWith =>

@@ -22,6 +22,7 @@ export default defineEventHandler(async (e) => {
       },
       data,
     }
+    // return [{ id: 'sos', email: 'sosos', firstName: 'sosos', lastName: 'sosos', fullName: '', fuckYou: 'odfodo' }]
     return response
   } catch (error) {
     console.log({

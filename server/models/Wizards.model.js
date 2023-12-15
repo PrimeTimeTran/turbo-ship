@@ -96,6 +96,10 @@ const wizardSchema = new Schema({
     enum: ['gryffindor', 'slytherin', 'hufflepuff', 'ravenclaw', 'unknown'],
   },
 })
+wizardSchema.virtual('id').get(function () {
+  return this._id.toHexString()
+})
+wizardSchema.set('toJSON', { virtuals: true })
 Auditor.addHooks(wizardSchema)
 export { wizardSchema }
 export const Wizards = mongoose.model('Wizards', wizardSchema)

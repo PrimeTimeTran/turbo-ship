@@ -10,22 +10,18 @@ class EntityMapper extends BaseDataMapper<EntityData, Entity>
   @override
   EntityData mapToData(Entity entity) {
     return EntityData(
-      id: entity.id.trim(),
-      email: entity.email,
-      firstName: entity.firstName,
-      lastName: entity.lastName,
-      fullName: entity.fullName,
+      id: entity.id?.trim() ?? '',
+      email: entity.email ?? '',
+      firstName: entity.firstName ?? '',
     );
   }
 
   List<Entity> mapToEntities(List<EntityData> dataList) {
     return dataList.map((data) {
       return Entity(
-        id: data.id.trim(),
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        fullName: data.fullName,
+        id: data.id ?? '',
+        email: data.email ?? '',
+        firstName: data.firstName ?? '',
       );
     }).toList();
   }
@@ -33,11 +29,9 @@ class EntityMapper extends BaseDataMapper<EntityData, Entity>
   @override
   Entity mapToEntity(EntityData data) {
     return Entity(
-      id: data.id.trim(),
-      email: data.email,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      fullName: data.fullName,
+      id: data.id ?? '',
+      email: data.email ?? '',
+      firstName: data.firstName ?? '',
     );
   }
 }

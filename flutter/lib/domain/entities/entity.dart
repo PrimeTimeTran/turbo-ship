@@ -5,20 +5,18 @@ part 'entity.g.dart';
 
 @JsonSerializable()
 class Entity extends Equatable {
-  final String id;
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String fullName;
+  final String? id;
+  final String? email;
+  final String? firstName;
   const Entity({
-    required this.id,
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.fullName,
+    this.id,
+    this.email,
+    this.firstName,
   });
   factory Entity.fromJson(Map<String, dynamic> json) => _$EntityFromJson(json);
+
   @override
-  List<Object?> get props => [id, email, firstName, lastName, fullName];
+  List<Object?> get props => [id, email, firstName];
+
   Map<String, dynamic> toJson() => _$EntityToJson(this);
 }
