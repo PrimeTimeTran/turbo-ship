@@ -1,3 +1,4 @@
+// Turbo: Represent the structure of the data the app will use
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_data.freezed.dart';
@@ -14,5 +15,6 @@ class UserData with _$UserData {
     String? referralCode,
   }) = _UserData;
 
-  factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
+  factory UserData.fromJson(Map<String, dynamic> json) =>
+      _$UserDataFromJson(json);
 }

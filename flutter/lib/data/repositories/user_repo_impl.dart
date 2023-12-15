@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:turboship/all.dart';
 
+// Turbo: Repository are a bridge between datasources & domain layer by providing a clean API to the domain layer to interact with the data. Local vs Remote
 @LazySingleton(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
   final UserDataSource _datasource;

@@ -3,7 +3,6 @@ import 'package:turboship/all.dart';
 import 'package:turboship/data/datasources/entity_datasource.dart';
 import 'package:turboship/data/models/entity_data.dart';
 
-// UserRepositoryImpl
 @LazySingleton(as: EntityRepository)
 class EntityRepositoryImpl implements EntityRepository {
   final EntityDataSource _datasource;

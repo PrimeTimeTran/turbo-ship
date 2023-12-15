@@ -11,26 +11,26 @@ Welcome aboard!
 - [SyncFusion Charts](https://help.syncfusion.com/flutter/introduction/widget-examples)
 
 ## Architecture
-[Clean Architecture](https://www.youtube.com/watch?v=zon3WgmcqQw&ab_channel=FlutterGuys)
+Turboship uses [Clean Architecture](https://www.youtube.com/watch?v=zon3WgmcqQw&ab_channel=FlutterGuys).
 
+### [Data Layer](https://www.youtube.com/watch?v=0ShDhjiEruQ&ab_channel=MaxonFlutter)
 
-Data Layer
-  Repositories 
-  Data sources
-    Remote 
-    Local
-  Model
+- Repositories 
+- Data sources
+  - Remote
+  - Local
+- Model
 
-Domain
-  Entities
-    Objects returned to us or those we send to an api
-  Repository
-    Abstract classes, contracts
-  Use case
-    App specific business rules.
-      Sign up, login...
+### [Domain](https://www.youtube.com/watch?v=AlOVRC6eJqE&ab_channel=MaxonFlutter)
 
-
+- Entities
+  - Objects returned to us or those we send to an api
+- Repository
+  - Abstract classes, contracts
+- Use case
+  - App specific business rules.
+    - Sign up, login...
+### [Presentation](https://www.youtube.com/watch?v=jUZQwXdTICg&ab_channel=MaxonFlutter)
 
 ---
 
@@ -89,4 +89,4 @@ flutter build appbundle --dart-define=FLAVOR=production
 
 ### Troubleshooting
 
-CLI Flavor arguments don't seem to pass to iOS
+CLI flavor arguments don't seem to pass to iOS

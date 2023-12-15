@@ -13,6 +13,7 @@ const localizationsDelegates = [
 const supportedLocales = [
   Locale('en', null),
   Locale('vi', null),
+  Locale('es', null),
 ];
 
 Locale? localeResolutionCallback(locale, supportedLocales) {

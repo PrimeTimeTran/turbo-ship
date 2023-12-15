@@ -35,8 +35,8 @@
     "**/.flutter-plugins-dependencies": true,
 
     // Temp while focusiong on clean archi/di
-    "**/android": true,
-    "**/ios": true,
+    // "**/android": true,
+    // "**/ios": true,
     "**/l10n": true,
 
     // #### Focus Flutter: start

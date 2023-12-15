@@ -10,11 +10,33 @@ Welcome aboard!
 - [JsonSerializable](https://pub.dev/packages/json_serializable)
 - [SyncFusion Charts](https://help.syncfusion.com/flutter/introduction/widget-examples)
 
+## Architecture
+Turboship uses [Clean Architecture](https://www.youtube.com/watch?v=zon3WgmcqQw&ab_channel=FlutterGuys).
+
+### [Data Layer](https://www.youtube.com/watch?v=0ShDhjiEruQ&ab_channel=MaxonFlutter)
+
+- Repositories 
+- Data sources
+  - Remote
+  - Local
+- Model
+
+### [Domain](https://www.youtube.com/watch?v=AlOVRC6eJqE&ab_channel=MaxonFlutter)
+
+- Entities
+  - Objects returned to us or those we send to an api
+- Repository
+  - Abstract classes, contracts
+- Use case
+  - App specific business rules.
+    - Sign up, login...
+### [Presentation](https://www.youtube.com/watch?v=jUZQwXdTICg&ab_channel=MaxonFlutter)
+
 ---
 
 ## Getting Started 🚀
 
-This project contains 3 flavors:
+This project contains 2 flavors:
 
 - development
 - production
@@ -40,7 +62,7 @@ flutter build web --release --web-renderer html --no-tree-shake-icons --dart-def
 
 <!-- On Netlify -->
 ```sh
-if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --web-renderer html --no-tree-shake-icons --dart-define=FLAVOR=production --dart-define=TENANT_ID=64f8b45d93e2e85811609d7b && sed -i 's#<base href="/">#<base href="https://app.1long.vn">#g' build/web/index.html
+if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --web-renderer html --no-tree-shake-icons --dart-define=FLAVOR=production --dart-define=TENANT_ID=64f8b45d93e2e85811609d7b && sed -i 's#<base href="/">#<base href="https://turboship.ltran.net">#g' build/web/index.html
 ```
 
 ### iOS
@@ -60,22 +82,11 @@ Creates an app bundle at `./build/app/outputs/bundle/productionRelease/app-produ
 ```sh
 # Check on local first
 flutter run appbundle --flavor=production
-
 # Then build production ipa
 flutter build appbundle --dart-define=FLAVOR=production
 ```
 ## Troubleshooting
 
-### Notable files
+### Troubleshooting
 
-#### Routes
-[./lib/view/nav/routes.dart](https://github.com/onelong-org/1long-client/blob/main/lib/view/nav/routes.dart)
-
-#### Root Navigation
-[./lib/view/nav/root_nav.dart](https://github.com/onelong-org/1long-client/blob/main/lib/view/nav/root_nav.dart)
-
-#### Environment setup
-[./lib/utils/environment.dart](https://github.com/onelong-org/1long-client/blob/main/lib/utils/environment.dart)
-
-#### Material entry
-[./lib/app/app.dart](https://github.com/onelong-org/1long-client/blob/main/lib/app/app.dart)
+CLI flavor arguments don't seem to pass to iOS

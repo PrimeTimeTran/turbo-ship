@@ -1,4 +1,5 @@
 #!/bin/bash
+# Turbo: This script will copy the 'common' src files which are shared between all Nuxt projects regardless of template
 
 # Get the absolute path of the directory containing this script
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
