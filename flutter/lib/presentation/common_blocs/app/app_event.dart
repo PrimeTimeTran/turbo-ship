@@ -37,12 +37,23 @@ class GetAppServerConfig extends AppEvent with _$GetAppServerConfig {
 @freezed
 class GetCurrentUser extends AppEvent with _$GetCurrentUser {
   const factory GetCurrentUser({
-    // FutureOr<void> Function(User user)? onSuccess,
+    FutureOr<void> Function(User user)? onSuccess,
     FutureOr<void> Function(Object error)? onError,
     @Default(false) bool checkContractStatus,
     Completer<void>? completer,
     @Default(false) bool forceRefreshToken,
   }) = _GetCurrentUser;
+}
+
+@freezed
+class GetEntities extends AppEvent with _$GetEntities {
+  const factory GetEntities({
+    FutureOr<void> Function(List<Entity> entities)? onSuccess,
+    FutureOr<void> Function(Object error)? onError,
+    @Default(false) bool checkContractStatus,
+    Completer<void>? completer,
+    @Default(false) bool forceRefreshToken,
+  }) = _GetEntities;
 }
 
 @freezed

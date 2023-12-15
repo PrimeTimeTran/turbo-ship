@@ -3,7 +3,6 @@ export 'helpers.dart';
 export 'http_override.dart';
 export 'money_helpers.dart';
 export 'number_helpers.dart';
-export 'providers.dart';
 export 'stream/disposable.dart';
 export 'stream/dispose_bag.dart';
 export 'stream/stream.dart';

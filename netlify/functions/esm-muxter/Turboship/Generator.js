@@ -1,5 +1,4 @@
 import { frameworkMap } from './Framework.js'
-import { AdminBuilder } from './builders/AdminBuilder.js'
 import { ModelBuilder } from './builders/ModelBuilder.js'
 
 export default class Generator {
@@ -23,31 +22,9 @@ export default class Generator {
 }
 
 function buildAdminUI(entities, options, zip) {
-  entities.map(async (e) => {
-    const admin = new AdminBuilder(entities, options, zip)
-    admin.e = e
-
-    let fullPath = `nuxt/components/Admin/${e.pluralL}`
-
-    frameworkMap[options.backend].adminUIFiles.forEach((fileName) => {
-      const content = admin[frameworkMap[options.backend].adminBuildMethodMap[fileName]]()
-      let name = `${fullPath}/${fileName}`
-      zip.file(name, content)
-    })
-
-    fullPath = `nuxt/pages/Administrator/${e.pluralL}`
-
-    let content = admin.buildIndexPage()
-    let name = `${fullPath}/index.vue`
-    zip.file(name, content)
-
-    content = admin.buildEntityUseHook()
-    name = `nuxt/composables/use${capitalize(e.plural)}.${options.language}`
-    zip.file(name, content)
-  })
-  const content = AdminBuilder.buildAside(entities)
-  let name = `nuxt/components/Admin/Aside.vue`
-  zip.file(name, content)
+  let content = frameworkMap[options.backend].buildGlobalMeta(entities)
+  let name = `nuxt/utils/Global.js`
+  zip.file(name, content + '}')
 }
 
 function buildModels(entities, options, zip) {
@@ -75,12 +52,4 @@ function buildRoutes(routes, entities, options, zip) {
     }
     zip.generateAsync({ type: 'nodebuffer' }).then((content) => {})
   })
-}
-
-const capitalize = (word) => {
-  const firstLetter = word?.charAt(0)
-  const firstLetterCap = firstLetter.toUpperCase()
-  const remainingLetters = word.slice(1)
-  const capitalizedWord = firstLetterCap + remainingLetters
-  return capitalizedWord
 }

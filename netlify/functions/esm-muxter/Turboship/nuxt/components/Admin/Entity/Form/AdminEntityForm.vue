@@ -6,20 +6,27 @@ const props = defineProps(['entity', 'entityType'])
 const items = ref([])
 
 function setEntityFields() {
-  let fields = []
-  let entries = Object.entries(props.entity)
-  let blackListed = ['_id', '__v']
-  entries.forEach((e) => {
-    if (!blackListed.includes(e[0])) {
-      let item = {
-        name: e[0],
-        value: e[1],
-        type: entitiesMeta[props.entityType][e[0]].type,
+  try {
+    let fields = []
+    let entries = Object.entries(props.entity)
+    let blackListed = ['_id', '__v', '']
+
+    entries.forEach((e) => {
+      if (!blackListed.includes(e[0])) {
+        let item = {
+          name: e[0],
+          value: e[1],
+          type: GlobalState.entities[props.entityType][e[0]]?.type,
+        }
+        fields.push(item)
       }
-      fields.push(item)
-    }
-  })
-  items.value = fields
+    })
+    items.value = fields
+  } catch (error) {
+    console.log({
+      error,
+    })
+  }
 }
 setEntityFields()
 function toggleModal(id) {
@@ -74,9 +81,9 @@ function makeDate(val) {
                   :value="field.value"
                   :entityType="entityType"
                   v-model="entity[field.name]"
-                  :label="entitiesMeta[entityType][field.name].label"
-                  :options="entitiesMeta[entityType][field.name].options"
-                  :multiple="entitiesMeta[entityType][field.name].type === 'enumeratorMulti'"
+                  :label="GlobalState.entities[entityType][field.name]?.label"
+                  :options="GlobalState.entities[entityType][field.name]?.options"
+                  :multiple="GlobalState.entities[entityType][field.name]?.type === 'enumeratorMulti'"
                 />
                 <AdminEntityFormField
                   v-else
@@ -86,8 +93,8 @@ function makeDate(val) {
                   :entityType="entityType"
                   :value="makeDate(entity[field.name])"
                   :v-model="makeDate(entity[field.name])"
-                  :label="entitiesMeta[entityType][field.name].label"
-                  :options="entitiesMeta[entityType][field.name].options"
+                  :label="GlobalState.entities[entityType][field.name]?.label"
+                  :options="GlobalState.entities[entityType][field.name]?.options"
                 />
               </div>
             </div>

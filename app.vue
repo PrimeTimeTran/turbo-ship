@@ -5,7 +5,7 @@ createHead()
 useHead({
   script: [
     {
-      innerHTML: 'console.log("App.vue Loading")',
+      innerHTML: 'console.log("App.vue")',
       tagPosition: 'head',
     },
   ],

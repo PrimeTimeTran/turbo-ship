@@ -3,10 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:turboship/all.dart';
 
-import '../../../../../core/utils/all.dart';
-import '../../../../repositories/refresh_token_repo.dart';
-import '../api.dart';
 import 'base_interceptor.dart';
 
 class PendingRequest {

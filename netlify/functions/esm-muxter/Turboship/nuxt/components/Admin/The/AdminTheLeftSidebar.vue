@@ -1,16 +1,8 @@
 <script setup>
-import {
-  LanguageIcon,
-  Bars4Icon,
-  ChartPieIcon,
-  ClockIcon,
-  UserGroupIcon,
-  TableCellsIcon,
-} from '@heroicons/vue/20/solid'
+import { Bars4Icon, LanguageIcon, TableCellsIcon } from '@heroicons/vue/20/solid'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-
 function redirect(entity) {
   router.push(`/administrator/${entity}`)
 }
@@ -19,16 +11,6 @@ const state = ref({
   leftOpen: true,
   rightOpen: false,
 })
-
-const entities = [
-  { path: 'dashboard', label: 'Dashboard', icon: ChartPieIcon },
-  { path: 'auditlogs', label: 'Audit Logs', icon: ClockIcon },
-  { path: 'users', label: 'Users', icon: UserGroupIcon },
-  { path: 'wizards', label: 'Wizards' },
-  { path: 'foos', label: 'Foos' },
-  { path: 'bars', label: 'Bars' },
-  { path: 'spams', label: 'Spams' },
-]
 </script>
 <template>
   <div class="drawer-side">
@@ -43,11 +25,12 @@ const entities = [
       <VSidebarItem :text="'Turboship'" :state="state" @click="state.leftOpen = !state.leftOpen" :icon="Bars4Icon" />
       <div class="divider"></div>
       <VSidebarItem
-        v-for="foo in entities"
+        v-for="foo in GlobalState.sidebar"
         :text="foo.label"
         :state="state"
         @click="redirect(foo.path)"
         :icon="foo.icon || TableCellsIcon"
+        :focused="router.currentRoute.value.fullPath.includes(foo.path)"
       />
       <div class="grow" />
       <div class="divider" />
@@ -65,6 +48,9 @@ const entities = [
           class="dropdown-content menu px-2 shadow bg-slate-200 dark:bg-base-200 dark:text-white rounded-box w-52 border"
         >
           <li><a>English</a></li>
+          <li>
+            <a><div @click="document.getElementById('globalModalBtn').click()" id="toggleModal"></div></a>
+          </li>
           <li><a>Vietnamese</a></li>
         </ul>
       </div>

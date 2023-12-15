@@ -55,6 +55,7 @@
     "@vueuse/core": "^10.5.0",
     "animated-scroll-to": "^2.3.0",
     "bcryptjs": "^2.4.3",
+    "chart.js": "^4.4.1",
     "core-js": "^3.33.3",
     "daisyui": "^4.4.17",
     "firebase": "^10.6.0",

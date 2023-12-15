@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'common_blocs/app/app_bloc.dart';
+import 'package:turboship/all.dart';
 
 class AppBlocProviders extends StatelessWidget {
   final Widget child;

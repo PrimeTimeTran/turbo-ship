@@ -51,7 +51,7 @@ export class Validator {
     return resp
   }
   static attributes(entity: Entity) {
-    return entity.attributes.filter((a) => !protectedAttributes.includes(a.name))
+    return entity.attributes.filter((a) => !Type.protected.includes(a.name))
   }
   static labeledTypes = {
     boolean: {

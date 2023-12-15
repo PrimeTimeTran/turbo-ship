@@ -20,7 +20,7 @@ useHead({
     },
   ],
 })
-ensureLoad(scriptUrls.hotkeys)
+// ensureLoad(scriptUrls.hotkeys)
 </script>
 <template>
   <TheNavbar />

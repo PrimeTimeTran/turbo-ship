@@ -50,23 +50,60 @@ export function buildQuery(params: object) {
   return query
 }
 
+interface PopulateField {
+  from: string
+  localField: string
+}
+
 export function buildPipeline(
   query: object,
   page: number,
-  limit: number
+  limit: number,
+  fieldsToPopulate: PopulateField[] = [],
 ): mongoose.PipelineStage[] {
-  return [
+  const lookupStages = fieldsToPopulate.map((field) => ({
+    $lookup: {
+      from: field.from,
+      foreignField: '_id',
+      as: field.localField,
+      localField: field.localField,
+    },
+  }))
+
+  const stages = [
+    { $match: query },
+    { $skip: (page - 1) * limit },
+    { $limit: limit },
+    ...lookupStages,
     {
-      $facet: {
-        data: [
-          { $match: query },
-          { $skip: (page - 1) * 10 },
-          { $limit: limit },
-        ],
-        totalCount: [{ $match: query }, { $count: 'total' }],
+      $addFields: {
+        amount: {
+          $toString: '$amount',
+        },
+        balance: {
+          $toString: '$balance',
+        },
       },
     },
   ]
+
+  const facetStage = {
+    $facet: {
+      data: stages,
+      totalCount: [{ $match: query }, { $count: 'total' }],
+    },
+  }
+
+  const projectStage = {
+    $project: {
+      data: 1,
+      totalCount: {
+        $arrayElemAt: ['$totalCount.total', 0],
+      },
+    },
+  }
+
+  return [facetStage, projectStage]
 }
 
 function isArray(params: Record<string, any>, key: string) {

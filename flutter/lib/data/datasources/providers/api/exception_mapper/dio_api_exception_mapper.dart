@@ -1,14 +1,12 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-
-import '../../../../../core/exceptions/all.dart';
-import '../../../../mappers/response_mapper/base/base.dart';
+import 'package:turboship/all.dart';
 
 class DioApiExceptionMapper implements ApiExceptionMapper {
-  const DioApiExceptionMapper({required this.serverErrorMapper});
-
   final BaseErrorResponseMapper serverErrorMapper;
+
+  const DioApiExceptionMapper({required this.serverErrorMapper});
 
   @override
   ApiException map(Object? exception) {
@@ -59,7 +57,8 @@ class DioApiExceptionMapper implements ApiExceptionMapper {
           );
         case DioExceptionType.unknown:
           if (exception.error is SocketException) {
-            return ApiException(kind: ApiExceptionKind.network, rootException: exception);
+            return ApiException(
+                kind: ApiExceptionKind.network, rootException: exception);
           }
 
           if (exception.error is ApiException) {

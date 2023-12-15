@@ -37,7 +37,6 @@ async function generate() {
     }
 
     let newEntities = _.cloneDeep([...entities])
-    // newEntities.unshift(seeds.lms.entities[0])
     toastEm('Processing build... Your project will download once done.', 5000, 'info')
     const resp = await $fetch(generateUrl, {
       method: 'post',
@@ -119,7 +118,7 @@ const viewItems = [
     underline: 'D',
     tip: 'Toggle Dark Mode',
     id: faker.database.mongodbObjectId(),
-    click: () => document.getElementById('themeToggler').click(),
+    click: () => document.getElementById('tThemeToggle').click(),
     shortcut: getShortString('D'),
   },
   {

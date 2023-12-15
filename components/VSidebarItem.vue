@@ -1,11 +1,13 @@
 <script setup>
-const props = defineProps(['state', 'text', 'icon'])
+const props = defineProps(['state', 'text', 'icon', 'focused'])
 </script>
 <template>
   <button
     @click="emit('click')"
     class="btn btn-ghost flex text-black/75 dark:text-white hover:text-green-400 dark:hover:text-green-400"
     :class="{
+      'text-green-400': focused,
+      'hover:text-white': focused,
       'justify-start': state.leftOpen,
     }"
   >

@@ -53,15 +53,11 @@ export function useEntity(e, entities) {
     } else {
       item.type = attribute.type
     }
-    handleRelatedEntity(attribute)
   }
   function handleEnums(item, attribute) {
     if (Validator.enumTypes.includes(attribute.type)) {
       item.options = attribute.options
     }
-  }
-  function handleRelatedEntity(attribute) {
-    // handleRelatedEntity(attribute)
   }
   function existingAttribute(attribute) {
     return e.attributes.find((a) => a.name === attribute.value?.name)

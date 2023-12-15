@@ -1,17 +1,14 @@
-console.log('Hotkeys local')
+console.log('Hotkeys.js')
 /*! hotkeys-js v3.12.0 | MIT © 2023 kenny wong <wowohoo@qq.com> https://jaywcjlove.github.io/hotkeys-js */
 !(function (e, t) {
   'object' == typeof exports && 'undefined' != typeof module
     ? (module.exports = t())
     : 'function' == typeof define && define.amd
     ? define(t)
-    : ((e = 'undefined' != typeof globalThis ? globalThis : e || self).hotkeys =
-        t())
+    : ((e = 'undefined' != typeof globalThis ? globalThis : e || self).hotkeys = t())
 })(this, function () {
   'use strict'
-  var e =
-    'undefined' != typeof navigator &&
-    0 < navigator.userAgent.toLowerCase().indexOf('firefox')
+  var e = 'undefined' != typeof navigator && 0 < navigator.userAgent.toLowerCase().indexOf('firefox')
   function p(e, t, n, o) {
     e.addEventListener
       ? e.addEventListener(t, n, o)
@@ -21,17 +18,12 @@ console.log('Hotkeys local')
         })
   }
   function d(e, t) {
-    for (var n = t.slice(0, t.length - 1), o = 0; o < n.length; o++)
-      n[o] = e[n[o].toLowerCase()]
+    for (var n = t.slice(0, t.length - 1), o = 0; o < n.length; o++) n[o] = e[n[o].toLowerCase()]
     return n
   }
   function y(e) {
     for (
-      var t = (e = (e = 'string' != typeof e ? '' : e).replace(
-          /\s/g,
-          ''
-        )).split(','),
-        n = t.lastIndexOf('');
+      var t = (e = (e = 'string' != typeof e ? '' : e).replace(/\s/g, '')).split(','), n = t.lastIndexOf('');
       0 <= n;
 
     )
@@ -127,11 +119,7 @@ console.log('Hotkeys local')
     n = 'all',
     O = [],
     K = function (e) {
-      return (
-        o[e.toLowerCase()] ||
-        h[e.toLowerCase()] ||
-        e.toUpperCase().charCodeAt(0)
-      )
+      return o[e.toLowerCase()] || h[e.toLowerCase()] || e.toUpperCase().charCodeAt(0)
     }
   function i(e) {
     n = e || 'all'
@@ -159,10 +147,7 @@ console.log('Hotkeys local')
             e.scope === r &&
             (function (e, t) {
               for (
-                var n = e.length < t.length ? t : e,
-                  o = e.length < t.length ? e : t,
-                  r = !0,
-                  i = 0;
+                var n = e.length < t.length ? t : e, o = e.length < t.length ? e : t, r = !0, i = 0;
                 i < n.length;
                 i++
               )
@@ -180,9 +165,7 @@ console.log('Hotkeys local')
         Object.prototype.hasOwnProperty.call(g, i) &&
           ((!g[i] && ~t.mods.indexOf(+i)) || (g[i] && !~t.mods.indexOf(+i))) &&
           (r = !1)
-      ;((0 !== t.mods.length || g[16] || g[18] || g[17] || g[91]) &&
-        !r &&
-        '*' !== t.shortcut) ||
+      ;((0 !== t.mods.length || g[16] || g[18] || g[17] || g[91]) && !r && '*' !== t.shortcut) ||
         ((t.keys = []),
         (t.keys = t.keys.concat(k)),
         !1 === t.method(e, t) &&
@@ -197,9 +180,7 @@ console.log('Hotkeys local')
       o = n.keyCode || n.which || n.charCode
     if (E.filter.call(this, n)) {
       if (
-        (~k.indexOf((o = 93 !== o && 224 !== o ? o : 91)) ||
-          229 === o ||
-          k.push(o),
+        (~k.indexOf((o = 93 !== o && 224 !== o ? o : 91)) || 229 === o || k.push(o),
         ['ctrlKey', 'altKey', 'shiftKey', 'metaKey'].forEach(function (e) {
           var t = m[e]
           n[e] && !~k.indexOf(t)
@@ -219,35 +200,21 @@ console.log('Hotkeys local')
         for (var r in ((g[o] = !0), h)) h[r] === o && (E[r] = !0)
         if (!t) return
       }
-      for (var i in g)
-        Object.prototype.hasOwnProperty.call(g, i) && (g[i] = n[m[i]])
+      for (var i in g) Object.prototype.hasOwnProperty.call(g, i) && (g[i] = n[m[i]])
       n.getModifierState &&
         (!n.altKey || n.ctrlKey) &&
         n.getModifierState('AltGraph') &&
-        (~k.indexOf(17) || k.push(17),
-        ~k.indexOf(18) || k.push(18),
-        (g[17] = !0),
-        (g[18] = !0))
+        (~k.indexOf(17) || k.push(17), ~k.indexOf(18) || k.push(18), (g[17] = !0), (g[18] = !0))
       var c = b()
       if (t)
         for (var f = 0; f < t.length; f++)
           t[f].scope === c &&
-            (('keydown' === n.type && t[f].keydown) ||
-              ('keyup' === n.type && t[f].keyup)) &&
+            (('keydown' === n.type && t[f].keydown) || ('keyup' === n.type && t[f].keyup)) &&
             x(n, t[f], c, e)
       if (o in v)
         for (var a = 0; a < v[o].length; a++)
-          if (
-            (('keydown' === n.type && v[o][a].keydown) ||
-              ('keyup' === n.type && v[o][a].keyup)) &&
-            v[o][a].key
-          ) {
-            for (
-              var s = v[o][a], l = s.key.split(s.splitKey), u = [], p = 0;
-              p < l.length;
-              p++
-            )
-              u.push(K(l[p]))
+          if ((('keydown' === n.type && v[o][a].keydown) || ('keyup' === n.type && v[o][a].keyup)) && v[o][a].key) {
+            for (var s = v[o][a], l = s.key.split(s.splitKey), u = [], p = 0; p < l.length; p++) u.push(K(l[p]))
             u.sort().join('') === k.sort().join('') && x(n, s, c, e)
           }
     }
@@ -301,7 +268,7 @@ console.log('Hotkeys local')
         function (e) {
           C(e, c)
         },
-        u
+        u,
       ),
       w ||
         ((w = !0),
@@ -311,7 +278,7 @@ console.log('Hotkeys local')
           function () {
             k = []
           },
-          u
+          u,
         )),
       p(
         c,
@@ -327,7 +294,7 @@ console.log('Hotkeys local')
           )
             for (var o in ((g[t] = !1), h)) h[o] === t && (E[o] = !1)
         },
-        u
+        u,
       ))
   }
   var r,
@@ -355,8 +322,7 @@ console.log('Hotkeys local')
         var n, o, r
         for (r in ((e = e || b()), v))
           if (Object.prototype.hasOwnProperty.call(v, r))
-            for (n = v[r], o = 0; o < n.length; )
-              n[o].scope === e ? n.splice(o, 1) : o++
+            for (n = v[r], o = 0; o < n.length; ) n[o].scope === e ? n.splice(o, 1) : o++
         b() === e && i(t || 'all')
       },
       getPressedKeyCodes: function () {
@@ -386,14 +352,10 @@ console.log('Hotkeys local')
       },
       filter: function (e) {
         var t = (e = e.target || e.srcElement).tagName
-        return !e.isContentEditable &&
-          (('INPUT' !== t && 'TEXTAREA' !== t && 'SELECT' !== t) || e.readOnly)
-          ? !0
-          : !1
+        return !e.isContentEditable && (('INPUT' !== t && 'TEXTAREA' !== t && 'SELECT' !== t) || e.readOnly) ? !0 : !1
       },
       trigger: function (t) {
-        var n =
-          1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 'all'
+        var n = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 'all'
         Object.keys(v).forEach(function (e) {
           v[e]
             .filter(function (e) {
@@ -415,16 +377,10 @@ console.log('Hotkeys local')
           })
         else if ('object' == typeof e) e.key && c(e)
         else if ('string' == typeof e) {
-          for (
-            var t = arguments.length, n = Array(1 < t ? t - 1 : 0), o = 1;
-            o < t;
-            o++
-          )
-            n[o - 1] = arguments[o]
+          for (var t = arguments.length, n = Array(1 < t ? t - 1 : 0), o = 1; o < t; o++) n[o - 1] = arguments[o]
           var r = n[0],
             i = n[1]
-          'function' == typeof r && ((i = r), (r = '')),
-            c({ key: e, scope: r, method: i, splitKey: '+' })
+          'function' == typeof r && ((i = r), (r = '')), c({ key: e, scope: r, method: i, splitKey: '+' })
         }
       },
       keyMap: o,

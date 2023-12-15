@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-
-import 'context_extensions.dart';
+import 'package:turboship/all.dart';
 
 extension TextExt on Text {
-  Text heading2Medium(BuildContext context) {
-    return _copyWith(style: context.textTheme.headingH24xlSemibold);
-  }
-
-  Text heading4Medium(BuildContext context) {
-    return _copyWith(style: context.textTheme.headingH42xlSemibold);
-  }
-
-  Text b14BaseRegular(BuildContext context) {
-    return _copyWith(style: context.textTheme.b14BaseRegular);
+  Text b12SmMedium(BuildContext context) {
+    return _copyWith(style: context.textTheme.b12SmMedium);
   }
 
   Text b14BaseMedium(BuildContext context) {
     return _copyWith(style: context.textTheme.b14BaseMedium);
   }
 
-  Text b12SmMedium(BuildContext context) {
-    return _copyWith(style: context.textTheme.b12SmMedium);
+  Text b14BaseRegular(BuildContext context) {
+    return _copyWith(style: context.textTheme.b14BaseRegular);
+  }
+
+  Text heading2Medium(BuildContext context) {
+    return _copyWith(style: context.textTheme.headingH24xlSemibold);
+  }
+
+  Text heading4Medium(BuildContext context) {
+    return _copyWith(style: context.textTheme.headingH42xlSemibold);
   }
 
   Text _copyWith({

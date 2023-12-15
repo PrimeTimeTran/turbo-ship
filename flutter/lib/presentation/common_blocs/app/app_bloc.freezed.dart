@@ -556,7 +556,8 @@ abstract class _GetAppServerConfig implements GetAppServerConfig {
 
 /// @nodoc
 mixin _$GetCurrentUser {
-// FutureOr<void> Function(User user)? onSuccess,
+  FutureOr<void> Function(User)? get onSuccess =>
+      throw _privateConstructorUsedError;
   FutureOr<void> Function(Object)? get onError =>
       throw _privateConstructorUsedError;
   bool get checkContractStatus => throw _privateConstructorUsedError;
@@ -575,7 +576,8 @@ abstract class $GetCurrentUserCopyWith<$Res> {
       _$GetCurrentUserCopyWithImpl<$Res, GetCurrentUser>;
   @useResult
   $Res call(
-      {FutureOr<void> Function(Object)? onError,
+      {FutureOr<void> Function(User)? onSuccess,
+      FutureOr<void> Function(Object)? onError,
       bool checkContractStatus,
       Completer<void>? completer,
       bool forceRefreshToken});
@@ -594,12 +596,17 @@ class _$GetCurrentUserCopyWithImpl<$Res, $Val extends GetCurrentUser>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? onSuccess = freezed,
     Object? onError = freezed,
     Object? checkContractStatus = null,
     Object? completer = freezed,
     Object? forceRefreshToken = null,
   }) {
     return _then(_value.copyWith(
+      onSuccess: freezed == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function(User)?,
       onError: freezed == onError
           ? _value.onError
           : onError // ignore: cast_nullable_to_non_nullable
@@ -629,7 +636,8 @@ abstract class _$$GetCurrentUserImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {FutureOr<void> Function(Object)? onError,
+      {FutureOr<void> Function(User)? onSuccess,
+      FutureOr<void> Function(Object)? onError,
       bool checkContractStatus,
       Completer<void>? completer,
       bool forceRefreshToken});
@@ -646,12 +654,17 @@ class __$$GetCurrentUserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? onSuccess = freezed,
     Object? onError = freezed,
     Object? checkContractStatus = null,
     Object? completer = freezed,
     Object? forceRefreshToken = null,
   }) {
     return _then(_$GetCurrentUserImpl(
+      onSuccess: freezed == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function(User)?,
       onError: freezed == onError
           ? _value.onError
           : onError // ignore: cast_nullable_to_non_nullable
@@ -676,12 +689,14 @@ class __$$GetCurrentUserImplCopyWithImpl<$Res>
 
 class _$GetCurrentUserImpl implements _GetCurrentUser {
   const _$GetCurrentUserImpl(
-      {this.onError,
+      {this.onSuccess,
+      this.onError,
       this.checkContractStatus = false,
       this.completer,
       this.forceRefreshToken = false});
 
-// FutureOr<void> Function(User user)? onSuccess,
+  @override
+  final FutureOr<void> Function(User)? onSuccess;
   @override
   final FutureOr<void> Function(Object)? onError;
   @override
@@ -695,7 +710,7 @@ class _$GetCurrentUserImpl implements _GetCurrentUser {
 
   @override
   String toString() {
-    return 'GetCurrentUser(onError: $onError, checkContractStatus: $checkContractStatus, completer: $completer, forceRefreshToken: $forceRefreshToken)';
+    return 'GetCurrentUser(onSuccess: $onSuccess, onError: $onError, checkContractStatus: $checkContractStatus, completer: $completer, forceRefreshToken: $forceRefreshToken)';
   }
 
   @override
@@ -703,6 +718,8 @@ class _$GetCurrentUserImpl implements _GetCurrentUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetCurrentUserImpl &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess) &&
             (identical(other.onError, onError) || other.onError == onError) &&
             (identical(other.checkContractStatus, checkContractStatus) ||
                 other.checkContractStatus == checkContractStatus) &&
@@ -713,8 +730,8 @@ class _$GetCurrentUserImpl implements _GetCurrentUser {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, onError, checkContractStatus, completer, forceRefreshToken);
+  int get hashCode => Object.hash(runtimeType, onSuccess, onError,
+      checkContractStatus, completer, forceRefreshToken);
 
   @JsonKey(ignore: true)
   @override
@@ -726,12 +743,15 @@ class _$GetCurrentUserImpl implements _GetCurrentUser {
 
 abstract class _GetCurrentUser implements GetCurrentUser {
   const factory _GetCurrentUser(
-      {final FutureOr<void> Function(Object)? onError,
+      {final FutureOr<void> Function(User)? onSuccess,
+      final FutureOr<void> Function(Object)? onError,
       final bool checkContractStatus,
       final Completer<void>? completer,
       final bool forceRefreshToken}) = _$GetCurrentUserImpl;
 
-  @override // FutureOr<void> Function(User user)? onSuccess,
+  @override
+  FutureOr<void> Function(User)? get onSuccess;
+  @override
   FutureOr<void> Function(Object)? get onError;
   @override
   bool get checkContractStatus;
@@ -742,6 +762,216 @@ abstract class _GetCurrentUser implements GetCurrentUser {
   @override
   @JsonKey(ignore: true)
   _$$GetCurrentUserImplCopyWith<_$GetCurrentUserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$GetEntities {
+  FutureOr<void> Function(List<Entity>)? get onSuccess =>
+      throw _privateConstructorUsedError;
+  FutureOr<void> Function(Object)? get onError =>
+      throw _privateConstructorUsedError;
+  bool get checkContractStatus => throw _privateConstructorUsedError;
+  Completer<void>? get completer => throw _privateConstructorUsedError;
+  bool get forceRefreshToken => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $GetEntitiesCopyWith<GetEntities> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetEntitiesCopyWith<$Res> {
+  factory $GetEntitiesCopyWith(
+          GetEntities value, $Res Function(GetEntities) then) =
+      _$GetEntitiesCopyWithImpl<$Res, GetEntities>;
+  @useResult
+  $Res call(
+      {FutureOr<void> Function(List<Entity>)? onSuccess,
+      FutureOr<void> Function(Object)? onError,
+      bool checkContractStatus,
+      Completer<void>? completer,
+      bool forceRefreshToken});
+}
+
+/// @nodoc
+class _$GetEntitiesCopyWithImpl<$Res, $Val extends GetEntities>
+    implements $GetEntitiesCopyWith<$Res> {
+  _$GetEntitiesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? onSuccess = freezed,
+    Object? onError = freezed,
+    Object? checkContractStatus = null,
+    Object? completer = freezed,
+    Object? forceRefreshToken = null,
+  }) {
+    return _then(_value.copyWith(
+      onSuccess: freezed == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function(List<Entity>)?,
+      onError: freezed == onError
+          ? _value.onError
+          : onError // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function(Object)?,
+      checkContractStatus: null == checkContractStatus
+          ? _value.checkContractStatus
+          : checkContractStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      completer: freezed == completer
+          ? _value.completer
+          : completer // ignore: cast_nullable_to_non_nullable
+              as Completer<void>?,
+      forceRefreshToken: null == forceRefreshToken
+          ? _value.forceRefreshToken
+          : forceRefreshToken // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GetEntitiesImplCopyWith<$Res>
+    implements $GetEntitiesCopyWith<$Res> {
+  factory _$$GetEntitiesImplCopyWith(
+          _$GetEntitiesImpl value, $Res Function(_$GetEntitiesImpl) then) =
+      __$$GetEntitiesImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {FutureOr<void> Function(List<Entity>)? onSuccess,
+      FutureOr<void> Function(Object)? onError,
+      bool checkContractStatus,
+      Completer<void>? completer,
+      bool forceRefreshToken});
+}
+
+/// @nodoc
+class __$$GetEntitiesImplCopyWithImpl<$Res>
+    extends _$GetEntitiesCopyWithImpl<$Res, _$GetEntitiesImpl>
+    implements _$$GetEntitiesImplCopyWith<$Res> {
+  __$$GetEntitiesImplCopyWithImpl(
+      _$GetEntitiesImpl _value, $Res Function(_$GetEntitiesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? onSuccess = freezed,
+    Object? onError = freezed,
+    Object? checkContractStatus = null,
+    Object? completer = freezed,
+    Object? forceRefreshToken = null,
+  }) {
+    return _then(_$GetEntitiesImpl(
+      onSuccess: freezed == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function(List<Entity>)?,
+      onError: freezed == onError
+          ? _value.onError
+          : onError // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function(Object)?,
+      checkContractStatus: null == checkContractStatus
+          ? _value.checkContractStatus
+          : checkContractStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
+      completer: freezed == completer
+          ? _value.completer
+          : completer // ignore: cast_nullable_to_non_nullable
+              as Completer<void>?,
+      forceRefreshToken: null == forceRefreshToken
+          ? _value.forceRefreshToken
+          : forceRefreshToken // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetEntitiesImpl implements _GetEntities {
+  const _$GetEntitiesImpl(
+      {this.onSuccess,
+      this.onError,
+      this.checkContractStatus = false,
+      this.completer,
+      this.forceRefreshToken = false});
+
+  @override
+  final FutureOr<void> Function(List<Entity>)? onSuccess;
+  @override
+  final FutureOr<void> Function(Object)? onError;
+  @override
+  @JsonKey()
+  final bool checkContractStatus;
+  @override
+  final Completer<void>? completer;
+  @override
+  @JsonKey()
+  final bool forceRefreshToken;
+
+  @override
+  String toString() {
+    return 'GetEntities(onSuccess: $onSuccess, onError: $onError, checkContractStatus: $checkContractStatus, completer: $completer, forceRefreshToken: $forceRefreshToken)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetEntitiesImpl &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess) &&
+            (identical(other.onError, onError) || other.onError == onError) &&
+            (identical(other.checkContractStatus, checkContractStatus) ||
+                other.checkContractStatus == checkContractStatus) &&
+            (identical(other.completer, completer) ||
+                other.completer == completer) &&
+            (identical(other.forceRefreshToken, forceRefreshToken) ||
+                other.forceRefreshToken == forceRefreshToken));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, onSuccess, onError,
+      checkContractStatus, completer, forceRefreshToken);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetEntitiesImplCopyWith<_$GetEntitiesImpl> get copyWith =>
+      __$$GetEntitiesImplCopyWithImpl<_$GetEntitiesImpl>(this, _$identity);
+}
+
+abstract class _GetEntities implements GetEntities {
+  const factory _GetEntities(
+      {final FutureOr<void> Function(List<Entity>)? onSuccess,
+      final FutureOr<void> Function(Object)? onError,
+      final bool checkContractStatus,
+      final Completer<void>? completer,
+      final bool forceRefreshToken}) = _$GetEntitiesImpl;
+
+  @override
+  FutureOr<void> Function(List<Entity>)? get onSuccess;
+  @override
+  FutureOr<void> Function(Object)? get onError;
+  @override
+  bool get checkContractStatus;
+  @override
+  Completer<void>? get completer;
+  @override
+  bool get forceRefreshToken;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetEntitiesImplCopyWith<_$GetEntitiesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
