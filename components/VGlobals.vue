@@ -1,19 +1,9 @@
 <script setup>
-import { useDark, useToggle, useClipboard } from '@vueuse/core'
+import { useClipboard } from '@vueuse/core'
 
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
 const source = ref('')
-const { text, copy, copied } = useClipboard({ source })
+const { text, copy } = useClipboard({ source })
 const { entities } = useEntities()
-
-const handleToggle = () => {
-  var htmlElement = document.getElementsByTagName('html')[0]
-  const newColor = isDark.value ? 'var(--background-color-light)' : 'var(--background-color-dark)'
-  document.body.style.background = newColor
-  htmlElement.style.backgroundColor = newColor
-  toggleDark()
-}
 
 function ourCopy() {
   let values
@@ -28,16 +18,20 @@ function ourCopy() {
     text.value = 'Done'
   }, 1500)
 }
+
+function onClick(id) {
+  document.getElementById(id).click()
+}
 </script>
 <template>
   <div>
     <VPreviewer />
     <div @click="store.showLeft = !store.showLeft" id="showLeft"></div>
     <div @click="store.showRight = !store.showRight" id="showRight"></div>
-    <div @click="handleToggle" id="dark"></div>
-
+    <div @click="toggleTheme" id="tThemeToggle"></div>
     <div id="showOverlay" @click="store.showOverlay = !store.showOverlay" />
     <div @click="ourCopy()" id="copyEntities"></div>
     <div @click="store.isSparse = !store.isSparse" id="toggleSparse"></div>
+    <div @click="onClick('globalModalButton')" id="toggleModal"></div>
   </div>
 </template>

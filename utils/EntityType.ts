@@ -21,8 +21,3 @@ export interface Attribute {
   _id: string
   validators?: []
 }
-
-// otm === 'one-to-many'
-// mto === 'many-to-one'
-// oto === 'one-to-one'
-// mtm === 'many-to-many'

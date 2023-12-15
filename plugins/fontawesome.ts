@@ -16,6 +16,8 @@ import {
   faList,
   faCode,
   faCube,
+  faTrash,
+  faClock,
   faCubes,
   faHouse,
   faCheck,
@@ -56,7 +58,9 @@ library.add(
   faPlus,
   faList,
   faGear,
+  faTrash,
   faCube,
+  faClock,
   faCubes,
   faStore,
   faCheck,
@@ -82,7 +86,7 @@ library.add(
   faPenToSquare,
   faRectangleXmark,
   faProjectDiagram,
-  faMagnifyingGlass
+  faMagnifyingGlass,
 )
 
 // This is important, we are going to let Nuxt worry about the CSS

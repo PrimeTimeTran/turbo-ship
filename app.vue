@@ -5,7 +5,7 @@ createHead()
 useHead({
   script: [
     {
-      innerHTML: 'console.log("App.vue Loading")',
+      innerHTML: 'console.log("App.vue")',
       tagPosition: 'head',
     },
   ],
@@ -18,7 +18,6 @@ useHead({
   Consider removing <NuxtLayout> from app.vue and using it in your pages."
 -->
 <template>
-  <!-- Hello World -->
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

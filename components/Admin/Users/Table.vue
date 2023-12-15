@@ -1,4 +1,5 @@
 <script setup>
+import { EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
 const props = defineProps(['searching'])
 
 const { users, sort, meta, fetchPage, fetchFilteredUsers } = useUsers()
@@ -51,7 +52,7 @@ function getStandingColor(field, key) {
 </script>
 <template>
   <div
-    class="flex flex-col overflow-scroll justify-center rounded-lg border border-gray-200 dark:border-gray-600 shadow-md pb-12 bg-white dark:bg-slate-950"
+    class="flex flex-col overflow-scroll justify-center rounded-lg border border-gray-200 dark:border-gray-600 shadow-md pb-12 bg-white dark:bg-slate-950 scrollbar-hide"
   >
     <AdminUsersForm :searching="searching" :fetchFilteredUsers="fetchFilteredUsers" />
     <table
@@ -59,19 +60,8 @@ function getStandingColor(field, key) {
     >
       <thead class="bg-gray-200 dark:bg-neutral-950">
         <tr class="dark:text-black">
-          <th
-            scope="col"
-            @click="toggleSort('status')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            status <span v-text="getSortingIcon('status')" />
-          </th>
-          <th
-            scope="col"
-            @click="toggleSort('standing')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            standing <span v-text="getSortingIcon('standing')" />
+          <th class="text-center px-2 w-10">
+            <input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
           </th>
           <th
             scope="col"
@@ -94,55 +84,7 @@ function getStandingColor(field, key) {
           >
             role <span v-text="getSortingIcon('role')" />
           </th>
-          <th
-            scope="col"
-            @click="toggleSort('accounts')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            accounts <span v-text="getSortingIcon('accounts')" />
-          </th>
-          <th
-            scope="col"
-            @click="toggleSort('transactions')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            transactions <span v-text="getSortingIcon('transactions')" />
-          </th>
-          <th
-            scope="col"
-            @click="toggleSort('banks')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            banks <span v-text="getSortingIcon('banks')" />
-          </th>
-          <th
-            scope="col"
-            @click="toggleSort('age')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            age <span v-text="getSortingIcon('age')" />
-          </th>
-          <th
-            scope="col"
-            @click="toggleSort('owner')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            owner <span v-text="getSortingIcon('owner')" />
-          </th>
-          <th
-            scope="col"
-            @click="toggleSort('netWorth')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            netWorth <span v-text="getSortingIcon('netWorth')" />
-          </th>
-          <th
-            scope="col"
-            @click="toggleSort('messages')"
-            class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate"
-          >
-            messages <span v-text="getSortingIcon('messages')" />
-          </th>
+          <th></th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-300 border-t border-gray-300 dark:divide-gray-800 dark:border-gray-600">
@@ -151,23 +93,8 @@ function getStandingColor(field, key) {
           v-for="user in users"
           class="hover:bg-gray-200 odd:bg-neutral-100 even:bg-neutral-50 dark:hover:bg-neutral-950 dark:border-t-gray-600 odd:dark:bg-neutral-950 even:dark:bg-neutral-950"
         >
-          <td class="px-6 py-4" v-if="user.status">
-            <span
-              class="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-slate-900 px-2 py-1 text-xs font-semibold"
-              :class="getStatusColor('text', user.status)"
-            >
-              <span class="h-1.5 w-1.5 rounded-full" :class="getStatusColor('bg', user.status)" />
-              <span v-text="user.status" />
-            </span>
-          </td>
-          <td class="px-6 py-4" v-if="user.standing">
-            <span
-              class="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-slate-900 px-2 py-1 text-xs font-semibold"
-              :class="getStandingColor('text', user.standing)"
-            >
-              <span class="h-1.5 w-1.5 rounded-full" :class="getStandingColor('bg', user.standing)" />
-              <span v-text="user.standing" />
-            </span>
+          <td class="text-center px-2 w-10">
+            <input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
           </td>
           <th class="flex gap-3 px-3 py-4 font-normal text-gray-900">
             <div class="h-10 w-10">
@@ -194,58 +121,12 @@ function getStandingColor(field, key) {
               <div v-text="user.role" class="font-medium text-gray-700 dark:text-white" />
             </div>
           </td>
-          <td class="px-3 py-4">
-            <div class="text-sm">
-              <div
-                v-text="user.accounts"
-                class="font-medium text-gray-700 dark:text-white"
-                :onclick="`my_modal_${user._id}.showModal()`"
-              />
-              <dialog :id="`my_modal_${user._id}`" class="modal">
-                <div class="modal-box">
-                  <h3 class="font-bold text-lg" v-text="user.email"></h3>
-                  <p class="py-4">Things about this user</p>
-                </div>
-                <form method="dialog" class="modal-backdrop">
-                  <button>close</button>
-                </form>
-              </dialog>
-            </div>
-          </td>
-          <td class="px-3 py-4">
-            <div class="text-sm">
-              <div v-text="user.transactions" class="font-medium text-gray-700 dark:text-white" />
-            </div>
-          </td>
-          <td class="px-3 py-4">
-            <div class="text-sm">
-              <div v-text="user.banks" class="font-medium text-gray-700 dark:text-white" />
-            </div>
-          </td>
-          <td class="px-3 py-4">
-            <div class="text-sm">
-              <div v-text="user.age" class="font-medium text-gray-700 dark:text-white" />
-            </div>
-          </td>
-          <td class="px-3 py-4">
-            <div class="text-sm">
-              <div v-text="user.owner" class="font-medium text-gray-700 dark:text-white" />
-            </div>
-          </td>
-          <td class="px-3 py-4">
-            <div class="text-sm">
-              <div v-text="user.netWorth" class="font-medium text-gray-700 dark:text-white" />
-            </div>
-          </td>
-          <td class="px-3 py-4">
-            <div class="text-sm">
-              <div v-text="user.messages" class="font-medium text-gray-700 dark:text-white" />
-            </div>
+          <td>
+            <EllipsisHorizontalIcon class="h-6 w-6" />
           </td>
         </tr>
       </tbody>
     </table>
-
-    <AdminFormPagination :meta="meta" :fetchPage="fetchPage" />
+    <AdminPagination :meta="meta" :fetchPage="fetchPage" />
   </div>
 </template>

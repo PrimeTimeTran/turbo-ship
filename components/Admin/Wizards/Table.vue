@@ -91,9 +91,10 @@ function getBookAppearancesColor(field, key) {
       The result is this table doesn't rerender when the API request completes regardless of outcome.
     -->
     <AdminWizardsForm :searching="searching" :fetchFilteredWizards="fetchFilteredWizards" />
-    <table class="overflow-x-auto border-collapse dark:text-white text-left text-sm text-gray-500 dark:bg-slate-950">
-      <thead class="bg-gray-200 dark:bg-neutral-950">
+    <table class="overflow-x-auto border-collapse dark:text-white text-left text-sm text-gray-500">
+      <thead class="dark:bg-base-300">
         <tr class="dark:text-black">
+          <th scope="col" class="px-6 py-4 font-medium text-gray-500 dark:text-gray-600 truncate">Select</th>
           <th
             scope="col"
             @click="toggleSort('email')"
@@ -212,8 +213,11 @@ function getBookAppearancesColor(field, key) {
         <tr
           :key="wizard._id"
           v-for="wizard in wizards"
-          class="hover:bg-gray-200 odd:bg-neutral-100 even:bg-neutral-50 dark:hover:bg-neutral-950 dark:border-t-gray-600 odd:dark:bg-neutral-950 even:dark:bg-neutral-950"
+          class="hover:bg-gray-200 odd:bg-neutral-100 even:bg-neutral-50 dark:hover:bg-neutral-950 dark:border-t-gray-600 odd:dark:bg-base-100 even:dark:bg-base-200"
         >
+          <td class="px-3 py-4">
+            <input type="checkbox" checked="checked" class="checkbox" />
+          </td>
           <th class="flex gap-3 px-3 py-4 font-normal text-gray-900">
             <div class="relative h-10 w-10">
               <img
@@ -323,6 +327,6 @@ function getBookAppearancesColor(field, key) {
         </tr>
       </tbody>
     </table>
-    <AdminFormPagination :meta="meta" :fetchPage="fetchPage" />
   </div>
+  <AdminEntityPagination :meta="meta" :fetchPage="fetchPage" />
 </template>

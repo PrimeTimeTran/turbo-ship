@@ -1,4 +1,8 @@
 {
+  // Focusing flutter so ignore server when searching
+  "search.exclude": {
+    "**/server": true
+  },
   "files.exclude": {
     // #### Root
     ".netlify": true,
@@ -30,6 +34,11 @@
     "**/*.g.dart": true,
     "**/.flutter-plugins-dependencies": true,
 
+    // Temp while focusiong on clean archi/di
+    "**/android": true,
+    "**/ios": true,
+    "**/l10n": true,
+
     // #### Focus Flutter: start
 
     // "assets": true,
@@ -51,7 +60,7 @@
     // #### Focus Flutter: end
     // #### Focus Nuxt: start
 
-    "flutter": true,
+    // "flutter": true,
 
     // #### Focus Nuxt: end
 
@@ -62,7 +71,9 @@
     // ##### Leave forever because we always want to ignore and don't wanna mess up due to missing comma
     "**/bun.lockb": true
   },
-  // "problems.decorations.enabled": false,
+  "editor.codeActionsOnSave": {
+    "quickfix.insertSemicolon": "explicit"
+  },
   "dart.analysisExcludedFolders": [
     "netlify/functions/esm-muxter/Turboship/flutter",
     "netlify/functions/esm-muxter/TurboshipCJS/flutter"
@@ -73,5 +84,5 @@
     "titleBar.inactiveBackground": "#3b8070",
     "titleBar.inactiveForeground": "#000000CC"
   },
-  "cSpell.words": ["headlessui", "Pinia", "Reactionable", "realestate", "toastify", "vuedraggable"]
+  "cSpell.words": ["headlessui", "Pinia", "Reactionable", "realestate", "toastify", "usecases", "vuedraggable"]
 }

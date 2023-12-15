@@ -1,28 +1,25 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose'
+import { Auditor } from './Audit/Audit'
 
 export const userEnumerators = {
   role: {
-    owner: "owner",
-    admin: "admin",
-    staff: "staff",
-    customer: "customer",
-  },
-
-  status: {
-    open: "open",
-    closed: "closed",
-    pending: "pending",
-  },
-};
-
-export const User = mongoose.model("User", {
-  role: {
-    type: [String],
+    owner: 'owner',
+    admin: 'admin',
+    staff: 'staff',
+    customer: 'customer',
   },
   status: {
-    type: [String],
+    open: 'open',
+    closed: 'closed',
+    pending: 'pending',
   },
+}
+
+const userSchema = new Schema({
   email: {
+    type: String,
+  },
+  bio: {
     type: String,
   },
   firstName: {
@@ -31,13 +28,49 @@ export const User = mongoose.model("User", {
   lastName: {
     type: String,
   },
-  age: {
-    type: Number,
+  sex: {
+    type: String,
   },
-  owner: {
-    type: Boolean,
+  dob: {
+    type: String,
   },
-  netWorth: {
-    type: Schema.Types.Decimal128,
+  zodiacSign: {
+    type: String,
   },
-});
+  urlAvatar: {
+    type: String,
+  },
+  jobArea: {
+    type: String,
+  },
+  jobDescriptor: {
+    type: String,
+  },
+  jobTitle: {
+    type: String,
+  },
+  jobType: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
+  role: {
+    type: [String],
+  },
+  status: {
+    type: [String],
+  },
+  banks: [{ type: Schema.Types.ObjectId, ref: 'Bank' }],
+  branches: [{ type: Schema.Types.ObjectId, ref: 'Branch' }],
+  accounts: [{ type: Schema.Types.ObjectId, ref: 'Account' }],
+  transactions: [{ type: Schema.Types.ObjectId, ref: 'Transaction' }],
+})
+
+userSchema.virtual('fullName').get(function () {
+  return `${this.firstName} ${this.lastName}`
+})
+
+Auditor.addHooks(userSchema)
+export { userSchema }
+export const User = mongoose.model('User', userSchema)

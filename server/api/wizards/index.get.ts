@@ -1,19 +1,32 @@
+import _ from 'lodash'
+
 export default defineEventHandler(async (e) => {
-  let { limit, page } = e.context
-  let params = getQuery(e)
-  const query = buildQuery(params)
-  const pipeline = buildPipeline(query, page, limit)
-  const results = await Wizard.aggregate(pipeline)
+  try {
+    let { limit, page } = e.context
+    let params = getQuery(e)
+    const query = buildQuery(params)
+    const pipeline = buildPipeline(query, page, limit)
+    const results = await Wizard.aggregate(pipeline)
 
-  const { data, totalCount } = results[0]
-
-  const response = {
-    meta: {
-      page,
-      pageCount: Math.ceil(parseInt(totalCount[0].total) / limit),
-      totalCount: totalCount.length > 0 ? totalCount[0].total : 0,
-    },
-    data,
+    let { data, totalCount } = results[0]
+    let pageCount = 0
+    if (!_.isEmpty(totalCount) && totalCount[0]) {
+      pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
+      totalCount = totalCount.length > 0 ? totalCount[0].total : 0
+    }
+    const response = {
+      meta: {
+        page,
+        pageCount: pageCount,
+        totalCount: totalCount,
+      },
+      data,
+    }
+    // return [{ id: 'sos', email: 'sosos', firstName: 'sosos', lastName: 'sosos', fullName: '', fuckYou: 'odfodo' }]
+    return response
+  } catch (error) {
+    console.log({
+      error,
+    })
   }
-  return response
 })
