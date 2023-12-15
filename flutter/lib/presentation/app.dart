@@ -3,12 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:turboship/all_two.dart';
+import 'package:turboship/all.dart';
 
-import '../core/configs/configs.dart';
-import 'common_blocs/app/app_bloc.dart';
 import 'overlay_wrapper.dart';
-import 'providers.dart';
 
 getDarkTheme(theme) {
   switch (theme) {
@@ -71,14 +68,11 @@ class MyAppTwo extends StatelessWidget {
                 previous.palette != current.palette ||
                 previous.locale != current.locale,
             builder: (context, state) {
-              LogUtil.i(state);
               var palette = state.palette;
               // ThemeMode goDark = getDarkTheme(palette);
               // ThemeMode goLight = getLightTheme(palette);
               ThemeData dark = themeMap[palette]!['dark']!;
               ThemeData light = themeMap[palette]!['light']!;
-              LogUtil.i(state.palette);
-              LogUtil.i(state.isDarkTheme);
               ThemeMode themeMode =
                   state.isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 

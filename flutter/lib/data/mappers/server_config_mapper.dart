@@ -1,11 +1,9 @@
 import 'package:injectable/injectable.dart';
-
-import '../../domain/entities/server_config.dart';
-import '../models/all.dart';
-import 'base/base_data_mapper.dart';
+import 'package:turboship/all.dart';
 
 @injectable
-class ServerConfigMapper extends BaseDataMapper<ServerConfigData, ServerConfig> {
+class ServerConfigMapper
+    extends BaseDataMapper<ServerConfigData, ServerConfig> {
   @override
   ServerConfig mapToEntity(ServerConfigData data) {
     return ServerConfig(

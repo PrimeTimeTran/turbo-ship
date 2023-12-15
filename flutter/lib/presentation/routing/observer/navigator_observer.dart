@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
-import '../../../core/configs/configs.dart';
-
 // TODO: add firebase analytics here
 
 @lazySingleton

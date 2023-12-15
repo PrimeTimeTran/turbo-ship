@@ -1,9 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../core/configs/logging_config.dart';
-import '../../../core/mixins/log_mixin.dart';
+import 'package:turboship/all.dart';
 
 class AppBlocObserver extends BlocObserver with LogMixin {
+  final bool logOnChange;
+
+  final bool logOnCreate;
+  final bool logOnClose;
+  final bool logOnError;
+  final bool logOnEvent;
+  final bool logOnTransition;
   AppBlocObserver({
     this.logOnChange = LogConfig.logOnBlocChange,
     this.logOnCreate = LogConfig.logOnBlocCreate,
@@ -12,13 +17,6 @@ class AppBlocObserver extends BlocObserver with LogMixin {
     this.logOnEvent = LogConfig.logOnBlocEvent,
     this.logOnTransition = LogConfig.logOnBlocTransition,
   });
-
-  final bool logOnChange;
-  final bool logOnCreate;
-  final bool logOnClose;
-  final bool logOnError;
-  final bool logOnEvent;
-  final bool logOnTransition;
 
   @override
   void onChange(BlocBase bloc, Change change) {
@@ -29,18 +27,18 @@ class AppBlocObserver extends BlocObserver with LogMixin {
   }
 
   @override
-  void onCreate(BlocBase bloc) {
-    super.onCreate(bloc);
-    if (logOnCreate) {
-      logDebug('created', name: bloc.runtimeType.toString());
-    }
-  }
-
-  @override
   void onClose(BlocBase bloc) {
     super.onClose(bloc);
     if (logOnClose) {
       logDebug('closed', name: bloc.runtimeType.toString());
+    }
+  }
+
+  @override
+  void onCreate(BlocBase bloc) {
+    super.onCreate(bloc);
+    if (logOnCreate) {
+      logDebug('created', name: bloc.runtimeType.toString());
     }
   }
 

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../core/configs/di/di.dart';
-import 'common_blocs/overlay/overlay_bloc.dart';
-import 'common_widgets/all.dart';
-import 'resource/styles/all.dart';
+import 'package:turboship/all.dart';
 
 class AppOverlayWrapper extends StatelessWidget {
   final Widget child;

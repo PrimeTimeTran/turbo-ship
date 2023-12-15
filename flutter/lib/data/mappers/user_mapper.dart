@@ -1,9 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
-import '../models/user_data.dart';
-import 'base/base_data_mapper.dart';
-
 @injectable
 class UserMapper extends BaseDataMapper<UserData, User> with DataMapperMixin {
   @override

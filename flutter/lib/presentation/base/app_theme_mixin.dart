@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../core/extensions/all.dart';
-import '../resource/styles/all.dart';
+import 'package:turboship/all.dart';
 
 mixin AppThemeMixin<T extends StatefulWidget> on State<T> {
   AppColors get colorTheme => context.colorTheme;

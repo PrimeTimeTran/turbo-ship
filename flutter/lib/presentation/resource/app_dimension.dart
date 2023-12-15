@@ -1,39 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../core/constants/ui/device_constants.dart';
+import 'package:turboship/all.dart';
 
 class AppDimension {
+  static late AppDimension current;
+
+  final double screenWidth;
+
+  final double screenHeight;
+  final double devicePixelRatio;
+  final ScreenType screenType;
   AppDimension._({
     required this.screenWidth,
     required this.screenHeight,
     required this.devicePixelRatio,
     required this.screenType,
   });
-
-  static late AppDimension current;
-
-  final double screenWidth;
-  final double screenHeight;
-  final double devicePixelRatio;
-  final ScreenType screenType;
-
-  static AppDimension of(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-
-    final screen = AppDimension._(
-      screenWidth: screenWidth,
-      screenHeight: screenHeight,
-      devicePixelRatio: devicePixelRatio,
-      screenType: _getScreenType(screenWidth),
-    );
-
-    current = screen;
-
-    return current;
-  }
 
   double responsiveDimens({
     required double mobile,
@@ -44,9 +26,13 @@ class AppDimension {
       case ScreenType.mobile:
         return mobile.w;
       case ScreenType.tablet:
-        return tablet?.w ?? ((mobile * DeviceConstants.maxMobileWidth) / DeviceConstants.designDeviceWidth);
+        return tablet?.w ??
+            ((mobile * DeviceConstants.maxMobileWidth) /
+                DeviceConstants.designDeviceWidth);
       case ScreenType.ultraTablet:
-        return ultraTablet?.w ?? ((mobile * DeviceConstants.maxMobileWidth) / DeviceConstants.designDeviceWidth);
+        return ultraTablet?.w ??
+            ((mobile * DeviceConstants.maxMobileWidth) /
+                DeviceConstants.designDeviceWidth);
     }
   }
 
@@ -65,6 +51,23 @@ class AppDimension {
     }
   }
 
+  static AppDimension of(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
+
+    final screen = AppDimension._(
+      screenWidth: screenWidth,
+      screenHeight: screenHeight,
+      devicePixelRatio: devicePixelRatio,
+      screenType: _getScreenType(screenWidth),
+    );
+
+    current = screen;
+
+    return current;
+  }
+
   static ScreenType _getScreenType(double screenWidth) {
     if (screenWidth <= DeviceConstants.maxMobileWidth) {
       return ScreenType.mobile;
@@ -74,6 +77,12 @@ class AppDimension {
       return ScreenType.ultraTablet;
     }
   }
+}
+
+enum ScreenType {
+  mobile,
+  tablet,
+  ultraTablet,
 }
 
 extension ResponsiveDoubleExtension on double {
@@ -87,10 +96,4 @@ extension ResponsiveDoubleExtension on double {
       ultraTablet: ultraTablet,
     );
   }
-}
-
-enum ScreenType {
-  mobile,
-  tablet,
-  ultraTablet,
 }

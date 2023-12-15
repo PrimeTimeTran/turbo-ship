@@ -8,6 +8,10 @@ enum AppPages {
   changePassword,
   home,
   settings,
+  feed,
+  profile,
+  wizards,
+  notification,
 }
 
 class RouterHelper {
@@ -39,6 +43,14 @@ extension AppPageX on AppPages {
         return 'HOME';
       case AppPages.settings:
         return 'SETTINGS';
+      case AppPages.feed:
+        return 'FEED';
+      case AppPages.notification:
+        return 'NOTIFICATION';
+      case AppPages.wizards:
+        return 'WIZARDS';
+      case AppPages.profile:
+        return 'PROFILE';
     }
   }
 
@@ -54,10 +66,18 @@ extension AppPageX on AppPages {
         return '/forgot-password';
       case AppPages.changePassword:
         return '/change-password';
-      case AppPages.home:
-        return '/';
       case AppPages.settings:
         return '/settings';
+      case AppPages.feed:
+        return '/feed';
+      case AppPages.notification:
+        return '/notification';
+      case AppPages.home:
+        return '/home';
+      case AppPages.wizards:
+        return '/home/wizards';
+      case AppPages.profile:
+        return '/profile';
     }
   }
 }

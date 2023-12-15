@@ -1,40 +1,63 @@
-// import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
+// ignore_for_file: depend_on_referenced_packages
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+import 'package:turboship/all.dart';
 
-import 'all.dart';
-// import 'firebase/prod.dart';
-import 'core/configs/configs.dart';
+Future<void> main() async {
+  runZonedGuarded(_runMyApp, _reportError);
+}
 
-void main() async {
-  env = 'main';
+// void main() => runApp(const ScaffoldExampleApp());
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await configureApp();
+void _reportError(Object error, StackTrace stackTrace) {
+  LogUtil.e(
+    'Uncaught error in Flutter runtime',
+    error: error,
+    stackTrace: stackTrace,
+  );
 
-  // HttpOverrides.global = MyHttpOverrides();
+  // report by Firebase Crashlytics here
 
-  // Not 100% sure the advantage of multiple main files(main_development, main_staging, main_production) other than initializing Firebase(FB).
-  // Leave it here for now as it does help load different FB environments albeit forcing duplicated code.
-  // https://brickhub.dev/bricks/very_good_core/0.4.0
-  if (kIsWeb) {
-    // await Firebase.initializeApp(
-    //   options: DefaultFirebaseOptions.currentPlatform,
-    // );
-  } else {
-    // if (Firebase.apps.isEmpty) {
-    //   await Firebase.initializeApp(
-    //     name: '',
-    //     options: DefaultFirebaseOptions.currentPlatform,
-    //   ).whenComplete(() {
-    //     p("completedAppInitialize");
-    //   });
-    // }
-  }
+  // final appInfo = getIt.get<AppInfo>();
+  // FirebaseCrashlytics.instance.recordError(
+  //   error,
+  //   stackTrace,
+  //   reason: 'a non-fatal error',
+  //   information: ['Version: ${appInfo.versionName}', 'Build: ${appInfo.buildNumber}'],
+  // );
+}
 
-  // final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+Future<void> _runMyApp() async {
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // Show splash screen
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await configureApp();
+  // Remove splash screen after configure app
+  // FlutterNativeSplash.remove();
 
-  setupApp(() => const Providers());
+  // FlutterError.onError = (errorDetails) {
+  //   LogUtil.e(
+  //     'FlutterError onError',
+  //     error: errorDetails.exception,
+  //     stackTrace: errorDetails.stack,
+  //   );
+
+  //   // FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  // };
+  // // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  // PlatformDispatcher.instance.onError = (error, stack) {
+  //   LogUtil.e(
+  //     'PlatformDispatcher onError',
+  //     error: error,
+  //     stackTrace: stack,
+  //   );
+  //   // FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+
+  //   return true;
+  // };
+
+  runApp(const MyAppTwo());
 }

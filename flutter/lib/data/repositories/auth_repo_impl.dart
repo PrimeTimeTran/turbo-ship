@@ -7,19 +7,50 @@ import '../mappers/all.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
+  final AppPreferences _appPreferences;
+
+  final AuthDatasource _datasource;
+  final ServerConfigMapper _serverConfigMapper;
   AuthRepositoryImpl(
     this._appPreferences,
     this._datasource,
     this._serverConfigMapper,
   );
 
-  final AppPreferences _appPreferences;
-  final AuthDatasource _datasource;
-  final ServerConfigMapper _serverConfigMapper;
+  @override
+  Future<void> forgotPassword(String email) {
+    return _datasource.forgotPassword(email);
+  }
 
   @override
   Future<ServerConfig> getServerConfig() {
     return _datasource.getServerConfig().then(_serverConfigMapper.mapToEntity);
+  }
+
+  @override
+  Future<void> logout() async {
+    await _appPreferences.deleteAllTokens();
+  }
+
+  @override
+  Future<void> resendForgotPasswordOtp(String email) {
+    return _datasource.resendForgotPasswordOtp(email);
+  }
+
+  @override
+  Future<void> resendSignUpOtp(String email) {
+    return _datasource.resendSignupOtp(email);
+  }
+
+  @override
+  Future<void> setNewPassword({
+    required String currentPassword,
+    required String newPassword,
+  }) {
+    return _datasource.setNewPassword(
+      currentPassword: currentPassword,
+      newPassword: newPassword,
+    );
   }
 
   @override
@@ -76,43 +107,16 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<void> verifyForgotPassword(
+      {required String otp,
+      required String email,
+      required String newPassword}) {
+    return _datasource.verifyForgotPassword(
+        otp: otp, email: email, newPassword: newPassword);
+  }
+
+  @override
   Future<void> verifySignUp(String otp) {
     return _datasource.verifySignup(otp);
-  }
-
-  @override
-  Future<void> resendSignUpOtp(String email) {
-    return _datasource.resendSignupOtp(email);
-  }
-
-  @override
-  Future<void> forgotPassword(String email) {
-    return _datasource.forgotPassword(email);
-  }
-
-  @override
-  Future<void> verifyForgotPassword({required String otp, required String email, required String newPassword}) {
-    return _datasource.verifyForgotPassword(otp: otp, email: email, newPassword: newPassword);
-  }
-
-  @override
-  Future<void> resendForgotPasswordOtp(String email) {
-    return _datasource.resendForgotPasswordOtp(email);
-  }
-
-  @override
-  Future<void> logout() async {
-    await _appPreferences.deleteAllTokens();
-  }
-
-  @override
-  Future<void> setNewPassword({
-    required String currentPassword,
-    required String newPassword,
-  }) {
-    return _datasource.setNewPassword(
-      currentPassword: currentPassword,
-      newPassword: newPassword,
-    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:turboship/all.dart';
 
 import '../../../core/constants/ui/paging_constants.dart';
 
@@ -10,8 +11,6 @@ abstract class BaseOutput {
 
 @freezed
 class LoadMoreOutput<T> extends BaseOutput with _$LoadMoreOutput<T> {
-  const LoadMoreOutput._();
-
   const factory LoadMoreOutput({
     required List<T> items,
     @Default(0) int total,
@@ -20,6 +19,8 @@ class LoadMoreOutput<T> extends BaseOutput with _$LoadMoreOutput<T> {
     @Default(false) bool isRefreshSuccess,
     @Default(false) bool hasNext,
   }) = _LoadMoreOutput<T>;
+
+  const LoadMoreOutput._();
 
   int get nextPage => page + 1;
   int get prevPage => page - 1;

@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
+import 'package:turboship/all.dart';
 
 import '../all.dart';
-import 'base/base.dart';
 
 @injectable
 class GetServerConfigUseCase extends BaseFutureUseCase<NoParams, ServerConfig> {

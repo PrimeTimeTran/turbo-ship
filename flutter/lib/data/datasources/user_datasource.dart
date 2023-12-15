@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
+import 'package:turboship/all.dart';
 
-import '../models/user_data.dart';
-import 'providers/api/clients/authenticated_rest_api_client.dart';
-
+// Data sources are responsible for handling all the operations]
+// related to data retrieval & manipulation
 abstract interface class UserDataSource {
   Future<UserData> getCurrentUser();
 
@@ -13,7 +13,6 @@ abstract interface class UserDataSource {
 class UserDataSourceImpl implements UserDataSource {
   final AuthenticatedRestApiClient _client;
 
-  // CRUD Users
   UserDataSourceImpl(this._client);
 
   @override

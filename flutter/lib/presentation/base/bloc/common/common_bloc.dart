@@ -4,9 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/exceptions/all.dart';
-import '../../../../core/extensions/all.dart';
+import 'package:turboship/all.dart';
 
 part 'common_bloc.freezed.dart';
 part 'common_event.dart';
