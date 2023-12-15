@@ -6,9 +6,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
-import '../../base/bloc/base_bloc.dart';
-import '../../base/bloc/common/common_bloc.dart';
-
 part 'app_bloc.freezed.dart';
 part 'app_bloc.g.dart';
 part 'app_event.dart';

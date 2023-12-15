@@ -1,6 +1,5 @@
 import 'package:package_info_plus/package_info_plus.dart';
-
-import '../utils/log_util.dart';
+import 'package:turboship/all.dart';
 
 enum AppFlavor { development, prod }
 

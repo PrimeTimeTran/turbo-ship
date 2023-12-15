@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../core/configs/logging_config.dart';
-import '../../../core/mixins/log_mixin.dart';
+import 'package:turboship/all.dart';
 
 class AppBlocObserver extends BlocObserver with LogMixin {
   final bool logOnChange;
