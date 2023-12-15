@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:turboship/core/all.dart';
-
-import '../common_widgets/app_icon.dart';
-import '../common_widgets/common_scaffold.dart';
-import '../resource/gen/assets.gen.dart';
-import '../resource/styles/gaps.dart';
-import '../routing/routing.dart';
+import 'package:turboship/all.dart';
 
 const kBottomNavigationBarHeight = 88.0;
 
@@ -32,6 +26,10 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CommonScaffold(
       body: child,
+      appBar: CommonAppBar(
+        drawer: true,
+        title: 'Home',
+      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: context.colorTheme.bgSurfaceMain,
@@ -108,6 +106,10 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
       default:
         return Assets.icons.home;
     }
+  }
+
+  _handleOnLeadingPressed(context) {
+    LogUtil.i(name: 'home', GoRouter.of(context).canPop());
   }
 
   void _onTap(BuildContext context, String location) {

@@ -10,6 +10,7 @@ class CommonScaffold extends StatelessWidget {
   final Widget body;
   final Color? backgroundColor;
   final bool hideKeyboardWhenTouchOutside;
+  final bool? drawer;
   final bool applyAutoPaddingBottom;
   final EdgeInsets padding;
   final Widget? bottomNavigationBar;
@@ -18,6 +19,7 @@ class CommonScaffold extends StatelessWidget {
     required this.body,
     super.key,
     this.appBar,
+    this.drawer,
     this.bottomNavigationBar,
     this.backgroundColor,
     this.padding = EdgeInsets.zero,
@@ -28,6 +30,27 @@ class CommonScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaffold = Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       backgroundColor: backgroundColor ?? context.colorTheme.bgSurfaceMain,
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,

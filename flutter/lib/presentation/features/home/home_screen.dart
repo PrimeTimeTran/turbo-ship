@@ -14,10 +14,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      appBar: CommonAppBar(
-        title: 'Home',
-        onLeadingPressed: _handleOnLeadingPressed,
-      ),
+      drawer: true,
       body: SizedBox(
         width: double.infinity,
         child: Column(

@@ -27,7 +27,9 @@ class AppRouter {
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
           return ScaffoldWithNavigationBar(
-              location: state.matchedLocation, child: child);
+            location: state.matchedLocation,
+            child: child,
+          );
         },
         routes: [
           GoRoute(

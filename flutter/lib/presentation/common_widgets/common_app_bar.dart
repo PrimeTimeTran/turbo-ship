@@ -32,6 +32,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IconThemeData? iconTheme;
   final IconThemeData? actionsIconTheme;
   final bool primary;
+  final bool? drawer;
   final bool excludeHeaderSemantics;
   final double? titleSpacing;
   final double toolbarOpacity;
@@ -53,6 +54,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle,
     this.elevation = 0,
     this.actions,
+    this.drawer,
     this.height,
     this.automaticallyImplyLeading = true,
     this.flexibleSpace,
@@ -76,6 +78,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (drawer == true) return AppBar(title: const Text('Drawer'));
     return AppBar(
       toolbarHeight: preferredSize.height,
       automaticallyImplyLeading:
