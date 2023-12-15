@@ -9,11 +9,4 @@ class EntityState extends BaseState with _$EntityState {
       _$EntityStateFromJson(json);
 
   const EntityState._();
-
-  // @override
-  // EntityState copyWith({List<Entity>? entities}) {
-  //   return EntityState(
-  //     entities: entities ?? this.entities.toList(),
-  //   );
-  // }
 }

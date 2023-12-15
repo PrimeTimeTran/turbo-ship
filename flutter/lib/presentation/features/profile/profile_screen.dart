@@ -13,15 +13,13 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      appBar: CommonAppBar(),
+      appBar: CommonAppBar(title: 'Profile'),
       body: const SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('ProfileScreen'),
-          ],
+          children: [],
         ),
       ),
     );

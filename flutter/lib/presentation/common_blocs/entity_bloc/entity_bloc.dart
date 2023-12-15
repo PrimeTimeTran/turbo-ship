@@ -18,7 +18,6 @@ class EntityBloc extends Bloc<EntityEvent, EntityState> {
 
   FutureOr<void> _onFetchedEntities(
       FetchedEntitiesEvent event, Emitter<EntityState> emit) {
-    LogUtil.i(name: 'EntityBloc', 'entities $event');
     emit(state.copyWith(entities: event.entities));
   }
 }

@@ -12,6 +12,7 @@ enum AppPages {
   profile,
   wizards,
   notification,
+  entity
 }
 
 class RouterHelper {
@@ -49,6 +50,8 @@ extension AppPageX on AppPages {
         return 'NOTIFICATION';
       case AppPages.wizards:
         return 'WIZARDS';
+      case AppPages.entity:
+        return 'ENTITY';
       case AppPages.profile:
         return 'PROFILE';
     }
@@ -76,6 +79,8 @@ extension AppPageX on AppPages {
         return '/home';
       case AppPages.wizards:
         return '/home/wizards';
+      case AppPages.entity:
+        return '/home/entity';
       case AppPages.profile:
         return '/profile';
     }

@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:turboship/config/theme/themes.dart';
-import 'package:turboship/core/configs/di/di.dart';
-import 'package:turboship/core/utils/all.dart';
-import 'package:turboship/presentation/common_blocs/app/app_bloc.dart';
-import 'package:turboship/presentation/common_widgets/all.dart';
-import 'package:turboship/presentation/resource/styles/gaps.dart';
-import 'package:turboship/presentation/routing/router/app_router.dart';
-
-import '../../../core/extensions/context_extensions.dart';
+import 'package:turboship/all.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -26,6 +18,7 @@ class _SettingsScreenState extends State<SettingsScreen>
     var locale = BlocProvider.of<AppBloc>(context).state.locale;
     return CommonScaffold(
       appBar: CommonAppBar(
+        title: 'Settings',
         onLeadingPressed: _handleOnLeadingPressed,
       ),
       body: SizedBox(
@@ -34,7 +27,6 @@ class _SettingsScreenState extends State<SettingsScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('_SettingsScreenState'),
             BlocBuilder<AppBloc, AppState>(
               builder: (c, state) {
                 var isDarkTheme =
@@ -141,7 +133,6 @@ class _SettingsScreenState extends State<SettingsScreen>
   }
 
   buildThemeLight() {
-    final palette = getIt.get<AppBloc>().state.palette;
     return Builder(
       builder: (BuildContext context) {
         return Theme(

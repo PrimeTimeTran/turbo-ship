@@ -23,6 +23,16 @@ mixin _$EntityData {
   String? get id => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get jobTitle => throw _privateConstructorUsedError;
+  String? get industry => throw _privateConstructorUsedError;
+  String? get house => throw _privateConstructorUsedError;
+  String? get patronus => throw _privateConstructorUsedError;
+  String? get dob => throw _privateConstructorUsedError;
+  String? get avatarUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +46,20 @@ abstract class $EntityDataCopyWith<$Res> {
           EntityData value, $Res Function(EntityData) then) =
       _$EntityDataCopyWithImpl<$Res, EntityData>;
   @useResult
-  $Res call({String? id, String? firstName, String? email});
+  $Res call(
+      {String? id,
+      String? firstName,
+      String? email,
+      String? lastName,
+      String? gender,
+      String? city,
+      String? country,
+      String? jobTitle,
+      String? industry,
+      String? house,
+      String? patronus,
+      String? dob,
+      String? avatarUrl});
 }
 
 /// @nodoc
@@ -55,6 +78,16 @@ class _$EntityDataCopyWithImpl<$Res, $Val extends EntityData>
     Object? id = freezed,
     Object? firstName = freezed,
     Object? email = freezed,
+    Object? lastName = freezed,
+    Object? gender = freezed,
+    Object? city = freezed,
+    Object? country = freezed,
+    Object? jobTitle = freezed,
+    Object? industry = freezed,
+    Object? house = freezed,
+    Object? patronus = freezed,
+    Object? dob = freezed,
+    Object? avatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -69,6 +102,46 @@ class _$EntityDataCopyWithImpl<$Res, $Val extends EntityData>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      jobTitle: freezed == jobTitle
+          ? _value.jobTitle
+          : jobTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      industry: freezed == industry
+          ? _value.industry
+          : industry // ignore: cast_nullable_to_non_nullable
+              as String?,
+      house: freezed == house
+          ? _value.house
+          : house // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patronus: freezed == patronus
+          ? _value.patronus
+          : patronus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dob: freezed == dob
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatarUrl: freezed == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +154,20 @@ abstract class _$$EntityDataImplCopyWith<$Res>
       __$$EntityDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? firstName, String? email});
+  $Res call(
+      {String? id,
+      String? firstName,
+      String? email,
+      String? lastName,
+      String? gender,
+      String? city,
+      String? country,
+      String? jobTitle,
+      String? industry,
+      String? house,
+      String? patronus,
+      String? dob,
+      String? avatarUrl});
 }
 
 /// @nodoc
@@ -98,6 +184,16 @@ class __$$EntityDataImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? firstName = freezed,
     Object? email = freezed,
+    Object? lastName = freezed,
+    Object? gender = freezed,
+    Object? city = freezed,
+    Object? country = freezed,
+    Object? jobTitle = freezed,
+    Object? industry = freezed,
+    Object? house = freezed,
+    Object? patronus = freezed,
+    Object? dob = freezed,
+    Object? avatarUrl = freezed,
   }) {
     return _then(_$EntityDataImpl(
       id: freezed == id
@@ -112,6 +208,46 @@ class __$$EntityDataImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      jobTitle: freezed == jobTitle
+          ? _value.jobTitle
+          : jobTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      industry: freezed == industry
+          ? _value.industry
+          : industry // ignore: cast_nullable_to_non_nullable
+              as String?,
+      house: freezed == house
+          ? _value.house
+          : house // ignore: cast_nullable_to_non_nullable
+              as String?,
+      patronus: freezed == patronus
+          ? _value.patronus
+          : patronus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dob: freezed == dob
+          ? _value.dob
+          : dob // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatarUrl: freezed == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -119,7 +255,20 @@ class __$$EntityDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EntityDataImpl implements _EntityData {
-  const _$EntityDataImpl({this.id, this.firstName, this.email});
+  const _$EntityDataImpl(
+      {this.id,
+      this.firstName,
+      this.email,
+      this.lastName,
+      this.gender,
+      this.city,
+      this.country,
+      this.jobTitle,
+      this.industry,
+      this.house,
+      this.patronus,
+      this.dob,
+      this.avatarUrl});
 
   factory _$EntityDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$EntityDataImplFromJson(json);
@@ -130,10 +279,30 @@ class _$EntityDataImpl implements _EntityData {
   final String? firstName;
   @override
   final String? email;
+  @override
+  final String? lastName;
+  @override
+  final String? gender;
+  @override
+  final String? city;
+  @override
+  final String? country;
+  @override
+  final String? jobTitle;
+  @override
+  final String? industry;
+  @override
+  final String? house;
+  @override
+  final String? patronus;
+  @override
+  final String? dob;
+  @override
+  final String? avatarUrl;
 
   @override
   String toString() {
-    return 'EntityData(id: $id, firstName: $firstName, email: $email)';
+    return 'EntityData(id: $id, firstName: $firstName, email: $email, lastName: $lastName, gender: $gender, city: $city, country: $country, jobTitle: $jobTitle, industry: $industry, house: $house, patronus: $patronus, dob: $dob, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -144,12 +313,41 @@ class _$EntityDataImpl implements _EntityData {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.jobTitle, jobTitle) ||
+                other.jobTitle == jobTitle) &&
+            (identical(other.industry, industry) ||
+                other.industry == industry) &&
+            (identical(other.house, house) || other.house == house) &&
+            (identical(other.patronus, patronus) ||
+                other.patronus == patronus) &&
+            (identical(other.dob, dob) || other.dob == dob) &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                other.avatarUrl == avatarUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, firstName, email);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      firstName,
+      email,
+      lastName,
+      gender,
+      city,
+      country,
+      jobTitle,
+      industry,
+      house,
+      patronus,
+      dob,
+      avatarUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +367,17 @@ abstract class _EntityData implements EntityData {
   const factory _EntityData(
       {final String? id,
       final String? firstName,
-      final String? email}) = _$EntityDataImpl;
+      final String? email,
+      final String? lastName,
+      final String? gender,
+      final String? city,
+      final String? country,
+      final String? jobTitle,
+      final String? industry,
+      final String? house,
+      final String? patronus,
+      final String? dob,
+      final String? avatarUrl}) = _$EntityDataImpl;
 
   factory _EntityData.fromJson(Map<String, dynamic> json) =
       _$EntityDataImpl.fromJson;
@@ -180,6 +388,26 @@ abstract class _EntityData implements EntityData {
   String? get firstName;
   @override
   String? get email;
+  @override
+  String? get lastName;
+  @override
+  String? get gender;
+  @override
+  String? get city;
+  @override
+  String? get country;
+  @override
+  String? get jobTitle;
+  @override
+  String? get industry;
+  @override
+  String? get house;
+  @override
+  String? get patronus;
+  @override
+  String? get dob;
+  @override
+  String? get avatarUrl;
   @override
   @JsonKey(ignore: true)
   _$$EntityDataImplCopyWith<_$EntityDataImpl> get copyWith =>

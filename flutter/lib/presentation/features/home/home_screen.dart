@@ -15,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return CommonScaffold(
       appBar: CommonAppBar(
+        title: 'Home',
         onLeadingPressed: _handleOnLeadingPressed,
       ),
       body: SizedBox(
@@ -23,26 +24,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('HomeScreen'),
-            AppButton.primary(
-              onPressed: () => context.push(AppPages.wizards.path),
-              width: double.infinity,
-              label: 'Wizards Screen',
-            ),
-            AppButton.primary(
-              onPressed: () {
-                getIt.get<AppBloc>().add(const GetEntities());
-              },
-              width: double.infinity,
-              label: 'Wizards',
-            ),
             BlocProvider(
               create: (_) => getIt.get<EntityBloc>(),
               child: BlocBuilder<EntityBloc, EntityState>(
-                buildWhen: (previous, current) =>
-                    previous.entities?.length != current.entities?.length,
+                buildWhen: (prev, cur) =>
+                    prev.entities?.length != cur.entities?.length,
                 builder: (context, state) {
-                  LogUtil.i(name: 'Building Bloc', state.entities?.length);
                   return Expanded(
                     child: ListView.builder(
                       itemCount: state.entities?.length ?? 0,
@@ -50,8 +37,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         LogUtil.i(
                             name: 'Widget: Home Screen ',
                             state.entities?.length);
-                        return itemBuilder(state.entities![
-                            idx]); // Assuming itemBuilder takes Entity data
+                        final entity = state.entities?[idx];
+                        return entity != null
+                            ? itemBuilder(entity)
+                            : Container();
                       },
                     ),
                   );
@@ -68,10 +57,23 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    getIt.get<AppBloc>().add(const GetEntities());
   }
 
-  itemBuilder(item) {
-    return Text(item.firstName);
+  Widget itemBuilder(Entity item) {
+    return ListTile(
+      onTap: () => context.push(
+        AppPages.entity.path,
+        extra: {'entity': item.toJson()},
+      ),
+      leading: Avatar(
+        imageUrl: item.avatarUrl,
+      ),
+      title: Text('${item.firstName} ${item.lastName}'),
+      subtitle: Text(item.jobTitle ?? ''),
+      trailing: const Icon(Icons.more_vert),
+      isThreeLine: true,
+    );
   }
 
   void _handleOnLeadingPressed() {

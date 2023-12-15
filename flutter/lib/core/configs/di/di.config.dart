@@ -138,8 +138,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i26.UserMapper>(() => _i26.UserMapper());
     gh.singleton<_i27.EnvConfig>(_i27.EnvConfig(gh<_i17.RawConfig>()));
     gh.factory<_i28.RefreshTokenInterceptor>(() => _i28.RefreshTokenInterceptor(
-          gh<_i21.RefreshTokenRepository>(),
-          gh<_i20.NoneAuthenticatedRestApiClient>(),
+          gh<_i6.RefreshTokenRepository>(),
+          gh<_i6.NoneAuthenticatedRestApiClient>(),
         ));
     gh.lazySingleton<_i29.AuthenticatedRestApiClient>(
         () => _i29.AuthenticatedRestApiClient(

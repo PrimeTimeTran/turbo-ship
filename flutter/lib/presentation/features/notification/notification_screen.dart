@@ -13,15 +13,13 @@ class _NotificationScreenState extends State<NotificationScreen>
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      appBar: CommonAppBar(),
+      appBar: CommonAppBar(title: 'Notifications'),
       body: const SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('NotificationScreen'),
-          ],
+          children: [],
         ),
       ),
     );

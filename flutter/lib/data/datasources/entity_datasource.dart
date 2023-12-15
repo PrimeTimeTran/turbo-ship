@@ -32,7 +32,7 @@ class EntityDataSourceImpl implements EntityDataSource {
   @override
   Future<EntityData> updateEntity(EntityData entityToUpdate) {
     final body = {
-      'full_name': entityToUpdate.firstName,
+      // 'full_name': entityToUpdate.firstName,
     };
 
     return _client

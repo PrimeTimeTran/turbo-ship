@@ -140,18 +140,10 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
       handleLoading: false,
       action: () async {
         final entities = await _getEntities.execute();
-        LogUtil.i(name: 'Entities fetched', entities);
-        // add(LoggedUserChanged(user));
-
-        // if (event.checkContractStatus) {
-        //   add(const GetUserSignContractStatus());
-        // }
         getIt.get<EntityBloc>().add(FetchedEntitiesEvent(entities));
-
         await Future.delayed(const Duration(milliseconds: 300), () {
           event.onSuccess?.call(entities);
         });
-
         event.completer?.complete();
       },
     );
