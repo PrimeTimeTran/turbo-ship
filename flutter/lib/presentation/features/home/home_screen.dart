@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:turboship/all.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String tab;
+  const HomeScreen({super.key, required this.tab});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -13,39 +14,33 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    return CommonScaffold(
-      drawer: true,
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BlocProvider(
-              create: (_) => getIt.get<EntityBloc>(),
-              child: BlocBuilder<EntityBloc, EntityState>(
-                buildWhen: (prev, cur) =>
-                    prev.entities?.length != cur.entities?.length,
-                builder: (context, state) {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: state.entities?.length ?? 0,
-                      itemBuilder: (context, idx) {
-                        LogUtil.i(
-                            name: 'Widget: Home Screen ',
-                            state.entities?.length);
-                        final entity = state.entities?[idx];
-                        return entity != null
-                            ? itemBuilder(entity)
-                            : Container();
-                      },
-                    ),
-                  );
-                },
-              ),
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BlocProvider(
+            create: (_) => getIt.get<EntityBloc>(),
+            child: BlocBuilder<EntityBloc, EntityState>(
+              buildWhen: (prev, cur) =>
+                  prev.entities?.length != cur.entities?.length,
+              builder: (context, state) {
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: state.entities?.length ?? 0,
+                    itemBuilder: (context, idx) {
+                      LogUtil.i(
+                          name: 'Widget: Home Screen ', state.entities?.length);
+                      final entity = state.entities?[idx];
+                      return entity != null ? itemBuilder(entity) : Container();
+                    },
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -59,10 +54,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   Widget itemBuilder(Entity item) {
     return ListTile(
-      onTap: () => context.push(
-        AppPages.entity.path,
-        extra: {'entity': item.toJson()},
-      ),
+      onTap: () {
+        LogUtil.d(name: 'widget.tab', widget.tab);
+        AppRouter.navMap[widget.tab] = true;
+        context.push(
+          AppPages.tabAStacked.path,
+          extra: {'entity': item.toJson()},
+        );
+      },
       leading: Avatar(
         imageUrl: item.avatarUrl,
       ),
@@ -73,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     );
   }
 
-  void _handleOnLeadingPressed() {
-    context.pop();
-  }
+  // void _handleOnLeadingPressed() {
+  //   context.pop();
+  // }
 }

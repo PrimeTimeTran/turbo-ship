@@ -15,15 +15,12 @@ class _EntityScreenState extends State<EntityScreen>
 
   @override
   Widget build(BuildContext context) {
-    return CommonScaffold(
-      appBar: CommonAppBar(title: '${entity.firstName} ${entity.lastName}'),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            Text(entity.jobTitle ?? ''),
-          ],
-        ),
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        children: [
+          Text(entity.jobTitle ?? ''),
+        ],
       ),
     );
   }

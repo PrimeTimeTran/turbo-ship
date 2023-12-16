@@ -1,88 +1,61 @@
 part of 'app_router.dart';
 
 enum AppPages {
-  welcome,
-  signIn,
-  signUp,
-  forgotPassword,
-  changePassword,
-  home,
-  settings,
-  feed,
-  profile,
-  wizards,
-  notification,
-  entity
-}
-
-class RouterHelper {
-  const RouterHelper._();
-
-  static bool isUnauthorizedPage(String location) {
-    return location == AppPages.signIn.path ||
-        location == AppPages.signUp.path ||
-        location == AppPages.forgotPassword.path ||
-        location == AppPages.changePassword.path ||
-        location == AppPages.home.path;
-  }
+  tabARoot,
+  tabAStacked,
+  tabBRoot,
+  tabBStacked,
+  tabCRoot,
+  tabCStacked,
+  tabDRoot,
+  tabDStacked,
+  entity,
 }
 
 extension AppPageX on AppPages {
   String get name {
     switch (this) {
-      case AppPages.welcome:
-        return 'WELCOME';
-      case AppPages.signIn:
-        return 'SIGN_IN';
-      case AppPages.signUp:
-        return 'SIGN_UP';
-      case AppPages.forgotPassword:
-        return 'FORGOT_PASSWORD';
-      case AppPages.changePassword:
-        return 'CHANGE_PASSWORD';
-      case AppPages.home:
-        return 'HOME';
-      case AppPages.settings:
-        return 'SETTINGS';
-      case AppPages.feed:
-        return 'FEED';
-      case AppPages.notification:
-        return 'NOTIFICATION';
-      case AppPages.wizards:
-        return 'WIZARDS';
+      case AppPages.tabARoot:
+        return 'TAB_A_ROOT';
+      case AppPages.tabAStacked:
+        return 'TAB_A_STACKED';
+      case AppPages.tabBRoot:
+        return 'TAB_B_ROOT';
+      case AppPages.tabBStacked:
+        return 'TAB_B_STACKED';
+      case AppPages.tabCRoot:
+        return 'TAB_C_ROOT';
+      case AppPages.tabCStacked:
+        return 'TAB_C_STACKED';
+      case AppPages.tabDRoot:
+        return 'TAB_D_ROOT';
+      case AppPages.tabDStacked:
+        return 'TAB_D_STACKED';
       case AppPages.entity:
-        return 'ENTITY';
-      case AppPages.profile:
-        return 'PROFILE';
+        return 'TAB_A_ENTITY';
     }
   }
 
   String get path {
     switch (this) {
-      case AppPages.welcome:
-        return '/welcome';
-      case AppPages.signIn:
-        return '/sign-in';
-      case AppPages.signUp:
-        return '/sign-up';
-      case AppPages.forgotPassword:
-        return '/forgot-password';
-      case AppPages.changePassword:
-        return '/change-password';
-      case AppPages.settings:
-        return '/settings';
-      case AppPages.feed:
-        return '/feed';
-      case AppPages.notification:
-        return '/notification';
-      case AppPages.home:
-        return '/home';
-      case AppPages.wizards:
-        return '/home/wizards';
+      case AppPages.tabARoot:
+        return '/tab_a_root';
+      case AppPages.tabAStacked:
+        return '/tab_a_stacked';
+      case AppPages.tabBRoot:
+        return '/tab_b_root';
+      case AppPages.tabBStacked:
+        return '/tab_b_stacked';
+      case AppPages.tabCRoot:
+        return '/tab_c_root';
+      case AppPages.tabCStacked:
+        return '/tab_c_stacked';
+      case AppPages.tabDRoot:
+        return '/tab_d_root';
+      case AppPages.tabDStacked:
+        return '/tab_d_stacked';
       case AppPages.entity:
-        return '/home/entity';
-      case AppPages.profile:
-        return '/profile';
+        return '/tab_a_entity';
     }
   }
 }

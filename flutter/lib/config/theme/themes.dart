@@ -88,6 +88,81 @@ final themeMap = {
   }
 };
 
+Color C(BuildContext context, Kolor key) {
+  final cs = Theme.of(context).colorScheme;
+  switch (key) {
+    case Kolor.primary:
+      return cs.primary;
+    case Kolor.onPrimary:
+      return cs.onPrimary;
+    case Kolor.primaryContainer:
+      return cs.primaryContainer;
+    case Kolor.onPrimaryContainer:
+      return cs.onPrimaryContainer;
+
+    case Kolor.secondary:
+      return cs.secondary;
+    case Kolor.onSecondary:
+      return cs.onSecondary;
+    case Kolor.secondaryContainer:
+      return cs.secondaryContainer;
+    case Kolor.onSecondaryContainer:
+      return cs.onSecondaryContainer;
+
+    case Kolor.tertiary:
+      return cs.tertiary;
+    case Kolor.onTertiary:
+      return cs.onTertiary;
+    case Kolor.tertiaryContainer:
+      return cs.tertiaryContainer;
+    case Kolor.onTertiaryContainer:
+      return cs.onTertiaryContainer;
+
+    case Kolor.error:
+      return cs.error;
+    case Kolor.onError:
+      return cs.onError;
+    case Kolor.errorContainer:
+      return cs.errorContainer;
+    case Kolor.onErrorContainer:
+      return cs.onErrorContainer;
+
+    case Kolor.surface:
+      return cs.surface;
+    case Kolor.onSurface:
+      return cs.onSurface;
+    case Kolor.surfaceVariant:
+      return cs.surfaceVariant;
+    case Kolor.onSurfaceVariant:
+      return cs.onSurfaceVariant;
+    case Kolor.surfaceTint:
+      return cs.surfaceTint;
+
+    case Kolor.outline:
+      return cs.outline;
+    case Kolor.outlineVariant:
+      return cs.outlineVariant;
+
+    case Kolor.inverseSurface:
+      return cs.inverseSurface;
+    case Kolor.onInverseSurface:
+      return cs.onInverseSurface;
+    case Kolor.inversePrimary:
+      return cs.inversePrimary;
+
+    case Kolor.background:
+      return cs.background;
+    case Kolor.onBackground:
+      return cs.onBackground;
+    case Kolor.scrim:
+      return cs.scrim;
+    case Kolor.shadow:
+      return cs.shadow;
+    default:
+      throw Exception('Invalid color key: $key');
+  }
+}
+
 ThemeData createTheme(Brightness brightness, s, color) {
   return ThemeData(
     useMaterial3: true,
@@ -116,65 +191,42 @@ ThemeData createTheme(Brightness brightness, s, color) {
   );
 }
 
+enum Kolor {
+  primary,
+  onPrimary,
+  primaryContainer,
+  onPrimaryContainer,
 
-Color C(BuildContext context, String key) {
-  final cs = Theme.of(context).colorScheme;
-  switch (key) {
-    case 'primary':
-      return cs.primary;
-    case 'onPrimary':
-      return cs.onPrimary;
-    case 'primaryContainer':
-      return cs.primaryContainer;
-    case 'onPrimaryContainer':
-      return cs.onPrimaryContainer;
-    case 'secondary':
-      return cs.secondary;
-    case 'onSecondary':
-      return cs.onSecondary;
-    case 'secondaryContainer':
-      return cs.secondaryContainer;
-    case 'onSecondaryContainer':
-      return cs.onSecondaryContainer;
-    case 'tertiary':
-      return cs.tertiary;
-    case 'onTertiary':
-      return cs.onTertiary;
-    case 'tertiaryContainer':
-      return cs.tertiaryContainer;
-    case 'onTertiaryContainer':
-      return cs.onSecondaryContainer;
-    case 'error':
-      return cs.error;
-    case 'onError':
-      return cs.onError;
-    case 'errorContainer':
-      return cs.errorContainer;
-    case 'onErrorContainer':
-      return cs.onSecondaryContainer;
-    case 'background':
-      return cs.background;
-    case 'onBackground':
-      return cs.onBackground;
-    case 'surface':
-      return cs.surface;
-    case 'onSurface':
-      return cs.onSurface;
-    case 'surfaceVariant':
-      return cs.surfaceVariant;
-    case 'onSurfaceVariant':
-      return cs.onSurfaceVariant;
-    case 'outline':
-      return cs.outline;
-    case 'shadow':
-      return cs.shadow;
-    case 'inverseSurface':
-      return cs.inverseSurface;
-    case 'onInverseSurface':
-      return cs.onInverseSurface;
-    case 'inversePrimary':
-      return cs.inversePrimary;
-    default:
-      throw Exception('Invalid color key: $key');
-  }
+  secondary,
+  onSecondary,
+  secondaryContainer,
+  onSecondaryContainer,
+
+  tertiary,
+  onTertiary,
+  tertiaryContainer,
+  onTertiaryContainer,
+
+  error,
+  onError,
+  errorContainer,
+  onErrorContainer,
+
+  surface,
+  onSurface,
+  surfaceVariant,
+  onSurfaceVariant,
+  surfaceTint,
+
+  outline,
+  outlineVariant,
+
+  inverseSurface,
+  onInverseSurface,
+  inversePrimary,
+
+  background,
+  onBackground,
+  scrim,
+  shadow,
 }

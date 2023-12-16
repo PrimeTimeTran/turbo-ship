@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
 // TODO: add firebase analytics here
-
 @lazySingleton
 class AppNavigatorObserver extends NavigatorObserver with LogMixin {
   static const _enableLog = LogConfig.enableNavigatorObserverLog;
@@ -13,8 +12,13 @@ class AppNavigatorObserver extends NavigatorObserver with LogMixin {
   @override
   void didPop(Route route, Route? previousRoute) {
     super.didPop(route, previousRoute);
+    LogUtil.i(name: 'Observer', 'didPop');
     previousRouteName = previousRoute?.settings.name;
-
+    // If true is stacked, if false is root of stack
+    if (!route.navigator!.canPop()) {
+      final tabName = getTabName('/${route.settings.name}');
+      AppRouter.navMap[tabName] = false;
+    }
     if (_enableLog) {
       logDebug(
         'didPop ${route.settings.name}, back to ${previousRoute?.settings.name}',
@@ -25,7 +29,12 @@ class AppNavigatorObserver extends NavigatorObserver with LogMixin {
   @override
   void didPush(Route route, Route? previousRoute) {
     super.didPush(route, previousRoute);
+    LogUtil.i(name: 'Observer', 'didPush');
     previousRouteName = previousRoute?.settings.name;
+    final tabName = getTabName('/${route.settings.name}');
+    if (route.isFirst) {
+      AppRouter.navMap[tabName] = false;
+    }
     if (_enableLog) {
       logDebug(
         'didPush from ${previousRoute?.settings.name} to ${route.settings.name}',
@@ -36,8 +45,16 @@ class AppNavigatorObserver extends NavigatorObserver with LogMixin {
   @override
   void didRemove(Route route, Route? previousRoute) {
     super.didRemove(route, previousRoute);
+    LogUtil.i(name: 'Observer', 'didRemove');
     previousRouteName = previousRoute?.settings.name;
-
+    final tabName = getTabName('/${route.settings.name}');
+    // print('GoRouterObserver didRemove: tabName $tabName');
+    // print('GoRouterObserver didRemove: currentResult ${route.currentResult}');
+    // print('GoRouterObserver didRemove: isActive ${route.isActive}');
+    // print('GoRouterObserver didRemove: isCurrent ${route.isCurrent}');
+    // print('GoRouterObserver didRemove: isFirst ${route.isFirst}');
+    // print('GoRouterObserver didRemove: popped ${route.popped}');
+    AppRouter.navMap[tabName] = false;
     if (_enableLog) {
       logDebug(
         'didRemove ${route.settings.name}, back to ${previousRoute?.settings.name}',
@@ -48,6 +65,7 @@ class AppNavigatorObserver extends NavigatorObserver with LogMixin {
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    LogUtil.i(name: 'Observer', 'didReplace');
     previousRouteName = oldRoute?.settings.name;
 
     if (_enableLog) {

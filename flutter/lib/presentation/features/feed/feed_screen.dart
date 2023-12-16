@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:turboship/presentation/common_widgets/all.dart';
 
 class FeedScreen extends StatefulWidget {
-  const FeedScreen({super.key});
+  final String tab;
+  const FeedScreen({super.key, required this.tab});
 
   @override
   State<FeedScreen> createState() => _FeedScreenState();
@@ -11,17 +11,12 @@ class FeedScreen extends StatefulWidget {
 class _FeedScreenState extends State<FeedScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    return CommonScaffold(
-      appBar: CommonAppBar(
-        title: 'Feed',
-      ),
-      body: const SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [],
-        ),
+    return const SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [Text('Hi')],
       ),
     );
   }

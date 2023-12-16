@@ -75,7 +75,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                     ),
                     AppSpacing.gapH12,
                     AppButton.primary(
-                      onPressed: () => context.go(AppPages.settings.path),
+                      onPressed: () {
+                        // context.go(AppPages.settings.path);
+                      },
                       width: double.infinity,
                       label: 'Welcome',
                     ),
@@ -102,7 +104,7 @@ class _SettingsScreenState extends State<SettingsScreen>
             builder: (BuildContext context) {
               return Container(
                 width: double.infinity,
-                color: C(context, 'background'),
+                color: C(context, Kolor.background),
                 padding: const EdgeInsets.all(8),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,7 +143,7 @@ class _SettingsScreenState extends State<SettingsScreen>
             builder: (BuildContext context) {
               return Container(
                 width: double.infinity,
-                color: C(context, 'background'),
+                color: C(context, Kolor.background),
                 padding: const EdgeInsets.all(8),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

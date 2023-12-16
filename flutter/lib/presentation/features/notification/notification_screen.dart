@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:turboship/presentation/common_widgets/all.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -12,15 +11,21 @@ class _NotificationScreenState extends State<NotificationScreen>
     with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    return CommonScaffold(
-      appBar: CommonAppBar(title: 'Notifications'),
-      body: const SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [],
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ListView.builder(
+            itemCount: 25,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, idx) {
+              return const ListTile(
+                title: Text('title'),
+                subtitle: Text('Subtitle'),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

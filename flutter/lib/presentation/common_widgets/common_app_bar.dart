@@ -78,7 +78,6 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (drawer == true) return AppBar(title: const Text('Drawer'));
     return AppBar(
       toolbarHeight: preferredSize.height,
       automaticallyImplyLeading:

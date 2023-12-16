@@ -49,8 +49,8 @@ getLightTheme(theme) {
   }
 }
 
-class MyAppTwo extends StatelessWidget {
-  const MyAppTwo({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +69,6 @@ class MyAppTwo extends StatelessWidget {
                 previous.locale != current.locale,
             builder: (context, state) {
               var palette = state.palette;
-              // ThemeMode goDark = getDarkTheme(palette);
-              // ThemeMode goLight = getLightTheme(palette);
               ThemeData dark = themeMap[palette]!['dark']!;
               ThemeData light = themeMap[palette]!['light']!;
               ThemeMode themeMode =
@@ -79,16 +77,15 @@ class MyAppTwo extends StatelessWidget {
               return MaterialApp.router(
                 theme: light,
                 darkTheme: dark,
-                // theme: goLight,
-                // darkTheme: goDark,
+                // Haven't figured out how to turn this guy yet.
+                // theme: AppThemeConstants.light,
+                // darkTheme: AppThemeConstants.dark,
                 locale: Locale(state.locale),
                 routerConfig: AppRouter.router,
                 debugShowCheckedModeBanner: false,
                 supportedLocales: LocaleConfig.supportedLocales,
                 builder: (context, child) => _TurboshipApp(child!),
                 themeMode: themeMode,
-                // themeMode: state.isDarkTheme ? goDark : goLight,
-                // themeMode: state.isDarkTheme ? palette.light : palette.dark,
                 localeResolutionCallback:
                     (Locale? locale, Iterable<Locale> supportedLocales) =>
                         supportedLocales.contains(locale)

@@ -7,6 +7,7 @@ export 'bottom_tabs.dart';
 export 'button.dart';
 export 'common_app_bar.dart';
 export 'common_scaffold.dart';
+export 'common_stacked_screen.dart';
 export 'custom_checkbox.dart';
 export 'custom_search_bar.dart';
 export 'dot_indicator.dart';

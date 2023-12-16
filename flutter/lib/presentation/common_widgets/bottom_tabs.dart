@@ -3,11 +3,23 @@ import 'package:go_router/go_router.dart';
 import 'package:turboship/all.dart';
 
 var bottomTabs = [
-  AppPages.home.path,
-  AppPages.feed.path,
-  AppPages.notification.path,
-  AppPages.profile.path
+  AppPages.tabARoot.path,
+  AppPages.tabBRoot.path,
+  AppPages.tabCRoot.path,
 ];
+
+SvgGenImage _getTabIcon(AppPages page) {
+  switch (page) {
+    case AppPages.tabARoot:
+      return Assets.icons.home;
+    case AppPages.tabBRoot:
+      return Assets.icons.user;
+    case AppPages.tabCRoot:
+      return Assets.icons.alertTriangle;
+    default:
+      return Assets.icons.home;
+  }
+}
 
 class BottomTabs extends StatefulWidget {
   const BottomTabs({super.key});
