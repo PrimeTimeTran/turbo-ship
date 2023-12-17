@@ -21,9 +21,7 @@ useHead({
     <template v-slot:left-drawer>
       <TTheLeftDrawerContent />
     </template>
-    <template v-slot:scripts>
-      <TGlobalShortcuts />
-    </template>
+    <template v-slot:scripts></template>
     <template v-slot:default>
       <TTheRightDrawer>
         <slot />

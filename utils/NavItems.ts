@@ -20,15 +20,15 @@ export const navItems = [
     icon: 'fa-blog',
   },
   {
-    url: '/previews',
-    name: 'Previews',
+    url: '/templates/ui',
+    name: 'Design Guide',
     icon: 'fa-blog',
   },
-  {
-    url: '/todos',
-    name: 'Todos',
-    icon: 'fa-list',
-  },
+  // {
+  //   url: '/todos',
+  //   name: 'Todos',
+  //   icon: 'fa-list',
+  // },
 ]
 
 export const adminNavItems = [
@@ -51,5 +51,10 @@ export const adminNavItems = [
     url: '/administrator/about',
     name: 'About',
     icon: 'fa-code',
+  },
+  {
+    url: '/templates/ui',
+    name: 'Design Guide',
+    icon: 'fa-blog',
   },
 ]

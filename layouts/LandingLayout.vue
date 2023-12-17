@@ -1,10 +1,3 @@
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" /> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>  -->
-<!-- 
-  Add flowbite by CDN to avoid clashing with daisyui
-  Removing flowbite from tailwind lets daisy work & tooltip/tab still works.
--->
-<script setup></script>
 <template>
   <div class="overflow-clip scrollbar-hide">
     <The.Navbar />

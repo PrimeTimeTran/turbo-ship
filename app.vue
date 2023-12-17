@@ -20,5 +20,6 @@ useHead({
 <template>
   <NuxtLayout>
     <NuxtPage />
+    <TGlobalShortcuts />
   </NuxtLayout>
 </template>

@@ -2,10 +2,16 @@
 definePageMeta({
   layout: 't-main-layout',
 })
+
+function sample() {
+  if (process.browser) {
+    document.getElementById('tSampleThemes').click()
+  }
+}
 </script>
 <template>
   <div>
-    <div class="navbar bg-base-100">
+    <!-- <div class="navbar bg-base-100">
       <a class="btn btn-ghost text-xl">Turbo</a>
     </div>
     <div class="navbar bg-base-100">
@@ -225,7 +231,7 @@ definePageMeta({
           </div>
         </button>
       </div>
-    </div>
+    </div> -->
     <div class="navbar bg-base-100">
       <div class="navbar-start">
         <div class="dropdown">
@@ -241,7 +247,7 @@ definePageMeta({
             </svg>
           </div>
           <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a>Item 1</a></li>
+            <li><button @click="sample">Sample Themes</button></li>
             <li>
               <a>Parent</a>
               <ul class="p-2">
@@ -256,7 +262,7 @@ definePageMeta({
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
-          <li><a>Item 1</a></li>
+          <li><button @click="sample">Sample Themes</button></li>
           <li>
             <details>
               <summary>Parent</summary>
@@ -273,7 +279,7 @@ definePageMeta({
         <a class="btn">Button</a>
       </div>
     </div>
-    <div class="navbar bg-neutral text-neutral-content">
+    <!-- <div class="navbar bg-neutral text-neutral-content">
       <button class="btn btn-ghost text-xl">Turbo</button>
     </div>
     <div class="navbar bg-base-300">
@@ -281,9 +287,9 @@ definePageMeta({
     </div>
     <div class="navbar bg-primary text-primary-content">
       <button class="btn btn-ghost text-xl">Turbo</button>
-    </div>
+    </div> -->
   </div>
-  <div class="bg-base-100 text-center text-5xl">Turbo <span class="brandName"></span></div>
+  <div class="bg-base-100 text-center text-5xl">Turbo<span class="brandName"></span></div>
   <div class="grid grid-cols-4 gap-4 place-items-stretch bg-base-100">
     <div class="cols-span-4 space-x-2 space-y-2 p-2 m-2">
       <div class="text-sm breadcrumbs">

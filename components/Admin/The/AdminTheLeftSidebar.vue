@@ -15,7 +15,7 @@ const state = ref({
 <template>
   <div class="drawer-side">
     <ul
-      class="menu px-1 min-h-full bg-slate-200 dark:bg-base-200 text-base-content space-y-3 pb-10 overflow-hidden"
+      class="menu px-1 min-h-full bg-base-200 dark:bg-base-200 text-base-content space-y-3 pb-10 overflow-hidden"
       :class="{
         ['w-20']: !state.leftOpen,
         ['w-64']: state.leftOpen,
@@ -38,15 +38,12 @@ const state = ref({
         <div
           tabindex="0"
           role="button"
-          class="btn btn-ghost flex text-black/75 dark:text-white justify-start m-1 hover:text-green-400 dark:hover:text-green-400"
+          class="btn btn-ghost flex primary-content justify-start m-1 hover:text-green-400 dark:hover:text-green-400"
         >
           <LanguageIcon class="h-6 w-6" />
           <span v-if="state.leftOpen" v-text="'Languages'" />
         </div>
-        <ul
-          tabindex="0"
-          class="dropdown-content menu px-2 shadow bg-slate-200 dark:bg-base-200 dark:text-white rounded-box w-52 border"
-        >
+        <ul tabindex="0" class="dropdown-content menu px-2 shadow bg-base-200 dark:bg-base-200 rounded-box w-52 border">
           <li><a>English</a></li>
           <li>
             <a><div @click="document.getElementById('globalModalBtn').click()" id="toggleModal"></div></a>
@@ -56,7 +53,7 @@ const state = ref({
       </div>
       <div
         tabindex="-1"
-        class="btn btn-ghost flex text-black/75 dark:text-white justify-start items-center hover:text-green-400 dark:hover:text-green-400"
+        class="btn btn-ghost flex primary-content justify-start items-center hover:text-green-400 dark:hover:text-green-400"
         :class="{
           ['justify-start']: state.leftOpen,
         }"
@@ -77,7 +74,7 @@ const state = ref({
         <span v-text="'Theme'" v-if="state.leftOpen" />
       </div>
       <button
-        class="btn btn-ghost flex text-black/75 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+        class="btn btn-ghost flex primary-content hover:text-green-400 dark:hover:text-green-400"
         :class="{
           ['justify-start']: state.leftOpen,
         }"

@@ -31,6 +31,9 @@ class TurboShortcuts {
     },
   }
   static entityBuilderItems = {
+    'alt+c': function () {
+      document.getElementById('CollapseSubmenu').click()
+    },
     'alt+d': function () {
       document.getElementById('tThemeToggle').click()
     },
@@ -67,9 +70,7 @@ class TurboShortcuts {
     'alt+e': function () {
       document.getElementById('EntitiesSubmenu').click()
     },
-    'alt+c': function () {
-      document.getElementById('CollapseSubmenu').click()
-    },
+
     'alt+b': function () {
       document.getElementById('FeedbackSubmenu').click()
     },
@@ -110,8 +111,12 @@ class TurboShortcuts {
 }
 
 function setupGlobals() {
+  let entities = window.location.href.includes('entities')
   let shortcuts
-  if (window.location.href.includes('entities')) {
+  console.log({
+    entities,
+  })
+  if (entities) {
     console.log('Entities Shortcuts')
     shortcuts = TurboShortcuts.shortcutsEntity
   } else {
@@ -120,10 +125,9 @@ function setupGlobals() {
   }
 
   hotkeys(shortcuts, function (event, handler) {
-    console.log('Shortcut pressed')
     try {
       let fn
-      if (window.location.href.includes('entities')) {
+      if (entities) {
         fn = TurboShortcuts.entityBuilderItems[handler.key]
       } else {
         fn = TurboShortcuts.items[handler.key]
@@ -133,8 +137,4 @@ function setupGlobals() {
       alert('Missing shortcut handler', event)
     }
   })
-}
-
-function setupShortcuts() {
-  setupGlobals()
 }

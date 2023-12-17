@@ -11,7 +11,7 @@ export function loadJS(url, async = true) {
 
       scriptEle.addEventListener('load', () => {
         console.log('Loaded!')
-        if (url === scriptUrls.hotkeys) setupShortcuts()
+        if (url === scriptUrls.hotkeys) setupGlobals()
         loaded = true
       })
 

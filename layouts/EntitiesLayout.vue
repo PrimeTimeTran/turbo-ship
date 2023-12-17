@@ -1,13 +1,5 @@
 <script setup>
-// Doesn't work =(
 useHead({
-  link: [
-    // {
-    //   rel: 'stylesheet',
-    //   href: 'https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css',
-    //   tagPosition: 'head',
-    // },
-  ],
   script: [
     {
       type: 'text/javascript',
@@ -20,7 +12,7 @@ useHead({
     },
   ],
 })
-// ensureLoad(scriptUrls.hotkeys)
+ensureLoad(scriptUrls.hotkeys)
 </script>
 <template>
   <TheNavbar />
@@ -41,5 +33,4 @@ useHead({
     </div>
   </div>
   <VDevTools />
-  <VGlobals />
 </template>

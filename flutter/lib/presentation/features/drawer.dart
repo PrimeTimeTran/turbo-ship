@@ -15,31 +15,7 @@ class DrawerWrapper extends StatelessWidget {
     final tabIdx = navigationShell.currentIndex;
     return Scaffold(
       appBar: getAppBar(tabIdx),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Turboship'),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                context.goNamed(AppPages.settings.name);
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                context.goNamed(AppPages.settings.name);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: _buildDrawer(context),
       body: navigationShell,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -107,6 +83,34 @@ class DrawerWrapper extends StatelessWidget {
                   )
                 : null,
           );
+  }
+
+  Drawer _buildDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Text('Turboship'),
+          ),
+          ListTile(
+            title: const Text('Item 1'),
+            onTap: () {
+              context.goNamed(AppPages.settings.name);
+            },
+          ),
+          ListTile(
+            title: const Text('Item 2'),
+            onTap: () {
+              context.goNamed(AppPages.settings.name);
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildTabItem({
