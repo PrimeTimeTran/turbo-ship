@@ -30,11 +30,8 @@ class $AssetsEnvGen {
   /// File path: assets/env/.env.production
   String get envProduction => 'assets/env/.env.production';
 
-  /// File path: assets/env/env.example
-  String get env => 'assets/env/env.example';
-
   /// List of all assets
-  List<String> get values => [envDevelopment, envProduction, env];
+  List<String> get values => [envDevelopment, envProduction];
 }
 
 class $AssetsIconsGen {

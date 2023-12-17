@@ -1,6 +1,7 @@
-assets/env/env.example
 assets/env/.env.development
-
+assets/icons
+assets/data
+assets/images
 lib/config
 lib/core
 lib/data
@@ -8,7 +9,8 @@ lib/domain
 lib/l10n
 lib/presentation
 lib/utils
-
-all.dart
-main.dart
-
+lib/all.dart
+lib/main.dart
+l10n.yaml
+pubspec.yaml
+README.md

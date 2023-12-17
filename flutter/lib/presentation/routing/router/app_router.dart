@@ -9,14 +9,14 @@ part '_transitions.dart';
 // https://medium.com/@ahm4d.bilal/using-gorouters-shellroute-in-flutter-for-nested-navigation-777a9a20642f
 
 class AppRouter {
-  static const tabs = [
+  static const List<AppPages> tabs = [
     AppPages.tabARoot,
     AppPages.tabBRoot,
     AppPages.tabCRoot,
     AppPages.tabDRoot,
   ];
-  static List navMapTabs = ['a', 'b', 'c', 'd'];
-  static Map navMap = {
+  static const List<String> navMapTabs = ['a', 'b', 'c', 'd'];
+  static final Map navMap = {
     "a": false,
     "b": false,
     "c": false,
@@ -25,7 +25,7 @@ class AppRouter {
     "drawer": false,
   };
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  static const _initialLocation = AppPages.tabBRoot;
+  static const _initialLocation = AppPages.tabARoot;
 
   // Route config
   static final _router = GoRouter(

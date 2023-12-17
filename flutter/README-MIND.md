@@ -91,6 +91,34 @@ flutter build appbundle --dart-define=FLAVOR=production
 
 CLI flavor arguments don't seem to pass to iOS
 
+# SETUP Flutter 
+
+Copy
+Install
+
+flutter pub get
+dart run build_runner build
+flutter gen-l10n
 
 
+flutter pub get && dart run build_runner build && flutter gen-l10n
 
+
+- DT_TOOLCHAIN_DIR cannot be used to evaluate LIBRARY_SEARCH_PATHS, use TOOLCHAIN_DIR instead in xcode 15
+https://stackoverflow.com/questions/77219650/dt-toolchain-dir-cannot-be-used-to-evaluate-library-search-paths-use-toolchain
+Troubleshoot ios
+cd ios
+
+sudo gem update cocoapods
+
+brew install cocoapods
+flutter clean
+rm Podfile.lock
+rm -rf Pods/
+cd ..
+flutter pub get
+cd ios
+pod install
+pod update
+
+$ flutter run --dart-define=FLAVOR=development

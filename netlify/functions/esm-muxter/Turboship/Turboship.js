@@ -12,7 +12,7 @@ class Turboship {
     this.entities = {}
     this.options = this.options()
     this.buildEntities(entities)
-    this.setupFrameworks(entities)
+    this.generate(entities)
   }
 
   options() {
@@ -23,7 +23,10 @@ class Turboship {
       .option('-m, --mobile <type>', 'mobile choice', 'flutter')
       .option('-e, --entities <letters...>', 'entities included', 'user')
     program.parse(process.argv)
-    return program.opts()
+    let options = program.opts()
+    options.isDev = false
+    options.logLevelDebug = false
+    return options
   }
 
   buildEntities(entities = []) {
@@ -34,15 +37,23 @@ class Turboship {
     }
   }
 
-  async setupFrameworks() {
+  async generate() {
     // Fixed race condition by adding an await
     const keys = [this.options.backend, this.options.mobile]
     const frameworks = keys.filter((k) => this.supportedFrameworks.includes(k))
-    for (let framework of frameworks) {
-      const fw = new Framework(framework, this.options, this.entities, this.zip)
-      fw.createDirectories()
-      fw.zipBaseDirectory()
-      await fw.build()
+    try {
+      for (let framework of frameworks) {
+        if (this.options.logLevelDebug) console.log('generate: ', framework)
+        const fw = new Framework(framework, this.options, this.entities, this.zip)
+        fw.createDirectories()
+        fw.zipBaseDirectory()
+        await fw.build()
+      }
+    } catch (error) {
+      console.log({
+        error,
+        error: 'generate',
+      })
     }
   }
 

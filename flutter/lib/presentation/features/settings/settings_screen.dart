@@ -82,8 +82,6 @@ class _SettingsScreenState extends State<SettingsScreen>
                       label: 'Welcome',
                     ),
                     AppSpacing.gapH12,
-                    buildThemeDark(),
-                    buildThemeLight(),
                   ],
                 );
               },
@@ -91,85 +89,6 @@ class _SettingsScreenState extends State<SettingsScreen>
           ],
         ),
       ),
-    );
-  }
-
-  buildThemeDark() {
-    return BlocBuilder<AppBloc, AppState>(
-      builder: (c, state) {
-        final palette = state.palette;
-        return Theme(
-          data: themeMap[palette]!['dark']!,
-          child: Builder(
-            builder: (BuildContext context) {
-              return Container(
-                width: double.infinity,
-                color: C(context, Kolor.background),
-                padding: const EdgeInsets.all(8),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Alpha',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Bravo',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Charlie',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        );
-      },
-    );
-  }
-
-  buildThemeLight() {
-    return Builder(
-      builder: (BuildContext context) {
-        return Theme(
-          data: lightBlue,
-          child: Builder(
-            builder: (BuildContext context) {
-              return Container(
-                width: double.infinity,
-                color: C(context, Kolor.background),
-                padding: const EdgeInsets.all(8),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Alpha',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Bravo',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Charlie',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        );
-      },
     );
   }
 

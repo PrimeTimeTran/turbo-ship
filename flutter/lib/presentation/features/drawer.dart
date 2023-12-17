@@ -8,7 +8,7 @@ class DrawerWrapper extends StatelessWidget {
   const DrawerWrapper({
     required this.navigationShell,
     Key? key,
-  }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
+  }) : super(key: key ?? const ValueKey<String>('DrawerWrapper'));
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +23,13 @@ class DrawerWrapper extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Drawer Header'),
+              child: Text('Turboship'),
             ),
             ListTile(
               title: const Text('Item 1'),
-              onTap: () {},
+              onTap: () {
+                context.goNamed(AppPages.settings.name);
+              },
             ),
             ListTile(
               title: const Text('Item 2'),

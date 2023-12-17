@@ -5,12 +5,11 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Define an array of files and directories to delete
 filesOrDirectories=(
-  "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/devtools_options.yaml"
-  "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/android"
-  "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/ios"
+  "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/.dart_tool"
   "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/build"
+  "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/.flutter-plugins"
+  "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/.flutter-plugins-dependencies"
   "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/pubspec.lock"
-  "$script_dir/../netlify/functions/esm-muxter/Turboship/flutter/makefile"
 )
 
 # Loop through the array and delete each file/directory

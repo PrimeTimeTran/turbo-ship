@@ -10,6 +10,7 @@ enum AppPages {
   tabDRoot,
   tabDStacked,
   settings,
+  privacy,
   entity,
 }
 
@@ -34,8 +35,10 @@ extension AppPageX on AppPages {
         return 'TAB_D_STACKED';
       case AppPages.entity:
         return 'TAB_A_ENTITY';
+      case AppPages.privacy:
+        return 'TAB_DRAWER_PRIVACY';
       case AppPages.settings:
-        return 'TAB_SETTINGS_ENTITY';
+        return 'TAB_DRAWER_SETTINGS';
     }
   }
 
@@ -61,6 +64,8 @@ extension AppPageX on AppPages {
         return '/tab_a_entity';
       case AppPages.settings:
         return '/tab_drawer_entity';
+      case AppPages.privacy:
+        return '/tab_drawer_privacy';
     }
   }
 }

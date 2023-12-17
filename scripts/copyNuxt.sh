@@ -11,7 +11,7 @@ source_dir="$SCRIPT_DIR/.." # Assuming the files to be copied are in the parent 
 destination_dir="$SCRIPT_DIR/../netlify/functions/esm-muxter/Turboship/nuxt"
 
 # Path to the file list
-file_list="$SCRIPT_DIR/copyNuxtList.txt"
+file_list="$SCRIPT_DIR/copyNuxt.txt"
 
 # Check if the file list exists
 if [ ! -f "$file_list" ]; then

@@ -17,6 +17,7 @@ export default class Framework {
 
   createDirectories() {
     this.framework.rootDirectories.forEach((dir) => {
+      if (this.options.logLevelDebug) console.log(`building ${dir}`)
       this.zip.folder(`${this.name}/${dir}`)
     })
     return this.zip
@@ -30,7 +31,7 @@ export default class Framework {
       basePath = '/Users/loi/Desktop/work/turboship/web/netlify/functions/esm-muxter/Turboship/'
     }
     basePath += name
-    getZippedFolderSync(basePath, this.zip)
+    getZippedFolderSync(basePath, this.zip, this.options)
     return this.zip
   }
   async build() {
@@ -40,10 +41,12 @@ export default class Framework {
   }
 }
 
-function getZippedFolderSync(dir, zip) {
+function getZippedFolderSync(dir, zip, options) {
+  console.log('getZippedFolderSync')
   let allPaths = getFilePathsRecursiveSync(dir)
   zip.sync(() => {
     for (let filePath of allPaths) {
+      if (options.logLevelDebug) console.log(`building ${filePath}`)
       let addPath = path.relative(path.join(dir, '..'), filePath)
       let data = fs.readFileSync(filePath)
       zip.file(addPath, data)
@@ -82,14 +85,6 @@ function buildEntities(entities) {
 }
 
 function buildEntityDefinition(e) {
-  // function buildOptions(a) {
-  //   if (!isEnumerator(a.type)) return ''
-  //   return `options: [${a.options
-  //     ?.replace(/(^,)|(,$)/g, '')
-  //     ?.split(',')
-  //     ?.sort((a, b) => a.localeCompare(b))
-  //     ?.map((item) => `'${item}'`)}],`
-  // }
   function setupAttributes() {
     e.fields = {}
     const fields = {}
@@ -275,6 +270,6 @@ export const frameworkMap = {
   flutter: {
     name: 'flutter',
     version: '3.8.0',
-    rootDirectories: ['src', 'lib'],
+    rootDirectories: ['lib'],
   },
 }

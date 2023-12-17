@@ -22,14 +22,6 @@
       "type": "dart",
       "request": "launch",
       "flutterMode": "debug",
-      "program": "lib/main_development.dart",
-      "name": "Loi iPhone(device)",
-      "deviceId": "00008110-000218C20C0B801E"
-    },
-    {
-      "type": "dart",
-      "request": "launch",
-      "flutterMode": "debug",
       "name": "Flutter(web)(dev)",
       "program": "flutter/lib/main.dart",
       "args": ["-d", "chrome", "--flavor", "development"]

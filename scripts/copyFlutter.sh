@@ -11,7 +11,7 @@ source_dir="$SCRIPT_DIR/../flutter"
 destination_dir="$SCRIPT_DIR/../netlify/functions/esm-muxter/Turboship/flutter"
 
 # Path to the file list
-file_list="$SCRIPT_DIR/copyFlutterList.txt"
+file_list="$SCRIPT_DIR/copyFlutter.txt"
 
 # Check if the file list exists
 if [ ! -f "$file_list" ]; then

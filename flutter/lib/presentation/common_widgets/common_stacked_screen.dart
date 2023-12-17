@@ -23,7 +23,7 @@ class _ScreenStackedState extends State<ScreenStacked> {
   Widget build(BuildContext context) {
     final root = AppRouter.navMap[widget.tab];
     return Scaffold(
-      appBar: root
+      appBar: root == true
           ? AppBar(
               title: Text(widget.name),
             )
