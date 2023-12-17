@@ -103,8 +103,8 @@ export async function seedBanks() {
       let randomNum = faker.number.int({ min: 1, max: 10 })
       let sex = faker.person.sex()
       let genderPic = sex == 'male' ? 'men' : 'women'
-      let img = { min: 1, max: 90 }
-      let urlAvatar = `https://randomuser.me/api/portraits/${genderPic}/${faker.number.int(img)}.jpg`
+      let range = { min: 1, max: 90 }
+      let urlAvatar = `https://randomuser.me/api/portraits/${genderPic}/${faker.number.int(range)}.jpg`
       let roles = _.sampleSize(['Admin', 'Customer', 'Manager', 'Owner', 'Staff'], randomNum >= 5 ? 1 : 2)
       return {
         email: faker.internet.email(),
@@ -126,7 +126,6 @@ export async function seedBanks() {
       let i = 0
       let users = []
       while (i < faker.number.int({ min: 750, max: 1000 })) {
-        // while (i < faker.number.int({ min: 5, max: 10 })) {
         users.push(createUser())
         i++
       }
