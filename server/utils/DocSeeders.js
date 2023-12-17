@@ -5,6 +5,7 @@ import { faker } from '@faker-js/faker'
 import _ from 'lodash'
 import mongoose from 'mongoose'
 
+// Turbo: Don't remove the unused vars unless you want a headache understanding why things aren't matching
 export async function seedBanks() {
   async function createTransactions(banks, branches, users, accounts) {
     function createTransaction(account) {
@@ -274,16 +275,15 @@ export async function seedBanks() {
   return await createBanks()
 }
 
-export async function seedWizards() {
-  let wizards = []
-  for (const wizard of Seeder.wizardSeeds) {
-    let w = await Seeder.createWizard(wizard)
-    wizards.push(w)
+export class Seeder {
+  static async seed() {
+    let wizards = []
+    for (const wizard of Seeder.wizardSeeds) {
+      let w = await Seeder.createWizard(wizard)
+      wizards.push(w)
+    }
+    return wizards
   }
-  return wizards
-}
-
-class Seeder {
   static spells = ['hexes', 'charms', 'curses', 'spells', 'jinxes', 'healing', 'counters', 'transfigurations']
   static programmingLangs = [
     'Javascript',
@@ -1077,4 +1077,154 @@ class Seeder {
       gender: 'f',
     },
   ]
+}
+
+export class SocialSeeder {
+  static reactionTypes = ['like', 'love', 'laugh', 'wow', 'sad', 'angry']
+  static categories = [
+    'fashion',
+    'animals',
+    'business',
+    'city',
+    'nature',
+    'nightlife',
+    'people',
+    'sports',
+    'transport',
+    'food',
+  ]
+  static generateRandomPersonAvatarUrl(sex) {
+    let genderPic = sex == 'male' ? 'men' : 'women'
+    let range = { min: 1, max: 90 }
+    return `https://randomuser.me/api/portraits/${genderPic}/${faker.number.int(range)}.jpg`
+  }
+
+  static async seed() {
+    let userCountRange = { min: 750, max: 1000 }
+    let users = await this.seedUsers(userCountRange)
+    let postCount = 20
+    let posts = await this.seedPosts(users, postCount)
+  }
+
+  static seedPosts(users) {
+    let posts = []
+    let count = 0
+    while (count < postCount) {
+      let u = _.sample(users)
+      let user = {
+        name: `${u.firstName} ${u.lastName}`,
+        title: u.jobTitle,
+        urlAvatar: u.avatarUrl,
+        networkDegree: faker.helpers.arrayElement([1, 2, 3, 4, 5]),
+        urlProfile: u._id,
+      }
+      let reactionItems = []
+      let reactionCount = faker.number.int({ min: 5, max: 10 })
+      while (reactionCount > 0) {
+        let u = _.sample(users)
+        let reaction = {
+          id: faker.database.mongodbObjectId(),
+          type: faker.helpers.arrayElement(reactionTypes),
+          user: {
+            caption: u.bio,
+            title: u.jobTitle,
+            urlAvatar: u.urlAvatar,
+            networkDegree: faker.number.int(1, 5),
+            name: `${u.firstName} ${u.lastName}`,
+          },
+        }
+        reactionItems.push(reaction)
+        reactionCount--
+      }
+
+      let imgCount = faker.number.int({ min: 1, max: 3 })
+      let assets = []
+      while (imgCount > 0) {
+        let attachment = {
+          id: faker.database.mongodbObjectId(),
+          url: faker.image.urlLoremFlickr({ category: faker.helpers.arrayElement(categories) }),
+          type: 'photo',
+        }
+        assets.push(attachment)
+        imgCount--
+      }
+
+      let isAd = faker.helpers.arrayElement([true, false])
+      let ad = {}
+      if (isAd) {
+        ad = {
+          promoterName: faker.company.name(),
+          body: faker.lorem.sentences(),
+          title: faker.company.buzzPhrase(),
+          url: faker.image.url(),
+          urlImg: faker.image.url(),
+          urlText: `${faker.company.buzzVerb()} ${faker.company.catchPhraseNoun()}`,
+          buttonText: faker.company.buzzNoun(),
+        }
+      }
+
+      const today = new Date()
+      const aWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
+      const randomDate = faker.date.between(aWeekAgo, today)
+
+      const item = {
+        id: faker.database.mongodbObjectId(),
+        body: faker.lorem.sentences(2, 7),
+        date: randomDate,
+        user,
+        type: {
+          privacy: faker.helpers.arrayElement(['global', 'network']),
+          caption: faker.lorem.lines(),
+          ad,
+        },
+        reactions: {
+          meta: {
+            countShares: faker.number.int({ min: 1, max: 25 }),
+            countComments: faker.number.int({ min: 1, max: 50 }),
+            countReactions: faker.number.int({ min: 1, max: 100 }),
+          },
+          items: reactionItems,
+        },
+        assets,
+      }
+      posts.push(item)
+      count++
+    }
+    return posts
+  }
+  static async seedUsers(userCountRange) {
+    function createUser() {
+      let randomNum = faker.number.int({ min: 1, max: 10 })
+      let sex = faker.person.sex()
+      let urlAvatar = generateRandomPersonAvatarUrl(sex)
+      let roles = _.sampleSize(['Admin', 'EndUser'], randomNum >= 9 ? 1 : 2)
+      return {
+        sex,
+        roles,
+        urlAvatar: urlAvatar,
+        bio: faker.person.bio(),
+        dob: faker.date.birthdate(),
+        email: faker.internet.email(),
+        jobType: faker.person.jobType(),
+        jobArea: faker.person.jobArea(),
+        jobTitle: faker.person.jobTitle(),
+        lastName: faker.person.lastName(sex),
+        zodiacSign: faker.person.zodiacSign(),
+        firstName: faker.person.firstName(sex),
+        jobDescriptor: faker.person.jobDescriptor(),
+      }
+    }
+    try {
+      let i = 0
+      let users = []
+      while (i < faker.number.int(userCountRange)) {
+        users.push(createUser())
+        i++
+      }
+      users = await mongoose.models.User.insertMany(users)
+      return users
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }

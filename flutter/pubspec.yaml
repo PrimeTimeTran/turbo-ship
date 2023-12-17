@@ -75,7 +75,5 @@ flutter:
     - assets/
     - assets/icons/
     - assets/images/
-    - assets/illus/
-    - assets/fonts/
     - assets/env/
     - assets/data/
