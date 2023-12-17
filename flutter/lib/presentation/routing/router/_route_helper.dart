@@ -9,6 +9,7 @@ enum AppPages {
   tabCStacked,
   tabDRoot,
   tabDStacked,
+  settings,
   entity,
 }
 
@@ -33,6 +34,8 @@ extension AppPageX on AppPages {
         return 'TAB_D_STACKED';
       case AppPages.entity:
         return 'TAB_A_ENTITY';
+      case AppPages.settings:
+        return 'TAB_SETTINGS_ENTITY';
     }
   }
 
@@ -56,6 +59,8 @@ extension AppPageX on AppPages {
         return '/tab_d_stacked';
       case AppPages.entity:
         return '/tab_a_entity';
+      case AppPages.settings:
+        return '/tab_drawer_entity';
     }
   }
 }

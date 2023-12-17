@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BlocProvider(
             create: (_) => getIt.get<EntityBloc>(),
@@ -26,6 +25,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               buildWhen: (prev, cur) =>
                   prev.entities?.length != cur.entities?.length,
               builder: (context, state) {
+                if (state.entities != null && state.entities!.isEmpty) {
+                  return const Text('Error');
+                }
                 return Expanded(
                   child: ListView.builder(
                     itemCount: state.entities?.length ?? 0,
@@ -55,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   Widget itemBuilder(Entity item) {
     return ListTile(
       onTap: () {
-        LogUtil.d(name: 'widget.tab', widget.tab);
         AppRouter.navMap[widget.tab] = true;
         context.push(
           AppPages.tabAStacked.path,
@@ -71,8 +72,4 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       isThreeLine: true,
     );
   }
-
-  // void _handleOnLeadingPressed() {
-  //   context.pop();
-  // }
 }

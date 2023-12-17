@@ -15,6 +15,128 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$HideOverlayEvent {}
+
+/// @nodoc
+abstract class $HideOverlayEventCopyWith<$Res> {
+  factory $HideOverlayEventCopyWith(
+          HideOverlayEvent value, $Res Function(HideOverlayEvent) then) =
+      _$HideOverlayEventCopyWithImpl<$Res, HideOverlayEvent>;
+}
+
+/// @nodoc
+class _$HideOverlayEventCopyWithImpl<$Res, $Val extends HideOverlayEvent>
+    implements $HideOverlayEventCopyWith<$Res> {
+  _$HideOverlayEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$HideOverlayEventImplCopyWith<$Res> {
+  factory _$$HideOverlayEventImplCopyWith(_$HideOverlayEventImpl value,
+          $Res Function(_$HideOverlayEventImpl) then) =
+      __$$HideOverlayEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$HideOverlayEventImplCopyWithImpl<$Res>
+    extends _$HideOverlayEventCopyWithImpl<$Res, _$HideOverlayEventImpl>
+    implements _$$HideOverlayEventImplCopyWith<$Res> {
+  __$$HideOverlayEventImplCopyWithImpl(_$HideOverlayEventImpl _value,
+      $Res Function(_$HideOverlayEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$HideOverlayEventImpl implements _HideOverlayEvent {
+  const _$HideOverlayEventImpl();
+
+  @override
+  String toString() {
+    return 'HideOverlayEvent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$HideOverlayEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class _HideOverlayEvent implements HideOverlayEvent {
+  const factory _HideOverlayEvent() = _$HideOverlayEventImpl;
+}
+
+/// @nodoc
+mixin _$ShowLoadingEvent {}
+
+/// @nodoc
+abstract class $ShowLoadingEventCopyWith<$Res> {
+  factory $ShowLoadingEventCopyWith(
+          ShowLoadingEvent value, $Res Function(ShowLoadingEvent) then) =
+      _$ShowLoadingEventCopyWithImpl<$Res, ShowLoadingEvent>;
+}
+
+/// @nodoc
+class _$ShowLoadingEventCopyWithImpl<$Res, $Val extends ShowLoadingEvent>
+    implements $ShowLoadingEventCopyWith<$Res> {
+  _$ShowLoadingEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$ShowLoadingEventImplCopyWith<$Res> {
+  factory _$$ShowLoadingEventImplCopyWith(_$ShowLoadingEventImpl value,
+          $Res Function(_$ShowLoadingEventImpl) then) =
+      __$$ShowLoadingEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ShowLoadingEventImplCopyWithImpl<$Res>
+    extends _$ShowLoadingEventCopyWithImpl<$Res, _$ShowLoadingEventImpl>
+    implements _$$ShowLoadingEventImplCopyWith<$Res> {
+  __$$ShowLoadingEventImplCopyWithImpl(_$ShowLoadingEventImpl _value,
+      $Res Function(_$ShowLoadingEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ShowLoadingEventImpl implements _ShowLoadingEvent {
+  const _$ShowLoadingEventImpl();
+
+  @override
+  String toString() {
+    return 'ShowLoadingEvent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ShowLoadingEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class _ShowLoadingEvent implements ShowLoadingEvent {
+  const factory _ShowLoadingEvent() = _$ShowLoadingEventImpl;
+}
+
+/// @nodoc
 mixin _$ShowOverlayEvent {
   String get message => throw _privateConstructorUsedError;
   AlertType get alertType => throw _privateConstructorUsedError;
@@ -170,69 +292,9 @@ abstract class _ShowOverlayEvent implements ShowOverlayEvent {
 }
 
 /// @nodoc
-mixin _$HideOverlayEvent {}
-
-/// @nodoc
-abstract class $HideOverlayEventCopyWith<$Res> {
-  factory $HideOverlayEventCopyWith(
-          HideOverlayEvent value, $Res Function(HideOverlayEvent) then) =
-      _$HideOverlayEventCopyWithImpl<$Res, HideOverlayEvent>;
-}
-
-/// @nodoc
-class _$HideOverlayEventCopyWithImpl<$Res, $Val extends HideOverlayEvent>
-    implements $HideOverlayEventCopyWith<$Res> {
-  _$HideOverlayEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$HideOverlayEventImplCopyWith<$Res> {
-  factory _$$HideOverlayEventImplCopyWith(_$HideOverlayEventImpl value,
-          $Res Function(_$HideOverlayEventImpl) then) =
-      __$$HideOverlayEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$HideOverlayEventImplCopyWithImpl<$Res>
-    extends _$HideOverlayEventCopyWithImpl<$Res, _$HideOverlayEventImpl>
-    implements _$$HideOverlayEventImplCopyWith<$Res> {
-  __$$HideOverlayEventImplCopyWithImpl(_$HideOverlayEventImpl _value,
-      $Res Function(_$HideOverlayEventImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$HideOverlayEventImpl implements _HideOverlayEvent {
-  const _$HideOverlayEventImpl();
-
-  @override
-  String toString() {
-    return 'HideOverlayEvent()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HideOverlayEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-}
-
-abstract class _HideOverlayEvent implements HideOverlayEvent {
-  const factory _HideOverlayEvent() = _$HideOverlayEventImpl;
-}
-
-/// @nodoc
 mixin _$AppOverlayState {
   AlertMessage? get alertMessage => throw _privateConstructorUsedError;
+  bool? get loading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppOverlayStateCopyWith<AppOverlayState> get copyWith =>
@@ -245,7 +307,7 @@ abstract class $AppOverlayStateCopyWith<$Res> {
           AppOverlayState value, $Res Function(AppOverlayState) then) =
       _$AppOverlayStateCopyWithImpl<$Res, AppOverlayState>;
   @useResult
-  $Res call({AlertMessage? alertMessage});
+  $Res call({AlertMessage? alertMessage, bool? loading});
 
   $AlertMessageCopyWith<$Res>? get alertMessage;
 }
@@ -264,12 +326,17 @@ class _$AppOverlayStateCopyWithImpl<$Res, $Val extends AppOverlayState>
   @override
   $Res call({
     Object? alertMessage = freezed,
+    Object? loading = freezed,
   }) {
     return _then(_value.copyWith(
       alertMessage: freezed == alertMessage
           ? _value.alertMessage
           : alertMessage // ignore: cast_nullable_to_non_nullable
               as AlertMessage?,
+      loading: freezed == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -294,7 +361,7 @@ abstract class _$$AppOverlayStateImplCopyWith<$Res>
       __$$AppOverlayStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AlertMessage? alertMessage});
+  $Res call({AlertMessage? alertMessage, bool? loading});
 
   @override
   $AlertMessageCopyWith<$Res>? get alertMessage;
@@ -312,12 +379,17 @@ class __$$AppOverlayStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? alertMessage = freezed,
+    Object? loading = freezed,
   }) {
     return _then(_$AppOverlayStateImpl(
       alertMessage: freezed == alertMessage
           ? _value.alertMessage
           : alertMessage // ignore: cast_nullable_to_non_nullable
               as AlertMessage?,
+      loading: freezed == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -325,14 +397,16 @@ class __$$AppOverlayStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppOverlayStateImpl implements _AppOverlayState {
-  const _$AppOverlayStateImpl({this.alertMessage});
+  const _$AppOverlayStateImpl({this.alertMessage, this.loading});
 
   @override
   final AlertMessage? alertMessage;
+  @override
+  final bool? loading;
 
   @override
   String toString() {
-    return 'AppOverlayState(alertMessage: $alertMessage)';
+    return 'AppOverlayState(alertMessage: $alertMessage, loading: $loading)';
   }
 
   @override
@@ -341,11 +415,12 @@ class _$AppOverlayStateImpl implements _AppOverlayState {
         (other.runtimeType == runtimeType &&
             other is _$AppOverlayStateImpl &&
             (identical(other.alertMessage, alertMessage) ||
-                other.alertMessage == alertMessage));
+                other.alertMessage == alertMessage) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, alertMessage);
+  int get hashCode => Object.hash(runtimeType, alertMessage, loading);
 
   @JsonKey(ignore: true)
   @override
@@ -356,11 +431,14 @@ class _$AppOverlayStateImpl implements _AppOverlayState {
 }
 
 abstract class _AppOverlayState implements AppOverlayState {
-  const factory _AppOverlayState({final AlertMessage? alertMessage}) =
-      _$AppOverlayStateImpl;
+  const factory _AppOverlayState(
+      {final AlertMessage? alertMessage,
+      final bool? loading}) = _$AppOverlayStateImpl;
 
   @override
   AlertMessage? get alertMessage;
+  @override
+  bool? get loading;
   @override
   @JsonKey(ignore: true)
   _$$AppOverlayStateImplCopyWith<_$AppOverlayStateImpl> get copyWith =>
@@ -371,6 +449,7 @@ abstract class _AppOverlayState implements AppOverlayState {
 mixin _$AlertMessage {
   String get message => throw _privateConstructorUsedError;
   AlertType get type => throw _privateConstructorUsedError;
+  bool? get loading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AlertMessageCopyWith<AlertMessage> get copyWith =>
@@ -383,7 +462,7 @@ abstract class $AlertMessageCopyWith<$Res> {
           AlertMessage value, $Res Function(AlertMessage) then) =
       _$AlertMessageCopyWithImpl<$Res, AlertMessage>;
   @useResult
-  $Res call({String message, AlertType type});
+  $Res call({String message, AlertType type, bool? loading});
 }
 
 /// @nodoc
@@ -401,6 +480,7 @@ class _$AlertMessageCopyWithImpl<$Res, $Val extends AlertMessage>
   $Res call({
     Object? message = null,
     Object? type = null,
+    Object? loading = freezed,
   }) {
     return _then(_value.copyWith(
       message: null == message
@@ -411,6 +491,10 @@ class _$AlertMessageCopyWithImpl<$Res, $Val extends AlertMessage>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as AlertType,
+      loading: freezed == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -423,7 +507,7 @@ abstract class _$$AlertMessageImplCopyWith<$Res>
       __$$AlertMessageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, AlertType type});
+  $Res call({String message, AlertType type, bool? loading});
 }
 
 /// @nodoc
@@ -439,6 +523,7 @@ class __$$AlertMessageImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
     Object? type = null,
+    Object? loading = freezed,
   }) {
     return _then(_$AlertMessageImpl(
       message: null == message
@@ -449,6 +534,10 @@ class __$$AlertMessageImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as AlertType,
+      loading: freezed == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -456,16 +545,19 @@ class __$$AlertMessageImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AlertMessageImpl implements _AlertMessage {
-  const _$AlertMessageImpl({required this.message, required this.type});
+  const _$AlertMessageImpl(
+      {required this.message, required this.type, this.loading});
 
   @override
   final String message;
   @override
   final AlertType type;
+  @override
+  final bool? loading;
 
   @override
   String toString() {
-    return 'AlertMessage(message: $message, type: $type)';
+    return 'AlertMessage(message: $message, type: $type, loading: $loading)';
   }
 
   @override
@@ -474,11 +566,12 @@ class _$AlertMessageImpl implements _AlertMessage {
         (other.runtimeType == runtimeType &&
             other is _$AlertMessageImpl &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, type);
+  int get hashCode => Object.hash(runtimeType, message, type, loading);
 
   @JsonKey(ignore: true)
   @override
@@ -490,12 +583,15 @@ class _$AlertMessageImpl implements _AlertMessage {
 abstract class _AlertMessage implements AlertMessage {
   const factory _AlertMessage(
       {required final String message,
-      required final AlertType type}) = _$AlertMessageImpl;
+      required final AlertType type,
+      final bool? loading}) = _$AlertMessageImpl;
 
   @override
   String get message;
   @override
   AlertType get type;
+  @override
+  bool? get loading;
   @override
   @JsonKey(ignore: true)
   _$$AlertMessageImplCopyWith<_$AlertMessageImpl> get copyWith =>

@@ -32,6 +32,7 @@ export function useEntity(e, entities) {
       validators: [],
       validations: [],
       name: a.name,
+      label: capitalize(a.name),
       _id: faker.database.mongodbObjectId(),
       relation: {
         type: null,

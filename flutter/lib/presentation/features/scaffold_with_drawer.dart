@@ -2,20 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:turboship/all.dart';
 
-const _tabPages = [
-  AppPages.tabARoot,
-  AppPages.tabBRoot,
-  AppPages.tabCRoot,
-  AppPages.tabDRoot,
-];
-
 class DrawerWrapper extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
-  final void Function(AppBar appBar)? updateAppBar;
-
   const DrawerWrapper({
-    this.updateAppBar,
     required this.navigationShell,
     Key? key,
   }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
@@ -41,7 +31,9 @@ class DrawerWrapper extends StatelessWidget {
             ),
             ListTile(
               title: const Text('Item 2'),
-              onTap: () {},
+              onTap: () {
+                context.goNamed(AppPages.settings.name);
+              },
             ),
           ],
         ),
@@ -59,7 +51,7 @@ class DrawerWrapper extends StatelessWidget {
         height: 88.0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: _tabPages.asMap().entries.map((entry) {
+          children: AppRouter.tabs.asMap().entries.map((entry) {
             final idx = entry.key;
             final e = entry.value;
             return _buildTabItem(
@@ -164,7 +156,8 @@ class DrawerWrapper extends StatelessWidget {
   }
 
   void _onTap(BuildContext context, int idx) {
-    var location = idx == navigationShell.currentIndex;
+    final location = idx == navigationShell.currentIndex;
+    AppRouter.navMap['tabIdx'] = idx;
     navigationShell.goBranch(
       idx,
       initialLocation: location,

@@ -16,9 +16,16 @@ class AppOverlayBloc extends Bloc<AppOverlayEvent, AppOverlayState> {
   AppOverlayBloc() : super(const AppOverlayState()) {
     on<ShowOverlayEvent>(_showAlert);
     on<HideOverlayEvent>(_hideAlert);
+    on<ShowLoadingEvent>(_showLoading);
   }
 
-  Future<FutureOr<void>> _showAlert(ShowOverlayEvent event, Emitter<AppOverlayState> emit) async {
+  FutureOr<void> _hideAlert(
+      HideOverlayEvent event, Emitter<AppOverlayState> emit) {
+    emit(state.copyWith(alertMessage: null));
+  }
+
+  Future<FutureOr<void>> _showAlert(
+      ShowOverlayEvent event, Emitter<AppOverlayState> emit) async {
     if (state.alertMessage != null) {
       add(const HideOverlayEvent());
       await Future.delayed(const Duration(milliseconds: 50));
@@ -40,7 +47,8 @@ class AppOverlayBloc extends Bloc<AppOverlayEvent, AppOverlayState> {
     });
   }
 
-  FutureOr<void> _hideAlert(HideOverlayEvent event, Emitter<AppOverlayState> emit) {
-    emit(state.copyWith(alertMessage: null));
+  FutureOr<void> _showLoading(
+      ShowLoadingEvent event, Emitter<AppOverlayState> emit) {
+    emit(state.copyWith(loading: true));
   }
 }

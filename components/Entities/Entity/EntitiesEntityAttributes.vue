@@ -11,7 +11,9 @@ const { save, valid, entity, focused, onFocus, editing, attribute, focusedType, 
 const nameRef = ref(null)
 const onAdd = () => {
   if (!valid.value) return
-  const newAttribute = _.cloneDeep({ ...attribute.value, placeholder: 'placeholder...' })
+  const newAttribute = _.cloneDeep({
+    ...attribute.value,
+  })
 
   save(newAttribute)
 }

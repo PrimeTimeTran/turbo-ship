@@ -84,7 +84,7 @@ const addAttribute = (e) => {
     validations: [],
     type: type,
     name: camelize(newAttribute.name),
-    label: camelize(newAttribute.name),
+    label: capitalize(camelize(newAttribute.name)),
     _id: faker.database.mongodbObjectId(),
     placeholder: '',
     relation: relation,

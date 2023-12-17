@@ -9,12 +9,20 @@ part '_transitions.dart';
 // https://medium.com/@ahm4d.bilal/using-gorouters-shellroute-in-flutter-for-nested-navigation-777a9a20642f
 
 class AppRouter {
+  static const tabs = [
+    AppPages.tabARoot,
+    AppPages.tabBRoot,
+    AppPages.tabCRoot,
+    AppPages.tabDRoot,
+  ];
   static List navMapTabs = ['a', 'b', 'c', 'd'];
   static Map navMap = {
     "a": false,
     "b": false,
     "c": false,
     "d": false,
+    "tabIdx": 0,
+    "drawer": false,
   };
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static const _initialLocation = AppPages.tabBRoot;
@@ -217,6 +225,18 @@ class AppRouter {
           ),
         ],
       ),
+      GoRoute(
+        path: AppPages.settings.path,
+        name: AppPages.settings.name,
+        builder: (context, state) {
+          return ScreenStacked(
+            tab: 'drawer',
+            name: 'Settings',
+            path: AppPages.settings.path,
+            child: const SettingsScreen(),
+          );
+        },
+      )
     ],
   );
   static final GlobalKey<NavigatorState> _sectionANavigatorKey =

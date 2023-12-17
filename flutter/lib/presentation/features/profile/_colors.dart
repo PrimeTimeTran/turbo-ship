@@ -17,17 +17,18 @@ class TextColors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final text = context.l10n.text;
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: colors.length,
       itemBuilder: (context, idx) {
-        var color = colors[idx];
+        final color = colors[idx];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Text: ${color[0].name}',
+              '$text: ${color[0].name}',
               style: context.textTheme.b16LgRegular.toColor(
                 C(context, color[0]),
               ),
@@ -37,7 +38,7 @@ class TextColors extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'Text: ${color[1].name}',
+                    '$text: ${color[1].name}',
                     style: context.textTheme.b16LgRegular.toColor(
                       C(context, color[1]),
                     ),

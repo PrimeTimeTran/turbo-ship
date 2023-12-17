@@ -3,6 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:turboship/all.dart';
 
+getTabName(location) {
+  try {
+    location = location.toLowerCase();
+    List<String> result = location.split('/tab_');
+    String tabValue = result[1].split('_')[0];
+    return tabValue;
+  } catch (e) {
+    debugPrint('Error: $e');
+  }
+}
+
 // TODO: add firebase analytics here
 @lazySingleton
 class AppNavigatorObserver extends NavigatorObserver with LogMixin {

@@ -180,6 +180,7 @@ class _SettingsScreenState extends State<SettingsScreen>
   }
 
   void _handleOnLeadingPressed() {
-    context.pop();
+    final lastIdx = AppRouter.navMap['tabIdx'];
+    context.goNamed(AppRouter.tabs[lastIdx].name);
   }
 }

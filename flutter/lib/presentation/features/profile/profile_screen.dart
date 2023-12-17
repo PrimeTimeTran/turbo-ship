@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turboship/all.dart';
 
 import '_colors.dart';
+import '_icons.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String tab;
@@ -19,7 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [const TextColors(), options()],
+        children: [options(), const TextColors(), const AvailableIcons()],
       ),
     );
   }
@@ -31,53 +32,47 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   options() {
-    var alpha = context.l10n.accommodations;
-    var locale = BlocProvider.of<AppBloc>(context).state.locale;
+    final locale = BlocProvider.of<AppBloc>(context).state.locale;
+    final palette = BlocProvider.of<AppBloc>(context).state.palette;
     return BlocBuilder<AppBloc, AppState>(
       builder: (_, state) {
-        var isDarkTheme = BlocProvider.of<AppBloc>(context).state.isDarkTheme;
-        var palette = BlocProvider.of<AppBloc>(context).state.palette;
-        var darkText = isDarkTheme ? 'Toggle: Light' : 'Toggle: Dark';
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                'Palette: $palette',
-                style: context.textTheme.headingH33xlSemibold,
+        final isDarkTheme = BlocProvider.of<AppBloc>(context).state.isDarkTheme;
+        final darkText = isDarkTheme ? 'Toggle: Light' : 'Toggle: Dark';
+        // TextButton, ElevatedButton, Outlined Button
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ElevatedButton.icon(
+                label: Text(darkText),
+                onPressed: () {
+                  getIt.get<AppBloc>().add(AppThemeChanged(!isDarkTheme));
+                },
+                icon: isDarkTheme
+                    ? const Icon(Icons.sunny)
+                    : const Icon(Icons.nightlight),
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                getIt.get<AppBloc>().add(AppThemeChanged(!isDarkTheme));
-              },
-              child: Text(
-                darkText,
-                style: context.textTheme.b16LgCaps,
+              ElevatedButton.icon(
+                label: Text('Random Color Palette: Current($palette)'),
+                onPressed: () {
+                  var item = sampleTheme();
+                  getIt.get<AppBloc>().add(AppPaletteChanged(item));
+                },
+                icon: const Icon(Icons.slow_motion_video),
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                var item = sampleTheme();
-                getIt.get<AppBloc>().add(AppPaletteChanged(item));
-              },
-              child: Text(
-                'Random Palette:',
-                style: context.textTheme.headingH33xlSemibold,
+              ElevatedButton(
+                onPressed: () {
+                  String local = locale == 'en' ? 'vi' : 'en';
+                  getIt.get<AppBloc>().add(AppLanguageChanged(local));
+                },
+                child: Text(
+                  'Switch to locale ${locale == 'en' ? 'vi' : 'en'}',
+                  style: context.textTheme.b16LgCaps,
+                ),
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                String local = locale == 'en' ? 'vi' : 'en';
-                getIt.get<AppBloc>().add(AppLanguageChanged(local));
-              },
-              child: Text(
-                'Toggle lang: $locale $alpha',
-                style: context.textTheme.b16LgCaps,
-              ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );

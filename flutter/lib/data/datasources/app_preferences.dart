@@ -4,9 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import '../../core/constants/all.dart';
-import 'providers/storage/base_storage.dart';
+import 'package:turboship/all.dart';
 
 class AppPreferences extends BaseStorage<dynamic> {
   final _encryptionKey = StorageConstants.encryptionKey;
@@ -20,11 +18,40 @@ class AppPreferences extends BaseStorage<dynamic> {
   @override
   String get boxName => StorageConstants.appPreferencesBox;
 
+  Future<void> deleteAllTokens() async {
+    await delete(StorageConstants.accessTokenKey);
+    await delete(StorageConstants.refreshTokenKey);
+  }
+
+  Future<String?> getAccessToken() async {
+    return _getEncrypted(
+      StorageConstants.accessTokenKey,
+      defaultValue: '',
+    );
+  }
+
   Future<AppPreferences> getInstance() async {
     await _configEncryption();
     _encryptedBox = await _getEncryptedBox();
 
     return this;
+  }
+
+  Future<String?> getRefreshToken() async {
+    return _getEncrypted(
+      StorageConstants.refreshTokenKey,
+      defaultValue: '',
+    );
+  }
+
+  // ######### Public methods  #########
+
+  Future<void> saveAccessToken(String value) async {
+    return _putEncrypted(StorageConstants.accessTokenKey, value);
+  }
+
+  Future<void> saveRefreshToken(String value) async {
+    return _putEncrypted(StorageConstants.refreshTokenKey, value);
   }
 
   // ######### Private methods  #########
@@ -61,34 +88,5 @@ class AppPreferences extends BaseStorage<dynamic> {
 
   Future<void> _putEncrypted<T>(String key, T value) async {
     await _encryptedBox.put(key, value);
-  }
-
-  // ######### Public methods  #########
-
-  Future<void> saveAccessToken(String value) async {
-    return _putEncrypted(StorageConstants.accessTokenKey, value);
-  }
-
-  Future<String?> getAccessToken() async {
-    return _getEncrypted(
-      StorageConstants.accessTokenKey,
-      defaultValue: '',
-    );
-  }
-
-  Future<void> saveRefreshToken(String value) async {
-    return _putEncrypted(StorageConstants.refreshTokenKey, value);
-  }
-
-  Future<String?> getRefreshToken() async {
-    return _getEncrypted(
-      StorageConstants.refreshTokenKey,
-      defaultValue: '',
-    );
-  }
-
-  Future<void> deleteAllTokens() async {
-    await delete(StorageConstants.accessTokenKey);
-    await delete(StorageConstants.refreshTokenKey);
   }
 }

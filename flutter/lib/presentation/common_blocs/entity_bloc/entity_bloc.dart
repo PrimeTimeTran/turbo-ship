@@ -19,5 +19,9 @@ class EntityBloc extends Bloc<EntityEvent, EntityState> {
   FutureOr<void> _onFetchedEntities(
       FetchedEntitiesEvent event, Emitter<EntityState> emit) {
     emit(state.copyWith(entities: event.entities));
+    // var bloc = getIt.get<AppOverlayBloc>();
+    // bloc.add(const ShowOverlayEvent(
+    //     alertType: AlertType.success, 'Successfully loaded wizards'));
+    // bloc.add(const ShowLoadingEvent());
   }
 }

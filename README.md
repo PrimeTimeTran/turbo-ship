@@ -7,3 +7,8 @@ UI
 
 FS
 - https://nuxt.com/
+
+# Flutter 
+
+- Gen localizations
+make gen-l10n

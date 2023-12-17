@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:turboship/all.dart';
 
-class AppOverlayWrapper extends StatelessWidget {
+class AppOverlayWrapper extends StatefulWidget {
   final Widget child;
   const AppOverlayWrapper({required this.child, super.key});
 
   @override
+  State<AppOverlayWrapper> createState() => _AppOverlayWrapperState();
+}
+
+class _AppOverlayWrapperState extends State<AppOverlayWrapper> {
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        child,
+        LoaderOverlay(child: widget.child),
         _buildOverlay(),
       ],
     );
+    // return LoaderOverlay(
+    //   child: Stack(
+    //     children: [
+    //       widget.child,
+    //       _buildOverlay(),
+    //     ],
+    //   ),
+    // );
   }
 
   BlocProvider<AppOverlayBloc> _buildOverlay() {
@@ -26,8 +40,16 @@ class AppOverlayWrapper extends StatelessWidget {
             return AppSpacing.emptyBox;
           }
 
+          if (state.loading != null) {
+            // Need to hide as well
+            context.loaderOverlay.show();
+          }
+
           return _buildPageAlertMessage(
-              context, state.alertMessage!.message, state.alertMessage!.type);
+            context,
+            state.alertMessage!.message,
+            state.alertMessage!.type,
+          );
         },
       ),
     );

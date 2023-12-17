@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  back_button_interceptor:
+    dependency: transitive
+    description:
+      name: back_button_interceptor
+      sha256: ba7d4f4d801e2f1367db35ecf8870cf954cd2c434a9e6208b10fe527b34eb873
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   bloc:
     dependency: "direct main"
     description:
@@ -589,6 +597,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.1.2"
+  icon_forest:
+    dependency: "direct main"
+    description:
+      path: "../../icon_forest"
+      relative: true
+    source: path
+    version: "1.1.8"
   image_gallery_saver:
     dependency: "direct main"
     description:
@@ -669,6 +684,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  loader_overlay:
+    dependency: "direct main"
+    description:
+      name: loader_overlay
+      sha256: "02deeeed0d4eaaeeada6ce7bb13426d7548acad1f71e4884ec4a010e0e4824d6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   logger:
     dependency: "direct main"
     description:
@@ -701,6 +724,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
+  material_design_icons_flutter:
+    dependency: transitive
+    description:
+      name: material_design_icons_flutter
+      sha256: "6f986b7a51f3ad4c00e33c5c84e8de1bdd140489bbcdc8b66fc1283dad4dea5a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.7296"
   meta:
     dependency: transitive
     description:

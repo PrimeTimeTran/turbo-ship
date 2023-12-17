@@ -41,7 +41,7 @@
       "flutterMode": "debug",
       "program": "flutter/lib/main.dart",
       "deviceId": "3CAE8793-2B07-4522-917B-C56BC2E84F9D",
-      "args": ["--flavor", "development"]
+      "args": ["--flavor", "development", "--no-enable-impeller"]
     }
   ],
   "compounds": [
