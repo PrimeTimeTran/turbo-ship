@@ -20,7 +20,7 @@ class _NotificationScreenState extends State<NotificationScreen>
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, idx) {
               return const ListTile(
-                title: Text('title'),
+                title: Text('Title'),
                 subtitle: Text('Subtitle'),
               );
             },

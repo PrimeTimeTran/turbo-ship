@@ -122,28 +122,30 @@ class DrawerWrapper extends StatelessWidget {
     required SvgGenImage icon,
     required BuildContext context,
   }) {
-    final child = Container(
-      decoration: !isSelected
-          ? null
-          : BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: context.colorTheme.bgSurfaceSf1,
-            ),
+    final box = isSelected
+        ? BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: C(context, Kolor.onSecondary),
+          )
+        : null;
+    final item = Container(
+      decoration: box,
       margin: AppSpacing.edgeInsetsAll4,
       child: AppIcon(
         padding: const EdgeInsets.symmetric(
-          horizontal: Sizes.s32,
           vertical: Sizes.s10,
+          horizontal: Sizes.s32,
         ),
         icon: icon,
         size: Sizes.s20,
-        color: isSelected
-            ? context.colorTheme.icNormalPrimary
-            : context.colorTheme.icNormalTertiary,
+        color: C(
+          context,
+          isSelected ? Kolor.primary : Kolor.onPrimaryContainer,
+        ),
       ),
     );
 
-    return child.clickable(() => _onTap(context, idx));
+    return item.clickable(() => _onTap(context, idx));
   }
 
   SvgGenImage _getTabIcon(AppPages page) {

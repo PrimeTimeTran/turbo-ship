@@ -1,7 +1,7 @@
 {
   // Focusing flutter so ignore server when searching
   "search.exclude": {
-    "**/server": true
+    // "**/server": true
   },
   "files.exclude": {
     // #### Root

@@ -17,7 +17,7 @@ class AppRouter {
     "d": false,
   };
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  static const _initialLocation = AppPages.tabARoot;
+  static const _initialLocation = AppPages.tabBRoot;
 
   // Route config
   static final _router = GoRouter(

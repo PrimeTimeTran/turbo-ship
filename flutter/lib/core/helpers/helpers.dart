@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 prompt(context, text) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -28,4 +31,9 @@ promptWithUndo(
       ),
     ),
   );
+}
+
+Future<String> readJson(file) async {
+  final String response = await rootBundle.loadString(file);
+  return response;
 }
