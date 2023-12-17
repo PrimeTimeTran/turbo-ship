@@ -6,6 +6,11 @@
 <!-- [ ] How to disable caching of files? -->
 <!-- [ ] How to easily generate this layout pattern with different content via code? -->
 <script setup>
+import { useClipboard } from '@vueuse/core'
+
+const source = ref('')
+const { text, copy } = useClipboard({ source })
+const { entities } = useEntities()
 useHead({
   link: [],
   script: [
@@ -29,6 +34,19 @@ useHead({
 ensureLoad(scriptUrls.hotkeys)
 function tSampleThemes() {
   TApp.sampleThemes()
+}
+function ourCopy() {
+  let values
+  if (store.isSparse) {
+    values = sparseEntities(entities)
+  } else {
+    values = entities
+  }
+  copy(JSON.stringify(values))
+  toastEm('Copied Entities')
+  setTimeout(() => {
+    text.value = 'Done'
+  }, 1500)
 }
 </script>
 <template>

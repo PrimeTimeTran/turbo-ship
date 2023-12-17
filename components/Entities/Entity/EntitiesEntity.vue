@@ -34,7 +34,7 @@ const isOpen = computed(() => {
     :id="`${entity.name}-${entity._id}`"
     class="dark:border-gray-600 rounded shadow hover:shadow m-1 p-1"
   >
-    <div role="tablist" class="flex tabs tabs-lifted">
+    <div class="flex tabs tabs-lifted">
       <input
         @click="focusTab(0)"
         type="radio"
@@ -124,7 +124,6 @@ const isOpen = computed(() => {
       <div class="p-16">
         <h1>Settings</h1>
         <input
-          role="tab"
           :id="entity._id"
           v-model="entity.name"
           placeholder="customer, transaction, statement..."

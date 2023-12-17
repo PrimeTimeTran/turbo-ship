@@ -49,7 +49,7 @@ export function ensureLoad(url) {
   if (url === scriptUrls.chart && typeof hotkeys === 'undefined') {
     loadJS(url)
   } else if (typeof hotkeys !== 'undefined') {
-    setupShortcuts()
+    setupGlobals()
   } else {
     loadJS(url)
   }

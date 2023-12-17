@@ -30,6 +30,7 @@ const { entities } = useEntities()
                 :entity="element"
                 :key="element._id"
                 :entityIdx="index + 1"
+                :tabindex="index + 1"
                 class="dark:even:bg-slate-950 dark:odd:bg-zinc-950 even:bg-slate-100 odd:bg-zinc-100"
               />
             </template>
