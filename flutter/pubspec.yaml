@@ -49,8 +49,8 @@ dependencies:
   jwt_decoder: ^2.0.1
   json_annotation: ^4.8.1
   loader_overlay: ^4.0.0
-  icon_forest:
-    path: ../../icon_forest
+  # icon_forest:
+  #   path: ../../icon_forest
 
 dev_dependencies:
   flutter_test:

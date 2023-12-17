@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turboship/all.dart';
 
 import '_colors.dart';
-import '_icons.dart';
+// import '_icons.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String tab;
@@ -20,7 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [options(), const TextColors(), const AvailableIcons()],
+        children: [options(), const TextColors()],
       ),
     );
   }

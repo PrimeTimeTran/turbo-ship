@@ -48,6 +48,9 @@ dependencies:
   url_launcher: ^6.2.1
   jwt_decoder: ^2.0.1
   json_annotation: ^4.8.1
+  loader_overlay: ^4.0.0
+  # icon_forest:
+  #   path: ../../icon_forest
 
 dev_dependencies:
   flutter_test:
@@ -75,7 +78,5 @@ flutter:
     - assets/
     - assets/icons/
     - assets/images/
-    - assets/illus/
-    - assets/fonts/
     - assets/env/
     - assets/data/
