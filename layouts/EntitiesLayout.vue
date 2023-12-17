@@ -9,14 +9,14 @@ useHead({
     // },
   ],
   script: [
-    // {
-    //   src: 'https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js',
-    //   tagPosition: 'bodyClose',
-    // },
     {
       type: 'text/javascript',
       innerHTML: 'console.log("Entity scripts loading...")',
       tagPosition: 'head',
+    },
+    {
+      type: 'public/js/TShortcuts.js',
+      tagPosition: 'bodyClose',
     },
   ],
 })

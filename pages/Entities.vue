@@ -4,5 +4,6 @@ definePageMeta({
 })
 </script>
 <template>
+  <TGlobalShortcuts />
   <EntitiesTheCenter />
 </template>
