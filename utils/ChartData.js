@@ -1,7 +1,7 @@
-import { faker } from '@faker-js/faker'
-import colorLib from '@kurkle/color'
-import { DateTime } from 'luxon'
 import 'chartjs-adapter-luxon'
+import { DateTime } from 'luxon'
+import colorLib from '@kurkle/color'
+import { faker } from '@faker-js/faker'
 import { valueOrDefault } from 'chart.js/helpers'
 
 var _seed = Date.now()
@@ -138,6 +138,22 @@ export class Utils {
       return pt
     })
   }
+
+  static colorize(opaque) {
+    return (ctx) => {
+      const v = ctx.parsed.y
+      const c = v < -50 ? '#D60000' : v < 0 ? '#F46300' : v < 50 ? '#0358B6' : '#44DE28'
+
+      return opaque ? c : Utils.transparentize(c, 1 - Math.abs(v / 150))
+    }
+  }
+  static generateData() {
+    return Utils.numbers({
+      count: 12,
+      min: -100,
+      max: 100,
+    })
+  }
 }
 
 const datasets = [
@@ -179,6 +195,30 @@ while (count < lineCount) {
     borderColor: Utils.NAMED_COLORS[count],
     data: faker.helpers.multiple(faker.number.int, { count: 7, min: 25, max: 250 }),
   })
+}
+
+const bar2 = {
+  type: 'bar',
+  data: {
+    labels: Utils.months({ count: 12 }),
+    datasets: [
+      {
+        data: Utils.generateData(),
+      },
+    ],
+  },
+  options: {
+    plugins: {
+      legend: false,
+    },
+    elements: {
+      bar: {
+        borderWidth: 2,
+        borderColor: Utils.colorize(true),
+        backgroundColor: Utils.colorize(false),
+      },
+    },
+  },
 }
 
 export const chartData = {
@@ -555,6 +595,38 @@ export const chartData = {
     data: {
       labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
       datasets,
+    },
+  },
+  bar2,
+  bar3: {
+    type: 'bar',
+    data: {
+      labels: ['1', '2', '3', '4', '5', '6', '7'],
+      datasets: [
+        {
+          label: 'My First Dataset',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)',
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)',
+          ],
+          borderWidth: 1,
+        },
+      ],
     },
   },
 }

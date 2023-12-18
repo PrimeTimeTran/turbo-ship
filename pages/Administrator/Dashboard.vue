@@ -31,7 +31,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
                 <component :is="EllipsisHorizontalIcon" />
               </span>
             </div>
-            <AdminEntityDashboard />
+            <Chart :config="chartData.bar3" />
           </div>
         </div>
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
@@ -103,7 +103,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
                 <component :is="EllipsisHorizontalIcon" />
               </span>
             </div>
-            <Chart :config="chartData.doughnut" />
+            <Chart :config="chartData.bar2" />
           </div>
         </div>
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
@@ -115,6 +115,30 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
               </span>
             </div>
             <Chart :config="chartData.line2" />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-row justify-around space-x-2">
+        <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
+          <div class="card-body">
+            <div class="flex flex-row justify-between grow items-center">
+              <span class="card-title base-content">Radar</span>
+              <span class="h-6 w-6">
+                <component :is="EllipsisHorizontalIcon" />
+              </span>
+            </div>
+            <Chart :config="chartData.doughnut" />
+          </div>
+        </div>
+        <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
+          <div class="card-body">
+            <!-- <div class="flex flex-row justify-between">
+              <span class="card-title base-content">Line Multi</span>
+              <span class="h-6 w-6">
+                <component :is="EllipsisHorizontalIcon" />
+              </span>
+            </div>
+            <Chart :config="chartData.line2" /> -->
           </div>
         </div>
       </div>
