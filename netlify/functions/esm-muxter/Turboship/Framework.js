@@ -196,11 +196,10 @@ export const frameworkMap = {
               const query = buildQuery(params)
               const pipeline = buildPipeline(query, page, limit)
               const results = await ${label}.aggregate(pipeline)
-              let { data, totalCount } = results[0]
-              let pageCount = 0
-              if (!_.isEmpty(totalCount)) {
-                pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
-                totalCount = totalCount[0].total
+              let { data, totalCount, pageCount } = results[0]
+              if (!_.isEmpty(totalCount) && totalCount[0]) {
+                // pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
+                totalCount = totalCount.length > 0 ? totalCount[0].total : 0
               }
               const response = {
                 meta: {

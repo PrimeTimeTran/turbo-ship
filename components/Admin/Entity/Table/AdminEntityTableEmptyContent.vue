@@ -3,15 +3,13 @@
   <tr>
     <td colspan="24" class="text-center empty">
       <span class="self-center flex justify-center items-center">
-        <div class="card w-96 glass">
-          <figure>
-            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">No entities</h2>
-            <p>How can you get started?</p>
+        <div class="card max-w-6xl h-52 bg-neutral text-neutral-content">
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">No data</h2>
+            <p>Create an entity today.</p>
             <div class="card-actions justify-end">
-              <button class="btn btn-primary">Learn now!</button>
+              <button class="btn w-32 btn-ghost">Deny</button>
+              <button class="btn w-32 btn-info">Ok</button>
             </div>
           </div>
         </div>

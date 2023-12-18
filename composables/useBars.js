@@ -4,7 +4,7 @@ import { useFetch } from '@vueuse/core'
 export function useBars(resource) {
   const { apiUrl } = useAPI()
   const baseURL = `${apiUrl}/${resource}`
-  let users = ref([])
+  let items = ref([])
   let params = ref('')
   let meta = reactive({
     page: ref(1),
@@ -26,7 +26,7 @@ export function useBars(resource) {
       })
       if (!error.value) {
         const user = JSON.parse(data.value)
-        users.value.push(user)
+        items.value.push(user)
         toastEm('User created')
         return user
       }
@@ -39,10 +39,10 @@ export function useBars(resource) {
     if (!error.value) {
       const val = JSON.parse(data.value)
       Object.assign(meta, val.meta)
-      users.value = val?.data
+      items.value = val?.data
     }
   })
-  const fetchFilteredUsers = async (fields) => {
+  const fetchFilteredEntity = async (fields) => {
     meta.page = 1
     const queryParams = new URLSearchParams(Object.entries(fields)).toString()
     params.value = queryParams
@@ -55,9 +55,9 @@ export function useBars(resource) {
         meta.page = val.meta.page
         meta.totalRecords = val.meta.totalRecords
         Object.assign(meta, val.meta)
-        users.value = val?.data
+        items.value = val?.data
       } else {
-        console.error('Error fetching users:', error.value)
+        console.error('Error fetching items:', error.value)
       }
     } catch (error) {
       console.error('Unexpected error:', error)
@@ -79,9 +79,9 @@ export function useBars(resource) {
         const val = JSON.parse(data.value)
         meta.page = nextPage
         Object.assign(meta, val.meta)
-        users.value = val?.data
+        items.value = val?.data
       } else {
-        console.error('Error fetching users:', error.value)
+        console.error('Error fetching items:', error.value)
       }
     } catch (error) {
       console.error('Unexpected error:', error)
@@ -90,18 +90,18 @@ export function useBars(resource) {
 
   const sort = (field, direction) => {
     if (direction === 'ASC') {
-      users.value = users.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? 1 : -1))
+      items.value = items.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? 1 : -1))
     } else if (direction === 'DESC') {
-      users.value = users.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? -1 : 1))
+      items.value = items.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? -1 : 1))
     }
   }
 
   return {
-    users,
+    items,
     sort,
-    fetchPage,
     meta,
     addUser,
-    fetchFilteredUsers,
+    fetchPage,
+    fetchFilteredEntity,
   }
 }

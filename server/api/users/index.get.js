@@ -7,16 +7,10 @@ export default defineEventHandler(async (e) => {
     const pipeline = buildPipeline(query, page, limit)
     const results = await User.aggregate(pipeline)
 
-    let { data, totalCount } = results[0]
-    let pageCount = 0
+    let { data, totalCount, pageCount } = results[0]
     if (!_.isEmpty(totalCount) && totalCount[0]) {
-      pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
       totalCount = totalCount.length > 0 ? totalCount[0].total : 0
     }
-
-    console.log({
-      data,
-    })
 
     const response = {
       meta: {

@@ -31,11 +31,10 @@ export default defineEventHandler(async (e) => {
         select: '_id',
       },
     ])
-    let { data, totalCount } = results[0]
-    let pageCount = 0
+    let { data, totalCount, pageCount } = results[0]
     if (!_.isEmpty(totalCount)) {
       totalCount = totalCount[0].total
-      pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
+      // pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
     }
     const response = {
       meta: {

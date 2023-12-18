@@ -31,10 +31,8 @@ export default defineEventHandler(async (e) => {
     //   select: '_id',
     // },
     // ])
-    let { data, totalCount } = results[0]
-    let pageCount = 0
+    let { data, pageCount, totalCount } = results[0]
     if (!_.isEmpty(totalCount)) {
-      pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
       totalCount = totalCount[0].total
     }
     const response = {
@@ -44,7 +42,6 @@ export default defineEventHandler(async (e) => {
         totalCount: totalCount,
       },
       data,
-      // result,
     }
     return response
   } catch (error) {

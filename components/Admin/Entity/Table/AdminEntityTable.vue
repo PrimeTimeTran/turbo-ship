@@ -3,7 +3,7 @@ import _ from 'lodash'
 import draggable from 'vuedraggable'
 const route = useRoute()
 const entityType = route.path.split('/administrator/')[1]
-const { users: data, fetchPage, meta } = useBars(entityType)
+const { items: data, fetchPage, meta } = useBars(entityType)
 const state = reactive({
   data: ref(data),
   hidden: ref([]),
@@ -73,7 +73,7 @@ const visibleColumns = computed(() => {
 <template>
   <table class="mb-12 text-sm w-full min-w-full">
     <thead class="w-full min-w-full bg-base-100 h-16 max-h-16">
-      <draggable tag="tr" item-key="name" class="w-full min-w-full" :list="state.localSort" draggable=".item">
+      <draggable tag="tr" item-key="name" class="w-full min-w-full text-left" :list="state.localSort" draggable=".item">
         <template #item="{ element, index }">
           <template v-if="index === 0">
             <th class="w-6" :data-draggable="false"></th>
@@ -101,7 +101,7 @@ const visibleColumns = computed(() => {
       </draggable>
     </thead>
     <tbody>
-      <AdminEntityTableEmptyContent v-if="!state.data" />
+      <AdminEntityTableEmptyContent v-if="!state.data || state.data.length === 0" />
       <AdminEntityTableRows
         v-else
         :state="state"

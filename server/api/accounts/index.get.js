@@ -12,40 +12,55 @@ export default defineEventHandler(async (e) => {
     ]
     const pipeline = buildPipeline(query, page, limit, fieldsToPopulate)
     const results = await Account.aggregate(pipeline)
-    let result = await Account.populate(results[0].data, [
-      {
-        path: 'user',
-        select: '_id',
-      },
-      {
-        path: 'account',
-        select: '_id',
-      },
-      {
-        path: 'bank',
-        select: '_id',
-      },
-      {
-        path: 'transaction',
-        select: '_id',
-      },
-    ])
-    let { data, totalCount } = results[0]
-    let pageCount = 0
+    let { data, totalCount, pageCount } = results[0]
     if (!_.isEmpty(totalCount)) {
-      pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
       totalCount = totalCount[0].total
     }
     const response = {
       meta: {
         page,
-        pageCount: pageCount,
-        totalCount: totalCount,
+        pageCount,
+        totalCount,
       },
       data,
-      result,
     }
     return response
+
+    //
+    // let result = await Account.populate(results[0].data, [
+    //   {
+    //     path: 'user',
+    //     select: '_id',
+    //   },
+    //   {
+    //     path: 'account',
+    //     select: '_id',
+    //   },
+    //   {
+    //     path: 'bank',
+    //     select: '_id',
+    //   },
+    //   {
+    //     path: 'transaction',
+    //     select: '_id',
+    //   },
+    // ])
+    // let { data, totalCount } = results[0]
+    // let pageCount = 0
+    // if (!_.isEmpty(totalCount)) {
+    //   pageCount = Math.ceil(parseInt(totalCount[0].total) / limit)
+    //   totalCount = totalCount[0].total
+    // }
+    // const response = {
+    //   meta: {
+    //     page,
+    //     pageCount: pageCount,
+    //     totalCount: totalCount,
+    //   },
+    //   data,
+    //   result,
+    // }
+    // return response
   } catch (error) {
     console.log({
       error,
