@@ -21,6 +21,12 @@ components/Admin/Wizards/DoughnutChart.vue
 components/Admin/Wizards/LineChart.vue
 components/Admin/Wizards/Overview.vue
 
+components/T/TDrawerLeft.vue
+components/T/TDrawerRight.vue
+components/T/TGlobalContainer.vue
+components/T/TNavbar.vue
+components/T/TShortcuts.vue
+
 components/VSidebarItem.vue
 components/VTable.vue
 

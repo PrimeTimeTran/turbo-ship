@@ -39,7 +39,7 @@ export function loadJS(url, async = true) {
 }
 
 export const scriptUrls = {
-  chart: 'https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js',
+  chart: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js',
   hotkeys: 'https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js',
 }
 

@@ -31,6 +31,7 @@ useHead({
     },
   ],
 })
+ensureLoad(scriptUrls.chart)
 ensureLoad(scriptUrls.hotkeys)
 function tSampleThemes() {
   TApp.sampleThemes()

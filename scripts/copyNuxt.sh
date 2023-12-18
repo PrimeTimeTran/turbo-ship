@@ -22,8 +22,6 @@ fi
 # Change directory to the source directory
 cd "$source_dir" || exit 1
 
-echo 'Hi'
-
 # Debugging output
 echo "Source directory contents:"
 ls -R "$source_dir"

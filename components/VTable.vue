@@ -5,7 +5,7 @@ const props = defineProps(['headers', 'items', 'keys'])
 <template>
   <div class="relative">
     <div class="overflow-x-auto overflow-auto scrollbar-hide">
-      <table class="table min-w-full rounded-lg z-10">
+      <table class="table min-w-full rounded-lg">
         <thead class="bg-base-100">
           <tr class="border-b border-gray-500">
             <th :key="col.label" v-for="col of headers" v-text="col.label" />

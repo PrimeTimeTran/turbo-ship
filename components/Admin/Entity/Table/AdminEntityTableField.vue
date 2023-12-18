@@ -68,7 +68,7 @@ function copy(field, text) {
         <FontAwesomeIcon
           v-if="text"
           size="sm"
-          color="grey"
+          color="white"
           icon="fa-solid fa-copy"
           class="ml-2 shadow hover:shadow-md"
         />

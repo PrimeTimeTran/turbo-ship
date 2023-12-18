@@ -1,9 +1,8 @@
-<template>
-  <ContentDoc class="prose dark:prose-invert pb-32 w-11/12 nuxt-content" />
-</template>
-
 <script setup>
 import { useHead } from 'unhead'
+definePageMeta({
+  layout: 't-main-layout',
+})
 useHead({
   script: [
     {
@@ -12,8 +11,7 @@ useHead({
     },
   ],
 })
-
-definePageMeta({
-  layout: 'admin-layout',
-})
 </script>
+<template>
+  <ContentDoc class="prose dark:prose-invert pb-32 w-11/12 nuxt-content" />
+</template>

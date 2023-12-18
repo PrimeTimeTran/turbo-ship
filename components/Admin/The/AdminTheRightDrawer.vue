@@ -1,5 +1,5 @@
 <template>
-  <div class="drawer drawer-end">
+  <div class="drawer drawer-end z-auto">
     <input id="rightDrawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content"></div>
     <div class="drawer-side z-10">
@@ -8,7 +8,7 @@
         <li v-for="item in sidebarItems" :key="item.id">
           <a>{{ item.label }}</a>
         </li>
-        <slot></slot>
+        <slot />
       </ul>
     </div>
   </div>
@@ -21,7 +21,6 @@ export default {
       sidebarItems: [
         { id: 1, label: 'Injected Item 1' },
         { id: 2, label: 'Injected Item 2' },
-        // Add more items as needed
       ],
     }
   },

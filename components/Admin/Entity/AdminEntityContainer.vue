@@ -42,7 +42,7 @@ useHead({
       <button class="btn btn-sm btn-ghost"><EllipsisHorizontalIcon class="h-6 w-6" /></button>
       <button class="btn btn-sm btn-ghost">View</button>
       <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-sm btn-success text-white">New</div>
+        <div tabindex="0" role="button" class="btn btn-sm btn-success primary-content">New</div>
         <ul tabindex="0" class="dropdown-content z-[1] menu p-2 bg-base-200 rounded-box w-52 mt-2">
           <li><a>Item 1</a></li>
           <li><a>Item 2</a></li>

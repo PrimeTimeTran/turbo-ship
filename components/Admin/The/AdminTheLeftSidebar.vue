@@ -13,18 +13,18 @@ const state = ref({
 })
 </script>
 <template>
-  <div class="drawer-side">
+  <div class="drawer-side z-0">
     <ul
-      class="menu px-1 min-h-full bg-base-200 dark:bg-base-200 text-base-content space-y-3 pb-10 overflow-hidden"
+      class="menu px-1 min-h-full bg-base-200 dark:bg-base-200 text-base-content space-y-3 pb-10 overflow-hidden z-0"
       :class="{
         ['w-20']: !state.leftOpen,
         ['w-64']: state.leftOpen,
         ['max-w-20']: !state.leftOpen,
       }"
     >
-      <VSidebarItem :text="'Turboship'" :state="state" @click="state.leftOpen = !state.leftOpen" :icon="Bars4Icon" />
+      <TSidebarItem :text="'Turboship'" :state="state" @click="state.leftOpen = !state.leftOpen" :icon="Bars4Icon" />
       <div class="divider"></div>
-      <VSidebarItem
+      <TSidebarItem
         v-for="foo in GlobalState.sidebar"
         :text="foo.label"
         :state="state"
@@ -92,3 +92,9 @@ const state = ref({
     </ul>
   </div>
 </template>
+
+<style scoped>
+.drawer-side {
+  z-index: 0 !important;
+}
+</style>
