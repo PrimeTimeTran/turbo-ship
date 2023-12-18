@@ -13,7 +13,7 @@ export default defineEventHandler(async (e) => {
 
   const user = await new User({
     email: body.email,
-    password: hash,
+    passwordDigest: hash,
   })
 
   await user.save()

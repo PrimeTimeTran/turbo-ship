@@ -9,14 +9,29 @@
       "webRoot": "${workspaceFolder}",
       "cwd": "${fileWorkspaceFolder}"
     },
+    // {
+    //   "type": "node",
+    //   "request": "launch",
+    //   "name": "server: nuxt",
+    //   "outputCapture": "std",
+    //   "cwd": "${fileWorkspaceFolder}",
+    //   "program": "${fileWorkspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+    //   "args": ["dev"]
+    // },
     {
       "type": "node",
       "request": "launch",
       "name": "server: nuxt",
       "outputCapture": "std",
       "cwd": "${fileWorkspaceFolder}",
-      "program": "${fileWorkspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
-      "args": ["dev"]
+      "runtimeExecutable": "nodemon", // Use nodemon as the runtime executable
+      "runtimeArgs": [
+        "--inspect", // Optional: Enable debugging with --inspect flag
+        "${fileWorkspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+        "dev"
+      ],
+      "restart": true, // Optional: Enable auto-restart on file changes
+      "console": "integratedTerminal" // Optional: Choose the console for output
     },
     {
       "type": "dart",

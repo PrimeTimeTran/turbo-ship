@@ -52,7 +52,7 @@ const showRelationTab = computed(() => {
 })
 </script>
 <template>
-  <div class="grid grid-cols-12 gap-2 max-w-6xl">
+  <div class="grid grid-cols-12 gap-2 max-w-7xl w-full min-w-full">
     <div class="col-span-7 flex flex-col">
       <EntitiesEntityAttributesTable :entity="entity" :focused="focused" :onFocus="onFocus" />
     </div>
@@ -91,7 +91,7 @@ const showRelationTab = computed(() => {
     </div>
     <div
       v-if="requiresSubField"
-      class="col-span-3 flex flex-col"
+      class="col-span-3 flex flex-col px-2"
       :class="{
         'justify-center': !showEnumTab && !showRelationTab,
       }"
@@ -148,7 +148,7 @@ const showRelationTab = computed(() => {
       <div
         v-html="tips[0]"
         v-if="!showEnumTab && !showRelationTab"
-        class="col-span-3 flex flex-col dark:text-gray-600"
+        class="flex flex-col dark:text-gray-600 text-center"
       ></div>
     </div>
   </div>

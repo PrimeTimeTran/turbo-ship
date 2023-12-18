@@ -15,7 +15,7 @@ export const navItems = [
     icon: 'fa-blog',
   },
   {
-    url: '/administrator',
+    url: '/administrator/dashboard',
     name: 'Dashboard',
     icon: 'fa-blog',
   },

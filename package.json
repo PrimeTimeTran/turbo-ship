@@ -72,6 +72,8 @@
     "marked-highlight": "^2.0.7",
     "mongoose": "^8.0.2",
     "nitropack": "^2.7.2",
+    "pino": "^8.17.1",
+    "pino-pretty": "^10.3.0",
     "postcss-loader": "^7.3.3",
     "shiki-es": "^0.14.0",
     "shikiji": "^0.7.5",

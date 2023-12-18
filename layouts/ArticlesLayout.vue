@@ -16,27 +16,23 @@ useHead({
 })
 </script>
 <template>
-  <div class="flex flex-col justify-between dark:bg-gray-900 dark:text-white">
+  <div class="flex flex-col justify-between bg-base-100">
     <div class="min-h-screen">
       <The.Navbar />
       <div class="flex flex-row">
-        <div
-          class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto p-3 dark:bg-slate-800 border-r-2 border-gray dark:border-gray-950"
-        >
+        <div class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto p-3 border-r-2 border-gray">
           <MenuTableOfContents @toggled="handleToggle" />
         </div>
         <div class="flex flex-grow overflow-y-auto max-h-screen px-4 no-scrollbar md:mr-4 lg:mr-0">
           <slot />
-          <TheNavbar class="main-nav visible lg:block md:invisible rounded border-blue-100 border z-10 shadow">
+          <TheNavbar class="main-nav visible lg:block md:invisible rounded border z-10 shadow">
             <MenuBurger :isOpen="isOpen" @toggled="toggleOpen" />
           </TheNavbar>
           <MenuSidebar :isOpen="isOpen" @toggled="toggleOpen">
             <MenuTableOfContents @toggled="handleToggle" />
           </MenuSidebar>
         </div>
-        <div
-          class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto border-r-2 border-gray dark:border-gray-950 pt-24 lg:pr-8"
-        >
+        <div class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto border-r-2 border-gray pt-24 lg:pr-8">
           <ScrollSpy />
         </div>
       </div>

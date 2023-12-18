@@ -13,24 +13,6 @@ export default defineEventHandler(async (e) => {
     ]
     const pipeline = buildPipeline(query, page, limit, fieldsToPopulate)
     const results = await Bank.aggregate(pipeline)
-    // const result = await Bank.populate(results[0].data, [
-    // {
-    //   path: 'branch',
-    //   select: '_id',
-    // },
-    // {
-    //   path: 'user',
-    //   select: '_id',
-    // },
-    // {
-    //   path: 'account',
-    //   select: '_id',
-    // },
-    // {
-    //   path: 'transaction',
-    //   select: '_id',
-    // },
-    // ])
     let { data, pageCount, totalCount } = results[0]
     if (!_.isEmpty(totalCount)) {
       totalCount = totalCount[0].total

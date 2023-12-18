@@ -61,6 +61,9 @@ const userSchema = new Schema({
   status: {
     type: [String],
   },
+  passwordDigest: {
+    type: String,
+  },
   banks: [{ type: Schema.Types.ObjectId, ref: 'Bank' }],
   branches: [{ type: Schema.Types.ObjectId, ref: 'Branch' }],
   accounts: [{ type: Schema.Types.ObjectId, ref: 'Account' }],

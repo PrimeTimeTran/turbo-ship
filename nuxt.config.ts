@@ -34,6 +34,9 @@ export default defineNuxtConfig({
       failOnError: false,
       routes: ['/articles/*', '/'],
     },
+    experimental: {
+      openAPI: true,
+    },
   },
   runtimeConfig: {
     public: {

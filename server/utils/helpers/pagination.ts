@@ -78,6 +78,21 @@ export function buildPipeline(
     },
   }))
 
+  // WIP make it so the .user is correctly .user and not a list
+  // // Add stages to handle unwinding and reshaping the output
+  // lookupStages.push({
+  //   $unwind: {
+  //     path: '$yourFieldName', // Replace 'yourFieldName' with the field name you're looking up
+  //     preserveNullAndEmptyArrays: true, // Handle cases where there's no match
+  //   },
+  // })
+
+  // lookupStages.push({
+  //   $replaceRoot: {
+  //     newRoot: '$yourFieldName', // Replace 'yourFieldName' with the field name you're looking up
+  //   },
+  // })
+
   const stages = [
     { $match: query },
     { $skip: (page - 1) * limit },
@@ -97,7 +112,7 @@ export function buildPipeline(
       totalCount: [
         { $match: query },
         ...lookupStages,
-        { $group: { _id: null, count: { $sum: 1 } } }, // Use $group to count considering lookups
+        { $group: { _id: null, count: { $sum: 1 } } },
         { $project: { _id: 0, count: 1 } },
       ],
     },

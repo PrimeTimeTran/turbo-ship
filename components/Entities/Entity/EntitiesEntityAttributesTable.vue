@@ -15,8 +15,8 @@ const onRemove = (id) => {
 <!-- Check back later to confirm what the issue is. The first time it doens't work -->
 <!-- <th class="text-gray-500 text-center pl-2 mx-2 px-4">Valid</th> -->
 <template>
-  <div class="flex flex-5 h-full hover:shadow-lg">
-    <div class="flex flex-col w-fit">
+  <div class="flex flex-1 h-full hover:shadow-lg">
+    <div class="flex flex-col w-full">
       <table>
         <thead>
           <tr>

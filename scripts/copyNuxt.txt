@@ -59,6 +59,7 @@ server/middleware/04.audit.global.ts
 server/models/Audit.model.js
 server/models/Audit/Audit.js
 
+server/utils/helpers/logger.js
 server/utils/helpers/pagination.ts
 server/utils/security/bcrypt.ts
 server/utils/security/permissions.ts
