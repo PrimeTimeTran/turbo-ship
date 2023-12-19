@@ -70,31 +70,25 @@ const submit = () => {
 const addAttribute = (e) => {
   e.preventDefault()
   if (!validAttributeName.value) return
-  let type = newAttribute.type
-  let relation = {
-    name: null,
-    type: '',
-  }
-  if (Validator.relationTypes.includes(newAttribute.type)) {
+  let { type, enums, name } = newAttribute
+  let relation = { type: '', name: null }
+  if (Validator.relationTypes.includes(type)) {
     type = 'relation'
-    relation.type = newAttribute.type
+    relation.type = type
   }
   const attribute = {
+    type,
+    relation,
     validators: [],
     validations: [],
-    type: type,
-    name: camelize(newAttribute.name),
-    label: capitalize(camelize(newAttribute.name)),
-    _id: faker.database.mongodbObjectId(),
     placeholder: '',
-    relation: relation,
+    options: enums,
+    name: camelize(name),
+    label: capitalize(camelize(name)),
+    _id: faker.database.mongodbObjectId(),
   }
 
   entity.attributes.push(attribute)
-  // console.log({
-  //   entity: entity.value,
-  //   attributes: entity.attributes.value,
-  // })
   resetAttribute()
 }
 const attrRemove = (id) => {
@@ -107,7 +101,7 @@ const onTypeSelect = (type) => {
     if (process.browser) {
       setTimeout(() => {
         document.getElementById('enumInput').focus()
-      }, 200)
+      }, 100)
     }
   }
 }
@@ -122,13 +116,10 @@ const entityValid = computed(() => {
   if (!attributeValid.value || entity.name.length < 3 || entity.attributes.length === 0) return false
   return true
 })
-
-const inputClasses =
-  'flex-1 justify-center bg-gray-100 dark:border-r-gray-600 rounded hover:bg-slate-100 rounded border-gray-300 dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 px-3 py-1 text-sm mr-2 w-full dark:text-white border-gray-200 hover:border-opacity-100 dark:hover:opacity-80 overflow-auto'
 </script>
 
 <template>
-  <div class="join join-vertical w-full flex-col px-2 max-h-screen w-100 pt-16 overflow-auto scrollbar-hide">
+  <div class="join join-vertical w-full flex-col max-h-screen w-100 pt-16 overflow-auto scrollbar-hide z-0">
     <FormKit
       id="form"
       type="form"
@@ -138,7 +129,7 @@ const inputClasses =
         message: 'text-red-400 text-sm',
       }"
     >
-      <section tabindex="0" class="collapse collapse-arrow join-item border">
+      <section tabindex="0" class="collapse collapse-arrow join-item">
         <input type="checkbox" checked="checked" />
         <div class="collapse-title text-md font-medium">
           New Entity <span v-if="entity.name" v-text="`(${entity.name})`" />
@@ -153,9 +144,9 @@ const inputClasses =
             :value="entity.name"
             validation="required|length:3"
             :classes="{
-              input: inputClasses,
+              input: 'input input-bordered w-full max-w-xs input-sm',
               message: 'text-red-400 max-w-32 overflow-x-auto scrollbar-hide',
-              label: 'font-semibold text-slate-500',
+              label: 'font-semibold',
             }"
             @input="
               (e) => {
@@ -182,7 +173,7 @@ const inputClasses =
             "
             :classes="{
               outer: 'mt-4',
-              input: inputClasses,
+              input: 'input input-bordered w-full max-w-xs input-sm',
               label: 'font-semibold text-slate-500',
             }"
           />
@@ -194,7 +185,7 @@ const inputClasses =
             v-model="entity.label"
             :classes="{
               outer: 'mt-4',
-              input: inputClasses,
+              input: 'input input-bordered w-full max-w-xs input-sm',
               label: 'font-semibold text-slate-500',
             }"
             @input="
@@ -212,7 +203,7 @@ const inputClasses =
             v-model="entity.pluralL"
             :classes="{
               outer: 'mt-4',
-              input: inputClasses,
+              input: 'input input-bordered w-full max-w-xs input-sm',
               label: 'font-semibold text-slate-500',
             }"
             @input="
@@ -223,25 +214,25 @@ const inputClasses =
           />
         </div>
       </section>
-      <section tabindex="0" class="collapse collapse-arrow join-item border">
+      <section tabindex="0" class="collapse collapse-arrow join-item">
         <input type="checkbox" checked="checked" />
         <div class="collapse-title text-md font-medium">New Attribute(<span v-text="entity.attributes.length" />)</div>
-        <div class="collapse-content">
+        <div class="collapse-content space-y-4">
           <FormKit
+            tabindex="0"
             type="text"
-            id="attributeInput"
-            name="attrName"
             label="Name"
             ref="inputRef"
-            tabindex="0"
+            name="attrName"
+            id="attributeInput"
             v-model="newAttribute.name"
             validation-label="Attribute"
             validation="required|length:2"
             validation-visibility="dirty"
             placeholder="branch, transaction, statement..."
             :classes="{
-              input: inputClasses,
               label: 'font-semibold text-slate-500',
+              input: 'input input-bordered w-full max-w-xs input-sm',
               message: 'text-red-400 max-w-32 overflow-x-auto scrollbar-hide',
             }"
           />
@@ -280,7 +271,7 @@ const inputClasses =
               :classes="{
                 help: 'italic',
                 message: 'text-red-400 text-sm',
-                input: 'border bg-white shadow-md px-2 py-1 w-full rounded',
+                input: 'input input-bordered w-full max-w-xs input-sm',
               }"
             />
           </div>
@@ -298,7 +289,7 @@ const inputClasses =
           />
         </div>
       </section>
-      <section tabindex="0" class="collapse collapse-arrow join-item border">
+      <section tabindex="0" class="collapse collapse-arrow join-item">
         <input type="checkbox" checked="checked" />
         <div class="collapse-title text-md font-medium">Review</div>
         <div class="collapse-content">
@@ -319,14 +310,14 @@ const inputClasses =
           <FormKitMessages :node="input?.node" />
           <div class="flex flex-col flex-grow overflow-y-auto scrollbar-hide">
             <table class="table-auto">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead class="text-xs">
                 <tr class="bg-gray-500">
                   <th></th>
                   <th class="text-white text-xs text-left">Name</th>
                   <th class="text-white text-xs text-left pl-2">Type</th>
                 </tr>
               </thead>
-              <tbody class="border dark:border-gray-800 rounded-lg">
+              <tbody class="border rounded">
                 <FormKit
                   type="list"
                   name="Attributes"
@@ -335,11 +326,7 @@ const inputClasses =
                   validation="required"
                   validation-label="At least 1 attribute "
                 >
-                  <tr
-                    :key="attr"
-                    v-for="attr of entity.attributes"
-                    class="full-width-row odd:bg-gray-200 hover:bg-slate-100 odd:hover:bg-slate-200 pl-2 cursor-pointer h-8 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 border dark:border-gray-800"
-                  >
+                  <tr :key="attr" v-for="attr of entity.attributes" class="odd:bg-base-200 even:bg-base-300 p-2">
                     <td class="pl-1" @click="attrRemove(attr._id)">
                       <FontAwesomeIcon icon="fa-solid fa-circle-xmark text-xs" class="text-red-400" />
                     </td>
@@ -351,7 +338,7 @@ const inputClasses =
                       />
                     </td>
                     <td>
-                      <span class="mx-2 font-semibold text-xs" v-text="Validator.labeledTypes[attr.type].label" />
+                      <span class="mx-2 font-semibold text-xs" v-text="Validator.labeledTypes[attr.type]?.label" />
                     </td>
                   </tr>
                 </FormKit>
@@ -373,7 +360,6 @@ const inputClasses =
         </div>
       </section>
     </FormKit>
-    <!-- <pre>{{ entity }}</pre> -->
   </div>
 </template>
 

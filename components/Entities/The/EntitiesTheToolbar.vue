@@ -25,8 +25,14 @@ function feedback() {
   store.view = views.feedback
 }
 const { fbEvent } = useAnalytics()
+function validateEntities() {}
+
 async function generate() {
   try {
+    if (!validateEntities()) {
+      toastEm('Invalid Entities')
+      return
+    }
     fbEvent('entities_generate_start')
     let { generateUrl } = useAPI()
     if (isDeveloping) {
@@ -245,8 +251,8 @@ const templateItems = [
 ]
 </script>
 <template>
-  <div class="flex flex-col px-2 bg-white dark:bg-slate-950 dark:text-white z-50">
-    <div class="flex flex-row">
+  <div class="flex flex-col px-2 z-50 bg-base-100">
+    <div class="flex flex-row bg-base-100">
       <VDropdown left="true" title="File" underline="F" :items="fileItems" />
       <VDropdown title="View" underline="V" :items="viewItems" />
       <VDropdown underline="E" title="Entities" :items="entitiesItems" />

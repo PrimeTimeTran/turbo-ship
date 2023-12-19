@@ -56,6 +56,7 @@ export const Social = {
           validators: [],
           validations: [],
           options: 'open,closed,pending',
+          // options: '',
           relation: { type: null, name: null },
           label: 'Status',
         },

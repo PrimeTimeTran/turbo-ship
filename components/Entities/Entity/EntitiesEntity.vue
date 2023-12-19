@@ -29,11 +29,7 @@ const isOpen = computed(() => {
 })
 </script>
 <template>
-  <section
-    :key="entity._id"
-    :id="`${entity.name}-${entity._id}`"
-    class="dark:border-gray-600 rounded shadow hover:shadow m-1 p-1"
-  >
+  <section :key="entity._id" :id="`${entity.name}-${entity._id}`" class="ml-1 p-1">
     <div role="tablist" class="flex tabs tabs-lifted">
       <input
         @click="focusTab(0)"
@@ -89,36 +85,30 @@ const isOpen = computed(() => {
     </div>
     <div
       v-if="tabIdx === 0 && isOpen"
-      class="flex pt-2 border-2"
+      class="flex p-2 rounded tab-content bg-base-100 border-base-300"
       :class="{
-        'border-green-400': entityIdx % 2 == 0,
-        'border-green-400': entityIdx % 2 == 0,
-        'border-purple-500': !(entityIdx % 2 == 0),
-        'border-purple-500': !(entityIdx % 2 == 0),
+        'border-purple': !(entityIdx % 2 == 0),
+        'border-lightgreen': entityIdx % 2 == 0,
       }"
     >
       <EntitiesEntityAttributes :entity="entity" />
     </div>
     <div
       v-if="tabIdx === 1 && isOpen"
-      class="flex pt-2 border-2"
+      class="flex p-2 rounded tab-content bg-base-100 border-base-300"
       :class="{
-        'border-green-400': entityIdx % 2 == 0,
-        'border-green-400': entityIdx % 2 == 0,
-        'border-purple-500': !(entityIdx % 2 == 0),
-        'border-purple-500': !(entityIdx % 2 == 0),
+        'border-purple': !(entityIdx % 2 == 0),
+        'border-lightgreen': entityIdx % 2 == 0,
       }"
     >
       <EntitiesEntityValidations :entity="entity" />
     </div>
     <div
       v-if="tabIdx === 2 && isOpen"
-      class="flex pt-2 flex-col border-2"
+      class="flex p-2 rounded tab-content bg-base-100 border-base-300"
       :class="{
-        'border-green-400': entityIdx % 2 == 0,
-        'border-green-400': entityIdx % 2 == 0,
-        'border-purple-500': !(entityIdx % 2 == 0),
-        'border-purple-500': !(entityIdx % 2 == 0),
+        'border-purple': !(entityIdx % 2 == 0),
+        'border-lightgreen': entityIdx % 2 == 0,
       }"
     >
       <div class="p-16">
@@ -128,7 +118,7 @@ const isOpen = computed(() => {
           :id="entity._id"
           v-model="entity.name"
           placeholder="customer, transaction, statement..."
-          class="flex py-1 px-2 text-md rounded-t border-2 bg-white pr-6 font-bold text-blue-500 entity-input dark:text-white dark:placeholder-white border-opacity-0 hover:border-opacity-100 dark:border-gray-500 dark:bg-slate-800 dark:hover:border-white shadow-md hover:shadow-lg"
+          class="flex py-1 px-2 text-md rounded-t pr-6 font-bold text-blue-500 entity-input dark:text-white dark:placeholder-white border-opacity-0 hover:border-opacity-100 dark:border-gray-500 dark:hover:border-white shadow-md hover:shadow-lg"
         />
         <div>Remove</div>
       </div>
@@ -145,6 +135,13 @@ const isOpen = computed(() => {
   color: lightgreen;
   --tab-bg: lightgreen;
   --tab-border-color: lightgreen;
+}
+
+.border-lightgreen {
+  border-color: lightgreen;
+}
+.border-purple {
+  border-color: darkorchid;
 }
 
 .odd-tab {

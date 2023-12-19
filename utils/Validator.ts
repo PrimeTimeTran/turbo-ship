@@ -119,6 +119,7 @@ export class Validator {
       label: 'many-to-many',
     },
   }
+  static validateEntities() {}
 }
 
 interface Entity {

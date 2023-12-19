@@ -21,7 +21,7 @@ function onChange(e) {
   <div
     :key="dataType"
     v-for="dataType of Validator.types"
-    class="flex flex-grow text-xs border hover:opacity-90 hover:bg-slate-100 odd:bg-gray-200 odd:hover:bg-slate-200 hover:cursor-pointer dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 dark:border-gray-800"
+    class="flex flex-grow text-xs hover:cursor-pointer odd:bg-base-200 even:bg-base-300"
   >
     <label class="text-sm rounded p-2 w-full">
       <input

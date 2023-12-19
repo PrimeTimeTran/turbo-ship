@@ -5,22 +5,23 @@
   },
   "files.exclude": {
     // #### Root
-    // ".netlify": true,
-    // "tsconfig-base.json": true,
-    // "tsconfig-cjs.json": true,
-    // "**/dist": true,
-    // "**/.git": true,
-    // "**/.nuxt": true,
-    // "**/.output": true,
-    // "**/error.vue": true,
-    // "**/options.vite": true,
-    // "**/node_modules": true,
-    // "**/firebase.json": true,
-    // "**/formkit.config.js": true,
-    // "**/package-lock.json": true,
-    // "**/prettier.config.cjs": true,
+    ".yarn": true,
+    ".netlify": true,
+    "tsconfig-base.json": true,
+    "tsconfig-cjs.json": true,
+    "**/dist": true,
+    "**/.git": true,
+    "**/.nuxt": true,
+    "**/.output": true,
+    "**/error.vue": true,
+    "**/options.vite": true,
+    "**/node_modules": true,
+    "**/firebase.json": true,
+    "**/formkit.config.js": true,
+    "**/package-lock.json": true,
+    "**/prettier.config.cjs": true,
 
-    // #### flutter
+    // ######################## flutter
     // "**/.dart_tool": true,
     // "**/mobile.iml": true,
     // "**/analysis_options.yaml": true,
@@ -33,14 +34,10 @@
     // "**/*.freezed.dart": true,
     // "**/*.g.dart": true,
     // "**/.flutter-plugins-dependencies": true,
-
-    // Temp while focusiong on clean archi/di
     // "**/android": true,
     // "**/ios": true,
     // "**/l10n": true,
-
-    // #### Focus Flutter: start
-
+    // ######################## Focus Flutter: start
     // "assets": true,
     // "components": true,
     // "composables": true,
@@ -56,19 +53,16 @@
     // "tsconfig.json": true,
     // ".env": true,
     // "netlify": true,
-
-    // #### Focus Flutter: end
-    // #### Focus Nuxt: start
-
-    // "flutter": true,
-
-    // #### Focus Nuxt: end
+    // ######################## End Focus Flutter
+    // ######################## Start Focus Nuxt
+    "flutter": true,
+    // ######################## End Focus Nuxt
 
     // Netlify functions
     "netlify/functions/esm-muxter/Turboship/nuxt": true,
     "netlify/functions/esm-muxter/Turboship/flutter": true,
 
-    // ##### Leave forever because we always want to ignore and don't wanna mess up due to missing comma
+    // ######################### Leave forever because we always want to ignore and don't wanna mess up due to missing comma
     "**/bun.lockb": true
   },
   "editor.codeActionsOnSave": {

@@ -34,7 +34,7 @@ function toggleOpen() {
       <div>
         <MenuItems
           v-if="items.length > 0"
-          class="z-10 absolute right-l mt-1 w-64 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-gray-900 shadow-lg ring-1 ring-black/5 focus:outline-none dark:ring-gray-800"
+          class="z-10 absolute right-l mt-1 w-64 origin-top-right divide-y divide-gray-100 rounded-md bg-base-100 shadow-lg ring-1 ring-black/5 focus:outline-none dark:ring-gray-800"
         >
           <div class="px-1 py-1">
             <MenuItem :key="item.id" v-slot="{ active }" v-for="(item, idx) of items">

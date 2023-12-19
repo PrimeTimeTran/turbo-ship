@@ -52,111 +52,105 @@ const showRelationTab = computed(() => {
 })
 </script>
 <template>
-  <div class="grid grid-cols-12 gap-2 max-w-7xl w-full min-w-full">
-    <div class="col-span-7 flex flex-col">
+  <div class="flex flex-row overflow-x-auto w-full min-w-fit space-x-2">
+    <div class="flex flex-col w-100">
       <EntitiesEntityAttributesTable :entity="entity" :focused="focused" :onFocus="onFocus" />
     </div>
-    <div class="col-span-2 flex flex-col">
-      <label class="font-bold text-gray-500">Name</label>
-      <input
-        ref="nameRef"
-        @keyup.enter="onAdd"
-        v-model="attribute.name"
-        placeholder="firstName, lastName..."
-        class="p-4 rounded border bg-white border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 dark:text-white dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 shadow-md hover:shadow-lg"
-      />
-      <label class="mt-2 font-bold text-gray-500">Type</label>
-      <div
-        :id="'attributeType' + entity._id"
-        class="flex-auto rounded border dark:border-gray-800 border-opacity-0 hover:border-opacity-100 h-96 overflow-auto scrollbar-hide hover:shadow-lg"
-      >
-        <EntitiesEntityAttributeTypeList :attribute="attribute" :focusedType="focusedType" />
+    <div class="flex w-100">
+      <div class="col-span-2 flex flex-none flex-col">
+        <label class="font-bold">Name</label>
+        <input
+          ref="nameRef"
+          @keyup.enter="onAdd"
+          v-model="attribute.name"
+          placeholder="firstName, lastName..."
+          class="input input-bordered w-full max-w-xs input-sm"
+        />
+        <label class="mt-2 font-bold">Type</label>
+        <div :id="'attributeType' + entity._id" class="flex-auto rounded h-96 overflow-auto scrollbar-hide">
+          <EntitiesEntityAttributeTypeList :attribute="attribute" :focusedType="focusedType" />
+        </div>
+        <button
+          type="submit"
+          v-if="!editing || Validator.relationTypes.includes(attribute.type)"
+          @click="onAdd"
+          :disabled="!valid"
+          class="mt-2 border py-1 px-2 rounded w-full dark:text-white"
+          :class="{
+            'opacity-50': !valid,
+            'text-white': valid,
+            'bg-green-400': valid,
+            'bg-gray-300': !valid,
+            'cursor-not-allowed': !valid,
+          }"
+        >
+          <span v-text="editing ? 'Save' : 'Add'" />
+        </button>
       </div>
-      <button
-        type="submit"
-        v-if="!editing || Validator.relationTypes.includes(attribute.type)"
-        @click="onAdd"
-        :disabled="!valid"
-        class="mt-2 border border-gray-300 py-1 px-2 rounded w-full dark:text-white dark:bg-gray-800 dark:border-gray-800"
+    </div>
+    <div class="flex flex-col px-2 w-100 overflow-clip flex-shrink grow">
+      <div
+        v-if="requiresSubField"
+        class="col-span-3 flex flex-col px-2"
         :class="{
-          'opacity-50': !valid,
-          'text-white': valid,
-          'bg-green-400': valid,
-          'bg-gray-300': !valid,
-          'cursor-not-allowed': !valid,
+          'justify-center': !showEnumTab && !showRelationTab,
         }"
       >
-        <span v-text="editing ? 'Save' : 'Add'" />
-      </button>
-    </div>
-    <div
-      v-if="requiresSubField"
-      class="col-span-3 flex flex-col px-2"
-      :class="{
-        'justify-center': !showEnumTab && !showRelationTab,
-      }"
-    >
-      <div class="flex flex-col space-y-4" v-if="showEnumTab">
-        <label class="font-bold text-gray-500">Enumerator</label>
-        <label class="dark:text-white">Options:</label>
-        <input
-          type="text"
-          placeholder="gryffindor, slytherin, hufflepuff..."
-          class="p-4 pl-2 rounded bg-white border border-gray-200 border-opacity-0 hover:border-opacity-100 text-sm h-0 dark:text-white dark:hover:border-white dark:border-gray-500 dark:bg-slate-800 shadow-md hover:shadow-lg"
-          v-model="attribute.options"
-        />
-        <div v-if="attribute.options">
-          <label class="dark:text-white" v-text="attribute.name + ' options'"></label>
+        <div class="flex flex-col space-y-4" v-if="showEnumTab">
+          <label class="font-bold">Enumerator</label>
+          <label class="">Options:</label>
+          <input
+            type="text"
+            placeholder="gryffindor, slytherin, hufflepuff..."
+            class="input input-bordered max-w-xs input-sm w-100"
+            v-model="attribute.options"
+          />
+          <div v-if="attribute.options">
+            <label class="" v-text="attribute.name + ' options'"></label>
+            <select
+              :multiple="attribute.type === 'enumeratorMulti'"
+              class="text-sm rounded-lg block w-full p-2.5 overflow-auto scrollbar-hide"
+            >
+              <option v-text="option" v-for="option of enumOptions" />
+            </select>
+          </div>
+        </div>
+        <div class="flex flex-col" v-else-if="showRelationTab">
+          <label class="font-bold">Relations</label>
+          <label class="" v-text="Validator.labeledTypes[focusedType]?.label" />
           <select
-            :multiple="attribute.type === 'enumeratorMulti'"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
+            v-model="attribute.relation.name"
+            class="text-sm rounded-lg block w-full p-2.5 overflow-auto scrollbar-hide"
           >
-            <option v-text="option" v-for="option of enumOptions" />
+            <option v-text="option.name" v-for="option of relatedEntityOptions" />
           </select>
-        </div>
-      </div>
-      <div class="flex flex-col" v-else-if="showRelationTab">
-        <label class="font-bold text-gray-500 dark:text-white">Relations</label>
-        <label class="dark:text-white" v-text="Validator.labeledTypes[focusedType]?.label" />
-        <select
-          v-model="attribute.relation.name"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-auto scrollbar-hide"
-        >
-          <option v-text="option.name" v-for="option of relatedEntityOptions" />
-        </select>
-        <div v-if="attribute.relation.name">
-          <div class="mt-1 rounded">
-            <h1 class="dark:text-white">This</h1>
-            <input
-              type="text"
-              disabled="true"
-              :value="thisRelationMethod()"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
-          <div class="mt-1 rounded">
-            <h1 class="dark:text-white">Other</h1>
-            <input
-              type="text"
-              disabled="true"
-              :value="otherRelationMethod()"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
+          <div v-if="attribute.relation.name">
+            <div class="mt-1 rounded">
+              <h1 class="">This</h1>
+              <input
+                type="text"
+                disabled="true"
+                :value="thisRelationMethod()"
+                class="text-sm rounded-lg block w-full p-2.5"
+              />
+            </div>
+            <div class="mt-1 rounded">
+              <h1 class="">Other</h1>
+              <input
+                type="text"
+                disabled="true"
+                :value="otherRelationMethod()"
+                class="text-sm rounded-lg block w-full p-2.5"
+              />
+            </div>
           </div>
         </div>
+        <div
+          v-html="tips[0]"
+          v-if="!showEnumTab && !showRelationTab"
+          class="hidden lg:flex flex-col text-center w-72 overflow-clip px-2"
+        ></div>
       </div>
-      <div
-        v-html="tips[0]"
-        v-if="!showEnumTab && !showRelationTab"
-        class="flex flex-col dark:text-gray-600 text-center"
-      ></div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.col-span-2 {
-  flex: 1;
-  min-width: 158px !important;
-}
-</style>

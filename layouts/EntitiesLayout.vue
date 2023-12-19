@@ -16,18 +16,16 @@ ensureLoad(scriptUrls.hotkeys)
 </script>
 <template>
   <TheNavbar />
-  <div
-    class="flex flex-row justify-center align-middle items-center bg-white dark:bg-slate-950 h-screen overflow-hidden scrollbar-hide min-w-max"
-  >
+  <div class="flex flex-row max-w-screen w-screen bg-base-100">
     <div v-if="store.showLeft" class="lg:min-w-72 lg:max-w-72 lg:w-72 h-screen overflow-auto scrollbar-hide">
       <EntitiesTheLeft />
     </div>
-    <div class="flex grow h-screen overflow-hidden scrollbar-hide justify-center items-center min-w-[40%]">
+    <div class="flex flex-1 h-screen max-h-screen overflow-auto">
       <slot />
     </div>
     <div
       v-if="store.showRight"
-      class="hidden lg:flex lg:min-w-64 lg:max-w-64 lg:w-64 h-screen overflow-auto scrollbar-hide"
+      class="hidden xl:flex xl:min-w-64 xl:max-w-64 xl:w-64 h-screen overflow-auto scrollbar-hide"
     >
       <EntitiesTheRight />
     </div>

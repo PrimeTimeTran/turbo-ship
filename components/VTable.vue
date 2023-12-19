@@ -12,7 +12,7 @@ const props = defineProps(['headers', 'items', 'keys'])
           </tr>
         </thead>
         <tbody>
-          <tr :key="item._id" v-for="item of items" class="odd:bg-base-100 even: bg-base-200 hover:text-green-400">
+          <tr :key="item._id" v-for="item of items" class="odd:bg-base-100 even:bg-base-200 hover:text-green-400">
             <td v-for="(key, idx) of keys">
               <span v-if="headers[idx].type === 'dateTime'" v-text="parseTime(item[key])" />
               <span v-else-if="false" />

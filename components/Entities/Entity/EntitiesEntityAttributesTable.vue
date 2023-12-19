@@ -31,7 +31,7 @@ const onRemove = (id) => {
           <tr
             :key="attribute"
             v-for="(attribute, idx) of Validator.attributes(entity)"
-            class="hover:cursor-pointer odd:bg-gray-200 odd:hover:bg-slate-200 dark:odd:bg-slate-900 dark:even:bg-zinc-900 dark:text-white dark:hover:brightness-200 text-xs"
+            class="hover:cursor-pointer odd:bg-base-200 even:bg-base-300 text-xs"
           >
             <td class="flex flex-row items-center pl-1" @click="onFocus(attribute._id)">
               <span
@@ -41,7 +41,7 @@ const onRemove = (id) => {
                 }"
               />
               <div class="ml-1">
-                <input v-model="attribute.name" class="bg-transparent text-lg -full px-2 placeholder-blue-400" />
+                <input v-model="attribute.name" class="bg-transparent text-lg-full px-2 placeholder-blue-400" />
                 <EntitiesAttributeTypeSelect :attribute="attribute" />
               </div>
             </td>

@@ -3,8 +3,8 @@ import draggable from 'vuedraggable'
 const { entities } = useEntities()
 </script>
 <template>
-  <div class="grow overflow-auto scrollbar-hide h-screen pt-8">
-    <div class="flex flex-col" id="TheToolBar">
+  <div class="flex overflow-auto scrollbar-hide h-screen pt-8 w-full">
+    <div class="flex flex-1 flex-col" id="TheToolBar">
       <div class="flex text-center rounded-md">
         <div class="flex flex-row justify-between flex-wrap">
           <div class="text-md text-slate-500 mr-auto ml-2">
@@ -26,13 +26,7 @@ const { entities } = useEntities()
         <div v-if="store.view == views.entities">
           <draggable tag="section" :list="entities" class="list-group" item-key="_id">
             <template #item="{ element, index }">
-              <EntitiesEntity
-                :entity="element"
-                :key="element._id"
-                :entityIdx="index + 1"
-                :tabindex="index + 1"
-                class="dark:even:bg-slate-950 dark:odd:bg-zinc-950 even:bg-slate-100 odd:bg-zinc-100"
-              />
+              <EntitiesEntity :entity="element" :key="element._id" :entityIdx="index + 1" :tabindex="index + 1" />
             </template>
           </draggable>
         </div>
