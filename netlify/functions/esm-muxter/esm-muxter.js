@@ -1,12 +1,12 @@
 import fs from 'fs'
 const currentDirectory = process.cwd()
 
-// printPath()
+printPath()
 
 export const handler = async (event, context) => {
   try {
     let path = './TurboshipCJS/Turboship.js'
-    if (false) {
+    if (true) {
       path = './netlify/functions/build-muxter/TurboshipCJS/Turboship.js'
     }
     let response

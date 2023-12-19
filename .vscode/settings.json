@@ -9,7 +9,7 @@
     ".netlify": true,
     "tsconfig-base.json": true,
     "tsconfig-cjs.json": true,
-    "**/dist": true,
+    // "**/dist": true,
     "**/.git": true,
     "**/.nuxt": true,
     "**/.output": true,

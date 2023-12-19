@@ -24,10 +24,10 @@ export default class Framework {
   }
 
   zipBaseDirectory() {
-    const isDeveloping = true
+    const isDeveloping = false
     const name = this.options.frameworkName
-    let basePath = '/var/task/node_modules/@primetimetran/muxter/src/Turboship/'
-    if (true) {
+    let basePath = '/var/task/netlify/functions/esm-muxter/TurboshipCJS/'
+    if (isDeveloping) {
       basePath = '/Users/loi/Desktop/work/turboship/web/netlify/functions/esm-muxter/Turboship/'
     }
     basePath += name

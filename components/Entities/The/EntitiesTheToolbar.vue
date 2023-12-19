@@ -29,10 +29,10 @@ function validateEntities() {}
 
 async function generate() {
   try {
-    if (!validateEntities()) {
-      toastEm('Invalid Entities')
-      return
-    }
+    // if (!validateEntities()) {
+    //   toastEm('Invalid Entities')
+    //   return
+    // }
     fbEvent('entities_generate_start')
     let { generateUrl } = useAPI()
     if (isDeveloping) {

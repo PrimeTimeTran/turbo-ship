@@ -1,7 +1,8 @@
-import type { HookResult } from 'nuxt/schema'
 import path from 'path'
-import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+import mongoose from 'mongoose'
+import { fileURLToPath } from 'url'
+import type { HookResult } from 'nuxt/schema'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -28,6 +29,11 @@ export default defineNuxtConfig({
     modelsDir: 'models',
     uri: process.env.MONGODB_URI,
   },
+  hooks: {
+    'build:done': (go: HookResult) => {
+      mongoose.disconnect()
+    },
+  },
   css: ['@fortawesome/fontawesome-svg-core/styles.css', '~/assets/css/main.css'],
   nitro: {
     prerender: {
@@ -38,6 +44,7 @@ export default defineNuxtConfig({
       openAPI: true,
     },
   },
+
   runtimeConfig: {
     public: {
       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
