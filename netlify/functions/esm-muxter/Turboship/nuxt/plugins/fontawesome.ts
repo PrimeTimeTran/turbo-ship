@@ -16,6 +16,8 @@ import {
   faList,
   faCode,
   faCube,
+  faTrash,
+  faClock,
   faCubes,
   faHouse,
   faCheck,
@@ -56,7 +58,9 @@ library.add(
   faPlus,
   faList,
   faGear,
+  faTrash,
   faCube,
+  faClock,
   faCubes,
   faStore,
   faCheck,
@@ -84,6 +88,8 @@ library.add(
   faProjectDiagram,
   faMagnifyingGlass,
 )
+
+// This is important, we are going to let Nuxt worry about the CSS
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('FontAwesomeIcon', FontAwesomeIcon)

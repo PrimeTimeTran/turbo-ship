@@ -32,6 +32,5 @@ function onClick(id) {
     <div id="showOverlay" @click="store.showOverlay = !store.showOverlay" />
     <div @click="ourCopy()" id="copyEntities"></div>
     <div @click="store.isSparse = !store.isSparse" id="toggleSparse"></div>
-    <div @click="onClick('globalModalButton')" id="toggleModal"></div>
   </div>
 </template>

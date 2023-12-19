@@ -11,7 +11,7 @@ export function loadJS(url, async = true) {
 
       scriptEle.addEventListener('load', () => {
         console.log('Loaded!')
-        if (url === scriptUrls.hotkeys) setupHotkeys()
+        if (url === scriptUrls.hotkeys) setupGlobals()
         loaded = true
       })
 
@@ -39,18 +39,18 @@ export function loadJS(url, async = true) {
 }
 
 export const scriptUrls = {
-  chart: 'https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js',
+  chart: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js',
   hotkeys: 'https://unpkg.com/hotkeys-js@3.12.0/dist/hotkeys.min.js',
 }
 
 export function ensureLoad(url) {
-  // if(!process.browser) return
-  // console.log('Ensuring load: ', url)
-  // if (url === scriptUrls.chart && typeof hotkeys === 'undefined') {
-  //   loadJS(url)
-  // } else if (typeof hotkeys !== 'undefined') {
-  //   setupHotkeys()
-  // } else {
-  //   loadJS(url)
-  // }
+  if (!process.browser) return
+  console.log('Ensuring load: ', url)
+  if (url === scriptUrls.chart && typeof hotkeys === 'undefined') {
+    loadJS(url)
+  } else if (typeof hotkeys !== 'undefined') {
+    setupGlobals()
+  } else {
+    loadJS(url)
+  }
 }

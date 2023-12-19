@@ -8,6 +8,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
+  ssr: true,
   devServer: { port: 3005 },
   devtools: {
     enabled: true,
@@ -64,9 +65,9 @@ export default defineNuxtConfig({
     '@netlify': path.resolve(__dirname, 'netlify'),
   },
   app: {
-    head: {
-      script: [{ src: '/js/Theme.js', tagPosition: 'head' }],
-    },
+    // head: {
+    //   script: [{ src: '/js/Theme.js', tagPosition: 'head' }],
+    // },
   },
   postcss: {
     plugins: {

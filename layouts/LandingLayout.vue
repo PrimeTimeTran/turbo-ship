@@ -49,9 +49,7 @@
     </section>
     <section
       class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2 lg:p-96"
-    >
-      <VAccordion />
-    </section>
+    ></section>
     <TheFooter />
   </div>
 </template>

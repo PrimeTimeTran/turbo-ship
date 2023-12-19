@@ -1,33 +1,18 @@
-export const VnavItems = [
+export const navItems = [
   {
     url: '/',
     name: 'Home',
     icon: 'fa-house',
   },
   {
-    url: '/entities',
-    name: 'Entity Builder',
-    icon: 'fa-cubes',
-  },
-  {
-    url: '/articles/vue/vue-1-fundamentals',
-    name: 'Articles',
-    icon: 'fa-blog',
-  },
-  {
-    url: '/administrator',
+    url: '/administrator/dashboard',
     name: 'Dashboard',
     icon: 'fa-blog',
   },
   {
-    url: '/previews',
-    name: 'Previews',
+    url: '/templates/ui',
+    name: 'Design Guide',
     icon: 'fa-blog',
-  },
-  {
-    url: '/todos',
-    name: 'Todos',
-    icon: 'fa-list',
   },
 ]
 

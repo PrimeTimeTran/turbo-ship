@@ -4,7 +4,7 @@ const emit = defineEmits(['toggleSort', 'hideColumn'])
 </script>
 <template>
   <div class="dropdown w-full rounded">
-    <div tabindex="0" role="button" class="btn btn-xs btn-ghost">
+    <div tabindex="0" role="button" class="btn btn-xs btn-ghost text-left">
       <span v-text="attribute.label" />
     </div>
     <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">

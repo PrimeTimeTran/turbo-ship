@@ -7,12 +7,13 @@ useHead({
       tagPosition: 'head',
     },
     {
-      type: 'public/js/TShortcuts.js',
+      type: 'public/js/Hotkeys.js',
       tagPosition: 'bodyClose',
     },
   ],
 })
-ensureLoad(scriptUrls.hotkeys)
+// Maybe SSR makes this break?
+// ensureLoad(scriptUrls.hotkeys)
 </script>
 <template>
   <TheNavbar />
