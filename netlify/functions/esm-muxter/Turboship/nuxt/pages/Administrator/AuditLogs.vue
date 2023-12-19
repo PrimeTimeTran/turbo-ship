@@ -1,10 +1,9 @@
 <script setup>
 definePageMeta({
-  layout: 'admin-layout',
+  layout: 't-main-layout',
 })
 
 const { apiUrl } = useAPI()
-
 const url = apiUrl + '/auditlogs?limit=25'
 const { data } = await useFetch(url)
 

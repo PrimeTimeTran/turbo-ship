@@ -3,7 +3,7 @@ import _ from 'lodash'
 import draggable from 'vuedraggable'
 const route = useRoute()
 const entityType = route.path.split('/administrator/')[1]
-const { users: data, fetchPage, meta } = useBars(entityType)
+const { items: data, fetchPage, meta } = useBars(entityType)
 const state = reactive({
   data: ref(data),
   hidden: ref([]),
@@ -71,9 +71,9 @@ const visibleColumns = computed(() => {
 })
 </script>
 <template>
-  <table class="overflow-x-auto mb-12 text-left text-sm w-full min-w-full">
+  <table class="mb-12 text-sm w-full min-w-full">
     <thead class="w-full min-w-full bg-base-100 h-16 max-h-16">
-      <draggable tag="tr" item-key="name" class="w-full min-w-full" :list="state.localSort" draggable=".item">
+      <draggable tag="tr" item-key="name" class="w-full min-w-full text-left" :list="state.localSort" draggable=".item">
         <template #item="{ element, index }">
           <template v-if="index === 0">
             <th class="w-6" :data-draggable="false"></th>
@@ -88,7 +88,7 @@ const visibleColumns = computed(() => {
               }"
             >
               <input v-if="index === 1" @click="selectAll" type="checkbox" class="checkbox checkbox-sm" />
-              <AdminEntityTableHeaderDropdown
+              <AdminEntityTableColumnTitle
                 v-else
                 :state="state"
                 :attribute="element"
@@ -100,23 +100,16 @@ const visibleColumns = computed(() => {
         </template>
       </draggable>
     </thead>
-    <tbody class="bg-base-200 dark:bg-base-200 w-full min-w-full">
-      <tr
-        :key="item._id"
-        v-for="item of state.data"
-        class="w-full min-w-full odd:bg-base-200 even:bg-base-300 hover:text-green-500 dark:hover:text-green-400"
-      >
-        <td v-for="(attribute, idx) of visibleColumns" :class="{ ['p-2']: idx > 1 }">
-          <AdminEntityTableField
-            :state="state"
-            :document="item"
-            :field="attribute"
-            :deleteItem="deleteItem"
-            :entityType="entityType"
-            :toggleSelect="toggleSelect"
-          />
-        </td>
-      </tr>
+    <tbody>
+      <AdminEntityTableEmptyContent v-if="!state.data || state.data.length === 0" />
+      <AdminEntityTableRows
+        v-else
+        :state="state"
+        :deleteItem="deleteItem"
+        :entityType="entityType"
+        :toggleSelect="toggleSelect"
+        :visibleColumns="visibleColumns"
+      />
     </tbody>
   </table>
   <AdminEntityPagination :meta="meta" :fetchPage="fetchPage" />
@@ -128,5 +121,9 @@ tr td:nth-child(n + 3) {
 }
 tr td:nth-child(n + 3) {
   max-width: 500px !important;
+}
+td.empty {
+  height: 750px !important;
+  vertical-align: middle;
 }
 </style>

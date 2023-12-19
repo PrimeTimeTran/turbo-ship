@@ -5,14 +5,14 @@ const props = defineProps(['headers', 'items', 'keys'])
 <template>
   <div class="relative">
     <div class="overflow-x-auto overflow-auto scrollbar-hide">
-      <table class="table min-w-full rounded-lg z-10">
+      <table class="table min-w-full rounded-lg">
         <thead class="bg-base-100">
           <tr class="border-b border-gray-500">
             <th :key="col.label" v-for="col of headers" v-text="col.label" />
           </tr>
         </thead>
         <tbody>
-          <tr :key="item._id" v-for="item of items" class="odd:bg-base-100 even: bg-base-200 hover:text-green-400">
+          <tr :key="item._id" v-for="item of items" class="odd:bg-base-100 even:bg-base-200 hover:text-green-400">
             <td v-for="(key, idx) of keys">
               <span v-if="headers[idx].type === 'dateTime'" v-text="parseTime(item[key])" />
               <span v-else-if="false" />

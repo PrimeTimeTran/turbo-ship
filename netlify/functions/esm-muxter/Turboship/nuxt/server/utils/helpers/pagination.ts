@@ -34,7 +34,7 @@ export function buildQuery(params: object) {
       } else if (value == 'false' || value == 'true') {
         query[key] = value
       } else {
-        // Info Queries 4. Multifacted:
+        // Info Queries 4. Multifaceted:
         // - 1. Type casting matches. So "1" matches 1
         // - 2. Case insensitive matches. So "harry" matches "Harry"
         // - 3. Fuzzy matches. So "Har" matches "Harry" or "Mary" matches "Mary" & "Mary-Anne"
@@ -61,6 +61,14 @@ export function buildPipeline(
   limit: number,
   fieldsToPopulate: PopulateField[] = [],
 ): mongoose.PipelineStage[] {
+  // return [
+  //   {
+  //     $facet: {
+  //       data: [{ $match: query }, { $skip: (page - 1) * 10 }, { $limit: limit }],
+  //       totalCount: [{ $match: query }, { $count: 'total' }],
+  //     },
+  //   },
+  // ]
   const lookupStages = fieldsToPopulate.map((field) => ({
     $lookup: {
       from: field.from,
@@ -70,6 +78,21 @@ export function buildPipeline(
     },
   }))
 
+  // WIP make it so the .user is correctly .user and not a list
+  // // Add stages to handle unwinding and reshaping the output
+  // lookupStages.push({
+  //   $unwind: {
+  //     path: '$yourFieldName', // Replace 'yourFieldName' with the field name you're looking up
+  //     preserveNullAndEmptyArrays: true, // Handle cases where there's no match
+  //   },
+  // })
+
+  // lookupStages.push({
+  //   $replaceRoot: {
+  //     newRoot: '$yourFieldName', // Replace 'yourFieldName' with the field name you're looking up
+  //   },
+  // })
+
   const stages = [
     { $match: query },
     { $skip: (page - 1) * limit },
@@ -77,12 +100,8 @@ export function buildPipeline(
     ...lookupStages,
     {
       $addFields: {
-        amount: {
-          $toString: '$amount',
-        },
-        balance: {
-          $toString: '$balance',
-        },
+        amount: { $toString: '$amount' },
+        balance: { $toString: '$balance' },
       },
     },
   ]
@@ -90,15 +109,23 @@ export function buildPipeline(
   const facetStage = {
     $facet: {
       data: stages,
-      totalCount: [{ $match: query }, { $count: 'total' }],
+      totalCount: [
+        { $match: query },
+        ...lookupStages,
+        { $group: { _id: null, count: { $sum: 1 } } },
+        { $project: { _id: 0, count: 1 } },
+      ],
     },
   }
 
   const projectStage = {
     $project: {
       data: 1,
-      totalCount: {
-        $arrayElemAt: ['$totalCount.total', 0],
+      totalCount: { $arrayElemAt: ['$totalCount.count', 0] },
+      pageCount: {
+        $ceil: {
+          $divide: [{ $arrayElemAt: ['$totalCount.count', 0] }, limit],
+        },
       },
     },
   }

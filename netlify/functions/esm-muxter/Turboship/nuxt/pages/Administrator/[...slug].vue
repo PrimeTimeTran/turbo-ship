@@ -1,6 +1,6 @@
 <script setup>
 definePageMeta({
-  layout: 'admin-layout',
+  layout: 't-main-layout',
 })
 </script>
 <template>

@@ -5,7 +5,7 @@ createHead()
 useHead({
   script: [
     {
-      innerHTML: 'console.log("App.vue Loading")',
+      innerHTML: 'console.log("App.vue")',
       tagPosition: 'head',
     },
   ],
@@ -18,15 +18,8 @@ useHead({
   Consider removing <NuxtLayout> from app.vue and using it in your pages."
 -->
 <template>
-  <!-- document.getElementById('globalModal').click() to toggle() -->
-  <label for="globalModal"></label>
-  <input type="checkbox" id="globalModal" class="modal-toggle" />
-  <div class="modal w-screen h-screen flex justify-center items-center">
-    <div class="flex justify-center items-center">
-      <span class="loading loading-spinner loading-lg"></span>
-    </div>
-  </div>
   <NuxtLayout>
     <NuxtPage />
+    <TShortcuts />
   </NuxtLayout>
 </template>

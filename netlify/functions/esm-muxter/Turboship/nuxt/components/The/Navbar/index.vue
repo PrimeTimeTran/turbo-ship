@@ -21,14 +21,14 @@ const route = useRoute()
 
 <template>
   <div x-cloak :x-data="appData()" :x-init="appInit()" class="flex flex-col items-center justify-center">
-    <TheNavbarScrollSpy :percent="percent" />
-    <div class="drawer">
+    <!-- <TheNavbarScrollSpy :percent="percent" /> -->
+    <div class="drawer z-20 bg-base-100">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         <!-- Navbar -->
         <div
           id="TheNavBar"
-          class="w-full navbar shadow-md bg-white dark:bg-slate-950"
+          class="w-full navbar shadow-md z-20 bg-base-100"
           :class="{
             'navbar-small': route.path === '/entities',
             absolute: route.path === '/entities',
