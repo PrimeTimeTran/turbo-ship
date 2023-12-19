@@ -22,14 +22,19 @@ components/T/TDrawerRight.vue
 components/T/TGlobalContainer.vue
 components/T/TNavbar.vue
 components/T/TShortcuts.vue
+components/T/TSidebarItem.vue
 components/VSidebarItem.vue
 components/VTable.vue
 composables/useBars.js
 composables/useToast.ts
+composables/VuseEntities.ts
 layouts/AdminLayout.vue
+layouts/TMainLayout.vue
 pages/Administrator/[...slug].vue
 pages/Administrator/AuditLogs.vue
 pages/Administrator/Dashboard.vue
+public/js/Hotkeys.js
+public/js/TShortcuts.js
 server/API/auditlogs/index.get.js
 server/API/auth/index.get.ts
 server/API/auth/index.post.ts
@@ -43,7 +48,7 @@ server/API/users/index.post.ts
 server/middleware/01.auth.global.ts
 server/middleware/02.user.global.ts
 server/middleware/03.pagination.global.ts
-server/middleware/04.audit.global.ts
+server/middleware/04.audit.global.js
 server/models/Audit.model.js
 server/models/Audit/Audit.js
 server/utils/helpers/logger.js
@@ -52,6 +57,7 @@ server/utils/security/bcrypt.ts
 server/utils/security/permissions.ts
 server/utils/security/roles.ts
 server/utils/security/token.ts
+utils/ChartData.js
 utils/VHelpers.ts
 utils/VNavItems.ts
 utils/VColors.ts
@@ -60,4 +66,6 @@ utils/VThemeDirector.ts
 utils/VTime.js
 utils/VType.ts
 utils/VShortcuts.ts
+package.json
 app.vue
+.env

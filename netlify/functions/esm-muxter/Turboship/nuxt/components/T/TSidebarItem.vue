@@ -4,11 +4,11 @@ const props = defineProps(['state', 'text', 'icon', 'focused'])
 <template>
   <button
     @click="emit('click')"
-    class="btn btn-ghost flex text-black/75 dark:text-white hover:text-green-400 dark:hover:text-green-400"
+    class="btn btn-ghost flex primary-content hover:text-green-400 dark:hover:text-green-400"
     :class="{
       'text-green-400': focused,
-      'justify-start': state.leftOpen,
       'hover:text-white': focused,
+      'justify-start': state.leftOpen,
     }"
   >
     <span v-if="icon" class="h-6 w-6">
