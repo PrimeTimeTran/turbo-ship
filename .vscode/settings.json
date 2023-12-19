@@ -59,8 +59,8 @@
     // ######################## End Focus Nuxt
 
     // Netlify functions
-    "netlify/functions/esm-muxter/Turboship/nuxt": true,
-    "netlify/functions/esm-muxter/Turboship/flutter": true,
+    // "netlify/functions/esm-muxter/Turboship/nuxt": true,
+    // "netlify/functions/esm-muxter/Turboship/flutter": true,
 
     // ######################### Leave forever because we always want to ignore and don't wanna mess up due to missing comma
     "**/bun.lockb": true

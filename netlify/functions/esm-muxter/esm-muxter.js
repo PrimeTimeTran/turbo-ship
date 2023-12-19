@@ -1,13 +1,26 @@
 import fs from 'fs'
 const currentDirectory = process.cwd()
 
-printPath()
+// Tradeoffs below lead to switching back from local definitions of Turboship to npm package.
+// Tried combining them because building package, deploying to npm, installing really slowed down workflow
+// import { Turboship } from '@primetimetran/muxter'
 
+printPath()
 export const handler = async (event, context) => {
   try {
     let path = './TurboshipCJS/Turboship.js'
     if (true) {
       path = './netlify/functions/build-muxter/TurboshipCJS/Turboship.js'
+      // Tradeoffs
+      // - Find path
+      // - Bundle correctly
+
+      // path = './netlify/functions/esm-muxter/TurboshipCJS/Turboship.js'
+      // Dec 19, 12:32:54 PM: 034e6f7a ERROR  Error importing Turboship: Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/netlify/functions/esm-muxter/netlify/functions/esm-muxter/TurboshipCJS/Turboship.js' imported from /var/task/netlify/functions/esm-muxter/esm-muxter.js
+      // Did you mean to import ../TurboshipCJS/Turboship.js?
+
+      // path = './TurboshipCJS/Turboship.js'
+      // Dec 19, 12:34:16 PM: 9329da43 ERROR  Error importing Turboship: Error: Cannot find module 'chalk'
     }
     let response
     await import(path)

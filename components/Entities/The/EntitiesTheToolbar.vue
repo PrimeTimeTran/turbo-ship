@@ -38,8 +38,11 @@ async function generate() {
     if (isDeveloping) {
       // Testing package
       generateUrl = 'http://localhost:3005/api/entities'
-      // Testing Netlify function
-      // generateUrl = 'http://localhost:8888/.netlify/functions/esm-muxter'
+      // generateUrl = 'https://turboship.ltran.net/.netlify/functions/build-muxter'
+      // Local Netlify function
+      // generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'
+
+      // generateUrl = 'https://turboship.ltran.net/.netlify/functions/build-muxter'
     }
 
     let newEntities = _.cloneDeep([...entities])
@@ -48,7 +51,6 @@ async function generate() {
       method: 'post',
       body: newEntities,
     })
-
     if (isDeveloping) {
       console.log('Gen src is dev')
       const byteCharacters = atob(resp)
@@ -57,9 +59,7 @@ async function generate() {
         byteNumbers[i] = byteCharacters.charCodeAt(i)
       }
       const byteArray = new Uint8Array(byteNumbers)
-
       const blob = new Blob([byteArray], { type: 'application/zip' })
-
       const blobUrl = URL.createObjectURL(blob)
       const downloadLink = document.createElement('a')
       downloadLink.href = blobUrl

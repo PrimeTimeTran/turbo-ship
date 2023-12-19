@@ -24,7 +24,7 @@ export default class Framework {
   }
 
   zipBaseDirectory() {
-    const isDeveloping = false
+    const isDeveloping = true
     const name = this.options.frameworkName
     let basePath = '/var/task/netlify/functions/esm-muxter/TurboshipCJS/'
     if (isDeveloping) {
@@ -42,7 +42,6 @@ export default class Framework {
 }
 
 function getZippedFolderSync(dir, zip, options) {
-  console.log('getZippedFolderSync')
   let allPaths = getFilePathsRecursiveSync(dir)
   zip.sync(() => {
     for (let filePath of allPaths) {

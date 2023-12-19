@@ -4,8 +4,8 @@
   functionsPort = 8888
 
 [build]
-  publish = "dist"
-  command = "npm run build"
+  publish = ".output/public"
+  command = "npx nuxi generate && npx serve .output/public"
   functions = "netlify/functions"
 
 [functions]
@@ -26,23 +26,6 @@
     "./netlify/functions/esm-muxter/TurboshipCJS/flutter/go.js",
     "./netlify/functions/esm-muxter/TurboshipCJS/nuxt/tailwind.config.js",
   ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 [build.environment]
   AUTH_TOKEN_SECRET = "mySecret"
