@@ -1,3 +1,4 @@
+<!-- I is Internal to Turboship -->
 <script setup>
 useHead({
   script: [
@@ -12,24 +13,35 @@ useHead({
     },
   ],
 })
-// Maybe SSR makes this break?
-// ensureLoad(scriptUrls.hotkeys)
+ensureLoad(scriptUrls.hotkeys)
 </script>
 <template>
-  <TheNavbar />
-  <div class="flex flex-row max-w-screen w-screen bg-base-100">
-    <div v-if="store.showLeft" class="lg:min-w-72 lg:max-w-72 lg:w-72 h-screen overflow-auto scrollbar-hide">
-      <EntitiesTheLeft />
-    </div>
-    <div class="flex flex-1 h-screen max-h-screen overflow-auto">
+  <TGlobalContainer>
+    <template v-slot:navbar>
+      <INavbar />
+    </template>
+    <template v-slot:drawer-left>
+      <TDrawerLeft />
+    </template>
+    <template v-slot:left-sidebar>
+      <div v-if="store.showLeft" class="lg:min-w-72 lg:max-w-72 lg:w-72 h-screen overflow-auto scrollbar-hide">
+        <EntitiesTheLeft />
+      </div>
+    </template>
+    <template v-slot:drawer-right>
+      <TDrawerRight />
+      <div
+        v-if="store.showRight"
+        class="hidden xl:flex xl:min-w-64 xl:max-w-64 xl:w-64 h-screen overflow-auto scrollbar-hide"
+      >
+        <EntitiesTheRight />
+      </div>
+    </template>
+    <template v-slot:scripts>
+      <VDevTools />
+    </template>
+    <template v-slot:default>
       <slot />
-    </div>
-    <div
-      v-if="store.showRight"
-      class="hidden xl:flex xl:min-w-64 xl:max-w-64 xl:w-64 h-screen overflow-auto scrollbar-hide"
-    >
-      <EntitiesTheRight />
-    </div>
-  </div>
-  <VDevTools />
+    </template>
+  </TGlobalContainer>
 </template>

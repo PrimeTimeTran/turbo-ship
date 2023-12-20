@@ -39,7 +39,7 @@ function toggleSelect(id) {
 }
 function deleteItem(id) {
   state.data = state.data.filter((i) => i._id !== id)
-  toastEm('Deleted: ' + id, 1500, 'danger')
+  toastEm({ val: 'Deleted: ' + id, type: 'danger' })
 }
 function createSortFields() {
   const fields = {}

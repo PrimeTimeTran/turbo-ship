@@ -24,26 +24,15 @@ useHead({
   link: [],
   script: [
     {
-      type: 'text/javascript',
-      innerHTML: 'console.log("TGlobalShortcuts")',
-      tagPosition: 'head',
-    },
-    {
-      src: '/js/Hotkeys.js',
-      type: 'text/javascript',
-      body: true,
-    },
-    {
+      defer: true,
       src: '/js/TShortcuts.js',
       type: 'text/javascript',
-      body: true,
+      tagPosition: 'bodyClose',
     },
   ],
 })
-ensureLoad(scriptUrls.chart)
-ensureLoad(scriptUrls.hotkeys)
 function tSampleThemes() {
-  VApp.sampleThemes()
+  TApp.sampleThemes()
 }
 function ourCopy() {
   let values
@@ -53,7 +42,7 @@ function ourCopy() {
     values = entities
   }
   copy(JSON.stringify(values))
-  toastEm('Copied Entities')
+  toastEm({ options: 'Copied Entities' })
   setTimeout(() => {
     text.value = 'Done'
   }, 1500)

@@ -27,7 +27,7 @@ export function useBars(resource) {
       if (!error.value) {
         const user = JSON.parse(data.value)
         items.value.push(user)
-        toastEm('User created')
+        toastEm({ val: 'User created' })
         return user
       }
     } catch (error) {

@@ -66,9 +66,12 @@ export default defineNuxtConfig({
     '@netlify': path.resolve(__dirname, 'netlify'),
   },
   app: {
-    // head: {
-    //   script: [{ src: '/js/Theme.js', tagPosition: 'head' }],
-    // },
+    head: {
+      script: [
+        { src: '/js/Hotkeys.js', tagPosition: 'head' },
+        { src: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js', tagPosition: 'head' },
+      ],
+    },
   },
   postcss: {
     plugins: {

@@ -27,7 +27,7 @@ export function useUsers() {
       if (!error.value) {
         const user = JSON.parse(data.value)
         users.value.push(user)
-        toastEm('User created')
+        toastEm({ val: 'User created' })
         return user
       }
     } catch (error) {

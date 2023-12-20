@@ -63,7 +63,7 @@ function resetAttribute() {
 const submit = () => {
   entity._id = faker.database.mongodbObjectId()
   const clonedEntity = _.cloneDeep({ ...entity, name: camelize(entity.name) })
-  toastEm(clonedEntity.name + ' added')
+  toastEm({ val: clonedEntity.name + ' added' })
   addEntity(clonedEntity)
   resetEntity()
 }

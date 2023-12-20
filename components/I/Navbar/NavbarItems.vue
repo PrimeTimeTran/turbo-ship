@@ -6,34 +6,24 @@ const navItems = [
     icon: 'fa-house',
   },
   {
-    url: '/administrator/dashboard',
-    name: 'Dashboard',
-    icon: 'fa-dashboard',
-  },
-  {
-    url: '/administrator/dashboard',
-    name: 'Charts',
-    icon: 'fa-chart-pie',
-  },
-  {
-    url: '/administrator/auditlogs',
-    name: 'Audits',
-    icon: 'fa-blog',
-  },
-  {
-    url: '/administrator/calendar',
-    name: 'Calendar',
-    icon: 'fa-calendar',
-  },
-  {
-    url: '/theme/ui',
-    name: 'Design Guide',
-    icon: 'fa-palette',
-  },
-  {
     url: '/entities',
     name: 'Entity Builder',
     icon: 'fa-cubes',
+  },
+  {
+    url: '/articles/vue/vue-1-fundamentals',
+    name: 'Articles',
+    icon: 'fa-blog',
+  },
+  {
+    url: '/administrator/dashboard',
+    name: 'Dashboard',
+    icon: 'fa-blog',
+  },
+  {
+    url: '/templates/ui',
+    name: 'Design Guide',
+    icon: 'fa-blog',
   },
 ]
 </script>

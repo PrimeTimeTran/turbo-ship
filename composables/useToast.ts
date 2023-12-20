@@ -2,18 +2,40 @@
 
 import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
-export const toastEm = (val: string, ...restArgs: any[]) => {
+
+interface ToastOptions {
+  val: string
+  type: string
+  autoClose: boolean
+  length: number
+  position: string
+}
+
+export const toastEm = (options: Partial<ToastOptions> = {}) => {
+  const { length = 2000, autoClose = true, val = 'A message', type = toast.TYPE.SUCCESS, position = 'bRight' } = options
+
   let t = toast.TYPE.DEFAULT
-  if (restArgs[1] === 'danger') {
+  if (type === 'danger') {
     t = toast.TYPE.ERROR
-  } else if (restArgs[1] === 'info') {
+  } else if (type === 'info') {
     t = toast.TYPE.INFO
   } else {
     t = toast.TYPE.SUCCESS
   }
+  let pos = toast.POSITION.BOTTOM_RIGHT
+  if (position == 'bLeft') {
+    pos = toast.POSITION.BOTTOM_LEFT
+  } else if (position == 'tLeft') {
+    pos = toast.POSITION.TOP_LEFT
+  } else if (position == 'tRight') {
+    pos = toast.POSITION.TOP_RIGHT
+  } else if (position == 'bCenter') {
+    pos = toast.POSITION.BOTTOM_CENTER
+  }
+
   toast(val, {
     type: t,
-    autoClose: restArgs[0] || 1500,
-    position: toast.POSITION.BOTTOM_RIGHT,
+    position: pos,
+    autoClose: autoClose != true ? false : length,
   })
 }

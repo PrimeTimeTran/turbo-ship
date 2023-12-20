@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-import { VApp } from './utils/VApp'
+import { TApp } from './utils/TApp'
 export default {
   darkMode: 'class',
   plugins: [require('@tailwindcss/typography'), require('tailwind-scrollbar-hide'), require('daisyui')],
@@ -13,7 +13,7 @@ export default {
     './components/**/*.{js,vue,ts}',
   ],
   daisyui: {
-    themes: VApp.themes,
+    themes: TApp.themes,
   },
   theme: {
     extend: {
