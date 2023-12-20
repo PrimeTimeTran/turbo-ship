@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@samk-dev/nuxt-vcalendar": "^1.0.2",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.4",
     "@types/lodash": "^4.14.201",

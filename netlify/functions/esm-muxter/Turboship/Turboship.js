@@ -5,7 +5,7 @@ import { program } from 'commander'
 import Framework from './Framework.js'
 import { prettify } from './helpers.js'
 
-class Turboship {
+export default class Turboship {
   supportedFrameworks = ['flutter', 'nuxt', 'rn']
   constructor(entities) {
     this.zip = new JSZip()

@@ -60,6 +60,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@formkit/nuxt',
     'nuxt-vuefire',
+    '@samk-dev/nuxt-vcalendar',
   ],
   alias: {
     '@netlify': path.resolve(__dirname, 'netlify'),

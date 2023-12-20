@@ -44,6 +44,7 @@ layouts/TMainLayout.vue
 pages/Administrator/[...slug].vue
 pages/Administrator/AuditLogs.vue
 pages/Administrator/Dashboard.vue
+pages/Administrator/Calendar.vue
 pages/templates/UI.vue
 plugins/fontawesome.ts
 public/js/Hotkeys.js

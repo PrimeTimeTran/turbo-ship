@@ -1,5 +1,5 @@
 <script setup>
-import { Bars4Icon, LanguageIcon, TableCellsIcon, PuzzlePieceIcon } from '@heroicons/vue/20/solid'
+import { Bars4Icon, LanguageIcon, TableCellsIcon, PuzzlePieceIcon, CalendarIcon } from '@heroicons/vue/20/solid'
 
 const router = useRouter()
 function redirect(entity) {
@@ -38,6 +38,12 @@ const state = ref({
         :state="state"
         @click="() => router.push(`/templates/ui`)"
         :icon="PuzzlePieceIcon"
+      />
+      <TSidebarItem
+        :text="'Calendar'"
+        :state="state"
+        @click="() => router.push(`/administrator/calendar`)"
+        :icon="CalendarIcon"
       />
       <div class="dropdown dropdown-top">
         <div
