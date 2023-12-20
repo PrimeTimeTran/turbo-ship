@@ -41,7 +41,7 @@ export function setTheme(val) {
 }
 let themes = []
 export function sampleTheme() {
-  let theme = _.sample(VApp.themes)
+  let theme = _.sample(TApp.themes)
   const htmlElement = document.querySelector('html')
   themes.push(theme)
   htmlElement.setAttribute('data-theme', theme)

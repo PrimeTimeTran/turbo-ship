@@ -5,7 +5,7 @@ export function useHelpers() {
   const { copy } = useClipboard({ source })
   function turboCopy(val) {
     copy(val)
-    toastEm('Copied: ' + val)
+    toastEm({ val: 'Copied: ' + val })
   }
   function enumColor(entity, attribute, item, subItem) {
     try {

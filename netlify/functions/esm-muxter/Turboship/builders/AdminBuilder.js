@@ -67,7 +67,7 @@ export class AdminBuilder {
         if (!error.value) {
           const ${this.e.name} = JSON.parse(data.value)
           ${this.e.plural}.value.push(${this.e.name})
-          toastEm('${this.e.label} created')
+          toastEm({val: '${this.e.label} created' })
           return ${this.e.name}
         }
       } catch (error) {

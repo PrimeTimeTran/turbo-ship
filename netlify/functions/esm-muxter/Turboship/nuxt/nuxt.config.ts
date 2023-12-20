@@ -11,6 +11,14 @@ export default defineNuxtConfig({
       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
     },
   },
+  app: {
+    head: {
+      script: [
+        { src: '/js/Hotkeys.js', tagPosition: 'head' },
+        { src: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js', tagPosition: 'head' },
+      ],
+    },
+  },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content', 'nuxt-mongoose', '@nuxtjs/color-mode', '@formkit/nuxt'],
   postcss: {
     plugins: {

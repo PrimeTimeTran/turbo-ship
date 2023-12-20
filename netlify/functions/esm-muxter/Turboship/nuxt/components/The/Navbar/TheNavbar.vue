@@ -25,15 +25,7 @@ const route = useRoute()
     <div class="drawer z-20 bg-base-100">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
-        <!-- Navbar -->
-        <div
-          id="TheNavBar"
-          class="w-full navbar shadow-md z-20 bg-base-100"
-          :class="{
-            'navbar-small': route.path === '/entities',
-            absolute: route.path === '/entities',
-          }"
-        >
+        <div id="TheNavBar" class="w-full navbar shadow-md z-20 bg-base-100">
           <div class="flex-none lg:hidden">
             <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
               <svg
@@ -51,24 +43,12 @@ const route = useRoute()
               </svg>
             </label>
           </div>
-          <div
-            class="px-2 mx-2"
-            :class="{
-              'flex-1': !route.path === '/entities',
-            }"
-          >
+          <div class="px-2 mx-2 flex-1">
             <TheNavbarLogo />
           </div>
-          <div
-            class="flex-none hidden lg:block"
-            :class="{
-              'mr-auto': route.path === '/entities',
-              'ml-auto': !(route.path === '/entities'),
-            }"
-          >
+          <div class="flex-none hidden lg:block ml-auto">
             <ul class="menu menu-horizontal">
-              <EntitiesTheToolbar v-if="route.path === '/entities'" />
-              <TheNavbarItems v-else />
+              <TheNavbarItems />
             </ul>
           </div>
         </div>

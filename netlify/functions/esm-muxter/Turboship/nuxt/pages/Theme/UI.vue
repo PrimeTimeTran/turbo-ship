@@ -8,6 +8,9 @@ function sample() {
     document.getElementById('tSampleThemes').click()
   }
 }
+onMounted(() => {
+  toastEm({ val: 'Press opt/alt+s to sample a style', type: 'info', autoClose: false })
+})
 </script>
 <template>
   <div>
