@@ -193,7 +193,10 @@ export const frameworkMap = {
               let { limit, page } = e.context
               let params = getQuery(e)
               const query = buildQuery(params)
-              const pipeline = buildPipeline(query, page, limit)
+              const fieldsToPopulate = [
+                { from: 'users', localField: 'user' },
+              ]
+              const pipeline = buildPipeline(query, page, limit, fieldsToPopulate)
               const results = await ${label}.aggregate(pipeline)
               let { data, totalCount, pageCount } = results[0]
               if (!_.isEmpty(totalCount) && totalCount[0]) {

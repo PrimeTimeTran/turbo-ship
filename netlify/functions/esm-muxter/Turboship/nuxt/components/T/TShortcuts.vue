@@ -10,7 +10,16 @@ import { useClipboard } from '@vueuse/core'
 
 const source = ref('')
 const { text, copy } = useClipboard({ source })
-const { entities } = useEntities()
+let entities
+function setup() {
+  try {
+    const { entities: entitiesA } = useEntities()
+    entities = entitiesA
+  } catch (error) {
+    entities = { entities: [] }
+  }
+}
+setup()
 useHead({
   link: [],
   script: [
@@ -34,7 +43,7 @@ useHead({
 ensureLoad(scriptUrls.chart)
 ensureLoad(scriptUrls.hotkeys)
 function tSampleThemes() {
-  TApp.sampleThemes()
+  VApp.sampleThemes()
 }
 function ourCopy() {
   let values
@@ -52,7 +61,6 @@ function ourCopy() {
 </script>
 <template>
   <div>
-    <VPreviewer />
     <label for="tModalToggle"></label>
     <input type="checkbox" id="tModalToggle" class="modal-toggle" />
     <div class="modal w-screen h-screen flex justify-center items-center">

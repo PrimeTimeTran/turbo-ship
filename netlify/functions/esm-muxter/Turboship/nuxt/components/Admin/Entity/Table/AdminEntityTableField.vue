@@ -38,7 +38,7 @@ function copy(field, text) {
         {{ formatMoney(text) }}
       </span>
       <AdminEntityTableDropdown v-else-if="dropDownTypes.includes(field.type)" :text="text" />
-      <span v-else-if="!Type.enums.includes(field.type)" v-text="property" />
+      <span v-else-if="!Type.enums.includes(field.type)" v-text="property" class="primary-content" />
       <span v-else-if="field.type === 'enumeratorMulti'" class="space-x-1 space-y-1">
         <span
           v-for="item of document[field.name]"

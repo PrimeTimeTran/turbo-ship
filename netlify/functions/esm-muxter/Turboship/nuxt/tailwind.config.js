@@ -1,11 +1,9 @@
 /** @type {import('tailwindcss').Config} */
+
+import { VApp } from './utils/VApp'
 export default {
   darkMode: 'class',
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('tailwind-scrollbar-hide'),
-    require('daisyui'),
-  ],
+  plugins: [require('@tailwindcss/typography'), require('tailwind-scrollbar-hide'), require('daisyui')],
   content: [
     './app.vue',
     './error.vue',
@@ -14,6 +12,9 @@ export default {
     './plugins/**/*.{js,ts}',
     './components/**/*.{js,vue,ts}',
   ],
+  daisyui: {
+    themes: VApp.themes,
+  },
   theme: {
     extend: {
       typography: ({ theme }) => ({
@@ -41,6 +42,7 @@ export default {
             '--tw-prose-pre-bg': theme('colors.gray[900]'),
             '--tw-prose-th-borders': theme('colors.gray[300]'),
             '--tw-prose-td-borders': theme('colors.gray[200]'),
+
             '--tw-prose-invert-body': theme('colors.gray[200]'),
             '--tw-prose-invert-headings': theme('colors.white'),
             '--tw-prose-invert-lead': theme('colors.gray[300]'),

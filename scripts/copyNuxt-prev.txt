@@ -74,7 +74,7 @@ utils/ChartData.js
 utils/EnsureLoad.js
 utils/VHelpers.js
 utils/VNavItems.ts
-utils/VApp.js
+utils/TApp.js
 utils/VColors.ts
 utils/VStrings.ts
 utils/VThemeDirector.js

@@ -55,7 +55,7 @@
     // "netlify": true,
     // ######################## End Focus Flutter
     // ######################## Start Focus Nuxt
-    "flutter": true,
+    // "flutter": true,
     // ######################## End Focus Nuxt
 
     // Netlify functions

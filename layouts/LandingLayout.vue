@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-clip scrollbar-hide">
-    <The.Navbar />
+    <TheNavbar />
     <section
       class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex flex-col pt-24"
     >

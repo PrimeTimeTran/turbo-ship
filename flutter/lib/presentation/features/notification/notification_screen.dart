@@ -19,9 +19,9 @@ class _NotificationScreenState extends State<NotificationScreen>
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, idx) {
-              return const ListTile(
-                title: Text('Title'),
-                subtitle: Text('Subtitle'),
+              return ListTile(
+                title: Text('Notification $idx'),
+                subtitle: Text('Subtitle $idx'),
               );
             },
           ),

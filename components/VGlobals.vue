@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { useClipboard } from '@vueuse/core'
 
 const source = ref('')
@@ -25,7 +25,6 @@ function onClick(id) {
 </script>
 <template>
   <div>
-    <VPreviewer />
     <div @click="store.showLeft = !store.showLeft" id="showLeft"></div>
     <div @click="store.showRight = !store.showRight" id="showRight"></div>
     <div @click="toggleTheme" id="tThemeToggle"></div>
@@ -33,4 +32,4 @@ function onClick(id) {
     <div @click="ourCopy()" id="copyEntities"></div>
     <div @click="store.isSparse = !store.isSparse" id="toggleSparse"></div>
   </div>
-</template>
+</template> -->

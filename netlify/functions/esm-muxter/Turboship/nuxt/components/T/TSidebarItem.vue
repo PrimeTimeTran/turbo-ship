@@ -1,5 +1,6 @@
 <script setup>
 const props = defineProps(['state', 'text', 'icon', 'focused'])
+const emit = defineEmits(['click'])
 </script>
 <template>
   <button

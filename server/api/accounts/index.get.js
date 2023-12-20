@@ -6,7 +6,7 @@ export default defineEventHandler(async (e) => {
     let params = getQuery(e)
     const query = buildQuery(params)
     const fieldsToPopulate = [
-      // { from: 'users', localField: 'user' },
+      { from: 'users', localField: 'user' },
       // { from: 'banks', localField: 'bank' },
       // { from: 'branches', localField: 'branch' },
       // { from: 'transactions', localField: 'transactions' },

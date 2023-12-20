@@ -1,4 +1,4 @@
-export class TApp {
+export class VApp {
   static themes = [
     'light',
     'dark',
@@ -38,5 +38,5 @@ export class TApp {
 }
 
 if (process.browser) {
-  window.TApp = TApp
+  window.VApp = VApp
 }

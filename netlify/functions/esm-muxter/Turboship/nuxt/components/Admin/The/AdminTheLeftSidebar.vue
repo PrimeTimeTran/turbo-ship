@@ -1,6 +1,5 @@
 <script setup>
-import { Bars4Icon, LanguageIcon, TableCellsIcon } from '@heroicons/vue/20/solid'
-import { useRouter } from 'vue-router'
+import { Bars4Icon, LanguageIcon, TableCellsIcon, PuzzlePieceIcon } from '@heroicons/vue/20/solid'
 
 const router = useRouter()
 function redirect(entity) {
@@ -34,6 +33,12 @@ const state = ref({
       />
       <div class="grow" />
       <div class="divider" />
+      <TSidebarItem
+        :text="'Design'"
+        :state="state"
+        @click="() => router.push(`/templates/ui`)"
+        :icon="PuzzlePieceIcon"
+      />
       <div class="dropdown dropdown-top">
         <div
           tabindex="0"
