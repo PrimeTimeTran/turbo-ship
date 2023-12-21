@@ -66,7 +66,7 @@ export const Bank = {
         {
           name: 'lastName',
           type: 'string',
-          _id: '040e9eeeec2ae4eb4fd1946e',
+          _id: '040e9eeeec2ae4eb4fd2946e',
           validators: [],
           validations: [],
           relation: { type: null, name: null },
@@ -107,7 +107,7 @@ export const Bank = {
           validators: [],
           name: 'branches',
           type: 'relation',
-          _id: 'ebed2ca23c6cc7f44afff397',
+          _id: 'ebed2ca23c6cc7f44afff197',
           validations: [],
           relation: { type: 'otm', name: 'branches' },
           label: 'Branches',
@@ -521,7 +521,7 @@ export const Bank = {
         {
           name: 'opened',
           type: 'date',
-          _id: '8131cbecd9b0fb15389a08z9',
+          _id: '8131cbecd9b0fb15389a08z1',
           validators: [],
           validations: [],
           relation: { type: null, name: null },

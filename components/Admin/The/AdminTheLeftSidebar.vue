@@ -33,12 +33,7 @@ const state = ref({
       />
       <div class="grow" />
       <div class="divider" />
-      <TSidebarItem
-        :text="'Design'"
-        :state="state"
-        @click="() => router.push(`/templates/ui`)"
-        :icon="PuzzlePieceIcon"
-      />
+      <TSidebarItem :text="'Design'" :state="state" @click="() => router.push(`/theme/ui`)" :icon="PuzzlePieceIcon" />
       <TSidebarItem
         :text="'Calendar'"
         :state="state"

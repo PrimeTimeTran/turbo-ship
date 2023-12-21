@@ -43,10 +43,9 @@
   display: none;
 }
 
-/* For IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 body {
@@ -58,4 +57,18 @@ body {
 ::selection {
   color: white;
   background: rgb(189, 189, 189);
+}
+
+.radio-info {
+  border-color: #000;
+}
+
+.radio-info:hover {
+  border-color: lightgreen;
+}
+
+.radio-info:checked,
+.radio-info[aria-checked='true'] {
+  border-color: green;
+  background-color: lightgreen !important;
 }

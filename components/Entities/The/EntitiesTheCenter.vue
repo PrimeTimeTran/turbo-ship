@@ -5,7 +5,7 @@ const { entities } = useEntities()
 <template>
   <div class="flex overflow-auto scrollbar-hide h-screen pt-8 w-full">
     <div class="flex flex-1 flex-col" id="TheToolBar">
-      <div class="flex text-center rounded-md">
+      <!-- <div class="flex text-center rounded-md">
         <div class="flex flex-row justify-between flex-wrap">
           <div class="text-md text-slate-500 mr-auto ml-2">
             <span v-text="`Entities (${entities.length})`" class="text-gray-400 text-sm" />
@@ -19,7 +19,7 @@ const { entities } = useEntities()
             ></a>
           </div>
         </div>
-      </div>
+      </div> -->
       <div>
         <EntitiesTabSorter :entities="entities" />
         <!-- When refactored this guy stops rendering -->

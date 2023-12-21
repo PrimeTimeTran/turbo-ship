@@ -1,34 +1,10 @@
 <script setup>
 import _ from 'lodash'
-import { DateTime } from 'luxon'
 
 const props = defineProps(['entity', 'entityType'])
 const items = ref([])
 
-function setEntityFields() {
-  try {
-    let fields = []
-    let entries = Object.entries(props.entity)
-    let blackListed = ['_id', '__v', '']
-
-    entries.forEach((e) => {
-      if (!blackListed.includes(e[0])) {
-        let item = {
-          name: e[0],
-          value: e[1],
-          type: GlobalState.entities[props.entityType][e[0]]?.type,
-        }
-        fields.push(item)
-      }
-    })
-    items.value = fields
-  } catch (error) {
-    console.log({
-      error,
-    })
-  }
-}
-setEntityFields()
+items.value = TFormHelper.setupFormFields(props.entity, props.entityType)
 function toggleModal(id) {
   const modal = document.getElementById(`modal-${id}`)
   if (modal) {
@@ -41,9 +17,6 @@ async function submit(fields) {
     fields,
   })
 }
-function makeDate(val) {
-  return DateTime.fromISO(val).toFormat('yyyy-MM-dd')
-}
 </script>
 <template>
   <button class="btn btn-xs btn-ghost flex justify-start" @click="toggleModal(entity._id)">
@@ -51,7 +24,7 @@ function makeDate(val) {
     Edit
   </button>
   <dialog :id="`modal-${entity._id}`" class="modal">
-    <div class="modal-box w-11/12 max-w-7xl">
+    <div class="modal-box w-11/12 max-w-7xl bg-slate-100">
       <form method="dialog">
         <button @click="toggleModal(entity._id)" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
           ✕
@@ -76,6 +49,7 @@ function makeDate(val) {
                 <AdminEntityFormField
                   v-if="field.type != 'date'"
                   :help="''"
+                  :field="field"
                   :type="field.type"
                   :name="field.name"
                   :value="field.value"
@@ -88,11 +62,12 @@ function makeDate(val) {
                 <AdminEntityFormField
                   v-else
                   :help="''"
+                  :field="field"
                   :type="field.type"
                   :name="field.name"
                   :entityType="entityType"
-                  :value="makeDate(entity[field.name])"
-                  :v-model="makeDate(entity[field.name])"
+                  :value="TFormHelper.makeDate(entity[field.name])"
+                  :v-model="TFormHelper.makeDate(entity[field.name])"
                   :label="GlobalState.entities[entityType][field.name]?.label"
                   :options="GlobalState.entities[entityType][field.name]?.options"
                 />

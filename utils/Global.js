@@ -15,15 +15,19 @@ export class GlobalState {
     'wizards',
     'foos',
   ]
-  static entityCols(entityName) {
-    // Sort cols => primitives, enums, relations
-    // Add empty & _id cols to the start for ellipsis & checkbox respectively
-    let thisEntity = this.entities[entityName]
+  static formSortedFields(entityName) {
+    // Sort fields => primitives, enums, relations
+    const thisEntity = this.entities[entityName]
     let attributes = Object.keys(thisEntity).filter((a) => a !== '_id')
     attributes = Object.entries(thisEntity)
       .map(([k, v]) => ({ name: k, ...v }))
       .filter((a) => a.name !== '_id')
     attributes = Type.sortOnType(attributes)
+    return attributes
+  }
+  static entityCols(entityName) {
+    // Add empty & _id cols to the start for ellipsis & checkbox respectively
+    let attributes = this.formSortedFields(entityName)
     return [{ name: '', type: '' }, { name: '_id', type: 'string' }, ...attributes]
   }
   static sidebar = [

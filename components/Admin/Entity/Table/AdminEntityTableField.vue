@@ -18,7 +18,7 @@ function copy(field, text) {
     :entityType="entityType"
   />
   <span v-else>
-    <AdminEntityTablePreviewCard v-if="property?._id" :item="document" :field="field" />
+    <AdminEntityTablePreviewCard v-if="property?._id || field.name === 'user'" :item="document" :field="field" />
     <input
       v-else-if="field.name === '_id'"
       type="checkbox"

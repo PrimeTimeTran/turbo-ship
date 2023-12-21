@@ -29,9 +29,24 @@ export function useEntities() {
       addEntity(e)
     })
   }
+  function invalids() {
+    let items: any = {}
+    entities.forEach((e) => {
+      e.attributes.forEach((a) => {
+        let enumInvalid = Validator.enumTypes.includes(a.type) && _.isNil(a.options)
+        let relationInvalid = a.type === 'relation' && _.isNil(a.relation?.name)
+        if (enumInvalid || relationInvalid) {
+          if (!items[e.name]) items[e.name] = []
+          items[e.name].push(a.name)
+        }
+      })
+    })
+    return items
+  }
 
   return {
     entities,
+    invalids,
     addEntity,
     setEntities,
     removeEntity,

@@ -119,7 +119,7 @@ const entityValid = computed(() => {
 </script>
 
 <template>
-  <div class="join join-vertical w-full flex-col max-h-screen w-100 pt-16 overflow-auto scrollbar-hide z-0">
+  <div class="join join-vertical w-full flex-col max-h-screen w-100 pt-8 overflow-auto scrollbar-hide z-0">
     <FormKit
       id="form"
       type="form"

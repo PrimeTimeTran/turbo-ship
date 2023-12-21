@@ -60,6 +60,7 @@ export default defineNuxtConfig({
     '@formkit/nuxt',
     'nuxt-vuefire',
     '@samk-dev/nuxt-vcalendar',
+    '@pinia/nuxt',
   ],
   alias: {
     '@netlify': path.resolve(__dirname, 'netlify'),
