@@ -67,8 +67,8 @@ export default defineNuxtConfig({
   app: {
     head: {
       script: [
-        { src: '/js/Hotkeys.js', tagPosition: 'head' },
         { src: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js', tagPosition: 'head' },
+        { src: '/js/Hotkeys.js', tagPosition: 'head' },
       ],
     },
   },

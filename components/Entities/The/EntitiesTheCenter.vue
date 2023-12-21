@@ -35,5 +35,6 @@ const { entities } = useEntities()
         <EntitiesTabHelp v-if="store.view == views.help" />
       </div>
     </div>
+    <EntitiesCheckout />
   </div>
 </template>
