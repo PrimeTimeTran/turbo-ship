@@ -8,4 +8,16 @@ export const logger = pino({
       messageKey: 'message',
     },
   },
+  serializers: {
+    err: (error) => {
+      if (error instanceof Error) {
+        return {
+          stack: error.stack,
+          message: error.message,
+          code: error.code || 'UNKNOWN_ERROR_CODE',
+        }
+      }
+      return error
+    },
+  },
 })

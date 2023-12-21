@@ -45,7 +45,6 @@ export default defineNuxtConfig({
       openAPI: true,
     },
   },
-
   runtimeConfig: {
     public: {
       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',

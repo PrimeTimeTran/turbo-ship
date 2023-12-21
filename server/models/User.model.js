@@ -19,13 +19,31 @@ const userSchema = new Schema({
   email: {
     type: String,
   },
-  bio: {
-    type: String,
-  },
   firstName: {
     type: String,
   },
   lastName: {
+    type: String,
+  },
+  status: {
+    type: [String],
+  },
+  passwordDigest: {
+    type: String,
+  },
+  roles: [
+    {
+      ref: 'Role',
+      type: mongoose.Schema.Types.ObjectId,
+    },
+  ],
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+
+  // Cannot edit above.
+  bio: {
     type: String,
   },
   sex: {
@@ -53,15 +71,6 @@ const userSchema = new Schema({
     type: String,
   },
   phone: {
-    type: String,
-  },
-  role: {
-    type: [String],
-  },
-  status: {
-    type: [String],
-  },
-  passwordDigest: {
     type: String,
   },
   banks: [{ type: Schema.Types.ObjectId, ref: 'Bank' }],

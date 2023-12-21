@@ -5,12 +5,14 @@ function isProtectedPath(path: string) {
 }
 
 export default defineEventHandler(async (e: any) => {
-  const token = e.node.req.rawHeaders[1]?.split(' ')[1]
+  const token = e.node.req?.rawHeaders[1]?.split(' ')[1]
   if (isProtectedPath(e.path) && !token) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: 'Must be authenticated',
-    })
+    const error = {
+      statusCode: 403,
+      statusMessage: 'Forbidden: Unauthenticated',
+    }
+    logger.error({ err: error }, 'Error:')
+    throw createError(error)
   } else {
     e.context.token = token
   }
