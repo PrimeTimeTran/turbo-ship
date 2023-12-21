@@ -61,7 +61,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
             <div class="flex flex-row justify-between">
-              <span class="card-title base-content">Doughnut</span>
+              <span class="card-title base-content">Line</span>
               <span class="h-6 w-6">
                 <component :is="EllipsisHorizontalIcon" />
               </span>
@@ -85,7 +85,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
             <div class="flex flex-row justify-between grow items-center">
-              <span class="card-title base-content">Doughnut</span>
+              <span class="card-title base-content">Double Doughnut</span>
               <span class="h-6 w-6">
                 <component :is="EllipsisHorizontalIcon" />
               </span>
@@ -98,7 +98,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
             <div class="flex flex-row justify-between grow items-center">
-              <span class="card-title base-content">Radar</span>
+              <span class="card-title base-content">P&L</span>
               <span class="h-6 w-6">
                 <component :is="EllipsisHorizontalIcon" />
               </span>
@@ -122,7 +122,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
             <div class="flex flex-row justify-between grow items-center">
-              <span class="card-title base-content">Radar</span>
+              <span class="card-title base-content">Doughnut</span>
               <span class="h-6 w-6">
                 <component :is="EllipsisHorizontalIcon" />
               </span>

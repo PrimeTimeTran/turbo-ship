@@ -18,7 +18,11 @@ export default defineNuxtConfig({
     },
   },
   ignore: ['/mobile', '/notes', '/utils/seeds'],
-  plugins: ['~/plugins/fontawesome.ts', { src: '~/plugins/marked.js' }],
+  plugins: [
+    '~/plugins/fontawesome.ts',
+    { src: '~/plugins/marked.js' },
+    { src: '~/plugins/eventBus.ts', mode: 'client' },
+  ],
   formkit: {
     autoImport: true,
   },
@@ -46,6 +50,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    googleAPIKey: process.env.GOOGLE_API_KEY,
     public: {
       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
       generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
@@ -61,6 +66,7 @@ export default defineNuxtConfig({
     'nuxt-vuefire',
     '@samk-dev/nuxt-vcalendar',
     '@pinia/nuxt',
+    'nuxt-icon',
   ],
   alias: {
     '@netlify': path.resolve(__dirname, 'netlify'),

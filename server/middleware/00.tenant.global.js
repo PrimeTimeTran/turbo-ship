@@ -10,4 +10,5 @@ export default defineEventHandler(async (e) => {
   //   } catch (err) {
   //     logger.error(err, 'Subdomain error')
   //   }
+  // middleware/googleDirections.js
 })
