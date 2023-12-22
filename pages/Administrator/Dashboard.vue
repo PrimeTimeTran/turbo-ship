@@ -1,34 +1,16 @@
 <script setup>
 import { faker } from '@faker-js/faker/locale/af_ZA'
 import { TableCellsIcon, EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
+import { useEventBus } from '@vueuse/core'
+
 definePageMeta({
   layout: 't-main-layout',
 })
 const items = ['Users', 'Posts', 'Comments', 'Messages']
-
-const { emit, on, off } = useEventBus()
+const bus = useEventBus('news')
 function addRecordToDB() {
-  console.log('addRecordToDB')
-  const newRecord = {
-    user: {
-      name: 'Loi',
-      urlAvatar: 'h',
-    },
-    body: 'Hi',
-  }
-  emit('recordAdded', newRecord)
+  bus.emit('The Tokyo Olympics has begun')
 }
-
-function handleRecordAdded(newRecord) {
-  console.log('New record added:', newRecord)
-  toastEm()
-}
-
-on('recordAdded', handleRecordAdded)
-
-onUnmounted(() => {
-  off('recordAdded', handleRecordAdded)
-})
 </script>
 <template>
   <div class="space-y-8">

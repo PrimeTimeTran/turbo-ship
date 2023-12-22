@@ -12,7 +12,7 @@ interface ToastOptions {
 }
 
 export const toastEm = (options: Partial<ToastOptions> = {}) => {
-  const { length = 2000, autoClose = true, val = 'A message', type = toast.TYPE.SUCCESS, position = 'bRight' } = options
+  const { length = 2500, autoClose = true, val = 'A message', type = toast.TYPE.SUCCESS, position = 'bRight' } = options
 
   let t = toast.TYPE.DEFAULT
   if (type === 'danger') {

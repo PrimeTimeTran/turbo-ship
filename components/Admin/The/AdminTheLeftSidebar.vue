@@ -1,25 +1,39 @@
 <script setup>
 import { Icon } from '#components'
 import {
+  MapIcon,
   Bars4Icon,
+  BellIcon,
   LanguageIcon,
+  CalendarIcon,
   TableCellsIcon,
   PuzzlePieceIcon,
-  CalendarIcon,
-  MapIcon,
 } from '@heroicons/vue/20/solid'
+import { useEventBus } from '@vueuse/core'
+
+const ArtIcon = h(Icon, { name: 'map:art-gallery', color: 'grey' })
+const ArtIcon2 = h(Icon, { name: 'icon-park-solid:components', color: 'grey' })
+const state = reactive({
+  leftOpen: true,
+  rightOpen: false,
+  notification: false,
+  notificationCount: 0,
+})
+
+onMounted(() => {
+  const bus = useEventBus('news')
+  function listener(event) {
+    state.notification = true
+    state.notificationCount = state.notificationCount + 1
+    toastEm({ val: 'New Message', type: 'info' })
+  }
+  const unsubscribe = bus.on(listener)
+})
 
 const router = useRouter()
 function redirect(entity) {
   router.push(`/administrator/${entity}`)
 }
-
-const state = ref({
-  leftOpen: true,
-  rightOpen: false,
-})
-const ArtIcon = h(Icon, { name: 'map:art-gallery', color: 'grey' })
-const ArtIcon2 = h(Icon, { name: 'icon-park-solid:components', color: 'grey' })
 </script>
 <template>
   <div class="drawer-side z-0">
@@ -43,12 +57,19 @@ const ArtIcon2 = h(Icon, { name: 'icon-park-solid:components', color: 'grey' })
       />
       <div class="grow" />
       <div class="divider" />
-
       <TSidebarItem
         :text="'Calendar'"
         :state="state"
         @click="() => router.push(`/administrator/calendar`)"
         :icon="CalendarIcon"
+      />
+      <TSidebarItem
+        :state="state"
+        :text="'Messages'"
+        :icon="BellIcon"
+        :notification="state.notification"
+        :notificationCount="state.notificationCount"
+        @click="() => router.push(`/administrator/chat`)"
       />
       <TSidebarItem :text="'Map'" :state="state" @click="() => router.push(`/administrator/map`)" :icon="MapIcon" />
       <div class="dropdown dropdown-top">

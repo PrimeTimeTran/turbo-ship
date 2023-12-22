@@ -35,19 +35,18 @@ function initMap() {
   const directionsRenderer = new google.maps.DirectionsRenderer()
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 8,
-    center: { lat: 37.7749, lng: -122.4194 }, // Set your preferred center coordinates
+    center: { lat: 37.7749, lng: -122.4194 },
   })
   directionsRenderer.setMap(map)
 
   const waypoints = [
     { location: { placeId: 'ChIJvypWkWV2wYgR0E7HW9MTLvc' } },
     { location: { placeId: 'ChIJPV4oX_65j4ARVW8IJ6IJUYs' } },
-    // Add more waypoints if needed
   ]
 
   const request = {
-    origin: 'Starting Point', // Add your starting point
-    destination: 'End Point', // Add your end point
+    origin: 'Starting Point',
+    destination: 'End Point',
     waypoints: waypoints,
     travelMode: 'DRIVING',
   }

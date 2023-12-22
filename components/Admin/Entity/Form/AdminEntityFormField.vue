@@ -31,8 +31,6 @@ const props = defineProps({
     },
   },
 })
-console.log({ gogo: props.value })
-
 const messageClasses = 'text-red-500 dark:text-red-300 absolute'
 const outerClasses = 'min-w-100 w-100 '
 const allClasses = {

@@ -1,18 +1,6 @@
 <script setup>
 import { useRightDrawerStore } from '@/stores/drawerRightStore.js'
 const { $event } = useNuxtApp()
-
-const onUserRegistered = (user) => {
-  // User registration form was saved and then we want
-  // to notify the entire application about that.
-  $event('user:registered', user)
-}
-
-onMounted(() => {
-  const emitter = useEmitter()
-  emitter.emit('test-emit', 'hello world')
-})
-
 const store = useRightDrawerStore()
 const focused = store.focused
 </script>
