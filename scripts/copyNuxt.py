@@ -18,32 +18,39 @@ if not os.path.isfile(file_list):
     print(f"File list not found: {file_list}")
     exit(1)
 
-# Debugging output
-print("Source directory contents:")
-for root, dirs, files in os.walk(source_dir):
-    print(f"Root: {root}")
-    print(f"Directories: {dirs}")
-    print(f"Files: {files}")
+# Read the lines from the file
+with open(file_list, 'r') as f:
+    lines = f.readlines()
 
-# Read each line of the file list
-with open(file_list, 'r') as file:
-    for item in file:
-        item = item.strip()  # Remove any trailing newline or whitespace
-        print(f"Processing: {item}")
+# List to store directories for which contents will be copied
+directories_to_copy = []
 
-        # Check if the item exists in the source directory
-        item_path = os.path.join(source_dir, item)
-        if os.path.exists(item_path):
-            # Create the destination directory structure if it doesn't exist
-            dest_item = os.path.join(destination_dir, item)
-            dest_item_dir = os.path.dirname(dest_item)
-            os.makedirs(dest_item_dir, exist_ok=True)
+# Iterate through the lines to identify directories for content copy
+for item in lines:
+    item = item.strip()  # Remove any trailing newline or whitespace
+    item_path = os.path.join(source_dir, item)
+    if os.path.exists(item_path) and os.path.isdir(item_path):
+        directories_to_copy.append(item_path)
 
-            # Copy the item to the destination directory maintaining structure
-            if os.path.isdir(item_path):
-                shutil.copytree(item_path, dest_item, dirs_exist_ok=True)
-            else:
-                shutil.copy2(item_path, dest_item)
-            print(f"Copied {item} to {destination_dir}")
-        else:
-            print(f"{item} does not exist in {source_dir}")
+# Copy the contents of identified directories
+for directory in directories_to_copy:
+    for root, dirs, files in os.walk(directory):
+        dest_path = os.path.join(destination_dir, os.path.relpath(root, source_dir))
+        os.makedirs(dest_path, exist_ok=True)
+        for file in files:
+            source_file = os.path.join(root, file)
+            dest_file = os.path.join(dest_path, file)
+            shutil.copy2(source_file, dest_file)
+            print(f"Copied {source_file} to {dest_file}")
+
+# Filter out directories from the list
+files_to_copy = [item.strip() for item in lines if not os.path.isdir(os.path.join(source_dir, item.strip()))]
+
+# Copy files to the destination directory, overwriting if they exist
+for item in files_to_copy:
+    item_path = os.path.join(source_dir, item)
+    dest_item = os.path.join(destination_dir, item)
+    dest_dir = os.path.dirname(dest_item)
+    os.makedirs(dest_dir, exist_ok=True)
+    shutil.copy2(item_path, dest_item)
+    print(f"Copied {item_path} to {dest_item} (Overwritten if exists)")
