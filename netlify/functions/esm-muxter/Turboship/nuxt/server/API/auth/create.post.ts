@@ -3,8 +3,8 @@ export default defineEventHandler(async (e) => {
   const u = await User.findOne({ email: body.email })
   if (u) {
     throw createError({
-      statusCode: 404,
-      statusMessage: 'User already exists',
+      statusCode: 400,
+      statusMessage: 'Error: Email taken',
     })
   }
 

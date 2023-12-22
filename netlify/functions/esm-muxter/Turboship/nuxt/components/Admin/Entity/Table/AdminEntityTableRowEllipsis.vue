@@ -11,7 +11,9 @@ const props = defineProps(['deleteItem', 'item', 'entityType'])
       <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
         <button class="btn btn-xs btn-ghost flex justify-start">
           <FontAwesomeIcon class="mr-2 text-black dark:text-white" color="white" icon="fa-solid fa-magnifying-glass" />
-          <label for="rightDrawer" aria-label="close sidebar" class="drawer-overlay">Open</label>
+          <label for="rightDrawer" aria-label="close sidebar" id="tRightDrawerFocused" class="drawer-overlay">
+            Open
+          </label>
         </button>
         <AdminEntityForm :entity="item" :entityType="entityType" />
         <button @click="" class="btn btn-xs btn-ghost flex justify-start">

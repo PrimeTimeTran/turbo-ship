@@ -120,7 +120,7 @@ export default {
   display: none;
 }
 
-/deep/ .custom-calendar.vc-container {
+:deep() .custom-calendar.vc-container {
   --day-border: 1px solid #b8c2cc;
   --day-border-highlight: 1px solid #b8c2cc;
   --day-width: 90px;
@@ -132,7 +132,7 @@ export default {
   border-radius: 0;
   width: 100%;
 
-  & .vc-header {
+  .vc-header {
     background-color: oklch(var(--b1));
   }
   & .vc-weeks {
@@ -169,7 +169,7 @@ export default {
   }
 }
 
-/deep/ {
+:deep() {
   .vc-header .vc-title {
     color: oklch(var(--p));
   }

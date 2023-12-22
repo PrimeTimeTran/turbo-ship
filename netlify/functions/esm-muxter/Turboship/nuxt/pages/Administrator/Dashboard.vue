@@ -1,10 +1,22 @@
 <script setup>
 import { faker } from '@faker-js/faker/locale/af_ZA'
 import { TableCellsIcon, EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
+import { useEventBus } from '@vueuse/core'
+
 definePageMeta({
   layout: 't-main-layout',
 })
 const items = ['Users', 'Posts', 'Comments', 'Messages']
+const bus = useEventBus('news')
+function addRecordToDB() {
+  bus.emit('The Tokyo Olympics has begun')
+}
+
+import { useCollection } from 'vuefire'
+import { collection } from 'firebase/firestore'
+const db = useFirestore()
+
+const messages = useCollection(collection(db, 'messages'))
 </script>
 <template>
   <div class="space-y-8">
@@ -15,7 +27,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
             <div class="flex flex-row justify-between grow items-center">
               <span class="card-title base-content" v-text="item"></span>
               <span class="h-6 w-6">
-                <component :is="TableCellsIcon" />
+                <component :is="TableCellsIcon" @click="addRecordToDB()" />
               </span>
             </div>
             <h3 class="text-5xl" v-text="faker.number.int({ min: 200, max: 500 })"></h3>
@@ -61,7 +73,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
             <div class="flex flex-row justify-between">
-              <span class="card-title base-content">Doughnut</span>
+              <span class="card-title base-content">Line</span>
               <span class="h-6 w-6">
                 <component :is="EllipsisHorizontalIcon" />
               </span>
@@ -85,7 +97,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
             <div class="flex flex-row justify-between grow items-center">
-              <span class="card-title base-content">Doughnut</span>
+              <span class="card-title base-content">Double Doughnut</span>
               <span class="h-6 w-6">
                 <component :is="EllipsisHorizontalIcon" />
               </span>
@@ -98,7 +110,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
             <div class="flex flex-row justify-between grow items-center">
-              <span class="card-title base-content">Radar</span>
+              <span class="card-title base-content">P&L</span>
               <span class="h-6 w-6">
                 <component :is="EllipsisHorizontalIcon" />
               </span>
@@ -122,7 +134,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
             <div class="flex flex-row justify-between grow items-center">
-              <span class="card-title base-content">Radar</span>
+              <span class="card-title base-content">Doughnut</span>
               <span class="h-6 w-6">
                 <component :is="EllipsisHorizontalIcon" />
               </span>
@@ -132,13 +144,11 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
         </div>
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
           <div class="card-body">
-            <!-- <div class="flex flex-row justify-between">
-              <span class="card-title base-content">Line Multi</span>
-              <span class="h-6 w-6">
-                <component :is="EllipsisHorizontalIcon" />
-              </span>
-            </div>
-            <Chart :config="chartData.line2" /> -->
+            <ul>
+              <li v-for="message in messages" :key="message.id">
+                <span>{{ message.body }}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

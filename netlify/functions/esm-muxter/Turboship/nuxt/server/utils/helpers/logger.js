@@ -1,23 +1,13 @@
 import pino from 'pino'
 
+// trace, debug, info, warn, error, fatal
 export const logger = pino({
+  level: 'debug',
   transport: {
     target: 'pino-pretty',
     options: {
       colorize: true,
       messageKey: 'message',
-    },
-  },
-  serializers: {
-    err: (error) => {
-      if (error instanceof Error) {
-        return {
-          stack: error.stack,
-          message: error.message,
-          code: error.code || 'UNKNOWN_ERROR_CODE',
-        }
-      }
-      return error
     },
   },
 })

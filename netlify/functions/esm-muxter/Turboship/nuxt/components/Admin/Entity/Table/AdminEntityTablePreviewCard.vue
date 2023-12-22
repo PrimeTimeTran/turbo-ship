@@ -1,28 +1,47 @@
 <script setup>
+import { useRightDrawerStore } from '@/stores/drawerRightStore.js'
+import { useEventBus } from '@vueuse/core'
+
 const props = defineProps(['item', 'field'])
+const store = useRightDrawerStore()
 
 const item = props.item[props.field.name]
 const isUser = props.field.name === 'user'
+let user = {}
+if (isUser) {
+  user = item[0]
+}
 const isBank = props.field.name === 'bank'
 const isBranch = props.field.name === 'branch'
+
+const bus = useEventBus('DrawerFocus')
+function focusInDrawer() {
+  store.setFocused(user)
+  if (process.browser) {
+    document.getElementById('tRightDrawerFocused')?.click()
+  }
+  setTimeout(() => {
+    bus.emit(user)
+  }, 50)
+}
 </script>
 <template>
   <div class="dropdown dropdown-hover max-w-64 h-8">
     <div role="button" class="truncate text-ellipsis m-1 max-w-64" v-text="field.name" />
     <div v-if="isUser" class="dropdown-content z-[1] menu p-4 rounded-box w-96 bg-base-100 primary-content shadow-lg">
-      <div class="card-body card-compact space-x-2 p-2 m-2">
+      <div class="card-body card-compact space-x-2 p-2 m-2 relative" @click="focusInDrawer">
         <div class="avatar">
           <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img :src="user.urlAvatar" />
           </div>
         </div>
         <div class="">
           <h2 class="card-title text-start">
-            {{ item.firstName + ' ' + item.lastName }}
+            {{ user.firstName + ' ' + user.lastName }}
             <div class="badge badge-secondary">NEW</div>
           </h2>
-          <p v-text="item.bio"></p>
-          <div class="card-actions justify-end">
+          <p v-text="user.bio"></p>
+          <div class="card-actions justify-end mt-6">
             <div class="badge badge-outline">Audit</div>
             <div class="badge badge-outline">Profile</div>
           </div>

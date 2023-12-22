@@ -49,9 +49,9 @@ export default class Turboship {
         fw.zipBaseDirectory()
         await fw.build()
       }
-    } catch (error) {
+    } catch (err) {
       console.log({
-        error,
+        err,
         error: 'generate',
       })
     }

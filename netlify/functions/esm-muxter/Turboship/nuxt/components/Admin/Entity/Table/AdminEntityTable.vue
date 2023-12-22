@@ -71,7 +71,7 @@ const visibleColumns = computed(() => {
 })
 </script>
 <template>
-  <table class="mb-12 text-sm w-full min-w-full">
+  <table class="mb-12 text-sm w-full min-w-full overflow-y-auto">
     <thead class="w-full min-w-full bg-base-100 h-16 max-h-16">
       <draggable tag="tr" item-key="name" class="w-full min-w-full text-left" :list="state.localSort" draggable=".item">
         <template #item="{ element, index }">

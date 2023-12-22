@@ -19,9 +19,6 @@ export default defineEventHandler(async (e) => {
   try {
     captureEvent(e)
   } catch (error) {
-    console.log({
-      error,
-      origin: 'Auditor',
-    })
+    logger.error({ err: error }, 'Error:')
   }
 })
