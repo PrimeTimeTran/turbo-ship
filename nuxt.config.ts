@@ -36,6 +36,8 @@ export default defineNuxtConfig({
   },
   hooks: {
     'build:done': (go: HookResult) => {
+      console.log('Done building')
+      console.log('Should disconnect now')
       mongoose.disconnect()
     },
   },

@@ -58,7 +58,7 @@
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.9.4",
     "@pinia/nuxt": "^0.5.1",
-    "@primetimetran/muxter": "^1.0.51",
+    "@primetimetran/muxter": "^1.0.52",
     "@tailwindcss/typography": "^0.5.10",
     "@vueuse/core": "^10.7.0",
     "@vueuse/firebase": "^10.7.0",
