@@ -17,7 +17,6 @@ definePageMeta({
 </script>
 
 <template>
-  <!-- This is an example component -->
   <div>
     <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
       <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -940,4 +939,3 @@ definePageMeta({
     </div>
   </div>
 </template>
-<style></style>

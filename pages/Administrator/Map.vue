@@ -4,10 +4,13 @@ definePageMeta({
   layout: 't-main-layout',
 })
 
-const loader = new Loader({})
+const loader = new Loader({
+  apiKey: '',
+  version: 'weekly',
+})
 
 const mapOptions = {
-  zoom: 8,
+  zoom: 12,
   center: { lat: 37.7749, lng: -122.4194 },
 }
 
