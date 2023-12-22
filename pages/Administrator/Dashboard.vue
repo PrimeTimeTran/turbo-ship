@@ -5,6 +5,30 @@ definePageMeta({
   layout: 't-main-layout',
 })
 const items = ['Users', 'Posts', 'Comments', 'Messages']
+
+const { emit, on, off } = useEventBus()
+function addRecordToDB() {
+  console.log('addRecordToDB')
+  const newRecord = {
+    user: {
+      name: 'Loi',
+      urlAvatar: 'h',
+    },
+    body: 'Hi',
+  }
+  emit('recordAdded', newRecord)
+}
+
+function handleRecordAdded(newRecord) {
+  console.log('New record added:', newRecord)
+  toastEm()
+}
+
+on('recordAdded', handleRecordAdded)
+
+onUnmounted(() => {
+  off('recordAdded', handleRecordAdded)
+})
 </script>
 <template>
   <div class="space-y-8">
@@ -15,7 +39,7 @@ const items = ['Users', 'Posts', 'Comments', 'Messages']
             <div class="flex flex-row justify-between grow items-center">
               <span class="card-title base-content" v-text="item"></span>
               <span class="h-6 w-6">
-                <component :is="TableCellsIcon" />
+                <component :is="TableCellsIcon" @click="addRecordToDB()" />
               </span>
             </div>
             <h3 class="text-5xl" v-text="faker.number.int({ min: 200, max: 500 })"></h3>

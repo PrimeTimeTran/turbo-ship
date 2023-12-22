@@ -1,5 +1,13 @@
 <script setup>
-import { Bars4Icon, LanguageIcon, TableCellsIcon, PuzzlePieceIcon, CalendarIcon } from '@heroicons/vue/20/solid'
+import { Icon } from '#components'
+import {
+  Bars4Icon,
+  LanguageIcon,
+  TableCellsIcon,
+  PuzzlePieceIcon,
+  CalendarIcon,
+  MapIcon,
+} from '@heroicons/vue/20/solid'
 
 const router = useRouter()
 function redirect(entity) {
@@ -10,6 +18,8 @@ const state = ref({
   leftOpen: true,
   rightOpen: false,
 })
+const ArtIcon = h(Icon, { name: 'map:art-gallery', color: 'grey' })
+const ArtIcon2 = h(Icon, { name: 'icon-park-solid:components', color: 'grey' })
 </script>
 <template>
   <div class="drawer-side z-0">
@@ -33,13 +43,34 @@ const state = ref({
       />
       <div class="grow" />
       <div class="divider" />
-      <TSidebarItem :text="'Design'" :state="state" @click="() => router.push(`/theme/ui`)" :icon="PuzzlePieceIcon" />
+
       <TSidebarItem
         :text="'Calendar'"
         :state="state"
         @click="() => router.push(`/administrator/calendar`)"
         :icon="CalendarIcon"
       />
+      <TSidebarItem :text="'Map'" :state="state" @click="() => router.push(`/administrator/map`)" :icon="MapIcon" />
+      <div class="dropdown dropdown-top">
+        <div
+          tabindex="0"
+          role="button"
+          class="btn btn-ghost flex primary-content justify-start m-1 hover:text-green-400 dark:hover:text-green-400"
+        >
+          <PuzzlePieceIcon class="h-6 w-6" />
+          <span v-if="state.leftOpen" v-text="'Design'" />
+        </div>
+        <ul tabindex="0" class="dropdown-content menu px-2 shadow bg-base-200 dark:bg-base-200 rounded-box w-52 border">
+          <TSidebarItem :text="'Theme/UI'" :state="state" @click="() => router.push(`/theme/ui`)" :icon="ArtIcon" />
+          <TSidebarItem
+            :text="'Components'"
+            :state="state"
+            @click="() => router.push(`/theme/components`)"
+            :icon="ArtIcon2"
+          />
+        </ul>
+      </div>
+
       <div class="dropdown dropdown-top">
         <div
           tabindex="0"

@@ -3,15 +3,19 @@ import mitt from 'mitt'
 interface User {
   name: string
 }
+interface Message {
+  user: User
+  body: string
+}
 
 type ApplicationEvents = {
   'test:email': User
   'user:registered': User
   'user:deleted': User
+  'message:created': Message
 }
 
 export default defineNuxtPlugin(() => {
-  // Then we just inform mitt about our event types
   const emitter = mitt<ApplicationEvents>()
 
   return {
