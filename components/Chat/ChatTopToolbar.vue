@@ -72,8 +72,8 @@ function alpineInstance() {
         <input
           type="text"
           x-on:click=" search =! search "
-          placeholder="Search.."
-          class="w-full outline-none placeholder:text-slate-300 font-semibold"
+          placeholder="Search..."
+          class="w-full outline-none placeholder:text-slate-300 font-semibold bg-base-100"
         />
       </div>
       <!-- alpine js  -->

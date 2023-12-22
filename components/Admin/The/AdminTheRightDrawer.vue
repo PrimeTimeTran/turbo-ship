@@ -1,8 +1,16 @@
 <script setup>
+import { useEventBus } from '@vueuse/core'
 import { useRightDrawerStore } from '@/stores/drawerRightStore.js'
-const { $event } = useNuxtApp()
 const store = useRightDrawerStore()
-const focused = store.focused
+const focused = ref(store.focused)
+
+onMounted(() => {
+  const bus = useEventBus('DrawerFocus')
+  function listener(item) {
+    focused.value = item
+  }
+  const unsubscribe = bus.on(listener)
+})
 </script>
 
 <template>

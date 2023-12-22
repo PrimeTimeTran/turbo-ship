@@ -8,7 +8,6 @@ const props = defineProps({
   label: { type: String },
   validation: { type: String },
   placeholder: { type: String },
-  entityType: { type: String },
   multiple: { type: Boolean, default: false },
   options: {
     validator: (value) => {
@@ -31,19 +30,17 @@ const props = defineProps({
     },
   },
 })
-const messageClasses = 'text-red-500 dark:text-red-300 absolute'
-const outerClasses = 'min-w-100 w-100 '
 const allClasses = {
   wrapper: 'w-100',
-  outer: outerClasses,
+  outer: 'min-w-100 w-100',
   input: 'input w-100 max-w-xs',
   label: 'dark:text-white font-semibold',
-  message: messageClasses,
+  message: 'text-red-500 dark:text-red-300 absolute',
 }
 </script>
 <template>
   <div>
-    <div v-if="type === 'boolean'" class="flex grow pt-6">
+    <!-- <div v-if="type === 'boolean'" class="flex grow pt-6">
       <label class="mr-2" v-text="label" />
       <input
         checked
@@ -55,22 +52,30 @@ const allClasses = {
         :name="name"
         @change="(e) => (props.value = e.target.checked)"
       />
-    </div>
+    </div> -->
     <FormKit
-      v-else-if="type === 'string'"
+      v-if="type === 'string'"
       type="text"
       :name="name"
       :label="label"
+      :value="value"
       :classes="allClasses"
       :placeholder="placeholder"
+      @input="
+        (val) => {
+          value = val
+        }
+      "
     />
     <FormKit
       v-else-if="type === 'textarea'"
       type="textarea"
       :name="name"
       :label="label"
+      :value="value"
       :classes="allClasses"
       :placeholder="placeholder"
+      @input="(e) => (props.value = e.target.value)"
     />
     <FormKit
       v-else-if="type === 'integer'"
@@ -142,7 +147,8 @@ const allClasses = {
       </select>
     </div>
     <div v-else>{{ field }}</div>
-    {{ field.value }}
-    {{ fooValue }}
+    lslslFOOO {{ fooValue }}
+    <hr />
+    lalaVALLLLL {{ value }}
   </div>
 </template>

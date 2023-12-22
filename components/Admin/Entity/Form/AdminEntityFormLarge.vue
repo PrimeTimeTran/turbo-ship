@@ -1,11 +1,23 @@
 <script setup>
+import _ from 'lodash'
 const props = defineProps(['entity', 'entityType'])
-let cols = ref([])
+const cols = ref([])
+const items = ref([])
 
-function setupAttributes() {
+onBeforeMount(() => {
   cols.value = GlobalState.formSortedFields(props.entityType)
+})
+onMounted(() => {
+  items.value = TFormHelper.setupFormFields(props.entity, props.entityType)
+
+  cols.value.forEach((att) => {
+    let attribute = items.value.filter((item) => item.name === att.name)
+    att.value = attribute.value
+  })
+})
+function getField(field) {
+  return GlobalState.entities[props.entityType][field.name]
 }
-setupAttributes()
 </script>
 <template>
   <div class="p-6">
@@ -15,6 +27,7 @@ setupAttributes()
       type="form"
       @submit="submit"
       :actions="false"
+      :value="entity"
       #default="{ value }"
       :classes="{
         help: 'dark:text-white',
@@ -29,31 +42,28 @@ setupAttributes()
             :help="''"
             :field="field"
             :type="field.type"
-            :value="field.value"
-            :entityType="entityType"
-            v-model="entity[field.name]"
+            :name="field.name"
+            :value="entity[field.name]"
             :fooValue="entity[field.name]"
             :placeholder="field.placeholder"
-            :label="GlobalState.entities[entityType][field.name]?.label"
-            :options="GlobalState.entities[entityType][field.name]?.options"
-            :multiple="GlobalState.entities[entityType][field.name]?.type === 'enumeratorMulti'"
+            :label="getField(field)?.label"
+            :options="getField(field)?.options"
+            :multiple="getField(field)?.type === 'enumeratorMulti'"
           />
           <AdminEntityFormField
             v-else
             :help="''"
             :field="field"
+            :name="field.name"
             :type="field.type"
-            :entityType="entityType"
             :fooValue="entity[field.name]"
             :placeholder="field.placeholder"
             :value="TFormHelper.makeDate(entity[field.name])"
-            :v-model="TFormHelper.makeDate(entity[field.name])"
-            :label="GlobalState.entities[entityType][field.name]?.label"
-            :options="GlobalState.entities[entityType][field.name]?.options"
+            :label="getField(field)?.label"
+            :options="getField(field)?.options"
           />
         </div>
       </div>
     </FormKit>
   </div>
 </template>
-<style></style>

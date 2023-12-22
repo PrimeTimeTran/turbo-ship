@@ -1,5 +1,6 @@
 <script setup>
 import { useRightDrawerStore } from '@/stores/drawerRightStore.js'
+import { useEventBus } from '@vueuse/core'
 
 const props = defineProps(['item', 'field'])
 const store = useRightDrawerStore()
@@ -13,11 +14,13 @@ if (isUser) {
 const isBank = props.field.name === 'bank'
 const isBranch = props.field.name === 'branch'
 
+const bus = useEventBus('DrawerFocus')
 function focusInDrawer() {
-  store.setFocused(item)
+  store.setFocused(user)
   if (process.browser) {
     document.getElementById('tRightDrawerFocused')?.click()
   }
+  bus.emit(user)
 }
 </script>
 <template>
