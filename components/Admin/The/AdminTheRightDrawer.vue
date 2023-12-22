@@ -1,18 +1,27 @@
 <script setup>
-import { useEventBus } from '@vueuse/core'
 import { useRightDrawerStore } from '@/stores/drawerRightStore.js'
 const store = useRightDrawerStore()
-const focused = ref(store.focused)
+const focused = reactive({ ...store.focused })
 
+import { useEventBus } from '@vueuse/core'
 onMounted(() => {
   const bus = useEventBus('DrawerFocus')
   function listener(item) {
-    focused.value = item
+    Object.keys(item).forEach((key) => {
+      focused[key] = item[key]
+    })
   }
   const unsubscribe = bus.on(listener)
 })
-</script>
 
+watch(
+  () => focused._id,
+  (neww, oldd) => {
+    console.log('Focused value changed: neww', neww)
+    console.log('Focused value changed: oldd', oldd)
+  },
+)
+</script>
 <template>
   <div class="drawer drawer-end z-auto">
     <input id="rightDrawer" type="checkbox" class="drawer-toggle" />

@@ -40,7 +40,7 @@ const allClasses = {
 </script>
 <template>
   <div>
-    <!-- <div v-if="type === 'boolean'" class="flex grow pt-6">
+    <div v-if="type === 'boolean'" class="flex grow pt-6">
       <label class="mr-2" v-text="label" />
       <input
         checked
@@ -52,9 +52,9 @@ const allClasses = {
         :name="name"
         @change="(e) => (props.value = e.target.checked)"
       />
-    </div> -->
+    </div>
     <FormKit
-      v-if="type === 'string'"
+      v-else-if="type === 'string'"
       type="text"
       :name="name"
       :label="label"
@@ -147,8 +147,5 @@ const allClasses = {
       </select>
     </div>
     <div v-else>{{ field }}</div>
-    lslslFOOO {{ fooValue }}
-    <hr />
-    lalaVALLLLL {{ value }}
   </div>
 </template>

@@ -3,26 +3,25 @@ import _ from 'lodash'
 const props = defineProps(['entity', 'entityType'])
 const cols = ref([])
 const items = ref([])
-
-onBeforeMount(() => {
-  cols.value = GlobalState.formSortedFields(props.entityType)
-})
-onMounted(() => {
+cols.value = GlobalState.formSortedFields(props.entityType)
+function setup() {
   items.value = TFormHelper.setupFormFields(props.entity, props.entityType)
-
   cols.value.forEach((att) => {
     let attribute = items.value.filter((item) => item.name === att.name)
     att.value = attribute.value
   })
-})
+}
+
 function getField(field) {
   return GlobalState.entities[props.entityType][field.name]
 }
+watch(() => props.entity._id, setup)
 </script>
 <template>
   <div class="p-6">
     <h1 class="text-4xl">{{ capitalize(entityType) }}</h1>
     <FormKit
+      :key="`entityForm-${entity._id}`"
       :id="`entityForm-${entity._id}`"
       type="form"
       @submit="submit"
@@ -34,7 +33,6 @@ function getField(field) {
         message: 'text-red-500 dark:text-red-300',
       }"
     >
-      {{ value }}
       <div class="grid grid-cols-3 gap-3">
         <div v-for="field of cols" class="flex">
           <AdminEntityFormField

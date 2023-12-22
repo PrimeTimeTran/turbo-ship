@@ -20,7 +20,9 @@ function focusInDrawer() {
   if (process.browser) {
     document.getElementById('tRightDrawerFocused')?.click()
   }
-  bus.emit(user)
+  setTimeout(() => {
+    bus.emit(user)
+  }, 50)
 }
 </script>
 <template>
