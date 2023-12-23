@@ -154,7 +154,7 @@ class _$PagedListImpl<T> extends _PagedList<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PagedListImpl<T> &&

@@ -62,7 +62,7 @@ class _$AppInitiatedImpl implements _AppInitiated {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$AppInitiatedImpl);
   }
@@ -164,7 +164,7 @@ class _$AppLanguageChangedImpl implements _AppLanguageChanged {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppLanguageChangedImpl &&
@@ -283,7 +283,7 @@ class _$AppPaletteChangedImpl implements _AppPaletteChanged {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppPaletteChangedImpl &&
@@ -360,7 +360,7 @@ class _$AppResumedImpl implements _AppResumed {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$AppResumedImpl);
   }
@@ -462,7 +462,7 @@ class _$AppThemeChangedImpl implements _AppThemeChanged {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppThemeChangedImpl &&
@@ -541,7 +541,7 @@ class _$GetAppServerConfigImpl implements _GetAppServerConfig {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetAppServerConfigImpl);
   }
@@ -714,7 +714,7 @@ class _$GetCurrentUserImpl implements _GetCurrentUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetCurrentUserImpl &&
@@ -925,7 +925,7 @@ class _$GetEntitiesImpl implements _GetEntities {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetEntitiesImpl &&
@@ -1027,7 +1027,7 @@ class _$GetUserSignContractStatusImpl implements _GetUserSignContractStatus {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetUserSignContractStatusImpl);
@@ -1143,7 +1143,7 @@ class _$LoggedUserChangedImpl implements _LoggedUserChanged {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoggedUserChangedImpl &&
@@ -1371,7 +1371,7 @@ class _$AppStateImpl extends _AppState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppStateImpl &&

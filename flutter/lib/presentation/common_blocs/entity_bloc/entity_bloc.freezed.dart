@@ -62,7 +62,7 @@ class _$EntityInitImpl implements _EntityInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$EntityInitImpl);
   }
@@ -171,7 +171,7 @@ class _$FetchedEntitiesEventImpl implements _FetchedEntitiesEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FetchedEntitiesEventImpl &&
@@ -310,7 +310,7 @@ class _$EntityStateImpl extends _EntityState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EntityStateImpl &&

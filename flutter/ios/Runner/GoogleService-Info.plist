@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyA2SB1X3a0N0w-iSMb4HYCNkrfwZ-6_E54</string>
+	<key>GCM_SENDER_ID</key>
+	<string>885916988672</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>net.ltran.turboship</string>
+	<key>PROJECT_ID</key>
+	<string>turboship-dev</string>
+	<key>STORAGE_BUCKET</key>
+	<string>turboship-dev.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:885916988672:ios:d1c6b57a1f398f602eafe5</string>
+	<key>DATABASE_URL</key>
+	<string>https://turboship-dev-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

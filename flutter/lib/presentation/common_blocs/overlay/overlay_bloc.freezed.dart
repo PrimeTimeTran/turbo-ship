@@ -62,7 +62,7 @@ class _$HideOverlayEventImpl implements _HideOverlayEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$HideOverlayEventImpl);
   }
@@ -123,7 +123,7 @@ class _$ShowLoadingEventImpl implements _ShowLoadingEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$ShowLoadingEventImpl);
   }
@@ -252,7 +252,7 @@ class _$ShowOverlayEventImpl implements _ShowOverlayEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ShowOverlayEventImpl &&
@@ -410,7 +410,7 @@ class _$AppOverlayStateImpl implements _AppOverlayState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppOverlayStateImpl &&
@@ -561,7 +561,7 @@ class _$AlertMessageImpl implements _AlertMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AlertMessageImpl &&

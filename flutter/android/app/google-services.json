@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "885916988672",
+    "firebase_url": "https://turboship-dev-default-rtdb.firebaseio.com",
+    "project_id": "turboship-dev",
+    "storage_bucket": "turboship-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885916988672:android:b324e07cf00b99be2eafe5",
+        "android_client_info": {
+          "package_name": "com.example.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJtMDwe5lIR-KGVUVJtyEj8j1hsySE_w4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -114,7 +114,7 @@ class _$ExceptionEmittedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ExceptionEmittedImpl &&
@@ -249,7 +249,7 @@ class _$LoadingVisibilityEmittedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadingVisibilityEmittedImpl &&
@@ -340,7 +340,7 @@ class _$ForceLogoutButtonPressedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ForceLogoutButtonPressedImpl);
@@ -491,7 +491,7 @@ class _$CommonStateImpl with DiagnosticableTreeMixin implements _CommonState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CommonStateImpl &&
