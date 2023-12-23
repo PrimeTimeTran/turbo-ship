@@ -14,6 +14,8 @@ useHead({
     },
   ],
 })
+const route = useRoute()
+const entityType = route.path.split('/administrator/')[1]
 </script>
 <template>
   <div role="tablist" class="tabs tabs-lifted relative">
@@ -22,6 +24,7 @@ useHead({
       role="tabpanel"
       class="tab-content border-base-300 dark:border-base-200 rounded-box max-w-full w-full overflow-scroll scrollbar-hide"
     >
+      <!-- [ ] Add search -->
       <AdminEntityTable />
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Overview" />
@@ -30,7 +33,7 @@ useHead({
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Create New" />
     <div role="tabpanel" class="tab-content dark:bg-base-100 border-base-300 rounded-box p-2">
-      <AdminEntityDashboard :createForm="true" />
+      <AdminEntityForm :entity="{}" :entityType="entityType" />
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Settings" />
     <div role="tabpanel" class="tab-content dark:bg-base-100 border-base-300 rounded-box p-2">
@@ -39,6 +42,7 @@ useHead({
       <AdminEntitySettings />
     </div>
     <div class="absolute end-0 -top-1 flex items-center">
+      <!-- [ ] Add CSV download option -->
       <button class="btn btn-sm btn-ghost"><EllipsisHorizontalIcon class="h-6 w-6" /></button>
       <button class="btn btn-sm btn-ghost">View</button>
       <div class="dropdown dropdown-end">

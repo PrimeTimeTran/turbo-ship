@@ -15,7 +15,6 @@ function addRecordToDB() {
 import { useCollection } from 'vuefire'
 import { collection } from 'firebase/firestore'
 const db = useFirestore()
-
 const messages = useCollection(collection(db, 'messages'))
 </script>
 <template>

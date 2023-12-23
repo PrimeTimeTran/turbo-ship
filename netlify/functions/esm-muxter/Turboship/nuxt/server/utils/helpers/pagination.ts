@@ -61,6 +61,11 @@ export function buildPipeline(
   limit: number,
   fieldsToPopulate: PopulateField[] = [],
 ): mongoose.PipelineStage[] {
+  const matchStage = {
+    $match: {
+      $and: [query, { isSoftDeleted: { $ne: true } }],
+    },
+  }
   // return [
   //   {
   //     $facet: {
@@ -94,7 +99,7 @@ export function buildPipeline(
   // })
 
   const stages = [
-    { $match: query },
+    matchStage,
     { $skip: (page - 1) * limit },
     { $limit: limit },
     ...lookupStages,
