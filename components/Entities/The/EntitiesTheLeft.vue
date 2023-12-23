@@ -345,20 +345,22 @@ const entityValid = computed(() => {
               </tbody>
             </table>
           </div>
-          <FormKit
-            tabindex="0"
-            type="submit"
-            :classes="{
-              input: entityValid ? '' : 'cursor-not-allowed',
-              outer: entityValid
-                ? 'mt-1 text-center p-1 rounded text-white font-bold text-lg dark:bg-green-500 bg-green-500 hover:shadow-lg'
-                : 'mt-1 text-center p-1 rounded text-white font-bold text-lg bg-gray-300 dark:bg-gray-800 opacity-80 shadow',
-            }"
-          >
-            Create Entity
-          </FormKit>
         </div>
       </section>
+
+      <FormKit
+        tabindex="0"
+        type="submit"
+        :disabled="true"
+        :classes="{
+          input: entityValid ? '' : 'cursor-not-allowed',
+          outer: entityValid
+            ? 'mt-1 text-center p-1 rounded text-white font-bold text-lg dark:bg-green-500 bg-green-500 hover:shadow-lg'
+            : 'mt-1 text-center p-1 rounded text-white font-bold text-lg bg-gray-300 dark:bg-gray-800 opacity-80 shadow',
+        }"
+      >
+        Create Entity
+      </FormKit>
     </FormKit>
   </div>
 </template>

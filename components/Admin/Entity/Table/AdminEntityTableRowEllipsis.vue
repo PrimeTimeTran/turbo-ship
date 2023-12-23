@@ -15,7 +15,7 @@ const props = defineProps(['deleteItem', 'item', 'entityType'])
             Open
           </label>
         </button>
-        <AdminEntityForm :entity="item" :entityType="entityType" />
+        <AdminEntityFormWrapper :entity="item" :entityType="entityType" />
         <button @click="" class="btn btn-xs btn-ghost flex justify-start">
           <FontAwesomeIcon class="mr-2 text-black dark:text-white" color="white" icon="fa-solid fa-clock" /> Audit Logs
         </button>

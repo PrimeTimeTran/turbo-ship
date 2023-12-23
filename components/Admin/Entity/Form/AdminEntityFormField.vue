@@ -1,4 +1,6 @@
 <script setup>
+import _ from 'lodash'
+
 const props = defineProps({
   min: { type: String },
   max: { type: String },
@@ -24,22 +26,16 @@ const props = defineProps({
       return true
     },
   },
-  fooValue: {
-    validator: (value) => {
-      return true
-    },
-  },
 })
 const allClasses = {
-  wrapper: 'w-100',
-  outer: 'min-w-100 w-100',
-  input: 'input w-100 max-w-xs',
+  outer: 'flex grow',
+  input: 'input input-bordered input-sm w-72',
   label: 'dark:text-white font-semibold',
   message: 'text-red-500 dark:text-red-300 absolute',
 }
 </script>
 <template>
-  <div>
+  <div class="my-2">
     <div v-if="type === 'boolean'" class="flex grow pt-6">
       <label class="mr-2" v-text="label" />
       <input
@@ -68,7 +64,7 @@ const allClasses = {
       "
     />
     <FormKit
-      v-else-if="type === 'textarea'"
+      v-else-if="type === 'text'"
       type="textarea"
       :name="name"
       :label="label"
@@ -119,33 +115,25 @@ const allClasses = {
       :placeholder="placeholder"
     />
     <FormKit
-      v-else-if="type === 'enumeratorMulti' && multiple"
-      multiple
+      v-else-if="type === 'enumeratorMulti' || type === 'enumerator'"
       type="select"
       :name="name"
       :label="label"
       :value="value"
       :options="options"
+      :multiple="multiple"
       :classes="allClasses"
       :placeholder="placeholder"
+      :input-class="{ 'select select-bordered select-sm w-72': true }"
     />
-    <FormKit
-      v-else-if="type === 'enumerator' && !multiple"
-      type="select"
-      :name="name"
-      :label="label"
-      :options="options"
-      :value="value"
-      :classes="allClasses"
-      :placeholder="placeholder"
-    />
-    <div v-else-if="fooValue && field.type === 'relation' && fooValue.length > 0">
-      <label>{{ field.name }}</label>
-      <select class="select select-bordered w-full max-w-xs">
-        <option disabled selected>Pick the best JS framework</option>
-        <option v-for="option of fooValue">{{ option }}</option>
+    <div v-else-if="value && field.type === 'relation' && !_.isEmpty(value)" class="w-72">
+      <label class="font-bold" v-text="capitalize(field.name)" />
+      <pre v-if="value.length === 1" class="input input-bordered input-sm w-72">{{
+        value[0]._id ? value[0]._id : value[0]
+      }}</pre>
+      <select v-else-if="value.length > 0" class="select select-bordered select-sm w-72">
+        <option v-for="option of value" v-text="option" />
       </select>
     </div>
-    <div v-else>{{ field }}</div>
   </div>
 </template>
