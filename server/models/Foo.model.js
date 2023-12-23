@@ -3,15 +3,23 @@ import { Auditor } from './Audit/Audit'
 
 export const fooEnumerators = {
   fooEnumerator: {
-    a: 'a',
-    b: 'b',
-    c: 'c',
+    singleA: 'singleA',
+    singleB: 'singleB',
+    singleC: 'singleC',
+    singleD: 'singleD',
+    singleE: 'singleE',
+    singleF: 'singleF',
+    singleG: 'singleG',
   },
 
   foodEnumeratorMulti: {
-    a: 'a',
-    b: 'b',
-    c: 'c',
+    multiA: 'multiA',
+    multiB: 'multiB',
+    multiC: 'multiC',
+    multiD: 'multiD',
+    multiE: 'multiE',
+    multiF: 'multiF',
+    multiG: 'multiG',
   },
 }
 
@@ -46,11 +54,11 @@ const fooSchema = new Schema({
   },
   fooEnumerator: {
     type: String,
-    enum: ['a', 'b', 'c'],
+    enum: ['singleA', 'singleB', 'singleC', 'singleD', 'singleE', 'singleF', 'singleG'],
   },
   foodEnumeratorMulti: {
     type: [String],
-    enum: ['a', 'b', 'c'],
+    enum: ['multiA', 'multiB', 'multiC', 'multiD', 'multiE', 'multiF', 'multiG'],
   },
   fooOTM: [{ type: Schema.Types.ObjectId, ref: 'FooOTM' }],
   fooMTO: { type: Schema.Types.ObjectId, ref: 'FooMTO' },

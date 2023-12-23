@@ -231,11 +231,22 @@ export const frameworkMap = {
       `
       },
       '[_id].delete.': function (label) {
-        return ` export default defineEventHandler(async (event) => {
+        return `export default defineEventHandler(async (event) => {
           try {
-            return await ${label}.findOneAndDelete({ _id: event.context.params?._id })
-          }
-          catch (error) {
+            const doc = await ${label}.findOneAndUpdate(
+              {
+                _id: event.context.params?._id,
+              },
+              { $set: { isSoftDeleted: true } },
+              { new: true },
+            )
+
+            if (!doc) {
+              return 'Document not found.'
+            }
+
+            return doc
+          } catch (error) {
             return error
           }
         })

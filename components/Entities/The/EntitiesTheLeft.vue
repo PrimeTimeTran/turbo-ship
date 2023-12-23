@@ -351,7 +351,6 @@ const entityValid = computed(() => {
       <FormKit
         tabindex="0"
         type="submit"
-        :disabled="true"
         :classes="{
           input: entityValid ? '' : 'cursor-not-allowed',
           outer: entityValid

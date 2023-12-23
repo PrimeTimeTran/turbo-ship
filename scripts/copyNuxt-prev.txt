@@ -38,7 +38,6 @@ components/VTable.vue
 composables/useBars.js
 composables/useToast.ts
 composables/useAPI.ts
-composables/VuseEntities.ts
 layouts/default.vue
 layouts/TMainLayout.vue
 pages/Administrator/[...slug].vue

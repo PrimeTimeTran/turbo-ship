@@ -56,13 +56,15 @@ class _PostState extends State<Post> {
                     Row(
                       children: [
                         Text(
-                            'Comments ${widget.post['reactions']['meta']['countComments']}')
+                          'Comments ${widget.post['reactions']['meta']['countComments']}',
+                        )
                       ],
                     ),
                     Row(
                       children: [
                         Text(
-                            'Reposts ${widget.post['reactions']['meta']['countShares']}')
+                          'Reposts ${widget.post['reactions']['meta']['countShares']}',
+                        )
                       ],
                     ),
                   ],
