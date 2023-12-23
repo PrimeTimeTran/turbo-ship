@@ -3,12 +3,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:turboship/all.dart';
-// import 'firebase/firebase_config.dart';
+
+import 'firebase/firebase_config.dart';
 
 Future<void> configureApp() async {
   await AppInfo.init();
   await Hive.initFlutter();
-  // await FirebaseConfig.config();
+  await FirebaseConfig.config();
   await configureInjection();
   await _configureBloc();
 }
