@@ -7,7 +7,7 @@ definePageMeta({
   layout: 't-main-layout',
 })
 const items = ['Users', 'Posts', 'Comments', 'Messages']
-const bus = useEventBus('news')
+const bus = useEventBus('newMessage')
 function addRecordToDB() {
   bus.emit('The Tokyo Olympics has begun')
 }

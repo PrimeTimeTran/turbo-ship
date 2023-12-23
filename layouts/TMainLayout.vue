@@ -15,7 +15,7 @@
     <template v-slot:scripts></template>
     <template v-slot:default>
       <slot />
-      <ChatGlobal />
+      <ChatBar />
     </template>
   </TGlobalContainer>
 </template>

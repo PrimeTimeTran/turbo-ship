@@ -21,11 +21,11 @@ const state = reactive({
 })
 
 onMounted(() => {
-  const bus = useEventBus('news')
+  const bus = useEventBus('newMessage')
   function listener(event) {
     state.notification = true
     state.notificationCount = state.notificationCount + 1
-    toastEm({ val: 'New Message', type: 'info' })
+    toastEm({ val: 'New Message', type: 'info', position: 'tRight' })
   }
   const unsubscribe = bus.on(listener)
 })
@@ -182,8 +182,9 @@ function onToggleTheme(callback) {
   transition: transform 0.3s ease;
 }
 
-/* #toggle:not(:checked) + .box {
-} */
+#toggle:not(:checked) + .box {
+  display: none;
+}
 
 #toggle:checked ~ .box {
   /* display: none; */
