@@ -9,6 +9,23 @@ const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
   ssr: false,
+  nitro: {
+    prerender: {
+      failOnError: false,
+      routes: ['/articles/*', '/'],
+    },
+    experimental: {
+      openAPI: true,
+    },
+  },
+  runtimeConfig: {
+    host: '0.0.0.0',
+    googleAPIKey: process.env.GOOGLE_API_KEY,
+    public: {
+      apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
+      generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
+    },
+  },
   devServer: { port: 3005 },
   devtools: {
     enabled: true,
@@ -42,22 +59,6 @@ export default defineNuxtConfig({
     },
   },
   css: ['@fortawesome/fontawesome-svg-core/styles.css', '~/assets/css/main.css'],
-  nitro: {
-    prerender: {
-      failOnError: false,
-      routes: ['/articles/*', '/'],
-    },
-    experimental: {
-      openAPI: true,
-    },
-  },
-  runtimeConfig: {
-    googleAPIKey: process.env.GOOGLE_API_KEY,
-    public: {
-      apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
-      generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
-    },
-  },
   modules: [
     '@nuxt/devtools',
     '@nuxtjs/tailwindcss',

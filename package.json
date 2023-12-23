@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --port=3005",
     "nodemonDev": "nodemon --watch 'nuxt.config.js' --exec 'nuxt dev'",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

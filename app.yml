@@ -1,0 +1,27 @@
+runtime: nodejs16
+# env_variables:
+#   GOOGLE_NODE_RUN_SCRIPTS: ''
+#   TENANT_MODE: 'multi-with-subdomain'
+#   DATABASE_CONNECTION: 'mongodb+srv://primetimetran:WcteXAFT60uvNolB@cluster0.yc9gl1n.mongodb.net/onelong-multi-sub-dev'
+#   REDISHOST: 10.137.125.83
+#   REDISPORT: 6379
+#   SENDGRID_KEY: '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'
+#   SENDGRID_EMAIL_FROM: 'info@1long.vn'
+#   SENDGRID_TEMPLATE_WELCOME: 'd-cfffa0eb8eef47768034a7d53b91fece'
+#   SENDGRID_TEMPLATE_EMAIL_ADDRESS_VERIFICATION: 'd-a2980abf8c1c41beadde85b6cd3a38e8'
+
+build_env_variables:
+  DATABASE_CONNECTION: 'mongodb+srv://primetimetran:4pWLgLLS1Bm7FgJk@cluster0.xfhlaio.mongodb.net/next_unicorn'
+  REDISHOST: 10.137.125.83
+  REDISPORT: 6379
+  SENDGRID_KEY: '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'
+  SENDGRID_EMAIL_FROM: 'info@turboship.net'
+  SENDGRID_TEMPLATE_WELCOME: 'd-cfffa0eb8eef47768034a7d53b91fece'
+  SENDGRID_TEMPLATE_EMAIL_ADDRESS_VERIFICATION: 'd-a2980abf8c1c41beadde85b6cd3a38e8'
+
+handlers:
+  - url: /.*
+    script: auto
+    secure: always
+
+service_account: 885916988672-compute@developer.gserviceaccount.com

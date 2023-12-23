@@ -88,7 +88,7 @@ export const Hotel = {
           name: 'name',
           label: 'name',
           _id: '197ff0eaef4daed141ec6304',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -98,7 +98,7 @@ export const Hotel = {
           name: 'stars',
           label: 'stars',
           _id: 'ec45ed014fea01618777eed8',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -108,7 +108,7 @@ export const Hotel = {
           name: 'caption',
           label: 'caption',
           _id: '1bd8d23aca500dda598acb38',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -118,7 +118,7 @@ export const Hotel = {
           name: 'rating',
           label: 'rating',
           _id: 'e4f1f7ecbda9ce7df47870ec',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -128,7 +128,7 @@ export const Hotel = {
           name: 'urlWebsite',
           label: 'urlWebsite',
           _id: 'a86a8ddc599ebd83ee4f6a6c',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -138,7 +138,7 @@ export const Hotel = {
           name: 'phone',
           label: 'phone',
           _id: 'f7f9ba463b3471d438bfd5a8',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -148,7 +148,7 @@ export const Hotel = {
           name: 'email',
           label: 'email',
           _id: 'b17710e371c7b62dec4dbdab',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -158,7 +158,7 @@ export const Hotel = {
           name: 'types',
           label: 'types',
           _id: '6b0e60ed63ff955bbc93e1ae',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -168,7 +168,7 @@ export const Hotel = {
           name: 'location',
           label: 'location',
           _id: 'fb1ccff0aaaedf4036ffabad',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -178,7 +178,7 @@ export const Hotel = {
           name: 'geoAddress',
           label: 'geoAddress',
           _id: '527fdfe019d4beebfdd63cbf',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -188,7 +188,7 @@ export const Hotel = {
           name: 'geoCity',
           label: 'geoCity',
           _id: '680b4051ba76cbb49ad3a3ae',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -198,7 +198,7 @@ export const Hotel = {
           name: 'geoCountry',
           label: 'geoCountry',
           _id: '26dbec9d5538e8dddfecc4ab',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -208,7 +208,7 @@ export const Hotel = {
           name: 'geoLat',
           label: 'geoLat',
           _id: 'eea3c849de0dda7c1b8bf1c8',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -218,7 +218,7 @@ export const Hotel = {
           name: 'geoLong',
           label: 'geoLong',
           _id: '6ebec4ad6ce2472e2321ee2b',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -228,7 +228,7 @@ export const Hotel = {
           name: 'urlsImgThumbs',
           label: 'urlsImgThumbs',
           _id: 'e57bab2fd5c43f59f3abef4e',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -238,7 +238,7 @@ export const Hotel = {
           name: 'urlsImgCovers',
           label: 'urlsImgCovers',
           _id: '1f89eb2417048077976b79c3',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -248,7 +248,7 @@ export const Hotel = {
           name: 'urlsImgPhotos',
           label: 'urlsImgPhotos',
           _id: 'e2403bdd434e0eea9256b6a5',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -258,7 +258,7 @@ export const Hotel = {
           name: 'reasonsToBook',
           label: 'reasonsToBook',
           _id: 'b66d8df4eb0cd1173a1bfbb2',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -268,7 +268,7 @@ export const Hotel = {
           name: 'reasonsToBookTop',
           label: 'reasonsToBookTop',
           _id: '36346cfbcf1daf5fb7cf7b19',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -278,7 +278,7 @@ export const Hotel = {
           name: 'ratingCount',
           label: 'ratingCount',
           _id: 'bb24606ceda7a1c3e1b6bce5',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -288,7 +288,7 @@ export const Hotel = {
           name: 'ratingsScore',
           label: 'ratingsScore',
           _id: 'e0ad18a66a33c6a8dad4a309',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -298,7 +298,7 @@ export const Hotel = {
           name: 'ratingsScoreLocation',
           label: 'ratingsScoreLocation',
           _id: '5c2ffcb1dad5cda96e2e2dcd',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -308,7 +308,7 @@ export const Hotel = {
           name: 'ratings',
           label: 'ratings',
           _id: '0e45ba6ff6eb6eefc37bb9ee',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: 'otm' },
         },
         {
@@ -318,7 +318,7 @@ export const Hotel = {
           name: 'rooms',
           label: 'rooms',
           _id: 'efda893b9f6544f7aa1aec9e',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -328,7 +328,7 @@ export const Hotel = {
           name: 'amenities',
           label: 'amenities',
           _id: '1dea552aceae6bc2f15fe29f',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -338,7 +338,7 @@ export const Hotel = {
           name: 'meta',
           label: 'meta',
           _id: '3afa3ef7ad2b3ac0816effbd',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
       ],
@@ -357,7 +357,7 @@ export const Hotel = {
           name: 'hotelId',
           label: 'hotelId',
           _id: '1e7402ad03e52c568afb88ed',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -367,7 +367,7 @@ export const Hotel = {
           name: 'roomNumber',
           label: 'roomNumber',
           _id: 'efcdf9dfbf8c6baaba9302ce',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -377,7 +377,7 @@ export const Hotel = {
           name: 'type',
           label: 'type',
           _id: '9afae2d9d34c5810a4ccace9',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -387,7 +387,7 @@ export const Hotel = {
           name: 'description',
           label: 'description',
           _id: '02271adc3049df33ff7b7a6a',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -397,7 +397,7 @@ export const Hotel = {
           name: 'pricePerNight',
           label: 'pricePerNight',
           _id: 'bdcc0d1a76af8eff6d4fb493',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -407,7 +407,7 @@ export const Hotel = {
           name: 'priceDiscounted',
           label: 'priceDiscounted',
           _id: 'b8a48888367e21c7b0c7c7c2',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -417,7 +417,7 @@ export const Hotel = {
           name: 'availability',
           label: 'availability',
           _id: '27ff4fcc7107ecb6adac7c46',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -427,7 +427,7 @@ export const Hotel = {
           name: 'capacity',
           label: 'capacity',
           _id: 'e27facfaf898c847dc0fd85e',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -437,7 +437,7 @@ export const Hotel = {
           name: 'amenities',
           label: 'amenities',
           _id: 'adadaa657e359fe87ddc6d9e',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -447,7 +447,7 @@ export const Hotel = {
           name: 'floor',
           label: 'floor',
           _id: '2b4be1bfd6d95ba0d0c0eedb',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -457,7 +457,7 @@ export const Hotel = {
           name: 'imgUrlsThumbnail',
           label: 'imgUrlsThumbnail',
           _id: 'adcafa771c5747b1bdf34af2',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -467,7 +467,7 @@ export const Hotel = {
           name: 'imgUrlsCover',
           label: 'imgUrlsCover',
           _id: 'e8b70bcffccaecade99eb526',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -477,7 +477,7 @@ export const Hotel = {
           name: 'imgUrlsPhoto',
           label: 'imgUrlsPhoto',
           _id: '923d2b3d440c7313d9d894ce',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
       ],
@@ -496,7 +496,7 @@ export const Hotel = {
           name: 'hotelId',
           label: 'hotelId',
           _id: 'f5a78d6ac0de8f4fb4dfaa61',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -506,7 +506,7 @@ export const Hotel = {
           name: 'userId',
           label: 'userId',
           _id: 'ef8cd0fdcd8bc589dbf732a0',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -516,7 +516,7 @@ export const Hotel = {
           name: 'roomId',
           label: 'roomId',
           _id: 'd0d05fbd530055ed263138be',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -526,7 +526,7 @@ export const Hotel = {
           name: 'status',
           label: 'status',
           _id: 'ca66fbfe4ecc4af1d76531d3',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -536,7 +536,7 @@ export const Hotel = {
           name: 'dateStart',
           label: 'dateStart',
           _id: '2b78ebea629addadbdbcb77f',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -546,7 +546,7 @@ export const Hotel = {
           name: 'dateEnd',
           label: 'dateEnd',
           _id: '0d3d0da5deccfd051dc3d0eb',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -556,7 +556,7 @@ export const Hotel = {
           name: 'priceSubTotal',
           label: 'priceSubTotal',
           _id: 'bbbcaf1cbb1c5e0fe7eb08ef',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -566,7 +566,7 @@ export const Hotel = {
           name: 'priceTaxes',
           label: 'priceTaxes',
           _id: 'd4db70aacd0cbfb4ccb1a0d7',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -576,7 +576,7 @@ export const Hotel = {
           name: 'priceFees',
           label: 'priceFees',
           _id: 'ea0befaacec7e3defcaf50bc',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -586,7 +586,7 @@ export const Hotel = {
           name: 'priceDiscounts',
           label: 'priceDiscounts',
           _id: 'cbbf6c7ffed3b411dbc9bea3',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -596,7 +596,7 @@ export const Hotel = {
           name: 'priceTotal',
           label: 'priceTotal',
           _id: 'ded1eed93df0d40c6465a381',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -606,7 +606,7 @@ export const Hotel = {
           name: 'guests',
           label: 'guests',
           _id: '1b69148ba454dae8ab0deb15',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
       ],
@@ -625,7 +625,7 @@ export const Hotel = {
           name: 'userId',
           label: 'userId',
           _id: 'a97a6b3e6f3cbfcd55d51f7b',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -635,7 +635,7 @@ export const Hotel = {
           name: 'roomId',
           label: 'roomId',
           _id: '7066e3ccc7b45c7a7b9adcbe',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -645,7 +645,7 @@ export const Hotel = {
           name: 'hotelId',
           label: 'hotelId',
           _id: 'c80c145ba47ca332a5c2723f',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -655,7 +655,7 @@ export const Hotel = {
           name: 'body',
           label: 'body',
           _id: 'd35ad6da4c2f02dac8a42d00',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
         {
@@ -665,7 +665,7 @@ export const Hotel = {
           name: 'rating',
           label: 'rating',
           _id: '7cf0a2eded208dadbda31ffe',
-          placeholder: 'placeholder...',
+          placeholder: '',
           relation: { name: null, type: '' },
         },
       ],

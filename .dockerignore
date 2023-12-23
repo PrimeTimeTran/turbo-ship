@@ -1,0 +1,12 @@
+# .dockerignore
+.nuxt
+.output
+node_modules
+flutter
+dist
+.vscode
+notes
+
+
+.gitignore
+README.md

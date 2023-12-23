@@ -115,6 +115,7 @@ export class ModelBuilder {
           },
         })`
       }
+      // [ ] User: Add special fields. [('email', 'firstName', 'lastName', 'status', 'passwordDigest', 'roles', 'isVerified', 'isSoftDeleted')]
       return `const ${name}Schema = new Schema({
           ${this.buildSchema(e)}
         })
