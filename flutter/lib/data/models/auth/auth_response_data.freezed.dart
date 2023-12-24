@@ -20,8 +20,8 @@ AuthResponseData _$AuthResponseDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthResponseData {
-  String get accessToken => throw _privateConstructorUsedError;
-  String get refreshToken => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
+  Map<String, dynamic> get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $AuthResponseDataCopyWith<$Res> {
           AuthResponseData value, $Res Function(AuthResponseData) then) =
       _$AuthResponseDataCopyWithImpl<$Res, AuthResponseData>;
   @useResult
-  $Res call({String accessToken, String refreshToken});
+  $Res call({String token, Map<String, dynamic> user});
 }
 
 /// @nodoc
@@ -51,18 +51,18 @@ class _$AuthResponseDataCopyWithImpl<$Res, $Val extends AuthResponseData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = null,
-    Object? refreshToken = null,
+    Object? token = null,
+    Object? user = null,
   }) {
     return _then(_value.copyWith(
-      accessToken: null == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: null == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$AuthResponseDataImplCopyWith<$Res>
       __$$AuthResponseDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String accessToken, String refreshToken});
+  $Res call({String token, Map<String, dynamic> user});
 }
 
 /// @nodoc
@@ -89,18 +89,18 @@ class __$$AuthResponseDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = null,
-    Object? refreshToken = null,
+    Object? token = null,
+    Object? user = null,
   }) {
     return _then(_$AuthResponseDataImpl(
-      accessToken: null == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: null == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String,
+      user: null == user
+          ? _value._user
+          : user // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -109,19 +109,25 @@ class __$$AuthResponseDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthResponseDataImpl implements _AuthResponseData {
   const _$AuthResponseDataImpl(
-      {required this.accessToken, required this.refreshToken});
+      {required this.token, required final Map<String, dynamic> user})
+      : _user = user;
 
   factory _$AuthResponseDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthResponseDataImplFromJson(json);
 
   @override
-  final String accessToken;
+  final String token;
+  final Map<String, dynamic> _user;
   @override
-  final String refreshToken;
+  Map<String, dynamic> get user {
+    if (_user is EqualUnmodifiableMapView) return _user;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_user);
+  }
 
   @override
   String toString() {
-    return 'AuthResponseData(accessToken: $accessToken, refreshToken: $refreshToken)';
+    return 'AuthResponseData(token: $token, user: $user)';
   }
 
   @override
@@ -129,15 +135,14 @@ class _$AuthResponseDataImpl implements _AuthResponseData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthResponseDataImpl &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken));
+            (identical(other.token, token) || other.token == token) &&
+            const DeepCollectionEquality().equals(other._user, _user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
+  int get hashCode => Object.hash(
+      runtimeType, token, const DeepCollectionEquality().hash(_user));
 
   @JsonKey(ignore: true)
   @override
@@ -156,16 +161,16 @@ class _$AuthResponseDataImpl implements _AuthResponseData {
 
 abstract class _AuthResponseData implements AuthResponseData {
   const factory _AuthResponseData(
-      {required final String accessToken,
-      required final String refreshToken}) = _$AuthResponseDataImpl;
+      {required final String token,
+      required final Map<String, dynamic> user}) = _$AuthResponseDataImpl;
 
   factory _AuthResponseData.fromJson(Map<String, dynamic> json) =
       _$AuthResponseDataImpl.fromJson;
 
   @override
-  String get accessToken;
+  String get token;
   @override
-  String get refreshToken;
+  Map<String, dynamic> get user;
   @override
   @JsonKey(ignore: true)
   _$$AuthResponseDataImplCopyWith<_$AuthResponseDataImpl> get copyWith =>

@@ -16,11 +16,13 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
     with HydratedMixin, ChangeNotifier {
   final GetCurrentUserUseCase _getCurrentUserUseCase;
   final GetEntitiesUseCase _getEntities;
+  final SignInUseCase _doSignIn;
   // final CheckSignedContractUseCase _checkSignedContractUseCase;
 
   AppBloc(
-    this._getCurrentUserUseCase,
+    this._doSignIn,
     this._getEntities,
+    this._getCurrentUserUseCase,
     // this._getServerConfigUseCase,
     // this._checkSignedContractUseCase,
   ) : super(const AppState()) {
@@ -33,6 +35,7 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
     on<GetCurrentUser>(_onGetCurrentUser);
     on<LoggedUserChanged>(_onIsLoggedUserChanged);
     on<GetEntities>(_onGetEntities);
+    on<AuthSignIn>(_onAuthSignIn);
     _initCommonBloc();
   }
 
@@ -43,9 +46,7 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
 
   @override
   Map<String, dynamic>? toJson(AppState state) {
-    return null;
-
-    // return state.toJson();
+    return state.toJson();
   }
 
   void _initCommonBloc() {
@@ -78,6 +79,19 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
 
   void _onAppThemeChanged(AppThemeChanged event, Emitter<AppState> emit) {
     emit(state.copyWith(isDarkTheme: event.isDarkTheme));
+  }
+
+  FutureOr<void> _onAuthSignIn(AuthSignIn event, Emitter<AppState> emit) async {
+    return runBlocCatching(
+      action: () async {
+        await _doSignIn.execute(SignInParams(event.email, event.password));
+        await Future.delayed(
+          const Duration(milliseconds: 300),
+          event.onSuccess?.call,
+        );
+        event.completer?.complete();
+      },
+    );
   }
 
   // FutureOr<void> _onGetAppThemeConfig() {

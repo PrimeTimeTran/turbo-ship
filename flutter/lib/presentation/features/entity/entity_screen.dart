@@ -10,6 +10,9 @@ var go = [
   'ed1812cedc481a62dabd23fe',
 ];
 
+var me =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTgzOTIwNTYxZjBlNjM3MjMwZWRmMzYiLCJpYXQiOjE3MDM0MTMyMzksImV4cCI6MjAxODc3MzIzOX0.5yHSjRxVoc0B3ob-A01J4G40Kq9p6LZGXZ7FfaJXwYc";
+
 class EntityScreen extends StatefulWidget {
   final String? chatId;
   final Map<String, dynamic> entityJson;
@@ -69,15 +72,7 @@ class _EntityScreenState extends State<EntityScreen>
         if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
           return const Text('No messages');
         }
-        return SizedBox(
-          width: double.infinity,
-          child: Column(
-            children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-              return Text(data['body'] ?? '');
-            }).toList(),
-          ),
-        );
+        return _buildMessage(snapshot);
       },
     );
   }
@@ -94,6 +89,52 @@ class _EntityScreenState extends State<EntityScreen>
     WidgetsBinding.instance.addObserver(this);
     entity = Entity.fromJson(widget.entityJson);
     _messageController = TextEditingController();
+  }
+
+  _buildMessage(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return SizedBox(
+      child: Column(
+        children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+          Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+          var isLeft = data['body'].contains('Albus');
+          return SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 4.0, vertical: 12),
+              child: Column(
+                children: [
+                  if (isLeft)
+                    Row(
+                      mainAxisAlignment:
+                          isLeft ? TFlex.mainStart : TFlex.mainEnd,
+                      children: [
+                        const Avatar(imageUrl: 'imageUrl', size: 32),
+                        AppSpacing.gapW4,
+                        Text(
+                          data['body'] ?? '',
+                        )
+                      ],
+                    ),
+                  if (!isLeft)
+                    Row(
+                      mainAxisAlignment:
+                          isLeft ? TFlex.mainStart : TFlex.mainEnd,
+                      children: [
+                        Text(
+                          data['body'] ?? '',
+                        ),
+                        AppSpacing.gapW4,
+                        const Avatar(imageUrl: 'imageUrl', size: 32),
+                      ],
+                    ),
+                ],
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
   }
 
   void _sendMessage(String message) {

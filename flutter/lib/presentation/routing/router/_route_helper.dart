@@ -1,6 +1,7 @@
 part of 'app_router.dart';
 
 enum AppPages {
+  ftue,
   tabARoot,
   tabAStacked,
   tabBRoot,
@@ -17,6 +18,8 @@ enum AppPages {
 extension AppPageX on AppPages {
   String get name {
     switch (this) {
+      case AppPages.ftue:
+        return 'WELCOME';
       case AppPages.tabARoot:
         return 'TAB_A_ROOT';
       case AppPages.tabAStacked:
@@ -44,6 +47,8 @@ extension AppPageX on AppPages {
 
   String get path {
     switch (this) {
+      case AppPages.ftue:
+        return '/welcome';
       case AppPages.tabARoot:
         return '/tab_a_root';
       case AppPages.tabAStacked:

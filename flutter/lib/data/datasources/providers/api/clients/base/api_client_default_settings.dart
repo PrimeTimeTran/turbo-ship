@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
-import '../../../../../mappers/response_mapper/base/base.dart';
-import '../../interceptor/interceptor.dart';
+import 'package:turboship/all.dart';
 
 class ApiClientSettings {
-  const ApiClientSettings._();
+  static const defaultErrorResponseMapperType =
+      ErrorResponseMapperType.jsonObject;
 
-  static const defaultErrorResponseMapperType = ErrorResponseMapperType.jsonObject;
-  static const defaultSuccessResponseMapperType = SuccessResponseMapperType.dataJsonObject;
+  static const defaultSuccessResponseMapperType =
+      SuccessResponseMapperType.dataJsonObject;
+  const ApiClientSettings._();
 
   static List<Interceptor> requiredInterceptors(Dio dio) => [
         if (kDebugMode) CustomLogInterceptor(),

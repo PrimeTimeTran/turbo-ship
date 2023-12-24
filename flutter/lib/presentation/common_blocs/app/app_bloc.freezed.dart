@@ -494,6 +494,213 @@ abstract class _AppThemeChanged implements AppThemeChanged {
 }
 
 /// @nodoc
+mixin _$AuthSignIn {
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  Completer<void>? get completer => throw _privateConstructorUsedError;
+  FutureOr<void> Function()? get onSuccess =>
+      throw _privateConstructorUsedError;
+  FutureOr<void> Function(Object)? get onError =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AuthSignInCopyWith<AuthSignIn> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuthSignInCopyWith<$Res> {
+  factory $AuthSignInCopyWith(
+          AuthSignIn value, $Res Function(AuthSignIn) then) =
+      _$AuthSignInCopyWithImpl<$Res, AuthSignIn>;
+  @useResult
+  $Res call(
+      {String email,
+      String password,
+      Completer<void>? completer,
+      FutureOr<void> Function()? onSuccess,
+      FutureOr<void> Function(Object)? onError});
+}
+
+/// @nodoc
+class _$AuthSignInCopyWithImpl<$Res, $Val extends AuthSignIn>
+    implements $AuthSignInCopyWith<$Res> {
+  _$AuthSignInCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+    Object? completer = freezed,
+    Object? onSuccess = freezed,
+    Object? onError = freezed,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      completer: freezed == completer
+          ? _value.completer
+          : completer // ignore: cast_nullable_to_non_nullable
+              as Completer<void>?,
+      onSuccess: freezed == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function()?,
+      onError: freezed == onError
+          ? _value.onError
+          : onError // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function(Object)?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AuthSignInImplCopyWith<$Res>
+    implements $AuthSignInCopyWith<$Res> {
+  factory _$$AuthSignInImplCopyWith(
+          _$AuthSignInImpl value, $Res Function(_$AuthSignInImpl) then) =
+      __$$AuthSignInImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String email,
+      String password,
+      Completer<void>? completer,
+      FutureOr<void> Function()? onSuccess,
+      FutureOr<void> Function(Object)? onError});
+}
+
+/// @nodoc
+class __$$AuthSignInImplCopyWithImpl<$Res>
+    extends _$AuthSignInCopyWithImpl<$Res, _$AuthSignInImpl>
+    implements _$$AuthSignInImplCopyWith<$Res> {
+  __$$AuthSignInImplCopyWithImpl(
+      _$AuthSignInImpl _value, $Res Function(_$AuthSignInImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+    Object? completer = freezed,
+    Object? onSuccess = freezed,
+    Object? onError = freezed,
+  }) {
+    return _then(_$AuthSignInImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      completer: freezed == completer
+          ? _value.completer
+          : completer // ignore: cast_nullable_to_non_nullable
+              as Completer<void>?,
+      onSuccess: freezed == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function()?,
+      onError: freezed == onError
+          ? _value.onError
+          : onError // ignore: cast_nullable_to_non_nullable
+              as FutureOr<void> Function(Object)?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthSignInImpl implements _AuthSignIn {
+  const _$AuthSignInImpl(
+      {required this.email,
+      required this.password,
+      this.completer,
+      this.onSuccess,
+      this.onError});
+
+  @override
+  final String email;
+  @override
+  final String password;
+  @override
+  final Completer<void>? completer;
+  @override
+  final FutureOr<void> Function()? onSuccess;
+  @override
+  final FutureOr<void> Function(Object)? onError;
+
+  @override
+  String toString() {
+    return 'AuthSignIn(email: $email, password: $password, completer: $completer, onSuccess: $onSuccess, onError: $onError)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthSignInImpl &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.completer, completer) ||
+                other.completer == completer) &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess) &&
+            (identical(other.onError, onError) || other.onError == onError));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, email, password, completer, onSuccess, onError);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthSignInImplCopyWith<_$AuthSignInImpl> get copyWith =>
+      __$$AuthSignInImplCopyWithImpl<_$AuthSignInImpl>(this, _$identity);
+}
+
+abstract class _AuthSignIn implements AuthSignIn {
+  const factory _AuthSignIn(
+      {required final String email,
+      required final String password,
+      final Completer<void>? completer,
+      final FutureOr<void> Function()? onSuccess,
+      final FutureOr<void> Function(Object)? onError}) = _$AuthSignInImpl;
+
+  @override
+  String get email;
+  @override
+  String get password;
+  @override
+  Completer<void>? get completer;
+  @override
+  FutureOr<void> Function()? get onSuccess;
+  @override
+  FutureOr<void> Function(Object)? get onError;
+  @override
+  @JsonKey(ignore: true)
+  _$$AuthSignInImplCopyWith<_$AuthSignInImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$GetAppServerConfig {}
 
 /// @nodoc

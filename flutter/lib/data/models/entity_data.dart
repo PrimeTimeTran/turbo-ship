@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:turboship/all.dart';
 
 part 'entity_data.freezed.dart';
 part 'entity_data.g.dart';
@@ -38,7 +37,6 @@ class EntityData with _$EntityData {
 
     for (var data in json) {
       if (data != null && data is Map<String, dynamic>) {
-        LogUtil.d(name: 'data', data);
         final entityData = EntityData.fromJson(data);
         resultList.add(entityData);
       }

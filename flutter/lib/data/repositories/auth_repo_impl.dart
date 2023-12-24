@@ -1,9 +1,7 @@
-import 'package:injectable/injectable.dart';
+import 'dart:async';
 
-import '../../core/exceptions/all.dart';
-import '../../domain/all.dart';
-import '../datasources/all.dart';
-import '../mappers/all.dart';
+import 'package:injectable/injectable.dart';
+import 'package:turboship/all.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
@@ -63,9 +61,9 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final authResponseData = await _datasource.signIn(email, password);
 
-      await _appPreferences.saveAccessToken(authResponseData.accessToken);
+      await _appPreferences.saveAccessToken(authResponseData.token);
       if (keepSignedIn) {
-        await _appPreferences.saveRefreshToken(authResponseData.refreshToken);
+        // await _appPreferences.saveRefreshToken(authResponseData.refreshToken);
       }
     } on ApiException catch (e) {
       if (e.kind == ApiExceptionKind.serverDefined && e.statusCode == 400) {
@@ -92,16 +90,14 @@ class AuthRepositoryImpl implements AuthRepository {
         password: password,
         referralCode: referralCode,
       );
-
-      await _appPreferences.saveAccessToken(authResponseData.accessToken);
-      await _appPreferences.saveRefreshToken(authResponseData.refreshToken);
+      await _appPreferences.saveAccessToken(authResponseData.token);
+      // await _appPreferences.saveRefreshToken(authResponseData.refreshToken);
     } on ApiException catch (e) {
       if (e.kind == ApiExceptionKind.serverDefined && e.statusCode == 400) {
         if (e.serverError!.message!.contains('exists')) {
           throw const AuthException(AuthExceptionKind.emailAlreadyInUse);
         }
       }
-
       rethrow;
     }
   }

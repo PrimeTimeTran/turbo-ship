@@ -1,8 +1,5 @@
 import 'package:injectable/injectable.dart';
-
-import '../mappers/response_mapper/base/base.dart';
-import '../models/all.dart';
-import 'providers/api/api.dart';
+import 'package:turboship/all.dart';
 
 const _prefix = '/authentication';
 
@@ -119,14 +116,13 @@ class AuthDataSourceImpl implements AuthDatasource {
       'password': password,
     };
 
-    return _noneAuthClient
-        .post(
-          '$_prefix/login',
-          body: body,
-          decoder: (json) =>
-              AuthResponseData.fromJson(json as Map<String, dynamic>),
-        )
-        .then((response) => response.data);
+    return _noneAuthClient.post(
+      'auth/authenticate',
+      body: body,
+      decoder: (json) {
+        return AuthResponseData.fromJson(json as Map<String, dynamic>);
+      },
+    ).then((response) => response.data);
   }
 
   @override

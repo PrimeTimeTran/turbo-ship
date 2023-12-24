@@ -94,16 +94,41 @@ class DrawerWrapper extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text('Turboship'),
+            child: Row(
+              crossAxisAlignment: TFlex.crossStart,
+              children: [
+                Avatar(imageUrl: 'soso'),
+                AppSpacing.emptyBox,
+                Column(
+                  crossAxisAlignment: TFlex.crossStart,
+                  children: [
+                    Text('Loi Tran'),
+                    Text('Joined December 2023'),
+                  ],
+                )
+              ],
+            ),
           ),
           ListTile(
-            title: const Text('Item 1'),
+            title: const Text('Messages'),
             onTap: () {
               context.goNamed(AppPages.settings.name);
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            title: const Text('Feed'),
+            onTap: () {
+              context.goNamed(AppPages.settings.name);
+            },
+          ),
+          ListTile(
+            title: const Text('Privacy'),
+            onTap: () {
+              context.goNamed(AppPages.settings.name);
+            },
+          ),
+          ListTile(
+            title: const Text('Settings'),
             onTap: () {
               context.goNamed(AppPages.settings.name);
             },

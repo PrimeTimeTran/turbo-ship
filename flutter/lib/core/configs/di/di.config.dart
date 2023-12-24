@@ -11,7 +11,7 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:turboship/all.dart' as _i6;
-import 'package:turboship/core/configs/di/di.dart' as _i44;
+import 'package:turboship/core/configs/di/di.dart' as _i43;
 import 'package:turboship/core/configs/di/raw_config.dart' as _i17;
 import 'package:turboship/core/configs/env_config.dart' as _i27;
 import 'package:turboship/data/datasources/all.dart' as _i22;
@@ -37,7 +37,6 @@ import 'package:turboship/data/datasources/providers/api/interceptor/trim_interc
 import 'package:turboship/data/datasources/refresh_token_datasource.dart'
     as _i19;
 import 'package:turboship/data/datasources/user_datasource.dart' as _i33;
-import 'package:turboship/data/mappers/all.dart' as _i38;
 import 'package:turboship/data/mappers/entity_mapper.dart' as _i13;
 import 'package:turboship/data/mappers/response_mapper/success_response/data_json_array_response_mapper.dart'
     as _i10;
@@ -51,23 +50,24 @@ import 'package:turboship/data/mappers/response_mapper/success_response/paged_js
     as _i18;
 import 'package:turboship/data/mappers/server_config_mapper.dart' as _i24;
 import 'package:turboship/data/mappers/user_mapper.dart' as _i26;
-import 'package:turboship/data/repositories/auth_repo_impl.dart' as _i37;
+import 'package:turboship/data/repositories/auth_repo_impl.dart' as _i36;
 import 'package:turboship/data/repositories/entity_repo_impl.dart' as _i31;
 import 'package:turboship/data/repositories/refresh_token_repo.dart' as _i21;
 import 'package:turboship/data/repositories/user_repo_impl.dart' as _i34;
-import 'package:turboship/domain/all.dart' as _i36;
-import 'package:turboship/domain/repositories/user_repo.dart' as _i42;
+import 'package:turboship/domain/repositories/user_repo.dart' as _i41;
+import 'package:turboship/domain/usecases/auth/auth_sign_in_usecase.dart'
+    as _i39;
 import 'package:turboship/domain/usecases/entities/get_entities_usecase.dart'
     as _i32;
 import 'package:turboship/domain/usecases/get_server_config_usecases.dart'
-    as _i40;
+    as _i38;
 import 'package:turboship/domain/usecases/user/get_current_user_usecase.dart'
-    as _i39;
+    as _i37;
 import 'package:turboship/domain/usecases/user/update_user_usecase.dart'
-    as _i41;
+    as _i40;
 import 'package:turboship/presentation/base/bloc/common/common_bloc.dart'
     as _i7;
-import 'package:turboship/presentation/common_blocs/app/app_bloc.dart' as _i43;
+import 'package:turboship/presentation/common_blocs/app/app_bloc.dart' as _i42;
 import 'package:turboship/presentation/common_blocs/entity_bloc/entity_bloc.dart'
     as _i12;
 import 'package:turboship/presentation/common_blocs/overlay/overlay_bloc.dart'
@@ -165,26 +165,29 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i6.RefreshTokenRepository>(),
         ));
     gh.factory<_i35.AuthDatasource>(() => _i35.AuthDataSourceImpl(
-          gh<_i20.NoneAuthenticatedRestApiClient>(),
-          gh<_i20.AuthenticatedRestApiClient>(),
+          gh<_i6.NoneAuthenticatedRestApiClient>(),
+          gh<_i6.AuthenticatedRestApiClient>(),
         ));
-    gh.factory<_i36.AuthRepository>(() => _i37.AuthRepositoryImpl(
-          gh<_i22.AppPreferences>(),
-          gh<_i22.AuthDatasource>(),
-          gh<_i38.ServerConfigMapper>(),
+    gh.factory<_i6.AuthRepository>(() => _i36.AuthRepositoryImpl(
+          gh<_i6.AppPreferences>(),
+          gh<_i6.AuthDatasource>(),
+          gh<_i6.ServerConfigMapper>(),
         ));
-    gh.factory<_i39.GetCurrentUserUseCase>(
-        () => _i39.GetCurrentUserUseCase(gh<_i6.UserRepository>()));
-    gh.factory<_i40.GetServerConfigUseCase>(
-        () => _i40.GetServerConfigUseCase(gh<_i6.AuthRepository>()));
-    gh.factory<_i41.UpdateUserUseCase>(
-        () => _i41.UpdateUserUseCase(gh<_i42.UserRepository>()));
-    gh.lazySingleton<_i43.AppBloc>(() => _i43.AppBloc(
-          gh<_i6.GetCurrentUserUseCase>(),
+    gh.factory<_i37.GetCurrentUserUseCase>(
+        () => _i37.GetCurrentUserUseCase(gh<_i6.UserRepository>()));
+    gh.factory<_i38.GetServerConfigUseCase>(
+        () => _i38.GetServerConfigUseCase(gh<_i6.AuthRepository>()));
+    gh.factory<_i39.SignInUseCase>(
+        () => _i39.SignInUseCase(gh<_i6.AuthRepository>()));
+    gh.factory<_i40.UpdateUserUseCase>(
+        () => _i40.UpdateUserUseCase(gh<_i41.UserRepository>()));
+    gh.lazySingleton<_i42.AppBloc>(() => _i42.AppBloc(
+          gh<_i6.SignInUseCase>(),
           gh<_i6.GetEntitiesUseCase>(),
+          gh<_i6.GetCurrentUserUseCase>(),
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i44.RegisterModule {}
+class _$RegisterModule extends _i43.RegisterModule {}

@@ -3,6 +3,7 @@ const err = {
   statusMessage: 'Authentication Error: Email/Password invalid',
 }
 export default defineEventHandler(async (e) => {
+  logger.info({ foo: 'bar' }, 'Auth post')
   const body = await readBody(e)
   const user = await User.findOne({ email: body.email })
   if (!user) throw createError(err)
@@ -16,5 +17,6 @@ export default defineEventHandler(async (e) => {
     token,
     user,
   }
+  logger.info(response, 'Auth post')
   return response
 })

@@ -305,11 +305,38 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  $AssetsImagesFtueGen get ftue => const $AssetsImagesFtueGen();
+
   /// File path: assets/images/placeholder.jpeg
   AssetGenImage get placeholder => const AssetGenImage('assets/images/placeholder.jpeg');
 
   /// List of all assets
   List<AssetGenImage> get values => [placeholder];
+}
+
+class $AssetsImagesFtueGen {
+  const $AssetsImagesFtueGen();
+
+  /// File path: assets/images/ftue/care_image.png
+  AssetGenImage get careImage => const AssetGenImage('assets/images/ftue/care_image.png');
+
+  /// File path: assets/images/ftue/introduction_animation.png
+  AssetGenImage get introductionAnimation => const AssetGenImage('assets/images/ftue/introduction_animation.png');
+
+  /// File path: assets/images/ftue/introduction_image.png
+  AssetGenImage get introductionImage => const AssetGenImage('assets/images/ftue/introduction_image.png');
+
+  /// File path: assets/images/ftue/mood_dairy_image.png
+  AssetGenImage get moodDairyImage => const AssetGenImage('assets/images/ftue/mood_dairy_image.png');
+
+  /// File path: assets/images/ftue/relax_image.png
+  AssetGenImage get relaxImage => const AssetGenImage('assets/images/ftue/relax_image.png');
+
+  /// File path: assets/images/ftue/welcome.png
+  AssetGenImage get welcome => const AssetGenImage('assets/images/ftue/welcome.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [careImage, introductionAnimation, introductionImage, moodDairyImage, relaxImage, welcome];
 }
 
 class Assets {

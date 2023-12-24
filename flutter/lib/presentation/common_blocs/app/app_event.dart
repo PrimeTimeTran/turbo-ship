@@ -30,6 +30,17 @@ class AppThemeChanged extends AppEvent with _$AppThemeChanged {
 }
 
 @freezed
+class AuthSignIn extends AppEvent with _$AuthSignIn {
+  const factory AuthSignIn({
+    required String email,
+    required String password,
+    Completer<void>? completer,
+    FutureOr<void> Function()? onSuccess,
+    FutureOr<void> Function(Object error)? onError,
+  }) = _AuthSignIn;
+}
+
+@freezed
 class GetAppServerConfig extends AppEvent with _$GetAppServerConfig {
   const factory GetAppServerConfig() = _GetAppServerConfig;
 }

@@ -25,6 +25,7 @@ class AppRouter {
     "drawer": false,
   };
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  // static const _initialLocation = AppPages.tabARoot;
   static const _initialLocation = AppPages.tabARoot;
 
   // Route config
@@ -237,6 +238,19 @@ class AppRouter {
             name: 'Settings',
             path: AppPages.settings.path,
             child: const SettingsScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppPages.ftue.path,
+        name: AppPages.ftue.name,
+        builder: (context, state) {
+          return const FTUEScreen();
+          return ScreenStacked(
+            tab: 'drawer',
+            name: 'welcome',
+            path: AppPages.ftue.path,
+            child: const FTUEScreen(),
           );
         },
       )

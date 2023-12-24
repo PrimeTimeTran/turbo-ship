@@ -50,6 +50,7 @@ dependencies:
   json_annotation: ^4.8.1
   loader_overlay: ^4.0.0
   cloud_firestore_odm: ^1.0.0-dev.81
+  animations: ^2.0.10
   # icon_forest:
   #   path: ../../icon_forest
 
@@ -78,7 +79,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/data/
+    - assets/env/
     - assets/icons/
     - assets/images/
-    - assets/env/
-    - assets/data/
+    - assets/images/ftue/
