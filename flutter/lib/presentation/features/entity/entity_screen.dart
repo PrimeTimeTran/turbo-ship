@@ -14,19 +14,21 @@ class _EntityScreenState extends State<EntityScreen>
     with WidgetsBindingObserver {
   late Entity entity;
   late TextEditingController _messageController;
+  CollectionReference messages =
+      FirebaseFirestore.instance.collection('messages');
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference messages =
-        FirebaseFirestore.instance.collection('messages');
-
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          buildMessages(),
           TextField(
             controller: _messageController,
             decoration: InputDecoration(
               hintText: 'Enter a message...',
+              contentPadding: const EdgeInsets.all(20.0),
               suffixIcon: IconButton(
                 icon: const Icon(Icons.send),
                 onPressed: () {
@@ -37,33 +39,34 @@ class _EntityScreenState extends State<EntityScreen>
               ),
             ),
           ),
-          StreamBuilder<QuerySnapshot>(
-            stream: messages.orderBy('createdAt', descending: true).snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator(); // Show a loader while fetching data
-              }
-              if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
-                return const Text('No messages');
-              }
-              return SizedBox(
-                width: double.infinity,
-                child: Column(
-                  children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-                    Map<String, dynamic> data =
-                        doc.data() as Map<String, dynamic>;
-                    return Text(data['body'] ?? '');
-                  }).toList(),
-                ),
-              );
-            },
-          ),
         ],
       ),
+    );
+  }
+
+  StreamBuilder<QuerySnapshot<Object?>> buildMessages() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: messages.orderBy('createdAt', descending: false).snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+        if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
+          return const Text('No messages');
+        }
+        return SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+              Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+              return Text(data['body'] ?? '');
+            }).toList(),
+          ),
+        );
+      },
     );
   }
 

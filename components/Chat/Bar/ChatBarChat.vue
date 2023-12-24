@@ -1,7 +1,8 @@
 <script setup>
 const props = defineProps(['chat', 'idx'])
+const { state, sendMessage, sortedMessages } = useChat(props.chat.id)
 
-function onToggleChat(gmmm) {
+function onToggleChat() {
   const checkbox = document.getElementById('toggleChatBtn-' + props.chat.id)
   checkbox.click()
 }
@@ -11,16 +12,19 @@ function onToggleChat(gmmm) {
     <label :for="`toggle-chat-${chat.id}`" :id="`toggleChatBtn-${chat.id}`" />
     <input type="checkbox" :id="`toggle-chat-${chat.id}`" class="chat-toggle hidden" />
     <div :style="{ right: `${288 + idx * 288}px` }" class="container fixed w-72 bg-base-100">
-      <div class="border rounded p-2" @click="onToggleChat(idx)">Item {{ idx }}</div>
+      <div class="border rounded p-2" @click="onToggleChat(idx)">Item {{ idx }} {{ state.notificationCount }}</div>
       <div class="flex flex-col justify-between h-full px-2 border">
         <div class="flex flex-col overflow-y-auto">
-          <!-- Chat content here -->
-          <p>body</p>
-          <p>body</p>
+          <p v-for="message of sortedMessages">{{ message.body }}</p>
         </div>
       </div>
     </div>
-    <input :style="{ right: `${288 + idx * 288}px` }" class="container-input px-2 border" />
+    <input
+      id="chatInputField"
+      @keypress.enter="sendMessage"
+      class="container-input px-2 border"
+      :style="{ right: `${288 + idx * 288}px` }"
+    />
   </div>
 </template>
 

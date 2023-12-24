@@ -5,7 +5,7 @@ definePageMeta({
 })
 
 const loader = new Loader({
-  apiKey: '',
+  apiKey: 'AIzaSyDo3so2R7VF4U2IjcC8fNo-HQM-7TJcrR0',
   version: 'weekly',
 })
 

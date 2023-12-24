@@ -25,7 +25,6 @@ onMounted(() => {
   function listener(event) {
     state.notification = true
     state.notificationCount = state.notificationCount + 1
-    toastEm({ val: 'New Message', type: 'info', position: 'tRight' })
   }
   const unsubscribe = bus.on(listener)
 })
