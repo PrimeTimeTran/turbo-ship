@@ -16,7 +16,7 @@ class AppIcon extends StatelessWidget {
     super.key,
     this.color,
     this.backgroundColor,
-    this.size = Sizes.s16,
+    this.size = TSizes.s16,
     this.padding,
     this.onTap,
   });

@@ -24,18 +24,20 @@ class AppAlert extends StatelessWidget {
     this.trailing,
   });
 
-  factory AppAlert.warning(String message, {TextStyle? textStyle, Widget? trailing}) {
+  factory AppAlert.success(String message,
+      {TextStyle? textStyle, Widget? trailing}) {
     return AppAlert(
-      alertType: AlertType.warning,
+      alertType: AlertType.success,
       message: message,
       textStyle: textStyle,
       trailing: trailing,
     );
   }
 
-  factory AppAlert.success(String message, {TextStyle? textStyle, Widget? trailing}) {
+  factory AppAlert.warning(String message,
+      {TextStyle? textStyle, Widget? trailing}) {
     return AppAlert(
-      alertType: AlertType.success,
+      alertType: AlertType.warning,
       message: message,
       textStyle: textStyle,
       trailing: trailing,
@@ -45,20 +47,30 @@ class AppAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppSpacing.edgeInsetsAll12,
+      padding: TSpacing.edgeInsetsAll12,
       decoration: BoxDecoration(
         color: getBgColor(context, alertType),
-        borderRadius: AppRadius.borderRadius8,
+        borderRadius: TRadius.borderRadius8,
         border: Border.all(color: _getBorderColor(context)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildIcon(context),
-          AppSpacing.gapW8,
+          TSpacing.gapW8,
           Expanded(child: _buildMessage(context)),
-          if (trailing != null) ...[AppSpacing.gapW8, trailing!],
+          if (trailing != null) ...[TSpacing.gapW8, trailing!],
         ],
+      ),
+    );
+  }
+
+  Widget _buildIcon(BuildContext context) {
+    return Transform.translate(
+      offset: const Offset(0, 3),
+      child: AppIcon(
+        icon: _getIcon(),
+        color: getIcColor(context, alertType),
       ),
     );
   }
@@ -78,14 +90,15 @@ class AppAlert extends StatelessWidget {
     );
   }
 
-  Widget _buildIcon(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(0, 3),
-      child: AppIcon(
-        icon: _getIcon(),
-        color: getIcColor(context, alertType),
-      ),
-    );
+  Color _getBorderColor(BuildContext context) {
+    switch (alertType) {
+      case AlertType.success:
+        return context.colorTheme.bgStatusSuccess;
+      case AlertType.warning:
+        return context.colorTheme.bdStatusWarning;
+      case AlertType.error:
+        return context.colorTheme.bdStatusDanger;
+    }
   }
 
   Object _getIcon() {
@@ -99,14 +112,14 @@ class AppAlert extends StatelessWidget {
     }
   }
 
-  static Color getIcColor(BuildContext context, AlertType alertType) {
+  Color _getTextColor(BuildContext context) {
     switch (alertType) {
       case AlertType.success:
-        return context.colorTheme.icStatusSuccess;
+        return context.colorTheme.txtStatusSuccess;
       case AlertType.warning:
-        return context.colorTheme.icStatusWarning;
+        return context.colorTheme.txtStatusWarning;
       case AlertType.error:
-        return context.colorTheme.icStatusDanger;
+        return context.colorTheme.txtStatusDanger;
     }
   }
 
@@ -121,25 +134,14 @@ class AppAlert extends StatelessWidget {
     }
   }
 
-  Color _getBorderColor(BuildContext context) {
+  static Color getIcColor(BuildContext context, AlertType alertType) {
     switch (alertType) {
       case AlertType.success:
-        return context.colorTheme.bgStatusSuccess;
+        return context.colorTheme.icStatusSuccess;
       case AlertType.warning:
-        return context.colorTheme.bdStatusWarning;
+        return context.colorTheme.icStatusWarning;
       case AlertType.error:
-        return context.colorTheme.bdStatusDanger;
-    }
-  }
-
-  Color _getTextColor(BuildContext context) {
-    switch (alertType) {
-      case AlertType.success:
-        return context.colorTheme.txtStatusSuccess;
-      case AlertType.warning:
-        return context.colorTheme.txtStatusWarning;
-      case AlertType.error:
-        return context.colorTheme.txtStatusDanger;
+        return context.colorTheme.icStatusDanger;
     }
   }
 }

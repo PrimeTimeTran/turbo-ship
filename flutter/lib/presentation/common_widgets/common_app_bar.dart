@@ -74,7 +74,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleTextStyle,
     this.systemOverlayStyle,
     this.leadingIconColor,
-  }) : preferredSize = Size.fromHeight(height ?? Sizes.s56);
+  }) : preferredSize = Size.fromHeight(height ?? TSizes.s56);
 
   @override
   Widget build(BuildContext context) {
@@ -102,14 +102,14 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           : _buildLeadingIcon().clickable(onLeadingPressed ?? context.pop),
       centerTitle: centerTitle,
       title: _buildTitle(context),
-      actions: actions != null ? [...actions!, AppSpacing.gapW12] : null,
+      actions: actions != null ? [...actions!, TSpacing.gapW12] : null,
       elevation: elevation,
     );
   }
 
   Widget _buildLeadingIcon() {
     if (!automaticallyImplyLeading) {
-      return AppSpacing.emptyBox;
+      return TSpacing.emptyBox;
     }
 
     if (leadingIcon == LeadingIcon.logo) {
@@ -129,11 +129,11 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     }
 
     if (icon == null) {
-      return AppSpacing.emptyBox;
+      return TSpacing.emptyBox;
     }
 
     return SizedBox(
-      width: Sizes.s24,
+      width: TSizes.s24,
       child: Center(
         child: AppIcon(
           icon: icon,
@@ -146,7 +146,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget _buildLeadingLogo() {
     return const AppIcon(
       icon: Placeholder(),
-      padding: AppSpacing.edgeInsetsOnlyLeft16,
+      padding: TSpacing.edgeInsetsOnlyLeft16,
     );
   }
 

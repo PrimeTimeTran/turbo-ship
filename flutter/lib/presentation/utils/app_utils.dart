@@ -34,7 +34,7 @@ class AppUtils {
                     .copyWith(top: 32.0),
             decoration: BoxDecoration(
               color: context.colorTheme.bgSurfaceMain,
-              borderRadius: AppRadius.borderRadius8,
+              borderRadius: TRadius.borderRadius8,
             ),
             child: IntrinsicWidth(
               child: Column(
@@ -43,21 +43,21 @@ class AppUtils {
                 children: [
                   if (icon != null) ...[
                     icon,
-                    AppSpacing.gapH20,
+                    TSpacing.gapH20,
                   ],
                   Text(
                     title,
                     style: context.textTheme.b16LgSemiBold,
                     textAlign: TextAlign.center,
                   ),
-                  AppSpacing.gapH8,
+                  TSpacing.gapH8,
                   Text(
                     message,
                     style: context.textTheme.b14BaseRegular
                         .tertiaryTextColor(context),
                     textAlign: TextAlign.center,
                   ),
-                  AppSpacing.gapH28,
+                  TSpacing.gapH28,
                   Row(
                     children: [
                       if (negativeText != null)
@@ -72,7 +72,7 @@ class AppUtils {
                           ),
                         ),
                       if (negativeText != null && positiveText != null)
-                        AppSpacing.gapW12,
+                        TSpacing.gapW12,
                       if (positiveText != null)
                         Expanded(
                           child: AppButton.primary(
@@ -127,7 +127,7 @@ class AppUtils {
           child: Container(
             padding: EdgeInsets.only(
               top: 20.0,
-              bottom: AppSpacing.bottomPaddingValue(
+              bottom: TSpacing.bottomPaddingValue(
                 context,
               ),
             ),

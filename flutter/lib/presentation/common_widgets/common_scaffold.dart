@@ -77,7 +77,7 @@ class CommonScaffold extends StatelessWidget {
 
     var bottomPadding = context.bottomPadding;
     if (bottomPadding == 0) {
-      bottomPadding = Sizes.s16;
+      bottomPadding = TSizes.s16;
     }
 
     return padding.copyWith(bottom: bottomPadding);

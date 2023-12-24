@@ -110,7 +110,7 @@ class _EntityScreenState extends State<EntityScreen>
                           isLeft ? TFlex.mainStart : TFlex.mainEnd,
                       children: [
                         const Avatar(imageUrl: 'imageUrl', size: 32),
-                        AppSpacing.gapW4,
+                        TSpacing.gapW4,
                         Text(
                           data['body'] ?? '',
                         )
@@ -124,7 +124,7 @@ class _EntityScreenState extends State<EntityScreen>
                         Text(
                           data['body'] ?? '',
                         ),
-                        AppSpacing.gapW4,
+                        TSpacing.gapW4,
                         const Avatar(imageUrl: 'imageUrl', size: 32),
                       ],
                     ),

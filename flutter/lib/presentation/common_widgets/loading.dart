@@ -8,23 +8,25 @@ import '../../core/extensions/all.dart';
 import '../resource/styles/all.dart';
 
 class AppDefaultLoading extends StatelessWidget {
+  final Color? color;
+
+  final double size;
+  final double strokeWidth;
   const AppDefaultLoading({
     super.key,
     this.color,
-    this.size = Sizes.s24,
-    this.strokeWidth = Sizes.s2,
+    this.size = TSizes.s24,
+    this.strokeWidth = TSizes.s2,
   });
-
-  final Color? color;
-  final double size;
-  final double strokeWidth;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.square(
         dimension: size,
-        child: kIsWeb || Platform.isAndroid ? _buildAndroidLoading(context) : _buildIOSLoading(context),
+        child: kIsWeb || Platform.isAndroid
+            ? _buildAndroidLoading(context)
+            : _buildIOSLoading(context),
       ),
     );
   }

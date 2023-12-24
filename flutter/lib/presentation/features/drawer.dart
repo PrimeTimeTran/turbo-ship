@@ -50,11 +50,11 @@ class DrawerWrapper extends StatelessWidget {
       label: label,
       icon: AppIcon(
         padding: const EdgeInsets.symmetric(
-          horizontal: Sizes.s2,
-          vertical: Sizes.s10,
+          horizontal: TSizes.s2,
+          vertical: TSizes.s10,
         ),
         icon: icon,
-        size: Sizes.s4,
+        size: TSizes.s4,
         color: selected
             ? C(context, Kolor.primary)
             : C(context, Kolor.onBackground),
@@ -98,7 +98,7 @@ class DrawerWrapper extends StatelessWidget {
               crossAxisAlignment: TFlex.crossStart,
               children: [
                 Avatar(imageUrl: 'soso'),
-                AppSpacing.emptyBox,
+                TSpacing.gapW4,
                 Column(
                   crossAxisAlignment: TFlex.crossStart,
                   children: [
@@ -153,14 +153,14 @@ class DrawerWrapper extends StatelessWidget {
         : null;
     final item = Container(
       decoration: box,
-      margin: AppSpacing.edgeInsetsAll4,
+      margin: TSpacing.edgeInsetsAll4,
       child: AppIcon(
         padding: const EdgeInsets.symmetric(
-          vertical: Sizes.s10,
-          horizontal: Sizes.s32,
+          vertical: TSizes.s10,
+          horizontal: TSizes.s32,
         ),
         icon: icon,
-        size: Sizes.s20,
+        size: TSizes.s20,
         color: C(
           context,
           isSelected ? Kolor.primary : Kolor.onPrimaryContainer,

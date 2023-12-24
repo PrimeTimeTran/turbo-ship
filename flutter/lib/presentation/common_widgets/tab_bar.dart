@@ -4,17 +4,17 @@ import '../../core/extensions/all.dart';
 import '../resource/all.dart';
 
 class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
+  final List<Widget> tabs;
+
+  final TabController? controller;
   const CustomTabBar({
     required this.tabs,
     super.key,
     this.controller,
   });
 
-  final List<Widget> tabs;
-  final TabController? controller;
-
   @override
-  Size get preferredSize => const Size.fromHeight(Sizes.s48);
+  Size get preferredSize => const Size.fromHeight(TSizes.s48);
 
   @override
   Widget build(BuildContext context) {

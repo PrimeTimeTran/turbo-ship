@@ -37,7 +37,7 @@ class _AppOverlayWrapperState extends State<AppOverlayWrapper> {
       child: BlocBuilder<AppOverlayBloc, AppOverlayState>(
         builder: (context, state) {
           if (state.alertMessage == null) {
-            return AppSpacing.emptyBox;
+            return TSpacing.emptyBox;
           }
 
           if (state.loading != null) {
@@ -60,14 +60,14 @@ class _AppOverlayWrapperState extends State<AppOverlayWrapper> {
     return Positioned(
       left: 0,
       right: 0,
-      bottom: AppSpacing.bottomPaddingValue(context),
+      bottom: TSpacing.bottomPaddingValue(context),
       child: Padding(
-        padding: AppSpacing.edgeInsetsAll16,
+        padding: TSpacing.edgeInsetsAll16,
         child: Align(
           alignment: Alignment.topCenter,
           child: DecoratedBox(
             decoration: const BoxDecoration(
-              borderRadius: AppRadius.borderRadius8,
+              borderRadius: TRadius.borderRadius8,
               boxShadow: [
                 BoxShadow(
                   color: Colors.red,
@@ -82,7 +82,7 @@ class _AppOverlayWrapperState extends State<AppOverlayWrapper> {
               message: message,
               trailing: AppIcon(
                 icon: AppIcons.close,
-                size: Sizes.s20,
+                size: TSizes.s20,
                 color: AppAlert.getIcColor(context, alertType),
                 onTap: () =>
                     getIt.get<AppOverlayBloc>().add(const HideOverlayEvent()),

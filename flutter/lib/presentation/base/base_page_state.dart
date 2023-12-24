@@ -80,10 +80,10 @@ abstract class BasePageState<P extends StatefulWidget, B extends BaseBloc>
       child: IntrinsicWidth(
         child: IntrinsicHeight(
           child: Container(
-            padding: const EdgeInsets.all(Sizes.s32),
+            padding: const EdgeInsets.all(TSizes.s32),
             decoration: BoxDecoration(
               color: context.colorTheme.bgSurfaceMain,
-              borderRadius: AppRadius.borderRadius12,
+              borderRadius: TRadius.borderRadius12,
               boxShadow: [
                 BoxShadow(
                   color:
@@ -148,7 +148,7 @@ abstract class BasePageState<P extends StatefulWidget, B extends BaseBloc>
       buildWhen: (previous, current) => previous.isLoading != current.isLoading,
       builder: (context, state) {
         if (!state.isLoading) {
-          return AppSpacing.emptyBox;
+          return TSpacing.emptyBox;
         }
 
         return buildPageLoading();

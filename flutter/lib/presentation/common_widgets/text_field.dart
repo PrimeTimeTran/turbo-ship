@@ -4,6 +4,32 @@ import '../../core/extensions/all.dart';
 import '../resource/all.dart';
 
 class AppTextField extends StatelessWidget {
+  final TextEditingController? controller;
+
+  final String? initialValue;
+  final FocusNode? focusNode;
+  final String? hintText;
+  final String? errorText;
+  final bool obscureText;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onFieldSubmitted;
+  final ValueChanged<String>? onChanged;
+  final VoidCallback? onEditingComplete;
+  final bool autofocus;
+  final bool autocorrect;
+  final bool enabled;
+  final int maxLines;
+  final int? minLines;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final bool isDense;
+  final InputBorder? border;
+  final TextCapitalization textCapitalization;
+  final String? label;
+  final bool readOnly;
+  final VoidCallback? onTap;
+  final String? Function(String?)? validator;
   const AppTextField({
     super.key,
     this.controller,
@@ -33,32 +59,6 @@ class AppTextField extends StatelessWidget {
     this.validator,
   });
 
-  final TextEditingController? controller;
-  final String? initialValue;
-  final FocusNode? focusNode;
-  final String? hintText;
-  final String? errorText;
-  final bool obscureText;
-  final TextInputType? keyboardType;
-  final TextInputAction? textInputAction;
-  final ValueChanged<String>? onFieldSubmitted;
-  final ValueChanged<String>? onChanged;
-  final VoidCallback? onEditingComplete;
-  final bool autofocus;
-  final bool autocorrect;
-  final bool enabled;
-  final int maxLines;
-  final int? minLines;
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
-  final bool isDense;
-  final InputBorder? border;
-  final TextCapitalization textCapitalization;
-  final String? label;
-  final bool readOnly;
-  final VoidCallback? onTap;
-  final String? Function(String?)? validator;
-
   @override
   Widget build(BuildContext context) {
     final Widget child = TextFormField(
@@ -72,22 +72,27 @@ class AppTextField extends StatelessWidget {
         filled: !enabled,
         isDense: isDense,
         hintText: hintText,
-        hintStyle: context.textTheme.b14BaseRegular.toColor(context.colorTheme.txtNormalTertiary),
+        hintStyle: context.textTheme.b14BaseRegular
+            .toColor(context.colorTheme.txtNormalTertiary),
         errorText: errorText,
-        errorStyle: context.textTheme.b12SmMedium.toColor(context.colorTheme.txtStatusDanger),
+        errorStyle: context.textTheme.b12SmMedium
+            .toColor(context.colorTheme.txtStatusDanger),
         errorMaxLines: 2,
         prefixIcon: prefixIcon != null
             ? Padding(
-                padding: const EdgeInsets.only(left: Sizes.s12, right: Sizes.s8),
+                padding:
+                    const EdgeInsets.only(left: TSizes.s12, right: TSizes.s8),
                 child: prefixIcon,
               )
             : null,
-        prefixIconConstraints: const BoxConstraints(maxWidth: Sizes.s20 + Sizes.s16),
+        prefixIconConstraints:
+            const BoxConstraints(maxWidth: TSizes.s20 + TSizes.s16),
         suffixIcon: Padding(
-          padding: AppSpacing.edgeInsetsH8,
+          padding: TSpacing.edgeInsetsH8,
           child: suffixIcon,
         ),
-        suffixIconConstraints: const BoxConstraints(maxWidth: Sizes.s20 + Sizes.s16),
+        suffixIconConstraints:
+            const BoxConstraints(maxWidth: TSizes.s20 + TSizes.s16),
         border: _defaultBorder(context),
         enabledBorder: _defaultBorder(context),
         disabledBorder: _defaultBorder(context),
@@ -122,9 +127,10 @@ class AppTextField extends StatelessWidget {
       children: [
         Text(
           label!,
-          style: context.textTheme.b14BaseMedium.toColor(context.colorTheme.txtNormalSecondary),
+          style: context.textTheme.b14BaseMedium
+              .toColor(context.colorTheme.txtNormalSecondary),
         ),
-        AppSpacing.gapH4,
+        TSpacing.gapH4,
         child,
       ],
     );
@@ -145,7 +151,7 @@ class AppTextField extends StatelessWidget {
     }
 
     return OutlineInputBorder(
-      borderRadius: AppRadius.borderRadius6,
+      borderRadius: TRadius.borderRadius6,
       borderSide: BorderSide(color: borderColor),
     );
   }

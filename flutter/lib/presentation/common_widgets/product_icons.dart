@@ -33,7 +33,7 @@ class OLProductIcon extends StatelessWidget {
                 end: Alignment.bottomRight,
               )
             : null,
-        borderRadius: AppRadius.borderRadius6,
+        borderRadius: TRadius.borderRadius6,
       ),
       alignment: Alignment.center,
       child: child,
@@ -59,7 +59,7 @@ class OneSafeIcon extends StatelessWidget {
       bgColor2: const Color(0xffFAE0C9),
       child: AppIcon(
         icon: AppIcons.oneSafe,
-        size: Sizes.s20,
+        size: TSizes.s20,
         color: const Color(0xffB26E2D),
       ),
     );

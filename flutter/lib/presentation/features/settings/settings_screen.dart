@@ -73,7 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    AppSpacing.gapH12,
+                    TSpacing.gapH12,
                     AppButton.primary(
                       onPressed: () {
                         // context.go(AppPages.settings.path);
@@ -81,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                       width: double.infinity,
                       label: 'Welcome',
                     ),
-                    AppSpacing.gapH12,
+                    TSpacing.gapH12,
                   ],
                 );
               },

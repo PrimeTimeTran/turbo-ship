@@ -5,17 +5,29 @@ import '../../core/extensions/text_style_extensions.dart';
 import '../resource/all.dart';
 import 'all.dart';
 
-enum AppButtonSize { small, medium, large }
-
-enum AppButtonType {
-  primary,
-  flatGold,
-  flatGrey,
-  outline,
-  invisible,
-}
-
 class AppButton extends StatelessWidget {
+  final String? label;
+
+  final Object? icon;
+
+  final VoidCallback? onPressed;
+
+  final double? width;
+
+  final double? height;
+
+  final double? borderRadius;
+
+  final bool isLoading;
+  final EdgeInsets? padding;
+  final AppButtonSize? size;
+  final AppButtonType type;
+  final bool isDisabled;
+  final Color? bgColor;
+  final Color? bdColor;
+  final Color? textColor;
+  final AppButtonSize _defaultSize = AppButtonSize.large;
+  final double _defaultRadius = 6.0;
   const AppButton({
     required this.type,
     super.key,
@@ -36,8 +48,7 @@ class AppButton extends StatelessWidget {
           label != null || icon != null,
           'Label or icon must be provided.',
         );
-
-  const AppButton.primary({
+  const AppButton.flatGold({
     super.key,
     this.label,
     this.icon,
@@ -48,11 +59,51 @@ class AppButton extends StatelessWidget {
     this.isLoading = false,
     this.isDisabled = false,
     this.padding,
-    this.size,
     this.bgColor,
     this.bdColor,
     this.textColor,
-  })  : type = AppButtonType.primary,
+    this.size,
+  })  : type = AppButtonType.flatGold,
+        assert(
+          label != null || icon != null,
+          'Label or icon must be provided.',
+        );
+  const AppButton.flatGrey({
+    super.key,
+    this.label,
+    this.icon,
+    this.onPressed,
+    this.width,
+    this.height,
+    this.borderRadius,
+    this.isLoading = false,
+    this.isDisabled = false,
+    this.padding,
+    this.bgColor,
+    this.bdColor,
+    this.textColor,
+    this.size,
+  })  : type = AppButtonType.flatGrey,
+        assert(
+          label != null || icon != null,
+          'Label or icon must be provided.',
+        );
+  const AppButton.invisible({
+    super.key,
+    this.label,
+    this.icon,
+    this.onPressed,
+    this.width,
+    this.height,
+    this.borderRadius,
+    this.isLoading = false,
+    this.isDisabled = false,
+    this.padding,
+    this.bgColor,
+    this.bdColor,
+    this.textColor,
+    this.size,
+  })  : type = AppButtonType.invisible,
         assert(
           label != null || icon != null,
           'Label or icon must be provided.',
@@ -78,8 +129,7 @@ class AppButton extends StatelessWidget {
           label != null || icon != null,
           'Label or icon must be provided.',
         );
-
-  const AppButton.flatGold({
+  const AppButton.primary({
     super.key,
     this.label,
     this.icon,
@@ -90,75 +140,15 @@ class AppButton extends StatelessWidget {
     this.isLoading = false,
     this.isDisabled = false,
     this.padding,
+    this.size,
     this.bgColor,
     this.bdColor,
     this.textColor,
-    this.size,
-  })  : type = AppButtonType.flatGold,
+  })  : type = AppButtonType.primary,
         assert(
           label != null || icon != null,
           'Label or icon must be provided.',
         );
-
-  const AppButton.flatGrey({
-    super.key,
-    this.label,
-    this.icon,
-    this.onPressed,
-    this.width,
-    this.height,
-    this.borderRadius,
-    this.isLoading = false,
-    this.isDisabled = false,
-    this.padding,
-    this.bgColor,
-    this.bdColor,
-    this.textColor,
-    this.size,
-  })  : type = AppButtonType.flatGrey,
-        assert(
-          label != null || icon != null,
-          'Label or icon must be provided.',
-        );
-
-  const AppButton.invisible({
-    super.key,
-    this.label,
-    this.icon,
-    this.onPressed,
-    this.width,
-    this.height,
-    this.borderRadius,
-    this.isLoading = false,
-    this.isDisabled = false,
-    this.padding,
-    this.bgColor,
-    this.bdColor,
-    this.textColor,
-    this.size,
-  })  : type = AppButtonType.invisible,
-        assert(
-          label != null || icon != null,
-          'Label or icon must be provided.',
-        );
-
-  final String? label;
-  final Object? icon;
-  final VoidCallback? onPressed;
-  final double? width;
-  final double? height;
-  final double? borderRadius;
-  final bool isLoading;
-  final EdgeInsets? padding;
-  final AppButtonSize? size;
-  final AppButtonType type;
-  final bool isDisabled;
-  final Color? bgColor;
-  final Color? bdColor;
-  final Color? textColor;
-
-  final AppButtonSize _defaultSize = AppButtonSize.large;
-  final double _defaultRadius = 6.0;
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +167,7 @@ class AppButton extends StatelessWidget {
                   icon: icon!,
                   color: textColor,
                 ),
-              if (icon != null && label != null) AppSpacing.gapW8,
+              if (icon != null && label != null) TSpacing.gapW8,
               if (label != null)
                 Text(
                   label!,
@@ -190,7 +180,8 @@ class AppButton extends StatelessWidget {
     final fgColor = this.bgColor ?? _getFgColor(context);
     final bgColor = _getBgColor(context);
 
-    final finalBorderRadius = BorderRadius.circular(borderRadius ?? _defaultRadius);
+    final finalBorderRadius =
+        BorderRadius.circular(borderRadius ?? _defaultRadius);
     final finalPadding = _getPaddingBySize();
 
     final button = type != AppButtonType.outline
@@ -236,33 +227,8 @@ class AppButton extends StatelessWidget {
   Widget _buildLoading(Color color) {
     return AppDefaultLoading(
       color: color,
-      size: Sizes.s20,
+      size: TSizes.s20,
     );
-  }
-
-  Color _getTextColor(BuildContext context) {
-    if (textColor != null) {
-      return textColor!;
-    }
-
-    final appColors = context.colorTheme;
-
-    if (isDisabled) {
-      return appColors.txtNormalDisabled;
-    }
-
-    switch (type) {
-      case AppButtonType.primary:
-        return appColors.txtInversePrimary;
-      case AppButtonType.flatGold:
-        return appColors.txtNormalBrand;
-      case AppButtonType.flatGrey:
-        return appColors.txtNormalPrimary;
-      case AppButtonType.outline:
-        return appColors.txtNormalBrand;
-      case AppButtonType.invisible:
-        return appColors.txtNormalPrimary;
-    }
   }
 
   Color _getBgColor(BuildContext context) {
@@ -286,6 +252,25 @@ class AppButton extends StatelessWidget {
       case AppButtonType.outline:
         return appColors.bgSurfaceMain;
       case AppButtonType.invisible:
+        return Colors.transparent;
+    }
+  }
+
+  Color _getBorderColor(BuildContext context) {
+    if (bdColor != null) {
+      return bdColor!;
+    }
+
+    final appColors = context.colorTheme;
+
+    if (isDisabled) {
+      return appColors.bgSurfaceDisabled;
+    }
+
+    switch (type) {
+      case AppButtonType.outline:
+        return appColors.bdDecorBrandLighter;
+      default:
         return Colors.transparent;
     }
   }
@@ -321,38 +306,54 @@ class AppButton extends StatelessWidget {
     switch (buttonSize) {
       case AppButtonSize.small:
         return const EdgeInsets.symmetric(
-          horizontal: Sizes.s12,
+          horizontal: TSizes.s12,
           vertical: 6.0,
         );
       case AppButtonSize.medium:
         return const EdgeInsets.symmetric(
-          horizontal: Sizes.s12,
+          horizontal: TSizes.s12,
           vertical: 10.0,
         );
       case AppButtonSize.large:
         return const EdgeInsets.symmetric(
-          horizontal: Sizes.s12,
+          horizontal: TSizes.s12,
           vertical: 14.0,
         );
     }
   }
 
-  Color _getBorderColor(BuildContext context) {
-    if (bdColor != null) {
-      return bdColor!;
+  Color _getTextColor(BuildContext context) {
+    if (textColor != null) {
+      return textColor!;
     }
 
     final appColors = context.colorTheme;
 
     if (isDisabled) {
-      return appColors.bgSurfaceDisabled;
+      return appColors.txtNormalDisabled;
     }
 
     switch (type) {
+      case AppButtonType.primary:
+        return appColors.txtInversePrimary;
+      case AppButtonType.flatGold:
+        return appColors.txtNormalBrand;
+      case AppButtonType.flatGrey:
+        return appColors.txtNormalPrimary;
       case AppButtonType.outline:
-        return appColors.bdDecorBrandLighter;
-      default:
-        return Colors.transparent;
+        return appColors.txtNormalBrand;
+      case AppButtonType.invisible:
+        return appColors.txtNormalPrimary;
     }
   }
+}
+
+enum AppButtonSize { small, medium, large }
+
+enum AppButtonType {
+  primary,
+  flatGold,
+  flatGrey,
+  outline,
+  invisible,
 }

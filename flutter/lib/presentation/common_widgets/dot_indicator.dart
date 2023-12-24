@@ -9,7 +9,7 @@ class DotIndicator extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   const DotIndicator({
     super.key,
-    this.size = Sizes.s4,
+    this.size = TSizes.s4,
     this.color,
     this.margin,
   });
@@ -18,8 +18,8 @@ class DotIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      width: Sizes.s4,
-      height: Sizes.s24,
+      width: TSizes.s4,
+      height: TSizes.s24,
       decoration: BoxDecoration(
         color: color ?? context.colorTheme.bgSurfaceSf3,
         shape: BoxShape.circle,

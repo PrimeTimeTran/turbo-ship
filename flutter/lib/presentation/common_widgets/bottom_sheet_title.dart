@@ -18,12 +18,12 @@ class BottomSheetTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppSpacing.edgeInsetsH12,
+      padding: TSpacing.edgeInsetsH12,
       child: Column(
         children: [
           Row(
             children: [
-              AppSpacing.gapW8,
+              TSpacing.gapW8,
               Expanded(
                 child: Text(
                   title,
@@ -32,13 +32,13 @@ class BottomSheetTitle extends StatelessWidget {
               ),
               AppIcon(
                 icon: AppIcons.close,
-                padding: AppSpacing.edgeInsetsAll8,
+                padding: TSpacing.edgeInsetsAll8,
                 onTap: onClose ?? context.pop,
               ),
             ],
           ),
           const Padding(
-            padding: AppSpacing.edgeInsetsV16H8,
+            padding: TSpacing.edgeInsetsV16H8,
             child: Divider(),
           ),
         ],

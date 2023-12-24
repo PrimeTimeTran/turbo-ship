@@ -4,14 +4,14 @@ import '../resource/all.dart';
 import 'network_image.dart';
 
 class UserAvatar extends StatelessWidget {
+  final String url;
+
+  final double size;
   const UserAvatar({
     required this.url,
     super.key,
-    this.size = Sizes.s40,
+    this.size = TSizes.s40,
   });
-
-  final String url;
-  final double size;
 
   @override
   Widget build(BuildContext context) {

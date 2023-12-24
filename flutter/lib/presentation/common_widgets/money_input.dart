@@ -45,7 +45,7 @@ class MoneyInput extends StatelessWidget {
           onTap: _clear,
         ),
         suffixIconConstraints: const BoxConstraints(
-          maxWidth: Sizes.s24,
+          maxWidth: TSizes.s24,
         ),
         border: InputBorder.none,
       ),

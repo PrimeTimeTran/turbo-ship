@@ -21,7 +21,7 @@ class CustomCheckBox extends StatelessWidget {
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       activeColor: context.colorTheme.bgSurfaceInverseMain,
       checkColor: context.colorTheme.bgSurfaceMain,
-      shape: const RoundedRectangleBorder(borderRadius: AppRadius.borderRadius4),
+      shape: const RoundedRectangleBorder(borderRadius: TRadius.borderRadius4),
       side: BorderSide(color: context.colorTheme.bgSurfaceSf3),
       onChanged: _onChanged,
     );
