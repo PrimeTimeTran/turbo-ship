@@ -1,21 +1,12 @@
 <script setup>
 import { faker } from '@faker-js/faker/locale/af_ZA'
 import { TableCellsIcon, EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
-import { useEventBus } from '@vueuse/core'
 
 definePageMeta({
   layout: 't-main-layout',
 })
-const items = ['Users', 'Posts', 'Comments', 'Messages']
-const bus = useEventBus('newMessage')
-function addRecordToDB() {
-  bus.emit('The Tokyo Olympics has begun')
-}
 
-import { useCollection } from 'vuefire'
-import { collection } from 'firebase/firestore'
-const db = useFirestore()
-const messages = useCollection(collection(db, 'messages'))
+const items = ['Users', 'Posts', 'Comments', 'Messages']
 </script>
 <template>
   <div class="space-y-8">
@@ -26,7 +17,7 @@ const messages = useCollection(collection(db, 'messages'))
             <div class="flex flex-row justify-between grow items-center">
               <span class="card-title base-content" v-text="item"></span>
               <span class="h-6 w-6">
-                <component :is="TableCellsIcon" @click="addRecordToDB()" />
+                <component :is="TableCellsIcon" />
               </span>
             </div>
             <h3 class="text-5xl" v-text="faker.number.int({ min: 200, max: 500 })"></h3>
@@ -142,13 +133,7 @@ const messages = useCollection(collection(db, 'messages'))
           </div>
         </div>
         <div class="card flex flex-1 bg-base-100 shadow-lg border border-base-200">
-          <div class="card-body">
-            <ul>
-              <li v-for="message in messages" :key="message.id">
-                <span>{{ message.body }}</span>
-              </li>
-            </ul>
-          </div>
+          <div class="card-body"></div>
         </div>
       </div>
     </div>

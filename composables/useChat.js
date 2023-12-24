@@ -3,9 +3,11 @@ import { useEventBus } from '@vueuse/core'
 
 export function useChat(id) {
   const chatId = ref(id)
+  const user = ref({ fullName: ref('') })
+  const userName = ref('')
   const sortedMessages = ref([])
   const unsubscribeMsgEvent = ref(null)
-  const state = reactive({ notificationCount: ref(0) })
+  const state = reactive({ notificationCount: ref(-1) })
 
   const db = useFirestore()
   const messagesRef = collection(db, 'messages')
@@ -15,6 +17,11 @@ export function useChat(id) {
 
   onMounted(() => {
     getSortedMessages().then((sorted) => {
+      let userMessages = sorted.filter((m) => m?.user?.fullName != 'Loi Tran')
+      if (userMessages.length > 0) {
+        user.fullName = sorted[0]?.user?.fullName
+        userName.value = sorted[0]?.user?.fullName
+      }
       sortedMessages.value = sorted
     })
   })
@@ -70,7 +77,9 @@ export function useChat(id) {
   })
 
   return {
+    user,
     state,
+    userName,
     sendMessage,
     sortedMessages,
   }

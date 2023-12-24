@@ -101,6 +101,10 @@ class _EntityScreenState extends State<EntityScreen>
       'body': message,
       'chatId': go[int.parse(widget.chatId!) % 4],
       'createdAt': FieldValue.serverTimestamp(),
+      'user': {
+        'id': entity.id,
+        'fullName': '${entity.firstName} ${entity.lastName}'
+      }
     });
     _messageController.clear();
   }
