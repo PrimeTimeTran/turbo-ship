@@ -1,4 +1,4 @@
-import { serverTimestamp, addDoc, collection, query, orderBy, onSnapshot, getDocs } from 'firebase/firestore'
+import { serverTimestamp, addDoc, collection, query, orderBy, onSnapshot, getDocs, where } from 'firebase/firestore'
 import { useEventBus } from '@vueuse/core'
 
 export function useChat(id) {
@@ -9,7 +9,7 @@ export function useChat(id) {
 
   const db = useFirestore()
   const messagesRef = collection(db, 'messages')
-  const sortedMessagesQuery = query(messagesRef, orderBy('createdAt'))
+  const sortedMessagesQuery = query(messagesRef, where('chatId', '==', chatId.value), orderBy('createdAt'))
 
   const bus = useEventBus('newMessage')
 
@@ -51,7 +51,7 @@ export function useChat(id) {
     }
   }
 
-  const unsubscribe = onSnapshot(sortedMessagesQuery, (snapshot) => {
+  const unsubscribe = onSnapshot(sortedMessagesQuery, where('chatId', '==', chatId.value), (snapshot) => {
     bus.emit('The Tokyo Olympics has begun')
     state.notificationCount = state.notificationCount + 1
     sortedMessages.value = snapshot.docs.map((doc) => ({

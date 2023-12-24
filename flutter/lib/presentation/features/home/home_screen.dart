@@ -35,7 +35,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                       LogUtil.i(
                           name: 'Widget: Home Screen ', state.entities?.length);
                       final entity = state.entities?[idx];
-                      return entity != null ? itemBuilder(entity) : Container();
+                      return entity != null
+                          ? itemBuilder(entity, idx)
+                          : Container();
                     },
                   ),
                 );
@@ -54,13 +56,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     getIt.get<AppBloc>().add(const GetEntities());
   }
 
-  Widget itemBuilder(Entity item) {
+  Widget itemBuilder(Entity item, idx) {
     return ListTile(
       onTap: () {
         AppRouter.navMap[widget.tab] = true;
         context.push(
           AppPages.tabAStacked.path,
-          extra: {'entity': item.toJson()},
+          extra: {'entity': item.toJson(), 'chatId': idx.toString()},
         );
       },
       leading: Avatar(

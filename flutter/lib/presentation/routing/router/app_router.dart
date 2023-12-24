@@ -80,7 +80,10 @@ class AppRouter {
                         tab: 'a',
                         name: title,
                         path: AppPages.tabAStacked.path,
-                        child: EntityScreen(entityJson: json),
+                        child: EntityScreen(
+                            entityJson: json,
+                            chatId: (state.extra
+                                as Map<String, dynamic>?)?['chatId']),
                       );
                     },
                   ),

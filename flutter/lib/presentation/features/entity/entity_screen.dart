@@ -2,9 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:turboship/all.dart';
 
+var go = [
+  'ab1349b7c1af3dff0da520f3',
+  '65e8ad0f6dcb5abacec36eb0',
+  '52ced2b2dceccfaf2a2f4c1a',
+  'da53b7e9f5ee2966efefe08a',
+  'ed1812cedc481a62dabd23fe',
+];
+
 class EntityScreen extends StatefulWidget {
+  final String? chatId;
   final Map<String, dynamic> entityJson;
-  const EntityScreen({super.key, required this.entityJson});
+  const EntityScreen({super.key, required this.entityJson, this.chatId});
 
   @override
   State<EntityScreen> createState() => _EntityScreenState();
@@ -14,8 +23,6 @@ class _EntityScreenState extends State<EntityScreen>
     with WidgetsBindingObserver {
   late Entity entity;
   late TextEditingController _messageController;
-  CollectionReference messages =
-      FirebaseFirestore.instance.collection('messages');
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +52,13 @@ class _EntityScreenState extends State<EntityScreen>
   }
 
   StreamBuilder<QuerySnapshot<Object?>> buildMessages() {
+    Query messagesQuery = FirebaseFirestore.instance
+        .collection('messages')
+        .where('chatId', isEqualTo: go[(int.parse(widget.chatId!) % 4)])
+        .orderBy('createdAt', descending: false);
+
     return StreamBuilder<QuerySnapshot>(
-      stream: messages.orderBy('createdAt', descending: false).snapshots(),
+      stream: messagesQuery.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
@@ -72,8 +84,7 @@ class _EntityScreenState extends State<EntityScreen>
 
   @override
   void dispose() {
-    _messageController
-        .dispose(); // Dispose the controller when the widget is disposed
+    _messageController.dispose();
     super.dispose();
   }
 
@@ -82,16 +93,15 @@ class _EntityScreenState extends State<EntityScreen>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     entity = Entity.fromJson(widget.entityJson);
-    _messageController =
-        TextEditingController(); // Initialize the text input controller
+    _messageController = TextEditingController();
   }
 
   void _sendMessage(String message) {
     FirebaseFirestore.instance.collection('messages').add({
       'body': message,
+      'chatId': go[int.parse(widget.chatId!) % 4],
       'createdAt': FieldValue.serverTimestamp(),
     });
-    _messageController
-        .clear(); // Clear the input field after sending the message
+    _messageController.clear();
   }
 }
