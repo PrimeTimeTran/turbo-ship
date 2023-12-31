@@ -14,7 +14,7 @@ function sample() {
   }
 }
 onMounted(() => {
-  toastEm({ val: 'Press opt/alt+s to sample a style', type: 'info', autoClose: false })
+  toastEm({ val: 'Press opt/alt+s to sample a style', type: 'info', position: 'tRight' })
 })
 
 const FBIcon = h(Icon, { name: 'logos:facebook', color: 'black' })

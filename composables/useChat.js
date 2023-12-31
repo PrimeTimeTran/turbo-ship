@@ -49,6 +49,11 @@ export function useChat(id) {
             body: body,
             chatId: chatId.value,
             createdAt: serverTimestamp(),
+            user: {
+              avatarUrl: 'https://ui-avatars.com/api/?name=Admin&color=228B22',
+              fullName: 'Admin',
+              id: '6583920561f0e637230edf36',
+            },
           })
           event.target.value = ''
         } catch (error) {

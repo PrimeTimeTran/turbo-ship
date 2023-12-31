@@ -11,33 +11,43 @@ function setup() {
     att.value = attribute.value
   })
 }
-
+const clonedEntity = ref(_.cloneDeep(props.entity))
+// function onSubmit(e, fields) {
+//   e.preventDefault()
+//   e.stopPropagation()
+//   console.log({
+//     fields: e,
+//   })
+//   // console.log({ cols, entity: props.entity, value: value })
+//   // toastEm({ val: 'Clicked' })
+// }
+const onSubmit = async (e, val, origin) => {
+  e.preventDefault()
+  e.stopPropagation()
+  console.log('Submit', val, origin)
+}
+watch(() => props.entity._id, setup)
 function getField(field) {
   return GlobalState.entities[props.entityType][field.name]
 }
-function onSubmit(e) {
-  e.preventDefault()
-  e.stopPropagation()
-  toastEm({ val: 'Clicked' })
+function label(field) {
+  let f = getField(field)
+  if (f) {
+    let length = f.options?.length > 1 ? `(${f.options.length})` : ``
+    return `${f.label} ${length}`
+  }
 }
-watch(() => props.entity._id, setup)
-
-onMounted(() => {
-  console.log('Type: ', props.entityType)
-  console.log('Cols: ', cols.value.length)
-  console.log('Items: ', items.value.length)
-})
 </script>
 <template>
   <div>
     <h1 class="text-4xl">
-      {{ capitalize(entityType) }} <span class="text-md">{{ entity._id }}</span>
+      {{ capitalize(entityType) }} <span class="text-md ml-6">{{ entity._id }}</span>
     </h1>
+
     <FormKit
       :id="`entityForm-${entity._id}`"
       :key="`entityForm-${entity._id}`"
       type="form"
-      @submit="submit"
       :actions="false"
       :value="entity"
       #default="{ value }"
@@ -47,6 +57,9 @@ onMounted(() => {
         message: 'text-red-500 dark:text-red-300',
       }"
     >
+      <div class="h-96">
+        <pre>{{ value }}</pre>
+      </div>
       <div class="grid grid-cols-3 gap-3">
         <div v-for="field of cols" class="flex grow">
           <AdminEntityFormField
@@ -54,14 +67,12 @@ onMounted(() => {
             :field="field"
             :type="field.type"
             :name="field.name"
+            :label="label(field)"
             :fooValue="entity[field.name]"
+            :placeholder="field.placeholder"
             :options="getField(field)?.options"
             :multiple="getField(field)?.type === 'enumeratorMulti'"
             :value="field.type != 'date' ? entity[field.name] : TFormHelper.makeDate(entity[field.name])"
-            :placeholder="field.placeholder"
-            :label="`${getField(field)?.label} ${`${
-              getField(field)?.options?.length > 1 ? `(${getField(field)?.options.length})` : ``
-            }`}`"
           />
         </div>
       </div>
@@ -69,10 +80,16 @@ onMounted(() => {
         <div class="flex flex-1"></div>
         <div class="flex flex-1 justify-center items-center h-12">
           <div
-            @click="onSubmit"
+            @click="(e) => onSubmit(e, value, 'div')"
             class="flex grow justify-center items-center bg-success h-100 min-h-full hover:cursor-pointer mx-16 rounded text-white"
           >
-            <FormKit type="submit" @click="onSubmit" :classes="{ inner: 'text-white font-bold' }"> Save </FormKit>
+            <FormKit
+              type="submit"
+              @click="(e) => onSubmit(e, value, 'button')"
+              :classes="{ inner: 'text-white font-bold' }"
+            >
+              Save
+            </FormKit>
           </div>
         </div>
       </div>

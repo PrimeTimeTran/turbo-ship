@@ -14,7 +14,6 @@ export function useBars(resource) {
     pageCount: ref(0),
     totalRecords: ref(0),
   })
-
   const addUser = async (fields) => {
     try {
       const { data, error } = await useFetch(baseURL, {
@@ -87,7 +86,6 @@ export function useBars(resource) {
       console.error('Unexpected error:', error)
     }
   }
-
   const sort = (field, direction) => {
     if (direction === 'ASC') {
       items.value = items.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? 1 : -1))
@@ -95,7 +93,6 @@ export function useBars(resource) {
       items.value = items.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? -1 : 1))
     }
   }
-
   return {
     items,
     sort,

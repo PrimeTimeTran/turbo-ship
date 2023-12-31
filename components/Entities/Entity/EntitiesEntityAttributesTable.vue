@@ -12,7 +12,7 @@ const onRemove = (id) => {
 <!-- Troubleshooting hot reload works sometimes with bun run dev. -->
 <!-- Let's try with VSCode debugger -->
 <!-- Looks like you need to change app.vue once to get it working? -->
-<!-- Check back later to confirm what the issue is. The first time it doens't work -->
+<!-- Check back later to confirm what the issue is. The first time it doesn't work -->
 <!-- <th class="text-gray-500 text-center pl-2 mx-2 px-4">Valid</th> -->
 <template>
   <div class="flex flex-1 h-full hover:shadow-lg">

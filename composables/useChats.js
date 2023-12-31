@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import { faker } from '@faker-js/faker/locale/af_ZA'
+// import { serverTimestamp, addDoc, collection, query, orderBy, onSnapshot, getDocs, where } from 'firebase/firestore'
 
 function genMessage(user) {
   const isMine = faker.helpers.arrayElement([true, false])
-  let messageUser = isMine ? me : user
+  let messageUser = isMine ? meUser : user
   return {
     user: messageUser,
     id: faker.database.mongodbObjectId(),
@@ -20,7 +21,7 @@ function geMessages(user) {
   }
   return messages
 }
-const me = {
+const meUser = {
   id: '1',
   fullName: 'Loi Tran',
   urlAvatar: 'https://source.unsplash.com/random/500x500/?face',
@@ -105,9 +106,10 @@ export function useChats() {
   function focusChat(id) {
     focusedChatId.value = id
   }
-
+  // const db = useFirestore()
+  // const chatsRef = collection(db, 'chats')
   return {
-    me,
+    meUser,
     chats,
     focusChat,
     focusedChatId,

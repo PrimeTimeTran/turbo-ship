@@ -11,13 +11,13 @@ const { me, chats, focusChat, focusedChatId } = useChats()
 const state = reactive({
   unreadCount: 0,
 })
-
 function onToggleChat() {
   const checkbox = document.getElementById('toggleChatBtn')
   checkbox.click()
 }
-
 onMounted(() => {
+  // chats.slice(0, 4)
+
   const bus = useEventBus('newMessage')
   function listener(event) {
     state.unreadCount = state.unreadCount + 1
@@ -78,18 +78,15 @@ onMounted(() => {
   max-height: 42px;
   transition: max-height 0.3s ease;
 }
-
 #toggleChat:checked + .chatContainer {
   max-height: 66vh;
 }
 .chatItems {
   height: 42px;
 }
-
 .text-content {
   transition: brightness 0.3s ease;
 }
-
 .hover-effect:hover .text-content {
   filter: brightness(200%);
   color: black;

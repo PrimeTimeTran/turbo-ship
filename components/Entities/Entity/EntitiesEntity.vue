@@ -37,8 +37,9 @@ const isOpen = computed(() => {
         role="tab"
         class="tab font-semibold flex-1"
         :class="{
-          'even-tab': entityIdx % 2 == 0,
-          'odd-tab': !(entityIdx % 2 == 0),
+          'bg-primary': entityIdx % 2 == 0,
+          // 'odd-tab': !(entityIdx % 2 == 0),
+          'bg-accent': !(entityIdx % 2 == 0),
           'active-tab-class': tabIdx === 0,
         }"
         :aria-label="`${capitalize(entity.name)} (Attributes)`"
@@ -53,8 +54,9 @@ const isOpen = computed(() => {
         aria-label="Validations"
         :name="`entity-tab-${entity._id}`"
         :class="{
-          'even-tab': entityIdx % 2 == 0,
-          'odd-tab': !(entityIdx % 2 == 0),
+          'bg-primary': entityIdx % 2 == 0,
+          // 'odd-tab': !(entityIdx % 2 == 0),
+          'bg-accent': !(entityIdx % 2 == 0),
           'active-tab-class': tabIdx === 1,
         }"
       />
@@ -66,8 +68,9 @@ const isOpen = computed(() => {
         aria-label="Settings"
         :name="`entity-tab-${entity._id}`"
         :class="{
-          'even-tab': entityIdx % 2 == 0,
-          'odd-tab': !(entityIdx % 2 == 0),
+          'bg-primary': entityIdx % 2 == 0,
+          // 'odd-tab': !(entityIdx % 2 == 0),
+          'bg-accent': !(entityIdx % 2 == 0),
           'active-tab-class': tabIdx === 2,
         }"
       />
@@ -128,7 +131,8 @@ const isOpen = computed(() => {
 
 <style>
 .active-tab-class {
-  color: white !important;
+  color: white;
+  background-color: darkorchid !important;
 }
 
 .even-tab {

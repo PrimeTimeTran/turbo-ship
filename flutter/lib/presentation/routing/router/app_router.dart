@@ -25,7 +25,7 @@ class AppRouter {
     "drawer": false,
   };
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  // static const _initialLocation = AppPages.tabARoot;
+  // static const _initialLocation = AppPages.ftue;
   static const _initialLocation = AppPages.tabARoot;
 
   // Route config

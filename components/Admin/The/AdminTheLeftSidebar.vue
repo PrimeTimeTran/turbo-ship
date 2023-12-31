@@ -186,10 +186,6 @@ function onToggleTheme(callback) {
 }
 
 #toggle:checked ~ .box {
-  /* display: none; */
-}
-
-#toggle:checked ~ .box {
   transform: translateX(100px);
 }
 </style>

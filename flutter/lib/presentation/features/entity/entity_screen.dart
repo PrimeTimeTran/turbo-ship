@@ -2,6 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:turboship/all.dart';
 
+const meUser = {
+  "id": "6583920561f0e637230edf36",
+  "email": "loi@gmail.com",
+  "urlAvatar": "https://ui-avatars.com/api/?name=Admin&color=228B22",
+};
+
 var go = [
   'ab1349b7c1af3dff0da520f3',
   '65e8ad0f6dcb5abacec36eb0',
@@ -59,6 +65,8 @@ class _EntityScreenState extends State<EntityScreen>
         .collection('messages')
         .where('chatId', isEqualTo: go[(int.parse(widget.chatId!) % 4)])
         .orderBy('createdAt', descending: false);
+    // .where('chatId', isEqualTo: go[(int.parse(widget.chatId!) % 4)])
+    // .orderBy('createdAt', descending: false);
 
     return StreamBuilder<QuerySnapshot>(
       stream: messagesQuery.snapshots(),
@@ -96,7 +104,8 @@ class _EntityScreenState extends State<EntityScreen>
       child: Column(
         children: snapshot.data!.docs.map((DocumentSnapshot doc) {
           Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-          var isLeft = data['body'].contains('Albus');
+          final user = data['user'];
+          var isMe = !user['fullName']?.contains('Admin');
           return SizedBox(
             width: double.infinity,
             child: Padding(
@@ -104,30 +113,16 @@ class _EntityScreenState extends State<EntityScreen>
                   const EdgeInsets.symmetric(horizontal: 4.0, vertical: 12),
               child: Column(
                 children: [
-                  if (isLeft)
-                    Row(
-                      mainAxisAlignment:
-                          isLeft ? TFlex.mainStart : TFlex.mainEnd,
-                      children: [
-                        const Avatar(imageUrl: 'imageUrl', size: 32),
-                        TSpacing.gapW4,
-                        Text(
-                          data['body'] ?? '',
-                        )
-                      ],
-                    ),
-                  if (!isLeft)
-                    Row(
-                      mainAxisAlignment:
-                          isLeft ? TFlex.mainStart : TFlex.mainEnd,
-                      children: [
-                        Text(
-                          data['body'] ?? '',
-                        ),
-                        TSpacing.gapW4,
-                        const Avatar(imageUrl: 'imageUrl', size: 32),
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: isMe ? TFlex.mainEnd : TFlex.mainStart,
+                    children: [
+                      Text(
+                        data['body'] ?? '',
+                      ),
+                      TSpacing.gapW4,
+                      Avatar(imageUrl: user?['urlAvatar'], size: 32),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -144,7 +139,8 @@ class _EntityScreenState extends State<EntityScreen>
       'createdAt': FieldValue.serverTimestamp(),
       'user': {
         'id': entity.id,
-        'fullName': '${entity.firstName} ${entity.lastName}'
+        'urlAvatar': entity.avatarUrl,
+        'fullName': '${entity.firstName} ${entity.lastName}',
       }
     });
     _messageController.clear();

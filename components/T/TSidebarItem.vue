@@ -48,7 +48,7 @@ const router = useRouter()
         :text="option.text"
         :state="state"
         :icon="option.icon"
-        @click="option.route ? () => router.push(option.route) : null"
+        @click="option.route != null ? router.push(option.route) : null"
       />
     </ul>
   </div>
