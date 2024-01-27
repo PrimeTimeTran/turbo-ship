@@ -6,7 +6,7 @@ tags: Nuxt, Vue, Full Stack
 ---
 # Nuxt Overview
 
-Nuxt is an incredible framework brought to us by a team of incredibly talented people. With it we can build front end apps, backend apis, and so much more.
+Nuxt is brought to us by a team of incredibly talented people. With it we can build front end apps, backend apis, and more.
 
 ## Code
 
