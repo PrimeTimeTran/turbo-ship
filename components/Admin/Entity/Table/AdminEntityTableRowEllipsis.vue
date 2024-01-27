@@ -1,6 +1,6 @@
 <script setup>
 import { EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
-const props = defineProps(['deleteItem', 'item', 'entityType'])
+const props = defineProps(['deleteItem', 'item', 'entityType', 'fetchWithFilterFields'])
 </script>
 <template>
   <td class="no-hover-effect">
@@ -15,8 +15,12 @@ const props = defineProps(['deleteItem', 'item', 'entityType'])
             Open
           </label>
         </button>
-        <AdminEntityFormWrapper :entity="item" :entityType="entityType" />
-        <button @click="" class="btn btn-xs btn-ghost flex justify-start">
+        <AdminEntityFormWrapper
+          :entity="item"
+          :entityType="entityType"
+          :fetchWithFilterFields="fetchWithFilterFields"
+        />
+        <button class="btn btn-xs btn-ghost flex justify-start">
           <FontAwesomeIcon class="mr-2 text-black dark:text-white" color="white" icon="fa-solid fa-clock" /> Audit Logs
         </button>
         <button @click="deleteItem(item._id)" class="btn btn-xs btn-ghost flex justify-start">

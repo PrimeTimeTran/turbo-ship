@@ -1,6 +1,14 @@
 <script setup>
 const { enumColor, turboCopy } = useHelpers()
-const props = defineProps(['document', 'field', 'state', 'deleteItem', 'entityType', 'toggleSelect'])
+const props = defineProps([
+  'document',
+  'field',
+  'state',
+  'deleteItem',
+  'entityType',
+  'toggleSelect',
+  'fetchWithFilterFields',
+])
 const text = computed(() => props.document[props.field.name])
 const dropDownTypes = ['text', 'map', 'string']
 
@@ -16,6 +24,7 @@ function copy(field, text) {
     :item="document"
     :deleteItem="deleteItem"
     :entityType="entityType"
+    :fetchWithFilterFields="fetchWithFilterFields"
   />
   <span v-else>
     <AdminEntityTablePreviewCard v-if="property?._id || field.name === 'user'" :item="document" :field="field" />
@@ -41,10 +50,10 @@ function copy(field, text) {
       <span v-else-if="!Type.enums.includes(field.type)" v-text="property" class="primary-content" />
       <span v-else-if="field.type === 'enumeratorMulti'" class="space-x-1 space-y-1">
         <span
-          v-for="item of document[field.name]"
           @click="copy(field, item)"
-          class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold"
+          v-for="item of document[field.name]"
           :class="{ [`bg-${enumColor(entityType, field, item, item)}-500`]: true }"
+          class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold"
         >
           <span class="h-1.5 w-1.5 rounded-full bg-white" />
           <span v-text="item" class="text-white" />

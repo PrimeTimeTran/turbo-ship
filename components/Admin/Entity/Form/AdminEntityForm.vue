@@ -1,6 +1,6 @@
 <script setup>
 import _ from 'lodash'
-const props = defineProps(['entity', 'entityType'])
+const props = defineProps(['entity', 'entityType', 'fetchWithFilterFields'])
 const cols = ref([])
 const items = ref([])
 cols.value = GlobalState.formSortedFields(props.entityType)
@@ -11,7 +11,6 @@ function setup() {
     att.value = attribute.value
   })
 }
-const clonedEntity = ref(_.cloneDeep(props.entity))
 // function onSubmit(e, fields) {
 //   e.preventDefault()
 //   e.stopPropagation()
@@ -21,10 +20,10 @@ const clonedEntity = ref(_.cloneDeep(props.entity))
 //   // console.log({ cols, entity: props.entity, value: value })
 //   // toastEm({ val: 'Clicked' })
 // }
-const onSubmit = async (e, val, origin) => {
+const onSubmit = async (e, val) => {
   e.preventDefault()
   e.stopPropagation()
-  console.log('Submit', val, origin)
+  props.fetchWithFilterFields(props.entity._id, _.cloneDeep(val))
 }
 watch(() => props.entity._id, setup)
 function getField(field) {
@@ -57,9 +56,6 @@ function label(field) {
         message: 'text-red-500 dark:text-red-300',
       }"
     >
-      <div class="h-96">
-        <pre>{{ value }}</pre>
-      </div>
       <div class="grid grid-cols-3 gap-3">
         <div v-for="field of cols" class="flex grow">
           <AdminEntityFormField
@@ -80,14 +76,10 @@ function label(field) {
         <div class="flex flex-1"></div>
         <div class="flex flex-1 justify-center items-center h-12">
           <div
-            @click="(e) => onSubmit(e, value, 'div')"
+            @click="(e) => onSubmit(e, value)"
             class="flex grow justify-center items-center bg-success h-100 min-h-full hover:cursor-pointer mx-16 rounded text-white"
           >
-            <FormKit
-              type="submit"
-              @click="(e) => onSubmit(e, value, 'button')"
-              :classes="{ inner: 'text-white font-bold' }"
-            >
+            <FormKit type="submit" @click="(e) => onSubmit(e, value)" :classes="{ inner: 'text-white font-bold' }">
               Save
             </FormKit>
           </div>

@@ -3,7 +3,7 @@ import _ from 'lodash'
 import draggable from 'vuedraggable'
 const route = useRoute()
 const entityType = route.path.split('/administrator/')[1]
-const { items: data, fetchPage, meta } = useBars(entityType)
+const { items: data, fetchPage, meta, saveEntity, fetchWithFilterFields } = useBars(entityType)
 const state = reactive({
   data: ref(data),
   hidden: ref([]),
@@ -102,6 +102,7 @@ const visibleColumns = computed(() => {
     </thead>
     <tbody>
       <AdminEntityTableEmptyContent v-if="!state.data || state.data.length === 0" />
+      <!-- Depends on if form is for searching or creating new entity -->
       <AdminEntityTableRows
         v-else
         :state="state"
@@ -109,6 +110,7 @@ const visibleColumns = computed(() => {
         :entityType="entityType"
         :toggleSelect="toggleSelect"
         :visibleColumns="visibleColumns"
+        :fetchWithFilterFields="saveEntity || fetchWithFilterFields"
       />
     </tbody>
   </table>

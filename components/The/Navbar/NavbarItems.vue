@@ -6,14 +6,24 @@ const navItems = [
     icon: 'fa-house',
   },
   {
+    url: '/news',
+    name: 'News',
+    icon: 'fa-newspaper',
+  },
+  {
     url: '/administrator/dashboard',
     name: 'Dashboard',
     icon: 'fa-dashboard',
   },
+  // {
+  //   url: '/administrator/dashboard',
+  //   name: 'Charts',
+  //   icon: 'fa-chart-pie',
+  // },
   {
-    url: '/administrator/dashboard',
-    name: 'Charts',
-    icon: 'fa-chart-pie',
+    url: '/admin/#/blogs',
+    name: 'Blog',
+    icon: 'fa-blog',
   },
   {
     url: '/administrator/auditlogs',

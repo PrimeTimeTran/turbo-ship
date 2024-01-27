@@ -12,7 +12,7 @@
     <template v-slot:drawer-right>
       <TDrawerRight />
     </template>
-    <template v-slot:scripts></template>
+    <template v-slot:scripts />
     <template v-slot:default>
       <slot />
       <ChatBar />
