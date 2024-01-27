@@ -66,14 +66,6 @@ export function buildPipeline(
       $and: [query, { isSoftDeleted: { $ne: true } }],
     },
   }
-  // return [
-  //   {
-  //     $facet: {
-  //       data: [{ $match: query }, { $skip: (page - 1) * 10 }, { $limit: limit }],
-  //       totalCount: [{ $match: query }, { $count: 'total' }],
-  //     },
-  //   },
-  // ]
   const lookupStages = fieldsToPopulate.map((field) => ({
     $lookup: {
       from: field.from,
@@ -82,21 +74,6 @@ export function buildPipeline(
       localField: field.localField,
     },
   }))
-
-  // WIP make it so the .user is correctly .user and not a list
-  // // Add stages to handle unwinding and reshaping the output
-  // lookupStages.push({
-  //   $unwind: {
-  //     path: '$yourFieldName', // Replace 'yourFieldName' with the field name you're looking up
-  //     preserveNullAndEmptyArrays: true, // Handle cases where there's no match
-  //   },
-  // })
-
-  // lookupStages.push({
-  //   $replaceRoot: {
-  //     newRoot: '$yourFieldName', // Replace 'yourFieldName' with the field name you're looking up
-  //   },
-  // })
 
   const stages = [
     matchStage,

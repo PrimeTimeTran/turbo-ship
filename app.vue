@@ -8,6 +8,10 @@ useHead({
       innerHTML: 'console.log("App.vue")',
       tagPosition: 'head',
     },
+    {
+      innerHTML: 'console.log("Added a new thingy in Starbucks")',
+      tagPosition: 'head',
+    },
   ],
 })
 </script>

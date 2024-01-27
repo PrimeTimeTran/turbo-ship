@@ -7,8 +7,8 @@ function genMessage(user) {
   let messageUser = isMine ? meUser : user
   return {
     user: messageUser,
-    id: faker.database.mongodbObjectId(),
     createdAt: faker.date.recent(),
+    id: faker.database.mongodbObjectId(),
     body: faker.lorem.paragraphs({ min: 1, max: 3 }),
   }
 }
