@@ -5,10 +5,11 @@ import 'post_image.dart';
 
 class Post extends StatefulWidget {
   final Map<String, dynamic> post;
-  const Post({super.key, required this.post});
+
+  const Post({required this.post, super.key});
 
   @override
-  State<Post> createState() => _PostState();
+  _PostState createState() => _PostState();
 }
 
 class _PostState extends State<Post> {

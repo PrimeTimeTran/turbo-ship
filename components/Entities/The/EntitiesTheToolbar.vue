@@ -3,7 +3,6 @@ import _ from 'lodash'
 import { faker } from '@faker-js/faker'
 const runtimeConfig = useRuntimeConfig()
 const isDeveloping = runtimeConfig.public.generateUrl.includes('localhost')
-
 const { entities, setEntities, clearEntities } = useEntities()
 function collapse() {
   store.view = views.entities
@@ -25,8 +24,6 @@ function feedback() {
   store.view = views.feedback
 }
 const { fbEvent } = useAnalytics()
-function validateEntities() {}
-
 async function generate() {
   try {
     fbEvent('entities_generate_start')
@@ -84,11 +81,9 @@ async function generate() {
     console.log('Error: ', error)
   }
 }
-
 function getShortString(shortcut) {
   return `<span class='end-0'><kbd class="kbd kbd-xs [--fallback-b2:gray] text-white dark:[--fallback-b2:gray]">⌥</kbd>+<kbd class="kbd kbd-xs [--fallback-b2:gray] text-white dark:[--fallback-b2:gray]">${shortcut}</kbd></span>`
 }
-
 const fileItems = [
   {
     id: faker.database.mongodbObjectId(),

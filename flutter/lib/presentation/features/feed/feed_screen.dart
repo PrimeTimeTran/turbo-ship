@@ -14,10 +14,14 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> with WidgetsBindingObserver {
+  final ScrollController _scrollController = ScrollController();
   List<Map<String, dynamic>> posts = [];
+  List<GlobalKey<State>> postKeys = [];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: _scrollController,
       child: Column(
         children: [
           ListView.builder(
@@ -25,12 +29,24 @@ class _FeedScreenState extends State<FeedScreen> with WidgetsBindingObserver {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, idx) {
-              return Post(post: posts[idx]);
+              var key = postKeys.length > idx ? postKeys[idx] : GlobalKey();
+              if (postKeys.length <= idx) postKeys.add(key);
+              return Post(
+                key: key,
+                post: posts[idx],
+              );
             },
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
   }
 
   Future<void> fetchData() async {
@@ -41,13 +57,14 @@ class _FeedScreenState extends State<FeedScreen> with WidgetsBindingObserver {
     setState(() {
       posts = fetchedPosts;
     });
+    _scrollController.addListener(_onScroll);
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
     fetchData();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   Map<String, dynamic> mapJson(Map<String, dynamic> jsonMap) {
@@ -89,5 +106,32 @@ class _FeedScreenState extends State<FeedScreen> with WidgetsBindingObserver {
       }
     }
     return [];
+  }
+
+  RenderBox? _getPostRenderBox(int index) {
+    if (index >= 0 && index < postKeys.length) {
+      final key = postKeys[index];
+      final contextObject = key.currentContext;
+      if (contextObject != null) {
+        return contextObject.findRenderObject() as RenderBox?;
+      }
+    }
+    return null;
+  }
+
+  void _onScroll() {
+    for (int i = 0; i < posts.length; i++) {
+      RenderBox? renderBox = _getPostRenderBox(i);
+      if (renderBox != null) {
+        double top = renderBox.localToGlobal(Offset.zero).dy;
+        double bottom = top + renderBox.size.height;
+
+        if (top < MediaQuery.of(context).size.height && bottom > 0) {
+          // Post widget at index i is currently visible on the screen
+          // You can trigger your function here.
+          print("Post $i is visible");
+        }
+      }
+    }
   }
 }

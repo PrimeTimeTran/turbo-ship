@@ -29,7 +29,6 @@ export default defineNuxtConfig({
   devServer: { port: 3005 },
   devtools: {
     enabled: true,
-    reuseExistingServer: true,
     timeline: {
       enabled: true,
     },

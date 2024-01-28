@@ -11,17 +11,17 @@ const navItems = [
     icon: 'fa-newspaper',
   },
   {
+    url: '/consulting',
+    name: 'Consulting',
+    icon: 'fa-cubes',
+  },
+  {
     url: '/administrator/dashboard',
     name: 'Dashboard',
     icon: 'fa-dashboard',
   },
-  // {
-  //   url: '/administrator/dashboard',
-  //   name: 'Charts',
-  //   icon: 'fa-chart-pie',
-  // },
   {
-    url: '/admin/#/blogs',
+    url: '/articles/vue/vue-1-fundamentals',
     name: 'Blog',
     icon: 'fa-blog',
   },
@@ -55,7 +55,7 @@ const navItems = [
     class="flex lg:flex-none items-center lg:px-6 py-3 text-gray-500 hover:text-green-400 dark:text-white dark:hover:text-green-400 cursor-pointer transition-colors duration-300 text-xs font-bold"
   >
     <FontAwesomeIcon :icon="item.icon" class="mr-3" />
-    <span v-text="item.name"></span>
+    <span v-text="item.name" />
   </NuxtLink>
   <TheNavbarRight id="navItems-right" />
 </template>

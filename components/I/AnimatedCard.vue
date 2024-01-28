@@ -19,7 +19,6 @@ useHead({
 definePageMeta({
   layout: 't-landing-layout',
 })
-
 const item = {}
 let gogo = ref('')
 onMounted(() => {
