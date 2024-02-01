@@ -18,8 +18,11 @@ class DesignGuideScreen extends StatefulWidget {
   State<DesignGuideScreen> createState() => DesignGuideScreenState();
 }
 
-class DesignGuideScreenState extends State<DesignGuideScreen> {
+class DesignGuideScreenState extends State<DesignGuideScreen>
+    with SingleTickerProviderStateMixin {
+  int _selectedIndex = 0;
   List selectedContacts = [];
+  late final TabController _controller;
   Calendar calendarView = Calendar.day;
   late bool isDark = isDarkMode(context);
   Set<Sizes> selection = <Sizes>{Sizes.large, Sizes.extraLarge};
@@ -27,7 +30,7 @@ class DesignGuideScreenState extends State<DesignGuideScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: darkTheme,
+      theme: _selectedIndex % 2 == 0 ? darkTheme : lightTheme,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         key: scaffoldKey,
@@ -35,23 +38,16 @@ class DesignGuideScreenState extends State<DesignGuideScreen> {
           length: 2,
           child: Column(
             children: [
-              const TabBar(
-                tabs: [
-                  Tab(
-                    text: 'Dark',
-                  ),
-                  Tab(
-                    text: 'Light',
-                  ),
+              TabBar(
+                controller: _controller,
+                tabs: const [
+                  Tab(text: 'Dark'),
+                  Tab(text: 'Light'),
                 ],
               ),
               Expanded(
-                child: TabBarView(
-                  children: [
-                    buildThemeDark(),
-                    buildThemeLight(),
-                  ],
-                ),
+                child:
+                    TabBarView(children: [buildThemeDark(), buildThemeLight()]),
               ),
             ],
           ),
@@ -167,7 +163,7 @@ class DesignGuideScreenState extends State<DesignGuideScreen> {
 
   buildThemeDark() {
     return Theme(
-      data: darkTheme,
+      data: lightTheme,
       child: Builder(
         builder: (BuildContext context) {
           return Container(
@@ -255,5 +251,19 @@ class DesignGuideScreenState extends State<DesignGuideScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // Create TabController for getting the index of current tab
+    _controller = TabController(length: 2, vsync: this);
+
+    _controller.addListener(() {
+      setState(() {
+        _selectedIndex = _controller.index;
+      });
+    });
   }
 }

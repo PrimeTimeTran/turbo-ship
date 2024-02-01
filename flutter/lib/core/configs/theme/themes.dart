@@ -45,18 +45,6 @@ RoundedRectangleBorder shape = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(10),
 );
 
-// final themeColors = [
-//   'Blue',
-//   'Green',
-//   'Gold',
-//   'Orange',
-//   'Pink',
-//   'Purple',
-//   'Red',
-// ];
-// ThemeData darkTheme = createTheme(Brightness.dark, shape, 0xFFD4AF37);
-// ThemeData lightTheme = createTheme(Brightness.light, shape, 0xFFD4AF37);
-
 final themeMap = {
   'Blue': {
     'light': lightBlue,
