@@ -13,6 +13,7 @@ enum AppPages {
   settings,
   privacy,
   entity,
+  uiKit,
 }
 
 extension AppPageX on AppPages {
@@ -42,6 +43,8 @@ extension AppPageX on AppPages {
         return 'TAB_DRAWER_PRIVACY';
       case AppPages.settings:
         return 'TAB_DRAWER_SETTINGS';
+      case AppPages.uiKit:
+        return 'TAB_UI_KIT';
     }
   }
 
@@ -71,6 +74,8 @@ extension AppPageX on AppPages {
         return '/tab_drawer_entity';
       case AppPages.privacy:
         return '/tab_drawer_privacy';
+      case AppPages.uiKit:
+        return '/uiKit';
     }
   }
 }

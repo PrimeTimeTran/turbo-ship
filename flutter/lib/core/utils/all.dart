@@ -22,6 +22,7 @@ sample(list) {
 String sampleTheme() {
   final kolors = [
     'Blue',
+    'Blue',
     'Green',
     'Gold',
     'Orange',

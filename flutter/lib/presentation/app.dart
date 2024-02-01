@@ -7,48 +7,6 @@ import 'package:turboship/all.dart';
 
 import 'app_overlay_wrapper.dart';
 
-getDarkTheme(theme) {
-  switch (theme) {
-    case 'green':
-      return darkGreen;
-    case 'blue':
-      return darkBlue;
-    case 'gold':
-      return darkGold;
-    case 'red':
-      return darkRed;
-    case 'orange':
-      return darkOrange;
-    case 'purple':
-      return darkPurple;
-    case 'pink':
-      return darkPink;
-    default:
-      return darkTheme;
-  }
-}
-
-getLightTheme(theme) {
-  switch (theme) {
-    case 'green':
-      return lightGreen;
-    case 'blue':
-      return lightBlue;
-    case 'gold':
-      return lightGold;
-    case 'red':
-      return lightRed;
-    case 'orange':
-      return lightOrange;
-    case 'purple':
-      return lightPurple;
-    case 'pink':
-      return lightPink;
-    default:
-      return lightTheme;
-  }
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -73,19 +31,18 @@ class MyApp extends StatelessWidget {
               ThemeData light = themeMap[palette]!['light']!;
               ThemeMode themeMode =
                   state.isDarkTheme ? ThemeMode.dark : ThemeMode.light;
-
               return MaterialApp.router(
                 theme: light,
                 darkTheme: dark,
                 // Haven't figured out how to turn this guy yet.
                 // theme: AppThemeConstants.light,
                 // darkTheme: AppThemeConstants.dark,
+                themeMode: themeMode,
                 locale: Locale(state.locale),
                 routerConfig: AppRouter.router,
                 debugShowCheckedModeBanner: false,
                 supportedLocales: LocaleConfig.supportedLocales,
                 builder: (context, child) => _TurboshipApp(child!),
-                themeMode: themeMode,
                 localeResolutionCallback:
                     (Locale? locale, Iterable<Locale> supportedLocales) =>
                         supportedLocales.contains(locale)

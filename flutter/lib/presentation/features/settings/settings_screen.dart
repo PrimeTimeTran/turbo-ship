@@ -70,16 +70,18 @@ class _SettingsScreenState extends State<SettingsScreen>
                       child: Text(
                         'Change from $locale $alpha',
                         style: const TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     TSpacing.gapH12,
                     AppButton.primary(
+                      label: 'Welcome',
+                      width: double.infinity,
                       onPressed: () {
                         // context.go(AppPages.settings.path);
                       },
-                      width: double.infinity,
-                      label: 'Welcome',
                     ),
                     TSpacing.gapH12,
                   ],

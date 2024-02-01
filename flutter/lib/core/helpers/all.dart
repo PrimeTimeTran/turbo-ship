@@ -6,5 +6,6 @@ export 'number_helpers.dart';
 export 'stream/disposable.dart';
 export 'stream/dispose_bag.dart';
 export 'stream/stream.dart';
+export 'style_helpers.dart';
 export 'text_helpers.dart';
 export 'time_helpers.dart';
