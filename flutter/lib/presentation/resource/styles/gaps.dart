@@ -49,8 +49,8 @@ class TSizes {
 
 class TSpacing {
   static const emptyBox = SizedBox.shrink();
+  static const gapW2 = SizedBox(width: TSizes.s2);
   static const gapW4 = SizedBox(width: TSizes.s4);
-
   static const gapW6 = SizedBox(width: TSizes.s6);
   static const gapW8 = SizedBox(width: TSizes.s8);
   static const gapW10 = SizedBox(width: TSizes.s10);
@@ -107,6 +107,7 @@ class TSpacing {
   static const edgeInsetsH64 = EdgeInsets.symmetric(horizontal: TSizes.s64);
   static const edgeInsetsV4 = EdgeInsets.symmetric(vertical: TSizes.s4);
 
+  static const edgeInsetsV2 = EdgeInsets.symmetric(vertical: TSizes.s2);
   static const edgeInsetsV8 = EdgeInsets.symmetric(vertical: TSizes.s8);
   static const edgeInsetsV12 = EdgeInsets.symmetric(vertical: TSizes.s12);
   static const edgeInsetsV16 = EdgeInsets.symmetric(vertical: TSizes.s16);

@@ -10,10 +10,13 @@ enum AppPages {
   tabCStacked,
   tabDRoot,
   tabDStacked,
+  tabERoot,
+  tabEStacked,
   settings,
   privacy,
   entity,
   uiKit,
+  design_guide
 }
 
 extension AppPageX on AppPages {
@@ -37,6 +40,12 @@ extension AppPageX on AppPages {
         return 'TAB_D_ROOT';
       case AppPages.tabDStacked:
         return 'TAB_D_STACKED';
+      case AppPages.tabERoot:
+        return 'TAB_E_ROOT';
+      case AppPages.design_guide:
+        return 'TAB_E_DESIGN_GUIDE';
+      case AppPages.tabEStacked:
+        return 'TAB_E_STACKED';
       case AppPages.entity:
         return 'TAB_A_ENTITY';
       case AppPages.privacy:
@@ -68,6 +77,12 @@ extension AppPageX on AppPages {
         return '/tab_d_root';
       case AppPages.tabDStacked:
         return '/tab_d_stacked';
+      case AppPages.tabERoot:
+        return '/tab_e_root';
+      case AppPages.design_guide:
+        return '/tab_e_design_guide';
+      case AppPages.tabEStacked:
+        return '/tab_e_stacked';
       case AppPages.entity:
         return '/tab_a_entity';
       case AppPages.settings:

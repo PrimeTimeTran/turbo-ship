@@ -49,12 +49,12 @@ class DrawerWrapper extends StatelessWidget {
     return BottomNavigationBarItem(
       label: label,
       icon: AppIcon(
+        icon: icon,
+        size: TSizes.s4,
         padding: const EdgeInsets.symmetric(
           horizontal: TSizes.s2,
           vertical: TSizes.s10,
         ),
-        icon: icon,
-        size: TSizes.s4,
         color: selected
             ? C(context, Kolor.primary)
             : C(context, Kolor.onBackground),
@@ -153,7 +153,7 @@ class DrawerWrapper extends StatelessWidget {
         : null;
     final item = Container(
       decoration: box,
-      margin: TSpacing.edgeInsetsAll4,
+      margin: TSpacing.edgeInsetsV2,
       child: AppIcon(
         padding: const EdgeInsets.symmetric(
           vertical: TSizes.s10,

@@ -1,85 +1,259 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:turboship/all.dart';
 
-import 'text_colors.dart';
+import 'all.dart';
 
-class DesignGuideScreen extends StatefulWidget {
-  final String tab;
-  const DesignGuideScreen({super.key, required this.tab});
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
-  State<DesignGuideScreen> createState() => _DesignGuideScreenState();
+bool isDarkMode(BuildContext context) {
+  final theme = Theme.of(context).brightness;
+  return theme == Brightness.dark;
 }
 
-class _DesignGuideScreenState extends State<DesignGuideScreen>
-    with WidgetsBindingObserver {
+class DesignGuideScreen extends StatefulWidget {
+  const DesignGuideScreen({super.key});
+
+  @override
+  State<DesignGuideScreen> createState() => DesignGuideScreenState();
+}
+
+class DesignGuideScreenState extends State<DesignGuideScreen> {
+  List selectedContacts = [];
+  Calendar calendarView = Calendar.day;
+  late bool isDark = isDarkMode(context);
+  Set<Sizes> selection = <Sizes>{Sizes.large, Sizes.extraLarge};
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [const TextColors(), options()],
+    return MaterialApp(
+      theme: darkTheme,
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        key: scaffoldKey,
+        body: DefaultTabController(
+          length: 2,
+          child: Column(
+            children: [
+              const TabBar(
+                tabs: [
+                  Tab(
+                    text: 'Dark',
+                  ),
+                  Tab(
+                    text: 'Light',
+                  ),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    buildThemeDark(),
+                    buildThemeLight(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
+  buildColor(color) {
+    return Column(
+      children: [
+        Text(
+          color,
+          // style: styleWithColor(
+          //   type: T(context, 'titleLarge'),
+          //   color: C(context, color),
+          // ),
+        ),
+        const SizedBox(height: 5),
+      ],
+    );
   }
 
-  options() {
-    var alpha = context.l10n.accommodations;
-    var locale = BlocProvider.of<AppBloc>(context).state.locale;
-    return BlocBuilder<AppBloc, AppState>(
-      builder: (_, state) {
-        var isDarkTheme = BlocProvider.of<AppBloc>(context).state.isDarkTheme;
-        var palette = BlocProvider.of<AppBloc>(context).state.palette;
-        var darkText = isDarkTheme ? 'Toggle: Light' : 'Toggle: Dark';
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+  buildColors() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildColor('primary'),
+        buildColor('onPrimary'),
+        buildColor('secondary'),
+        buildColor('tertiary'),
+        buildColor('error'),
+        buildColor('onError'),
+        buildColor('outline'),
+        buildColor('shadow'),
+        buildColor('inverseSurface'),
+        buildColor('onInverseSurface'),
+        buildColor('inversePrimary'),
+        const SizedBox(height: 50),
+      ],
+    );
+  }
+
+  buildIcon(icon) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 30,
+        ),
+        const SizedBox(width: 10),
+      ],
+    );
+  }
+
+  buildIcons() {
+    return Column(
+      children: [
+        Row(
           children: [
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                'Palette: $palette',
-                style: context.textTheme.headingH33xlSemibold,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                getIt.get<AppBloc>().add(AppThemeChanged(!isDarkTheme));
-              },
-              child: Text(
-                darkText,
-                style: context.textTheme.b16LgCaps,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                var item = sampleTheme();
-                getIt.get<AppBloc>().add(AppPaletteChanged(item));
-              },
-              child: Text(
-                'Random Palette:',
-                style: context.textTheme.headingH33xlSemibold,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                String local = locale == 'en' ? 'vi' : 'en';
-                getIt.get<AppBloc>().add(AppLanguageChanged(local));
-              },
-              child: Text(
-                'Toggle lang: $locale $alpha',
-                style: context.textTheme.b16LgCaps,
-              ),
-            ),
+            buildIcon(FontAwesomeIcons.instagram),
+            buildIcon(FontAwesomeIcons.facebook),
+            buildIcon(FontAwesomeIcons.whatsapp),
+            buildIcon(FontAwesomeIcons.linkedin),
+            buildIcon(FontAwesomeIcons.tiktok),
+            buildIcon(FontAwesomeIcons.twitter),
+            buildIcon(FontAwesomeIcons.github),
+            buildIcon(FontAwesomeIcons.stackOverflow),
+            buildIcon(FontAwesomeIcons.microsoft),
+            buildIcon(FontAwesomeIcons.google),
           ],
-        );
-      },
+        ),
+        const SizedBox(height: 50),
+      ],
+    );
+  }
+
+  buildText(text, size) {
+    return Column(
+      children: [
+        Text(
+          text,
+          // style: T(context, size),
+        ),
+        const SizedBox(height: 5),
+      ],
+    );
+  }
+
+  buildTexts(context) {
+    return Container(
+      // color: C(context, 'background'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildText('Body Small', 'bodySmall'),
+          buildText('Body Medium', 'bodyMedium'),
+          buildText('Body Large', 'bodyLarge'),
+          buildText('Label Small', 'labelSmall'),
+          buildText('Label Medium', 'labelMedium'),
+          buildText('Label Large', 'labelLarge'),
+          buildText('Title Small', 'titleSmall'),
+          buildText('Title Medium', 'titleMedium'),
+          buildText('Title Large', 'titleLarge'),
+          buildText('Headline Small', 'headlineSmall'),
+          buildText('Headline Medium', 'headlineMedium'),
+          buildText('Headline Large', 'headlineLarge'),
+          const SizedBox(height: 50),
+        ],
+      ),
+    );
+  }
+
+  buildThemeDark() {
+    return Theme(
+      data: darkTheme,
+      child: Builder(
+        builder: (BuildContext context) {
+          return Container(
+            // color: C(context, 'background'),
+            padding: const EdgeInsets.all(8),
+            child: ListView(
+              children: [
+                buildTexts(context),
+                buildColors(),
+                buildIcons(),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'ElevatedButton ListView',
+                  ),
+                ),
+                const SizedBox(height: 5),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'TextButton ListView',
+                  ),
+                ),
+                const SizedBox(height: 5),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'OutlinedButton ListView',
+                  ),
+                ),
+                const SizedBox(height: 50),
+                const CustomButtons(),
+                const Cards(),
+                const CustomTable(),
+                const CustomForm(),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  buildThemeLight() {
+    return Theme(
+      data: lightTheme,
+      child: Builder(
+        builder: (BuildContext context) {
+          return Container(
+            // color: C(context, 'background'),
+            padding: const EdgeInsets.all(8),
+            child: ListView(
+              children: [
+                buildTexts(context),
+                buildColors(),
+                buildIcons(),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'ElevatedButton ListView',
+                  ),
+                ),
+                const SizedBox(height: 5),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'TextButton ListView',
+                  ),
+                ),
+                const SizedBox(height: 5),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'OutlinedButton ListView',
+                  ),
+                ),
+                const SizedBox(height: 50),
+                const CustomButtons(),
+                const Cards(),
+                const CustomTable(),
+                const CustomForm(),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

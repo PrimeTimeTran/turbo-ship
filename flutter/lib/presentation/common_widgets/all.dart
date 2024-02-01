@@ -3,7 +3,6 @@ export 'animated_page_indicator.dart';
 export 'app_icon.dart';
 export 'avatar.dart';
 export 'bottom_sheet_title.dart';
-export 'bottom_tabs.dart';
 export 'button.dart';
 export 'common_app_bar.dart';
 export 'common_scaffold.dart';

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:turboship/all.dart';
+import 'package:turboship/presentation/features/design_guide/design_guide_screen.dart';
 import 'package:turboship/presentation/features/home/home_screen.dart';
 import 'package:turboship/presentation/features/notification/notification_screen.dart';
 
 part '_route_helper.dart';
 part '_transitions.dart';
+// Turbo:
 // https://medium.com/@ahm4d.bilal/using-gorouters-shellroute-in-flutter-for-nested-navigation-777a9a20642f
+// Shell routes maintain their own state.
+//  - Nested routers
+//  - Maintaining stack, forms, navigation
 
 class AppRouter {
   static const List<AppPages> tabs = [
@@ -14,26 +19,25 @@ class AppRouter {
     AppPages.tabBRoot,
     AppPages.tabCRoot,
     AppPages.tabDRoot,
+    AppPages.tabERoot,
   ];
-  static const List<String> navMapTabs = ['a', 'b', 'c', 'd'];
+  static const List<String> navMapTabs = ['a', 'b', 'c', 'd', 'e'];
   static final Map navMap = {
     "a": false,
     "b": false,
     "c": false,
     "d": false,
+    "e": false,
     "tabIdx": 0,
     "drawer": false,
   };
-  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  // static const _initialLocation = AppPages.ftue;
   static const _initialLocation = AppPages.tabARoot;
-
-  // Route config
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _router = GoRouter(
     navigatorKey: _rootNavigatorKey,
+    initialLocation: _initialLocation.path,
     refreshListenable: getIt.get<AppBloc>(),
     observers: [getIt.get<AppNavigatorObserver>()],
-    initialLocation: _initialLocation.path,
     routes: [
       StatefulShellRoute.indexedStack(
         builder: (
@@ -227,6 +231,40 @@ class AppRouter {
               ),
             ],
           ),
+          StatefulShellBranch(
+            navigatorKey: _sectionENavigatorKey,
+            routes: <RouteBase>[
+              ShellRoute(
+                builder:
+                    (BuildContext context, GoRouterState state, Widget child) {
+                  return Scaffold(
+                    body: child,
+                  );
+                },
+                observers: [
+                  AppNavigatorObserver(),
+                ],
+                routes: [
+                  GoRoute(
+                    path: AppPages.design_guide.path,
+                    name: AppPages.design_guide.name,
+                    builder: (context, state) => ScreenStacked(
+                        tab: 'e',
+                        name: AppPages.design_guide.name,
+                        path: AppPages.design_guide.path,
+                        child: const DesignGuideScreen()),
+                  ),
+                  GoRoute(
+                    path: AppPages.tabEStacked.path,
+                    name: AppPages.tabEStacked.name,
+                    builder: (context, state) {
+                      return const DesignGuideScreen();
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
       GoRoute(
@@ -264,6 +302,8 @@ class AppRouter {
       GlobalKey<NavigatorState>();
   static final GlobalKey<NavigatorState> _sectionDNavigatorKey =
       GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> _sectionENavigatorKey =
+      GlobalKey<NavigatorState>();
   static GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
   static GoRouter get router => _router;
   const AppRouter._();
@@ -278,6 +318,8 @@ class AppRouter {
         return 'Notifications';
       case 3:
         return 'Profile';
+      case 4:
+        return 'Design';
       default:
     }
   }
