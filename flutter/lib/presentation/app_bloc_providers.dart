@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turboship/all.dart';
 
+// Turbo:
+// Rebuild app after sign in/out.
 class AppBlocProviders extends StatelessWidget {
   final Widget child;
   const AppBlocProviders({

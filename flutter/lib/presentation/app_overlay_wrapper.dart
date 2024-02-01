@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:turboship/all.dart';
 
+// Turbo:
+// Block UI actions whilst doing prioritized task.
 class AppOverlayWrapper extends StatefulWidget {
   final Widget child;
   const AppOverlayWrapper({required this.child, super.key});
@@ -36,15 +38,10 @@ class _AppOverlayWrapperState extends State<AppOverlayWrapper> {
       create: (_) => getIt.get<AppOverlayBloc>(),
       child: BlocBuilder<AppOverlayBloc, AppOverlayState>(
         builder: (context, state) {
-          if (state.alertMessage == null) {
-            return TSpacing.emptyBox;
-          }
-
+          if (state.alertMessage == null) return TSpacing.emptyBox;
           if (state.loading != null) {
-            // Need to hide as well
             context.loaderOverlay.show();
           }
-
           return _buildPageAlertMessage(
             context,
             state.alertMessage!.message,

@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:turboship/all.dart';
 
-import 'overlay_wrapper.dart';
+import 'app_overlay_wrapper.dart';
 
 getDarkTheme(theme) {
   switch (theme) {

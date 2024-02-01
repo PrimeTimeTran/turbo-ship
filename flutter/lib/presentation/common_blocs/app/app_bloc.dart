@@ -11,6 +11,13 @@ part 'app_bloc.g.dart';
 part 'app_event.dart';
 part 'app_state.dart';
 
+// Turbo:
+// App wide settings such as
+// - current user,
+// - l10n,
+// - theme(light/dark),
+// - color palette(red, green, blue, orange, etc),
+
 @lazySingleton
 class AppBloc extends BaseBloc<AppEvent, AppState>
     with HydratedMixin, ChangeNotifier {
@@ -20,6 +27,7 @@ class AppBloc extends BaseBloc<AppEvent, AppState>
   // final CheckSignedContractUseCase _checkSignedContractUseCase;
 
   AppBloc(
+    // We initialize the App instance with a few helper methods
     this._doSignIn,
     this._getEntities,
     this._getCurrentUserUseCase,

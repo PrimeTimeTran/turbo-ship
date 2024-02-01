@@ -1,8 +1,6 @@
 {
   // Focusing flutter so ignore server when searching
-  "search.exclude": {
-    // "**/server": true
-  },
+
   "files.exclude": {
     // #### Root
     ".yarn": true,
@@ -21,7 +19,12 @@
     "**/package-lock.json": true,
     "**/prettier.config.cjs": true,
 
-    // ######################## flutter
+    // ########################
+    // Flutter Focus Start:
+    // Uncomment below to focus only on Flutter code
+    "search.exclude": {
+      "**/server": true
+    },
     "**/.dart_tool": true,
     "**/mobile.iml": true,
     "**/analysis_options.yaml": true,
@@ -37,23 +40,25 @@
     "**/android": true,
     "**/ios": true,
     "**/l10n": true,
-    // ######################## Focus Flutter: start
-    // "assets": true,
-    // "components": true,
-    // "composables": true,
-    // "content": true,
-    // "layouts": true,
-    // "pages": true,
-    // "plugins": true,
-    // "public": true,
-    // "utils": true,
-    // "tailwind.config.js": true,
-    // "package.json": true,
-    // "app.vue": true,
-    // "tsconfig.json": true,
-    // ".env": true,
-    // "netlify": true,
-    // ######################## End Focus Flutter
+    "assets": true,
+    "components": true,
+    "composables": true,
+    "content": true,
+    "layouts": true,
+    "pages": true,
+    "plugins": true,
+    "public": true,
+    "utils": true,
+    "tailwind.config.js": true,
+    "package.json": true,
+    "app.vue": true,
+    "tsconfig.json": true,
+    ".env": true,
+    "netlify": true,
+    // Above uncomment to focus on Flutter development.
+    // Flutter Focus End:
+    // ########################
+
     // ######################## Start Focus Nuxt
     // "flutter": true,
     // "netlify": true,
@@ -79,5 +84,6 @@
     "titleBar.inactiveBackground": "#3b8070",
     "titleBar.inactiveForeground": "#000000CC"
   },
-  "cSpell.words": ["headlessui", "Pinia", "Reactionable", "realestate", "toastify", "usecases", "vuedraggable"]
+  "cSpell.words": ["headlessui", "Pinia", "Reactionable", "realestate", "toastify", "usecases", "vuedraggable"],
+  "workbench.iconTheme": "vscode-icons"
 }
