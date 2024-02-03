@@ -2,66 +2,70 @@
   // Focusing flutter so ignore server when searching
 
   "files.exclude": {
-    // #### Root
-    ".yarn": true,
-    ".netlify": true,
-    "tsconfig-base.json": true,
-    "tsconfig-cjs.json": true,
+    // ########################
+    // General Focus Start:
+    // ".yarn": true,
+    // ".netlify": true,
+    // "tsconfig-base.json": true,
+    // "tsconfig-cjs.json": true,
     // "**/dist": true,
-    "**/.git": true,
-    "**/.nuxt": true,
-    "**/.output": true,
-    "**/error.vue": true,
-    "**/options.vite": true,
-    "**/node_modules": true,
-    "**/firebase.json": true,
-    "**/formkit.config.js": true,
-    "**/package-lock.json": true,
-    "**/prettier.config.cjs": true,
+    // "**/.git": true,
+    // "**/.nuxt": true,
+    // "**/.output": true,
+    // "**/error.vue": true,
+    // "**/options.vite": true,
+    // "**/node_modules": true,
+    // "**/firebase.json": true,
+    // "**/formkit.config.js": true,
+    // "**/package-lock.json": true,
+    // "**/prettier.config.cjs": true,
+    // General Focus End:
+    // ########################
 
     // ########################
     // Flutter Focus Start:
+
     // Uncomment below to focus only on Flutter code
-    "search.exclude": {
-      "**/server": true
-    },
-    "**/.dart_tool": true,
-    "**/mobile.iml": true,
-    "**/analysis_options.yaml": true,
-    "flutter/pubspec.lock": true,
-    "flutter/build": true,
-    "**/macos": true,
-    "**/web": true,
-    "**/.flutter-plugins": true,
-    "**/.metadata": true,
-    "**/*.freezed.dart": true,
-    "**/*.g.dart": true,
-    "**/.flutter-plugins-dependencies": true,
-    "**/android": true,
-    "**/ios": true,
-    "**/l10n": true,
-    "assets": true,
-    "components": true,
-    "composables": true,
-    "content": true,
-    "layouts": true,
-    "pages": true,
-    "plugins": true,
-    "public": true,
-    "utils": true,
-    "tailwind.config.js": true,
-    "package.json": true,
-    "app.vue": true,
-    "tsconfig.json": true,
-    ".env": true,
-    "netlify": true,
+    // "search.exclude": {
+    //   "**/server": true
+    // },
+    // "**/.dart_tool": true,
+    // "**/mobile.iml": true,
+    // "**/analysis_options.yaml": true,
+    // "flutter/pubspec.lock": true,
+    // "flutter/build": true,
+    // "**/macos": true,
+    // "**/web": true,
+    // "**/.flutter-plugins": true,
+    // "**/.metadata": true,
+    // "**/*.freezed.dart": true,
+    // "**/*.g.dart": true,
+    // "**/.flutter-plugins-dependencies": true,
+    // "**/android": true,
+    // "**/ios": true,
+    // "**/l10n": true,
+    // "assets": true,
+    // "components": true,
+    // "composables": true,
+    // "content": true,
+    // "layouts": true,
+    // "pages": true,
+    // "plugins": true,
+    // "public": true,
+    // "utils": true,
+    // "tailwind.config.js": true,
+    // "package.json": true,
+    // "app.vue": true,
+    // "tsconfig.json": true,
+    // ".env": true,
+    // "netlify": true,
     // Above uncomment to focus on Flutter development.
     // Flutter Focus End:
     // ########################
 
     // ######################## Start Focus Nuxt
-    // "flutter": true,
-    // "netlify": true,
+    "flutter": true,
+    "netlify": true,
     // ######################## End Focus Nuxt
 
     // Netlify functions

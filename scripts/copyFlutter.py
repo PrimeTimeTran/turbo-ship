@@ -24,5 +24,3 @@ if __name__ == "__main__":
     file_list_path = "./scripts/copyFlutter.txt"
     
     copy_files(source_directory, destination_directory, file_list_path)
-
-
