@@ -11,9 +11,9 @@ definePageMeta({
       >
         <p class="text-center text-sm uppercase">Turboship</p>
         <h2 class="text-4xl lg:text-4xl mt-4 text-gray-700 dark:text-white">
-          Keep it simple stoopid(K.I.S.S.)
+          Keep It Simple Silly!
           <div class="font-bold animate__animated animate__flash" style="white-space: nowrap">
-            Don't repeat yourself, instead,
+            Don't repeat yourself, <br />
             <span class="border-b-8 border-b-green-400">innovate</span>
           </div>
         </h2>

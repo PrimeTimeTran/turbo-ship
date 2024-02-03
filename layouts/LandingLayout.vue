@@ -15,12 +15,20 @@ definePageMeta({
       class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex flex-col pt-24 px-32"
     >
       <h1 class="text-center text-4xl my-16">
-        The Full-Stack <br /><span class="text-green-400">Web & Mobile</span><br />
+        <span class="italic">Both</span> <a href=""></a> Full-Stack <br /><span class="text-green-400"
+          >Web & <span class="underline">Mobile App</span></span
+        ><br />
         Codebase Generator
       </h1>
       <div class="text-xl px-64">
+        Generate BoilerPlate Nuxt & Flutter code in minutes <br /><br />
+
         Generate a professional codebase for your next multi-tenant SaaS app using Nuxt3, Flutter, Firebase, MongoDB,
-        TailwindCSS, end-to-end testing, and more—simply by modeling your data.
+        TailwindCSS, DecapCMS, end-to-end testing, and more—simply by modeling your data with our custom built entity
+        modeling tool.
+
+        <br /><br />
+        Free up time to focus on your secret sauce
       </div>
     </section>
 
@@ -29,7 +37,7 @@ definePageMeta({
       class="w-screen h-screen flex justify-center items-center dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
     >
       <div class="flex flex-col text-center justify-center items-middle">
-        <h1 class="text-center text-4xl my-16">Why us?</h1>
+        <h1 class="text-center text-4xl my-16">Key Features</h1>
 
         <div class="flex flex-col-reverse lg:flex-row justify-center items-between">
           <div
@@ -54,14 +62,26 @@ definePageMeta({
         </div>
       </div>
     </section>
+    <section class="w-screen h-screen flex-wrap items-center justify-center flex flex-col bg-red-300">
+      <h1 class="text-center text-4xl my-16">Use the latest tools & frameworks for superior DX</h1>
+      <br />
+      <br />
+      <div class="grid grid-cols-3 gap-4 items-center">
+        <img class="image" src="~/assets/images/brands/landscape-nuxt-light.png" />
+        <img class="image" src="~/assets/images/brands/landscape-flutter-light.png" />
+        <img class="image" src="~/assets/images/brands/landscape-decap-light.png" />
+        <img class="image" src="~/assets/images/brands/landscape-mongo-light.svg" />
+        <img class="image" src="~/assets/images/brands/landscape-firebase-light.png" />
+        <img class="image" src="~/assets/images/brands/landscape-tailwind-light.png" />
+      </div>
+    </section>
+
     <section
       class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
     >
       <h1 class="text-center text-4xl my-16">No-code can only get you so far.</h1>
     </section>
-    <section
-      class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
-    ></section>
+
     <section
       class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2 lg:p-96"
     ></section>
@@ -72,5 +92,11 @@ definePageMeta({
 <style>
 .main-landing {
   color: white;
+}
+
+.image {
+  margin: 25px;
+  max-height: 75px;
+  place-items: center;
 }
 </style>
