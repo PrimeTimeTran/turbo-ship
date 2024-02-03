@@ -4,7 +4,7 @@ definePageMeta({
 })
 </script>
 <template>
-  <div class="main-landing overflow-clip scrollbar-hide">
+  <div class="main-landing overflow-clip scrollbar-hide text-gray-500 dark:text-gray-300">
     <TheNavbar />
     <section
       class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex flex-col pt-24"
@@ -14,12 +14,14 @@ definePageMeta({
     <section
       class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex flex-col pt-24 px-32"
     >
-      <h1 class="text-center text-4xl my-16">
+      <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
         <span class="italic">Both</span> <a href=""></a> Full-Stack <br /><span class="text-green-400"
           >Web & <span class="underline">Mobile App</span></span
         ><br />
         Codebase Generator
       </h1>
+      <br />
+      <br />
       <div class="text-xl px-64">
         Generate BoilerPlate Nuxt & Flutter code in minutes <br /><br />
 
@@ -37,8 +39,11 @@ definePageMeta({
       class="w-screen h-screen flex justify-center items-center dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
     >
       <div class="flex flex-col text-center justify-center items-middle">
-        <h1 class="text-center text-4xl my-16">Key Features</h1>
-
+        <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
+          Key features & toolings
+        </h1>
+        <br />
+        <br />
         <div class="flex flex-col-reverse lg:flex-row justify-center items-between">
           <div
             data-wow-duration="1s"
@@ -62,8 +67,12 @@ definePageMeta({
         </div>
       </div>
     </section>
-    <section class="w-screen h-screen flex-wrap items-center justify-center flex flex-col bg-red-300">
-      <h1 class="text-center text-4xl my-16">Use the latest tools & frameworks for superior DX</h1>
+    <section class="w-screen h-screen flex-wrap items-center justify-center flex flex-col bg-red-100">
+      <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
+        The best tools & frameworks
+        <br />
+        for superior <span class="text-green-400">developer experience</span>
+      </h1>
       <br />
       <br />
       <div class="grid grid-cols-3 gap-4 items-center">
@@ -79,21 +88,64 @@ definePageMeta({
     <section
       class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
     >
-      <h1 class="text-center text-4xl my-16">No-code can only get you so far.</h1>
-    </section>
+      <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
+        Pricing Plan
+      </h1>
+      <br />
+      <br />
+      <p class="mx-auto mt-4 max-w-2xl text-center text-gray-500 dark:text-gray-300 xl:mt-6">
+        Your satisfaction is guaranteed. Try Turboship for 7 days and if you're not blown away then we'll refund your
+        money.
+      </p>
 
+      <div class="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:mt-12 xl:gap-12">
+        <div class="w-full space-y-8 rounded-lg border border-gray-100 p-8 text-center dark:border-gray-700">
+          <p class="font-medium uppercase text-gray-500 dark:text-gray-300">Month to Month</p>
+          <h2 class="text-5xl font-bold uppercase text-gray-800 dark:text-gray-100">$22.99</h2>
+          <p class="font-medium text-gray-500 dark:text-gray-300">Per Month</p>
+          <button
+            class="mt-10 w-full transform rounded-md bg-green-600 px-4 py-2 capitalize tracking-wide text-white transition-colors duration-300 hover:bg-green-500 focus:bg-green-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+          >
+            Start Now
+          </button>
+        </div>
+
+        <div class="w-full space-y-8 rounded-lg bg-green-600 p-8 text-center">
+          <p class="font-medium uppercase text-gray-200">Annual</p>
+          <h2 class="text-5xl font-bold uppercase text-white dark:text-gray-100">$250</h2>
+          <p class="font-medium text-gray-200">Yearly</p>
+          <button
+            class="mt-10 w-full transform rounded-md bg-white px-4 py-2 capitalize tracking-wide text-blue-500 transition-colors duration-300 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-200 focus:ring-opacity-80"
+          >
+            Start Now
+          </button>
+        </div>
+        <div class="w-full space-y-8 rounded-lg border border-gray-100 p-8 text-center dark:border-gray-700">
+          <p class="font-medium uppercase text-gray-500 dark:text-gray-300">Enterprise</p>
+          <h2 class="text-5xl font-bold uppercase text-gray-800 dark:text-gray-100">$999</h2>
+          <p class="font-medium text-gray-500 dark:text-gray-300">Life Time</p>
+          <button
+            class="mt-10 w-full transform rounded-md bg-green-600 px-4 py-2 capitalize tracking-wide text-white transition-colors duration-300 hover:bg-green-500 focus:bg-green-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+          >
+            Start Now
+          </button>
+        </div>
+      </div>
+    </section>
     <section
       class="grid place-content-center w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2 lg:p-96"
-    ></section>
+    >
+      <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
+        Save your most important resource your <span class="text-green-400">time</span>
+      </h1>
+      <br />
+      <br />
+    </section>
     <TheFooter />
   </div>
 </template>
 
 <style>
-.main-landing {
-  color: white;
-}
-
 .image {
   margin: 25px;
   max-height: 75px;
