@@ -25,7 +25,7 @@
     "npm": "^10.2.4",
     "nuxt": "^3.10.0",
     "nuxt-icon": "^0.6.7",
-    "nuxt-mongoose": "^1.0.3",
+    "nuxt-mongoose": "^1.0.5",
     "nuxt-vuefire": "^0.4.1",
     "postcss": "^8.4.31",
     "postcss-import": "^16.0.0",
