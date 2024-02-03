@@ -5,7 +5,7 @@
 
 [build]
   publish = ".output/public"
-  command = "npx nuxt build && npx serve .output/public"
+  command = "npx nuxt build"
   functions = "netlify/functions"
 
 [functions]

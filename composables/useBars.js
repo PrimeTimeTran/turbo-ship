@@ -37,6 +37,10 @@ export function useBars(resource) {
   onBeforeMount(async () => {
     const { data, error } = await useFetch(baseURL + `?page=${meta.page}&limit=${meta.limit}`)
     if (!error.value) {
+      console.log({
+        baseURL,
+        gogogo: data.value,
+      })
       const val = JSON.parse(data.value)
       Object.assign(meta, val.meta)
       items.value = val?.data

@@ -4,6 +4,7 @@ const props = defineProps([
   'document',
   'field',
   'state',
+  'property',
   'deleteItem',
   'entityType',
   'toggleSelect',
