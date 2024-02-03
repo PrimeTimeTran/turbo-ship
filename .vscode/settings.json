@@ -19,7 +19,7 @@
     "**/formkit.config.js": true,
     "**/package-lock.json": true,
     "**/prettier.config.cjs": true,
-    "**/postcss.config.js": true,
+    // "**/postcss.config.js": true,
     // General Focus End:
     // ########################
 

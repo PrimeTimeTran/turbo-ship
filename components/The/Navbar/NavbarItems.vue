@@ -5,16 +5,16 @@ const navItems = [
     name: 'Home',
     icon: 'fa-house',
   },
-  {
-    url: '/news',
-    name: 'News',
-    icon: 'fa-newspaper',
-  },
-  {
-    url: '/consulting',
-    name: 'Consulting',
-    icon: 'fa-cubes',
-  },
+  // {
+  //   url: '/news',
+  //   name: 'News',
+  //   icon: 'fa-newspaper',
+  // },
+  // {
+  //   url: '/consulting',
+  //   name: 'Consulting',
+  //   icon: 'fa-cubes',
+  // },
   {
     url: '/administrator/dashboard',
     name: 'Dashboard',

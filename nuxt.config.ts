@@ -60,6 +60,7 @@ export default defineNuxtConfig({
   css: ['@fortawesome/fontawesome-svg-core/styles.css', '~/assets/css/main.css'],
   modules: [
     '@nuxt/devtools',
+    require('postcss-nested'),
     '@nuxtjs/tailwindcss',
     '@nuxt/content',
     'nuxt-mongoose',
@@ -83,6 +84,7 @@ export default defineNuxtConfig({
   },
   postcss: {
     plugins: {
+      'tailwindcss/nesting': {},
       tailwindcss: {},
       autoprefixer: {},
     },
