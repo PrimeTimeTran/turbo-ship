@@ -4,6 +4,7 @@ import { TableCellsIcon, EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
 
 definePageMeta({
   layout: 't-main-layout',
+  layoutTransition: true,
 })
 
 const items = ['Users', 'Posts', 'Comments', 'Messages']

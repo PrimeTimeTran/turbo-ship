@@ -6,6 +6,7 @@
 import { Icon } from '#components'
 definePageMeta({
   layout: 't-main-layout',
+  layoutTransition: true,
 })
 onMounted(() => {
   // toastEm({ val: 'Press opt/alt+s to sample a style', type: 'info', autoClose: false })

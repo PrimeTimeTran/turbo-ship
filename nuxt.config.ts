@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       failOnError: false,
-      routes: ['/articles/*', '/'],
+      routes: ['!/administrator/**', '/articles/*', '/'],
     },
     experimental: {
       openAPI: true,

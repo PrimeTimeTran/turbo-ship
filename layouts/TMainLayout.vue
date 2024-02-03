@@ -1,3 +1,8 @@
+<script setup>
+definePageMeta({
+  layoutTransition: true,
+})
+</script>
 <template>
   <TGlobalContainer>
     <template v-slot:navbar>

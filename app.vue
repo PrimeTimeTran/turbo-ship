@@ -1,5 +1,6 @@
 <script>
 import { createHead, useHead } from 'unhead'
+
 createHead()
 
 useHead({
@@ -18,8 +19,10 @@ useHead({
   Consider removing <NuxtLayout> from app.vue and using it in your pages."
 -->
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-    <TShortcuts />
-  </NuxtLayout>
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+      <TShortcuts />
+    </NuxtLayout>
+  </div>
 </template>

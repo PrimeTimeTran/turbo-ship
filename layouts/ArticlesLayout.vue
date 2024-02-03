@@ -1,4 +1,7 @@
 <script setup>
+definePageMeta({
+  layoutTransition: true,
+})
 const { isOpen, toggleOpen } = useToggleOpen()
 
 const handleToggle = () => {

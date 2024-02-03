@@ -2,6 +2,7 @@
 import { Loader } from '@googlemaps/js-api-loader'
 definePageMeta({
   layout: 't-main-layout',
+  layoutTransition: true,
 })
 
 const loader = new Loader({

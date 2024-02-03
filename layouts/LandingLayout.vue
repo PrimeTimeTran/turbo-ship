@@ -1,3 +1,8 @@
+<script setup>
+definePageMeta({
+  layoutTransition: true,
+})
+</script>
 <template>
   <div class="overflow-clip scrollbar-hide">
     <TheNavbar />

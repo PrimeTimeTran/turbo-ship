@@ -6,6 +6,7 @@
 import { Icon } from '#components'
 definePageMeta({
   layout: 't-main-layout',
+  layoutTransition: true,
 })
 
 function sample() {

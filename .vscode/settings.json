@@ -4,21 +4,22 @@
   "files.exclude": {
     // ########################
     // General Focus Start:
-    // ".yarn": true,
-    // ".netlify": true,
-    // "tsconfig-base.json": true,
-    // "tsconfig-cjs.json": true,
-    // "**/dist": true,
-    // "**/.git": true,
-    // "**/.nuxt": true,
-    // "**/.output": true,
-    // "**/error.vue": true,
-    // "**/options.vite": true,
-    // "**/node_modules": true,
-    // "**/firebase.json": true,
-    // "**/formkit.config.js": true,
-    // "**/package-lock.json": true,
-    // "**/prettier.config.cjs": true,
+    ".yarn": true,
+    ".netlify": true,
+    "tsconfig-base.json": true,
+    "tsconfig-cjs.json": true,
+    "**/dist": true,
+    "**/.git": true,
+    "**/.nuxt": true,
+    "**/.output": true,
+    "**/error.vue": true,
+    "**/options.vite": true,
+    "**/node_modules": true,
+    "**/firebase.json": true,
+    "**/formkit.config.js": true,
+    "**/package-lock.json": true,
+    "**/prettier.config.cjs": true,
+    "**/postcss.config.js": true,
     // General Focus End:
     // ########################
 

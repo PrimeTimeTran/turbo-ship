@@ -11,6 +11,7 @@ useHead({
 })
 definePageMeta({
   layout: 't-landing-layout',
+  layoutTransition: true,
 })
 const me = {
   id: '1',
