@@ -13,10 +13,15 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return imageUrl != null && imageUrl!.isNotEmpty
-        ? CircleAvatar(
-            radius: size / 2,
-            backgroundImage: NetworkImage(imageUrl!),
-          )
+        ? Uri.parse(imageUrl!).isAbsolute
+            ? CircleAvatar(
+                radius: size / 2,
+                backgroundImage: NetworkImage(imageUrl!),
+              )
+            : CircleAvatar(
+                radius: size / 2,
+                backgroundImage: AssetImage(imageUrl!),
+              )
         : CircleAvatar(
             radius: size / 2,
             child: const Icon(Icons.person),

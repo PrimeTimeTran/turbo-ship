@@ -1,6 +1,14 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:slider_button/slider_button.dart';
 import 'package:turboship/all.dart';
+
+var light = true;
+var taps = 0;
 
 class DrawerWrapper extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
@@ -45,6 +53,14 @@ class DrawerWrapper extends StatelessWidget {
     );
   }
 
+  ListTile buildDrawerItem(String title, IconData icon, [Function? func]) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(title),
+      onTap: func != null ? func() : null,
+    );
+  }
+
   buildTabItem(context, String label, icon, bool selected) {
     return BottomNavigationBarItem(
       label: label,
@@ -63,78 +79,182 @@ class DrawerWrapper extends StatelessWidget {
   }
 
   getAppBar(int idx) {
+    final leading = AppRouter.hasDrawer(idx)
+        ? Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          )
+        : null;
     return AppRouter.isTabStacked(idx)
         ? null
         : AppBar(
+            leading: leading,
             title: Text(AppRouter.getTabTitle(idx)),
             automaticallyImplyLeading: AppRouter.hasDrawer(idx),
-            leading: AppRouter.hasDrawer(idx)
-                ? Builder(
-                    builder: (BuildContext context) {
-                      return IconButton(
-                        icon: const Icon(Icons.menu),
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                        tooltip: MaterialLocalizations.of(context)
-                            .openAppDrawerTooltip,
-                      );
-                    },
-                  )
-                : null,
           );
   }
 
-  Drawer _buildDrawer(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+  Future<String> getBuildString() async {
+    try {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      final packageName = packageInfo.packageName;
+      return packageName;
+    } on Exception catch (_) {
+      return '';
+    }
+  }
+
+  Future<String> getVersionId() async {
+    try {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      String version = packageInfo.version;
+      String buildNumber = packageInfo.buildNumber;
+      return '$version+$buildNumber';
+    } on Exception catch (_) {
+      return '';
+    }
+  }
+
+  Padding _buildBuildInfo() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5, 5, 10, 30),
+      child: Column(
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Row(
-              crossAxisAlignment: TFlex.crossStart,
-              children: [
-                Avatar(imageUrl: 'soso'),
-                TSpacing.gapW4,
-                Column(
-                  crossAxisAlignment: TFlex.crossStart,
-                  children: [
-                    Text('Loi Tran'),
-                    Text('Joined December 2023'),
-                  ],
-                )
-              ],
-            ),
-          ),
-          ListTile(
-            title: const Text('Messages'),
-            onTap: () {
-              context.goNamed(AppPages.settings.name);
-            },
-          ),
-          ListTile(
-            title: const Text('Feed'),
-            onTap: () {
-              context.goNamed(AppPages.settings.name);
-            },
-          ),
-          ListTile(
-            title: const Text('Privacy'),
-            onTap: () {
-              context.goNamed(AppPages.settings.name);
-            },
-          ),
-          ListTile(
-            title: const Text('Settings'),
-            onTap: () {
-              context.goNamed(AppPages.settings.name);
-            },
-          ),
+          if (taps > 2 || kDebugMode) _buildFutureBuilder(getVersionId()),
+          if (taps > 2 || kDebugMode) _buildFutureBuilder(getBuildString()),
         ],
       ),
+    );
+  }
+
+  Drawer _buildDrawer(BuildContext context) {
+    const drawerHeader = DrawerHeader(
+      decoration: BoxDecoration(
+        color: Colors.blue,
+      ),
+      child: Row(
+        crossAxisAlignment: TFlex.crossStart,
+        children: [
+          Avatar(imageUrl: 'assets/images/avatar-placeholder.png'),
+          TSpacing.gapW4,
+          Column(
+            crossAxisAlignment: TFlex.crossStart,
+            children: [
+              Text('Loi Tran'),
+              Text('Joined December 2023'),
+            ],
+          )
+        ],
+      ),
+    );
+    final drawerMain = [
+      buildDrawerItem('Messages', Icons.inbox),
+      buildDrawerItem('Feed', Icons.newspaper),
+      buildDrawerItem('Notifications', Icons.notifications),
+      buildDrawerItem('Profile', Icons.person),
+      buildDrawerItem('Privacy', Icons.privacy_tip),
+      buildDrawerItem('Settings', Icons.settings),
+    ];
+    final isDarkTheme = BlocProvider.of<AppBloc>(context).state.isDarkTheme;
+    final drawerBottom = Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Divider(thickness: 0.5),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Switch(
+              value: isDarkTheme,
+              activeColor: Colors.yellow,
+              onChanged: (bool value) {
+                getIt.get<AppBloc>().add(AppThemeChanged(!isDarkTheme));
+              },
+            ),
+          ),
+          const Divider(thickness: 0.5),
+          TSpacing.gapH8,
+          SliderButton(
+            height: 60.0,
+            action: () async {
+              context.goNamed(AppPages.ftue.name);
+              return null;
+            },
+            label: const Text(
+              "Slide to cancel sign out",
+              style: TextStyle(
+                fontSize: 14,
+                color: Color(0xff4a4a4a),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            icon: const Center(
+                child: Icon(
+              CupertinoIcons.power,
+              size: 30.0,
+              color: Colors.redAccent,
+              semanticLabel: 'Text to announce in accessibility modes',
+            )),
+            boxShadow: BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 4,
+            ),
+          ),
+          TSpacing.gapH8,
+          _buildBuildInfo(),
+        ],
+      ),
+    );
+    return Drawer(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: drawerMain.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == 0) {
+                    return drawerHeader;
+                  } else if (index == drawerMain.length) {
+                    return const SizedBox.shrink();
+                  } else {
+                    return drawerMain[index - 1];
+                  }
+                },
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: drawerBottom,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _buildFutureBuilder(d) {
+    return FutureBuilder<String>(
+      future: d,
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox(height: 17);
+        } else {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [Text(snapshot.data ?? '')],
+          );
+        }
+      },
     );
   }
 

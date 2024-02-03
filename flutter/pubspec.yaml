@@ -51,6 +51,7 @@ dependencies:
   loader_overlay: ^4.0.0
   cloud_firestore_odm: ^1.0.0-dev.81
   animations: ^2.0.10
+  slider_button: ^2.1.0
   # icon_forest:
   #   path: ../../icon_forest
 

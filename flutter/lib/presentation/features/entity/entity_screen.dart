@@ -2,22 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:turboship/all.dart';
 
+const me =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTgzOTIwNTYxZjBlNjM3MjMwZWRmMzYiLCJpYXQiOjE3MDM0MTMyMzksImV4cCI6MjAxODc3MzIzOX0.5yHSjRxVoc0B3ob-A01J4G40Kq9p6LZGXZ7FfaJXwYc";
+
 const meUser = {
-  "id": "6583920561f0e637230edf36",
   "email": "loi@gmail.com",
+  "id": "6583920561f0e637230edf36",
   "urlAvatar": "https://ui-avatars.com/api/?name=Admin&color=228B22",
 };
 
-var go = [
+final go = [
   'ab1349b7c1af3dff0da520f3',
   '65e8ad0f6dcb5abacec36eb0',
   '52ced2b2dceccfaf2a2f4c1a',
   'da53b7e9f5ee2966efefe08a',
   'ed1812cedc481a62dabd23fe',
 ];
-
-var me =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTgzOTIwNTYxZjBlNjM3MjMwZWRmMzYiLCJpYXQiOjE3MDM0MTMyMzksImV4cCI6MjAxODc3MzIzOX0.5yHSjRxVoc0B3ob-A01J4G40Kq9p6LZGXZ7FfaJXwYc";
 
 class EntityScreen extends StatefulWidget {
   final String? chatId;
