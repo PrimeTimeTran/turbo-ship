@@ -8,11 +8,18 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
-  ssr: false,
+  routeRules: {
+    '/': { prerender: true },
+    '/theme/**': { prerender: true },
+    '/articles/**': { prerender: true },
+    '/administrator/**': { ssr: false },
+    '/api/**': { cors: true, ssr: false },
+  },
   nitro: {
     prerender: {
       failOnError: false,
-      routes: ['/articles/*'],
+      routes: ['/', '/articles/**', '/theme/**'],
+      ignore: ['/administrator/**'],
     },
     experimental: {
       openAPI: true,

@@ -28,11 +28,6 @@ onMounted(() => {
   }
   const unsubscribe = bus.on(listener)
 })
-const router = useRouter()
-
-function redirect(entity) {
-  router.push(`/administrator/${entity}`)
-}
 
 const themeToggle = ref(null)
 function onToggleTheme(callback) {
@@ -59,16 +54,16 @@ function onToggleTheme(callback) {
         v-for="foo in GlobalState.sidebar"
         :text="foo.label"
         :state="state"
-        @click="redirect(foo.path)"
+        @click="$router.push(foo.path)"
         :icon="foo.icon || TableCellsIcon"
-        :focused="router.currentRoute.value.fullPath.includes(foo.path)"
+        :focused="$router.currentRoute.value.fullPath.includes(foo.path)"
       />
       <div class="grow" />
       <div class="divider" />
       <TSidebarItem
         :text="'Calendar'"
         :state="state"
-        @click="() => router.push(`/administrator/calendar`)"
+        @click="() => $router.push(`/administrator/calendar`)"
         :icon="CalendarIcon"
       />
       <TSidebarItem
@@ -77,9 +72,9 @@ function onToggleTheme(callback) {
         :icon="BellIcon"
         :notification="state.notification"
         :notificationCount="state.notificationCount"
-        @click="() => router.push(`/administrator/chat`)"
+        @click="() => $router.push(`/administrator/chat`)"
       />
-      <TSidebarItem :text="'Map'" :state="state" @click="() => router.push(`/administrator/map`)" :icon="MapIcon" />
+      <TSidebarItem :text="'Map'" :state="state" @click="() => $router.push(`/administrator/map`)" :icon="MapIcon" />
       <TSidebarItem
         :text="'Design'"
         :state="state"

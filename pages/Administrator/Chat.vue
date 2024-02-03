@@ -1,6 +1,10 @@
 <script setup>
 import _ from 'lodash'
 import { faker } from '@faker-js/faker/locale/af_ZA'
+definePageMeta({
+  layoutTransition: true,
+  layout: 't-landing-layout',
+})
 useHead({
   script: [
     {
@@ -8,10 +12,6 @@ useHead({
       tagPosition: 'head',
     },
   ],
-})
-definePageMeta({
-  layout: 't-landing-layout',
-  layoutTransition: true,
 })
 const me = {
   id: '1',

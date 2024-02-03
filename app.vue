@@ -1,6 +1,8 @@
 <script>
 import { createHead, useHead } from 'unhead'
-
+definePageMeta({
+  layoutTransition: true,
+})
 createHead()
 
 useHead({
@@ -21,7 +23,9 @@ useHead({
 <template>
   <div>
     <NuxtLayout>
-      <NuxtPage />
+      <div>
+        <NuxtPage />
+      </div>
       <TShortcuts />
     </NuxtLayout>
   </div>

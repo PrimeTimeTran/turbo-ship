@@ -8,5 +8,7 @@ useHead({
 })
 </script>
 <template>
-  <NuxtPage />
+  <div>
+    <NuxtPage />
+  </div>
 </template>

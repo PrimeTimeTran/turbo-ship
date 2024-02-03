@@ -2,7 +2,6 @@
 import { Loader } from '@googlemaps/js-api-loader'
 definePageMeta({
   layout: 't-main-layout',
-  layoutTransition: true,
 })
 
 const loader = new Loader({
@@ -64,4 +63,3 @@ function initMap() {
 <template>
   <div id="map" class="w-screen h-screen"></div>
 </template>
-<style></style>

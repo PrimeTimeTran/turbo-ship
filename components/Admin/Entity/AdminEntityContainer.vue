@@ -2,6 +2,7 @@
 import { EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
 definePageMeta({
   layout: 'admin-layout',
+  layoutTransition: true,
 })
 
 useHead({
