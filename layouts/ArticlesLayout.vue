@@ -30,9 +30,9 @@ useHead({
         </div>
         <div class="flex flex-grow overflow-y-auto max-h-screen px-4 no-scrollbar md:mr-4 lg:mr-0">
           <slot />
-          <TheNavbar class="main-nav visible lg:block md:invisible rounded border z-10 shadow">
+          <div class="main-nav visible lg:block md:invisible rounded border z-10 shadow">
             <MenuBurger :isOpen="isOpen" @toggled="toggleOpen" />
-          </TheNavbar>
+          </div>
           <MenuSidebar :isOpen="isOpen" @toggled="toggleOpen">
             <MenuTableOfContents @toggled="handleToggle" />
           </MenuSidebar>

@@ -12,7 +12,7 @@ definePageMeta({
       <slot />
     </section>
     <section
-      class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex flex-col pt-24 px-32"
+      class="w-screen h-screen dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex flex-col py-16 px-8 xl:px-16"
     >
       <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
         <span class="italic">Both</span> <a href=""></a> Full-Stack <br /><span class="text-green-400"
@@ -22,7 +22,7 @@ definePageMeta({
       </h1>
       <br />
       <br />
-      <div class="text-xl px-64">
+      <div class="text-xl">
         Generate BoilerPlate Nuxt & Flutter code in minutes <br /><br />
 
         Generate a professional codebase for your next multi-tenant SaaS app using Nuxt3, Flutter, Firebase, MongoDB,

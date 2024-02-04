@@ -26,7 +26,7 @@ const emit = defineEmits(['toggled'])
 }
 
 .sidebar-backdrop {
-  top: 0;
+  top: 25;
   left: 0;
   bottom: 0;
   right: 0;
@@ -37,10 +37,11 @@ const emit = defineEmits(['toggled'])
 .sidebar-panel {
   top: 0;
   left: 0;
-  /* z-index: 999; */
+  z-index: 999;
   height: 100vh;
   position: fixed;
-  /* overflow-y: auto; */
+  overflow-y: auto;
+  background-color: #fff;
   padding: 3rem 20px 2rem 20px;
 }
 </style>

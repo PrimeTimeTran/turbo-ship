@@ -11,14 +11,14 @@ export default defineNuxtConfig({
   routeRules: {
     '/**': { prerender: true },
     '/theme/**': { prerender: true },
-    '/articles/**': { prerender: true },
+    '/articles/**/**/**': { prerender: true },
     '/api/**': { cors: true, ssr: false },
     '/administrator/**': { ssr: false },
   },
   nitro: {
     prerender: {
       failOnError: false,
-      routes: ['/', '/articles/**', '/theme/**'],
+      routes: ['/', '/articles/**/**/**', '/theme/**'],
       ignore: ['/administrator/**'],
     },
     experimental: {
