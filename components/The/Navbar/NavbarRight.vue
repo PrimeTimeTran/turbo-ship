@@ -28,7 +28,7 @@
     </div>
     <NuxtLink
       href="/login"
-      class="flex flex-row lg:justify-center lg:items-center py-3 text-gray-500 dark:text-white hover:text-green-400 dark:hover:text-green-400 cursor-pointer transition-colors duration-300"
+      class="flex flex-row lg:justify-center lg:items-center py-3 text-gray-500 hover:text-green-500 dark:text-gray dark:hover:text-green-500 cursor-pointer transition-colors duration-300"
     >
       <svg
         width="24"
@@ -49,7 +49,7 @@
 
     <NuxtLink
       href="/login"
-      class="flex items-center text-gray-500 dark:text-white hover:text-gray-900 cursor-pointer transition-colors duration-300 py-3"
+      class="flex items-center text-gray-500 hover:text-green-500 dark:text-gray dark:hover:text-green-500 cursor-pointer transition-colors duration-300 py-3"
     >
       <FontAwesomeIcon icon="fa-solid fa-sign-out" class="mr-3" />
       Login

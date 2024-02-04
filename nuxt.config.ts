@@ -9,11 +9,11 @@ const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
   routeRules: {
-    '/': { prerender: true },
+    '/**': { prerender: true },
     '/theme/**': { prerender: true },
     '/articles/**': { prerender: true },
-    '/administrator/**': { ssr: false },
     '/api/**': { cors: true, ssr: false },
+    '/administrator/**': { ssr: false },
   },
   nitro: {
     prerender: {

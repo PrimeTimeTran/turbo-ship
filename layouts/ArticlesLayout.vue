@@ -23,7 +23,9 @@ useHead({
     <div class="min-h-screen">
       <The.Navbar />
       <div class="flex flex-row">
-        <div class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto p-3 border-r-2 border-gray">
+        <div
+          class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto p-3 border-r-2 border-gray-200 dark:border-gray-800"
+        >
           <MenuTableOfContents @toggled="handleToggle" />
         </div>
         <div class="flex flex-grow overflow-y-auto max-h-screen px-4 no-scrollbar md:mr-4 lg:mr-0">

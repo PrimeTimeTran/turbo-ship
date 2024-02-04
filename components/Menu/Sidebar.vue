@@ -1,24 +1,17 @@
+<script setup>
+const props = defineProps(['isOpen'])
+const emit = defineEmits(['toggled'])
+</script>
 <template>
   <div class="sidebar">
-    <div
-      v-if="isOpen"
-      class="sidebar-backdrop overflow-auto scrollbar-hide"
-      @click="$emit('toggled')"
-    />
+    <div v-if="isOpen" class="sidebar-backdrop overflow-auto scrollbar-hide" @click="$emit('toggled')" />
     <transition name="slide">
-      <div
-        v-if="isOpen"
-        class="sidebar-panel dark:bg-slate-800 min-w-fit shadow"
-      >
+      <div v-if="isOpen" class="sidebar-panel dark:bg-slate-800 min-w-fit shadow">
         <slot />
       </div>
     </transition>
   </div>
 </template>
-<script setup>
-const props = defineProps(['isOpen'])
-const emit = defineEmits(['toggled'])
-</script>
 
 <style>
 .slide-enter-active,
