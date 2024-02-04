@@ -9,7 +9,7 @@ const stream = pretty({
 
 // trace, debug, info, warn, error, fatal
 export const logger = pino({
-  level: 'debug',
+  level: 'trace',
   transport: {
     target: 'pino-pretty',
     options: {

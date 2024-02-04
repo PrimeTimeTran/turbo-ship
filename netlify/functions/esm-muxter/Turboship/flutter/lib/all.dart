@@ -1,4 +1,3 @@
-export 'config/all.dart';
 export 'core/all.dart';
 export 'data/all.dart';
 export 'domain/all.dart';

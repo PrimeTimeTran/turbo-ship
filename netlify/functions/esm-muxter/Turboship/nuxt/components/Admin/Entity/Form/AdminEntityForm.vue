@@ -1,6 +1,6 @@
 <script setup>
 import _ from 'lodash'
-const props = defineProps(['entity', 'entityType'])
+const props = defineProps(['entity', 'entityType', 'fetchWithFilterFields'])
 const cols = ref([])
 const items = ref([])
 cols.value = GlobalState.formSortedFields(props.entityType)
@@ -11,33 +11,42 @@ function setup() {
     att.value = attribute.value
   })
 }
-
+// function onSubmit(e, fields) {
+//   e.preventDefault()
+//   e.stopPropagation()
+//   console.log({
+//     fields: e,
+//   })
+//   // console.log({ cols, entity: props.entity, value: value })
+//   // toastEm({ val: 'Clicked' })
+// }
+const onSubmit = async (e, val) => {
+  e.preventDefault()
+  e.stopPropagation()
+  props.fetchWithFilterFields(props.entity._id, _.cloneDeep(val))
+}
+watch(() => props.entity._id, setup)
 function getField(field) {
   return GlobalState.entities[props.entityType][field.name]
 }
-function onSubmit(e) {
-  e.preventDefault()
-  e.stopPropagation()
-  toastEm({ val: 'Clicked' })
+function label(field) {
+  let f = getField(field)
+  if (f) {
+    let length = f.options?.length > 1 ? `(${f.options.length})` : ``
+    return `${f.label} ${length}`
+  }
 }
-watch(() => props.entity._id, setup)
-
-onMounted(() => {
-  console.log('Type: ', props.entityType)
-  console.log('Cols: ', cols.value.length)
-  console.log('Items: ', items.value.length)
-})
 </script>
 <template>
   <div>
     <h1 class="text-4xl">
-      {{ capitalize(entityType) }} <span class="text-md">{{ entity._id }}</span>
+      {{ capitalize(entityType) }} <span class="text-md ml-6">{{ entity._id }}</span>
     </h1>
+
     <FormKit
       :id="`entityForm-${entity._id}`"
       :key="`entityForm-${entity._id}`"
       type="form"
-      @submit="submit"
       :actions="false"
       :value="entity"
       #default="{ value }"
@@ -54,14 +63,12 @@ onMounted(() => {
             :field="field"
             :type="field.type"
             :name="field.name"
+            :label="label(field)"
             :fooValue="entity[field.name]"
+            :placeholder="field.placeholder"
             :options="getField(field)?.options"
             :multiple="getField(field)?.type === 'enumeratorMulti'"
             :value="field.type != 'date' ? entity[field.name] : TFormHelper.makeDate(entity[field.name])"
-            :placeholder="field.placeholder"
-            :label="`${getField(field)?.label} ${`${
-              getField(field)?.options?.length > 1 ? `(${getField(field)?.options.length})` : ``
-            }`}`"
           />
         </div>
       </div>
@@ -69,10 +76,12 @@ onMounted(() => {
         <div class="flex flex-1"></div>
         <div class="flex flex-1 justify-center items-center h-12">
           <div
-            @click="onSubmit"
+            @click="(e) => onSubmit(e, value)"
             class="flex grow justify-center items-center bg-success h-100 min-h-full hover:cursor-pointer mx-16 rounded text-white"
           >
-            <FormKit type="submit" @click="onSubmit" :classes="{ inner: 'text-white font-bold' }"> Save </FormKit>
+            <FormKit type="submit" @click="(e) => onSubmit(e, value)" :classes="{ inner: 'text-white font-bold' }">
+              Save
+            </FormKit>
           </div>
         </div>
       </div>

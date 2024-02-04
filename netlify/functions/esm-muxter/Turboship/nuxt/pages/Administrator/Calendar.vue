@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker/locale/af_ZA'
 
 definePageMeta({
   layout: 't-main-layout',
+  layoutTransition: true,
 })
 </script>
 <template>
@@ -132,7 +133,7 @@ export default {
   border-radius: 0;
   width: 100%;
 
-  .vc-header {
+  & .vc-header {
     background-color: oklch(var(--b1));
   }
   & .vc-weeks {
@@ -203,8 +204,3 @@ export default {
   }
 }
 </style>
-
-<!-- 
-[
-        
-      ] -->

@@ -1,5 +1,12 @@
 <script setup>
-const props = defineProps(['visibleColumns', 'state', 'deleteItem', 'entityType', 'toggleSelect'])
+const props = defineProps([
+  'state',
+  'deleteItem',
+  'entityType',
+  'toggleSelect',
+  'visibleColumns',
+  'fetchWithFilterFields',
+])
 </script>
 <template>
   <tr
@@ -15,6 +22,7 @@ const props = defineProps(['visibleColumns', 'state', 'deleteItem', 'entityType'
         :deleteItem="deleteItem"
         :entityType="entityType"
         :toggleSelect="toggleSelect"
+        :fetchWithFilterFields="fetchWithFilterFields"
       />
     </td>
   </tr>

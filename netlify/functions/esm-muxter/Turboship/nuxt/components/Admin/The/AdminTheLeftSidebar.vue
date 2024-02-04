@@ -29,11 +29,6 @@ onMounted(() => {
   const unsubscribe = bus.on(listener)
 })
 
-const router = useRouter()
-function redirect(entity) {
-  router.push(`/administrator/${entity}`)
-}
-
 const themeToggle = ref(null)
 function onToggleTheme(callback) {
   const checkbox = themeToggle.value
@@ -59,16 +54,16 @@ function onToggleTheme(callback) {
         v-for="foo in GlobalState.sidebar"
         :text="foo.label"
         :state="state"
-        @click="redirect(foo.path)"
+        @click="$router.push(foo.path)"
         :icon="foo.icon || TableCellsIcon"
-        :focused="router.currentRoute.value.fullPath.includes(foo.path)"
+        :focused="$router.currentRoute.value.fullPath.includes(foo.path)"
       />
       <div class="grow" />
       <div class="divider" />
       <TSidebarItem
         :text="'Calendar'"
         :state="state"
-        @click="() => router.push(`/administrator/calendar`)"
+        @click="() => $router.push(`/administrator/calendar`)"
         :icon="CalendarIcon"
       />
       <TSidebarItem
@@ -77,9 +72,9 @@ function onToggleTheme(callback) {
         :icon="BellIcon"
         :notification="state.notification"
         :notificationCount="state.notificationCount"
-        @click="() => router.push(`/administrator/chat`)"
+        @click="() => $router.push(`/administrator/chat`)"
       />
-      <TSidebarItem :text="'Map'" :state="state" @click="() => router.push(`/administrator/map`)" :icon="MapIcon" />
+      <TSidebarItem :text="'Map'" :state="state" @click="() => $router.push(`/administrator/map`)" :icon="MapIcon" />
       <TSidebarItem
         :text="'Design'"
         :state="state"
@@ -130,11 +125,11 @@ function onToggleTheme(callback) {
             />
           </svg>
           <svg
-            class="swap-off fill-white"
             width="24"
             height="24"
-            xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
+            class="swap-off fill-white"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"
@@ -159,8 +154,6 @@ function onToggleTheme(callback) {
         </div>
         <span v-text="'Loi Tran'" v-if="state.leftOpen" />
       </button>
-      <!-- <input type="checkbox" id="toggle" />
-      <div class="box"></div> -->
     </ul>
   </div>
 </template>
@@ -183,10 +176,6 @@ function onToggleTheme(callback) {
 
 #toggle:not(:checked) + .box {
   display: none;
-}
-
-#toggle:checked ~ .box {
-  /* display: none; */
 }
 
 #toggle:checked ~ .box {

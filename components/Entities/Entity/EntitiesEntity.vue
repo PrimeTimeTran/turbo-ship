@@ -12,18 +12,15 @@ function focusTab(idx) {
     toggle()
   }
 }
-
 function toggle() {
   open.value = !open.value
 }
-
 watch(
   () => store.collapsed,
   (collapsed) => {
     open.value = !collapsed
   },
 )
-
 const isOpen = computed(() => {
   return open.value
 })
@@ -32,44 +29,41 @@ const isOpen = computed(() => {
   <section :key="entity._id" :id="`${entity.name}-${entity._id}`" class="ml-1 p-1">
     <div role="tablist" class="flex tabs tabs-lifted">
       <input
-        @click="focusTab(0)"
-        type="radio"
+        checked
         role="tab"
-        class="tab font-semibold flex-1"
+        type="radio"
+        @click="focusTab(0)"
+        :name="`entity-tab-${entity._id}`"
+        class="text-white tab font-semibold flex-1"
+        :aria-label="`${capitalize(entity.name)} (Attributes)`"
         :class="{
           'bg-primary': entityIdx % 2 == 0,
-          // 'odd-tab': !(entityIdx % 2 == 0),
           'bg-accent': !(entityIdx % 2 == 0),
           'active-tab-class': tabIdx === 0,
         }"
-        :aria-label="`${capitalize(entity.name)} (Attributes)`"
-        :name="`entity-tab-${entity._id}`"
-        checked
       />
       <input
-        @click="focusTab(1)"
-        type="radio"
         role="tab"
-        class="tab font-semibold flex-1"
+        type="radio"
+        @click="focusTab(1)"
         aria-label="Validations"
+        class="text-white tab font-semibold flex-1"
         :name="`entity-tab-${entity._id}`"
         :class="{
           'bg-primary': entityIdx % 2 == 0,
-          // 'odd-tab': !(entityIdx % 2 == 0),
           'bg-accent': !(entityIdx % 2 == 0),
           'active-tab-class': tabIdx === 1,
         }"
       />
       <input
-        @click="focusTab(2)"
-        type="radio"
         role="tab"
-        class="tab font-semibold flex-1"
+        type="radio"
+        @click="focusTab(2)"
         aria-label="Settings"
         :name="`entity-tab-${entity._id}`"
+        class="text-white tab font-semibold flex-1"
         :class="{
           'bg-primary': entityIdx % 2 == 0,
-          // 'odd-tab': !(entityIdx % 2 == 0),
           'bg-accent': !(entityIdx % 2 == 0),
           'active-tab-class': tabIdx === 2,
         }"

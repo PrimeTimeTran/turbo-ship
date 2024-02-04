@@ -3,14 +3,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-// import 'package:flutter/material.dart';
 import 'package:turboship/all.dart';
 
 Future<void> main() async {
   runZonedGuarded(_runMyApp, _reportError);
 }
-
-// void main() => runApp(const ScaffoldExampleApp());
 
 void _reportError(Object error, StackTrace stackTrace) {
   LogUtil.e(

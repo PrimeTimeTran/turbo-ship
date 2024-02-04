@@ -6,15 +6,31 @@ const navItems = [
     icon: 'fa-house',
   },
   {
+    url: '/articles/vue/vue-1-fundamentals',
+    name: 'Articles',
+    icon: 'fa-newspaper',
+  },
+  {
+    url: '/entities',
+    name: 'Entity Builder',
+    icon: 'fa-cubes',
+  },
+  // {
+  //   url: '/news',
+  //   name: 'News',
+  //   icon: 'fa-newspaper',
+  // },
+  // {
+  //   url: '/consulting',
+  //   name: 'Consulting',
+  //   icon: 'fa-cubes',
+  // },
+  {
     url: '/administrator/dashboard',
     name: 'Dashboard',
     icon: 'fa-dashboard',
   },
-  {
-    url: '/administrator/dashboard',
-    name: 'Charts',
-    icon: 'fa-chart-pie',
-  },
+
   {
     url: '/administrator/auditlogs',
     name: 'Audits',
@@ -27,13 +43,8 @@ const navItems = [
   },
   {
     url: '/theme/ui',
-    name: 'Design Guide',
+    name: 'UIKit',
     icon: 'fa-palette',
-  },
-  {
-    url: '/entities',
-    name: 'Entity Builder',
-    icon: 'fa-cubes',
   },
 ]
 </script>
@@ -42,10 +53,10 @@ const navItems = [
     :to="item.url"
     :key="item.name"
     v-for="item in navItems"
-    class="flex lg:flex-none items-center lg:px-6 py-3 text-gray-500 hover:text-green-400 dark:text-white dark:hover:text-green-400 cursor-pointer transition-colors duration-300 text-xs font-bold"
+    class="flex lg:flex-none items-center lg:px-6 py-3 text-gray-500 hover:text-green-500 dark:text-gray dark:hover:text-green-500 cursor-pointer transition-colors duration-300 text-xs font-bold"
   >
     <FontAwesomeIcon :icon="item.icon" class="mr-3" />
-    <span v-text="item.name"></span>
+    <span v-text="item.name" />
   </NuxtLink>
   <TheNavbarRight id="navItems-right" />
 </template>

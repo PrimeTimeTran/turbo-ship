@@ -2,7 +2,6 @@ assets/env/.env.development
 assets/icons
 assets/data
 assets/images
-lib/config
 lib/core
 lib/data
 lib/domain

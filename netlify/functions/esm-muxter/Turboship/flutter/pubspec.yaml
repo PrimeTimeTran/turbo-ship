@@ -49,6 +49,9 @@ dependencies:
   jwt_decoder: ^2.0.1
   json_annotation: ^4.8.1
   loader_overlay: ^4.0.0
+  cloud_firestore_odm: ^1.0.0-dev.81
+  animations: ^2.0.10
+  slider_button: ^2.1.0
   # icon_forest:
   #   path: ../../icon_forest
 
@@ -57,11 +60,12 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^3.0.1
   # code generator
-  build_runner: ^2.4.6
+  build_runner: ^2.4.7
   injectable_generator: ^2.1.5
   freezed: ^2.3.2
-  json_serializable: ^6.6.0
+  json_serializable: ^6.7.1
   flutter_gen_runner: ^5.2.0
+  cloud_firestore_odm_generator: ^1.0.0-dev.81
 
 flutter_gen:
   output: lib/presentation/resource/gen
@@ -76,7 +80,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/data/
+    - assets/env/
     - assets/icons/
     - assets/images/
-    - assets/env/
-    - assets/data/
+    - assets/images/ftue/

@@ -1,7 +1,5 @@
 <script setup>
-import _ from 'lodash'
-
-const props = defineProps(['entity', 'entityType'])
+const props = defineProps(['entity', 'entityType', 'fetchWithFilterFields'])
 const items = ref([])
 
 items.value = TFormHelper.setupFormFields(props.entity, props.entityType)
@@ -10,12 +8,6 @@ function toggleModal(id) {
   if (modal) {
     modal.showModal()
   }
-}
-
-async function submit(fields) {
-  console.log({
-    fields,
-  })
 }
 </script>
 <template>
@@ -30,7 +22,7 @@ async function submit(fields) {
           ✕
         </button>
       </form>
-      <AdminEntityForm :entity="entity" :entityType="entityType" />
+      <AdminEntityForm :entity="entity" :entityType="entityType" :fetchWithFilterFields="fetchWithFilterFields" />
       <form method="dialog" class="modal-backdrop">
         <button @click="toggleModal(entity._id)">close</button>
       </form>

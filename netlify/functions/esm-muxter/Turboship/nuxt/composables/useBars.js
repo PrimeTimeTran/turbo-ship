@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { ref } from 'vue'
 import { useFetch } from '@vueuse/core'
 
@@ -14,7 +15,6 @@ export function useBars(resource) {
     pageCount: ref(0),
     totalRecords: ref(0),
   })
-
   const addUser = async (fields) => {
     try {
       const { data, error } = await useFetch(baseURL, {
@@ -37,12 +37,42 @@ export function useBars(resource) {
   onBeforeMount(async () => {
     const { data, error } = await useFetch(baseURL + `?page=${meta.page}&limit=${meta.limit}`)
     if (!error.value) {
+      console.log({
+        baseURL,
+        gogogo: data.value,
+      })
       const val = JSON.parse(data.value)
       Object.assign(meta, val.meta)
       items.value = val?.data
     }
   })
-  const fetchFilteredEntity = async (fields) => {
+  async function saveEntity(id, fields) {
+    try {
+      const url = makeApiQueryString(baseURL + `/${id}  `, {})
+      let { data, error } = await useFetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(fields),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+      console.log({
+        data,
+      })
+      // if (data) {
+      //   const val = JSON.parse(data.value)
+      //   meta.page = val.meta?.page || 1
+      //   meta.totalRecords = val.meta?.totalRecords
+      //   Object.assign(meta, val.meta)
+      //   items.value = val?.data
+      // }
+    } catch (error) {
+      console.log({
+        error,
+      })
+    }
+  }
+  const fetchWithFilterFields = async (fields) => {
     meta.page = 1
     const queryParams = new URLSearchParams(Object.entries(fields)).toString()
     params.value = queryParams
@@ -87,7 +117,6 @@ export function useBars(resource) {
       console.error('Unexpected error:', error)
     }
   }
-
   const sort = (field, direction) => {
     if (direction === 'ASC') {
       items.value = items.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? 1 : -1))
@@ -95,13 +124,13 @@ export function useBars(resource) {
       items.value = items.value.sort((a, b) => ((a[field] ?? '') > (b[field] ?? '') ? -1 : 1))
     }
   }
-
   return {
     items,
     sort,
     meta,
     addUser,
     fetchPage,
-    fetchFilteredEntity,
+    saveEntity,
+    fetchWithFilterFields,
   }
 }
