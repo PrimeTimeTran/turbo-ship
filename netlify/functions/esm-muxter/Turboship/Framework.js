@@ -28,7 +28,7 @@ export default class Framework {
     const name = this.options.frameworkName
     let basePath = '/var/task/netlify/functions/esm-muxter/TurboshipCJS/'
     if (isDeveloping) {
-      basePath = '/Users/loi/Desktop/work/turboship/web/netlify/functions/esm-muxter/Turboship/'
+      basePath = '/Users/future/Documents/work/web/netlify/functions/esm-muxter/Turboship/'
     }
     basePath += name
     getZippedFolderSync(basePath, this.zip, this.options)

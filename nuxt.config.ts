@@ -55,12 +55,13 @@ export default defineNuxtConfig({
   mongoose: {
     options: {},
     modelsDir: 'models',
+    // Turbo: Hanging in Netlify
+    // This hands in Netlify during the build process. So we have to either comment it out or
+    // build locally then upload build to distribute using that service.
     uri: process.env.MONGODB_URI,
   },
   hooks: {
     'build:done': (go: HookResult) => {
-      console.log('Done building')
-      console.log('Should disconnect now')
       mongoose.disconnect()
     },
   },

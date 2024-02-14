@@ -1196,7 +1196,7 @@ export class SocialSeeder {
     function createUser() {
       let randomNum = faker.number.int({ min: 1, max: 10 })
       let sex = faker.person.sex()
-      let urlAvatar = generateRandomPersonAvatarUrl(sex)
+      let urlAvatar = SocialSeeder.generateRandomPersonAvatarUrl(sex)
       let roles = _.sampleSize(['Admin', 'EndUser'], randomNum >= 9 ? 1 : 2)
       return {
         sex,
