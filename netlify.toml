@@ -10,8 +10,7 @@
 
 [build]
   publish = "dist"
-
-  command = "nuxt build && npx serve .output/public"
+  command = "npm run build"
   functions = "netlify/functions"
 
 [functions]
