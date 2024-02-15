@@ -1,16 +1,16 @@
 [[redirects]]
   from = "/*"
-  to = "/index.html"
   status = 200
+  to = "/index.html"
 
 [dev]
   targetPort = 3005
-  publish = "./.output/public/index.html"
   functionsPort = 8888
+  publish = "./.output/public/index.html"
 
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "npm run generate"
   functions = "netlify/functions"
 
 [functions]
@@ -25,11 +25,6 @@
   AUTH_TOKEN_EXPIRES_IN="3650 days"
   API_URL="https://turboship.ltran.net/api"
   GENERATE_URL="https://turboship.ltran.net/.netlify/functions/build-muxter"
-
-[context.production]
-  publish="dist"
-  command="npm run build"
-  functions = "netlify/functions"
 
 [context.production.functions]
   external_node_modules=["shikiji/onig.wasm", "tslib"]

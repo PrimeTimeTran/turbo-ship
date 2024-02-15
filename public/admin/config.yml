@@ -70,6 +70,34 @@ collections:
         widget: list
         field: { label: Image, name: image, widget: image }
 
+  - name: posts
+    create: true
+    label: Post
+    folder: content/Posts
+    format: frontmatter
+    slug: '{{fields.createdAt}}-{{slug}}'
+    nested:
+      depth: 100
+      summary: '{{title}}'
+    fields:
+      - {
+          label: 'Created Date',
+          name: 'createdAt',
+          widget: 'datetime',
+          format: 'YYYY-MM-DD',
+          date_format: 'YYYY-MM-DD',
+          time_format: false,
+        }
+      - { label: 'Title', name: 'title', widget: 'string', required: true }
+      - { label: 'Description', name: 'description', widget: 'string', required: false }
+      - { label: 'Tag', name: 'tags', widget: 'string', required: false }
+      - { label: 'Body', name: 'body', widget: 'markdown', required: false }
+      - { label: 'Featured Image', name: 'thumbnail', widget: 'image', required: false }
+      - label: Images
+        name: images
+        widget: list
+        field: { label: Image, name: image, widget: image }
+
   - name: 'tag'
     label: 'Tags'
     create: true

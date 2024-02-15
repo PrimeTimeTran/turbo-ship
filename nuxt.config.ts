@@ -8,6 +8,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
+  devServer: { port: 3005 },
+  ignore: ['/mobile', '/notes', '/utils/seeds'],
   routeRules: {
     '/**': { prerender: true },
     '/theme/**': { prerender: true },
@@ -33,14 +35,12 @@ export default defineNuxtConfig({
       generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
     },
   },
-  devServer: { port: 3005 },
   devtools: {
     enabled: true,
     timeline: {
       enabled: true,
     },
   },
-  ignore: ['/mobile', '/notes', '/utils/seeds'],
   plugins: [
     '~/plugins/fontawesome.ts',
     { src: '~/plugins/marked.js' },
