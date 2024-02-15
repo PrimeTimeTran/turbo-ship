@@ -9,8 +9,8 @@
   functionsPort = 8888
 
 [build]
-  command = "npm run build"
   publish = "dist"
+  command = "npm run build"
   functions = "netlify/functions"
 
 [functions]
@@ -29,7 +29,7 @@
 [context.production]
   publish="dist"
   command="npm run build"
-  [context.production.environment]
+  functions = "netlify/functions"
 
 [context.production.functions]
   external_node_modules=["shikiji/onig.wasm", "tslib"]
