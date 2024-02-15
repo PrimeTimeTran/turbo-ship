@@ -9,8 +9,8 @@
   functionsPort = 8888
 
 [build]
-  publish = "./dist"
-  command = "npm run build"
+  command = "nuxt generate"
+  publish = "dist"
   functions = "netlify/functions"
 
 [functions]
