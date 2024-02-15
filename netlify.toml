@@ -20,7 +20,6 @@
   AUTH_TOKEN_EXPIRES_IN="3650 days"
   API_URL="https://turboship.ltran.net/api"
   GENERATE_URL="https://turboship.ltran.net/.netlify/functions/build-muxter"
-  MONGODB_URI="mongodb+srv://primetimetran:4pWLgLLS1Bm7FgJk@cluster0.xfhlaio.mongodb.net/next_unicorn"
 
 [context.production]
   command="echo 'production'"
