@@ -1,3 +1,8 @@
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [dev]
   targetPort = 3005
   publish = "./.output/public/index.html"
