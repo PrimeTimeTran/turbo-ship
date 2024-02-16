@@ -11,9 +11,10 @@ export default defineNuxtConfig({
   devServer: { port: 3005 },
   ignore: ['/mobile', '/notes', '/utils/seeds'],
   routeRules: {
+    '/': { prerender: true, ssr: false },
     '/**': { prerender: true },
     '/theme/**': { prerender: true },
-    '/articles/**/**/**': { prerender: true },
+    '/articles/**/**/**': { prerender: true, ssr: true },
     '/api/**': { cors: true, ssr: false },
     '/administrator/**': { ssr: false },
   },
@@ -55,14 +56,12 @@ export default defineNuxtConfig({
   mongoose: {
     options: {},
     modelsDir: 'models',
-    // Turbo: Hanging in Netlify
-    // This hands in Netlify during the build process. So we have to either comment it out or
-    // build locally then upload build to distribute using that service.
     uri: process.env.MONGODB_URI,
   },
   hooks: {
     'build:done': (go: HookResult) => {
       mongoose.disconnect()
+      console.log('Disconnected!')
     },
   },
   css: ['@fortawesome/fontawesome-svg-core/styles.css', '~/assets/css/main.css'],
