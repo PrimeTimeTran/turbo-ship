@@ -80,8 +80,8 @@ function onToggleTheme(callback) {
         :state="state"
         :icon="PuzzlePieceIcon"
         :options="[
-          { text: 'Theme/UI', route: '/theme/ui', icon: ArtIcon },
-          { text: 'Components', route: '/theme/components', icon: ArtIcon2 },
+          { text: 'Theme/UI', route: '/administrator/ui', icon: ArtIcon },
+          { text: 'Components', route: '/administrator/components', icon: ArtIcon2 },
         ]"
       />
       <TSidebarItem
