@@ -5,6 +5,12 @@ description: Overview
 ---
 
 # Vue Overview
+I intend to write on and consolidate my understanding of the technologies I've used in my career within this blog.
+
+I start with Vue first because it's the framework which I've built this blog with, among many others.
+
+For many the [official documentation](https://vuejs.org/guide/introduction.html) will undoubtedly them better explanations of concepts than this blog will.
+
 
 ## Concepts
 

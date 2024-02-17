@@ -5,9 +5,7 @@ description: Vue Fundamentals
 ---
 # Vue Fundamentals
 
-I think of building web apps as putting LEGOs together. 
-
-Components are the individual blocks of a 
+I think of building web apps as putting LEGOs together.
 
 ## Components
 

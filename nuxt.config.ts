@@ -9,7 +9,7 @@ const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
   devServer: { port: 3005 },
-  ignore: ['/mobile', '/notes', '/utils/seeds'],
+  ignore: ['/mobile', '/notes', '/utils/seeds', '/src/**/**'],
   routeRules: {
     '/': { prerender: true, ssr: false },
     '/**': { prerender: true },
