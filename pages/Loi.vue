@@ -1,7 +1,9 @@
 <script setup>
-definePageMeta({
-  layout: 't-three-columns',
-})
+// definePageMeta({
+//   layout: 't-three-columns',
+// })
 </script>
-<template></template>
+<template>
+  <Table />
+</template>
 <style></style>

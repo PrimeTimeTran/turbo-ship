@@ -10,10 +10,6 @@ Don't repeat yourself. Use Turboship to generate the source code common to virtu
   - Routing
   - APIs
   - Models
-  - 
-  - 
-  - 
-
 
 ## Dependencies
 - [Git](https://git-scm.com/)
@@ -30,6 +26,12 @@ Don't repeat yourself. Use Turboship to generate the source code common to virtu
 
 ## Templates
 Take advantage of common web app types with our templates.
+
+
+## Cheatsheet
+
+- ./components/I - Internal components **not** shipped/generated for customers
+- ./components/T - External components shipped/generated to customers
 
 ## Research
 At the time of starting the project these were the most popular frameworks [statistically speaking](https://survey.stackoverflow.co/2023/#technology-most-popular-technologies) for both front & backend.

@@ -52,7 +52,7 @@ function removeTodo(id) {
           <XIcon @click="removeTodo(todo.id)" />
         </li>
       </ol>
-      <VOther />
+      <IOther />
     </div>
   </div>
 </template>

@@ -41,7 +41,7 @@ ensureLoad(scriptUrls.hotkeys)
       </div>
     </template>
     <template v-slot:scripts>
-      <VDevTools />
+      <IDevTools />
     </template>
     <template v-slot:default>
       <slot />

@@ -250,13 +250,13 @@ const templateItems = [
 <template>
   <div class="flex flex-col px-2 z-50 bg-base-100">
     <div class="flex flex-row bg-base-100">
-      <VDropdown left="true" title="File" underline="F" :items="fileItems" />
-      <VDropdown title="View" underline="V" :items="viewItems" />
-      <VDropdown underline="E" title="Entities" :items="entitiesItems" />
-      <VDropdown title="Templates" underline="T" :items="templateItems" />
-      <VDropdown underline="a" title="Relationships" :items="[]" />
-      <VDropdown underline="b" title="Feedback" :items="[]" />
-      <VDropdown right="true" title="Help" underline="H" :items="[]" />
+      <IDropdown left="true" title="File" underline="F" :items="fileItems" />
+      <IDropdown title="View" underline="V" :items="viewItems" />
+      <IDropdown underline="E" title="Entities" :items="entitiesItems" />
+      <IDropdown title="Templates" underline="T" :items="templateItems" />
+      <IDropdown underline="a" title="Relationships" :items="[]" />
+      <IDropdown underline="b" title="Feedback" :items="[]" />
+      <IDropdown right="true" title="Help" underline="H" :items="[]" />
     </div>
   </div>
 </template>

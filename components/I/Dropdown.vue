@@ -48,22 +48,22 @@ function toggleOpen() {
                   item.groupEnd ? 'border-b-2 border-b-gray-300' : '',
                 ]"
               >
-                <VToolTip
+                <IToolTip
                   v-if="item.doubleKey"
                   :id="item.id"
                   :tip="item.tip"
                   :item="item"
                   :tool="replaceWithDoubleUnderline(item.name, item.underline)"
                 >
-                </VToolTip>
-                <VToolTip
+                </IToolTip>
+                <IToolTip
                   v-else
                   :item="item"
                   :id="item.id"
                   :tip="item.tip"
                   :tool="replaceWithUnderline(item.name, item.underline)"
                 >
-                </VToolTip>
+                </IToolTip>
               </button>
             </MenuItem>
           </div>

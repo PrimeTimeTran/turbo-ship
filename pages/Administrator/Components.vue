@@ -20,5 +20,5 @@ const AmazonIcon = h(Icon, { name: 'logos:amazon', color: 'black' })
 const AppleIcon = h(Icon, { name: 'logos:apple', color: 'black' })
 </script>
 <template>
-  <ITable />
+  <Demo.Table />
 </template>

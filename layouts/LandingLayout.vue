@@ -57,12 +57,12 @@ definePageMeta({
           </div>
 
           <div class="lg:relative lg:-left-40 flex-1 grid grid-cols-1 gap-8 md:grid-cols-12">
-            <VCard :title="'Data Modeling'" body="Visual data modeling tool to help you visualize your tables" />
-            <VCard :title="'Pre-built Templates'" body="Battle tested schemas to get you going wicked fast" />
-            <VCard :title="'Admin Dashboard'" body="Tooling for stakeholders, clients & 3rd parties" />
-            <VCard :title="'Mobile App'" body="Because its better to have and not need than need and not have" />
-            <VCard :title="'Audit Logs'" body="To ensure that you're ready to scale from the very beginning" />
-            <VCard :title="'Roles'" body="Rest assured that access is limited using prebuilt roles" />
+            <ICard :title="'Data Modeling'" body="Visual data modeling tool to help you visualize your tables" />
+            <ICard :title="'Pre-built Templates'" body="Battle tested schemas to get you going wicked fast" />
+            <ICard :title="'Admin Dashboard'" body="Tooling for stakeholders, clients & 3rd parties" />
+            <ICard :title="'Mobile App'" body="Because its better to have and not need than need and not have" />
+            <ICard :title="'Audit Logs'" body="To ensure that you're ready to scale from the very beginning" />
+            <ICard :title="'Roles'" body="Rest assured that access is limited using prebuilt roles" />
           </div>
         </div>
       </div>

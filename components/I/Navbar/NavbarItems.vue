@@ -37,5 +37,6 @@ const navItems = [
     <FontAwesomeIcon :icon="item.icon" class="mr-3" />
     <span v-text="item.name"></span>
   </NuxtLink>
+
   <TheNavbarRight id="navItems-right" />
 </template>
