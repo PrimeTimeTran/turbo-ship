@@ -11,6 +11,7 @@ const state = reactive({
   localSort: ref([]),
   attributesWithTypes: ref([]),
 })
+
 function setupAttributes() {
   let cols = GlobalState.entityCols(entityType)
   cols = cols.filter((col) => !state.hidden.includes(col.name))

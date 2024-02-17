@@ -6,46 +6,6 @@ definePageMeta({
   layoutTransition: true,
 })
 </script>
-<template>
-  <div class="text-center section">
-    <VCalendar
-      class="custom-calendar max-w-full max-h-full bg-base-100"
-      :masks="masks"
-      :attributes="attributes"
-      disable-page-swipe
-      is-expanded
-    >
-      <template v-slot:day-content="{ day, attributes }">
-        <div
-          class="flex flex-col h-full overflow-hidden"
-          @click="
-            () => {
-              addEvent(day)
-            }
-          "
-        >
-          <span class="day-label text-sm primary-content dark:text-white">{{ day.day }}</span>
-          <div class="flex-grow overflow-y-auto overflow-x-auto">
-            <p
-              v-for="attr in attributes"
-              :key="attr.key"
-              class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1"
-              :class="attr.customData.class"
-              @click="
-                (e) => {
-                  removeEvent(attr)
-                  e.stopPropagation()
-                }
-              "
-            >
-              {{ attr.customData.title }}
-            </p>
-          </div>
-        </div>
-      </template>
-    </VCalendar>
-  </div>
-</template>
 
 <script>
 export default {
@@ -111,6 +71,48 @@ export default {
   },
 }
 </script>
+
+<template>
+  <div class="text-center section w-100 flex justify-end">
+    <VCalendar
+      class="custom-calendar max-w-full max-h-full bg-base-100"
+      :masks="masks"
+      :attributes="attributes"
+      disable-page-swipe
+      is-expanded
+    >
+      <template v-slot:day-content="{ day, attributes }">
+        <div
+          class="flex flex-col h-full overflow-hidden"
+          @click="
+            () => {
+              addEvent(day)
+            }
+          "
+        >
+          <span class="day-label text-sm primary-content dark:text-white">{{ day.day }}</span>
+          <div class="flex-grow overflow-y-auto overflow-x-auto">
+            <p
+              v-for="attr in attributes"
+              :key="attr.key"
+              class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1"
+              :class="attr.customData.class"
+              @click="
+                (e) => {
+                  removeEvent(attr)
+                  e.stopPropagation()
+                }
+              "
+            >
+              {{ attr.customData.title }}
+            </p>
+          </div>
+        </div>
+      </template>
+    </VCalendar>
+    <VideoContainer />
+  </div>
+</template>
 
 <style lang="postcss" scoped>
 ::-webkit-scrollbar {
