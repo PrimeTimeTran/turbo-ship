@@ -43,7 +43,7 @@ export default {
     <div class="container px-6 py-12 mx-auto">
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
         <div class="sm-col">
-          <p class="text-black dark:text-white font-semibold">Frameworks</p>
+          <p class="text-black dark:text-white font-semibold">Frontend</p>
           <div class="flex flex-col items-start mt-5 space-y-2">
             <NuxtLink
               :to="item.url"
@@ -55,7 +55,7 @@ export default {
           </div>
         </div>
         <div>
-          <p class="text-black dark:text-white font-semibold">Industries</p>
+          <p class="text-black dark:text-white font-semibold">Backend</p>
           <div class="flex flex-col items-start mt-5 space-y-2">
             <NuxtLink
               v-for="item in backends"
@@ -78,3 +78,5 @@ export default {
     </div>
   </footer>
 </template>
+
+<!-- https://www.termsofservicegenerator.net/live.php?token=f3JEmKqFRtYxYETD3FEGfDbAiHn9j6y4 -->

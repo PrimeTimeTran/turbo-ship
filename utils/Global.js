@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { ClockIcon, ChartPieIcon, UserGroupIcon } from '@heroicons/vue/20/solid'
 
 export class GlobalState {
+  static name = 'Name'
   static entityNames = [
     'auditlogs',
     'users',
@@ -26,11 +27,14 @@ export class GlobalState {
     return attributes
   }
   static entityCols(entityName) {
+    // Turbo:
+    // In the Admin dashboard we want the ellipsis & checkbox columns to be on the
+    // far left of each resources table.
     // Sort cols => primitives, enums, relations
     // Add empty & _id cols to the start for ellipsis & checkbox respectively
-    let thisEntity = this.entities[entityName]
-    let attributes = Object.keys(thisEntity).filter((a) => a !== '_id')
-    attributes = Object.entries(thisEntity)
+    let resource = this.entities[entityName]
+    let attributes = Object.keys(resource).filter((a) => a !== '_id')
+    attributes = Object.entries(resource)
       .map(([k, v]) => ({ name: k, ...v }))
       .filter((a) => a.name !== '_id')
     attributes = Type.sortOnType(attributes)

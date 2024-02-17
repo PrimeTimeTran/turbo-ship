@@ -138,7 +138,6 @@ export class Utils {
       return pt
     })
   }
-
   static colorize(opaque) {
     return (ctx) => {
       const v = ctx.parsed.y
@@ -546,7 +545,6 @@ export const chartData = {
       ],
     },
   },
-
   line1: {
     type: 'line',
     data: {

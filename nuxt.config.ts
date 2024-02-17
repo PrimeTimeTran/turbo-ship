@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     prerender: {
       failOnError: false,
       routes: ['/', '/articles/**/**/**', '/theme/**'],
-      ignore: ['/administrator/**'],
+      ignore: ['/administrator/**', '/src/**/**'],
     },
     experimental: {
       openAPI: true,
