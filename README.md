@@ -1,16 +1,35 @@
 # Turboship
 A template engine built with meta programming.
 
+Generate source code for your next project quickly & easily by modeling your resources.
+
+Don't repeat yourself. Use Turboship to generate the source code common to virtually any meaningful project including
+  - Admin Dashboard
+  - Audit Logs
+  - Authentication
+  - Routing
+  - APIs
+  - Models
+  - 
+  - 
+  - 
+
+
 ## Dependencies
-- [ ] Git
-- [ ] Vue
-- [ ] Tailwind
-- [ ] DaisyUI
-- [ ] Nuxt
-- [ ] NodeJS
-- [ ] MongoDB
-- [ ] Flutter
-- [ ] React Native
+- [Git](https://git-scm.com/)
+- [Vue](https://vuejs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+- [Nuxt](https://nuxt.com/)
+- [NodeJS](https://nodejs.org/en)
+- [MongoDB](https://www.mongodb.com/)
+- [Flutter](https://flutter.dev/)
+- [React Native](https://reactnative.dev/)
+- [DecapCMS](https://decapcms.org/)
+- [Firebase](https://firebase.google.com/)
+
+## Templates
+Take advantage of common web app types with our templates.
 
 ## Research
 At the time of starting the project these were the most popular frameworks [statistically speaking](https://survey.stackoverflow.co/2023/#technology-most-popular-technologies) for both front & backend.
