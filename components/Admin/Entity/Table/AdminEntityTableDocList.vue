@@ -13,11 +13,14 @@ const count = computed(() => {
     <div
       class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box overflow-y-auto w-64 h-96 max-h-96 overflow-auto scrollbar-hide"
     >
-      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 bg-base-100 rounded-box">
+      <ul v-if="!_.isString(items)" tabindex="0" class="dropdown-content z-[1] menu p-2 bg-base-100 rounded-box">
         <li v-for="item of items">
           <a v-text="item" />
         </li>
       </ul>
+      <div v-else>
+        {{ items }}
+      </div>
     </div>
   </div>
 </template>

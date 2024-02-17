@@ -4,14 +4,15 @@
   "files.exclude": {
     // ########################
     // General Focus Start:
+    ".nitro": true,
     ".yarn": true,
     ".netlify": true,
     "tsconfig-base.json": true,
     "tsconfig-cjs.json": true,
-    // "**/dist": true,
+    "**/dist": true,
     "**/.git": true,
     "**/.nuxt": true,
-    // "**/.output": true,
+    "**/.output": true,
     "**/error.vue": true,
     "**/options.vite": true,
     "**/node_modules": true,

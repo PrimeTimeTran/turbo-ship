@@ -39,8 +39,8 @@ function copy(field, text) {
     <div v-else-if="field.name !== ''">
       <AdminEntityTableDocList
         v-if="field.type === 'relation'"
-        :document="document"
         :field="field"
+        :document="document"
         :items="document[field.name]"
       />
       <span v-else-if="Type.dates.includes(field.type)" v-text="parseDate(text)" @click="copy(field, text)" />
@@ -68,8 +68,8 @@ function copy(field, text) {
         </span>
       </span>
       <span
-        @click="copy(field, text)"
         v-else-if="field.type === 'enumerator'"
+        @click="copy(field, text)"
         class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold"
         :class="{ [`bg-${enumColor(entityType, field, document, text)}-500`]: true }"
       >

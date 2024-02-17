@@ -112,6 +112,9 @@ function buildEntityDefinition(e) {
       })
     }
   }
+  function addRelationType(attribute) {
+    return `relation: '${attribute.relation.type}',`
+  }
   setupAttributes()
   return `${e.plural}: {
     ${e.attributes.map(
@@ -119,6 +122,7 @@ function buildEntityDefinition(e) {
       ${a.name}: {
         type: '${a.type}',
         label: '${a.label}',
+        ${a?.type === 'relation' ? addRelationType(a) : ''}
         placeholder: '${a.placeholder ? a.placeholder : ''}',
         ${buildOptions(a)}
       } 
@@ -143,6 +147,16 @@ export const frameworkMap = {
 
         export class GlobalState { 
           static entityNames = ['auditlogs', ${buildEntities(entities)}]
+          static formSortedFields(entityName) {
+            // Sort fields => primitives, enums, relations
+            const thisEntity = this.entities[entityName]
+            let attributes = Object.keys(thisEntity).filter((a) => a !== '_id')
+            attributes = Object.entries(thisEntity)
+              .map(([k, v]) => ({ name: k, ...v }))
+              .filter((a) => a.name !== '_id')
+            attributes = Type.sortOnType(attributes)
+            return attributes
+          }
           static entityCols(entityName) {
             // Sort cols => primitives, enums, relations
             // Add empty & _id cols to the start for ellipsis & checkbox respectively
