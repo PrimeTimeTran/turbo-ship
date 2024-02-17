@@ -22,16 +22,6 @@ const navItems = [
     dropdown: true,
     links: [
       {
-        url: '/administrator/ui',
-        name: 'UIKit',
-        icon: 'fa-palette',
-      },
-      {
-        url: '/administrator/calendar',
-        name: 'Calendar',
-        icon: 'fa-calendar',
-      },
-      {
         url: '/administrator/dashboard',
         name: 'Dashboard',
         icon: 'fa-dashboard',
@@ -40,6 +30,16 @@ const navItems = [
         url: '/administrator/auditlogs',
         name: 'Audits',
         icon: 'fa-blog',
+      },
+      {
+        url: '/administrator/ui',
+        name: 'UIKit',
+        icon: 'fa-palette',
+      },
+      {
+        url: '/administrator/calendar',
+        name: 'Calendar',
+        icon: 'fa-calendar',
       },
     ],
   },

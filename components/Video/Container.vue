@@ -60,8 +60,7 @@ const draggableContainer = document.getElementById('draggable-container')
   margin: 20px;
   position: fixed;
   padding-top: 30px;
-  background-color: blue;
-  cursor: move; /* Add cursor style for draggable */
+  cursor: move;
 }
 
 iframe {
