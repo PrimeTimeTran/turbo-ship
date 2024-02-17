@@ -4,6 +4,7 @@
     "strict": true
   },
   "exclude": [
+    "./src/**",
     "./composables/useEntities.ts",
     "./server/middleware/02.user.global.ts",
     "server/utils/Turboship/nuxt",
