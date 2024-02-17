@@ -1,4 +1,20 @@
-https://survey.stackoverflow.co/2023/#technology-most-popular-technologies
+# Turboship
+A template engine built with meta programming.
+
+## Dependencies
+- [ ] Git
+- [ ] Vue
+- [ ] Tailwind
+- [ ] DaisyUI
+- [ ] Nuxt
+- [ ] NodeJS
+- [ ] MongoDB
+- [ ] Flutter
+- [ ] React Native
+
+## Research
+At the time of starting the project these were the most popular frameworks [statistically speaking](https://survey.stackoverflow.co/2023/#technology-most-popular-technologies).
+
 
 # Backend
 Node.js
@@ -17,20 +33,3 @@ Flutter
 
 React Native
 8.43%
-
-
-
-UI 
-- https://vuejs.org/
-- https://tailwindcss.com/docs
-  - https://headlessui.com/vue
-- https://flowbite.com/docs
-
-
-FS
-- https://nuxt.com/
-
-# Flutter 
-
-- Gen localizations
-make gen-l10n
