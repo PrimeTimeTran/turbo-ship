@@ -3,10 +3,10 @@ import { useEventBus } from '@vueuse/core'
 
 export function useChat(id) {
   const chatId = ref(id)
-  const user = ref({ fullName: ref('') })
   const userName = ref('')
   const sortedMessages = ref([])
   const unsubscribeMsgEvent = ref(null)
+  const user = ref({ fullName: ref('') })
   const state = reactive({ notificationCount: ref(-1) })
 
   const db = useFirestore()
