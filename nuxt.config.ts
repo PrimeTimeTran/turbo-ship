@@ -80,6 +80,8 @@ export default defineNuxtConfig({
   ],
   alias: {
     '@netlify': path.resolve(__dirname, 'netlify'),
+    '@utils': path.resolve(__dirname, 'server/utils'),
+    '@security': path.resolve(__dirname, 'server/utils/security'),
   },
   app: {
     head: {

@@ -1,3 +1,4 @@
+import { mailWelcome } from '@utils/mailers'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   try {
@@ -8,8 +9,8 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Error: Email taken',
       })
     }
-
     const hash = await encryptPassword(body.password)
+    mailWelcome({ to: body.email })
     return await new User({ ...body, passwordDigest: hash }).save()
   } catch (error) {
     return error

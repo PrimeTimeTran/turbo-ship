@@ -15,6 +15,7 @@ layouts/default.vue
 layouts/TMainLayout.vue
 pages/Administrator
 pages/Administrator/Audit
+pages/Confirm-Email
 plugins/fontawesome.ts
 public/js/Hotkeys.js
 public/js/TShortcuts.js
@@ -26,6 +27,7 @@ server/models/Audit.model.js
 server/models/Audit/Audit.js
 server/utils/helpers
 server/utils/security
+server/utils/mailers.js
 stores/drawerRightStore.js
 utils/TApp.js
 utils/TChartData.js
