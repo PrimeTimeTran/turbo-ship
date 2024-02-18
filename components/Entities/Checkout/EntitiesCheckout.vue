@@ -2,7 +2,7 @@
 import { faker } from '@faker-js/faker/locale/af_ZA'
 const { invalids } = useEntities()
 const step = ref(0)
-const stepTitles = ['Validation', 'Mobile', 'Backend', 'Database']
+const stepTitles = ['Validation', 'Mobile', 'Backend', 'Database', 'Addons']
 
 const modalVisible = ref(false)
 
@@ -30,7 +30,7 @@ function showModal() {
 </script>
 
 <template>
-  <button class="btn invisible hidden" @click="showModal" id="iEntitiesCheckoutModalBtn">open modal</button>
+  <button class="btn invisible hidden" @click="showModal" id="iEntitiesCheckoutModalBtn">Open modal</button>
   <dialog id="iEntitiesCheckoutModal" class="modal">
     <div class="modal-box w-11/12 max-w-5xl h-4/6 flex flex-row justify-between items-center bg-base-100 space-x-6">
       <div class="flex flex-1 rounded-lg h-full w-full max-w-xl flex-col justify-between items-center p-4 border">
@@ -39,10 +39,11 @@ function showModal() {
             <div class="flex flex-2 flex-col justify-center items-start">
               <h1>{{ stepTitles[step] }}</h1>
               <p v-if="step === 0">These entities are invalid.</p>
-              <p v-if="step === 1">Available mobile frameworks</p>
-              <p v-if="step === 2">Available backend frameworks.</p>
-              <p v-if="step === 3">Firebase, SendGrid, Stripe</p>
-              <p v-if="step > 3">Congratulations</p>
+              <p v-if="step === 1">Choose mobile frameworks</p>
+              <p v-if="step === 2">Choose backend frameworks.</p>
+              <p v-if="step === 3">Choose DB type {{ step }}</p>
+              <p v-if="step === 4">Add Firebase, SendGrid, Stripe configurations</p>
+              <p v-if="step > 4">Generating!</p>
             </div>
             <div v-if="step === 0" class="flex flex-1 flex-col justify-around">
               <!-- <div>
@@ -75,8 +76,8 @@ function showModal() {
                 <div class="divider"></div>
                 <div class="form-control">
                   <label class="label cursor-pointer">
-                    <span class="label-text text-gray-400">React Native(Coming soon)</span>
-                    <input type="radio" name="radio-10" class="radio" disabled />
+                    <span class="label-text">React Native</span>
+                    <input type="radio" name="radio-10" class="radio radio-accent" />
                   </label>
                 </div>
               </div>
@@ -143,7 +144,16 @@ function showModal() {
         </div>
         <div class="flex flex-row space-x-2">
           <button class="btn btn-outline" @click="step > 0 ? (step = step - 1) : null">Back</button>
-          <button class="btn btn-wide btn-accent text-white" @click="step = step + 1">Next</button>
+          <button
+            class="btn btn-wide btn-accent text-white"
+            @click="
+              () => {
+                step += 1
+              }
+            "
+          >
+            Next
+          </button>
         </div>
       </div>
       <div class="flex rounded-lg h-full justify-end">

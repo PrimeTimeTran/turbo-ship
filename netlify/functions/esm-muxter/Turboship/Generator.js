@@ -3,12 +3,11 @@ import { ModelBuilder } from './builders/ModelBuilder.js'
 
 export default class Generator {
   constructor(e, options, zip) {
+    this.zip = zip
     this.entities = e
     this.options = options
-    this.zip = zip
     this.root = `${this.options.root}${this.options.backend}`
   }
-
   async buildGenesis() {
     const name = this.options.frameworkName
     if (name === 'nuxt') {
@@ -19,7 +18,6 @@ export default class Generator {
     }
     return this.zip
   }
-
   buildAdminUI(entities, options, zip) {
     try {
       let content = frameworkMap[options.backend].buildGlobalMeta(entities)
@@ -47,7 +45,6 @@ export default class Generator {
       })
     }
   }
-
   buildRoutes(routes, entities, options, zip) {
     try {
       zip.sync(() => {

@@ -21,7 +21,6 @@ export class ModelBuilder {
       this.buildModel()
     })
   }
-
   buildTransformation(attributes) {
     const fields = {}
     if (attributes) {
@@ -52,7 +51,6 @@ export class ModelBuilder {
     }
     return fields
   }
-
   buildModel = () => {
     const {
       e,
@@ -134,7 +132,6 @@ export class ModelBuilder {
     `
     return content
   }
-
   generateFields = (fields, name) => {
     const keys = Object.keys(fields)
     const values = []
@@ -155,7 +152,6 @@ export class ModelBuilder {
     }
     return [values, enumerators]
   }
-
   getType(type) {
     switch (type) {
       case 'Boolean':
@@ -184,7 +180,6 @@ export class ModelBuilder {
         return 'Schema.Types.ObjectId'
     }
   }
-
   buildSchema() {
     function buildRequired(required) {
       return required ? `required: ${required},` : ''
@@ -225,7 +220,6 @@ export class ModelBuilder {
     }
     return values.join(',')
   }
-
   buildEnumerators = (name, items) => {
     const enumeratorKeys = []
     for (const obj of items) {

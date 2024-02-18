@@ -298,4 +298,9 @@ export const frameworkMap = {
     version: '3.8.0',
     rootDirectories: ['lib'],
   },
+  rn: {
+    name: 'react-native',
+    version: '0.73.4',
+    rootDirectories: ['src'],
+  },
 }

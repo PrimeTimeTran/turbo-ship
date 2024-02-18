@@ -20,7 +20,7 @@ export default class Turboship {
       .option('-d, --debug', 'output extra debugging')
       .option('-l, --language <type>', 'language choice', 'js')
       .option('-b, --backend <type>', 'backend choice', 'nuxt')
-      .option('-m, --mobile <type>', 'mobile choice', 'flutter')
+      .option('-m, --mobile <type>', 'mobile choice', 'rn')
       .option('-e, --entities <letters...>', 'entities included', 'user')
     program.parse(process.argv)
     let options = program.opts()
@@ -38,8 +38,7 @@ export default class Turboship {
   }
 
   async generate() {
-    // Fixed race condition by adding an await
-    const keys = [this.options.backend, this.options.mobile]
+    const keys = [this.options.backend, 'rn', 'flutter']
     const frameworks = keys.filter((k) => this.supportedFrameworks.includes(k))
     try {
       for (let framework of frameworks) {

@@ -28,6 +28,7 @@ async function generate() {
   try {
     fbEvent('entities_generate_start')
     // document.getElementById('iEntitiesCheckoutModalBtn').click()
+    // return
     // if (!validateEntities()) {
     //   toastEm('Invalid Entities')
     //   return
