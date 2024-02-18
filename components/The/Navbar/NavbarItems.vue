@@ -22,8 +22,13 @@ const navItems = [
     dropdown: true,
     links: [
       {
+        url: '/ecommerce',
+        name: 'Ecommerce',
+        icon: 'fa-dashboard',
+      },
+      {
         url: '/administrator/dashboard',
-        name: 'Dashboard',
+        name: 'Admin Dashboard',
         icon: 'fa-dashboard',
       },
       {
