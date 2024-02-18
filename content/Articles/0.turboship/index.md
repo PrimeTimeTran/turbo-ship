@@ -8,12 +8,12 @@ thumbnail: /public/images/uploads/logo-vue-landscape.webp
 
 # Turboship
 
-Turboship is nitro for startups that want ship fast and know their 
+Turboship is nitro for startups that want ship fast while knowing their 
 infrastructure **scales**. 
 
 Turboship includes front end, backend, and mobile app generators.
 
-Using Turboship you can deliver value to customers in weeks not months. 
+Using Turboship you can deliver value to customers in weeks not months.
 
 Turboship uses the industries latest and greatest tools with no vendor lock in.
 
@@ -21,7 +21,7 @@ Ideally, you'll already know:
 
 - Vue
 - Nuxt
-- Flutter
+- Flutter/React Native
 
 However Turboship comes with templates which include examples of how you can achieve business critical
 function for your app.

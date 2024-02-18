@@ -1,3 +1,5 @@
+// https://nuxt.com/modules/icon
+
 export default defineAppConfig({
   nuxtIcon: {
     size: '20px',

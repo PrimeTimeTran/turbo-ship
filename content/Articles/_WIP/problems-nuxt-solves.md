@@ -4,7 +4,6 @@ title: Why Nuxt?
 ---
 1. 
 Production ready vue isn't easy
-  vuex 
   vue router
   vue meta
 
