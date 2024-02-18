@@ -1,3 +1,8 @@
+# Turbo:
+# Copy appropriate files to a dir where they serve
+# as source files to generate subsequent projects
+#
+
 import os
 import shutil
 
@@ -8,7 +13,8 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 source_dir = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
 
 # Destination directory
-destination_dir = os.path.abspath(os.path.join(SCRIPT_DIR, '..', 'netlify', 'functions', 'esm-muxter', 'Turboship', 'nuxt'))
+destination_dir = os.path.abspath(os.path.join(
+    SCRIPT_DIR, '..', 'netlify', 'functions', 'esm-muxter', 'Turboship', 'nuxt'))
 
 # Path to the file list
 file_list = os.path.join(SCRIPT_DIR, 'copyNuxt.txt')
@@ -27,7 +33,7 @@ directories_to_copy = []
 
 # Iterate through the lines to identify directories for content copy
 for item in lines:
-    item = item.strip()  # Remove any trailing newline or whitespace
+    item = item.strip()
     item_path = os.path.join(source_dir, item)
     if os.path.exists(item_path) and os.path.isdir(item_path):
         directories_to_copy.append(item_path)
@@ -35,7 +41,8 @@ for item in lines:
 # Copy the contents of identified directories
 for directory in directories_to_copy:
     for root, dirs, files in os.walk(directory):
-        dest_path = os.path.join(destination_dir, os.path.relpath(root, source_dir))
+        dest_path = os.path.join(
+            destination_dir, os.path.relpath(root, source_dir))
         os.makedirs(dest_path, exist_ok=True)
         for file in files:
             source_file = os.path.join(root, file)
@@ -44,7 +51,8 @@ for directory in directories_to_copy:
             print(f"Copied {source_file} to {dest_file}")
 
 # Filter out directories from the list
-files_to_copy = [item.strip() for item in lines if not os.path.isdir(os.path.join(source_dir, item.strip()))]
+files_to_copy = [item.strip() for item in lines if not os.path.isdir(
+    os.path.join(source_dir, item.strip()))]
 
 # Copy files to the destination directory, overwriting if they exist
 for item in files_to_copy:

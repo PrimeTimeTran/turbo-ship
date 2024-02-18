@@ -34,7 +34,7 @@ const entityType = route.path.split('/administrator/')[1]
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Create New" />
     <div role="tabpanel" class="tab-content dark:bg-base-100 border-base-300 rounded-box p-2">
-      <AdminEntityForm :entity="{}" :entityType="entityType" />
+      <AdminEntityForm :entity="{}" :entityType />
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Settings" />
     <div role="tabpanel" class="tab-content dark:bg-base-100 border-base-300 rounded-box p-2">

@@ -48,12 +48,12 @@ function onToggleTheme(callback) {
         ['max-w-20']: !state.leftOpen,
       }"
     >
-      <TSidebarItem :text="'Turboship'" :state="state" @click="state.leftOpen = !state.leftOpen" :icon="Bars4Icon" />
+      <TSidebarItem :text="'Turboship'" :state @click="state.leftOpen = !state.leftOpen" :icon="Bars4Icon" />
       <div class="divider"></div>
       <TSidebarItem
         v-for="foo in GlobalState.sidebar"
+        :state
         :text="foo.label"
-        :state="state"
         @click="$router.push(foo.path)"
         :icon="foo.icon || TableCellsIcon"
         :focused="$router.currentRoute.value.fullPath.includes(foo.path)"
@@ -61,32 +61,32 @@ function onToggleTheme(callback) {
       <div class="grow" />
       <div class="divider" />
       <TSidebarItem
+        :state
         :text="'Calendar'"
-        :state="state"
-        @click="() => $router.push(`/administrator/calendar`)"
         :icon="CalendarIcon"
+        @click="() => $router.push(`/administrator/calendar`)"
       />
       <TSidebarItem
-        :state="state"
-        :text="'Messages'"
+        :state
         :icon="BellIcon"
+        :text="'Messages'"
         :notification="state.notification"
         :notificationCount="state.notificationCount"
         @click="() => $router.push(`/administrator/chat`)"
       />
-      <TSidebarItem :text="'Map'" :state="state" @click="() => $router.push(`/administrator/map`)" :icon="MapIcon" />
+      <TSidebarItem :text="'Map'" :state @click="() => $router.push(`/administrator/map`)" :icon="MapIcon" />
       <TSidebarItem
+        :state
         :text="'Design'"
-        :state="state"
         :icon="PuzzlePieceIcon"
         :options="[
-          { text: 'Theme/UI', route: '/theme/ui', icon: ArtIcon },
-          { text: 'Components', route: '/theme/components', icon: ArtIcon2 },
+          { text: 'Theme/UI', route: '/administrator/ui', icon: ArtIcon },
+          { text: 'Components', route: '/administrator/components', icon: ArtIcon2 },
         ]"
       />
       <TSidebarItem
+        :state
         :text="'Languages'"
-        :state="state"
         :icon="LanguageIcon"
         :options="[
           { text: 'English', icon: ArtIcon },
@@ -94,30 +94,17 @@ function onToggleTheme(callback) {
         ]"
       />
       <div
+        @click="() => onToggleTheme(toggleTheme)"
         class="btn btn-ghost flex primary-content justify-start items-center hover:text-green-400 dark:hover:text-green-400"
-        @click="
-          () => {
-            onToggleTheme(toggleTheme)
-          }
-        "
       >
         <label class="swap swap-rotate">
-          <input
-            type="checkbox"
-            class="theme-controller"
-            @click="
-              () => {
-                onToggleTheme(toggleTheme)
-              }
-            "
-            ref="themeToggle"
-          />
+          <input type="checkbox" class="theme-controller" @click="() => onToggleTheme(toggleTheme)" ref="themeToggle" />
           <svg
-            class="swap-on fill-yellow-400"
             width="28"
             height="28"
-            xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 28 28"
+            class="swap-on fill-yellow-400"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               stroke-width="2"
@@ -160,12 +147,12 @@ function onToggleTheme(callback) {
 
 <style scoped>
 .drawer-side {
-  z-index: 0 !important;
+  z-index: 0;
 }
 
 .box {
-  bottom: 0;
   top: 0;
+  bottom: 0;
   width: 100px;
   left: -100px;
   height: 100%;

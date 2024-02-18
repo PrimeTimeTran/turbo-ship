@@ -11,6 +11,7 @@ const state = reactive({
   localSort: ref([]),
   attributesWithTypes: ref([]),
 })
+
 function setupAttributes() {
   let cols = GlobalState.entityCols(entityType)
   cols = cols.filter((col) => !state.hidden.includes(col.name))
@@ -90,7 +91,7 @@ const visibleColumns = computed(() => {
               <input v-if="index === 1" @click="selectAll" type="checkbox" class="checkbox checkbox-sm" />
               <AdminEntityTableColumnTitle
                 v-else
-                :state="state"
+                :state
                 :attribute="element"
                 @toggleSort="toggleSort"
                 @hideColumn="hideColumn"
@@ -105,16 +106,16 @@ const visibleColumns = computed(() => {
       <!-- Depends on if form is for searching or creating new entity -->
       <AdminEntityTableRows
         v-else
-        :state="state"
-        :deleteItem="deleteItem"
-        :entityType="entityType"
-        :toggleSelect="toggleSelect"
-        :visibleColumns="visibleColumns"
+        :state
+        :deleteItem
+        :entityType
+        :toggleSelect
+        :visibleColumns
         :fetchWithFilterFields="saveEntity || fetchWithFilterFields"
       />
     </tbody>
   </table>
-  <AdminEntityPagination :meta="meta" :fetchPage="fetchPage" />
+  <AdminEntityPagination :meta :fetchPage />
 </template>
 
 <style>
