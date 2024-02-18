@@ -10,5 +10,6 @@
     "server/utils/Turboship/nuxt",
     "netlify/functions/esm-muxter/Turboship",
     "netlify/functions/esm-muxter/TurboshipCJS"
-  ]
+  ],
+  "typeRoots": ["./typings", "./node_modules/@types/"]
 }
