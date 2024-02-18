@@ -42,5 +42,5 @@ const headers = [
 const keys = ['timestamp', 'actorEmail', 'actorFirstName', 'action', 'model', 'documentId']
 </script>
 <template>
-  <ITable :headers="headers" :items="data?.data" :keys="keys" />
+  <TTable :headers="headers" :items="data?.data" :keys="keys" />
 </template>

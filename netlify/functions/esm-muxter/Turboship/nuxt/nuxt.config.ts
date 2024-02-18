@@ -19,7 +19,17 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/content', 'nuxt-mongoose', '@nuxtjs/color-mode', '@formkit/nuxt'],
+  modules: [
+    'nuxt-icon',
+    '@pinia/nuxt',
+    '@formkit/nuxt',
+    'nuxt-mongoose',
+    '@nuxt/content',
+    'nuxt-vuefire',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode',
+  ],
+
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -51,5 +61,17 @@ export default defineNuxtConfig({
       '@fortawesome/pro-light-svg-icons',
       '@fortawesome/free-brands-svg-icons',
     ],
+  },
+  vuefire: {
+    config: {
+      appId: '',
+      apiKey: '',
+      projectId: '',
+      authDomain: '',
+      databaseURL: '',
+      measurementId: '',
+      storageBucket: '',
+      messagingSenderId: '',
+    },
   },
 })

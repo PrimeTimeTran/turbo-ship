@@ -53,7 +53,6 @@ export default class Generator {
       zip.sync(() => {
         for (let e of entities) {
           const fullPath = `/server/API/${e.plural}`
-          console.log('fullPath')
           for (let r of routes) {
             const fileName = r + options.language
             const content = frameworkMap[options.backend]['apiContent'][r](e.label)

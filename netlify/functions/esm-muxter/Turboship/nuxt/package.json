@@ -10,6 +10,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "buildNetlify": "rm -fr netlify/functions/esm-muxter/TurboshipCJS/* && tsc -p tsconfig-cjs.json && cp -a netlify/functions/esm-muxter/Turboship/nuxt/. netlify/functions/esm-muxter/TurboshipCJS/nuxt && cp -a netlify/functions/esm-muxter/Turboship/flutter/. netlify/functions/esm-muxter/TurboshipCJS/flutter",
+    "buildNuxt": "python3 scripts/copyNuxt.py && bash scripts/cleanupNuxt.sh",
     "buildFlutter": "python3 scripts/copyFlutter.py && bash scripts/cleanupFlutter.sh"
   },
   "devDependencies": {
@@ -58,7 +59,6 @@
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.9.4",
     "@pinia/nuxt": "^0.5.1",
-    "@primetimetran/muxter": "^1.0.52",
     "@tailwindcss/typography": "^0.5.10",
     "@videojs-player/vue": "^1.0.0",
     "@vueuse/core": "^10.7.0",
