@@ -29,7 +29,7 @@ onMounted(() => {
   <div class="fixed bottom-0 right-0 bg-base-100 left-0 p-0 h-10">
     <label for="toggleChat" id="toggleChatBtn" />
     <input type="checkbox" id="toggleChat" />
-    <div class="chatContainer w-72 fixed r-0 b-0 rounded border flex flex-col bg-base-100 pr-2">
+    <div class="chat-container w-72 fixed r-0 b-0 rounded border flex flex-col bg-base-100 pr-2">
       <div
         class="flex flex-row justify-between items-center border-b rounded-bl-none rounded-br-none p-2"
         @click="onToggleChat"
@@ -69,7 +69,7 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
-.chatContainer {
+.chat-container {
   right: 0;
   bottom: 0;
   z-index: 2;
@@ -78,7 +78,7 @@ onMounted(() => {
   max-height: 42px;
   transition: max-height 0.3s ease;
 }
-#toggleChat:checked + .chatContainer {
+#toggleChat:checked + .chat-container {
   max-height: 66vh;
 }
 .chatItems {
@@ -88,8 +88,8 @@ onMounted(() => {
   transition: brightness 0.3s ease;
 }
 .hover-effect:hover .text-content {
-  filter: brightness(200%);
   color: black;
   opacity: 0.65;
+  filter: brightness(200%);
 }
 </style>

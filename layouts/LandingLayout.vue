@@ -26,11 +26,9 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
     <section
       class="grid place-content-center w-screen h-2/3 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex flex-col py-16 px-8 xl:px-16"
     >
-      <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl"></h1>
-      <br />
       <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
-          <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20 dark:text-white">
+          <h1 class="text-5xl font-medium title-font text-center mb-20 text-gray-900 dark:text-white">
             <span class="italic">Both</span> <a href=""></a> Full-Stack <br /><span class="text-green-400"
               >Web & <span class="underline">Mobile App</span></span
             ><br />
@@ -44,8 +42,8 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
                 <MetaIcon />
               </div>
               <div class="flex-grow pl-6">
-                <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Leverage Meta Programming</h2>
-                <p class="leading-relaxed text-base">
+                <h2 class="base-content text-2xl title-font font-medium mb-2">Leverage Meta Programming</h2>
+                <p class="leading-relaxed base-content">
                   Why repeat yourself?
                   <br />
                   <br />
@@ -60,8 +58,8 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
                 <TechIcon />
               </div>
               <div class="flex-grow pl-6">
-                <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Latest Technologies</h2>
-                <p class="leading-relaxed text-base">
+                <h2 class="base-content text-2xl title-font font-medium mb-2">Latest Technologies</h2>
+                <p class="leading-relaxed base-content">
                   A modern set of tools chosen for DX.
                   <br />
                   <br />
@@ -76,8 +74,8 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
                 <UnlimitedIcon />
               </div>
               <div class="flex-grow pl-6">
-                <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Created Unlimited Projects</h2>
-                <p class="leading-relaxed text-base">
+                <h2 class="base-content text-2xl title-font font-medium mb-2">Created Unlimited Projects</h2>
+                <p class="leading-relaxed base-content">
                   Generate as many projects as necessary
                   <br />
                   <br />
@@ -90,10 +88,10 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
       </section>
     </section>
     <section
-      class="w-screen h-screen flex justify-center items-center dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
+      class="w-screen min-h-screen flex justify-center py-6 items-center dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
     >
       <div class="flex flex-col text-center justify-center items-middle">
-        <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
+        <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
           Key features & toolings
         </h1>
         <br />
@@ -144,7 +142,7 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
     <section
       class="grid place-content-center w-screen h-1/2 py-32 flex-wrap items-center justify-center flex flex-col dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
     >
-      <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
+      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
         The best tools & frameworks
         <br />
         for superior <span class="text-green-400">developer experience</span>
@@ -163,7 +161,7 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
     <section
       class="grid place-content-center w-screen h-1/2 py-32 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
     >
-      <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
+      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
         Pricing Plan
       </h1>
       <br />
@@ -210,7 +208,7 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
     <section
       class="grid place-content-center w-screen h-1/2 py-32 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
     >
-      <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
+      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
         Save your most important resource your <span class="text-green-400">time</span>
       </h1>
       <div class="collapse bg-base-100 my-8">
@@ -236,9 +234,15 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
       </div>
     </section>
     <section
-      class="grid place-content-center w-screen h-1/2 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
+      class="grid place-content-center w-screen h-1/2 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2 py-32"
     >
       <section class="text-gray-600 body-font">
+        <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
+          Trust <br />the<br />
+          Numbers
+          <br />
+          <!-- for superior <span class="text-green-400">developer experience</span> -->
+        </h1>
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap -m-4 text-center">
             <div class="p-4 sm:w-1/4 w-1/2">

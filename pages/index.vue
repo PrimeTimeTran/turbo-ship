@@ -10,14 +10,14 @@ definePageMeta({
         class="flex flex-1 flex-col items-center justify-between text-center space-y-6 p-2 lg:px-8 lg:relative lg:-right-52 lg:text-left lg:items-start"
       >
         <p class="text-center text-sm uppercase">Turboship</p>
-        <h2 class="text-4xl lg:text-4xl mt-4 text-gray-700 dark:text-white">
+        <h2 class="text-4xl lg:text-5xl mt-4 text-gray-700 dark:text-white">
           Keep It Simple Silly!
           <div class="font-bold animate__animated animate__flash" style="white-space: nowrap">
             Don't repeat yourself, <br />
             <span class="border-b-8 border-b-green-400">innovate</span>
           </div>
         </h2>
-        <p class="text-xl lg:text-2xl mt-4 text-gray-700 dark:text-white">
+        <p class="text-xl lg:text-3xl mt-4 text-gray-700 dark:text-white">
           With Turboship you don't deal with boilerplate. <br />
           You focus on what makes your business <span class="text-green-400 italic">stand out</span>.
         </p>
