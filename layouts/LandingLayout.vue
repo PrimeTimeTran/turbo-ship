@@ -29,9 +29,9 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
       <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
           <h1 class="text-5xl font-medium title-font text-center mb-20 text-gray-900 dark:text-white">
-            <span class="italic">Both</span> <a href=""></a> Full-Stack <br /><span class="text-green-400"
-              >Web & <span class="underline">Mobile App</span></span
-            ><br />
+            <span class="italic">Both</span> <a href=""></a> Full-Stack <br />
+            <span class="text-green-400">Web & <span class="underline">Mobile App</span></span>
+            <br />
             Codebase Generator
           </h1>
           <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
@@ -238,10 +238,8 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
     >
       <section class="text-gray-600 body-font">
         <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
-          Trust <br />the<br />
-          Numbers
+          how progress looks
           <br />
-          <!-- for superior <span class="text-green-400">developer experience</span> -->
         </h1>
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap -m-4 text-center">

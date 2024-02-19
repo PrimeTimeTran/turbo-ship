@@ -19,7 +19,7 @@ const props = defineProps({})
             <div class="drawer-side z-50">
               <label for="tRightDrawerToggle" aria-label="close sidebar" class="drawer-overlay"></label>
               <ul class="menu p-4 w-80 min-h-full bg-base-100 text-base-content">
-                <slot name="drawer-right" />
+                <slot name="right-drawer" />
               </ul>
             </div>
           </div>
@@ -28,7 +28,7 @@ const props = defineProps({})
       </div>
       <AdminTheRightDrawer />
     </div>
-    <slot name="drawer-left" />
+    <slot name="left-drawer" />
     <slot name="scripts" />
   </div>
 </template>
