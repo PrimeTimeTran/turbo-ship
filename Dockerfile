@@ -1,32 +1,20 @@
-# https://markus.oberlehner.net/blog/running-nuxt-3-in-a-docker-container/
-ARG NODE_VERSION=18.14.2
+# Dockerfile
+FROM node:18-alpine3.18
 
-FROM node:${NODE_VERSION}-slim as base
+WORKDIR /usr/src/app
 
-ARG PORT=3005
+RUN apk update && apk upgrade
+RUN apk add git
 
-ENV NODE_ENV=production
+COPY .env .
+COPY package.json .
+COPY package-lock.json ./
 
-WORKDIR /src
+RUN npm install
 
-# Build
-FROM base as build
-
-COPY --link package.json package-lock.json .
-RUN npm install --production=false
-
-COPY --link . .
-
+COPY . .
+ENV MONGODB_URI=mongodb://host.docker.internal:27017/turboship
 RUN npm run build
-RUN npm prune
 
-# Run
-FROM base
-
-ENV PORT=$PORT
-
-COPY --from=build /src/.output /src/.output
-# Optional, only needed if you rely on unbundled dependencies
-# COPY --from=build /src/node_modules /src/node_modules
-
-CMD [ "node", ".output/server/index.mjs" ]
+EXPOSE 3000
+CMD ["node", ".output/server/index.mjs"]

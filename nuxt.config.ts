@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '/articles/**/**/**': { prerender: true, ssr: true },
     '/api/**': { cors: true, ssr: false },
     '/administrator/**': { ssr: false },
+    '/items/**': { ssr: false },
   },
   nitro: {
     prerender: {

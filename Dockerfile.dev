@@ -1,21 +1,17 @@
+# Dockerfile
+FROM node:18-alpine3.18
 
-ARG NODE_VERSION=18.14.2
+WORKDIR /usr/src/app
 
-FROM node:${NODE_VERSION}-slim as base
+RUN apk update && apk upgrade
+RUN apk add git
 
-ENV NODE_ENV=development
-
-WORKDIR /src
-
-# Build
-FROM base as build
-
-COPY --link package.json package-lock.json .
+COPY package.json .
+COPY package-lock.json ./
 RUN npm install
 
-# Run
-FROM base
+COPY . .
+EXPOSE 3000
+RUN npm run build
 
-COPY --from=build /src/node_modules /src/node_modules
-
-CMD [ "npm", "run", "dev" ]
+CMD ["node", ".output/server/index.mjs"]

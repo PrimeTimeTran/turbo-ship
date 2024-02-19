@@ -1,8 +1,16 @@
 version: "3"
+
 services:
-  turboship-web-base:
+  turboship-web:
+    dockerfile: Dockerfile
+    env_file:
+      - path: ./default.env
+        required: true
     build:
       context: .
     ports:
-      # host:container
-      - "3005:3005"
+      - "3000:3000"
+      - "27017:27017"
+    command: node .output/server/index.mjs
+    environment: 
+      - MONGODB_URI=${MONGODB_URI}
