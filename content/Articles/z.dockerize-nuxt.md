@@ -1,4 +1,5 @@
 # Docker
+A containerization tool.
 
 ## Install Docker Desktop
 Install Docker by installing [Docker Desktop](https://www.docker.com/products/docker-desktop/)
@@ -12,8 +13,4 @@ Create a image from the Dockerfile. An image is more or less minified/optimized 
 `docker image build .`
 
 ## Run container
-
-
-
-
 
