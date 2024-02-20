@@ -9,12 +9,16 @@ RUN apk add git
 COPY .env .
 COPY package.json .
 COPY package-lock.json ./
-
 RUN npm install
 
 COPY . .
-ENV MONGODB_URI=mongodb://host.docker.internal:27017/turboship
-RUN npm run build
+
+ENV $(cat .env | grep -v ^# | xargs)
+ENV NODE_ENV=production
+ENV MONGODB_URI=$MONGODB_URI
 
 EXPOSE 3000
-CMD ["node", ".output/server/index.mjs"]
+
+RUN npm run build
+
+CMD ["node", ".output/server/index.mjs" ]

@@ -7,9 +7,9 @@
     "./src/**",
     "./composables/useEntities.ts",
     "./server/middleware/02.user.global.ts",
-    "server/utils/Turboship/nuxt",
-    "netlify/functions/esm-muxter/Turboship",
-    "netlify/functions/esm-muxter/TurboshipCJS"
+    "./server/utils/Turboship/nuxt",
+    "./netlify/functions/esm-muxter/Turboship",
+    "./netlify/functions/esm-muxter/TurboshipCJS"
   ],
   "typeRoots": ["./typings", "./node_modules/@types/"]
 }

@@ -86,3 +86,6 @@ netlify/functions/esm-muxter/TurboshipCJS
 netlify/functions/esm-muxter/Turboship/flutter
 
 server/services/StorageService/credentials.json
+
+cloudrun.yml
+app.yml
