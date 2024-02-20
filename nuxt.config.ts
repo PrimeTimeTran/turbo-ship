@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    host: '0.0.0.0',
+    host: process.env.NUXT_HOST,
     googleAPIKey: process.env.GOOGLE_API_KEY,
     public: {
       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',

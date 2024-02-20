@@ -89,3 +89,4 @@ server/services/StorageService/credentials.json
 
 cloudrun.yml
 app.yml
+Dockerfile
