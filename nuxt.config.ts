@@ -9,15 +9,48 @@ const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
   devServer: { port: 3005 },
-  ignore: ['/mobile', '/notes', '/utils/seeds'],
+  ignore: ['/mobile', '/notes', '/utils/seeds', 'nuxt.config.ts'],
   routeRules: {
-    '/': { prerender: true, ssr: false },
     '/**': { prerender: true },
+    '/': { prerender: true, ssr: false },
     '/theme/**': { prerender: true },
     '/articles/**/**/**': { prerender: true, ssr: true },
-    '/api/**': { cors: true, ssr: false },
+    '/api/**': { cors: true, ssr: false, prerender: false },
     '/administrator/**': { ssr: false },
     '/items/**': { ssr: false },
+  },
+  mongoose: {
+    options: {},
+    modelsDir: 'models',
+    uri: process.env.MONGODB_URI,
+  },
+  runtimeConfig: {
+    host: process.env.NUXT_HOST,
+    googleAPIKey: process.env.GOOGLE_API_KEY,
+    public: {
+      apiUrl: process.env.API_URL,
+      generateUrl: `${process.env.API_URL}/entities`,
+    },
+  },
+  // To research. How to share more easily.
+  // $development: {
+  //   runtimeConfig: {
+  //     public: {
+  //       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
+  //       generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
+  //     },
+  //   },
+  // },
+  // $production: {
+  //   runtimeConfig: {
+  //     public: {
+  //       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
+  //       generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
+  //     },
+  //   },
+  // },
+  experimental: {
+    payloadExtraction: false,
   },
   nitro: {
     prerender: {
@@ -27,14 +60,6 @@ export default defineNuxtConfig({
     },
     experimental: {
       openAPI: true,
-    },
-  },
-  runtimeConfig: {
-    host: process.env.NUXT_HOST,
-    googleAPIKey: process.env.GOOGLE_API_KEY,
-    public: {
-      apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
-      generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
     },
   },
   devtools: {
@@ -53,11 +78,6 @@ export default defineNuxtConfig({
   },
   typescript: {
     typeCheck: true,
-  },
-  mongoose: {
-    options: {},
-    modelsDir: 'models',
-    uri: process.env.MONGODB_URI,
   },
   hooks: {
     'build:done': (go: HookResult) => {

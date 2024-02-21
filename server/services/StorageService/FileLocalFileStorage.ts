@@ -15,7 +15,7 @@ export class FileLocalFileStorage implements FileStorageProvider {
     const token = jwtSign({ relativeFilePath, maxSizeInBytes }, Number(expires))
     // NUXT_HOST_URL
     return {
-      url: `${process.env.NUXT_BACKEND_URL}/api/file/local-upload?token=${token}`,
+      url: `${process.env.API_URL}/file/local-upload?token=${token}`,
     }
   }
 
@@ -42,7 +42,7 @@ export class FileLocalFileStorage implements FileStorageProvider {
       token = jwtSign({ relativeFilePath }, Number(expires))
     }
 
-    return `${process.env.NUXT_BACKEND_URL}/api/file/local-download?token=${token}&relativeFilePath=${relativeFilePath}`
+    return `${process.env.API_URL}/file/local-download?token=${token}&relativeFilePath=${relativeFilePath}`
   }
 
   async download(relativeFilePath: string, token: string) {

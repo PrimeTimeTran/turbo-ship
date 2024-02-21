@@ -6,7 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev --port=3005 --dotenv .env.local",
     "nodemonDev": "nodemon --watch 'nuxt.config.js' --exec 'nuxt dev'",
-    "generate": "nuxt generate",
+    "generate": "nuxt generate --dotenv .env.production",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "buildNetlify": "rm -fr netlify/functions/esm-muxter/TurboshipCJS/* && tsc -p tsconfig-cjs.json && cp -a netlify/functions/esm-muxter/Turboship/nuxt/. netlify/functions/esm-muxter/TurboshipCJS/nuxt && cp -a netlify/functions/esm-muxter/Turboship/flutter/. netlify/functions/esm-muxter/TurboshipCJS/flutter",
