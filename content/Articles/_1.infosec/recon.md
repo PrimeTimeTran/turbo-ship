@@ -18,7 +18,6 @@ Passive:
 - Gather info from public places
 - "Watch house from across street"
 
-
 ## What is Recon?
 How to think about recon in ethical hacking? How is it different from the other parts such as understanding pointers, tooling, etc.
 

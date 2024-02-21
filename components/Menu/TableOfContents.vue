@@ -4,8 +4,8 @@
       <ul>
         <li class="list-none" :key="category._path" v-for="category in navigation[1].children">
           <ul class="list-none">
-            <!-- Makes the scroll spy more tricky to code -->
             <NuxtLink
+              v-text="category.title"
               :to="category._path"
               @click="$emit('toggled')"
               :class="{
@@ -13,15 +13,15 @@
                 'hover:text-green-400': true,
                 active: currentRoute === category._path,
               }"
-              v-text="category.title"
             >
             </NuxtLink>
             <div class="py-3 ml-1">
               <li
-                class="border-l border-l-gray-900/25 dark:border-l-white/25"
                 v-for="child in callExposedFunction(category)"
+                class="border-l border-l-gray-900/25 dark:border-l-white/25"
               >
                 <NuxtLink
+                  v-text="child.title"
                   :to="child._path"
                   @click="$emit('toggled')"
                   :class="{
@@ -30,7 +30,6 @@
                     'hover:text-green-400': true,
                     active: currentRoute === child._path,
                   }"
-                  v-text="child.title"
                 >
                 </NuxtLink>
                 <div

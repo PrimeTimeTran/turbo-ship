@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port=3005",
+    "dev": "nuxt dev --port=3005 --dotenv .env.local",
     "nodemonDev": "nodemon --watch 'nuxt.config.js' --exec 'nuxt dev'",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -60,6 +60,7 @@
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.9.4",
     "@pinia/nuxt": "^0.5.1",
+    "@primetimetran/muxter": "^1.0.52",
     "@sendgrid/mail": "^8.1.1",
     "@tailwindcss/typography": "^0.5.10",
     "@vueuse/core": "^10.7.0",

@@ -1,4 +1,11 @@
-# Google Cloud Platform: Nuxt3 Cloud Run Deployment
+---
+createdAt: 2024-02-20
+title: "Nuxt3 Cloud Run Deployment"
+description: "Google Cloud Platform: How to deploy a Nuxt3 web application to Cloud Run, a product of GCP infrastructures."
+tags: GCP, Nuxt
+---
+
+# GCP: Nuxt3 Cloud Run Deployment
 How to deploy Turboship, a Nuxt3 app, on GCP infrastructure
 
 ## Dependencies
