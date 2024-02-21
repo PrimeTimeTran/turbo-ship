@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build --dotenv .env.production",
     "dev": "nuxt dev --port=3005 --dotenv .env.local",
     "nodemonDev": "nodemon --watch 'nuxt.config.js' --exec 'nuxt dev'",
     "generate": "nuxt generate --dotenv .env.production",

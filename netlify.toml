@@ -23,8 +23,7 @@
 [build.environment]
   AUTH_TOKEN_SECRET="mySecret"
   AUTH_TOKEN_EXPIRES_IN="3650 days"
-  API_URL="https://turboship.ltran.net/api"
-  GENERATE_URL="https://turboship.ltran.net/.netlify/functions/build-muxter"
+  API_URL="https://turboship-64gv3lpybq-uc.a.run.app/api"
 
 [context.production.functions]
   external_node_modules=["shikiji/onig.wasm", "tslib"]
@@ -33,8 +32,7 @@
 [context.branch-deploy]
   command="echo 'branch-deploy'"
   [context.branch-deploy.environment]
-    API_URL="https://turboship.ltran.net/api"
-    GENERATE_URL="https://turboship.ltran.net/.netlify/functions/esm-muxter"
+    API_URL="https://turboship-64gv3lpybq-uc.a.run.app/api"
 
 [context.branch-deploy.functions]
   node_bundler="esbuild"

@@ -29,7 +29,6 @@ export default defineNuxtConfig({
     googleAPIKey: process.env.GOOGLE_API_KEY,
     public: {
       apiUrl: process.env.API_URL,
-      generateUrl: `${process.env.API_URL}/entities`,
     },
   },
   // To research. How to share more easily.
@@ -37,7 +36,6 @@ export default defineNuxtConfig({
   //   runtimeConfig: {
   //     public: {
   //       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
-  //       generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
   //     },
   //   },
   // },
@@ -45,7 +43,6 @@ export default defineNuxtConfig({
   //   runtimeConfig: {
   //     public: {
   //       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
-  //       generateUrl: process.env.GENERATE_URL || 'https://turboship.ltran.net/api',
   //     },
   //   },
   // },

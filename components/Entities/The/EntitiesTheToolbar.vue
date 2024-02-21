@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import { faker } from '@faker-js/faker'
 const runtimeConfig = useRuntimeConfig()
-const isDeveloping = runtimeConfig.public.generateUrl.includes('localhost')
+const isDeveloping = runtimeConfig.public.generateUrl?.includes('localhost')
 const { entities, setEntities, clearEntities } = useEntities()
 function collapse() {
   store.view = views.entities
@@ -33,10 +33,10 @@ async function generate() {
     //   toastEm('Invalid Entities')
     //   return
     // }
-    let { generateUrl } = useAPI()
+    let { apiUrl: generateUrl } = useAPI()
     if (isDeveloping) {
       // Testing package
-      generateUrl = 'http://localhost:3005/api/entities'
+      generateUrl += '/entities'
       // generateUrl = 'https://turboship.ltran.net/.netlify/functions/build-muxter'
       // Local Netlify function
       // generateUrl = 'http://localhost:8888/.netlify/functions/build-muxter'

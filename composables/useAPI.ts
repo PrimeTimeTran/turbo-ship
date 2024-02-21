@@ -1,6 +1,6 @@
 export function useAPI() {
   const {
-    public: { apiUrl, generateUrl, commonUrl },
+    public: { apiUrl, commonUrl },
   } = useRuntimeConfig()
-  return { apiUrl, generateUrl, commonUrl }
+  return { apiUrl, commonUrl }
 }
