@@ -1,5 +1,38 @@
+<script setup>
+const emit = defineEmits(['toggled'])
+
+const { toc } = useContent()
+
+const currentRoute = ref('')
+
+watch(toc, (newTOC, oldTOC) => {
+  const router = useRoute()
+  console.log({
+    route: newTOC,
+    router: router.fullPath,
+  })
+  currentRoute.value = router.fullPath
+})
+
+const curArticle = ref()
+// Note: Sometimes the index.md of a directory is the last item
+// in the list. This ensures the structure of the table of contents is correct.
+// Known cases are Flutter, GCP, Business
+const callExposedFunction = (category) => {
+  let items = category.children
+  if (items) {
+    const weird = items[items.length - 1]._path == category._path
+    if (weird) {
+      const last = items.pop()
+      items.unshift(last)
+    }
+  }
+  return items
+}
+</script>
+
 <template>
-  <div class="md:pt-24 overflow-auto scrollbar-hide">
+  <div class="pt-8 overflow-auto scrollbar-hide">
     <ContentNavigation v-slot="{ navigation }">
       <ul>
         <li class="list-none" :key="category._path" v-for="category in navigation[1].children">
@@ -43,36 +76,3 @@
     </ContentNavigation>
   </div>
 </template>
-
-<script setup>
-const emit = defineEmits(['toggled'])
-
-const { toc } = useContent()
-
-const currentRoute = ref('')
-
-watch(toc, (newTOC, oldTOC) => {
-  const router = useRoute()
-  console.log({
-    route: newTOC,
-    router: router.fullPath,
-  })
-  currentRoute.value = router.fullPath
-})
-
-const curArticle = ref()
-// Note: Sometimes the index.md of a directory is the last item
-// in the list. This ensures the structure of the table of contents is correct.
-// Known cases are Flutter, GCP, Business
-const callExposedFunction = (category) => {
-  let items = category.children
-  if (items) {
-    const weird = items[items.length - 1]._path == category._path
-    if (weird) {
-      const last = items.pop()
-      items.unshift(last)
-    }
-  }
-  return items
-}
-</script>

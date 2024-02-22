@@ -17,7 +17,6 @@ export default class Turboship {
 
   options() {
     program
-      .option('-d, --debug', 'output extra debugging')
       .option('-l, --language <type>', 'language choice', 'js')
       .option('-b, --backend <type>', 'backend choice', 'nuxt')
       .option('-m, --mobile <type>', 'mobile choice', 'rn')

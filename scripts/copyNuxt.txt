@@ -7,7 +7,7 @@ components/Chat
 components/The
 components/T
 composables/useAPI.ts
-composables/useBars.js
+composables/useResources.js
 composables/useChat.js
 composables/useChats.js
 composables/useToast.ts

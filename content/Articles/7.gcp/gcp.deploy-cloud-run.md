@@ -80,4 +80,3 @@ gcloud builds submit --project "project-name" --config=./cloud-build.yaml
 - [Artifact Repository](https://console.cloud.google.com/artifacts/docker/turboship-dev/us-central1/anotsosecretproject/turboship?hl=en&project=turboship-dev)
 - [Cloud Run Logs](https://console.cloud.google.com/logs/query;query=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22turboship%22%0Aresource.labels.revision_name%3D%22turboship-00011-6qj%22;cursorTimestamp=2024-02-20T20:37:31.407052801Z;duration=PT1H?project=turboship-dev)
 - [Cloud Run Services](https://console.cloud.google.com/run?project=turboship-dev)
-

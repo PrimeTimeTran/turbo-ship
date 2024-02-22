@@ -10,12 +10,12 @@ export default defineEventHandler(async (event) => {
   try {
     const zipFile = await resp.zip.generateAsync({ type: 'base64' })
     const response = {
+      statusCode: 200,
+      isBase64Encoded: true,
       headers: {
         'Content-Type': 'application/zip, application/octet-stream',
         'Content-disposition': `attachment; filename=muxter_source.zip`,
       },
-      statusCode: 200,
-      isBase64Encoded: true,
     }
     setResponseHeaders(event, response)
     return send(event, zipFile)

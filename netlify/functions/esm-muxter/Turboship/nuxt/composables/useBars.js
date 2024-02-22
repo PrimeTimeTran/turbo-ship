@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { ref } from 'vue'
 import { useFetch } from '@vueuse/core'
 
-export function useBars(resource) {
+export function useResources(resource) {
   const { apiUrl } = useAPI()
   const baseURL = `${apiUrl}/${resource}`
   let items = ref([])

@@ -22,12 +22,14 @@ async function onSubmit(e) {
 }
 </script>
 <template>
-  <section class="bg-base-100">
-    <h1>File upload</h1>
-    <form @submit="onSubmit">
-      <input name="upload" type="file" />
-      <button type="submit">Upload</button>
-    </form>
-  </section>
+  <div class="flex flex-grow overflow-y-auto max-h-screen no-scrollbar md:mr-4 lg:mr-0 pt-8">
+    <slot class="w-full" />
+    <div class="main-nav visible lg:block md:invisible rounded border z-10 shadow">
+      <MenuBurger />
+    </div>
+    <MenuSidebar>
+      <MenuTableOfContents />
+    </MenuSidebar>
+  </div>
 </template>
 <style></style>

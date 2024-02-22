@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { ref } from 'vue'
 import { useFetch } from '@vueuse/core'
 
-export function useBars(resource) {
+export function useResources(resource) {
   const { apiUrl } = useAPI()
   const baseURL = `${apiUrl}/${resource}`
   let items = ref([])
@@ -31,7 +31,7 @@ export function useBars(resource) {
         return user
       }
     } catch (error) {
-      console.error({ error })
+      logger.error({ err: error }, 'Error:')
     }
   }
   onBeforeMount(async () => {
@@ -56,16 +56,6 @@ export function useBars(resource) {
           'Content-type': 'application/json; charset=UTF-8',
         },
       })
-      console.log({
-        data,
-      })
-      // if (data) {
-      //   const val = JSON.parse(data.value)
-      //   meta.page = val.meta?.page || 1
-      //   meta.totalRecords = val.meta?.totalRecords
-      //   Object.assign(meta, val.meta)
-      //   items.value = val?.data
-      // }
     } catch (error) {
       console.log({
         error,

@@ -22,22 +22,22 @@ useHead({
   <div class="flex flex-col justify-between bg-base-100">
     <div class="min-h-screen">
       <The.Navbar />
-      <div class="flex flex-row">
-        <div
-          class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto p-3 border-r-2 border-gray-200 dark:border-gray-800"
-        >
+      <div class="flex flex-row md:px-16">
+        <div class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto border-r-2 border-neutral">
           <MenuTableOfContents @toggled="handleToggle" />
         </div>
-        <div class="flex flex-grow overflow-y-auto max-h-screen px-4 no-scrollbar md:mr-4 lg:mr-0">
-          <slot />
-          <div class="main-nav visible lg:block md:invisible rounded border z-10 shadow">
+        <div class="flex flex-grow overflow-y-auto max-h-screen no-scrollbar md:mr-4 lg:mr-0 pt-8">
+          <slot class="w-full" />
+          <div class="main-nav visible lg:block md:hidden rounded border z-10 shadow hidden md:block">
             <MenuBurger :isOpen="isOpen" @toggled="toggleOpen" />
           </div>
-          <MenuSidebar :isOpen="isOpen" @toggled="toggleOpen">
-            <MenuTableOfContents @toggled="handleToggle" />
-          </MenuSidebar>
+          <div class="hidden md:block">
+            <MenuSidebar :isOpen="isOpen" @toggled="toggleOpen">
+              <MenuTableOfContents @toggled="handleToggle" />
+            </MenuSidebar>
+          </div>
         </div>
-        <div class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto border-r-2 border-gray pt-24 lg:pr-8">
+        <div class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto border-gray lg:pr-8">
           <ScrollSpy />
         </div>
       </div>
