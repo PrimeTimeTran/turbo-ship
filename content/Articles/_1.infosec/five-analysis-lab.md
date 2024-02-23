@@ -5,8 +5,9 @@ description: InfoSec Projects
 ---
 
 # Projects to prove skills
+A list of projects suggested to demonstrate competence in the infosec industry.
 
-## Malware Analaysis Lab
+## Malware Analysis Lab
 
 Remnux FlareVM
 

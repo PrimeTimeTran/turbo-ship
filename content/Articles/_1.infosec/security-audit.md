@@ -1,6 +1,5 @@
 # Audit Local Network
 
-
 ## Check your machine for open ports(vulnerabilities)
 
 $ nmap localhost
