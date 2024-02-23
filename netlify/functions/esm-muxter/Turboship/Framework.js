@@ -1,9 +1,15 @@
 import fs from 'fs'
 import path from 'path'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 import Generator from './Generator.js'
 
 import { buildOptions } from './helpers.js'
+
+const currentDirectory = process.cwd()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export default class Framework {
   constructor(name, options, entities, zip) {
@@ -14,7 +20,6 @@ export default class Framework {
     this.options = options
     this.options.frameworkName = name
   }
-
   createDirectories() {
     this.framework.rootDirectories.forEach((dir) => {
       if (this.options.logLevelDebug) console.log(`building ${dir}`)
@@ -22,15 +27,13 @@ export default class Framework {
     })
     return this.zip
   }
-
   zipBaseDirectory() {
-    const isDeveloping = true
     const name = this.options.frameworkName
-    let basePath = '/var/task/netlify/functions/esm-muxter/TurboshipCJS/'
-    if (isDeveloping) {
-      basePath = '/Users/future/Documents/work/turbo.web/netlify/functions/esm-muxter/Turboship/'
-    }
-    basePath += name
+    let basePath = `/usr/src/app/utils/Turboship/${name}`
+    console.log({
+      basePath,
+    })
+    // printPath()
     getZippedFolderSync(basePath, this.zip, this.options)
     return this.zip
   }
@@ -303,4 +306,30 @@ export const frameworkMap = {
     version: '0.73.4',
     rootDirectories: ['src'],
   },
+}
+
+function printPath() {
+  fs.readdir(currentDirectory, (err, files) => {
+    if (err) {
+      console.error('Error reading directory:', err)
+      return
+    }
+
+    console.log(`Contents of current directory (${currentDirectory}):`)
+    files.forEach((file) => {
+      console.log(file)
+    })
+  })
+
+  fs.readdir(currentDirectory + '/netlify', (err, files) => {
+    if (err) {
+      console.error('Error reading directory:', err)
+      return
+    }
+
+    console.log(`Contents of current directory (${currentDirectory}):`)
+    files.forEach((file) => {
+      console.log(file)
+    })
+  })
 }

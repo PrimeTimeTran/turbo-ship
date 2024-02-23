@@ -101,6 +101,7 @@ export default defineNuxtConfig({
     '@utils': path.resolve(__dirname, 'server/utils'),
     '@services': path.resolve(__dirname, 'server/services'),
     '@security': path.resolve(__dirname, 'server/utils/security'),
+    '@turboship': path.resolve(__dirname, 'utils/Turboship'),
   },
   app: {
     head: {

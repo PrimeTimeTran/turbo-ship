@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'us-central1-docker.pkg.dev/turboship-dev/my-docker-repo/us-central1-docker.pkg.dev/turboship-dev/anotsosecretproject/turboship',
+        '.',
+      ]

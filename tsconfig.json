@@ -5,6 +5,7 @@
   },
   "exclude": [
     "./src/**",
+    "./utils/Turboship",
     "./composables/useEntities.ts",
     "./server/middleware/02.user.global.ts",
     "./server/utils/Turboship/nuxt",

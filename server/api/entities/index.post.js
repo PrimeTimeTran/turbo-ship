@@ -1,4 +1,4 @@
-import { Turboship } from '~/netlify/functions/esm-muxter/Turboship/Turboship.js'
+import { Turboship } from '@turboship/Turboship'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
