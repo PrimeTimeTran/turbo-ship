@@ -1,5 +1,5 @@
 # Demo Checklist
-Ensure you've completed the following steps before publically publishing **any** tutorial/video.
+Ensure you've completed the following steps before publicly publishing **any** tutorial/video.
 
 ### Outline
 - [ ] Hook: Write a catch hook.
@@ -57,23 +57,11 @@ Ensure you've completed the following steps before publically publishing **any**
 
 ### History
 
-#### Demo #1 12/3/23
-
-##### Hook
-How to build a full stack web & and mobile app in 1 day?
-
-Turboship.
-In this 8-minute demo, we show how Turboship can generate source files for the backend, frontend, and admin panel in as little time as it takes to design a DB.
-
-Entire video
-https://www.youtube.com/watch?v=O3UO1rIQ8yY
-
-Try Turboship:
-Dashboard:
-https://turboship.ltran.net/administrator
-Entity/DB Modeler:
-https://turboship.ltran.net/entities
-
 ##### Hashtags
 
 #TurboShip, #Startup, #Entrepreneurship, #SmallBusiness, #BusinessTips, #MarketingStrategy, #Innovation, #TechStartup, #DigitalMarketing, #SaaS, #SocialMediaMarketing, #BusinessDevelopment, #Ecommerce, #VentureCapital, #Leadership, #BrandBuilding, #Developers, #Development, #Software, #Coding, #Coder, #Nuxt, #Flutter, #Mongoose, #SQL, #Firebase,
+
+
+#### Gotchas
+
+- Twitter Preview link must be last
