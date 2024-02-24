@@ -1,4 +1,5 @@
-import jwt, { JwtPayload } from 'jsonwebtoken'
+import type { JwtPayload } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 export function jwtSign(payload: any, expiresIn?: string | number | null) {
   let expiresInOrNull: string | number | null = expiresIn || process.env.AUTH_TOKEN_EXPIRES_IN || '3650 days'
@@ -23,7 +24,9 @@ export interface Payload {
   token?: string
 }
 
-export function jwtVerify(token: string) {
+export type PayloadObj = string | JwtPayload | Payload | null
+
+export function jwtVerify(token: string): PayloadObj | null {
   try {
     const payload: PayloadObj = jwt.verify(token, String(process.env.AUTH_TOKEN_SECRET))
     return payload
@@ -31,5 +34,3 @@ export function jwtVerify(token: string) {
     return null
   }
 }
-
-export type PayloadObj = string | JwtPayload | Payload

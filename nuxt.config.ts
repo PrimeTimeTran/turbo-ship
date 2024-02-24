@@ -31,21 +31,6 @@ export default defineNuxtConfig({
       apiUrl: process.env.API_URL,
     },
   },
-  // To research. How to share more easily.
-  // $development: {
-  //   runtimeConfig: {
-  //     public: {
-  //       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
-  //     },
-  //   },
-  // },
-  // $production: {
-  //   runtimeConfig: {
-  //     public: {
-  //       apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
-  //     },
-  //   },
-  // },
   experimental: {
     payloadExtraction: false,
   },

@@ -56,16 +56,6 @@ export function useResources(resource) {
           'Content-type': 'application/json; charset=UTF-8',
         },
       })
-      console.log({
-        data,
-      })
-      // if (data) {
-      //   const val = JSON.parse(data.value)
-      //   meta.page = val.meta?.page || 1
-      //   meta.totalRecords = val.meta?.totalRecords
-      //   Object.assign(meta, val.meta)
-      //   items.value = val?.data
-      // }
     } catch (error) {
       console.log({
         error,
@@ -104,7 +94,11 @@ export function useResources(resource) {
 
     const url = makeApiQueryString(apiUrl + str, {})
     try {
-      let { data, error } = await useFetch(url)
+      let { data, error } = await useFetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
       if (!error.value) {
         const val = JSON.parse(data.value)
         meta.page = nextPage

@@ -22,6 +22,7 @@ public/js/TShortcuts.js
 server/API/auditlogs/index.get.js
 server/API/auth
 server/API/users
+server/API/index.get.js
 server/middleware
 server/models/Audit.model.js
 server/models/Audit/Audit.js

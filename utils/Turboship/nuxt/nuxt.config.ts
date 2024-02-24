@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiUrl: process.env.API_URL || 'https://turboship.ltran.net/api',
+      apiUrl: process.env.API_URL || 'http://localhost:3005/api',
     },
   },
   app: {

@@ -27,6 +27,7 @@ export default class Turboship {
     options.isDev = false
     options.logLevelDebug = false
     options.backend = 'nuxt'
+    options.language = 'js'
     return options
   }
 
