@@ -1,6 +1,6 @@
 import { Bucket, Storage } from '@google-cloud/storage'
 import type { FileStorageProvider } from './FileStorageProvider'
-import credentials from './credentials.json'
+// import credentials from './credentials-dev.json'
 
 export class FileGoogleCloudFileStorage implements FileStorageProvider {
   bucket: Bucket
@@ -8,8 +8,8 @@ export class FileGoogleCloudFileStorage implements FileStorageProvider {
   constructor() {
     if (process.env.GOOGLE_CLOUD_PLATFORM_CREDENTIALS) {
       this.bucket = new Storage({
-        credentials,
-        projectId: credentials['project_id'],
+        credentials: {},
+        projectId: 'turboship-dev',
       }).bucket(String(process.env.FILE_STORAGE_BUCKET))
     } else {
       this.bucket = new Storage().bucket(String(process.env.FILE_STORAGE_BUCKET))

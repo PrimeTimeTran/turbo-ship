@@ -5,36 +5,11 @@
 
 [dev]
   targetPort = 3005
-  functionsPort = 8888
   publish = "./.output/public/index.html"
 
 [build]
   publish = "dist"
-  command = "npm run generate"
-  functions = "netlify/functions"
-
-[functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["shikiji/onig.wasm", "tslib"]
-  included_files = [
-    "./netlify/functions/esm-muxter/TurboshipCJS/**",
-  ]
-
-[build.environment]
-  AUTH_TOKEN_SECRET="mySecret"
-  AUTH_TOKEN_EXPIRES_IN="3650 days"
-  API_URL="https://turboship-64gv3lpybq-uc.a.run.app/api"
-
-[context.production.functions]
-  external_node_modules=["shikiji/onig.wasm", "tslib"]
-  included_files=["./netlify/functions/build-muxter/Turboship/Turboship.js"]
+  command = "npx nuxt build --dotenv .env.production"
 
 [context.branch-deploy]
   command="echo 'branch-deploy'"
-  [context.branch-deploy.environment]
-    API_URL="https://turboship-64gv3lpybq-uc.a.run.app/api"
-
-[context.branch-deploy.functions]
-  node_bundler="esbuild"
-  external_node_modules=["shikiji/onig.wasm", "tslib"]
-  included_files=["./netlify/functions/esm-muxter/Turboship/Turboship.js"]

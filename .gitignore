@@ -77,14 +77,9 @@ notes
 # temp/nuxt
 # temp/flutter
 # temp/rn
-# Local Netlify folder
+
 .netlify
 server/utils/Turboship
-netlify/functions/esm-muxter.zip
-netlify/functions/build-muxter.zip
-netlify/functions/esm-muxter/TurboshipCJS
-netlify/functions/esm-muxter/Turboship/flutter
-
 server/services/StorageService/credentials.json
 
 app.yml

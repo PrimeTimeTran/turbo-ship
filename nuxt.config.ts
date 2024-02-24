@@ -97,7 +97,6 @@ export default defineNuxtConfig({
     'nuxt-icon',
   ],
   alias: {
-    '@netlify': path.resolve(__dirname, 'netlify'),
     '@utils': path.resolve(__dirname, 'server/utils'),
     '@services': path.resolve(__dirname, 'server/services'),
     '@security': path.resolve(__dirname, 'server/utils/security'),
