@@ -98,10 +98,5 @@
     "vuedraggable": "next",
     "vuefire": "^3.1.18",
     "zod": "^3.22.4"
-  },
-  "overrides": {
-    "nuxt": {
-      "vue": "3.3.13"
-    }
   }
 }

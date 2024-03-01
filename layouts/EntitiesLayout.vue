@@ -1,8 +1,5 @@
 <!-- I is Internal to Turboship -->
 <script setup>
-definePageMeta({
-  layoutTransition: true,
-})
 useHead({
   script: [
     {

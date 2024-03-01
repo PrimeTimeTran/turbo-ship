@@ -6,7 +6,6 @@ definePageMeta({
 const values = reactive({ email: '', password: '' })
 async function onSubmit(e) {
   e.preventDefault()
-  console.log(values)
 }
 </script>
 

@@ -11,10 +11,10 @@ export default defineNuxtConfig({
   devServer: { port: 3005 },
   ignore: ['/mobile', '/notes', '/utils/seeds', 'nuxt.config.ts'],
   routeRules: {
-    '/**': { prerender: true },
     '/': { prerender: true, ssr: false },
     '/theme/**': { prerender: true },
     '/articles/**/**/**': { prerender: true, ssr: true },
+    '/entities': { cors: true, ssr: false, prerender: false },
     '/api/**': { cors: true, ssr: false, prerender: false },
     '/administrator/**': { ssr: false },
     '/items/**': { ssr: false },

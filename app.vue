@@ -1,8 +1,5 @@
-<script>
+<script setup>
 import { createHead, useHead } from 'unhead'
-definePageMeta({
-  layoutTransition: true,
-})
 createHead()
 
 useHead({

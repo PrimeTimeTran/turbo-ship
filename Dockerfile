@@ -13,7 +13,7 @@ COPY start.sh .
 COPY . .
 
 RUN chmod +x start.sh
-RUN npm install
+RUN npm install 
 
 RUN echo $MONGODB_URI
 RUN echo $NUXT_HOST

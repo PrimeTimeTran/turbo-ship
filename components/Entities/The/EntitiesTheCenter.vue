@@ -6,7 +6,7 @@ const { entities } = useEntities()
   <div class="flex overflow-auto scrollbar-hide h-screen pt-8 w-full">
     <div class="flex flex-1 flex-col" id="TheToolBar">
       <div>
-        <EntitiesTabSorter :entities />
+        <EntitiesTabSorter :entities="entities" />
         <!-- When refactored this guy stops rendering -->
         <div v-if="store.view == views.entities">
           <draggable tag="section" :list="entities" class="list-group" item-key="_id">

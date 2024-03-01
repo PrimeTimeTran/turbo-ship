@@ -49,10 +49,10 @@ function toggleOpen() {
                 ]"
               >
                 <IToolTip
-                  v-if="item.doubleKey"
+                  :item="item"
                   :id="item.id"
                   :tip="item.tip"
-                  :item="item"
+                  v-if="item.doubleKey"
                   :tool="replaceWithDoubleUnderline(item.name, item.underline)"
                 >
                 </IToolTip>
