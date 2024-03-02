@@ -71,6 +71,8 @@ Ensure you've completed the following steps before publicly publishing **any** t
 3/1/24
 How to achieve technical success from a mobile app developer perspective?
 
+This is my MVP checklist for client or personal projects. What's missing in your opinion?
+
 https://t.ly/yFb8k
 
 #software, #tech, #mobile, #apps, #startups, #blog, #writing, #checklist, #checklists, #branding, #ecommerce, #programming, #programmer, #dev, #developer, #coding, #coder, #digital_marketing, #marketing, #sales, #personal_branding, #english, #business, #success, #keys, #todo, #todos, #technical, #technical_details, #vc, #venture_capital

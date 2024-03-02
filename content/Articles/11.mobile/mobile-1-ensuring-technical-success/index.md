@@ -4,6 +4,7 @@ title: "Ensuring Technical Success From a Mobile App Developer Perspective"
 description: "Success defined succinctly is attainable. Here are the list of items I have to have checked off before even thinking about saying we need more developers, I'm free or 'Whats next?'"
 navigation: true
 tags: mobile
+thumbnail: https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 ---
 
 # Technical Success Checklist
