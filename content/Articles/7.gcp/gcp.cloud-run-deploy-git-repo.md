@@ -6,7 +6,6 @@ tags: GCP, Nuxt
 ---
 
 # GCP Cloud Run Service Deploy
-![Demo](./demo.gif)
 
 [Demo App](https://gcp-cloud-run-example-64gv3lpybq-uc.a.run.app/)
 

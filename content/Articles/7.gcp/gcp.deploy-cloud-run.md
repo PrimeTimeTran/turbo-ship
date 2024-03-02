@@ -1,8 +1,8 @@
 ---
 createdAt: 2024-02-20
-title: "Nuxt3 Cloud Run Deployment"
-description: "Google Cloud Platform: How to deploy a Nuxt3 web application to Cloud Run, a product of GCP infrastructures."
-tags: GCP, Nuxt
+title: "Deploy a Nuxt3 App to a Cloud Run Service"
+description: "Steps to ensure successful deploy a Nuxt3 web application to GCP's Cloud Run service/product."
+tags: GCP, Nuxt, Cloud Run
 ---
 
 # GCP: Nuxt3 Cloud Run Deployment
@@ -10,9 +10,9 @@ How to deploy Turboship, a Nuxt3 app, on GCP infrastructure
 
 ## Dependencies
 
-- [Google Cloud Platform(G.C.P.)](https://cloud.google.com/gcp)
-- GCP: [Artifact Registry](https://cloud.google.com/artifact-registry/docs?hl=en)
-- GCP: [Cloud Run](https://cloud.google.com/artifact-registry/docs?hl=en)
+- [Google Cloud Platform(G.C.P.) account](https://cloud.google.com/gcp)
+- [GCP: Artifact Registry](https://cloud.google.com/artifact-registry/docs?hl=en)
+- [GCP: Cloud Run](https://cloud.google.com/artifact-registry/docs?hl=en)
 
 ## Steps
 
@@ -67,7 +67,7 @@ A success means something like this back:
 us-central1-docker.pkg.dev/v2/turboship-dev/anotsosecretproject/turboship/blobs/sha256:4f44545e39b2d39866515e7aadec82100f6a7164b24d721f5e5fdbd170868689
 ```
 
-### Create a new service selecting from the right drawer menu(because it'll have the image hash)
+#### Create a new service selecting from the right drawer menu(because it'll have the image hash)
 
 ## Resources
 
@@ -80,8 +80,6 @@ gcloud builds submit --project "project-name" --config=./cloud-build.yaml
 - [Artifact Repository](https://console.cloud.google.com/artifacts/docker/turboship-dev/us-central1/anotsosecretproject/turboship?hl=en&project=turboship-dev)
 - [Cloud Run Logs](https://console.cloud.google.com/logs/query;query=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22turboship%22%0Aresource.labels.revision_name%3D%22turboship-00011-6qj%22;cursorTimestamp=2024-02-20T20:37:31.407052801Z;duration=PT1H?project=turboship-dev)
 - [Cloud Run Services](https://console.cloud.google.com/run?project=turboship-dev)
-
-
 
 
 gcloud logging read "resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"turboship\"" --project=turboship-dev --limit=1000

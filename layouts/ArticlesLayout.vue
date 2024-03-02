@@ -22,13 +22,15 @@ useHead({
   <div class="flex flex-col justify-between bg-base-100">
     <div class="min-h-screen">
       <The.Navbar />
-      <div class="flex flex-row md:px-16">
-        <div class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto border-r-2 border-neutral">
+      <div class="flex flex-row">
+        <div
+          class="hidden md:flex flex-col h-full max-h-screen overflow-y-auto border-r-2 border-neutral overflow-x-scroll max-w-64 whitespace-nowrap"
+        >
           <MenuTableOfContents @toggled="handleToggle" />
         </div>
         <div class="flex flex-grow overflow-y-auto max-h-screen no-scrollbar md:mr-4 lg:mr-0 pt-8">
           <slot class="w-full" />
-          <div class="main-nav visible lg:block md:hidden rounded border z-10 shadow hidden md:block">
+          <div class="main-nav visible lg:block md:hidden rounded border z-10 shadow hidden">
             <MenuBurger :isOpen="isOpen" @toggled="toggleOpen" />
           </div>
           <div class="hidden md:block">

@@ -2,18 +2,18 @@
 createdAt: 2024-03-01
 title: "Ensuring Technical success from a mobile app perspective"
 description: "We can't fix every problem but we can fix a few. Here are the list of items I have to have checked off before even thinking about saying we need more developers, I'm free or 'Whats next?'"
-navigation: false
+navigation: true
 tags: mobile
 ---
- 
-# Mobile App Checklist
+
+# Technical Success Checklist
 Everyone's measure of success is different.
 
-Within the realm of software development there's business success and technical success.
+A veteran founder, an experienced VC, a seasoned developer can all offer meaningful thoughts on what success looks like.
 
-The following is a list of items I have to achieve for any client/project to feel confident the product can scale.
+Wearing my developer hat, the following is a list of items I personally checklist for any project to feel confident the product can scale(in terms of technical development).
 
-## Checklist
+## Business Development Requirements:
 
 - [ ] Legally incorporated company:
   - [ ] Legal incorporation is required to buy/create the correct type of developer account(more next).
@@ -22,6 +22,9 @@ The following is a list of items I have to achieve for any client/project to fee
 - [ ] PlayStore Developer Account(Organization):
   - [ ] Android/Google has dittoed Apple's limitations in many cases including this.
 - [ ] Custom Domain for hosting privacy policy and choosing an app/bundle id which we're confident makes sense.
+
+## Technical Requirements:
+
 - [ ] Automated builds of APKs & IPAs using CI/CD best practices:
   - [ ] A commit/tag triggers an appropriate Github Action.
   - [ ] Signing keys & certs hosted in cloud(as opposed to on individual developer machines).
@@ -34,3 +37,5 @@ The following is a list of items I have to achieve for any client/project to fee
   - [ ] Frameworks like React Native & Flutter promise "write once & run everywhere". However it's common that implementing a feature or fixing an issue for one platform produces *silent errors* on another/others. For example, a successful build/load of an app but a white/black/blank screen when the app is opened. Tools such as [Appium](https://appium.io/docs/en/latest/), [Maestro](https://maestro.mobile.dev/), [Selenium](https://www.leapwork.com/discover/selenium-automation) can mitigate these problems.
 - [ ] Logs/Analytics/Reports:
   - [ ] Understanding what's going on is crucial for growth. Whether it's knowing which features have users the most engaged(keep focus firing!) or troubleshooting bugs that produce a frustrating user experience; tools such as [Google Analytics](https://firebase.google.com/docs/analytics) & [Sentry](https://sentry.io/welcome) give us a North star to trek toward.
+
+Tweet me [@idolworker](https://twitter.com/idolworker){:target="_blank"} if you think I've missed anything.

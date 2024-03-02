@@ -34,7 +34,7 @@ const callExposedFunction = (category) => {
 <template>
   <div class="pt-8 overflow-auto scrollbar-hide">
     <ContentNavigation v-slot="{ navigation }">
-      <ul>
+      <ul class="mx-8">
         <li class="list-none" :key="category._path" v-for="category in navigation[1].children">
           <ul class="list-none">
             <NuxtLink
