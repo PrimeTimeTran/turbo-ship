@@ -39,8 +39,8 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t primetimetran/turboship:${{ vars.VERSION_CODE }} \
-            --build-arg NUXT_HOST=${{ secrets.NUXT_HOST }} \
-            --build-arg NUXT_HOST_URL=${{ secrets.NUXT_HOST_URL }} \
+            --build-arg HOST=${{ vars.HOST }} \
+            --build-arg HOST_URL=${{ vars.HOST_URL }} \
             --build-arg MONGODB_URI=${{ secrets.MONGODB_URI }} \
             . --platform linux/amd64
 

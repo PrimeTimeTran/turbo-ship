@@ -25,10 +25,11 @@ export default defineNuxtConfig({
     uri: process.env.MONGODB_URI,
   },
   runtimeConfig: {
-    host: process.env.NUXT_HOST,
+    host: process.env.HOST,
     googleAPIKey: process.env.GOOGLE_API_KEY,
     public: {
       apiUrl: process.env.API_URL,
+      hostUrl: process.env.HOST_URL,
     },
   },
   experimental: {

@@ -17,8 +17,7 @@ const mailers = {
 async function mailWelcome(opts) {
   try {
     let data = {
-      confirm_url_with_token:
-        process.env.NUXT_HOST_URL + '/confirm-email?token=' + jwtSign({ email: opts.to }, '7 days'),
+      confirm_url_with_token: process.env.HOST_URL + '/confirm-email?token=' + jwtSign({ email: opts.to }, '7 days'),
     }
     await sgMail.send({ ...mailers.welcome, dynamic_template_data: data, to: opts.to })
   } catch (error) {

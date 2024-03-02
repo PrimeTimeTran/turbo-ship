@@ -16,8 +16,8 @@ RUN chmod +x start.sh
 RUN npm install 
 
 RUN echo $MONGODB_URI
-RUN echo $NUXT_HOST
-RUN echo $NUXT_HOST_URL
+RUN echo $HOST
+RUN echo $HOST_URL
 
 RUN npm run build
 

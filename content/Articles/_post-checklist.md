@@ -56,8 +56,6 @@ Ensure you've completed the following steps before publicly publishing **any** t
   - [ ] Full: Create full video on YouTube
     - https://studio.youtube.com/channel/UCGh6HQz-nRtdqTxP1CiFFlg/videos/upload?d=ud&filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D
 
-### History
-
 ##### Hashtags
 
 #software, #tech, #mobile, #apps, #startups, #blog, #writing, #checklist, #checklists, #branding, #ecommerce, #programming, #programmer, #dev, #developer, #coding, #coder, #digital_marketing, #marketing, #sales, #personal_branding, #english, #business, #success, #keys, #todo, #todos, #technical, #technical_details, #vc, #venture_capital

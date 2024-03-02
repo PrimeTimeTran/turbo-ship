@@ -1,13 +1,14 @@
 <template>
   <p class="font-sans p-8 text-start md:text-center md:text-lg md:p-4 text-black dark:text-white">
-    © {{ currentYear }}
+    All rights reserved. © {{ currentYear }}
+    <br />
+    Made with ❤️ by
     <a
       href="https://github.com/PrimeTimeTran"
       class="text-black hover:opacity-50 dark:text-gray-300 dark:hover:opacity-50 transition-colors duration-300 hover:underline hover:cursor-pointer"
     >
       PrimeTimeTran.
     </a>
-    All rights reserved.
   </p>
 </template>
 <script>

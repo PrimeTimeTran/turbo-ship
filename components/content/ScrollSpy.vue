@@ -67,7 +67,7 @@ const useSpyObservers = (toc) => {
 
   function setupObservers() {
     if (process.browser) {
-      console.log('setupObservers')
+      // console.log('setupObservers')
       try {
         let sections = document.querySelectorAll('.nuxt-content h2[id], .nuxt-content h3[id]')
         for (let section of sections) {

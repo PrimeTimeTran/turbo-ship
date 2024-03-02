@@ -24,7 +24,7 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
       <slot />
     </section>
     <section
-      class="grid place-content-center w-screen h-2/3 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex flex-col py-16 px-8 xl:px-16"
+      class="grid place-content-center w-screen h-2/3 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 flex-col py-16 px-8 xl:px-16"
     >
       <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
@@ -91,7 +91,7 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
       class="w-screen min-h-screen flex justify-center py-6 items-center dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
     >
       <div class="flex flex-col text-center justify-center items-middle">
-        <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
+        <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white">
           Key features & toolings
         </h1>
         <br />
@@ -140,9 +140,9 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
       </div>
     </section>
     <section
-      class="grid place-content-center w-screen h-1/2 py-32 flex-wrap items-center justify-center flex flex-col dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
+      class="grid place-content-center w-screen h-1/2 py-32 flex-wrap items-center justify-center flex-col dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200"
     >
-      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
+      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white">
         The best tools & frameworks
         <br />
         for superior <span class="text-green-400">developer experience</span>
@@ -161,9 +161,7 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
     <section
       class="grid place-content-center w-screen h-1/2 py-32 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
     >
-      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
-        Pricing Plan
-      </h1>
+      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white">Pricing Plan</h1>
       <br />
       <br />
       <p class="mx-auto mt-4 text-center text-gray-500 dark:text-gray-300 xl:mt-6">
@@ -208,7 +206,7 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
     <section
       class="grid place-content-center w-screen h-1/2 py-32 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2"
     >
-      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
+      <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white">
         Save your most important resource your <span class="text-green-400">time</span>
       </h1>
       <div class="collapse bg-base-100 my-8">
@@ -237,7 +235,7 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
       class="grid place-content-center w-screen h-1/2 dark:odd:bg-slate-950 dark:even:bg-zinc-950 odd:bg-gray-100 even:bg-slate-200 p-2 py-32"
     >
       <section class="text-gray-600 body-font">
-        <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white dark:text-white">
+        <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white">
           how progress looks
           <br />
         </h1>
