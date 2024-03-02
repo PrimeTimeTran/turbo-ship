@@ -13,3 +13,27 @@ That seems abstract but before modern JS frameworks took over we had to manually
 
 
 A user clicks a button, we prevent the default behavior, then manually update the UI using JS globals such as `document` or by rendering the entire UI again with a UI template.
+
+
+## Key Concepts
+
+- Components
+  - Function
+  - Class(legacy)
+- Props
+- JSX
+- State
+- Primitive Hooks
+  - [useState](https://react.dev/reference/react/useState):
+    Encapsulate state with closures.
+  - [useEffect](https://react.dev/reference/react/useEffect):
+    Produce side effects from state changes or initial component mounts.
+  - [useCallback](https://react.dev/reference/react/useCallback):
+    Cache a function definition if the input params haven't changed.
+  - [useMemo](https://react.dev/reference/react/useMemo)
+    Cache a value if the input params haven't changed.
+  - [useRef](https://react.dev/reference/react/useRef)
+    Access values such as DOM elements.
+  - [useReducer](https://react.dev/reference/react/useReducer)
+    React embraces Redux fully by adding it's architecture as a native API.
+- Redux
