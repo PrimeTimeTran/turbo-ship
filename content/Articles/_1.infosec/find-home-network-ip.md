@@ -1,4 +1,3 @@
-
 Run the following
 $ ip addr show
 

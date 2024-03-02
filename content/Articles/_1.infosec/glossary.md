@@ -4,8 +4,4 @@ IP (Internet Protocol) is responsible for addressing and routing packets to thei
 
 TCP/IP is responsible for the fundamental data transmission and routing functions of the internet.
 
-
-
-
-
 IOC - Indicators of compromise

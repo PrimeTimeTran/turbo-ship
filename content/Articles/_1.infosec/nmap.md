@@ -37,13 +37,7 @@ May need to use NMap with sudo if not on local network.
 [NMap](https://nmap.org/)
 [NMap Full Guide](https://www.youtube.com/watch?v=JHAMj2vN2oU&t=720s&ab_channel=HackerJoe)
 [Resource](https://www.youtube.com/watch?v=GWztIi4m7_0&ab_channel=CodeGreen)
-
 [UTM Networking Mac M1](https://www.youtube.com/watch?v=GgDEwQXpZI8&ab_channel=ryd3v)
-
 [Avoid Detection: Master Stealth Network Scanning](https://www.youtube.com/watch?v=I0VSp7h0eb4&ab_channel=LearnLadder)
-[]()
-[]()
-[]()
-[]()
 
 

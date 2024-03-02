@@ -7,7 +7,6 @@ navigation: false
 
 # React Native
 
-
 ## Introduction
 
 I began my React journey in 2016 with a course from [Stephen Grider](https://www.linkedin.com/in/stephengrider/) on Udemy.
