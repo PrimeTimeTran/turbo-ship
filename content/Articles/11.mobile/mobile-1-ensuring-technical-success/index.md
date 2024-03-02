@@ -42,4 +42,4 @@ Wearing my developer hat, the following is a list of items I personally checklis
 - [ ] Logs/Analytics/Reports:
   - [ ] Understanding what's going on is crucial for growth. Whether it's knowing which features have users the most engaged(keep focus firing!) or troubleshooting bugs that produce a frustrating user experience; tools such as [Google Analytics](https://firebase.google.com/docs/analytics) & [Sentry](https://sentry.io/welcome) give us a North star to trek toward.
 
-Tweet me [@idolworker](https://twitter.com/idolworker){:target="_blank"} if you think I've missed anything.
+Tweet me [@_primetimetran](https://twitter.com/_primetimetran){:target="_blank"} if you think I've missed anything.
