@@ -1,6 +1,6 @@
 ---
 createdAt: 2024-03-01
-title: "Ensuring Technical success from a mobile app perspective"
+title: "Ensuring Technical Success From a Mobile App Developer Perspective"
 description: "We can't fix every problem but we can fix a few. Here are the list of items I have to have checked off before even thinking about saying we need more developers, I'm free or 'Whats next?'"
 navigation: true
 tags: mobile

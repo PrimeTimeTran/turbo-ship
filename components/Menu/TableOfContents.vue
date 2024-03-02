@@ -7,14 +7,9 @@ const currentRoute = ref('')
 
 watch(toc, (newTOC, oldTOC) => {
   const router = useRoute()
-  console.log({
-    route: newTOC,
-    router: router.fullPath,
-  })
   currentRoute.value = router.fullPath
 })
 
-const curArticle = ref()
 // Note: Sometimes the index.md of a directory is the last item
 // in the list. This ensures the structure of the table of contents is correct.
 // Known cases are Flutter, GCP, Business
@@ -38,9 +33,9 @@ const callExposedFunction = (category) => {
         <li class="list-none" :key="category._path" v-for="category in navigation[1].children">
           <ul class="list-none">
             <NuxtLink
-              v-text="category.title"
               :to="category._path"
               @click="$emit('toggled')"
+              v-text="titleize(category.title)"
               :class="{
                 'min-w-full': true,
                 'hover:text-green-400': true,
@@ -54,9 +49,9 @@ const callExposedFunction = (category) => {
                 class="border-l border-l-gray-900/25 dark:border-l-white/25"
               >
                 <NuxtLink
-                  v-text="child.title"
                   :to="child._path"
                   @click="$emit('toggled')"
+                  v-text="titleize(child.title)"
                   :class="{
                     'ml-6': true,
                     'min-w-full': true,
