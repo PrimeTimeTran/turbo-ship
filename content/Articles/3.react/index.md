@@ -46,3 +46,6 @@ A user clicks a button, we prevent the default behavior, then manually update th
   - [useReducer](https://react.dev/reference/react/useReducer)
     React embraces Redux fully by adding it's architecture as a native API.
 - Redux:
+  - Dispatch actions which update a global store of state
+  - Reduce a dispatched action to it's fundamental change to the apps state
+  - Automatically update UI by *selecting* desired state inside of a component & using it to render UI.
