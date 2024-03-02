@@ -7,8 +7,11 @@ export default defineNuxtConfig({
     autoImport: true,
   },
   runtimeConfig: {
+    host: process.env.HOST,
+    googleAPIKey: process.env.GOOGLE_API_KEY,
     public: {
-      apiUrl: process.env.API_URL || 'http://localhost:3005/api',
+      apiUrl: process.env.API_URL,
+      hostUrl: process.env.HOST_URL,
     },
   },
   app: {
@@ -26,6 +29,7 @@ export default defineNuxtConfig({
     'nuxt-mongoose',
     '@nuxt/content',
     'nuxt-vuefire',
+    '@samk-dev/nuxt-vcalendar',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
   ],

@@ -66,6 +66,23 @@ Ensure you've completed the following steps before publicly publishing **any** t
 
 #### History
 
+3/2/24 - Livestream
+
+Title: 
+Turboship Initialization | Turboship Livestreams #1
+
+Description:
+Live coding with Loi Tran.
+- Learn about the benefits of Turboship.
+- Learn Nuxt3 Setup
+- Learn Flutter setup
+- Learn React Native setup
+
+Program:
+https://gist.github.com/PrimeTimeTran/b19402287128c16ad70dc745c413b32a
+
+By the end of it the viewer should understand how to download src, install dependencies, fix known issues & run the generated projects.
+
 3/1/24
 How to achieve technical success from a mobile app developer perspective?
 
@@ -74,3 +91,4 @@ This is my MVP checklist for client or personal projects. What's missing in your
 https://t.ly/yFb8k
 
 #software, #tech, #mobile, #apps, #startups, #blog, #writing, #checklist, #checklists, #branding, #ecommerce, #programming, #programmer, #dev, #developer, #coding, #coder, #digital_marketing, #marketing, #sales, #personal_branding, #english, #business, #success, #keys, #todo, #todos, #technical, #technical_details, #vc, #venture_capital
+
