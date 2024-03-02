@@ -27,11 +27,11 @@
       </label>
     </div>
     <NuxtLink
-      href="/login"
+      href="/auth"
       class="flex items-center text-gray-500 hover:text-green-500 dark:text-gray dark:hover:text-green-500 cursor-pointer transition-colors duration-300 py-3"
     >
       <FontAwesomeIcon icon="fa-solid fa-sign-out" class="mr-3" />
-      Login
+      Login / Create Account
     </NuxtLink>
   </div>
 </template>

@@ -1,8 +1,4 @@
-<script setup>
-definePageMeta({
-  layoutTransition: true,
-})
-</script>
+<script setup></script>
 <template>
   <div>
     <TGlobalContainer>
