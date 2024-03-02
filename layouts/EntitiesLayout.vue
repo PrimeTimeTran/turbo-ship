@@ -18,7 +18,7 @@ ensureLoad(scriptUrls.hotkeys)
 <template>
   <TGlobalContainer>
     <template v-slot:navbar>
-      <INavbar />
+      <IEntitiesNavbar />
     </template>
     <template v-slot:drawer-left>
       <TDrawerLeft />
