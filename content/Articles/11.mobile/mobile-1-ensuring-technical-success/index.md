@@ -7,6 +7,9 @@ tags: mobile
 ---
 
 # Technical Success Checklist
+
+![Preview](https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+
 Everyone's measure of success is different.
 
 A veteran founder, an experienced VC, a seasoned developer can all offer meaningful thoughts on what success looks like.

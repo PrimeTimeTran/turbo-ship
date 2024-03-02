@@ -2,11 +2,12 @@
 Ensure you've completed the following steps before publicly publishing **any** tutorial/video.
 
 ### Outline
-- [ ] Hook: Write a catch hook.
+- [ ] Catchy Title: Hook your reader.
+- [ ] Social Share Image: Visual appeal.
 - [ ] Thumbnail: Create custom thumbnail with Canva.
-- [ ] Post: Write a meaningful body in the post.
-- [ ] Hashtags: Add hashtags to post body to get more exposure.
-- [ ] Sharing: Share to relevant websites/groups
+- [ ] Post: Deliver value.
+- [ ] Hashtags: Add hashtags to post body to get more exposure..?
+- [ ] Sharing: Find your audience
   - Groups/Pages: Share to these pages
     - Personal Wall/Profile:
       - FB
@@ -59,9 +60,17 @@ Ensure you've completed the following steps before publicly publishing **any** t
 
 ##### Hashtags
 
-#TurboShip, #Startup, #Entrepreneurship, #SmallBusiness, #BusinessTips, #MarketingStrategy, #Innovation, #TechStartup, #DigitalMarketing, #SaaS, #SocialMediaMarketing, #BusinessDevelopment, #Ecommerce, #VentureCapital, #Leadership, #BrandBuilding, #Developers, #Development, #Software, #Coding, #Coder, #Nuxt, #Flutter, #Mongoose, #SQL, #Firebase,
-
+#software, #tech, #mobile, #apps, #startups, #blog, #writing, #checklist, #checklists, #branding, #ecommerce, #programming, #programmer, #dev, #developer, #coding, #coder, #digital_marketing, #marketing, #sales, #personal_branding, #english, #business, #success, #keys, #todo, #todos, #technical, #technical_details, #vc, #venture_capital
 
 #### Gotchas
 
 - Twitter Preview link must be last
+
+#### History
+
+3/1/24
+How to achieve technical success from a mobile app developer perspective?
+
+https://t.ly/yFb8k
+
+#software, #tech, #mobile, #apps, #startups, #blog, #writing, #checklist, #checklists, #branding, #ecommerce, #programming, #programmer, #dev, #developer, #coding, #coder, #digital_marketing, #marketing, #sales, #personal_branding, #english, #business, #success, #keys, #todo, #todos, #technical, #technical_details, #vc, #venture_capital
