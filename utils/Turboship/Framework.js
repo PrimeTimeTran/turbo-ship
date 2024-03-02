@@ -29,14 +29,11 @@ export default class Framework {
   }
   zipBaseDirectory() {
     const name = this.options.frameworkName
-    const isDev = false
+    const isDev = true
     let basePath = `/usr/src/app/utils/Turboship/${name}`
     if (isDev) {
       basePath = `/Users/future/Documents/work/turbo.web/utils/Turboship/${name}`
     }
-    console.log({
-      basePath,
-    })
     getZippedFolderSync(basePath, this.zip, this.options)
     return this.zip
   }
@@ -144,7 +141,7 @@ function buildEntitiesDefinitions(entities) {
 export const frameworkMap = {
   nuxt: {
     name: 'nuxt',
-    version: '3.8.0',
+    version: '3.10.3',
     adminUIFiles: ['EntityForm.vue', 'Form.vue', 'Table.vue'],
     apiFiles: ['index.get.', 'index.post.', '[_id].delete.', '[_id].get.', '[_id].put.'],
     buildGlobalMeta: (entities) => {
@@ -309,30 +306,4 @@ export const frameworkMap = {
     version: '0.73.4',
     rootDirectories: ['src'],
   },
-}
-
-function printPath() {
-  fs.readdir(currentDirectory, (err, files) => {
-    if (err) {
-      console.error('Error reading directory:', err)
-      return
-    }
-
-    console.log(`Contents of current directory (${currentDirectory}):`)
-    files.forEach((file) => {
-      console.log(file)
-    })
-  })
-
-  fs.readdir(currentDirectory + '/netlify', (err, files) => {
-    if (err) {
-      console.error('Error reading directory:', err)
-      return
-    }
-
-    console.log(`Contents of current directory (${currentDirectory}):`)
-    files.forEach((file) => {
-      console.log(file)
-    })
-  })
 }

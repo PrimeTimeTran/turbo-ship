@@ -3,7 +3,7 @@ import JSZip from 'jszip-sync'
 import { program } from 'commander'
 
 import Framework from './Framework.js'
-import { prettify } from './helpers.js'
+// import { prettify } from './helpers.js'
 
 export default class Turboship {
   supportedFrameworks = ['flutter', 'nuxt', 'rn']
@@ -13,21 +13,23 @@ export default class Turboship {
     this.options = this.options()
     this.buildEntities(entities)
     this.generate(entities)
+    this.report()
   }
 
   options() {
     program
-    // .option('-d, --debug', 'output extra debugging')
-    // .option('-l, --language <type>', 'language choice', 'js')
-    // .option('-b, --backend <type>', 'backend choice', 'nuxt')
-    // .option('-m, --mobile <type>', 'mobile choice', 'rn')
-    // .option('-e, --entities <letters...>', 'entities included', 'user')
-    program.parse(process.argv)
+      .option('-d, --debug', 'output extra debugging')
+      .option('-l, --language <type>', 'language choice', 'js')
+      .option('-b, --backend <type>', 'backend choice', 'nuxt')
+      .option('-m, --mobile <type>', 'mobile choice', 'flutter')
+      .option('-e, --entities <letters...>', 'entities included', 'user')
+    // Create string from client side config & then pass instead of process.argv
+    // this way we can control which mobile template, etc
+    // .parse(process.argv)
     let options = program.opts()
-    options.isDev = false
-    options.logLevelDebug = false
-    options.backend = 'nuxt'
-    options.language = 'js'
+    options.logLevelDebug = true
+    // options.backend = 'nuxt'
+    // options.language = 'js'
     return options
   }
 
@@ -69,7 +71,7 @@ export default class Turboship {
     if (options.mobile) console.log(chalk['green']('mobile'), `- ${options.mobile}`)
     if (options.entities) console.log(chalk['green']('entities'), `- ${options.entities}`)
     console.log('\n\n')
-    prettify(this.options.root)
+    // prettify(this.options.root)
   }
 }
 

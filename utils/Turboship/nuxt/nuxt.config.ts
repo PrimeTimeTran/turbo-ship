@@ -6,6 +6,11 @@ export default defineNuxtConfig({
   formkit: {
     autoImport: true,
   },
+  mongoose: {
+    options: {},
+    modelsDir: 'models',
+    uri: process.env.MONGODB_URI,
+  },
   runtimeConfig: {
     host: process.env.HOST,
     googleAPIKey: process.env.GOOGLE_API_KEY,

@@ -1,3 +1,4 @@
+import prettier from 'prettier'
 import { frameworkMap } from './Framework.js'
 import { ModelBuilder } from './builders/ModelBuilder.js'
 
@@ -11,59 +12,84 @@ export default class Generator {
   async buildGenesis() {
     const name = this.options.frameworkName
     if (name === 'nuxt') {
-      const routes = frameworkMap[this.options.backend].apiFiles
-      this.buildRoutes(routes, this.entities, this.options, this.zip)
-      this.buildModels(this.entities, this.options, this.zip)
-      this.buildAdminUI(this.entities, this.options, this.zip)
+      this.buildRoutes()
+      this.buildModels()
+      this.buildAdminUI()
     }
     return this.zip
   }
-  buildAdminUI(entities, options, zip) {
+  buildAdminUI() {
     try {
-      let content = frameworkMap[options.backend].buildGlobalMeta(entities)
+      let content = frameworkMap[this.options.backend].buildGlobalMeta(this.entities)
       let name = `nuxt/utils/Global.js`
-      zip.file(name, content + '}')
+      this.zip.file(name, content + '}')
     } catch (error) {
       console.log({
+        error,
         error: 'Error: buildAdminUI',
       })
     }
   }
-  buildModels(entities, options, zip) {
+  buildModels() {
     try {
-      const backend = new ModelBuilder(entities, options)
-      entities.map((e) => {
+      const backend = new ModelBuilder(this.entities, this.options)
+      this.entities.map((e) => {
         let fullPath = `nuxt/server/models`
         backend.e = e
         const content = backend.buildModel()
-        const name = `${fullPath}/${e.label}.model.${options.language}`
-        zip.file(name, content)
+        const formattedContent = prettier.format(content, formatConfig)
+
+        const name = `${fullPath}/${e.label}.model.${this.options.language}`
+        this.zip.file(name, formattedContent)
       })
     } catch (error) {
       console.log({
+        error,
         error: 'Error: buildModels',
       })
     }
   }
-  buildRoutes(routes, entities, options, zip) {
-    try {
-      zip.sync(() => {
-        for (let e of entities) {
-          const fullPath = `/server/API/${e.plural}`
-          for (let r of routes) {
-            const fileName = r + options.language
-            const content = frameworkMap[options.backend]['apiContent'][r](e.label)
-            const name = `nuxt${fullPath}/${fileName}`
-            zip.file(name, content)
-          }
-          zip.generateAsync({ type: 'nodebuffer' }).then((content) => {})
-        }
-        zip.generateAsync({ type: 'nodebuffer' }).then((content) => {})
+  buildRoutes() {
+    this.addFilesToZip()
+      .then((content) => {
+        console.log('Success!')
       })
-    } catch (error) {
-      console.log({
-        error: 'Error: buildRoutes',
+      .catch((error) => {
+        console.log({
+          error,
+          error: 'Error: buildRoutes',
+        })
       })
-    }
   }
+
+  addFilesToZip() {
+    for (let e of this.entities) {
+      const fullPath = `/server/API/${e.plural}`
+      const routes = frameworkMap[this.options.backend].apiFiles
+      for (let r of routes) {
+        const fileName = r + this.options.language
+        const content = frameworkMap[this.options.backend]['apiContent'][r](e.label)
+        const formattedContent = prettier.format(content, formatConfig)
+        const name = `nuxt${fullPath}/${fileName}`
+        this.zip.file(name, formattedContent)
+      }
+    }
+
+    return this.zip.generateAsync({ type: 'nodebuffer' })
+  }
+}
+
+const formatConfig = {
+  semi: true,
+  singleQuote: true,
+  tabWidth: 2,
+  useTabs: false,
+  printWidth: 80,
+  trailingComma: 'none',
+  arrowParens: 'always',
+  bracketSpacing: true,
+  jsxSingleQuote: false,
+  jsxBracketSameLine: false,
+  endOfLine: 'auto',
+  parser: 'typescript',
 }
