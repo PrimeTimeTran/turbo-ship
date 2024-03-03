@@ -236,9 +236,23 @@ const RolesIcon = h(Icon, { name: 'oui:app-users-roles' })
     >
       <section class="text-gray-600 body-font">
         <h1 class="text-center text-5xl font-semibold capitalize text-gray-800 dark:text-white">
-          how progress looks
+          Watch how simple it is
           <br />
         </h1>
+        <iframe
+          width="800"
+          height="400"
+          frameborder="0"
+          allowfullscreen
+          class="m-12"
+          src="https://www.youtube.com/embed/7vE-7_JrIa0"
+          title="Turboship Initialization | Turboship Livestreams #1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        />
+        <h2 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white">
+          how progress looks
+          <br />
+        </h2>
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap -m-4 text-center">
             <div class="p-4 sm:w-1/4 w-1/2">
