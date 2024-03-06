@@ -29,7 +29,7 @@ export default class Framework {
   }
   zipBaseDirectory() {
     const name = this.options.frameworkName
-    const isDev = true
+    const isDev = false
     let basePath = `/usr/src/app/utils/Turboship/${name}`
     if (isDev) {
       basePath = `/Users/future/Documents/work/turbo.web/utils/Turboship/${name}`

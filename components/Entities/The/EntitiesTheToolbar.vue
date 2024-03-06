@@ -237,7 +237,6 @@ const templateItems = [
       <IDropdown underline="E" title="Entities" :items="entitiesItems" />
       <IDropdown title="Templates" underline="T" :items="templateItems" />
       <IDropdown underline="a" title="Relationships" :items="[]" />
-      <IDropdown underline="b" title="Feedback" :items="[]" />
       <IDropdown right="true" title="Help" underline="H" :items="[]" />
     </div>
   </div>
