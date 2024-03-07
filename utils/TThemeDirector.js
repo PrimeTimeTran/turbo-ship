@@ -29,6 +29,7 @@ function daisyThemeToggle() {
 }
 
 export function toggleTheme() {
+  console.log({ toggleTheme: 'Pressed!' })
   isDark = useDark()
   const toggleDark = useToggle(isDark)
   daisyThemeToggle()

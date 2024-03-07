@@ -1,19 +1,19 @@
 <!-- I is Internal to Turboship -->
 <script setup>
-useHead({
-  script: [
-    {
-      type: 'text/javascript',
-      innerHTML: 'console.log("Entity scripts loading...")',
-      tagPosition: 'head',
-    },
-    {
-      type: 'public/js/Hotkeys.js',
-      tagPosition: 'bodyClose',
-    },
-  ],
-})
-ensureLoad(scriptUrls.hotkeys)
+// useHead({
+//   script: [
+//     {
+//       type: 'text/javascript',
+//       innerHTML: 'console.log("Entity scripts loading...")',
+//       tagPosition: 'head',
+//     },
+//     {
+//       type: 'public/js/Hotkeys.js',
+//       tagPosition: 'bodyClose',
+//     },
+//   ],
+// })
+// ensureLoad(scriptUrls.hotkeys)
 </script>
 <template>
   <TGlobalContainer>

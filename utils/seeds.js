@@ -6,6 +6,7 @@ import { Forum } from './seeds/Forum.js'
 import { Hotel } from './seeds/Hotel.js'
 import { Social } from './seeds/Social.js'
 import { Delivery } from './seeds/Delivery.js'
+import { Exchange } from './seeds/Exchange.js'
 import { RealEstate } from './seeds/RealEstate.js'
 
 export const seeds = {
@@ -17,6 +18,7 @@ export const seeds = {
   forum: Forum,
   social: Social,
   delivery: Delivery,
+  exchange: Exchange,
   realestate: RealEstate,
 }
 

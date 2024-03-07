@@ -8,16 +8,14 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default defineNuxtConfig({
-  devServer: { port: 3005 },
-  ignore: ['/mobile', '/notes', '/utils/seeds', 'nuxt.config.ts'],
+  ignore: ['/mobile', '/notes'],
   routeRules: {
-    '/': { prerender: true, ssr: false },
-    '/theme/**': { prerender: true },
-    '/articles/**/**/**': { prerender: true, ssr: true },
-    '/entities': { cors: true, ssr: false, prerender: false },
-    '/api/**': { cors: true, ssr: false, prerender: false },
+    '/': { prerender: true, ssr: true },
     '/administrator/**': { ssr: false },
+    '/api/**': { cors: true, ssr: false, prerender: false },
+    '/articles/**/**/**': { prerender: true },
     '/items/**': { ssr: false },
+    '/entities': { cors: true, prerender: true, },
   },
   mongoose: {
     options: {},

@@ -3,14 +3,6 @@
   "compilerOptions": {
     "strict": true
   },
-  "exclude": [
-    "./src/**",
-    "./utils/Turboship",
-    "./composables/useEntities.ts",
-    "./server/middleware/02.user.global.ts",
-    "./server/utils/Turboship/nuxt",
-    "dododo/functions/esm-muxter/Turboship",
-    "dododo/functions/esm-muxter/TurboshipCJS"
-  ],
+  "exclude": ["./src/**", "./utils/Turboship", "./composables/useEntities.ts", "./server/middleware/02.user.global.ts"],
   "typeRoots": ["./typings", "./node_modules/@types/"]
 }

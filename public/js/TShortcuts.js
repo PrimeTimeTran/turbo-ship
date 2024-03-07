@@ -35,6 +35,7 @@ class TurboShortcuts {
       document.getElementById('CollapseSubmenu').click()
     },
     'alt+d': function () {
+      console.log('theme Shortcut ')
       document.getElementById('tThemeToggle').click()
     },
     'cmd+opt+k': function () {
@@ -70,7 +71,6 @@ class TurboShortcuts {
     'alt+e': function () {
       document.getElementById('EntitiesSubmenu').click()
     },
-
     'alt+b': function () {
       document.getElementById('FeedbackSubmenu').click()
     },

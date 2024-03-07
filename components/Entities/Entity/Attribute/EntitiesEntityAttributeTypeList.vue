@@ -26,10 +26,10 @@ function onChange(e) {
     <label class="text-sm rounded p-2 w-full">
       <input
         type="radio"
-        class="overflow-x-scroll radio radio-xs radio-info"
-        @change="onChange"
+        @click="onChange"
         v-model="focusedKey"
         name="attributeName"
+        class="radio radio-xs radio-success"
         :value="Validator.labeledTypes[dataType]?.value"
         :checked="Validator.labeledTypes[dataType]?.value === focusedType"
       />

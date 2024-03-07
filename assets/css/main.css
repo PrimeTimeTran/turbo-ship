@@ -58,17 +58,3 @@ body {
   color: white;
   background: rgb(189, 189, 189);
 }
-
-.radio-info {
-  border-color: #000;
-}
-
-.radio-info:hover {
-  border-color: lightgreen;
-}
-
-.radio-info:checked,
-.radio-info[aria-checked='true'] {
-  border-color: green;
-  background-color: lightgreen !important;
-}

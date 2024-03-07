@@ -227,6 +227,12 @@ const templateItems = [
     click: () => setEntities('crm'),
     underline: '',
   },
+  {
+    id: faker.database.mongodbObjectId(),
+    name: 'Exchange',
+    click: () => setEntities('exchange'),
+    underline: '',
+  },
 ]
 </script>
 <template>
