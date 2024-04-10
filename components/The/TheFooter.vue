@@ -46,8 +46,20 @@ const backends = ['NodeJS', 'Ruby On Rails', 'Django', '.NET']
               :to="item.url"
               v-for="item in frameworks"
               class="text-black hover:text-green-500 dark:text-gray-300 dark:hover:text-green-500 transition-colors duration-300 hover:underline hover:cursor-pointer"
-              v-text="item.name"
             >
+              {{ item.name }}
+            </NuxtLink>
+          </div>
+          <br />
+          <br />
+          <br />
+          <p class="text-black dark:text-white font-semibold">Blog</p>
+          <div class="flex flex-col items-start mt-5 space-y-2">
+            <NuxtLink
+              to="https://react-blog.ltran.net"
+              class="text-black hover:text-green-500 dark:text-gray-300 dark:hover:text-green-500 transition-colors duration-300 hover:underline hover:cursor-pointer"
+            >
+              Learn more about me
             </NuxtLink>
           </div>
         </div>
