@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['entity', 'entityType', 'fetchWithFilterFields'])
+const props = defineProps(['entity', 'entityType', 'fetchWithFilterFields','formContext'])
 const items = ref([])
 
 items.value = TFormHelper.setupFormFields(props.entity, props.entityType)
@@ -41,7 +41,7 @@ function showEditButton() {
           ✕
         </button>
       </form>
-      <AdminEntityForm :entity="entity" :entityType="entityType" :fetchWithFilterFields="fetchWithFilterFields" />
+      <AdminEntityForm :entity="entity" :entityType="entityType" :fetchWithFilterFields="fetchWithFilterFields" :formContext="formContext" />
       <form method="dialog" class="modal-backdrop">
         <button @click="toggleModal(entity?._id)">close</button>
       </form>

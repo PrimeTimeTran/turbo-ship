@@ -19,6 +19,7 @@ const route = useRoute()
 const entityType = route.path.split('/administrator/')[1]
 
 function toggleModal(id) {
+  
   const modal = document.getElementById(`modal-${entityType}`)
     if (modal) {
       modal.showModal()
