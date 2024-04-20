@@ -141,6 +141,16 @@ export const LeetCode = {
           relation: { name: null, type: '' },
         },
         {
+          validators: [],
+          validations: [],
+          type: 'string',
+          name: 'passwordDigest',
+          label: 'Password Digest',
+          _id: '0cadf0cb9s5bd08874aeb398e',
+          placeholder: '',
+          relation: { name: null, type: '' },
+        },
+        {
           name: 'firstName',
           label: 'First Name',
           type: 'string',
@@ -165,16 +175,6 @@ export const LeetCode = {
           _id: 'dcb9b448e5bce7c8bdea1ece',
           validators: [],
           validations: [],
-          relation: { name: null, type: '' },
-        },
-        {
-          name: 'status',
-          label: 'Status',
-          type: 'enumerator',
-          _id: '077cb5ead63ef967d1adcc2c',
-          validators: [],
-          validations: [],
-          options: 'open,closed,pending',
           relation: { name: null, type: '' },
         },
         {
@@ -451,16 +451,6 @@ export const LeetCode = {
           _id: 'cb9e4df711521061za110b22ba8c',
           placeholder: 'one-to-many',
           relation: { name: 'comment', type: 'otm' },
-        },
-        {
-          validators: [],
-          validations: [],
-          type: 'relation',
-          name: 'badgeItem',
-          label: 'Badge Items',
-          _id: 'cb9e4df711521061a110b22xba8c',
-          placeholder: 'one-to-many',
-          relation: { name: 'badgeItem', type: 'otm' },
         },
         {
           validators: [],
@@ -1773,7 +1763,7 @@ export const LeetCode = {
     {
       _id: '59abcbce7ae2edbzcd151d90zb1x',
       name: 'submission',
-      label: 'submission',
+      label: 'Submission',
       plural: 'submissions',
       pluralL: 'Submissions',
       attributes: [

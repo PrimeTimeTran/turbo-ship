@@ -202,7 +202,8 @@ export const frameworkMap = {
     apiContent: {
       'index.get.': function (label) {
         return `import _ from 'lodash'
-          import ${label} from '@models/${label}.model.js';
+        import ${label} from '@models/${label}.model.js';
+
           export default defineEventHandler(async (e) => {
             try {
               let { limit, page } = e.context
@@ -237,6 +238,7 @@ export const frameworkMap = {
       'index.post.': function (label) {
         return `
         import ${label} from '@models/${label}.model.js';
+
         export default defineEventHandler(async (event) => {
           const body = await readBody(event)
           try {
@@ -250,6 +252,7 @@ export const frameworkMap = {
       '[_id].delete.': function (label) {
         return `
         import ${label} from '@models/${label}.model.js';
+
         export default defineEventHandler(async (event) => {
           try {
             const doc = await ${label}.findOneAndUpdate(
@@ -274,6 +277,7 @@ export const frameworkMap = {
       '[_id].get.': function (label) {
         return `
         import ${label} from '@models/${label}.model.js';
+
         export default defineEventHandler(async (event) => {
           try {
             return await ${label}.findOne({ _id: event.context.params?._id })

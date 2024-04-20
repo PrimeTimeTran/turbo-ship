@@ -1,3 +1,4 @@
+import User from "@models/User.model.js"
 const err = {
   statusCode: 400,
   statusMessage: 'Authentication Error: Email/Password invalid',
