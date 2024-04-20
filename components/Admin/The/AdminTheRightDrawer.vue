@@ -29,7 +29,7 @@ watch(
     <div class="drawer-side z-10">
       <label for="rightDrawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu p-4 w-9/12 min-h-full bg-base-100 text-base-content">
-        <AdminEntityForm :entity="focused" :entityType="'users'" />
+        <AdminEntityForm :entity="focused" :entityType="'users'" :formContext="'edit'" />
         <slot />
       </ul>
     </div>

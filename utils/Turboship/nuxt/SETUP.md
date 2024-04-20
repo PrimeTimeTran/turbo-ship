@@ -1,4 +1,5 @@
 # Setup Web App
+
 It's a Nuxt3 Web app so knowledge of NodeJS, NPM, and JS is critical to success.
 
 Git, Docker & GCP will only help.
@@ -10,32 +11,33 @@ Git, Docker & GCP will only help.
 - Install Dependencies:
   - `npm install`
 - Setup env variables
-  - Create `touch .env.local`
 
-      ```sh
-      HOST=localhost
+  - Create `touch .env`
 
-      HOST_URL=http://localhost:3000
-      API_URL=http://localhost:3000/api
+    ```sh
+    HOST=localhost
 
-      # Storage
-      FILE_STORAGE_PROVIDER=gcp
-      FILE_STORAGE_LOCAL_FOLDER='./'
-      FILE_STORAGE_BUCKET=turboship-dev-alpha
-      GOOGLE_CLOUD_PLATFORM_CREDENTIALS=W29iamVjdCBPYmplY3Rd
+    HOST_URL=http://localhost:3000
+    API_URL=http://localhost:3000/api
 
-      # Misc
-      AUTH_TOKEN_EXPIRES_IN='3650 days'
-      AUTH_TOKEN_SECRET=secretsecretTaseSpray
-      MONGODB_URI=mongodb://localhost:27017/turboship
-      SENDGRID_API_KEY=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
-      ```
+    # Storage
+    FILE_STORAGE_PROVIDER=gcp
+    FILE_STORAGE_LOCAL_FOLDER='./'
+    FILE_STORAGE_BUCKET=turboship-dev-alpha
+    GOOGLE_CLOUD_PLATFORM_CREDENTIALS=W29iamVjdCBPYmplY3Rd
 
-      > 👨🏻‍💻 Checkout the `dev` script in `package.json` and you'll notice it specifies this file
+    # Misc
+    AUTH_TOKEN_EXPIRES_IN='3650 days'
+    AUTH_TOKEN_SECRET=secretsecretTaseSpray
+    MONGODB_URI=mongodb://localhost:27017/turboship
+    SENDGRID_API_KEY=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
+    ```
+
+    > 👨🏻‍💻 Checkout the `dev` script in `package.json` and you'll notice it specifies this file
 
 - Configure Firebase inside of `./nuxt.config.ts`
-  - Replace the `vuefire.config` key's value with your project's values. 
 
+  - Replace the `vuefire.config` key's value with your project's values.
 
     ```sh
     vuefire: {

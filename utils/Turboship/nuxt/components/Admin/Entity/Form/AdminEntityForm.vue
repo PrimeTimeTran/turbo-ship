@@ -1,6 +1,6 @@
 <script setup>
 import _ from 'lodash'
-const props = defineProps(['entity', 'entityType', 'fetchWithFilterFields'])
+const props = defineProps(['entity', 'entityType', 'fetchWithFilterFields', 'formContext'])
 const cols = ref([])
 const items = ref([])
 cols.value = GlobalState.formSortedFields(props.entityType)
@@ -34,6 +34,18 @@ function label(field) {
   if (f) {
     let length = f.options?.length > 1 ? `(${f.options.length})` : ``
     return `${f.label} ${length}`
+  }
+}
+function formActionLabel() {
+  switch (props.formContext) {
+    case 'create':
+      return 'Create'
+    case 'edit':
+      return 'Update'
+    case 'filter':
+      return 'Search'
+    default:
+      break;
   }
 }
 </script>
@@ -80,7 +92,7 @@ function label(field) {
             class="flex grow justify-center items-center bg-success h-100 min-h-full hover:cursor-pointer mx-16 rounded text-white"
           >
             <FormKit type="submit" @click="(e) => onSubmit(e, value)" :classes="{ inner: 'text-white font-bold' }">
-              Save
+              {{ formActionLabel() }}
             </FormKit>
           </div>
         </div>

@@ -344,7 +344,7 @@ export const LeetCode = {
       name: 'badge',
       label: 'Badge',
       plural: 'Badges',
-      pluralL: 'badges',
+      pluralL: 'Badges',
       attributes: [
         {
           validators: [],
@@ -397,7 +397,7 @@ export const LeetCode = {
       name: 'badgeItem',
       label: 'BadgeItem',
       plural: 'BadgeItems',
-      pluralL: 'badgesItems',
+      pluralL: 'BadgeItems',
       attributes: [
         {
           validators: [],
@@ -1135,7 +1135,7 @@ export const LeetCode = {
         {
           validators: [],
           validations: [],
-          type: 'int',
+          type: 'integer',
           name: 'points',
           label: 'Points',
           _id: 'b2f7ba11d5422e961e11de113ep8co',

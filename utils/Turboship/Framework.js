@@ -235,7 +235,9 @@ export const frameworkMap = {
           })`
       },
       'index.post.': function (label) {
-        return `export default defineEventHandler(async (event) => {
+        return `
+        import ${label} from '@models/${label}.model.js';
+        export default defineEventHandler(async (event) => {
           const body = await readBody(event)
           try {
             return await new ${label}(body).save()
@@ -246,7 +248,9 @@ export const frameworkMap = {
       `
       },
       '[_id].delete.': function (label) {
-        return `export default defineEventHandler(async (event) => {
+        return `
+        import ${label} from '@models/${label}.model.js';
+        export default defineEventHandler(async (event) => {
           try {
             const doc = await ${label}.findOneAndUpdate(
               {
@@ -268,7 +272,9 @@ export const frameworkMap = {
       `
       },
       '[_id].get.': function (label) {
-        return `export default defineEventHandler(async (event) => {
+        return `
+        import ${label} from '@models/${label}.model.js';
+        export default defineEventHandler(async (event) => {
           try {
             return await ${label}.findOne({ _id: event.context.params?._id })
           } catch (error) {
@@ -278,7 +284,9 @@ export const frameworkMap = {
       `
       },
       '[_id].put.': function (label) {
-        return `export default defineEventHandler(async (event) => {
+        return `
+        import ${label} from '@models/${label}.model.js';
+        export default defineEventHandler(async (event) => {
           const body = await readBody(event)
           try {
             return await ${label}.findOneAndUpdate(

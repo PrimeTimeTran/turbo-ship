@@ -17,6 +17,7 @@ const props = defineProps(['deleteItem', 'item', 'entityType', 'fetchWithFilterF
         </button>
         <AdminEntityFormWrapper
           :entity="item"
+          :formContext="'edit'"
           :entityType="entityType"
           :fetchWithFilterFields="fetchWithFilterFields"
         />

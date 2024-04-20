@@ -1,5 +1,5 @@
 <script setup>
-import { EllipsisHorizontalIcon } from '@heroicons/vue/20/solid'
+import { EllipsisHorizontalIcon,MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 definePageMeta({
   layout: 'admin-layout',
   layoutTransition: true,
@@ -17,6 +17,13 @@ useHead({
 })
 const route = useRoute()
 const entityType = route.path.split('/administrator/')[1]
+
+function toggleModal(id) {
+  const modal = document.getElementById(`modal-${entityType}`)
+    if (modal) {
+      modal.showModal()
+    }
+}
 </script>
 <template>
   <div role="tablist" class="tabs tabs-lifted relative">
@@ -34,7 +41,7 @@ const entityType = route.path.split('/administrator/')[1]
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Create New" />
     <div role="tabpanel" class="tab-content dark:bg-base-100 border-base-300 rounded-box p-2">
-      <AdminEntityForm :entity="{}" :entityType />
+      <AdminEntityForm :entity="{}" :entityType :formContext="'create'" />
     </div>
     <input type="radio" name="entityTabs" role="tab" class="tab alpha" aria-label="Settings" />
     <div role="tabpanel" class="tab-content dark:bg-base-100 border-base-300 rounded-box p-2">
@@ -44,6 +51,7 @@ const entityType = route.path.split('/administrator/')[1]
     </div>
     <div class="absolute end-0 -top-1 flex items-center">
       <!-- [ ] Add CSV download option -->
+      <button @click="toggleModal()" class="btn btn-sm btn-ghost"><MagnifyingGlassIcon class="h-6 w-6" /></button>
       <button class="btn btn-sm btn-ghost"><EllipsisHorizontalIcon class="h-6 w-6" /></button>
       <button class="btn btn-sm btn-ghost">View</button>
       <div class="dropdown dropdown-end">
@@ -54,6 +62,7 @@ const entityType = route.path.split('/administrator/')[1]
         </ul>
       </div>
     </div>
+    <AdminEntityFormWrapper :entity="{}" :entityType :formContext="'filter'" />
   </div>
 </template>
 

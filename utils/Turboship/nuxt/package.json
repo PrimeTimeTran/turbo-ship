@@ -77,7 +77,7 @@
     "build": "nuxt build",
     "buildFlutter": "python3 scripts/copyFlutter.py && bash scripts/cleanupFlutter.sh",
     "buildNuxt": "python3 scripts/copyNuxt.py && bash scripts/cleanupNuxt.sh",
-    "dev": "nuxt dev --env .env.local",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "nodemonDev": "nodemon --watch 'nuxt.config.js' --exec 'nuxt dev'",
     "postinstall": "nuxt prepare",
