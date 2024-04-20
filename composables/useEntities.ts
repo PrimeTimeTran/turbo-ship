@@ -33,7 +33,8 @@ export function useEntities() {
     let items: any = {}
     entities.forEach((e) => {
       e.attributes.forEach((a) => {
-        let enumInvalid = Validator.enumTypes.includes(a.type) && _.isNil(a.options)
+        // let enumInvalid = Validator.enumTypes.includes(a.type) && _.isNil(a.options)
+        let enumInvalid = Validator.enumTypes.includes(a.type)
         let relationInvalid = a.type === 'relation' && _.isNil(a.relation?.name)
         if (enumInvalid || relationInvalid) {
           if (!items[e.name]) items[e.name] = []
