@@ -181,7 +181,9 @@ const entitiesItems = [
   {
     id: faker.database.mongodbObjectId(),
     name: 'Copy Entities',
-    click: () => {},
+    click: () => {
+      document.getElementById('copyEntities')?.click()
+    },
     underline: 'o',
     tip: 'Copy entities to clipboard',
     shortcut: getShortString('o'),
@@ -231,6 +233,12 @@ const templateItems = [
     id: faker.database.mongodbObjectId(),
     name: 'Exchange',
     click: () => setEntities('exchange'),
+    underline: '',
+  },
+  {
+    id: faker.database.mongodbObjectId(),
+    name: 'LeetCode',
+    click: () => setEntities('leetcode'),
     underline: '',
   },
 ]

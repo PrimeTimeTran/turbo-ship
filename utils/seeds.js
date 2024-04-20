@@ -8,6 +8,7 @@ import { Social } from './seeds/Social.js'
 import { Delivery } from './seeds/Delivery.js'
 import { Exchange } from './seeds/Exchange.js'
 import { RealEstate } from './seeds/RealEstate.js'
+import { LeetCode } from './seeds/LeetCode.js'
 
 export const seeds = {
   lms: LMS,
@@ -20,6 +21,7 @@ export const seeds = {
   delivery: Delivery,
   exchange: Exchange,
   realestate: RealEstate,
+  leetcode: LeetCode,
 }
 
 export default seeds

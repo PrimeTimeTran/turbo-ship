@@ -1,15 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 import Generator from './Generator.js'
 
 import { buildOptions } from './helpers.js'
 
-const currentDirectory = process.cwd()
 const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
 
 export default class Framework {
   constructor(name, options, entities, zip) {
@@ -29,7 +26,7 @@ export default class Framework {
   }
   zipBaseDirectory() {
     const name = this.options.frameworkName
-    const isDev = false
+    const isDev = true
     let basePath = `/usr/src/app/utils/Turboship/${name}`
     if (isDev) {
       basePath = `/Users/future/Documents/work/turbo.web/utils/Turboship/${name}`

@@ -17,16 +17,21 @@ export default class Turboship {
   }
 
   options() {
-    program
-      .option('-d, --debug', 'output extra debugging')
-      .option('-l, --language <type>', 'language choice', 'js')
-      .option('-b, --backend <type>', 'backend choice', 'nuxt')
-      .option('-m, --mobile <type>', 'mobile choice', 'flutter')
-      .option('-e, --entities <letters...>', 'entities included', 'user')
+    // program
+    //   .option('-d, --debug', 'output extra debugging')
+    //   .option('-l, --language <type>', 'language choice', 'js')
+    //   .option('-b, --backend <type>', 'backend choice', 'nuxt')
+    //   .option('-m, --mobile <type>', 'mobile choice', 'flutter')
+    //   .option('-e, --entities <letters...>', 'entities included', 'user')
     // Create string from client side config & then pass instead of process.argv
     // this way we can control which mobile template, etc
     // .parse(process.argv)
     let options = program.opts()
+    options.debug = true
+    options.language = 'js'
+    options.backend = 'nuxt'
+    options.mobile = 'flutter'
+    options.entities = []
     options.logLevelDebug = true
     // options.backend = 'nuxt'
     // options.language = 'js'
