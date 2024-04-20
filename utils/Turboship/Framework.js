@@ -202,6 +202,7 @@ export const frameworkMap = {
     apiContent: {
       'index.get.': function (label) {
         return `import _ from 'lodash'
+          import ${label} from '@models/${label}.model.js';
           export default defineEventHandler(async (e) => {
             try {
               let { limit, page } = e.context

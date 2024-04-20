@@ -1,4 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from 'path'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   plugins: ['~/plugins/fontawesome.ts'],
@@ -38,7 +45,12 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
   ],
-
+  alias: {
+    '@models': path.resolve(__dirname, 'server/models'),
+    '@utils': path.resolve(__dirname, 'server/utils'),
+    '@services': path.resolve(__dirname, 'server/services'),
+    '@security': path.resolve(__dirname, 'server/utils/security'),
+  },
   postcss: {
     plugins: {
       tailwindcss: {},

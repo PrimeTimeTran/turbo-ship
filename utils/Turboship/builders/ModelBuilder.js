@@ -118,8 +118,9 @@ export class ModelBuilder {
           ${this.buildSchema(e)}
         })
         Auditor.addHooks(${name}Schema)
+        const ${label} = mongoose.model('${label}', ${name}Schema)
+        export default ${label}
         export { ${name}Schema }
-        export const ${label} = mongoose.model('${label}', ${name}Schema)
       `
     }
 
