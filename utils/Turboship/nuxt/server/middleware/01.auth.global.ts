@@ -5,7 +5,7 @@ function isProtectedPath(path: string) {
 }
 
 export default defineEventHandler(async (e: any) => {
-  const token = e.node.req?.rawHeaders[1]?.split(' ')[1]
+  const token = e.node.req.headers.authorization?.split(' ')[1]
   if (isProtectedPath(e.path) && !token) {
     const error = {
       statusCode: 403,
