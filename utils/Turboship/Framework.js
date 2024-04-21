@@ -91,6 +91,7 @@ function buildEntityDefinition(e) {
     if (attributes) {
       attributes.forEach((f) => {
         if (f.name !== '_id') {
+          delete f.passwordDigest
           fields[f.name] = { ...f }
           const field = fields[f.name]
           delete field._id
@@ -202,7 +203,6 @@ export const frameworkMap = {
     apiContent: {
       'index.get.': function (label) {
         return `import _ from 'lodash'
-        import ${label} from '@models/${label}.model.js';
 
           export default defineEventHandler(async (e) => {
             try {
@@ -237,8 +237,6 @@ export const frameworkMap = {
       },
       'index.post.': function (label) {
         return `
-        import ${label} from '@models/${label}.model.js';
-
         export default defineEventHandler(async (event) => {
           const body = await readBody(event)
           try {
@@ -251,8 +249,6 @@ export const frameworkMap = {
       },
       '[_id].delete.': function (label) {
         return `
-        import ${label} from '@models/${label}.model.js';
-
         export default defineEventHandler(async (event) => {
           try {
             const doc = await ${label}.findOneAndUpdate(
@@ -276,8 +272,6 @@ export const frameworkMap = {
       },
       '[_id].get.': function (label) {
         return `
-        import ${label} from '@models/${label}.model.js';
-
         export default defineEventHandler(async (event) => {
           try {
             return await ${label}.findOne({ _id: event.context.params?._id })
@@ -289,7 +283,6 @@ export const frameworkMap = {
       },
       '[_id].put.': function (label) {
         return `
-        import ${label} from '@models/${label}.model.js';
         export default defineEventHandler(async (event) => {
           const body = await readBody(event)
           try {

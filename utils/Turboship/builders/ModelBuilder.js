@@ -120,7 +120,7 @@ export class ModelBuilder {
         Auditor.addHooks(${name}Schema)
         const ${label} = mongoose.model('${label}', ${name}Schema)
         export default ${label}
-        export { ${name}Schema }
+        export { ${name}Schema, ${label} }
       `
     }
 

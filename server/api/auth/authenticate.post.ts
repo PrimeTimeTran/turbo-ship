@@ -1,4 +1,5 @@
-import User from "@models/User.model.js"
+// import User from "@models/User.model.js"
+import { User } from "../../models/User.model"
 const err = {
   statusCode: 400,
   statusMessage: 'Authentication Error: Email/Password invalid',
@@ -13,6 +14,9 @@ export default defineEventHandler(async (e) => {
   if (!validPassword) throw createError(err)
 
   const token = jwtSign({ userId: user._id })
+
+  delete user.passwordDigest
+
   const response = {
     token,
     user,
