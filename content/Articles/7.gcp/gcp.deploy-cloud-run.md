@@ -1,11 +1,12 @@
 ---
 createdAt: 2024-02-20
-title: "Deploy a Nuxt3 App to a Cloud Run Service"
+title: 'Deploy a Nuxt3 App to a Cloud Run Service'
 description: "Steps to ensure successful deploy a Nuxt3 web application to GCP's Cloud Run service/product."
 tags: GCP, Nuxt, Cloud Run
 ---
 
 # GCP: Nuxt3 Cloud Run Deployment
+
 How to deploy Turboship, a Nuxt3 app, on GCP infrastructure
 
 ## Dependencies
@@ -17,6 +18,7 @@ How to deploy Turboship, a Nuxt3 app, on GCP infrastructure
 ## Steps
 
 ### Dockerize your app
+
 I suggest you expose your app on port `8080` as it's the default GCP Cloud Run uses.
 
 ### Build Image
@@ -25,13 +27,14 @@ I suggest you expose your app on port `8080` as it's the default GCP Cloud Run u
 docker build -t primetimetran/turboship . --platform linux/amd64
 ```
 
-> I add `--platform linux/amd64` because of this [bug/post](https://stackoverflow.com/questions/77998443/simple-docker-image-for-python-on-macos-doesnt-run-in-google-cloud-run-exec?noredirect=1&lq=1) I ran into.
+> I've added `--platform linux/amd64` because of this [bug/post](https://stackoverflow.com/questions/77998443/simple-docker-image-for-python-on-macos-doesnt-run-in-google-cloud-run-exec?noredirect=1&lq=1) I ran into.
 
 ### Navigate to GCP Artifact Registry Product & create a repo
 
 The [repo](https://console.cloud.google.com/artifacts) will hold your images.
 
 ### Tag image you created following GCP conventions
+
 Tag your local image following [GCP docs/conventions](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling#tag).
 
 ```sh
@@ -48,6 +51,7 @@ In other words the tag's mapping is as follows:
 - image-name: `image-name`
 
 ### Authenticate Region
+
 To build on your local you'll need to be authenticated(as opposed to building in GCP console).
 
 ```sh
@@ -55,6 +59,7 @@ gcloud auth configure-docker us-central1-docker.pkg.dev
 ```
 
 ### Push image to GCP registry/repo.
+
 GCP needs a copy of the image. Artifact registry holds it while Cloud Run deploys/hosts it.
 
 ```sh
@@ -80,6 +85,5 @@ gcloud builds submit --project "project-name" --config=./cloud-build.yaml
 - [Artifact Repository](https://console.cloud.google.com/artifacts/docker/turboship-dev/us-central1/anotsosecretproject/turboship?hl=en&project=turboship-dev)
 - [Cloud Run Logs](https://console.cloud.google.com/logs/query;query=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22turboship%22%0Aresource.labels.revision_name%3D%22turboship-00011-6qj%22;cursorTimestamp=2024-02-20T20:37:31.407052801Z;duration=PT1H?project=turboship-dev)
 - [Cloud Run Services](https://console.cloud.google.com/run?project=turboship-dev)
-
 
 gcloud logging read "resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"turboship\"" --project=turboship-dev --limit=1000

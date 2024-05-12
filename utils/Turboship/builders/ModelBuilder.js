@@ -115,7 +115,7 @@ export class ModelBuilder {
       }
       // [ ] User: Add special fields. [('email', 'firstName', 'lastName', 'status', 'passwordDigest', 'roles', 'isVerified', 'isSoftDeleted')]
       return `const ${name}Schema = new Schema({
-          ${this.buildSchema(e)}
+          ${this.buildSchema(e)}, { timestamps: true }
         })
         Auditor.addHooks(${name}Schema)
         const ${label} = mongoose.model('${label}', ${name}Schema)
@@ -170,7 +170,7 @@ export class ModelBuilder {
       case 'Number':
         return 'Number'
       case 'Integer':
-        return 'BigInt'
+        return 'Number'
       case 'Decimal':
         return 'Schema.Types.Decimal128'
       case 'Map':
@@ -181,13 +181,31 @@ export class ModelBuilder {
         return 'Schema.Types.ObjectId'
     }
   }
+  
   buildSchema() {
     function buildRequired(required) {
       return required ? `required: ${required},` : ''
     }
+    function buildDefault(type,options) {
+      switch (type) {
+        case 'Number':
+          return '0.0,'
+        case 'Integer':
+          return '0,'
+        case 'Decimal':
+          return '0.0,'
+        case 'Map':
+          return '{},'
+        case 'Array':
+          return '[],'
+        default:
+          return options.length > 0 ? options[0] : ''
+      }
+    }
     const values = []
     for (const f in this.e.fields) {
       const field = this.e.fields[f]
+      console.log({field})
       const { type, required, enumeratorType, relation, name, options } = field
       const fieldName = name || f
       let item
@@ -195,9 +213,9 @@ export class ModelBuilder {
         item = ''
         let relationType = relation.type
         if (relationType === 'mto' || relationType === 'oto') {
-          item = `${name}: { type: Schema.Types.ObjectId, ref: '${capitalize(name)}', ${buildRequired(required)} }`
+          item = `${name}: { type: Schema.Types.ObjectId, ref: '${capitalize(relation.name)}', ${buildRequired(required)} }`
         } else {
-          item = `${name}: [{ type: Schema.Types.ObjectId, ref: '${capitalize(name)}' }]`
+          item = `${name}: [{ type: Schema.Types.ObjectId, ref: '${capitalize(relation.name)}' }]`
         }
       } else if (Type.enums.includes(type)) {
         function getEnumType(t) {

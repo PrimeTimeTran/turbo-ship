@@ -520,6 +520,15 @@ export const LeetCode = {
           _id: 'cb9e4df1711521061av110b2a8c',
           relation: { name: null, type: '' },
         },
+        {
+          validators: [],
+          validations: [],
+          type: 'array',
+          name: 'activeDates',
+          label: 'activeDates',
+          _id: 'cb9e4df1711321061av110b2a8c',
+          relation: { name: null, type: '' },
+        },
       ],
     },
     {
@@ -1159,7 +1168,7 @@ export const LeetCode = {
           label: 'Submissions',
           _id: 'cbe4fa1b510612a101b22ba8c',
           placeholder: 'many-to-one',
-          relation: { name: 'submissions', type: 'mto' },
+          relation: { name: 'submission', type: 'mto' },
         },
         {
           name: 'score',
@@ -1758,6 +1767,15 @@ export const LeetCode = {
           _id: 'db9e41f71b5106c1a101b22ba89',
           relation: { name: null, type: '' },
         },
+        {
+          validators: [],
+          validations: [],
+          type: 'text',
+          name: 'initialCode',
+          label: 'Initial Code',
+          _id: 'db9e91f71b5106c1a101b22ba89',
+          relation: { name: null, type: '' },
+        },
       ]
     },
     {
@@ -2039,5 +2057,31 @@ export const LeetCode = {
         },
       ]
     },
+    // {
+    //   _id: '59abczcz7ae2e6dbbcd151d90b13',
+    //   name: 'testSuite',
+    //   label: 'Test Suite',
+    //   plural: 'testSuites',
+    //   pluralL: 'Test Suites',
+    //   attributes: [
+    //     {
+    //       validators: [],
+    //       validations: [],
+    //       type: 'text',
+    //       name: '_id',
+    //       _id: 'b2f7ba2d5425e1961e1fde113eb8cz',
+    //       relation: { name: null, type: '' },
+    //     },
+    //     {
+    //       validators: [],
+    //       validations: [],
+    //       type: 'string',
+    //       name: 'name',
+    //       label: 'Name',
+    //       _id: 'b2f7ba111d3412e5961e1fde113eb8cz',
+    //       relation: { name: null, type: '' },
+    //     },
+    //   ]
+    // },
   ],
 }
